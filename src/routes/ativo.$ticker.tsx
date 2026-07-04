@@ -256,7 +256,7 @@ function AssetPage() {
                 </tr>
               </thead>
               <tbody>
-                {asset.dividends.map((d, i) => (
+                {asset.dividends.map((d: typeof asset.dividends[number], i: number) => (
                   <tr key={i} className="border-t border-border">
                     <td className="px-4 py-2 text-muted-foreground">{formatDate(d.paidAt)}</td>
                     <td className="px-4 py-2">{d.type}</td>
