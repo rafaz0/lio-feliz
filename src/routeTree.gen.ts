@@ -9,38 +9,121 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
+import { Route as AuthenticatedCarteiraRouteImport } from './routes/_authenticated/carteira'
+import { Route as AuthenticatedCarteiraIndexRouteImport } from './routes/_authenticated/carteira.index'
+import { Route as AuthenticatedCarteiraOperacoesRouteImport } from './routes/_authenticated/carteira.operacoes'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtivoTickerRoute = AtivoTickerRouteImport.update({
+  id: '/ativo/$ticker',
+  path: '/ativo/$ticker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedCarteiraRoute = AuthenticatedCarteiraRouteImport.update({
+  id: '/carteira',
+  path: '/carteira',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCarteiraIndexRoute =
+  AuthenticatedCarteiraIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
+const AuthenticatedCarteiraOperacoesRoute =
+  AuthenticatedCarteiraOperacoesRouteImport.update({
+    id: '/operacoes',
+    path: '/operacoes',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/carteira': typeof AuthenticatedCarteiraRouteWithChildren
+  '/ativo/$ticker': typeof AtivoTickerRoute
+  '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/carteira/': typeof AuthenticatedCarteiraIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/ativo/$ticker': typeof AtivoTickerRoute
+  '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/carteira': typeof AuthenticatedCarteiraIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/carteira': typeof AuthenticatedCarteiraRouteWithChildren
+  '/ativo/$ticker': typeof AtivoTickerRoute
+  '/_authenticated/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/_authenticated/carteira/': typeof AuthenticatedCarteiraIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/carteira'
+    | '/ativo/$ticker'
+    | '/carteira/operacoes'
+    | '/carteira/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/auth' | '/ativo/$ticker' | '/carteira/operacoes' | '/carteira'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/carteira'
+    | '/ativo/$ticker'
+    | '/_authenticated/carteira/operacoes'
+    | '/_authenticated/carteira/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  AtivoTickerRoute: typeof AtivoTickerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +131,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ativo/$ticker': {
+      id: '/ativo/$ticker'
+      path: '/ativo/$ticker'
+      fullPath: '/ativo/$ticker'
+      preLoaderRoute: typeof AtivoTickerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/carteira': {
+      id: '/_authenticated/carteira'
+      path: '/carteira'
+      fullPath: '/carteira'
+      preLoaderRoute: typeof AuthenticatedCarteiraRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/carteira/': {
+      id: '/_authenticated/carteira/'
+      path: '/'
+      fullPath: '/carteira/'
+      preLoaderRoute: typeof AuthenticatedCarteiraIndexRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
+    '/_authenticated/carteira/operacoes': {
+      id: '/_authenticated/carteira/operacoes'
+      path: '/operacoes'
+      fullPath: '/carteira/operacoes'
+      preLoaderRoute: typeof AuthenticatedCarteiraOperacoesRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
   }
 }
 
+interface AuthenticatedCarteiraRouteChildren {
+  AuthenticatedCarteiraOperacoesRoute: typeof AuthenticatedCarteiraOperacoesRoute
+  AuthenticatedCarteiraIndexRoute: typeof AuthenticatedCarteiraIndexRoute
+}
+
+const AuthenticatedCarteiraRouteChildren: AuthenticatedCarteiraRouteChildren = {
+  AuthenticatedCarteiraOperacoesRoute: AuthenticatedCarteiraOperacoesRoute,
+  AuthenticatedCarteiraIndexRoute: AuthenticatedCarteiraIndexRoute,
+}
+
+const AuthenticatedCarteiraRouteWithChildren =
+  AuthenticatedCarteiraRoute._addFileChildren(
+    AuthenticatedCarteiraRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCarteiraRoute: typeof AuthenticatedCarteiraRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCarteiraRoute: AuthenticatedCarteiraRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  AtivoTickerRoute: AtivoTickerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
