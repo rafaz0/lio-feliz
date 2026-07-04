@@ -14,7 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      portfolio_operations: {
+        Row: {
+          created_at: string
+          id: string
+          notes: string | null
+          price: number
+          quantity: number
+          side: Database["public"]["Enums"]["operation_side"]
+          source: Database["public"]["Enums"]["operation_source"]
+          ticker: string
+          traded_at: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          price: number
+          quantity: number
+          side: Database["public"]["Enums"]["operation_side"]
+          source?: Database["public"]["Enums"]["operation_source"]
+          ticker: string
+          traded_at: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          price?: number
+          quantity?: number
+          side?: Database["public"]["Enums"]["operation_side"]
+          source?: Database["public"]["Enums"]["operation_source"]
+          ticker?: string
+          traded_at?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +88,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      operation_side: "buy" | "sell"
+      operation_source: "manual" | "b3_import" | "pluggy"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +216,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      operation_side: ["buy", "sell"],
+      operation_source: ["manual", "b3_import", "pluggy"],
+    },
   },
 } as const
