@@ -33,3 +33,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Dev artifacts
+.wrangler-state/
+preview-out.txt
+preview-resp.txt
+.prv.log
+.preview.log
+preview-resp.txt
+.wr.log
+.wr-debug.log
+preview-resp.txt
+preview-out.txt

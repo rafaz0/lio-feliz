@@ -96,11 +96,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
-    scripts: [
-      {
-        children: `(function(){try{var t=localStorage.getItem('lio.theme');if(t==='light')document.documentElement.classList.add('light');}catch(e){}})();`,
-      },
-    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

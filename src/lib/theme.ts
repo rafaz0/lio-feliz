@@ -9,17 +9,30 @@ function apply(theme: Theme) {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") return "dark";
-    const saved = window.localStorage.getItem(KEY) as Theme | null;
-    return saved === "light" ? "light" : "dark";
-  });
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    apply(theme);
-    window.localStorage.setItem(KEY, theme);
-  }, [theme]);
+    try {
+      const saved = window.localStorage.getItem(KEY);
+      if (saved === "light") {
+        setTheme("light");
+        document.documentElement.classList.add("light");
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
-  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+  function setAndPersist(next: Theme) {
+    setTheme(next);
+    apply(next);
+    try {
+      window.localStorage.setItem(KEY, next);
+    } catch {
+      // ignore
+    }
+  }
+
+  const toggle = () => setAndPersist(theme === "dark" ? "light" : "dark");
   return { theme, toggle };
 }
