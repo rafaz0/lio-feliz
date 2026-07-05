@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
-import { Info, Plus, Wallet } from "lucide-react";
+import { Info, Plus, RefreshCw, Wallet } from "lucide-react";
 import { listOperations } from "@/lib/operations.functions";
+import { getQuotes } from "@/lib/quotes.functions";
 import { consolidatePortfolio } from "@/lib/portfolio";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { DeltaPct } from "@/components/delta-pct";
@@ -27,9 +28,20 @@ const CHART_COLORS = [
 
 function PortfolioOverview() {
   const list = useServerFn(listOperations);
+  const fetchQuotes = useServerFn(getQuotes);
+  const queryClient = useQueryClient();
   const { data: ops, isLoading } = useQuery({
     queryKey: ["operations"],
     queryFn: () => list(),
+  });
+
+  const tickers = Array.from(new Set((ops ?? []).map((o) => o.ticker))).sort();
+  const quotesQuery = useQuery({
+    queryKey: ["quotes", tickers],
+    queryFn: () => fetchQuotes({ data: { tickers } }),
+    enabled: tickers.length > 0,
+    staleTime: 60_000,
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading || !ops) {
@@ -42,8 +54,16 @@ function PortfolioOverview() {
     );
   }
 
-  const portfolio = consolidatePortfolio(ops);
+  const priceOverrides: Record<string, number> = {};
+  const quotesData = quotesQuery.data?.quotes ?? {};
+  for (const [t, q] of Object.entries(quotesData)) {
+    priceOverrides[t] = q.price;
+  }
+  const portfolio = consolidatePortfolio(ops, priceOverrides);
   const isEmpty = portfolio.positions.length === 0;
+  const quotesUpdatedAt = Object.values(quotesData)[0]?.updatedAt;
+  const quotesError = quotesQuery.data?.error;
+  const liveCount = Object.keys(quotesData).length;
 
   return (
     <div className="space-y-6">
