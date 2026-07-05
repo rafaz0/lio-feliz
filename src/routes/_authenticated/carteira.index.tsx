@@ -148,7 +148,7 @@ function PortfolioOverview() {
             <div className="border-b border-border bg-surface-2 px-4 py-3">
               <h2 className="text-sm font-semibold">Posições</h2>
               <p className="text-xs text-muted-foreground">
-                Ordenadas por valor atual · preços mock em tempo "real"
+                Ordenadas por valor atual · preços em tempo real via BRAPI
               </p>
             </div>
             <div className="overflow-x-auto">
@@ -255,7 +255,7 @@ function PortfolioOverview() {
             </ul>
             <p className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">
               <Info className="mt-0.5 size-3.5 shrink-0" />
-              Preços atualizados a partir de dados mock. Integração B3 chegará em breve.
+              Cotações via BRAPI (b3). Tickers sem retorno usam preço de referência.
             </p>
           </div>
         </div>
