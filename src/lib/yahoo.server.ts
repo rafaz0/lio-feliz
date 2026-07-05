@@ -354,3 +354,51 @@ export function getCached<T>(key: string): T | null {
 export function setCache(key: string, data: unknown): void {
   CACHE.set(key, { data, ts: Date.now() });
 }
+
+export interface AnnualDividends {
+  year: number;
+  totalPerShare: number;
+  yieldPct: number | null;
+  priceAtYearEnd: number | null;
+}
+
+export function aggregateAnnualDividends(
+  dividends: { paidAt: string; amount: number }[],
+  history: { date: string; close: number }[],
+): AnnualDividends[] {
+  const byYear = new Map<number, number>();
+  for (const d of dividends) {
+    const y = Number(d.paidAt.slice(0, 4));
+    byYear.set(y, (byYear.get(y) ?? 0) + d.amount);
+  }
+  const priceAtYearEnd = (year: number): number | null => {
+    let last: number | null = null;
+    for (const h of history) {
+      if (Number(h.date.slice(0, 4)) <= year && h.close > 0) last = h.close;
+    }
+    return last;
+  };
+  return Array.from(byYear.entries())
+    .map(([year, totalPerShare]) => {
+      const priceEoy = priceAtYearEnd(year);
+      const yieldPct = priceEoy && priceEoy > 0 ? (totalPerShare / priceEoy) * 100 : null;
+      return { year, totalPerShare, yieldPct, priceAtYearEnd: priceEoy };
+    })
+    .sort((a, b) => a.year - b.year);
+}
+
+/**
+ * Dividend CAGR (Compound Annual Growth Rate) based on annual totals per share.
+ * Uses the first and last available years, requiring at least 2 years apart.
+ * Returns percent (e.g. 8.5 means +8.5%/year).
+ */
+export function computeDividendCAGR(annual: AnnualDividends[]): number | null {
+  if (annual.length < 2) return null;
+  const first = annual[0];
+  const last = annual[annual.length - 1];
+  if (first.totalPerShare <= 0 || last.totalPerShare <= 0) return null;
+  const years = last.year - first.year;
+  if (years < 1) return null;
+  const ratio = last.totalPerShare / first.totalPerShare;
+  return (Math.pow(ratio, 1 / years) - 1) * 100;
+}

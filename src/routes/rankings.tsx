@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { Medal, TrendingUp, Building2 } from "lucide-react";
+import { Medal, TrendingUp, Building2, Filter, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { SiteHeader } from "@/components/site-header";
@@ -9,6 +9,7 @@ import { FIIS, type Fii } from "@/lib/fii-mock-data";
 import { getAllAssets } from "@/lib/data-functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
 
 export const Route = createFileRoute("/rankings")({
@@ -57,6 +58,8 @@ function RankingsPage() {
   const [mode, setMode] = useState<"stocks" | "fiis">("stocks");
   const [tab, setTab] = useState<RankTab>("dy");
   const [fiiTab, setFiiTab] = useState<FiiRankTab>("dy");
+  const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
+  const [showFilters, setShowFilters] = useState(false);
 
   const fetchQuotes = useServerFn(getQuotes);
   useQuery({
@@ -66,8 +69,37 @@ function RankingsPage() {
     staleTime: 60_000,
   });
 
+  const availableSectors = useMemo(() => {
+    const set = new Set<string>();
+    for (const a of assets) if (a.sector) set.add(a.sector);
+    return Array.from(set).sort();
+  }, [assets]);
+
+  const filteredStocks = useMemo(() => {
+    return assets.filter((a) => {
+      const f = a.fundamentals;
+      if (filters.sectors.size > 0 && !filters.sectors.has(a.sector ?? "")) return false;
+      if (f.pl > 0 && (f.pl < filters.plMin || f.pl > filters.plMax)) return false;
+      if (f.pvp > 0 && (f.pvp < filters.pvpMin || f.pvp > filters.pvpMax)) return false;
+      if (f.dy < filters.dyMin) return false;
+      if (f.roe > 0 && f.roe < filters.roeMin) return false;
+      if (filters.onlyGraham && (f.lpa <= 0 || f.vpa <= 0)) return false;
+      return true;
+    });
+  }, [assets, filters]);
+
+  const filteredFiis = useMemo(() => {
+    return FIIS.filter((f) => {
+      if (filters.fiiSectors.size > 0 && !filters.fiiSectors.has(f.sector)) return false;
+      if (f.dy < filters.fiiDyMin) return false;
+      if (f.pvp <= 0 || f.pvp < filters.fiiPvpMin || f.pvp > filters.fiiPvpMax) return false;
+      if (f.vacancy !== null && f.vacancy > filters.fiiVacancyMax) return false;
+      return true;
+    });
+  }, [filters]);
+
   const rankedStocks = useMemo(() => {
-    let list = [...assets];
+    let list = [...filteredStocks];
     switch (tab) {
       case "dy":
         return list.sort((a, b) => b.fundamentals.dy - a.fundamentals.dy);
@@ -101,7 +133,7 @@ function RankingsPage() {
   }, [tab]);
 
   const rankedFiis = useMemo(() => {
-    let list = [...FIIS];
+    let list = [...filteredFiis];
     switch (fiiTab) {
       case "dy":
         return list.sort((a, b) => b.dy - a.dy);
@@ -266,6 +298,16 @@ function RankingsPage() {
           </Button>
         </div>
 
+        <AdvancedFilters
+          mode={currentMode}
+          sectors={availableSectors}
+          filters={filters}
+          onChange={setFilters}
+          resultCount={ranked.length}
+          open={showFilters}
+          onToggle={() => setShowFilters((v) => !v)}
+        />
+
         <div className="mb-6 flex flex-wrap gap-1.5">
           {currentTabs.map((t) => (
             <Button
@@ -307,6 +349,211 @@ function RankingsPage() {
           </table>
         </div>
       </main>
+    </div>
+  );
+}
+
+interface FilterState {
+  // Ações
+  sectors: Set<string>;
+  plMin: number;
+  plMax: number;
+  pvpMin: number;
+  pvpMax: number;
+  dyMin: number;
+  roeMin: number;
+  onlyGraham: boolean;
+  // FIIs
+  fiiSectors: Set<string>;
+  fiiDyMin: number;
+  fiiPvpMin: number;
+  fiiPvpMax: number;
+  fiiVacancyMax: number;
+}
+
+const DEFAULT_FILTERS: FilterState = {
+  sectors: new Set<string>(),
+  plMin: 0,
+  plMax: 100,
+  pvpMin: 0,
+  pvpMax: 10,
+  dyMin: 0,
+  roeMin: 0,
+  onlyGraham: false,
+  fiiSectors: new Set<string>(),
+  fiiDyMin: 0,
+  fiiPvpMin: 0,
+  fiiPvpMax: 5,
+  fiiVacancyMax: 100,
+};
+
+function AdvancedFilters({
+  mode,
+  sectors,
+  filters,
+  onChange,
+  resultCount,
+  open,
+  onToggle,
+}: {
+  mode: "stocks" | "fiis";
+  sectors: string[];
+  filters: FilterState;
+  onChange: (next: FilterState) => void;
+  resultCount: number;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  const set = <K extends keyof FilterState>(k: K, v: FilterState[K]) => onChange({ ...filters, [k]: v });
+  const toggleSector = (s: string) => {
+    const next = new Set(filters.sectors);
+    if (next.has(s)) next.delete(s); else next.add(s);
+    set("sectors", next);
+  };
+  const toggleFiiSector = (s: string) => {
+    const next = new Set(filters.fiiSectors);
+    if (next.has(s)) next.delete(s); else next.add(s);
+    set("fiiSectors", next);
+  };
+  const reset = () => onChange({ ...DEFAULT_FILTERS, sectors: new Set(), fiiSectors: new Set() });
+  const activeCount =
+    filters.sectors.size +
+    filters.fiiSectors.size +
+    (filters.plMin !== 0 || filters.plMax !== 100 ? 1 : 0) +
+    (filters.pvpMin !== 0 || filters.pvpMax !== 10 ? 1 : 0) +
+    (filters.dyMin !== 0 ? 1 : 0) +
+    (filters.roeMin !== 0 ? 1 : 0) +
+    (filters.onlyGraham ? 1 : 0) +
+    (filters.fiiDyMin !== 0 ? 1 : 0) +
+    (filters.fiiPvpMin !== 0 || filters.fiiPvpMax !== 5 ? 1 : 0) +
+    (filters.fiiVacancyMax !== 100 ? 1 : 0);
+
+  return (
+    <div className="mb-6">
+      <div className="flex flex-wrap items-center gap-3">
+        <Button variant="outline" size="sm" onClick={onToggle} className="gap-1.5">
+          <Filter className="size-3.5" />
+          Filtros avançados
+          {activeCount > 0 && (
+            <span className="ml-1 rounded bg-primary px-1.5 py-0.5 text-[10px] font-medium text-primary-foreground">
+              {activeCount}
+            </span>
+          )}
+        </Button>
+        {activeCount > 0 && (
+          <Button variant="ghost" size="sm" onClick={reset} className="gap-1.5 text-muted-foreground">
+            <X className="size-3.5" /> Limpar filtros
+          </Button>
+        )}
+        <span className="ml-auto text-xs text-muted-foreground tabular">
+          {resultCount} {resultCount === 1 ? "resultado" : "resultados"}
+        </span>
+      </div>
+
+      {open && (
+        <div className="mt-3 rounded-lg border border-border bg-card p-4">
+          {mode === "stocks" ? (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <NumField label="P/L mínimo" value={filters.plMin} onChange={(v) => set("plMin", v)} max={100} />
+              <NumField label="P/L máximo" value={filters.plMax} onChange={(v) => set("plMax", v)} max={100} />
+              <NumField label="P/VP mínimo" value={filters.pvpMin} onChange={(v) => set("pvpMin", v)} max={10} step={0.1} />
+              <NumField label="P/VP máximo" value={filters.pvpMax} onChange={(v) => set("pvpMax", v)} max={10} step={0.1} />
+              <NumField label="DY mínimo %" value={filters.dyMin} onChange={(v) => set("dyMin", v)} max={20} step={0.5} />
+              <NumField label="ROE mínimo %" value={filters.roeMin} onChange={(v) => set("roeMin", v)} max={50} step={0.5} />
+              <label className="col-span-full flex items-center gap-2 text-xs">
+                <input
+                  type="checkbox"
+                  checked={filters.onlyGraham}
+                  onChange={(e) => set("onlyGraham", e.target.checked)}
+                  className="size-3.5 accent-primary"
+                />
+                Apenas com Graham válido (LPA e VPA positivos)
+              </label>
+              <div className="col-span-full">
+                <div className="mb-1.5 text-xs text-muted-foreground">Setores</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {sectors.length === 0 && (
+                    <span className="text-xs text-muted-foreground">(vazio)</span>
+                  )}
+                  {sectors.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => toggleSector(s)}
+                      className={
+                        "rounded border px-2 py-0.5 text-xs transition " +
+                        (filters.sectors.has(s)
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border text-muted-foreground hover:text-foreground")
+                      }
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <NumField label="DY mínimo %" value={filters.fiiDyMin} onChange={(v) => set("fiiDyMin", v)} max={20} step={0.5} />
+              <NumField label="P/VP mínimo" value={filters.fiiPvpMin} onChange={(v) => set("fiiPvpMin", v)} max={5} step={0.1} />
+              <NumField label="P/VP máximo" value={filters.fiiPvpMax} onChange={(v) => set("fiiPvpMax", v)} max={5} step={0.1} />
+              <NumField label="Vacância máxima %" value={filters.fiiVacancyMax} onChange={(v) => set("fiiVacancyMax", v)} max={100} step={5} />
+              <div className="col-span-full">
+                <div className="mb-1.5 text-xs text-muted-foreground">Setores</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {Array.from(new Set(FIIS.map((f) => f.sector))).sort().map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => toggleFiiSector(s)}
+                      className={
+                        "rounded border px-2 py-0.5 text-xs transition " +
+                        (filters.fiiSectors.has(s)
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border text-muted-foreground hover:text-foreground")
+                      }
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function NumField({
+  label,
+  value,
+  onChange,
+  max,
+  step = 1,
+}: {
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+  max: number;
+  step?: number;
+}) {
+  return (
+    <div>
+      <label className="block text-xs text-muted-foreground">{label}</label>
+      <Input
+        type="number"
+        value={value}
+        step={step}
+        max={max}
+        onChange={(e) => {
+          const v = Number(e.target.value);
+          onChange(Number.isFinite(v) ? v : 0);
+        }}
+        className="mt-1 h-8 tabular"
+      />
     </div>
   );
 }

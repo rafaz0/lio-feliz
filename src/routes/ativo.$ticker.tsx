@@ -22,13 +22,14 @@ import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/hooks/use-session";
 import { getAssetData, getFinancialStatements } from "@/lib/data-functions";
-import { fetchYahooNews, type FinancialStatements } from "@/lib/yahoo.server";
+import { fetchYahooNews, type FinancialStatements, type AnnualDividends, aggregateAnnualDividends, computeDividendCAGR } from "@/lib/yahoo.server";
 import { useWatchlist } from "@/lib/watchlist";
 import { getQuotes } from "@/lib/quotes.functions";
 import { calcAll } from "@/lib/technical-indicators";
 import { Tooltip as UiTooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatDate } from "@/lib/format";
+import { grahamRating, bazinPriceTeto, avgAnnualYield } from "@/lib/valuation";
 
 export const Route = createFileRoute("/ativo/$ticker")({
   loader: async ({ params }) => {
@@ -391,6 +392,28 @@ function AssetPage() {
       .filter((d) => d.macd !== null);
   }, [filteredHistory, indicatorsData]);
 
+  const annualDividends: AnnualDividends[] = useMemo(
+    () => aggregateAnnualDividends(asset.dividends, asset.history),
+    [asset.dividends, asset.history],
+  );
+  const dividendCagrFromHistory = useMemo(
+    () => computeDividendCAGR(annualDividends),
+    [annualDividends],
+  );
+  const avgYield5y = useMemo(() => avgAnnualYield(annualDividends, 5), [annualDividends]);
+  const avgYield3y = useMemo(() => avgAnnualYield(annualDividends, 3), [annualDividends]);
+
+  const graham = useMemo(
+    () => grahamRating(currentPrice, { lpa: asset.fundamentals.lpa, vpa: asset.fundamentals.vpa }),
+    [currentPrice, asset.fundamentals.lpa, asset.fundamentals.vpa],
+  );
+  const bazinTeto = useMemo(
+    () => bazinPriceTeto({ currentPrice, dividendYieldAverage5y: avgYield5y }),
+    [currentPrice, avgYield5y],
+  );
+  const bazinDiscount =
+    bazinTeto && bazinTeto > 0 ? ((bazinTeto - currentPrice) / (currentPrice + bazinTeto)) * 2 : null;
+
   const indicators = [
     { label: "P/L", value: asset.fundamentals.pl.toFixed(1), hint: "Preço / Lucro", tag: "" },
     { label: "P/VP", value: asset.fundamentals.pvp.toFixed(2), hint: "Preço / Valor Patrimonial", tag: "" },
@@ -559,6 +582,135 @@ function AssetPage() {
               })}
             </div>
           </section>
+
+          {(graham.fairValue !== null || bazinTeto !== null || dividendCagrFromHistory !== null || avgYield5y !== null) && (
+            <section className="mt-4">
+              <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Modelos de valuation
+              </h2>
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                {/* Graham */}
+                <div className="rounded-md border border-border bg-card p-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Graham (Preço Justo)</span>
+                    {graham.rating !== "indefinido" && (
+                      <span className={
+                        "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
+                        (graham.rating === "barata" ? "bg-positive/10 text-positive" :
+                         graham.rating === "cara" ? "bg-negative/10 text-negative" :
+                         "bg-secondary text-muted-foreground")
+                      }>
+                        {graham.rating}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-1 text-xs text-muted-foreground">√(22,5 × LPA × VPA)</div>
+                  <div className="tabular mt-1.5 text-lg font-semibold">
+                    {graham.fairValue !== null ? formatBRL(graham.fairValue) : "—"}
+                  </div>
+                  {graham.discount !== null && (
+                    <div className={"tabular mt-0.5 text-xs " + (graham.discount >= 0 ? "text-positive" : "text-negative")}>
+                      {graham.discount >= 0 ? "Desconto " : "Prêmio "}{Math.abs(graham.discount * 100).toFixed(1)}%
+                    </div>
+                  )}
+                </div>
+
+                {/* Bazin */}
+                <div className="rounded-md border border-border bg-card p-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Bazin (Preço Teto)</span>
+                    {bazinDiscount !== null && (
+                      <span className={
+                        "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
+                        (bazinDiscount >= 0 ? "bg-positive/10 text-positive" : "bg-negative/10 text-negative")
+                      }>
+                        {bazinDiscount >= 0 ? "abaixo" : "acima"}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-1 text-xs text-muted-foreground">
+                    DY médio {avgYield5y !== null ? `${avgYield5y.toFixed(1)}%` : "—"} a.a. / 6% esperado
+                  </div>
+                  <div className="tabular mt-1.5 text-lg font-semibold">
+                    {bazinTeto !== null ? formatBRL(bazinTeto) : "—"}
+                  </div>
+                </div>
+
+                {/* CAGR dividendos histórico */}
+                <div className="rounded-md border border-border bg-card p-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">CAGR Dividendos</span>
+                    {dividendCagrFromHistory !== null && dividendCagrFromHistory >= 5 && (
+                      <span className="rounded bg-chart-2/10 px-1 py-0.5 text-[9px] font-medium uppercase text-chart-2">
+                        cresc.
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-1 text-xs text-muted-foreground">
+                    baseado em {annualDividends.length} {annualDividends.length === 1 ? "ano" : "anos"} de histórico
+                  </div>
+                  <div className="tabular mt-1.5 text-lg font-semibold">
+                    {dividendCagrFromHistory !== null ? `${dividendCagrFromHistory.toFixed(1)}% a.a.` : "—"}
+                  </div>
+                </div>
+
+                {/* DY médio */}
+                <div className="rounded-md border border-border bg-card p-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">DY médio</span>
+                  </div>
+                  <div className="mt-1 text-xs text-muted-foreground">3 anos / 5 anos</div>
+                  <div className="tabular mt-1.5 text-lg font-semibold">
+                    {avgYield3y !== null ? `${avgYield3y.toFixed(2)}%` : "—"}
+                    <span className="text-sm text-muted-foreground"> / </span>
+                    {avgYield5y !== null ? `${avgYield5y.toFixed(2)}%` : "—"}
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {annualDividends.length > 1 && (
+            <section className="mt-4">
+              <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Proventos anuais
+              </h2>
+              <div className="overflow-hidden rounded-md border border-border bg-card">
+                <table className="w-full text-xs">
+                  <thead className="bg-surface-2 text-[10px] uppercase text-muted-foreground">
+                    <tr>
+                      <th className="px-3 py-2 text-left font-medium">Ano</th>
+                      <th className="px-3 py-2 text-right font-medium">Total / ação</th>
+                      <th className="px-3 py-2 text-right font-medium">Preço fim do ano</th>
+                      <th className="px-3 py-2 text-right font-medium">Yield ano</th>
+                      <th className="px-3 py-2 text-right font-medium">vs ano anterior</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {annualDividends.map((y, idx) => {
+                      const prev = idx > 0 ? annualDividends[idx - 1].totalPerShare : null;
+                      const delta = prev && prev > 0 ? ((y.totalPerShare - prev) / prev) * 100 : null;
+                      return (
+                        <tr key={y.year} className="border-t border-border text-xs">
+                          <td className="px-3 py-1.5 font-medium tabular">{y.year}</td>
+                          <td className="tabular px-3 py-1.5 text-right">{formatBRL(y.totalPerShare)}</td>
+                          <td className="tabular px-3 py-1.5 text-right text-muted-foreground">
+                            {y.priceAtYearEnd !== null ? formatBRL(y.priceAtYearEnd) : "—"}
+                          </td>
+                          <td className="tabular px-3 py-1.5 text-right">
+                            {y.yieldPct !== null ? `${y.yieldPct.toFixed(2)}%` : "—"}
+                          </td>
+                          <td className={"tabular px-3 py-1.5 text-right " + (delta !== null && delta >= 0 ? "text-positive" : "text-negative")}>
+                            {delta !== null ? (delta >= 0 ? "+" : "") + delta.toFixed(1) + "%" : "—"}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )}
 
           {riskMetrics && (
             <section className="mt-4">
