@@ -12,6 +12,7 @@ import { getAssetList, type AssetLite } from "@/lib/data-functions";
 import { MARKET_INDICES, formatIndexValue } from "@/lib/market-indices";
 import { getQuotes } from "@/lib/quotes.functions";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
+import { useSession } from "@/hooks/use-session";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -35,6 +36,7 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const { list } = Route.useLoaderData();
+  const { user } = useSession();
   const [search, setSearch] = useState("");
 
   const fetchQuotes = useServerFn(getQuotes);
@@ -272,26 +274,30 @@ function HomePage() {
               <div className="text-xs text-muted-foreground">FIIs, DY, P/VP</div>
             </div>
           </Link>
-          <Link
-            to="/provisionador"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
-          >
-            <PiggyBank className="size-5 text-primary" />
-            <div>
-              <div className="text-sm font-semibold">Provisionador</div>
-              <div className="text-xs text-muted-foreground">Projeção de dividendos</div>
-            </div>
-          </Link>
-          <Link
-            to="/metas"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
-          >
-            <Target className="size-5 text-chart-6" />
-            <div>
-              <div className="text-sm font-semibold">Metas</div>
-              <div className="text-xs text-muted-foreground">Acompanhe seus objetivos</div>
-            </div>
-          </Link>
+          {user && (
+            <>
+              <Link
+                to="/provisionador"
+                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+              >
+                <PiggyBank className="size-5 text-primary" />
+                <div>
+                  <div className="text-sm font-semibold">Provisionador</div>
+                  <div className="text-xs text-muted-foreground">Projeção de dividendos</div>
+                </div>
+              </Link>
+              <Link
+                to="/metas"
+                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+              >
+                <Target className="size-5 text-chart-6" />
+                <div>
+                  <div className="text-sm font-semibold">Metas</div>
+                  <div className="text-xs text-muted-foreground">Acompanhe seus objetivos</div>
+                </div>
+              </Link>
+            </>
+          )}
           <Link
             to="/calculadoras"
             className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"

@@ -11,9 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SetoresRouteImport } from './routes/setores'
 import { Route as RankingsRouteImport } from './routes/rankings'
-import { Route as ProvisionadorRouteImport } from './routes/provisionador'
 import { Route as NoticiasRouteImport } from './routes/noticias'
-import { Route as MetasRouteImport } from './routes/metas'
 import { Route as FiisRouteImport } from './routes/fiis'
 import { Route as DividendosRouteImport } from './routes/dividendos'
 import { Route as CompararRouteImport } from './routes/comparar'
@@ -25,10 +23,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WatchlistIndexRouteImport } from './routes/watchlist.index'
 import { Route as FiiTickerRouteImport } from './routes/fii.$ticker'
 import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
+import { Route as AuthenticatedProvisionadorRouteImport } from './routes/_authenticated/provisionador'
+import { Route as AuthenticatedMetasRouteImport } from './routes/_authenticated/metas'
 import { Route as AuthenticatedCarteiraRouteImport } from './routes/_authenticated/carteira'
 import { Route as AuthenticatedIrpfIndexRouteImport } from './routes/_authenticated/irpf.index'
 import { Route as AuthenticatedCarteiraIndexRouteImport } from './routes/_authenticated/carteira.index'
 import { Route as AuthenticatedCarteiraOperacoesRouteImport } from './routes/_authenticated/carteira.operacoes'
+import { Route as AuthenticatedCarteiraCoberturaRouteImport } from './routes/_authenticated/carteira.cobertura'
 
 const SetoresRoute = SetoresRouteImport.update({
   id: '/setores',
@@ -40,19 +41,9 @@ const RankingsRoute = RankingsRouteImport.update({
   path: '/rankings',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProvisionadorRoute = ProvisionadorRouteImport.update({
-  id: '/provisionador',
-  path: '/provisionador',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const NoticiasRoute = NoticiasRouteImport.update({
   id: '/noticias',
   path: '/noticias',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MetasRoute = MetasRouteImport.update({
-  id: '/metas',
-  path: '/metas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FiisRoute = FiisRouteImport.update({
@@ -109,6 +100,16 @@ const AtivoTickerRoute = AtivoTickerRouteImport.update({
   path: '/ativo/$ticker',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedProvisionadorRoute = AuthenticatedProvisionadorRouteImport.update({
+  id: '/_authenticated/provisionador',
+  path: '/provisionador',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMetasRoute = AuthenticatedMetasRouteImport.update({
+  id: '/_authenticated/metas',
+  path: '/metas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedCarteiraRoute = AuthenticatedCarteiraRouteImport.update({
   id: '/carteira',
   path: '/carteira',
@@ -131,6 +132,12 @@ const AuthenticatedCarteiraOperacoesRoute =
     path: '/operacoes',
     getParentRoute: () => AuthenticatedCarteiraRoute,
   } as any)
+const AuthenticatedCarteiraCoberturaRoute =
+  AuthenticatedCarteiraCoberturaRouteImport.update({
+    id: '/cobertura',
+    path: '/cobertura',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -140,9 +147,7 @@ export interface FileRoutesByFullPath {
   '/comparar': typeof CompararRoute
   '/dividendos': typeof DividendosRoute
   '/fiis': typeof FiisRoute
-  '/metas': typeof MetasRoute
   '/noticias': typeof NoticiasRoute
-  '/provisionador': typeof ProvisionadorRoute
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
   '/carteira': typeof AuthenticatedCarteiraRouteWithChildren
@@ -150,8 +155,11 @@ export interface FileRoutesByFullPath {
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist/': typeof WatchlistIndexRoute
   '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
   '/carteira/': typeof AuthenticatedCarteiraIndexRoute
   '/irpf/': typeof AuthenticatedIrpfIndexRoute
+  '/metas': typeof AuthenticatedMetasRoute
+  '/provisionador': typeof AuthenticatedProvisionadorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -161,17 +169,18 @@ export interface FileRoutesByTo {
   '/comparar': typeof CompararRoute
   '/dividendos': typeof DividendosRoute
   '/fiis': typeof FiisRoute
-  '/metas': typeof MetasRoute
   '/noticias': typeof NoticiasRoute
-  '/provisionador': typeof ProvisionadorRoute
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist': typeof WatchlistIndexRoute
   '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
   '/carteira': typeof AuthenticatedCarteiraIndexRoute
   '/irpf': typeof AuthenticatedIrpfIndexRoute
+  '/metas': typeof AuthenticatedMetasRoute
+  '/provisionador': typeof AuthenticatedProvisionadorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -183,9 +192,7 @@ export interface FileRoutesById {
   '/comparar': typeof CompararRoute
   '/dividendos': typeof DividendosRoute
   '/fiis': typeof FiisRoute
-  '/metas': typeof MetasRoute
   '/noticias': typeof NoticiasRoute
-  '/provisionador': typeof ProvisionadorRoute
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
   '/_authenticated/carteira': typeof AuthenticatedCarteiraRouteWithChildren
@@ -193,8 +200,11 @@ export interface FileRoutesById {
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist/': typeof WatchlistIndexRoute
   '/_authenticated/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/_authenticated/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
   '/_authenticated/carteira/': typeof AuthenticatedCarteiraIndexRoute
   '/_authenticated/irpf/': typeof AuthenticatedIrpfIndexRoute
+  '/_authenticated/metas': typeof AuthenticatedMetasRoute
+  '/_authenticated/provisionador': typeof AuthenticatedProvisionadorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -206,9 +216,7 @@ export interface FileRouteTypes {
     | '/comparar'
     | '/dividendos'
     | '/fiis'
-    | '/metas'
     | '/noticias'
-    | '/provisionador'
     | '/rankings'
     | '/setores'
     | '/carteira'
@@ -216,8 +224,11 @@ export interface FileRouteTypes {
     | '/fii/$ticker'
     | '/watchlist/'
     | '/carteira/operacoes'
+    | '/carteira/cobertura'
     | '/carteira/'
     | '/irpf/'
+    | '/metas'
+    | '/provisionador'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -227,17 +238,18 @@ export interface FileRouteTypes {
     | '/comparar'
     | '/dividendos'
     | '/fiis'
-    | '/metas'
     | '/noticias'
-    | '/provisionador'
     | '/rankings'
     | '/setores'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist'
     | '/carteira/operacoes'
+    | '/carteira/cobertura'
     | '/carteira'
     | '/irpf'
+    | '/metas'
+    | '/provisionador'
   id:
     | '__root__'
     | '/'
@@ -248,9 +260,7 @@ export interface FileRouteTypes {
     | '/comparar'
     | '/dividendos'
     | '/fiis'
-    | '/metas'
     | '/noticias'
-    | '/provisionador'
     | '/rankings'
     | '/setores'
     | '/_authenticated/carteira'
@@ -258,8 +268,11 @@ export interface FileRouteTypes {
     | '/fii/$ticker'
     | '/watchlist/'
     | '/_authenticated/carteira/operacoes'
+    | '/_authenticated/carteira/cobertura'
     | '/_authenticated/carteira/'
     | '/_authenticated/irpf/'
+    | '/_authenticated/metas'
+    | '/_authenticated/provisionador'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -271,9 +284,7 @@ export interface RootRouteChildren {
   CompararRoute: typeof CompararRoute
   DividendosRoute: typeof DividendosRoute
   FiisRoute: typeof FiisRoute
-  MetasRoute: typeof MetasRoute
   NoticiasRoute: typeof NoticiasRoute
-  ProvisionadorRoute: typeof ProvisionadorRoute
   RankingsRoute: typeof RankingsRoute
   SetoresRoute: typeof SetoresRoute
   AtivoTickerRoute: typeof AtivoTickerRoute
@@ -297,25 +308,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RankingsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/provisionador': {
-      id: '/provisionador'
-      path: '/provisionador'
-      fullPath: '/provisionador'
-      preLoaderRoute: typeof ProvisionadorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/noticias': {
       id: '/noticias'
       path: '/noticias'
       fullPath: '/noticias'
       preLoaderRoute: typeof NoticiasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/metas': {
-      id: '/metas'
-      path: '/metas'
-      fullPath: '/metas'
-      preLoaderRoute: typeof MetasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fiis': {
@@ -395,6 +392,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtivoTickerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/provisionador': {
+      id: '/_authenticated/provisionador'
+      path: '/provisionador'
+      fullPath: '/provisionador'
+      preLoaderRoute: typeof AuthenticatedProvisionadorRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/metas': {
+      id: '/_authenticated/metas'
+      path: '/metas'
+      fullPath: '/metas'
+      preLoaderRoute: typeof AuthenticatedMetasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/carteira': {
       id: '/_authenticated/carteira'
       path: '/carteira'
@@ -423,16 +434,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCarteiraOperacoesRouteImport
       parentRoute: typeof AuthenticatedCarteiraRoute
     }
+    '/_authenticated/carteira/cobertura': {
+      id: '/_authenticated/carteira/cobertura'
+      path: '/cobertura'
+      fullPath: '/carteira/cobertura'
+      preLoaderRoute: typeof AuthenticatedCarteiraCoberturaRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
   }
 }
 
 interface AuthenticatedCarteiraRouteChildren {
   AuthenticatedCarteiraOperacoesRoute: typeof AuthenticatedCarteiraOperacoesRoute
+  AuthenticatedCarteiraCoberturaRoute: typeof AuthenticatedCarteiraCoberturaRoute
   AuthenticatedCarteiraIndexRoute: typeof AuthenticatedCarteiraIndexRoute
 }
 
 const AuthenticatedCarteiraRouteChildren: AuthenticatedCarteiraRouteChildren = {
   AuthenticatedCarteiraOperacoesRoute: AuthenticatedCarteiraOperacoesRoute,
+  AuthenticatedCarteiraCoberturaRoute: AuthenticatedCarteiraCoberturaRoute,
   AuthenticatedCarteiraIndexRoute: AuthenticatedCarteiraIndexRoute,
 }
 
@@ -444,11 +464,15 @@ const AuthenticatedCarteiraRouteWithChildren =
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCarteiraRoute: typeof AuthenticatedCarteiraRouteWithChildren
   AuthenticatedIrpfIndexRoute: typeof AuthenticatedIrpfIndexRoute
+  AuthenticatedProvisionadorRoute: typeof AuthenticatedProvisionadorRoute
+  AuthenticatedMetasRoute: typeof AuthenticatedMetasRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCarteiraRoute: AuthenticatedCarteiraRouteWithChildren,
   AuthenticatedIrpfIndexRoute: AuthenticatedIrpfIndexRoute,
+  AuthenticatedProvisionadorRoute: AuthenticatedProvisionadorRoute,
+  AuthenticatedMetasRoute: AuthenticatedMetasRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

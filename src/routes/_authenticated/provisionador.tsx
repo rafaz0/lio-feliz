@@ -12,7 +12,7 @@ import { listOperations } from "@/lib/operations.functions";
 import { getRealProjections } from "@/lib/data-functions";
 import { formatBRL, formatDate } from "@/lib/format";
 
-export const Route = createFileRoute("/provisionador")({
+export const Route = createFileRoute("/_authenticated/provisionador")({
   head: () => ({
     meta: [
       { title: "Provisionador de Dividendos — Investidor Pro" },

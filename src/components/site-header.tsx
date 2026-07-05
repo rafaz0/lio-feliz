@@ -115,16 +115,25 @@ export function SiteHeader() {
                   <Sparkles className="size-4" /> Calculadoras
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/provisionador" className="flex items-center gap-2">
-                  <Sparkles className="size-4" /> Provisionador
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/metas" className="flex items-center gap-2">
-                  <Sparkles className="size-4" /> Metas
-                </Link>
-              </DropdownMenuItem>
+              {user && (
+                <>
+                  <DropdownMenuItem asChild>
+                    <Link to="/provisionador" className="flex items-center gap-2">
+                      <Sparkles className="size-4" /> Provisionador
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/metas" className="flex items-center gap-2">
+                      <Sparkles className="size-4" /> Metas
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/carteira/cobertura" className="flex items-center gap-2">
+                      <Sparkles className="size-4" /> Cobertura
+                    </Link>
+                  </DropdownMenuItem>
+                </>
+              )}
               <DropdownMenuItem asChild>
                 <Link to="/carteiras-recomendadas" className="flex items-center gap-2">
                   <Sparkles className="size-4" /> Recomendadas

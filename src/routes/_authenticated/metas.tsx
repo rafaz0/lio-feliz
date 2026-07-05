@@ -13,7 +13,7 @@ import { getRealProjections } from "@/lib/data-functions";
 import { useGoals } from "@/lib/goals";
 import { formatBRL, formatPctPlain } from "@/lib/format";
 
-export const Route = createFileRoute("/metas")({
+export const Route = createFileRoute("/_authenticated/metas")({
   head: () => ({
     meta: [
       { title: "Metas de Dividendos — Investidor Pro" },

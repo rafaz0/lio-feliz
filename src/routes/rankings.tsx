@@ -90,7 +90,7 @@ function RankingsPage() {
 
   const filteredFiis = useMemo(() => {
     return FIIS.filter((f) => {
-      if (filters.fiiSectors.size > 0 && !filters.fiiSectors.has(f.sector)) return false;
+      if (filters.fiiSectors.size > 0 && !filters.fiiSectors.has(f.segment)) return false;
       if (f.dy < filters.fiiDyMin) return false;
       if (f.pvp <= 0 || f.pvp < filters.fiiPvpMin || f.pvp > filters.fiiPvpMax) return false;
       if (f.vacancy !== null && f.vacancy > filters.fiiVacancyMax) return false;
@@ -502,7 +502,7 @@ function AdvancedFilters({
               <div className="col-span-full">
                 <div className="mb-1.5 text-xs text-muted-foreground">Setores</div>
                 <div className="flex flex-wrap gap-1.5">
-                  {Array.from(new Set(FIIS.map((f) => f.sector))).sort().map((s) => (
+                  {Array.from(new Set(FIIS.map((f) => f.segment))).sort().map((s) => (
                     <button
                       key={s}
                       type="button"
