@@ -95,12 +95,34 @@ function PortfolioOverview() {
             </Button>
           }
         />
+        <Button
+          variant="outline"
+          className="gap-2"
+          onClick={() => queryClient.invalidateQueries({ queryKey: ["quotes"] })}
+          disabled={quotesQuery.isFetching || tickers.length === 0}
+        >
+          <RefreshCw className={"size-4 " + (quotesQuery.isFetching ? "animate-spin" : "")} />
+          Atualizar cotações
+        </Button>
         <Button variant="outline" disabled className="gap-2">
           <Wallet className="size-4" /> Sincronizar com B3
           <span className="rounded bg-secondary px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">
             em breve
           </span>
         </Button>
+        {quotesUpdatedAt && (
+          <span className="text-xs text-muted-foreground">
+            Cotações atualizadas às{" "}
+            {new Date(quotesUpdatedAt).toLocaleTimeString("pt-BR", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+            {liveCount > 0 && ` · ${liveCount}/${tickers.length} ao vivo`}
+          </span>
+        )}
+        {quotesError && (
+          <span className="text-xs text-negative">Falha nas cotações: {quotesError}</span>
+        )}
       </section>
 
       {isEmpty ? (
