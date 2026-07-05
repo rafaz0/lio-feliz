@@ -9,14 +9,77 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SetoresRouteImport } from './routes/setores'
+import { Route as RankingsRouteImport } from './routes/rankings'
+import { Route as ProvisionadorRouteImport } from './routes/provisionador'
+import { Route as NoticiasRouteImport } from './routes/noticias'
+import { Route as MetasRouteImport } from './routes/metas'
+import { Route as FiisRouteImport } from './routes/fiis'
+import { Route as DividendosRouteImport } from './routes/dividendos'
+import { Route as CompararRouteImport } from './routes/comparar'
+import { Route as CarteirasRecomendadasRouteImport } from './routes/carteiras-recomendadas'
+import { Route as CalculadorasRouteImport } from './routes/calculadoras'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WatchlistIndexRouteImport } from './routes/watchlist.index'
+import { Route as FiiTickerRouteImport } from './routes/fii.$ticker'
 import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
 import { Route as AuthenticatedCarteiraRouteImport } from './routes/_authenticated/carteira'
+import { Route as AuthenticatedIrpfIndexRouteImport } from './routes/_authenticated/irpf.index'
 import { Route as AuthenticatedCarteiraIndexRouteImport } from './routes/_authenticated/carteira.index'
 import { Route as AuthenticatedCarteiraOperacoesRouteImport } from './routes/_authenticated/carteira.operacoes'
 
+const SetoresRoute = SetoresRouteImport.update({
+  id: '/setores',
+  path: '/setores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RankingsRoute = RankingsRouteImport.update({
+  id: '/rankings',
+  path: '/rankings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProvisionadorRoute = ProvisionadorRouteImport.update({
+  id: '/provisionador',
+  path: '/provisionador',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoticiasRoute = NoticiasRouteImport.update({
+  id: '/noticias',
+  path: '/noticias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetasRoute = MetasRouteImport.update({
+  id: '/metas',
+  path: '/metas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiisRoute = FiisRouteImport.update({
+  id: '/fiis',
+  path: '/fiis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DividendosRoute = DividendosRouteImport.update({
+  id: '/dividendos',
+  path: '/dividendos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompararRoute = CompararRouteImport.update({
+  id: '/comparar',
+  path: '/comparar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarteirasRecomendadasRoute = CarteirasRecomendadasRouteImport.update({
+  id: '/carteiras-recomendadas',
+  path: '/carteiras-recomendadas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculadorasRoute = CalculadorasRouteImport.update({
+  id: '/calculadoras',
+  path: '/calculadoras',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -31,6 +94,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WatchlistIndexRoute = WatchlistIndexRouteImport.update({
+  id: '/watchlist/',
+  path: '/watchlist/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiiTickerRoute = FiiTickerRouteImport.update({
+  id: '/fii/$ticker',
+  path: '/fii/$ticker',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtivoTickerRoute = AtivoTickerRouteImport.update({
   id: '/ativo/$ticker',
   path: '/ativo/$ticker',
@@ -39,6 +112,11 @@ const AtivoTickerRoute = AtivoTickerRouteImport.update({
 const AuthenticatedCarteiraRoute = AuthenticatedCarteiraRouteImport.update({
   id: '/carteira',
   path: '/carteira',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedIrpfIndexRoute = AuthenticatedIrpfIndexRouteImport.update({
+  id: '/irpf/',
+  path: '/irpf/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedCarteiraIndexRoute =
@@ -57,59 +135,224 @@ const AuthenticatedCarteiraOperacoesRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/calculadoras': typeof CalculadorasRoute
+  '/carteiras-recomendadas': typeof CarteirasRecomendadasRoute
+  '/comparar': typeof CompararRoute
+  '/dividendos': typeof DividendosRoute
+  '/fiis': typeof FiisRoute
+  '/metas': typeof MetasRoute
+  '/noticias': typeof NoticiasRoute
+  '/provisionador': typeof ProvisionadorRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
   '/carteira': typeof AuthenticatedCarteiraRouteWithChildren
   '/ativo/$ticker': typeof AtivoTickerRoute
+  '/fii/$ticker': typeof FiiTickerRoute
+  '/watchlist/': typeof WatchlistIndexRoute
   '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/carteira/': typeof AuthenticatedCarteiraIndexRoute
+  '/irpf/': typeof AuthenticatedIrpfIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/calculadoras': typeof CalculadorasRoute
+  '/carteiras-recomendadas': typeof CarteirasRecomendadasRoute
+  '/comparar': typeof CompararRoute
+  '/dividendos': typeof DividendosRoute
+  '/fiis': typeof FiisRoute
+  '/metas': typeof MetasRoute
+  '/noticias': typeof NoticiasRoute
+  '/provisionador': typeof ProvisionadorRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
+  '/fii/$ticker': typeof FiiTickerRoute
+  '/watchlist': typeof WatchlistIndexRoute
   '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/carteira': typeof AuthenticatedCarteiraIndexRoute
+  '/irpf': typeof AuthenticatedIrpfIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/calculadoras': typeof CalculadorasRoute
+  '/carteiras-recomendadas': typeof CarteirasRecomendadasRoute
+  '/comparar': typeof CompararRoute
+  '/dividendos': typeof DividendosRoute
+  '/fiis': typeof FiisRoute
+  '/metas': typeof MetasRoute
+  '/noticias': typeof NoticiasRoute
+  '/provisionador': typeof ProvisionadorRoute
+  '/rankings': typeof RankingsRoute
+  '/setores': typeof SetoresRoute
   '/_authenticated/carteira': typeof AuthenticatedCarteiraRouteWithChildren
   '/ativo/$ticker': typeof AtivoTickerRoute
+  '/fii/$ticker': typeof FiiTickerRoute
+  '/watchlist/': typeof WatchlistIndexRoute
   '/_authenticated/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/_authenticated/carteira/': typeof AuthenticatedCarteiraIndexRoute
+  '/_authenticated/irpf/': typeof AuthenticatedIrpfIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/auth'
+    | '/calculadoras'
+    | '/carteiras-recomendadas'
+    | '/comparar'
+    | '/dividendos'
+    | '/fiis'
+    | '/metas'
+    | '/noticias'
+    | '/provisionador'
+    | '/rankings'
+    | '/setores'
     | '/carteira'
     | '/ativo/$ticker'
+    | '/fii/$ticker'
+    | '/watchlist/'
     | '/carteira/operacoes'
     | '/carteira/'
+    | '/irpf/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/ativo/$ticker' | '/carteira/operacoes' | '/carteira'
+  to:
+    | '/'
+    | '/auth'
+    | '/calculadoras'
+    | '/carteiras-recomendadas'
+    | '/comparar'
+    | '/dividendos'
+    | '/fiis'
+    | '/metas'
+    | '/noticias'
+    | '/provisionador'
+    | '/rankings'
+    | '/setores'
+    | '/ativo/$ticker'
+    | '/fii/$ticker'
+    | '/watchlist'
+    | '/carteira/operacoes'
+    | '/carteira'
+    | '/irpf'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/calculadoras'
+    | '/carteiras-recomendadas'
+    | '/comparar'
+    | '/dividendos'
+    | '/fiis'
+    | '/metas'
+    | '/noticias'
+    | '/provisionador'
+    | '/rankings'
+    | '/setores'
     | '/_authenticated/carteira'
     | '/ativo/$ticker'
+    | '/fii/$ticker'
+    | '/watchlist/'
     | '/_authenticated/carteira/operacoes'
     | '/_authenticated/carteira/'
+    | '/_authenticated/irpf/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  CalculadorasRoute: typeof CalculadorasRoute
+  CarteirasRecomendadasRoute: typeof CarteirasRecomendadasRoute
+  CompararRoute: typeof CompararRoute
+  DividendosRoute: typeof DividendosRoute
+  FiisRoute: typeof FiisRoute
+  MetasRoute: typeof MetasRoute
+  NoticiasRoute: typeof NoticiasRoute
+  ProvisionadorRoute: typeof ProvisionadorRoute
+  RankingsRoute: typeof RankingsRoute
+  SetoresRoute: typeof SetoresRoute
   AtivoTickerRoute: typeof AtivoTickerRoute
+  FiiTickerRoute: typeof FiiTickerRoute
+  WatchlistIndexRoute: typeof WatchlistIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/setores': {
+      id: '/setores'
+      path: '/setores'
+      fullPath: '/setores'
+      preLoaderRoute: typeof SetoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rankings': {
+      id: '/rankings'
+      path: '/rankings'
+      fullPath: '/rankings'
+      preLoaderRoute: typeof RankingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/provisionador': {
+      id: '/provisionador'
+      path: '/provisionador'
+      fullPath: '/provisionador'
+      preLoaderRoute: typeof ProvisionadorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/noticias': {
+      id: '/noticias'
+      path: '/noticias'
+      fullPath: '/noticias'
+      preLoaderRoute: typeof NoticiasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metas': {
+      id: '/metas'
+      path: '/metas'
+      fullPath: '/metas'
+      preLoaderRoute: typeof MetasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fiis': {
+      id: '/fiis'
+      path: '/fiis'
+      fullPath: '/fiis'
+      preLoaderRoute: typeof FiisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dividendos': {
+      id: '/dividendos'
+      path: '/dividendos'
+      fullPath: '/dividendos'
+      preLoaderRoute: typeof DividendosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comparar': {
+      id: '/comparar'
+      path: '/comparar'
+      fullPath: '/comparar'
+      preLoaderRoute: typeof CompararRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carteiras-recomendadas': {
+      id: '/carteiras-recomendadas'
+      path: '/carteiras-recomendadas'
+      fullPath: '/carteiras-recomendadas'
+      preLoaderRoute: typeof CarteirasRecomendadasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculadoras': {
+      id: '/calculadoras'
+      path: '/calculadoras'
+      fullPath: '/calculadoras'
+      preLoaderRoute: typeof CalculadorasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -131,6 +374,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/watchlist/': {
+      id: '/watchlist/'
+      path: '/watchlist'
+      fullPath: '/watchlist/'
+      preLoaderRoute: typeof WatchlistIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fii/$ticker': {
+      id: '/fii/$ticker'
+      path: '/fii/$ticker'
+      fullPath: '/fii/$ticker'
+      preLoaderRoute: typeof FiiTickerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ativo/$ticker': {
       id: '/ativo/$ticker'
       path: '/ativo/$ticker'
@@ -143,6 +400,13 @@ declare module '@tanstack/react-router' {
       path: '/carteira'
       fullPath: '/carteira'
       preLoaderRoute: typeof AuthenticatedCarteiraRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/irpf/': {
+      id: '/_authenticated/irpf/'
+      path: '/irpf'
+      fullPath: '/irpf/'
+      preLoaderRoute: typeof AuthenticatedIrpfIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/carteira/': {
@@ -179,10 +443,12 @@ const AuthenticatedCarteiraRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCarteiraRoute: typeof AuthenticatedCarteiraRouteWithChildren
+  AuthenticatedIrpfIndexRoute: typeof AuthenticatedIrpfIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCarteiraRoute: AuthenticatedCarteiraRouteWithChildren,
+  AuthenticatedIrpfIndexRoute: AuthenticatedIrpfIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -192,8 +458,30 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  CalculadorasRoute: CalculadorasRoute,
+  CarteirasRecomendadasRoute: CarteirasRecomendadasRoute,
+  CompararRoute: CompararRoute,
+  DividendosRoute: DividendosRoute,
+  FiisRoute: FiisRoute,
+  MetasRoute: MetasRoute,
+  NoticiasRoute: NoticiasRoute,
+  ProvisionadorRoute: ProvisionadorRoute,
+  RankingsRoute: RankingsRoute,
+  SetoresRoute: SetoresRoute,
   AtivoTickerRoute: AtivoTickerRoute,
+  FiiTickerRoute: FiiTickerRoute,
+  WatchlistIndexRoute: WatchlistIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

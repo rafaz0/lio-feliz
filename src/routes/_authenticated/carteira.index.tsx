@@ -1,18 +1,27 @@
+import { useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
-import { Info, Plus, RefreshCw, Wallet } from "lucide-react";
+import { Area, AreaChart, CartesianGrid, Cell, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { AlertTriangle, DollarSign, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
-import { consolidatePortfolio } from "@/lib/portfolio";
+import { getBenchmarkData, type BenchmarkPoint } from "@/lib/data-functions";
+import { ASSETS_BY_TICKER } from "@/lib/mock-data";
+import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { DeltaPct } from "@/components/delta-pct";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { formatBRL, formatQty } from "@/lib/format";
+import { formatBRL, formatQty, formatDate } from "@/lib/format";
 
 export const Route = createFileRoute("/_authenticated/carteira/")({
+  head: () => ({
+    meta: [
+      { title: "Carteira — Investidor Pro" },
+      { name: "description", content: "Acompanhe sua carteira de investimentos: posição consolidada, rentabilidade e evolução patrimonial." },
+    ],
+  }),
   component: PortfolioOverview,
 });
 
@@ -41,6 +50,7 @@ function PortfolioOverview() {
     queryFn: () => fetchQuotes({ data: { tickers } }),
     enabled: tickers.length > 0,
     staleTime: 60_000,
+    refetchInterval: 300_000,
     refetchOnWindowFocus: false,
   });
 
@@ -61,13 +71,108 @@ function PortfolioOverview() {
   }
   const portfolio = consolidatePortfolio(ops, priceOverrides);
   const isEmpty = portfolio.positions.length === 0;
+
+  const dividendsByTicker: Record<string, number> = {};
+  let totalDividends = 0;
+  for (const p of portfolio.positions) {
+    const asset = ASSETS_BY_TICKER[p.ticker];
+    if (!asset) continue;
+    const totalPerShare = asset.dividends.reduce((s, d) => s + d.amount, 0);
+    const received = totalPerShare * p.quantity;
+    dividendsByTicker[p.ticker] = received;
+    totalDividends += received;
+  }
   const quotesUpdatedAt = Object.values(quotesData)[0]?.updatedAt;
   const quotesError = quotesQuery.data?.error;
   const liveCount = Object.keys(quotesData).length;
 
+  const history = useMemo(
+    () => buildPortfolioHistory(ops ?? [], priceOverrides),
+    [ops, priceOverrides],
+  );
+
+  const fetchBenchmark = useServerFn(getBenchmarkData);
+  const { data: benchmarkData } = useQuery({
+    queryKey: ["benchmark"],
+    queryFn: () => fetchBenchmark(),
+    staleTime: 3_600_000,
+  });
+
+  const benchmarkChartData = useMemo(() => {
+    if (!benchmarkData || history.length < 2) return null;
+    const firstDate = history[0].date;
+    const lastDate = history[history.length - 1].date;
+    const portBase = history[0].value;
+    if (portBase === 0) return null;
+
+    return benchmarkData
+      .filter((b) => b.date >= firstDate && b.date <= lastDate)
+      .map((b) => {
+        const portPoint = history.find((h) => h.date === b.date);
+        return {
+          date: b.date,
+          ibov: b.ibov,
+          idiv: b.idiv,
+          ifix: b.ifix,
+          portfolio: portPoint ? (portPoint.value / portBase) * 1000 : null,
+        };
+      });
+  }, [benchmarkData, history]);
+
+  const riskMetrics = useMemo(() => {
+    if (history.length < 4) return null;
+    const values = history.map((h) => h.value);
+    const returns: number[] = [];
+    for (let i = 1; i < values.length; i++) {
+      returns.push(values[i] / values[i - 1] - 1);
+    }
+    const avgReturn = returns.reduce((s, r) => s + r, 0) / returns.length;
+    const variance = returns.reduce((s, r) => s + (r - avgReturn) ** 2, 0) / returns.length;
+    const volatility = Math.sqrt(variance) * Math.sqrt(52);
+    const riskFree = 0.1475;
+
+    let maxDrawdown = 0;
+    let peak = values[0];
+    for (const v of values) {
+      if (v > peak) peak = v;
+      const drawdown = (peak - v) / peak;
+      if (drawdown > maxDrawdown) maxDrawdown = drawdown;
+    }
+
+    let beta: number | null = null;
+    if (benchmarkChartData && benchmarkChartData.length > 4) {
+      const portReturns: number[] = [];
+      const benchReturns: number[] = [];
+      for (let i = 1; i < benchmarkChartData.length; i++) {
+        const pp = benchmarkChartData[i].portfolio;
+        const pb = benchmarkChartData[i - 1].portfolio;
+        const bi = benchmarkChartData[i].ibov;
+        const bb = benchmarkChartData[i - 1].ibov;
+        if (pp !== null && pb !== null && pb > 0 && bi > 0 && bb > 0) {
+          portReturns.push(pp / pb - 1);
+          benchReturns.push(bi / bb - 1);
+        }
+      }
+      if (portReturns.length > 4) {
+        const avgPort = portReturns.reduce((s, r) => s + r, 0) / portReturns.length;
+        const avgBench = benchReturns.reduce((s, r) => s + r, 0) / benchReturns.length;
+        let cov = 0, varBench = 0;
+        for (let i = 0; i < portReturns.length; i++) {
+          cov += (portReturns[i] - avgPort) * (benchReturns[i] - avgBench);
+          varBench += (benchReturns[i] - avgBench) ** 2;
+        }
+        if (varBench > 0) beta = cov / varBench;
+      }
+    }
+
+    const sharpe = volatility > 0 ? (avgReturn * 52 - riskFree) / volatility : null;
+
+    return { volatility, maxDrawdown, beta, sharpe };
+  }, [history, benchmarkChartData]);
+
   return (
     <div className="space-y-6">
-      <section className="grid gap-3 md:grid-cols-4">
+      <section className="grid gap-3 md:grid-cols-5">
         <KpiCard label="Patrimônio" value={formatBRL(portfolio.totalValue)} />
         <KpiCard label="Investido" value={formatBRL(portfolio.totalInvested)} muted />
         <KpiCard
@@ -85,7 +190,23 @@ function PortfolioOverview() {
             )
           }
         />
+        {totalDividends > 0 && (
+          <KpiCard label="Proventos" value={formatBRL(totalDividends)} tone="positive" />
+        )}
       </section>
+
+      {riskMetrics && (
+        <section className="grid gap-3 md:grid-cols-4">
+          <KpiCard label="Volatilidade (anual)" value={`${(riskMetrics.volatility * 100).toFixed(1)}%`} />
+          <KpiCard label="Drawdown máx." value={`${(riskMetrics.maxDrawdown * 100).toFixed(1)}%`} tone="negative" />
+          {riskMetrics.beta !== null && (
+            <KpiCard label="Beta (vs IBOV)" value={riskMetrics.beta.toFixed(2)} tone={riskMetrics.beta < 1 ? "positive" : riskMetrics.beta > 1.2 ? "negative" : undefined} />
+          )}
+          {riskMetrics.sharpe !== null && (
+            <KpiCard label="Índice Sharpe" value={riskMetrics.sharpe.toFixed(2)} tone={riskMetrics.sharpe >= 0.5 ? "positive" : riskMetrics.sharpe < 0 ? "negative" : undefined} />
+          )}
+        </section>
+      )}
 
       <section className="flex flex-wrap items-center gap-3">
         <AddOperationDialog
@@ -103,6 +224,11 @@ function PortfolioOverview() {
         >
           <RefreshCw className={"size-4 " + (quotesQuery.isFetching ? "animate-spin" : "")} />
           Atualizar cotações
+        </Button>
+        <Button variant="outline" asChild className="gap-2">
+          <Link to="/irpf">
+            <AlertTriangle className="size-4" /> IRPF
+          </Link>
         </Button>
         <Button variant="outline" disabled className="gap-2">
           <Wallet className="size-4" /> Sincronizar com B3
@@ -124,6 +250,205 @@ function PortfolioOverview() {
           <span className="text-xs text-negative">Falha nas cotações: {quotesError}</span>
         )}
       </section>
+
+      {history.length > 1 && (
+        <section className="rounded-lg border border-border bg-card p-5">
+          <div className="mb-4 flex items-center gap-2">
+            <TrendingUp className="size-4 text-primary" />
+            <h2 className="text-sm font-semibold">Evolução patrimonial</h2>
+          </div>
+          <div className="h-56 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={history} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="portfolioFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="var(--color-primary)" stopOpacity={0.3} />
+                    <stop offset="100%" stopColor="var(--color-primary)" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                <XAxis
+                  dataKey="date"
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  tickFormatter={(d: string) => {
+                    const [y, m] = d.split("-");
+                    return `${m}/${y.slice(2)}`;
+                  }}
+                  interval="preserveStartEnd"
+                  minTickGap={40}
+                  stroke="var(--color-border)"
+                />
+                <YAxis
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  domain={["dataMin - 1000", "dataMax + 1000"]}
+                  tickFormatter={(v: number) => formatBRL(v)}
+                  width={80}
+                  stroke="var(--color-border)"
+                />
+                <Tooltip
+                  contentStyle={{
+                    background: "var(--color-popover)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: 6,
+                    fontSize: 12,
+                  }}
+                  labelFormatter={(l: string) => formatDate(l)}
+                  formatter={(v: number, name: string) => {
+                    if (name === "value") return [formatBRL(v), "Patrimônio"];
+                    return [formatBRL(v), "Investido"];
+                  }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="invested"
+                  stroke="var(--color-chart-2)"
+                  strokeWidth={1.5}
+                  fill="none"
+                  strokeDasharray="5 3"
+                  dot={false}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="value"
+                  stroke="var(--color-primary)"
+                  strokeWidth={2}
+                  fill="url(#portfolioFill)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="mt-3 flex items-center justify-center gap-6 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-primary)" }} />
+              Patrimônio
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-chart-2)" }} />
+              Total investido
+            </span>
+          </div>
+        </section>
+      )}
+
+      {benchmarkChartData && benchmarkChartData.length > 1 && (
+        <section className="rounded-lg border border-border bg-card p-5">
+          <div className="mb-4 flex items-center gap-2">
+            <LineChart className="size-4 text-chart-4" />
+            <h2 className="text-sm font-semibold">Rentabilidade vs. Mercado</h2>
+          </div>
+          <p className="mb-3 text-xs text-muted-foreground">Base 1000 — comparação da sua carteira com os principais índices</p>
+          <div className="h-56 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={benchmarkChartData} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
+                <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                <XAxis
+                  dataKey="date"
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  tickFormatter={(d: string) => {
+                    const [y, m] = d.split("-");
+                    return `${m}/${y.slice(2)}`;
+                  }}
+                  interval="preserveStartEnd"
+                  minTickGap={40}
+                  stroke="var(--color-border)"
+                />
+                <YAxis
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  domain={["dataMin - 50", "dataMax + 50"]}
+                  tickFormatter={(v: number) => v.toFixed(0)}
+                  width={50}
+                  stroke="var(--color-border)"
+                />
+                <Tooltip
+                  contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                  labelFormatter={(l: string) => formatDate(l)}
+                  formatter={(v: number, name: string) => {
+                    const labels: Record<string, string> = { portfolio: "Carteira", ibov: "IBOV", idiv: "IDIV", ifix: "IFIX" };
+                    return [`${v.toFixed(1)}`, labels[name] ?? name];
+                  }}
+                />
+                <Line type="monotone" dataKey="portfolio" stroke="var(--color-primary)" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="ibov" stroke="var(--color-chart-3)" strokeWidth={1.5} dot={false} strokeDasharray="4 3" />
+                <Line type="monotone" dataKey="idiv" stroke="var(--color-positive)" strokeWidth={1.5} dot={false} strokeDasharray="4 3" />
+                <Line type="monotone" dataKey="ifix" stroke="var(--color-chart-4)" strokeWidth={1.5} dot={false} strokeDasharray="4 3" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-primary)" }} />
+              Carteira
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-chart-3)" }} />
+              IBOV
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-positive)" }} />
+              IDIV
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-chart-4)" }} />
+              IFIX
+            </span>
+          </div>
+        </section>
+      )}
+
+      {totalDividends > 0 && (
+        <section className="rounded-lg border border-border bg-card">
+          <div className="border-b border-border bg-surface-2 px-4 py-3">
+            <div className="flex items-center gap-2">
+              <DollarSign className="size-4 text-positive" />
+              <h2 className="text-sm font-semibold">Proventos Recebidos (últ. 12 meses)</h2>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Valor bruto estimado com base na posição atual e histórico de dividendos
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[500px] text-sm">
+              <thead className="bg-card text-xs uppercase text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-2.5 text-left font-medium">Ativo</th>
+                  <th className="px-4 py-2.5 text-right font-medium">Qtd</th>
+                  <th className="px-4 py-2.5 text-right font-medium">Total por ação</th>
+                  <th className="px-4 py-2.5 text-right font-medium">Proventos</th>
+                </tr>
+              </thead>
+              <tbody>
+                {portfolio.positions
+                  .filter((p) => dividendsByTicker[p.ticker] > 0)
+                  .sort((a, b) => dividendsByTicker[b.ticker] - dividendsByTicker[a.ticker])
+                  .map((p) => {
+                    const asset = ASSETS_BY_TICKER[p.ticker];
+                    const totalPerShare = asset ? asset.dividends.reduce((s, d) => s + d.amount, 0) : 0;
+                    return (
+                      <tr key={p.ticker} className="border-t border-border hover:bg-surface">
+                        <td className="px-4 py-2.5">
+                          <Link
+                            to="/ativo/$ticker"
+                            params={{ ticker: p.ticker }}
+                            className="font-semibold hover:text-primary"
+                          >
+                            {p.ticker}
+                          </Link>
+                        </td>
+                        <td className="tabular px-4 py-2.5 text-right">{formatQty(p.quantity)}</td>
+                        <td className="tabular px-4 py-2.5 text-right text-muted-foreground">
+                          {formatBRL(totalPerShare)}
+                        </td>
+                        <td className="tabular px-4 py-2.5 text-right font-medium text-positive">
+                          {formatBRL(dividendsByTicker[p.ticker])}
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
 
       {isEmpty ? (
         <div className="rounded-lg border border-dashed border-border bg-card p-10 text-center">
@@ -206,54 +531,114 @@ function PortfolioOverview() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-border bg-card p-5">
-            <h2 className="text-sm font-semibold">Alocação por setor</h2>
-            <div className="mt-2 h-56">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={portfolio.sectorAllocation}
-                    dataKey="value"
-                    nameKey="sector"
-                    innerRadius={45}
-                    outerRadius={80}
-                    stroke="var(--color-background)"
-                    strokeWidth={2}
-                  >
-                    {portfolio.sectorAllocation.map((_, i) => (
-                      <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    contentStyle={{
-                      background: "var(--color-popover)",
-                      border: "1px solid var(--color-border)",
-                      borderRadius: 6,
-                      fontSize: 12,
-                    }}
-                    formatter={(v: number, _n, item) => [
-                      `${formatBRL(v)} (${item.payload.pct.toFixed(1)}%)`,
-                      item.payload.sector,
-                    ]}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-            <ul className="mt-4 space-y-1.5 text-sm">
-              {portfolio.sectorAllocation.map((s, i) => (
-                <li key={s.sector} className="flex items-center justify-between">
-                  <span className="flex items-center gap-2">
-                    <span
-                      className="inline-block size-2.5 rounded-sm"
-                      style={{ background: CHART_COLORS[i % CHART_COLORS.length] }}
+          <div className="space-y-4">
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h2 className="text-sm font-semibold">Alocação por classe</h2>
+              <div className="mt-2 h-40">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={(() => {
+                        const isFii = (t: string) => /^\w+11$/.test(t);
+                        let stockVal = 0, fiiVal = 0;
+                        for (const p of portfolio.positions) {
+                          if (isFii(p.ticker)) fiiVal += p.currentValue;
+                          else stockVal += p.currentValue;
+                        }
+                        return [
+                          { name: "Ações", value: stockVal, pct: portfolio.totalValue > 0 ? (stockVal / portfolio.totalValue) * 100 : 0 },
+                          { name: "FIIs", value: fiiVal, pct: portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0 },
+                        ];
+                      })()}
+                      dataKey="value"
+                      nameKey="name"
+                      innerRadius={35}
+                      outerRadius={60}
+                      stroke="var(--color-background)"
+                      strokeWidth={2}
+                    >
+                      <Cell fill="var(--color-chart-1)" />
+                      <Cell fill="var(--color-chart-4)" />
+                    </Pie>
+                    <Tooltip
+                      contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                      formatter={(v: number, _n, item) => [`${formatBRL(v)} (${item.payload.pct.toFixed(1)}%)`, item.payload.name]}
                     />
-                    <span className="text-muted-foreground">{s.sector}</span>
-                  </span>
-                  <span className="tabular">{s.pct.toFixed(1)}%</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <ul className="mt-4 space-y-1.5 text-sm">
+                {(() => {
+                  const isFii = (t: string) => /^\w+11$/.test(t);
+                  let stockVal = 0, fiiVal = 0;
+                  for (const p of portfolio.positions) {
+                    if (isFii(p.ticker)) fiiVal += p.currentValue;
+                    else stockVal += p.currentValue;
+                  }
+                  return [
+                    { name: "Ações", value: stockVal, pct: portfolio.totalValue > 0 ? (stockVal / portfolio.totalValue) * 100 : 0 },
+                    { name: "FIIs", value: fiiVal, pct: portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0 },
+                  ].filter((c) => c.value > 0);
+                })().map((c) => (
+                  <li key={c.name} className="flex items-center justify-between">
+                    <span className="flex items-center gap-2">
+                      <span className="inline-block size-2.5 rounded-sm" style={{ background: c.name === "Ações" ? "var(--color-chart-1)" : "var(--color-chart-4)" }} />
+                      <span className="text-muted-foreground">{c.name}</span>
+                    </span>
+                    <span className="tabular">{c.pct.toFixed(1)}%</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <h2 className="text-sm font-semibold">Alocação por setor</h2>
+              <div className="mt-2 h-56">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={portfolio.sectorAllocation}
+                      dataKey="value"
+                      nameKey="sector"
+                      innerRadius={45}
+                      outerRadius={80}
+                      stroke="var(--color-background)"
+                      strokeWidth={2}
+                    >
+                      {portfolio.sectorAllocation.map((_, i) => (
+                        <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      contentStyle={{
+                        background: "var(--color-popover)",
+                        border: "1px solid var(--color-border)",
+                        borderRadius: 6,
+                        fontSize: 12,
+                      }}
+                      formatter={(v: number, _n, item) => [
+                        `${formatBRL(v)} (${item.payload.pct.toFixed(1)}%)`,
+                        item.payload.sector,
+                      ]}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <ul className="mt-4 space-y-1.5 text-sm">
+                {portfolio.sectorAllocation.map((s, i) => (
+                  <li key={s.sector} className="flex items-center justify-between">
+                    <span className="flex items-center gap-2">
+                      <span
+                        className="inline-block size-2.5 rounded-sm"
+                        style={{ background: CHART_COLORS[i % CHART_COLORS.length] }}
+                      />
+                      <span className="text-muted-foreground">{s.sector}</span>
+                    </span>
+                    <span className="tabular">{s.pct.toFixed(1)}%</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p className="flex items-start gap-2 text-xs text-muted-foreground">
               <Info className="mt-0.5 size-3.5 shrink-0" />
               Cotações via BRAPI (b3). Tickers sem retorno usam preço de referência.
             </p>

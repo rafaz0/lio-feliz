@@ -1,10 +1,11 @@
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { LineChart, LogOut, Search, TrendingUp, User } from "lucide-react";
+import { BarChart3, ChevronDown, FileText, LineChart, LogOut, Search, TrendingUp, User, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { ASSETS } from "@/lib/mock-data";
 import {
   DropdownMenu,
@@ -49,13 +50,13 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-4 px-4">
-        <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
+      <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-4 px-4 text-base">
+        <Link to="/" className="flex items-center gap-2 text-base font-semibold tracking-tight">
           <LineChart className="size-5 text-primary" />
           <span>Investidor Pro</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 text-sm text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-1 text-base text-muted-foreground md:flex">
           <Link
             to="/"
             className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
@@ -69,9 +70,76 @@ export function SiteHeader() {
           >
             Carteira
           </Link>
+          <Link
+            to="/dividendos"
+            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
+          >
+            Dividendos
+          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground hover:text-foreground">
+                <BarChart3 className="size-4" /> Análise
+                <ChevronDown className="size-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-44">
+              <DropdownMenuItem asChild>
+                <Link to="/fiis" className="flex items-center gap-2">
+                  <Sparkles className="size-4" /> FIIs
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/rankings" className="flex items-center gap-2">
+                  <TrendingUp className="size-4" /> Rankings
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/setores" className="flex items-center gap-2">
+                  <BarChart3 className="size-4" /> Setores
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/comparar" className="flex items-center gap-2">
+                  <FileText className="size-4" /> Comparar
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/watchlist" className="flex items-center gap-2">
+                  <Sparkles className="size-4" /> Watchlist
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/calculadoras" className="flex items-center gap-2">
+                  <Sparkles className="size-4" /> Calculadoras
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/provisionador" className="flex items-center gap-2">
+                  <Sparkles className="size-4" /> Provisionador
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/metas" className="flex items-center gap-2">
+                  <Sparkles className="size-4" /> Metas
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/carteiras-recomendadas" className="flex items-center gap-2">
+                  <Sparkles className="size-4" /> Recomendadas
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/noticias" className="flex items-center gap-2">
+                  <Search className="size-4" /> Notícias
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
-        <div className="relative ml-auto w-full max-w-sm">
+        <div className="relative ml-auto w-full max-w-[180px]">
           <Search className="pointer-events-none absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
           <Input
             value={q}
@@ -116,7 +184,9 @@ export function SiteHeader() {
         </div>
 
         {user ? (
-          <DropdownMenu>
+          <>
+            <ThemeToggle />
+            <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm" className="gap-2">
                 <span className="grid size-7 place-items-center rounded-full bg-primary/15 text-primary">
@@ -135,16 +205,25 @@ export function SiteHeader() {
                   <TrendingUp className="size-4" /> Minha carteira
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/irpf" className="flex items-center gap-2">
+                  <FileText className="size-4" /> IRPF
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
                 <LogOut className="size-4" /> Sair
               </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
         ) : (
-          <Button asChild size="sm">
-            <Link to="/auth">Entrar</Link>
-          </Button>
+          <>
+            <ThemeToggle />
+            <Button asChild size="sm">
+              <Link to="/auth">Entrar</Link>
+            </Button>
+          </>
         )}
       </div>
     </header>

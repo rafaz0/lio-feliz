@@ -1,4 +1,4 @@
-import { ASSETS_BY_TICKER } from "./mock-data";
+import { ASSETS_BY_TICKER, getAsset } from "./mock-data";
 
 export interface Operation {
   id: string;
@@ -33,6 +33,76 @@ export interface PortfolioSummary {
   totalPnlPct: number;
   positions: Position[];
   sectorAllocation: { sector: string; value: number; pct: number }[];
+}
+
+export interface PortfolioHistoryPoint {
+  date: string;
+  value: number;
+  invested: number;
+}
+
+export function buildPortfolioHistory(
+  ops: Operation[],
+  priceOverrides?: Record<string, number>,
+): PortfolioHistoryPoint[] {
+  const sorted = [...ops].sort(
+    (a, b) => a.traded_at.localeCompare(b.traded_at) || a.created_at.localeCompare(b.created_at),
+  );
+
+  if (sorted.length === 0) return [];
+
+  const firstDate = new Date(sorted[0].traded_at);
+  const today = new Date();
+  const points: PortfolioHistoryPoint[] = [];
+
+  const weeks: string[] = [];
+  const cursor = new Date(firstDate);
+  while (cursor <= today) {
+    weeks.push(cursor.toISOString().slice(0, 10));
+    cursor.setDate(cursor.getDate() + 7);
+  }
+  weeks.push(today.toISOString().slice(0, 10));
+
+  const uniqueDates = [...new Set(weeks)].sort();
+
+  for (const date of uniqueDates) {
+    const byTicker = new Map<string, { qty: number; totalCost: number }>();
+    let totalInvested = 0;
+
+    for (const op of sorted) {
+      if (op.traded_at > date) break;
+      const cur = byTicker.get(op.ticker) ?? { qty: 0, totalCost: 0 };
+      if (op.side === "buy") {
+        cur.qty += op.quantity;
+        cur.totalCost += op.quantity * op.price;
+      } else {
+        const avg = cur.qty > 0 ? cur.totalCost / cur.qty : 0;
+        const sellQty = Math.min(op.quantity, cur.qty);
+        cur.totalCost -= avg * sellQty;
+        cur.qty -= sellQty;
+        if (cur.qty <= 0.00001) { cur.qty = 0; cur.totalCost = 0; }
+      }
+      byTicker.set(op.ticker, cur);
+    }
+
+    let totalValue = 0;
+    let investedSum = 0;
+    for (const [ticker, { qty, totalCost }] of byTicker.entries()) {
+      if (qty <= 0) continue;
+      const asset = getAsset(ticker);
+      const overridePrice = priceOverrides?.[ticker];
+      const priceAtDate = asset
+        ? (asset.history.find((h) => h.date <= date)?.close ?? asset.price)
+        : 0;
+      const currentPrice = typeof overridePrice === "number" ? overridePrice : priceAtDate;
+      totalValue += qty * currentPrice;
+      investedSum += totalCost;
+    }
+
+    points.push({ date, value: totalValue, invested: investedSum });
+  }
+
+  return points;
 }
 
 export function consolidatePortfolio(

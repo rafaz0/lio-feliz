@@ -125,16 +125,54 @@ function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pending, setPending] = useState(false);
+  const [needsConfirm, setNeedsConfirm] = useState(false);
+  const [resendPending, setResendPending] = useState(false);
   const navigate = useNavigate();
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setPending(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    setNeedsConfirm(false);
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     setPending(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      if (error.message.toLowerCase().includes("email not confirmed")) {
+        setNeedsConfirm(true);
+        toast.error("Email nao confirmado. Clique em reenviar abaixo.");
+      } else if (error.message.toLowerCase().includes("invalid login")) {
+        toast.error("Email ou senha incorretos.");
+      } else {
+        toast.error(error.message);
+      }
+      return;
+    }
+    if (!data.session) {
+      toast.error("Nao foi possivel iniciar sessao. Tente novamente.");
+      return;
+    }
     toast.success("Bem-vindo de volta");
     navigate({ to: "/carteira", replace: true });
+  }
+
+  async function resendConfirmation() {
+    if (!email) {
+      toast.error("Informe seu email acima primeiro.");
+      return;
+    }
+    setResendPending(true);
+    const { error } = await supabase.auth.resend({
+      type: "signup",
+      email,
+      options: { emailRedirectTo: window.location.origin },
+    });
+    setResendPending(false);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    toast.success("Email de confirmacao reenviado! Verifique caixa de entrada e spam.", {
+      duration: 8000,
+    });
   }
 
   return (
@@ -163,6 +201,16 @@ function SignInForm() {
         <Button type="submit" disabled={pending} className="mt-2">
           {pending ? "Entrando…" : "Entrar"}
         </Button>
+        {needsConfirm && (
+          <Button
+            type="button"
+            variant="outline"
+            disabled={resendPending}
+            onClick={resendConfirmation}
+          >
+            {resendPending ? "Reenviando…" : "Reenviar email de confirmação"}
+          </Button>
+        )}
       </form>
     </div>
   );
@@ -178,7 +226,7 @@ function SignUpForm() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setPending(true);
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -188,8 +236,16 @@ function SignUpForm() {
     });
     setPending(false);
     if (error) return toast.error(error.message);
-    toast.success("Conta criada");
-    navigate({ to: "/carteira", replace: true });
+    if (data.session) {
+      toast.success("Conta criada!");
+      navigate({ to: "/carteira", replace: true });
+      return;
+    }
+    toast.success(
+      "Conta criada! Verifique seu email (caixa de entrada e spam) para confirmar antes de entrar.",
+      { duration: 8000 },
+    );
+    navigate({ to: "/auth", replace: true });
   }
 
   return (

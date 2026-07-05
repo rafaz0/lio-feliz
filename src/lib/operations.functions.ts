@@ -36,7 +36,7 @@ export const listOperations = createServerFn({ method: "GET" })
 
 export const createOperation = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: unknown) => operationInput.parse(input))
+  .validator(operationInput)
   .handler(async ({ data, context }) => {
     const { error } = await context.supabase.from("portfolio_operations").insert({
       user_id: context.userId,
@@ -54,7 +54,7 @@ export const createOperation = createServerFn({ method: "POST" })
 
 export const deleteOperation = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
+  .validator(z.object({ id: z.string().uuid() }))
   .handler(async ({ data, context }) => {
     const { error } = await context.supabase
       .from("portfolio_operations")

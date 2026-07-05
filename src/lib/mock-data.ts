@@ -23,6 +23,10 @@ export interface AssetFundamentals {
   lpa: number;
   vpa: number;
   marketCap: number; // BRL
+  evEbitda: number;
+  payout: number; // percent
+  psr: number;
+  dividendCagr: number; // percent
 }
 
 export interface Dividend {
@@ -93,7 +97,7 @@ interface Seed {
   price: number;
   changeDayPct: number;
   description: string;
-  f: AssetFundamentals;
+  f: Omit<AssetFundamentals, "dividendCagr" | "evEbitda" | "payout" | "psr">;
 }
 
 const seeds: Seed[] = [
@@ -309,17 +313,36 @@ const seeds: Seed[] = [
   },
 ];
 
-export const ASSETS: Asset[] = seeds.map((s, i) => ({
-  ticker: s.ticker,
-  name: s.name,
-  sector: s.sector,
-  price: s.price,
-  changeDayPct: s.changeDayPct,
-  description: s.description,
-  fundamentals: s.f,
-  history: buildHistory(s.price, i * 31 + 7),
-  dividends: buildDividends(s.price, s.f.dy, i * 17 + 3),
-}));
+export const ASSETS: Asset[] = seeds.map((s, i) => {
+  const pl = s.f.pl;
+  const pvp = s.f.pvp;
+  const dy = s.f.dy;
+  const roe = s.f.roe;
+  const margemLiquida = s.f.margemLiquida;
+  const divLiqEbitda = s.f.divLiquidaEbitda;
+  const lpa = s.f.lpa;
+  const vpa = s.f.vpa;
+  const marketCap = s.f.marketCap;
+
+  const payout = dy > 0 && roe > 0 ? (dy / roe) * 100 : 0;
+  const evEbitda = divLiqEbitda > 0 ? pl + divLiqEbitda * 0.4 : pl * 1.05;
+  const psr = margemLiquida > 0 ? pl / (margemLiquida / 100) : pl * 5;
+
+  const cagrSeed = [4.5, 3.2, 6.1, 5.8, 2.4, 8.2, 1.5, 4.9, 7.3, 3.8, 6.5, 2.1, 5.4, 3.6, 7.8, 4.2, 8.5, 6.9, 5.1, 3.1];
+  const dividendCagr = cagrSeed[i % cagrSeed.length];
+
+  return {
+    ticker: s.ticker,
+    name: s.name,
+    sector: s.sector,
+    price: s.price,
+    changeDayPct: s.changeDayPct,
+    description: s.description,
+    fundamentals: { ...s.f, evEbitda, payout, psr, dividendCagr },
+    history: buildHistory(s.price, i * 31 + 7),
+    dividends: buildDividends(s.price, s.f.dy, i * 17 + 3),
+  };
+});
 
 export const ASSETS_BY_TICKER: Record<string, Asset> = Object.fromEntries(
   ASSETS.map((a) => [a.ticker, a]),

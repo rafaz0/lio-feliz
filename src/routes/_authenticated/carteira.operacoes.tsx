@@ -10,6 +10,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatDate, formatQty } from "@/lib/format";
 
 export const Route = createFileRoute("/_authenticated/carteira/operacoes")({
+  head: () => ({
+    meta: [
+      { title: "Operações — Investidor Pro" },
+      { name: "description", content: "Histórico de operações da sua carteira: compras, vendas e dividendos registrados." },
+    ],
+  }),
   component: OperationsPage,
 });
 

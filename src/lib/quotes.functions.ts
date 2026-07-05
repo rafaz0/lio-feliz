@@ -14,7 +14,7 @@ const input = z.object({
 });
 
 export const getQuotes = createServerFn({ method: "POST" })
-  .inputValidator((raw: unknown) => input.parse(raw))
+  .validator(input)
   .handler(async ({ data }): Promise<{ quotes: Record<string, Quote>; error: string | null }> => {
     const tickers = Array.from(new Set(data.tickers.map((t) => t.toUpperCase())));
     const token = process.env.BRAPI_TOKEN;
