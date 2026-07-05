@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
-import { Info, Plus, Wallet } from "lucide-react";
+import { Info, Plus, RefreshCw, Wallet } from "lucide-react";
 import { listOperations } from "@/lib/operations.functions";
+import { getQuotes } from "@/lib/quotes.functions";
 import { consolidatePortfolio } from "@/lib/portfolio";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { DeltaPct } from "@/components/delta-pct";
@@ -27,9 +28,20 @@ const CHART_COLORS = [
 
 function PortfolioOverview() {
   const list = useServerFn(listOperations);
+  const fetchQuotes = useServerFn(getQuotes);
+  const queryClient = useQueryClient();
   const { data: ops, isLoading } = useQuery({
     queryKey: ["operations"],
     queryFn: () => list(),
+  });
+
+  const tickers = Array.from(new Set((ops ?? []).map((o) => o.ticker))).sort();
+  const quotesQuery = useQuery({
+    queryKey: ["quotes", tickers],
+    queryFn: () => fetchQuotes({ data: { tickers } }),
+    enabled: tickers.length > 0,
+    staleTime: 60_000,
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading || !ops) {
@@ -42,8 +54,16 @@ function PortfolioOverview() {
     );
   }
 
-  const portfolio = consolidatePortfolio(ops);
+  const priceOverrides: Record<string, number> = {};
+  const quotesData = quotesQuery.data?.quotes ?? {};
+  for (const [t, q] of Object.entries(quotesData)) {
+    priceOverrides[t] = q.price;
+  }
+  const portfolio = consolidatePortfolio(ops, priceOverrides);
   const isEmpty = portfolio.positions.length === 0;
+  const quotesUpdatedAt = Object.values(quotesData)[0]?.updatedAt;
+  const quotesError = quotesQuery.data?.error;
+  const liveCount = Object.keys(quotesData).length;
 
   return (
     <div className="space-y-6">
@@ -75,12 +95,34 @@ function PortfolioOverview() {
             </Button>
           }
         />
+        <Button
+          variant="outline"
+          className="gap-2"
+          onClick={() => queryClient.invalidateQueries({ queryKey: ["quotes"] })}
+          disabled={quotesQuery.isFetching || tickers.length === 0}
+        >
+          <RefreshCw className={"size-4 " + (quotesQuery.isFetching ? "animate-spin" : "")} />
+          Atualizar cotações
+        </Button>
         <Button variant="outline" disabled className="gap-2">
           <Wallet className="size-4" /> Sincronizar com B3
           <span className="rounded bg-secondary px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">
             em breve
           </span>
         </Button>
+        {quotesUpdatedAt && (
+          <span className="text-xs text-muted-foreground">
+            Cotações atualizadas às{" "}
+            {new Date(quotesUpdatedAt).toLocaleTimeString("pt-BR", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+            {liveCount > 0 && ` · ${liveCount}/${tickers.length} ao vivo`}
+          </span>
+        )}
+        {quotesError && (
+          <span className="text-xs text-negative">Falha nas cotações: {quotesError}</span>
+        )}
       </section>
 
       {isEmpty ? (
@@ -106,7 +148,7 @@ function PortfolioOverview() {
             <div className="border-b border-border bg-surface-2 px-4 py-3">
               <h2 className="text-sm font-semibold">Posições</h2>
               <p className="text-xs text-muted-foreground">
-                Ordenadas por valor atual · preços mock em tempo "real"
+                Ordenadas por valor atual · preços em tempo real via BRAPI
               </p>
             </div>
             <div className="overflow-x-auto">
@@ -213,7 +255,7 @@ function PortfolioOverview() {
             </ul>
             <p className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">
               <Info className="mt-0.5 size-3.5 shrink-0" />
-              Preços atualizados a partir de dados mock. Integração B3 chegará em breve.
+              Cotações via BRAPI (b3). Tickers sem retorno usam preço de referência.
             </p>
           </div>
         </div>

@@ -35,7 +35,10 @@ export interface PortfolioSummary {
   sectorAllocation: { sector: string; value: number; pct: number }[];
 }
 
-export function consolidatePortfolio(ops: Operation[]): PortfolioSummary {
+export function consolidatePortfolio(
+  ops: Operation[],
+  priceOverrides?: Record<string, number>,
+): PortfolioSummary {
   const byTicker = new Map<string, { qty: number; totalCost: number }>();
 
   const sorted = [...ops].sort(
@@ -64,7 +67,8 @@ export function consolidatePortfolio(ops: Operation[]): PortfolioSummary {
   for (const [ticker, { qty, totalCost }] of byTicker.entries()) {
     if (qty <= 0) continue;
     const asset = ASSETS_BY_TICKER[ticker];
-    const currentPrice = asset?.price ?? 0;
+    const overridePrice = priceOverrides?.[ticker];
+    const currentPrice = typeof overridePrice === "number" ? overridePrice : asset?.price ?? 0;
     const avgPrice = qty > 0 ? totalCost / qty : 0;
     const currentValue = qty * currentPrice;
     const invested = qty * avgPrice;
