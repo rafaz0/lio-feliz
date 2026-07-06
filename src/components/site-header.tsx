@@ -17,7 +17,9 @@ import { useSession } from "@/hooks/use-session";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { ASSETS } from "@/lib/mock-data";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { searchTickers, type TickerSuggestion } from "@/lib/data-functions";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,18 +34,13 @@ export function SiteHeader() {
   const router = useRouter();
   const { user } = useSession();
   const [q, setQ] = useState("");
-  const [matches, setMatches] = useState<typeof ASSETS>([]);
-
-  useEffect(() => {
-    const term = q.trim().toUpperCase();
-    if (!term) return setMatches([]);
-    setMatches(
-      ASSETS.filter((a) => a.ticker.startsWith(term) || a.name.toUpperCase().includes(term)).slice(
-        0,
-        6,
-      ),
-    );
-  }, [q]);
+  const search = useServerFn(searchTickers);
+  const { data: suggestions } = useQuery({
+    queryKey: ["ticker-search", q],
+    queryFn: () => search({ data: { q } }),
+    staleTime: 300_000,
+  });
+  const matches = suggestions ?? [];
 
   async function signOut() {
     await supabase.auth.signOut();
@@ -57,7 +54,6 @@ export function SiteHeader() {
     const first = matches[0]?.ticker ?? term;
     navigate({ to: "/ativo/$ticker", params: { ticker: first } });
     setQ("");
-    setMatches([]);
   }
 
   return (
@@ -219,7 +215,6 @@ export function SiteHeader() {
                     e.preventDefault();
                     navigate({ to: "/ativo/$ticker", params: { ticker: m.ticker } });
                     setQ("");
-                    setMatches([]);
                   }}
                   className="flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm hover:bg-secondary"
                 >
@@ -227,14 +222,16 @@ export function SiteHeader() {
                     <span className="font-semibold">{m.ticker}</span>
                     <span className="truncate text-xs text-muted-foreground">{m.name}</span>
                   </span>
-                  <span
-                    className={
-                      "tabular text-xs " + (m.changeDayPct >= 0 ? "text-positive" : "text-negative")
-                    }
-                  >
-                    {m.changeDayPct >= 0 ? "+" : ""}
-                    {m.changeDayPct.toFixed(2)}%
-                  </span>
+                  {m.changePct != null && (
+                    <span
+                      className={
+                        "tabular text-xs " + (m.changePct >= 0 ? "text-positive" : "text-negative")
+                      }
+                    >
+                      {m.changePct >= 0 ? "+" : ""}
+                      {m.changePct.toFixed(2)}%
+                    </span>
+                  )}
                 </button>
               ))}
             </div>

@@ -31,7 +31,7 @@ import { useSession } from "@/hooks/use-session";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
-    const list = await getAssetList({ data: { limit: 500 } });
+    const list = await getAssetList({ data: { limit: 2000 } });
     return { list };
   },
   head: ({ loaderData }) => {

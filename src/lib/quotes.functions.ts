@@ -18,13 +18,12 @@ export const getQuotes = createServerFn({ method: "POST" })
   .handler(async ({ data }): Promise<{ quotes: Record<string, Quote>; error: string | null }> => {
     const tickers = Array.from(new Set(data.tickers.map((t) => t.toUpperCase())));
     const token = process.env.BRAPI_TOKEN;
-    const url = new URL(`https://brapi.dev/api/quote/${tickers.join(",")}`);
-    if (token) url.searchParams.set("token", token);
+    const headers: Record<string, string> = { Accept: "application/json" };
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+    const url = `https://brapi.dev/api/v2/stocks/quote?symbols=${tickers.join(",")}`;
 
     try {
-      const res = await fetch(url.toString(), {
-        headers: { Accept: "application/json" },
-      });
+      const res = await fetch(url, { headers });
       if (!res.ok) {
         return {
           quotes: {},
@@ -36,23 +35,27 @@ export const getQuotes = createServerFn({ method: "POST" })
       const json = (await res.json()) as {
         results?: Array<{
           symbol: string;
-          regularMarketPrice?: number;
-          regularMarketChangePercent?: number;
-          longName?: string;
-          shortName?: string;
+          data?: {
+            regularMarketPrice?: number;
+            regularMarketChangePercent?: number;
+            longName?: string;
+            shortName?: string;
+          };
         }>;
       };
       const now = new Date().toISOString();
       const quotes: Record<string, Quote> = {};
       for (const r of json.results ?? []) {
-        if (typeof r.regularMarketPrice !== "number") continue;
-        quotes[r.symbol.toUpperCase()] = {
-          ticker: r.symbol.toUpperCase(),
-          price: r.regularMarketPrice,
-          changePct: r.regularMarketChangePercent ?? 0,
-          name: r.longName ?? r.shortName,
-          updatedAt: now,
-        };
+        const d = r.data;
+        if (d && typeof d.regularMarketPrice === "number") {
+          quotes[r.symbol.toUpperCase()] = {
+            ticker: r.symbol.toUpperCase(),
+            price: d.regularMarketPrice,
+            changePct: d.regularMarketChangePercent ?? 0,
+            name: d.longName ?? d.shortName,
+            updatedAt: now,
+          };
+        }
       }
       return { quotes, error: null };
     } catch (err) {

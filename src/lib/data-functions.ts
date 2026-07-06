@@ -20,8 +20,27 @@ import {
 } from "./mock-data";
 import { FIIS, getFii } from "./fii-mock-data";
 
-const BRAPI_BASE = "https://brapi.dev/api";
-const BRAPI_QUOTE_CHUNK = 50;
+const BRAPI_BASE = "https://brapi.dev/api/v2";
+const BRAPI_QUOTE_CHUNK = 20;
+
+interface V2TickerItem {
+  symbol: string;
+  name: string;
+  longName?: string;
+  sector: string | null;
+  isActive?: boolean;
+  quote?: { lastPrice: number; changePercent: number; volume?: number; marketCap?: number };
+}
+
+interface V2QuoteItem {
+  symbol: string;
+  data?: {
+    regularMarketPrice?: number;
+    regularMarketChangePercent?: number;
+    longName?: string;
+    shortName?: string;
+  };
+}
 
 const US_SECTORS: Record<string, string> = {
   "Basic Materials": "Materiais Básicos",
@@ -75,18 +94,12 @@ const EMPTY_FUNDS: AssetFundamentals = {
   dividendCagr: 0,
 };
 
-function brapiHeaders() {
-  return {
-    "X-Requested-With": "XMLHttpRequest",
-    Accept: "application/json",
-  };
-}
-
-function buildBrapiUrl(path: string): string {
+function brapiFetch(path: string, init?: RequestInit): Promise<Response> {
   const token = process.env.BRAPI_TOKEN;
-  const url = new URL(`${BRAPI_BASE}${path}`);
-  if (token) url.searchParams.set("token", token);
-  return url.toString();
+  const headers: Record<string, string> = { Accept: "application/json" };
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+  const url = `${BRAPI_BASE}${path}`;
+  return fetch(url, { ...init, headers: { ...headers, ...init?.headers } });
 }
 
 async function batchBrapiQuotes(
@@ -96,24 +109,16 @@ async function batchBrapiQuotes(
   for (let i = 0; i < tickers.length; i += BRAPI_QUOTE_CHUNK) {
     const chunk = tickers.slice(i, i + BRAPI_QUOTE_CHUNK);
     try {
-      const url = buildBrapiUrl(`/api/quote/${chunk.join(",")}`);
-      const res = await fetch(url, { headers: brapiHeaders() });
+      const res = await brapiFetch(`/stocks/quote?symbols=${chunk.join(",")}`);
       if (!res.ok) continue;
-      const json = (await res.json()) as {
-        results?: Array<{
-          symbol: string;
-          regularMarketPrice?: number;
-          regularMarketChangePercent?: number;
-          longName?: string;
-          shortName?: string;
-        }>;
-      };
+      const json = (await res.json()) as { results?: V2QuoteItem[] };
       for (const r of json.results ?? []) {
-        if (typeof r.regularMarketPrice === "number") {
+        const d = r.data;
+        if (d && typeof d.regularMarketPrice === "number") {
           result[r.symbol.toUpperCase()] = {
-            price: r.regularMarketPrice,
-            changePct: r.regularMarketChangePercent ?? 0,
-            name: r.longName ?? r.shortName ?? r.symbol,
+            price: d.regularMarketPrice,
+            changePct: d.regularMarketChangePercent ?? 0,
+            name: d.longName ?? d.shortName ?? r.symbol,
           };
         }
       }
@@ -130,12 +135,10 @@ export const getAvailableTickers = createServerFn({ method: "GET" }).handler(
     if (cached) return cached;
 
     try {
-      const res = await fetch(buildBrapiUrl("/api/available"), {
-        headers: brapiHeaders(),
-      });
+      const res = await brapiFetch("/tickers?limit=2000");
       if (!res.ok) throw new Error("BRAPI unavailable");
-      const json = (await res.json()) as { stocks?: string[] };
-      const tickers = json.stocks ?? [];
+      const json = (await res.json()) as { results?: V2TickerItem[] };
+      const tickers = (json.results ?? []).map((r) => r.symbol);
       setCache("available-tickers", tickers);
       return tickers;
     } catch {
@@ -225,34 +228,25 @@ export const getAssetData = createServerFn({ method: "GET" })
       return { ...mockAsset, isRealData: false };
     }
 
-    // Unknown ticker: try BRAPI for basic info
+    // Unknown ticker: try BRAPI v2 for basic info
     try {
-      const url = buildBrapiUrl(`/api/quote/${ticker}`);
-      const res = await fetch(url, { headers: brapiHeaders() });
+      const res = await brapiFetch(`/tickers?search=${ticker}&limit=1`);
       if (res.ok) {
-        const json = (await res.json()) as {
-          results?: Array<{
-            symbol: string;
-            regularMarketPrice?: number;
-            regularMarketChangePercent?: number;
-            longName?: string;
-          }>;
-        };
-        const r = json.results?.[0];
-        if (r && typeof r.regularMarketPrice === "number") {
-          const a: RichAsset = {
-            ticker: r.symbol.toUpperCase(),
-            name: r.longName ?? r.symbol,
-            sector: "Outros" as Sector,
-            price: r.regularMarketPrice,
-            changeDayPct: r.regularMarketChangePercent ?? 0,
+        const json = (await res.json()) as { results?: V2TickerItem[] };
+        const item = json.results?.[0];
+        if (item && item.symbol === ticker) {
+          return {
+            ticker: item.symbol,
+            name: item.longName ?? item.name ?? item.symbol,
+            sector: (item.sector as Sector) ?? "Outros",
+            price: item.quote?.lastPrice ?? 0,
+            changeDayPct: item.quote?.changePercent ?? 0,
             description: "",
             fundamentals: { ...EMPTY_FUNDS },
             history: [],
             dividends: [],
             isRealData: true,
           };
-          return a;
         }
       }
     } catch {
@@ -265,7 +259,7 @@ export const getAssetData = createServerFn({ method: "GET" })
 export const getAssetList = createServerFn({ method: "GET" })
   .validator(
     z.object({
-      limit: z.number().min(1).max(500).default(500),
+      limit: z.number().min(1).max(2000).default(2000),
       search: z.string().optional(),
     }),
   )
@@ -275,64 +269,43 @@ export const getAssetList = createServerFn({ method: "GET" })
       return filterList(cached, data.search);
     }
 
-    // Fetch all available tickers from BRAPI
-    let allTickers: string[];
     try {
-      const res = await fetch(buildBrapiUrl("/api/available"), {
-        headers: brapiHeaders(),
-      });
+      const res = await brapiFetch(`/tickers?limit=${data.limit}`);
       if (res.ok) {
-        const json = (await res.json()) as { stocks?: string[] };
-        allTickers = json.stocks ?? [];
-      } else {
-        allTickers = ASSETS.map((a) => a.ticker);
+        const json = (await res.json()) as { results?: V2TickerItem[] };
+        const result: AssetLite[] = [];
+
+        for (const item of json.results ?? []) {
+          if (item.isActive === false) continue;
+          const mock = ASSETS_BY_TICKER[item.symbol];
+          result.push({
+            ticker: item.symbol,
+            name: item.longName ?? item.name ?? item.symbol,
+            price: item.quote?.lastPrice ?? mock?.price ?? 0,
+            changeDayPct: item.quote?.changePercent ?? mock?.changeDayPct ?? 0,
+            sector: item.sector ?? mock?.sector ?? null,
+            fundamentals: mock?.fundamentals ?? null,
+            isRealData: !mock,
+          });
+        }
+
+        setCache("asset-list", result);
+        return filterList(result, data.search);
       }
     } catch {
-      allTickers = ASSETS.map((a) => a.ticker);
+      // fallback to mock
     }
 
-    // Limit to requested amount (plus mock assets)
-    const mockTickers = new Set(ASSETS.map((a) => a.ticker));
-    const extraTickers = allTickers.filter((t) => !mockTickers.has(t));
-    const selected = [
-      ...new Set([...ASSETS.map((a) => a.ticker), ...extraTickers.slice(0, data.limit)]),
-    ];
-
-    // Batch fetch quotes from BRAPI
-    const liveMap = await batchBrapiQuotes(selected);
-
-    const result: AssetLite[] = [];
-    const seen = new Set<string>();
-    for (const ticker of selected) {
-      if (seen.has(ticker)) continue;
-      seen.add(ticker);
-      const live = liveMap[ticker];
-      const mock = ASSETS_BY_TICKER[ticker];
-      if (mock) {
-        result.push({
-          ticker: mock.ticker,
-          name: mock.name,
-          price: live?.price ?? mock.price,
-          changeDayPct: live?.changePct ?? mock.changeDayPct,
-          sector: mock.sector,
-          fundamentals: mock.fundamentals,
-          isRealData: false,
-        });
-      } else if (live) {
-        result.push({
-          ticker,
-          name: live.name,
-          price: live.price,
-          changeDayPct: live.changePct,
-          sector: null,
-          fundamentals: null,
-          isRealData: true,
-        });
-      }
-    }
-
-    setCache("asset-list", result);
-    return filterList(result, data.search);
+    // Fallback: mock assets only
+    return ASSETS.map((a) => ({
+      ticker: a.ticker,
+      name: a.name,
+      price: a.price,
+      changeDayPct: a.changeDayPct,
+      sector: a.sector,
+      fundamentals: a.fundamentals,
+      isRealData: false,
+    }));
   });
 
 function filterList(list: AssetLite[], search?: string): AssetLite[] {
@@ -343,8 +316,8 @@ function filterList(list: AssetLite[], search?: string): AssetLite[] {
 
 export const getAllAssets = createServerFn({ method: "GET" }).handler(
   async (): Promise<RichAsset[]> => {
-    const tickers = ASSETS.map((a) => a.ticker);
-    const liveMap = await batchBrapiQuotes(tickers);
+    const mockKeys = ASSETS.map((a) => a.ticker);
+    const liveMap = await batchBrapiQuotes(mockKeys);
 
     return ASSETS.map((a) => {
       const live = liveMap[a.ticker];
@@ -352,11 +325,50 @@ export const getAllAssets = createServerFn({ method: "GET" }).handler(
         ...a,
         price: live?.price ?? a.price,
         changeDayPct: live?.changePct ?? a.changeDayPct,
-        isRealData: false,
+        isRealData: !!live,
       };
     });
   },
 );
+
+export interface TickerSuggestion {
+  ticker: string;
+  name: string;
+  price?: number;
+  changePct?: number;
+}
+
+export const searchTickers = createServerFn({ method: "GET" })
+  .validator(z.object({ q: z.string().max(50).default("") }))
+  .handler(async ({ data }): Promise<TickerSuggestion[]> => {
+    const cached = getCached<TickerSuggestion[]>("ticker-suggestions");
+    let list = cached;
+    if (!list) {
+      try {
+        const res = await brapiFetch("/tickers?limit=2000");
+        if (res.ok) {
+          const json = (await res.json()) as { results?: V2TickerItem[] };
+          list = (json.results ?? [])
+            .filter((r) => r.isActive !== false)
+            .map((r) => ({
+              ticker: r.symbol,
+              name: r.longName ?? r.name ?? r.symbol,
+              price: r.quote?.lastPrice,
+              changePct: r.quote?.changePercent,
+            }));
+          setCache("ticker-suggestions", list);
+        }
+      } catch {
+        // fallback
+      }
+    }
+    const items = list ?? ASSETS.map((a) => ({ ticker: a.ticker, name: a.name, price: a.price, changePct: a.changeDayPct }));
+    if (!data.q) return items.slice(0, 6);
+    const term = data.q.trim().toUpperCase();
+    return items
+      .filter((a) => a.ticker.startsWith(term) || a.name.toUpperCase().includes(term))
+      .slice(0, 6);
+  });
 
 interface YahooData {
   fundamentals: YahooFundamentals;
