@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState, useMemo, type ReactNode } from "react";
-import { Activity, ArrowLeft, BarChart3, ChartArea, Clock, Database, HelpCircle, Plus, Star, TrendingUp, Waves } from "lucide-react";
+import { Activity, ArrowLeft, BarChart3, ChartArea, Clock, Database, HelpCircle, Medal, Plus, Star, TrendingUp, Waves } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
@@ -30,6 +30,7 @@ import { Tooltip as UiTooltip, TooltipContent, TooltipTrigger, TooltipProvider }
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatDate } from "@/lib/format";
 import { grahamRating, bazinPriceTeto, avgAnnualYield } from "@/lib/valuation";
+import { computeScorecard, ratingLabel, ratingColor } from "@/lib/scorecard";
 
 export const Route = createFileRoute("/ativo/$ticker")({
   loader: async ({ params }) => {
@@ -414,6 +415,42 @@ function AssetPage() {
   const bazinDiscount =
     bazinTeto && bazinTeto > 0 ? ((bazinTeto - currentPrice) / (currentPrice + bazinTeto)) * 2 : null;
 
+  const scorecardScore = useMemo(
+    () =>
+      computeScorecard({
+        currentPrice,
+        lpa: asset.fundamentals.lpa,
+        vpa: asset.fundamentals.vpa,
+        pl: asset.fundamentals.pl,
+        pvp: asset.fundamentals.pvp,
+        roe: asset.fundamentals.roe,
+        dy: asset.fundamentals.dy,
+        divLiquidaEbitda: asset.fundamentals.divLiquidaEbitda,
+        ew: {
+          grahamDiscount: graham.discount,
+          bazinDiscount,
+          dividendCagrFromHistory,
+          avgYield5y,
+        },
+        annualDividends,
+      }),
+    [
+      currentPrice,
+      asset.fundamentals.lpa,
+      asset.fundamentals.vpa,
+      asset.fundamentals.pl,
+      asset.fundamentals.pvp,
+      asset.fundamentals.roe,
+      asset.fundamentals.dy,
+      asset.fundamentals.divLiquidaEbitda,
+      graham.discount,
+      bazinDiscount,
+      dividendCagrFromHistory,
+      avgYield5y,
+      annualDividends,
+    ],
+  );
+
   const indicators = [
     { label: "P/L", value: asset.fundamentals.pl.toFixed(1), hint: "Preço / Lucro", tag: "" },
     { label: "P/VP", value: asset.fundamentals.pvp.toFixed(2), hint: "Preço / Valor Patrimonial", tag: "" },
@@ -669,6 +706,79 @@ function AssetPage() {
               </div>
             </section>
           )}
+
+          {/* Scorecard agregado */}
+          <section className="mt-4">
+            <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Scorecard agregado
+            </h2>
+            <div className="rounded-lg border border-border bg-card p-5">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className={"rounded px-2 py-0.5 text-xs font-medium uppercase tracking-wider " + ratingColor(scorecardScore.rating).badge}>
+                      {ratingLabel(scorecardScore.rating)}
+                    </span>
+                    {scorecardScore.isAristocrat && (
+                      <span className="inline-flex items-center gap-1 rounded bg-chart-5/15 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-chart-5">
+                        <Medal className="size-3" /> Aristocrata de Dividendos
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-2 flex items-baseline gap-2">
+                    <div className="tabular text-4xl font-bold tracking-tight">
+                      {scorecardScore.score.toFixed(0)}
+                    </div>
+                    <div className="tabular text-base text-muted-foreground">
+                      / {scorecardScore.maxScore.toFixed(0)}
+                    </div>
+                    <div className="tabular text-sm text-muted-foreground">
+                      ({(scorecardScore.ratio * 100).toFixed(0)}%)
+                    </div>
+                  </div>
+                  {scorecardScore.isAristocrat && scorecardScore.streak > 0 && (
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      {scorecardScore.streak} anos seguidos mantendo/crescendo o dividendo.
+                    </div>
+                  )}
+                </div>
+                <div className="flex h-24 w-32 items-end sm:w-40">
+                  <div className="w-full overflow-hidden rounded bg-secondary" style={{ height: 8 }}>
+                    <div
+                      className={"h-full transition-all " + ratingColor(scorecardScore.rating).bar}
+                      style={{ width: `${scorecardScore.ratio * 100}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
+                {scorecardScore.criteria.map((c) => {
+                  const isPct = c.key === "graham" || c.key === "bazin" || c.key === "dy" || c.key === "roe" || c.key === "cagr";
+                  const display =
+                    c.value === null || c.value === undefined
+                      ? "—"
+                      : `${c.value.toFixed(2)}${isPct ? "%" : ""}`;
+                  return (
+                    <div key={c.key} className="rounded-md border border-border p-2">
+                      <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                        {c.label}
+                      </div>
+                      <div className="mt-1 flex items-baseline gap-1">
+                        <span className="tabular text-sm font-medium">{display}</span>
+                      </div>
+                      <div className="mt-1 text-[10px] text-muted-foreground">{c.detail}</div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <p className="mt-4 text-xs text-muted-foreground">
+                Score combina desconto Graham, teto Bazin, dividend yield atual, ROE, CAGR de dividendos
+                histórico, P/VP e endividamento. Use como orientação junto com sua tese de longo prazo.
+              </p>
+            </div>
+          </section>
 
           {annualDividends.length > 1 && (
             <section className="mt-4">
