@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { createOperation } from "@/lib/operations.functions";
+import { ASSETS } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -37,6 +38,15 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState(defaultPrice ? String(defaultPrice) : "");
   const [tradedAt, setTradedAt] = useState(new Date().toISOString().slice(0, 10));
+  const [focused, setFocused] = useState(false);
+
+  const suggestions = useMemo(() => {
+    const term = ticker.trim().toUpperCase();
+    if (!term || term.length < 1) return [];
+    return ASSETS.filter(
+      (a) => a.ticker.startsWith(term) || a.name.toUpperCase().includes(term),
+    ).slice(0, 6);
+  }, [ticker]);
 
   const qc = useQueryClient();
   const create = useServerFn(createOperation);
@@ -80,15 +90,47 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
         </DialogHeader>
         <form onSubmit={submit} className="grid gap-4">
           <div className="grid grid-cols-2 gap-3">
-            <div className="grid gap-2">
+            <div className="relative grid gap-2">
               <Label htmlFor="ticker">Ticker</Label>
               <Input
                 id="ticker"
                 value={ticker}
                 onChange={(e) => setTicker(e.target.value.toUpperCase())}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setTimeout(() => setFocused(false), 150)}
                 placeholder="PETR4"
                 required
               />
+              {focused && suggestions.length > 0 && (
+                <div className="absolute inset-x-0 top-[68px] z-50 overflow-hidden rounded-md border border-border bg-popover shadow-lg">
+                  {suggestions.map((a) => (
+                    <button
+                      key={a.ticker}
+                      type="button"
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        setTicker(a.ticker);
+                        setFocused(false);
+                      }}
+                      className="flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm hover:bg-secondary"
+                    >
+                      <span className="flex items-baseline gap-2">
+                        <span className="font-semibold">{a.ticker}</span>
+                        <span className="truncate text-xs text-muted-foreground">{a.name}</span>
+                      </span>
+                      <span
+                        className={
+                          "tabular text-xs " +
+                          (a.changeDayPct >= 0 ? "text-positive" : "text-negative")
+                        }
+                      >
+                        {a.changeDayPct >= 0 ? "+" : ""}
+                        {a.changeDayPct.toFixed(2)}%
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="grid gap-2">
               <Label htmlFor="side">Tipo</Label>
