@@ -48,3 +48,4 @@ preview-out.txt
 node_modules_backup/
 .dist-clone/
 .bun-tmp/
+.runvite.bat
