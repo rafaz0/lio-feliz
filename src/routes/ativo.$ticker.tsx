@@ -503,6 +503,12 @@ function AssetPage() {
           <ArrowLeft className="size-3.5" /> Voltar ao mercado
         </Link>
 
+        {/* Indicador de build / debug */}
+        <div className="mb-4 inline-flex items-center gap-2 rounded border border-dashed border-chart-4/40 px-2 py-0.5 text-[10px] uppercase tracking-wider text-chart-4">
+          <span className="size-1.5 rounded-full bg-chart-4" />
+          build 6e48fb5 • scorecard v1
+        </div>
+
         {/* Header */}
         <section className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-6">
           <div>
