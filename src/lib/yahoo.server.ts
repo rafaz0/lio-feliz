@@ -401,3 +401,37 @@ export function computeDividendCAGR(annual: AnnualDividends[]): number | null {
   const ratio = last.totalPerShare / first.totalPerShare;
   return (Math.pow(ratio, 1 / years) - 1) * 100;
 }
+
+const YAHOO_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
+
+export async function fetchYahooQuotes(
+  tickers: string[],
+): Promise<Record<string, { price: number; changePct: number }>> {
+  const result: Record<string, { price: number; changePct: number }> = {};
+  await Promise.all(
+    tickers.map(async (ticker) => {
+      try {
+        const symbol = toYahooSymbol(ticker);
+        const res = await fetch(
+          `${YAHOO_BASE}/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=1d`,
+          { headers: { "User-Agent": YAHOO_UA } },
+        );
+        if (!res.ok) return;
+        const json = (await res.json()) as {
+          chart?: { result?: Array<{ meta?: { regularMarketPrice?: number; chartPreviousClose?: number } }> };
+        };
+        const meta = json?.chart?.result?.[0]?.meta;
+        if (meta && typeof meta.regularMarketPrice === "number") {
+          const prev = meta.chartPreviousClose ?? meta.regularMarketPrice;
+          result[ticker.toUpperCase()] = {
+            price: meta.regularMarketPrice,
+            changePct: prev > 0 ? ((meta.regularMarketPrice - prev) / prev) * 100 : 0,
+          };
+        }
+      } catch {
+        // skip
+      }
+    }),
+  );
+  return result;
+}

@@ -17,9 +17,14 @@ const operationInput = z.object({
   notes: z.string().max(500).optional().nullable(),
 });
 
+// Dev mode in-memory store (ephemeral, survives server restarts during dev)
+const DEV_STORE: Operation[] = [];
+
 export const listOperations = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }): Promise<Operation[]> => {
+    if (process.env.DEV_MODE === "true") return DEV_STORE;
+
     const { data, error } = await context.supabase
       .from("portfolio_operations")
       .select("id, ticker, side, quantity, price, traded_at, source, notes, created_at")
@@ -43,6 +48,21 @@ export const createOperation = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .validator(operationInput)
   .handler(async ({ data, context }) => {
+    if (process.env.DEV_MODE === "true") {
+      DEV_STORE.unshift({
+        id: crypto.randomUUID(),
+        ticker: data.ticker,
+        side: data.side,
+        quantity: data.quantity,
+        price: data.price,
+        traded_at: data.traded_at,
+        source: "manual",
+        notes: data.notes ?? null,
+        created_at: new Date().toISOString(),
+      });
+      return { ok: true };
+    }
+
     const { error } = await context.supabase.from("portfolio_operations").insert({
       user_id: context.userId,
       ticker: data.ticker,
@@ -61,6 +81,12 @@ export const deleteOperation = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .validator(z.object({ id: z.string().uuid() }))
   .handler(async ({ data, context }) => {
+    if (process.env.DEV_MODE === "true") {
+      const idx = DEV_STORE.findIndex((o) => o.id === data.id);
+      if (idx >= 0) DEV_STORE.splice(idx, 1);
+      return { ok: true };
+    }
+
     const { error } = await context.supabase
       .from("portfolio_operations")
       .delete()

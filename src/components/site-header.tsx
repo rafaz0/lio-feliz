@@ -206,7 +206,7 @@ export function SiteHeader() {
             placeholder="Buscar ticker (PETR4, VALE3…)"
             className="h-9 pl-8 uppercase placeholder:normal-case"
           />
-          {matches.length > 0 && (
+          {q.trim() && matches.length > 0 && (
             <div className="absolute inset-x-0 top-11 z-50 overflow-hidden rounded-md border border-border bg-popover shadow-lg">
               {matches.map((m) => (
                 <button
