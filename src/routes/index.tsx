@@ -496,3 +496,4 @@ function MarketList({
     </div>
   );
 }
+
