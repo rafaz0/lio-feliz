@@ -26,7 +26,7 @@ export const listOperations = createServerFn({ method: "GET" })
       .order("traded_at", { ascending: false })
       .order("created_at", { ascending: false });
     if (error) throw new Error(error.message);
-    return (data ?? []).map((r) => ({
+    return (data ?? []).map((r: Record<string, unknown>) => ({
       id: r.id as string,
       ticker: r.ticker as string,
       side: r.side as "buy" | "sell",

@@ -74,6 +74,32 @@ function AuthPage() {
   );
 }
 
+function DevLoginButton() {
+  const [pending, setPending] = useState(false);
+  async function onClick() {
+    setPending(true);
+    const devUser = {
+      id: "dev-user-0000",
+      email: "dev@localhost",
+      user_metadata: { display_name: "Desenvolvedor" },
+      app_metadata: {},
+      aud: "authenticated",
+      created_at: new Date().toISOString(),
+      role: "authenticated",
+    };
+    localStorage.setItem("lio.dev_user", JSON.stringify(devUser));
+    window.location.reload();
+  }
+  const host = typeof window !== "undefined" ? window.location.hostname : "";
+  const isLocal = host === "localhost" || host === "127.0.0.1";
+  if (!isLocal) return null;
+  return (
+    <Button type="button" variant="outline" className="w-full gap-2" onClick={onClick} disabled={pending}>
+      Modo Desenvolvedor (local)
+    </Button>
+  );
+}
+
 function GoogleButton() {
   const [pending, setPending] = useState(false);
   async function onClick() {
@@ -180,6 +206,7 @@ function SignInForm() {
 
   return (
     <div className="space-y-4">
+      <DevLoginButton />
       <GoogleButton />
       <div className="flex items-center gap-3">
         <Separator className="flex-1" />
@@ -259,6 +286,7 @@ function SignUpForm() {
 
   return (
     <div className="space-y-4">
+      <DevLoginButton />
       <GoogleButton />
       <div className="flex items-center gap-3">
         <Separator className="flex-1" />
