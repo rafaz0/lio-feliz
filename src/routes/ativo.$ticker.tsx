@@ -31,6 +31,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatDate } from "@/lib/format";
 import { grahamRating, bazinPriceTeto, avgAnnualYield } from "@/lib/valuation";
 import { computeScorecard, ratingLabel, ratingColor } from "@/lib/scorecard";
+import { SafeBoundary } from "@/components/safe-boundary";
 
 export const Route = createFileRoute("/ativo/$ticker")({
   loader: async ({ params }) => {
@@ -620,6 +621,7 @@ function AssetPage() {
             </div>
           </section>
 
+          <SafeBoundary label="valuation">
           {(graham.fairValue !== null || bazinTeto !== null || dividendCagrFromHistory !== null || avgYield5y !== null) && (
             <section className="mt-4">
               <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -698,21 +700,23 @@ function AssetPage() {
                   </div>
                   <div className="mt-1 text-xs text-muted-foreground">3 anos / 5 anos</div>
                   <div className="tabular mt-1.5 text-lg font-semibold">
-                    {avgYield3y !== null ? `${avgYield3y.toFixed(2)}%` : "—"}
-                    <span className="text-sm text-muted-foreground"> / </span>
-                    {avgYield5y !== null ? `${avgYield5y.toFixed(2)}%` : "—"}
-                  </div>
-                </div>
-              </div>
-            </section>
-          )}
+                     {avgYield3y !== null ? `${avgYield3y.toFixed(2)}%` : "—"}
+                     <span className="text-sm text-muted-foreground"> / </span>
+                     {avgYield5y !== null ? `${avgYield5y.toFixed(2)}%` : "—"}
+                   </div>
+                 </div>
+               </div>
+             </section>
+           )}
+           </SafeBoundary>
 
-          {/* Scorecard agregado */}
-          <section className="mt-4">
-            <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              Scorecard agregado
-            </h2>
-            <div className="rounded-lg border border-border bg-card p-5">
+           <SafeBoundary label="scorecard">
+           {/* Scorecard agregado */}
+           <section className="mt-4">
+             <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+               Scorecard agregado
+             </h2>
+             <div className="rounded-lg border border-border bg-card p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
@@ -779,6 +783,7 @@ function AssetPage() {
               </p>
             </div>
           </section>
+          </SafeBoundary>
 
           {annualDividends.length > 1 && (
             <section className="mt-4">
