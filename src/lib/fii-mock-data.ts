@@ -1,4 +1,12 @@
-export type FiiSegment = "Tijolo" | "Papel" | "Híbrido" | "Fundos de Fundos" | "Logístico" | "Shopping" | "Hospitalar" | "Educacional";
+export type FiiSegment =
+  | "Tijolo"
+  | "Papel"
+  | "Híbrido"
+  | "Fundos de Fundos"
+  | "Logístico"
+  | "Shopping"
+  | "Hospitalar"
+  | "Educacional";
 
 export interface FiiDividend {
   paidAt: string;
@@ -91,7 +99,8 @@ const seeds: FiiSeed[] = [
     avgVacancy: 0,
     dailyLiquidity: 8_500_000,
     shareholders: 320_000,
-    description: "Fundo de investimento imobiliário do tipo papel, focado em ativos de renda fixa imobiliária, principalmente CRI e títulos lastreados em imóveis.",
+    description:
+      "Fundo de investimento imobiliário do tipo papel, focado em ativos de renda fixa imobiliária, principalmente CRI e títulos lastreados em imóveis.",
   },
   {
     ticker: "HGLG11",
@@ -105,13 +114,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 3.5,
     dailyLiquidity: 6_200_000,
     shareholders: 180_000,
-    description: "Fundo de galpões logísticos com foco em imóveis de alto padrão localizados em regiões estratégicas do Estado de São Paulo.",
+    description:
+      "Fundo de galpões logísticos com foco em imóveis de alto padrão localizados em regiões estratégicas do Estado de São Paulo.",
   },
   {
     ticker: "XPML11",
     name: "XP Malls",
     segment: "Shopping",
-    price: 105.70,
+    price: 105.7,
     dy: 9.2,
     pvp: 1.08,
     capRate: 8.1,
@@ -119,7 +129,8 @@ const seeds: FiiSeed[] = [
     avgVacancy: 4.1,
     dailyLiquidity: 4_800_000,
     shareholders: 150_000,
-    description: "Fundo especializado em shopping centers, com participação em empreendimentos de alto padrão em diversas regiões do Brasil.",
+    description:
+      "Fundo especializado em shopping centers, com participação em empreendimentos de alto padrão em diversas regiões do Brasil.",
   },
   {
     ticker: "KNIP11",
@@ -133,13 +144,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 0,
     dailyLiquidity: 5_100_000,
     shareholders: 210_000,
-    description: "Fundo de investimento em CRI atrelados a índices de preços (IPCA), buscando proteção inflacionária e renda mensal.",
+    description:
+      "Fundo de investimento em CRI atrelados a índices de preços (IPCA), buscando proteção inflacionária e renda mensal.",
   },
   {
     ticker: "BTLG11",
     name: "BTG Pactual Logística",
     segment: "Logístico",
-    price: 102.60,
+    price: 102.6,
     dy: 9.5,
     pvp: 1.12,
     capRate: 7.8,
@@ -147,7 +159,8 @@ const seeds: FiiSeed[] = [
     avgVacancy: 2.8,
     dailyLiquidity: 3_900_000,
     shareholders: 130_000,
-    description: "Fundo de galpões logísticos com portfólio diversificado de imóveis localizados em principais hubs logísticos do Brasil.",
+    description:
+      "Fundo de galpões logísticos com portfólio diversificado de imóveis localizados em principais hubs logísticos do Brasil.",
   },
   {
     ticker: "XPLG11",
@@ -161,27 +174,29 @@ const seeds: FiiSeed[] = [
     avgVacancy: 3.9,
     dailyLiquidity: 3_500_000,
     shareholders: 120_000,
-    description: "Fundo de galpões logísticos e industriais com foco em contratos atípicos e longo prazo.",
+    description:
+      "Fundo de galpões logísticos e industriais com foco em contratos atípicos e longo prazo.",
   },
   {
     ticker: "KNRI11",
     name: "Kinea Renda Imobiliária",
     segment: "Híbrido",
-    price: 135.40,
+    price: 135.4,
     dy: 9.8,
-    pvp: 1.10,
+    pvp: 1.1,
     capRate: 7.5,
     vacancy: 4.1,
     avgVacancy: 3.2,
     dailyLiquidity: 4_200_000,
     shareholders: 170_000,
-    description: "Fundo híbrido que investe em imóveis comerciais (lajes corporativas), galpões logísticos e ativos financeiros.",
+    description:
+      "Fundo híbrido que investe em imóveis comerciais (lajes corporativas), galpões logísticos e ativos financeiros.",
   },
   {
     ticker: "RECR11",
     name: "Rec Recebíveis",
     segment: "Papel",
-    price: 89.50,
+    price: 89.5,
     dy: 13.2,
     pvp: 0.95,
     capRate: 0,
@@ -189,13 +204,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 0,
     dailyLiquidity: 7_100_000,
     shareholders: 280_000,
-    description: "Fundo de recebíveis imobiliários com alto dividend yield, investindo em CRI e títulos do mercado secundário.",
+    description:
+      "Fundo de recebíveis imobiliários com alto dividend yield, investindo em CRI e títulos do mercado secundário.",
   },
   {
     ticker: "VILG11",
     name: "Vinci Logística",
     segment: "Logístico",
-    price: 95.80,
+    price: 95.8,
     dy: 10.4,
     pvp: 1.07,
     capRate: 8.2,
@@ -203,13 +219,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 3.1,
     dailyLiquidity: 2_800_000,
     shareholders: 95_000,
-    description: "Fundo de galpões logísticos com presença em São Paulo, Rio de Janeiro e Minas Gerais.",
+    description:
+      "Fundo de galpões logísticos com presença em São Paulo, Rio de Janeiro e Minas Gerais.",
   },
   {
     ticker: "HSML11",
     name: "Hsi Malls",
     segment: "Shopping",
-    price: 88.20,
+    price: 88.2,
     dy: 10.8,
     pvp: 0.92,
     capRate: 9.1,
@@ -217,13 +234,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 5.4,
     dailyLiquidity: 1_900_000,
     shareholders: 75_000,
-    description: "Fundo de shopping centers com portfólio diversificado em centros de compras de médio e grande porte.",
+    description:
+      "Fundo de shopping centers com portfólio diversificado em centros de compras de médio e grande porte.",
   },
   {
     ticker: "MCCI11",
     name: "Mauá Capital",
     segment: "Papel",
-    price: 84.30,
+    price: 84.3,
     dy: 14.1,
     pvp: 0.88,
     capRate: 0,
@@ -231,13 +249,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 0,
     dailyLiquidity: 2_100_000,
     shareholders: 85_000,
-    description: "Fundo de recebíveis imobiliários com gestão ativa, buscando alto retorno através de CRI e operações estruturadas.",
+    description:
+      "Fundo de recebíveis imobiliários com gestão ativa, buscando alto retorno através de CRI e operações estruturadas.",
   },
   {
     ticker: "HGRE11",
     name: "CSHG Real Estate",
     segment: "Tijolo",
-    price: 118.50,
+    price: 118.5,
     dy: 8.4,
     pvp: 0.85,
     capRate: 6.9,
@@ -245,13 +264,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 7.2,
     dailyLiquidity: 3_200_000,
     shareholders: 110_000,
-    description: "Fundo de lajes corporativas com imóveis comerciais de alto padrão em São Paulo e Rio de Janeiro.",
+    description:
+      "Fundo de lajes corporativas com imóveis comerciais de alto padrão em São Paulo e Rio de Janeiro.",
   },
   {
     ticker: "RBRF11",
     name: "RBR Properties",
     segment: "Tijolo",
-    price: 72.40,
+    price: 72.4,
     dy: 11.5,
     pvp: 0.78,
     capRate: 7.8,
@@ -259,13 +279,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 10.8,
     dailyLiquidity: 1_500_000,
     shareholders: 65_000,
-    description: "Fundo de lajes corporativas com desconto patrimonial, investindo em imóveis comerciais com potencial de valorização.",
+    description:
+      "Fundo de lajes corporativas com desconto patrimonial, investindo em imóveis comerciais com potencial de valorização.",
   },
   {
     ticker: "PVBI11",
     name: "VBI Prime Properties",
     segment: "Tijolo",
-    price: 95.10,
+    price: 95.1,
     dy: 9.6,
     pvp: 0.95,
     capRate: 7.4,
@@ -279,7 +300,7 @@ const seeds: FiiSeed[] = [
     ticker: "FIIB11",
     name: "Fiibrasil",
     segment: "Fundos de Fundos",
-    price: 78.90,
+    price: 78.9,
     dy: 11.2,
     pvp: 0.91,
     capRate: 0,
@@ -287,13 +308,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 0,
     dailyLiquidity: 1_200_000,
     shareholders: 55_000,
-    description: "Fundo de fundos que investe em cotas de outros FIIs, proporcionando diversificação e gestão profissional.",
+    description:
+      "Fundo de fundos que investe em cotas de outros FIIs, proporcionando diversificação e gestão profissional.",
   },
   {
     ticker: "KFOF11",
     name: "Kinea Fundos de Fundos",
     segment: "Fundos de Fundos",
-    price: 82.60,
+    price: 82.6,
     dy: 10.5,
     pvp: 0.96,
     capRate: 0,
@@ -301,13 +323,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 0,
     dailyLiquidity: 1_800_000,
     shareholders: 72_000,
-    description: "Fundo de fundos que investe em carteira diversificada de FIIs, com gestão ativa da Kinea.",
+    description:
+      "Fundo de fundos que investe em carteira diversificada de FIIs, com gestão ativa da Kinea.",
   },
   {
     ticker: "GARE11",
     name: "Guardian Realty",
     segment: "Hospitalar",
-    price: 68.50,
+    price: 68.5,
     dy: 12.8,
     pvp: 0.84,
     capRate: 9.5,
@@ -315,13 +338,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 1.5,
     dailyLiquidity: 850_000,
     shareholders: 42_000,
-    description: "Fundo especializado em imóveis hospitalares e de saúde, com contratos de longo prazo e baixa vacância.",
+    description:
+      "Fundo especializado em imóveis hospitalares e de saúde, com contratos de longo prazo e baixa vacância.",
   },
   {
     ticker: "EDUC11",
     name: "Educrend",
     segment: "Educacional",
-    price: 74.20,
+    price: 74.2,
     dy: 11.9,
     pvp: 0.82,
     capRate: 8.8,
@@ -329,13 +353,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 2.9,
     dailyLiquidity: 620_000,
     shareholders: 38_000,
-    description: "Fundo de imóveis educacionais, com foco em universidades e faculdades com contratos de locação de longo prazo.",
+    description:
+      "Fundo de imóveis educacionais, com foco em universidades e faculdades com contratos de locação de longo prazo.",
   },
   {
     ticker: "JSRE11",
     name: "JS Real Estate",
     segment: "Tijolo",
-    price: 85.30,
+    price: 85.3,
     dy: 10.2,
     pvp: 0.88,
     capRate: 8.0,
@@ -343,13 +368,14 @@ const seeds: FiiSeed[] = [
     avgVacancy: 8.4,
     dailyLiquidity: 1_100_000,
     shareholders: 48_000,
-    description: "Fundo de lajes corporativas com portfólio diversificado em São Paulo, Rio de Janeiro e Brasília.",
+    description:
+      "Fundo de lajes corporativas com portfólio diversificado em São Paulo, Rio de Janeiro e Brasília.",
   },
   {
     ticker: "BBPO11",
     name: "BB Progressivo",
     segment: "Tijolo",
-    price: 98.70,
+    price: 98.7,
     dy: 9.4,
     pvp: 0.97,
     capRate: 7.1,
@@ -357,7 +383,8 @@ const seeds: FiiSeed[] = [
     avgVacancy: 5.2,
     dailyLiquidity: 2_900_000,
     shareholders: 105_000,
-    description: "Fundo de lajes corporativas com imóveis de alto padrão, gerido pelo Banco do Brasil.",
+    description:
+      "Fundo de lajes corporativas com imóveis de alto padrão, gerido pelo Banco do Brasil.",
   },
 ];
 

@@ -13,7 +13,11 @@ export const Route = createFileRoute("/_authenticated/carteira/operacoes")({
   head: () => ({
     meta: [
       { title: "Operações — Investidor Pro" },
-      { name: "description", content: "Histórico de operações da sua carteira: compras, vendas e dividendos registrados." },
+      {
+        name: "description",
+        content:
+          "Histórico de operações da sua carteira: compras, vendas e dividendos registrados.",
+      },
     ],
   }),
   component: OperationsPage,
@@ -85,9 +89,7 @@ function OperationsPage() {
               <tbody>
                 {ops.map((o) => (
                   <tr key={o.id} className="border-t border-border hover:bg-surface">
-                    <td className="px-4 py-2.5 text-muted-foreground">
-                      {formatDate(o.traded_at)}
-                    </td>
+                    <td className="px-4 py-2.5 text-muted-foreground">{formatDate(o.traded_at)}</td>
                     <td className="px-4 py-2.5">
                       <Link
                         to="/ativo/$ticker"

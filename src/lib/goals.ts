@@ -31,7 +31,9 @@ let listeners: (() => void)[] = [];
 
 function subscribe(cb: () => void) {
   listeners.push(cb);
-  return () => { listeners = listeners.filter((l) => l !== cb); };
+  return () => {
+    listeners = listeners.filter((l) => l !== cb);
+  };
 }
 
 function emit() {

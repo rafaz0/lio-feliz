@@ -24,7 +24,8 @@ export function grahamFairValue({ lpa, vpa }: GrahamInputs): number | null {
 
 export function grahamRating(currentPrice: number, inputs: GrahamInputs): GrahamResult {
   const fairValue = grahamFairValue(inputs);
-  if (!fairValue || fairValue <= 0) return { fairValue: null, discount: null, rating: "indefinido" };
+  if (!fairValue || fairValue <= 0)
+    return { fairValue: null, discount: null, rating: "indefinido" };
   const discount = (fairValue - currentPrice) / fairValue;
   let rating: GrahamResult["rating"];
   if (discount >= 0.2) rating = "barata";
@@ -38,8 +39,12 @@ export interface BazinInputs {
   dividendYieldAverage5y: number | null;
 }
 
-export function bazinPriceTeto({ currentPrice, dividendYieldAverage5y }: BazinInputs): number | null {
-  if (!currentPrice || currentPrice <= 0 || !dividendYieldAverage5y || dividendYieldAverage5y <= 0) return null;
+export function bazinPriceTeto({
+  currentPrice,
+  dividendYieldAverage5y,
+}: BazinInputs): number | null {
+  if (!currentPrice || currentPrice <= 0 || !dividendYieldAverage5y || dividendYieldAverage5y <= 0)
+    return null;
   return (dividendYieldAverage5y / 6) * currentPrice;
 }
 

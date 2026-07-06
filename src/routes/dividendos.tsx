@@ -44,7 +44,14 @@ function DividendosPage() {
     }
     for (const f of FIIS) {
       for (const d of f.dividendHistory) {
-        list.push({ ticker: f.ticker, name: f.name, paidAt: d.paidAt, type: "Dividendo" as const, amount: d.amount, assetType: "fii" });
+        list.push({
+          ticker: f.ticker,
+          name: f.name,
+          paidAt: d.paidAt,
+          type: "Dividendo" as const,
+          amount: d.amount,
+          assetType: "fii",
+        });
       }
     }
     return list.sort((a, b) => b.paidAt.localeCompare(a.paidAt));
@@ -84,19 +91,27 @@ function DividendosPage() {
 
         <div className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-lg border border-border bg-card p-4">
-            <div className="text-xs uppercase tracking-wider text-muted-foreground">Total de proventos</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground">
+              Total de proventos
+            </div>
             <div className="tablar mt-1 text-2xl font-bold">{filtered.length}</div>
           </div>
           <div className="rounded-lg border border-border bg-card p-4">
-            <div className="text-xs uppercase tracking-wider text-muted-foreground">Valor total (por cota)</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground">
+              Valor total (por cota)
+            </div>
             <div className="tablar mt-1 text-2xl font-bold">{formatBRL(totalAmount)}</div>
           </div>
           <div className="rounded-lg border border-border bg-card p-4">
-            <div className="text-xs uppercase tracking-wider text-muted-foreground">Empresas pagadoras</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground">
+              Empresas pagadoras
+            </div>
             <div className="tablar mt-1 text-2xl font-bold">{uniqueTickers}</div>
           </div>
           <div className="rounded-lg border border-border bg-card p-4">
-            <div className="text-xs uppercase tracking-wider text-muted-foreground">Média por provento</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground">
+              Média por provento
+            </div>
             <div className="tablar mt-1 text-2xl font-bold">
               {filtered.length > 0 ? formatBRL(totalAmount / filtered.length) : "—"}
             </div>
@@ -133,7 +148,9 @@ function DividendosPage() {
         {grouped.length === 0 ? (
           <div className="rounded-lg border border-dashed border-border bg-card p-10 text-center">
             <Calendar className="mx-auto size-8 text-muted-foreground" />
-            <p className="mt-2 text-sm text-muted-foreground">Nenhum provento encontrado para os filtros.</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Nenhum provento encontrado para os filtros.
+            </p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -145,7 +162,10 @@ function DividendosPage() {
               });
               const monthTotal = divs.reduce((s, d) => s + d.amount, 0);
               return (
-                <div key={month} className="overflow-hidden rounded-lg border border-border bg-card">
+                <div
+                  key={month}
+                  className="overflow-hidden rounded-lg border border-border bg-card"
+                >
                   <div className="flex items-center justify-between bg-surface-2 px-4 py-3">
                     <h2 className="text-sm font-semibold capitalize">{monthName}</h2>
                     <span className="text-xs text-muted-foreground">
@@ -165,7 +185,9 @@ function DividendosPage() {
                     <tbody>
                       {divs.map((d, i) => (
                         <tr key={i} className="border-t border-border hover:bg-surface">
-                          <td className="px-4 py-2.5 text-muted-foreground">{formatDate(d.paidAt)}</td>
+                          <td className="px-4 py-2.5 text-muted-foreground">
+                            {formatDate(d.paidAt)}
+                          </td>
                           <td className="px-4 py-2.5 font-semibold">
                             {d.assetType === "fii" ? (
                               <Link
@@ -198,7 +220,9 @@ function DividendosPage() {
                               {d.type}
                             </span>
                           </td>
-                          <td className="tabular px-4 py-2.5 text-right font-medium">{formatBRL(d.amount)}</td>
+                          <td className="tabular px-4 py-2.5 text-right font-medium">
+                            {formatBRL(d.amount)}
+                          </td>
                         </tr>
                       ))}
                     </tbody>

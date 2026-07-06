@@ -1,4 +1,3 @@
-
 # App tipo Investidor 10 — MVP
 
 App inspirado no Investidor 10 com foco em **página de ativo** (fundamentos + gráfico) e **minha carteira**. Login email/senha + Google. Dados de mercado 100% mockados; operações da carteira persistidas em Lovable Cloud. Integração com B3 fica para uma fase futura — a arquitetura já deixa espaço para plugar (Pluggy, import de CSV do extrato B3, etc.) sem retrabalho.
@@ -6,17 +5,20 @@ App inspirado no Investidor 10 com foco em **página de ativo** (fundamentos + g
 ## Escopo desta entrega
 
 **Públicas**
+
 - `/` — home com busca de ticker, destaques do mercado (mock), CTA de login
 - `/ativo/$ticker` — página de ativo (fundamentos, cotação, gráfico, dividendos)
 - `/auth` — login/cadastro (email+senha e Google)
 
 **Autenticadas** (`_authenticated/`)
+
 - `/carteira` — posição consolidada, rentabilidade, alocação por setor
 - `/carteira/operacoes` — cadastro e histórico de compras/vendas
 
 ## Página de ativo
 
 Layout denso, estilo Investidor 10:
+
 - Header: logo, ticker, nome, setor, preço, variação do dia
 - Grid de cards de indicadores: P/L, P/VP, DY, ROE, ROIC, Margem Líquida, Dív. Líq./EBITDA, LPA, VPA
 - Gráfico de linha (Recharts) — cotação 12 meses
@@ -37,6 +39,7 @@ Posição consolidada é **calculada em runtime** a partir das operações + cot
 ## Integração B3 — preparada, mas não ativada
 
 Sem código de B3 nesta versão. Para não gerar retrabalho quando plugarmos:
+
 - Operações ficam numa tabela genérica `portfolio_operations` com coluna `source` (`manual` | `b3_import` | `pluggy` no futuro)
 - Botão desabilitado "Sincronizar com B3 (em breve)" na tela de carteira, sinalizando o roadmap
 
@@ -45,10 +48,12 @@ Quando quiser ativar, os dois caminhos são: import de extrato B3 (CSV/PDF, sem 
 ## Modelo de dados
 
 **Mock em código** (`src/lib/mock-data.ts`)
+
 - ~30 ativos brasileiros (PETR4, VALE3, ITUB4, MGLU3, BBAS3, WEGE3, ITSA4, etc.)
 - Fundamentos, cotação atual, série 12 meses, dividendos, setor
 
 **Persistente (Lovable Cloud)**
+
 - `profiles` (id → auth.users, display_name, avatar_url) + trigger auto-create no signup
 - `portfolio_operations` (user_id, ticker, side, quantity, price, traded_at, source, created_at) — RLS por `auth.uid()`
 

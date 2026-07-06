@@ -28,8 +28,15 @@ import { Route as AuthenticatedMetasRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedCarteiraRouteImport } from './routes/_authenticated/carteira'
 import { Route as AuthenticatedIrpfIndexRouteImport } from './routes/_authenticated/irpf.index'
 import { Route as AuthenticatedCarteiraIndexRouteImport } from './routes/_authenticated/carteira.index'
+import { Route as AuthenticatedCarteiraRentabilidadeRouteImport } from './routes/_authenticated/carteira.rentabilidade'
+import { Route as AuthenticatedCarteiraProventosRouteImport } from './routes/_authenticated/carteira.proventos'
+import { Route as AuthenticatedCarteiraPatrimonioRouteImport } from './routes/_authenticated/carteira.patrimonio'
 import { Route as AuthenticatedCarteiraOperacoesRouteImport } from './routes/_authenticated/carteira.operacoes'
+import { Route as AuthenticatedCarteiraMetasRouteImport } from './routes/_authenticated/carteira.metas'
+import { Route as AuthenticatedCarteiraLancamentosRouteImport } from './routes/_authenticated/carteira.lancamentos'
+import { Route as AuthenticatedCarteiraIrpfRouteImport } from './routes/_authenticated/carteira.irpf'
 import { Route as AuthenticatedCarteiraCoberturaRouteImport } from './routes/_authenticated/carteira.cobertura'
+import { Route as AuthenticatedCarteiraAnaliseRouteImport } from './routes/_authenticated/carteira.analise'
 
 const SetoresRoute = SetoresRouteImport.update({
   id: '/setores',
@@ -100,13 +107,14 @@ const AtivoTickerRoute = AtivoTickerRouteImport.update({
   path: '/ativo/$ticker',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedProvisionadorRoute = AuthenticatedProvisionadorRouteImport.update({
-  id: '/_authenticated/provisionador',
-  path: '/provisionador',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const AuthenticatedProvisionadorRoute =
+  AuthenticatedProvisionadorRouteImport.update({
+    id: '/provisionador',
+    path: '/provisionador',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedMetasRoute = AuthenticatedMetasRouteImport.update({
-  id: '/_authenticated/metas',
+  id: '/metas',
   path: '/metas',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
@@ -126,16 +134,58 @@ const AuthenticatedCarteiraIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedCarteiraRoute,
   } as any)
+const AuthenticatedCarteiraRentabilidadeRoute =
+  AuthenticatedCarteiraRentabilidadeRouteImport.update({
+    id: '/rentabilidade',
+    path: '/rentabilidade',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
+const AuthenticatedCarteiraProventosRoute =
+  AuthenticatedCarteiraProventosRouteImport.update({
+    id: '/proventos',
+    path: '/proventos',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
+const AuthenticatedCarteiraPatrimonioRoute =
+  AuthenticatedCarteiraPatrimonioRouteImport.update({
+    id: '/patrimonio',
+    path: '/patrimonio',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
 const AuthenticatedCarteiraOperacoesRoute =
   AuthenticatedCarteiraOperacoesRouteImport.update({
     id: '/operacoes',
     path: '/operacoes',
     getParentRoute: () => AuthenticatedCarteiraRoute,
   } as any)
+const AuthenticatedCarteiraMetasRoute =
+  AuthenticatedCarteiraMetasRouteImport.update({
+    id: '/metas',
+    path: '/metas',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
+const AuthenticatedCarteiraLancamentosRoute =
+  AuthenticatedCarteiraLancamentosRouteImport.update({
+    id: '/lancamentos',
+    path: '/lancamentos',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
+const AuthenticatedCarteiraIrpfRoute =
+  AuthenticatedCarteiraIrpfRouteImport.update({
+    id: '/irpf',
+    path: '/irpf',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
 const AuthenticatedCarteiraCoberturaRoute =
   AuthenticatedCarteiraCoberturaRouteImport.update({
     id: '/cobertura',
     path: '/cobertura',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
+const AuthenticatedCarteiraAnaliseRoute =
+  AuthenticatedCarteiraAnaliseRouteImport.update({
+    id: '/analise',
+    path: '/analise',
     getParentRoute: () => AuthenticatedCarteiraRoute,
   } as any)
 
@@ -151,15 +201,22 @@ export interface FileRoutesByFullPath {
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
   '/carteira': typeof AuthenticatedCarteiraRouteWithChildren
+  '/metas': typeof AuthenticatedMetasRoute
+  '/provisionador': typeof AuthenticatedProvisionadorRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist/': typeof WatchlistIndexRoute
-  '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
+  '/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
+  '/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
+  '/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
+  '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
+  '/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
+  '/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/carteira/': typeof AuthenticatedCarteiraIndexRoute
   '/irpf/': typeof AuthenticatedIrpfIndexRoute
-  '/metas': typeof AuthenticatedMetasRoute
-  '/provisionador': typeof AuthenticatedProvisionadorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -172,15 +229,22 @@ export interface FileRoutesByTo {
   '/noticias': typeof NoticiasRoute
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
+  '/metas': typeof AuthenticatedMetasRoute
+  '/provisionador': typeof AuthenticatedProvisionadorRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist': typeof WatchlistIndexRoute
-  '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
+  '/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
+  '/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
+  '/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
+  '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
+  '/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
+  '/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/carteira': typeof AuthenticatedCarteiraIndexRoute
   '/irpf': typeof AuthenticatedIrpfIndexRoute
-  '/metas': typeof AuthenticatedMetasRoute
-  '/provisionador': typeof AuthenticatedProvisionadorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -196,15 +260,22 @@ export interface FileRoutesById {
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
   '/_authenticated/carteira': typeof AuthenticatedCarteiraRouteWithChildren
+  '/_authenticated/metas': typeof AuthenticatedMetasRoute
+  '/_authenticated/provisionador': typeof AuthenticatedProvisionadorRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist/': typeof WatchlistIndexRoute
-  '/_authenticated/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/_authenticated/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/_authenticated/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
+  '/_authenticated/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
+  '/_authenticated/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
+  '/_authenticated/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
+  '/_authenticated/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
+  '/_authenticated/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
+  '/_authenticated/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
+  '/_authenticated/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/_authenticated/carteira/': typeof AuthenticatedCarteiraIndexRoute
   '/_authenticated/irpf/': typeof AuthenticatedIrpfIndexRoute
-  '/_authenticated/metas': typeof AuthenticatedMetasRoute
-  '/_authenticated/provisionador': typeof AuthenticatedProvisionadorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -220,15 +291,22 @@ export interface FileRouteTypes {
     | '/rankings'
     | '/setores'
     | '/carteira'
+    | '/metas'
+    | '/provisionador'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist/'
-    | '/carteira/operacoes'
+    | '/carteira/analise'
     | '/carteira/cobertura'
+    | '/carteira/irpf'
+    | '/carteira/lancamentos'
+    | '/carteira/metas'
+    | '/carteira/operacoes'
+    | '/carteira/patrimonio'
+    | '/carteira/proventos'
+    | '/carteira/rentabilidade'
     | '/carteira/'
     | '/irpf/'
-    | '/metas'
-    | '/provisionador'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -241,15 +319,22 @@ export interface FileRouteTypes {
     | '/noticias'
     | '/rankings'
     | '/setores'
+    | '/metas'
+    | '/provisionador'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist'
-    | '/carteira/operacoes'
+    | '/carteira/analise'
     | '/carteira/cobertura'
+    | '/carteira/irpf'
+    | '/carteira/lancamentos'
+    | '/carteira/metas'
+    | '/carteira/operacoes'
+    | '/carteira/patrimonio'
+    | '/carteira/proventos'
+    | '/carteira/rentabilidade'
     | '/carteira'
     | '/irpf'
-    | '/metas'
-    | '/provisionador'
   id:
     | '__root__'
     | '/'
@@ -264,15 +349,22 @@ export interface FileRouteTypes {
     | '/rankings'
     | '/setores'
     | '/_authenticated/carteira'
+    | '/_authenticated/metas'
+    | '/_authenticated/provisionador'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist/'
-    | '/_authenticated/carteira/operacoes'
+    | '/_authenticated/carteira/analise'
     | '/_authenticated/carteira/cobertura'
+    | '/_authenticated/carteira/irpf'
+    | '/_authenticated/carteira/lancamentos'
+    | '/_authenticated/carteira/metas'
+    | '/_authenticated/carteira/operacoes'
+    | '/_authenticated/carteira/patrimonio'
+    | '/_authenticated/carteira/proventos'
+    | '/_authenticated/carteira/rentabilidade'
     | '/_authenticated/carteira/'
     | '/_authenticated/irpf/'
-    | '/_authenticated/metas'
-    | '/_authenticated/provisionador'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -427,11 +519,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCarteiraIndexRouteImport
       parentRoute: typeof AuthenticatedCarteiraRoute
     }
+    '/_authenticated/carteira/rentabilidade': {
+      id: '/_authenticated/carteira/rentabilidade'
+      path: '/rentabilidade'
+      fullPath: '/carteira/rentabilidade'
+      preLoaderRoute: typeof AuthenticatedCarteiraRentabilidadeRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
+    '/_authenticated/carteira/proventos': {
+      id: '/_authenticated/carteira/proventos'
+      path: '/proventos'
+      fullPath: '/carteira/proventos'
+      preLoaderRoute: typeof AuthenticatedCarteiraProventosRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
+    '/_authenticated/carteira/patrimonio': {
+      id: '/_authenticated/carteira/patrimonio'
+      path: '/patrimonio'
+      fullPath: '/carteira/patrimonio'
+      preLoaderRoute: typeof AuthenticatedCarteiraPatrimonioRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
     '/_authenticated/carteira/operacoes': {
       id: '/_authenticated/carteira/operacoes'
       path: '/operacoes'
       fullPath: '/carteira/operacoes'
       preLoaderRoute: typeof AuthenticatedCarteiraOperacoesRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
+    '/_authenticated/carteira/metas': {
+      id: '/_authenticated/carteira/metas'
+      path: '/metas'
+      fullPath: '/carteira/metas'
+      preLoaderRoute: typeof AuthenticatedCarteiraMetasRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
+    '/_authenticated/carteira/lancamentos': {
+      id: '/_authenticated/carteira/lancamentos'
+      path: '/lancamentos'
+      fullPath: '/carteira/lancamentos'
+      preLoaderRoute: typeof AuthenticatedCarteiraLancamentosRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
+    '/_authenticated/carteira/irpf': {
+      id: '/_authenticated/carteira/irpf'
+      path: '/irpf'
+      fullPath: '/carteira/irpf'
+      preLoaderRoute: typeof AuthenticatedCarteiraIrpfRouteImport
       parentRoute: typeof AuthenticatedCarteiraRoute
     }
     '/_authenticated/carteira/cobertura': {
@@ -441,18 +575,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCarteiraCoberturaRouteImport
       parentRoute: typeof AuthenticatedCarteiraRoute
     }
+    '/_authenticated/carteira/analise': {
+      id: '/_authenticated/carteira/analise'
+      path: '/analise'
+      fullPath: '/carteira/analise'
+      preLoaderRoute: typeof AuthenticatedCarteiraAnaliseRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
   }
 }
 
 interface AuthenticatedCarteiraRouteChildren {
-  AuthenticatedCarteiraOperacoesRoute: typeof AuthenticatedCarteiraOperacoesRoute
+  AuthenticatedCarteiraAnaliseRoute: typeof AuthenticatedCarteiraAnaliseRoute
   AuthenticatedCarteiraCoberturaRoute: typeof AuthenticatedCarteiraCoberturaRoute
+  AuthenticatedCarteiraIrpfRoute: typeof AuthenticatedCarteiraIrpfRoute
+  AuthenticatedCarteiraLancamentosRoute: typeof AuthenticatedCarteiraLancamentosRoute
+  AuthenticatedCarteiraMetasRoute: typeof AuthenticatedCarteiraMetasRoute
+  AuthenticatedCarteiraOperacoesRoute: typeof AuthenticatedCarteiraOperacoesRoute
+  AuthenticatedCarteiraPatrimonioRoute: typeof AuthenticatedCarteiraPatrimonioRoute
+  AuthenticatedCarteiraProventosRoute: typeof AuthenticatedCarteiraProventosRoute
+  AuthenticatedCarteiraRentabilidadeRoute: typeof AuthenticatedCarteiraRentabilidadeRoute
   AuthenticatedCarteiraIndexRoute: typeof AuthenticatedCarteiraIndexRoute
 }
 
 const AuthenticatedCarteiraRouteChildren: AuthenticatedCarteiraRouteChildren = {
-  AuthenticatedCarteiraOperacoesRoute: AuthenticatedCarteiraOperacoesRoute,
+  AuthenticatedCarteiraAnaliseRoute: AuthenticatedCarteiraAnaliseRoute,
   AuthenticatedCarteiraCoberturaRoute: AuthenticatedCarteiraCoberturaRoute,
+  AuthenticatedCarteiraIrpfRoute: AuthenticatedCarteiraIrpfRoute,
+  AuthenticatedCarteiraLancamentosRoute: AuthenticatedCarteiraLancamentosRoute,
+  AuthenticatedCarteiraMetasRoute: AuthenticatedCarteiraMetasRoute,
+  AuthenticatedCarteiraOperacoesRoute: AuthenticatedCarteiraOperacoesRoute,
+  AuthenticatedCarteiraPatrimonioRoute: AuthenticatedCarteiraPatrimonioRoute,
+  AuthenticatedCarteiraProventosRoute: AuthenticatedCarteiraProventosRoute,
+  AuthenticatedCarteiraRentabilidadeRoute:
+    AuthenticatedCarteiraRentabilidadeRoute,
   AuthenticatedCarteiraIndexRoute: AuthenticatedCarteiraIndexRoute,
 }
 
@@ -463,16 +619,16 @@ const AuthenticatedCarteiraRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCarteiraRoute: typeof AuthenticatedCarteiraRouteWithChildren
-  AuthenticatedIrpfIndexRoute: typeof AuthenticatedIrpfIndexRoute
-  AuthenticatedProvisionadorRoute: typeof AuthenticatedProvisionadorRoute
   AuthenticatedMetasRoute: typeof AuthenticatedMetasRoute
+  AuthenticatedProvisionadorRoute: typeof AuthenticatedProvisionadorRoute
+  AuthenticatedIrpfIndexRoute: typeof AuthenticatedIrpfIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCarteiraRoute: AuthenticatedCarteiraRouteWithChildren,
-  AuthenticatedIrpfIndexRoute: AuthenticatedIrpfIndexRoute,
-  AuthenticatedProvisionadorRoute: AuthenticatedProvisionadorRoute,
   AuthenticatedMetasRoute: AuthenticatedMetasRoute,
+  AuthenticatedProvisionadorRoute: AuthenticatedProvisionadorRoute,
+  AuthenticatedIrpfIndexRoute: AuthenticatedIrpfIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -487,9 +643,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompararRoute: CompararRoute,
   DividendosRoute: DividendosRoute,
   FiisRoute: FiisRoute,
-  MetasRoute: MetasRoute,
   NoticiasRoute: NoticiasRoute,
-  ProvisionadorRoute: ProvisionadorRoute,
   RankingsRoute: RankingsRoute,
   SetoresRoute: SetoresRoute,
   AtivoTickerRoute: AtivoTickerRoute,

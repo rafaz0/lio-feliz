@@ -2,7 +2,20 @@ import { useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Area, AreaChart, CartesianGrid, Cell, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  Cell,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { AlertTriangle, DollarSign, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
@@ -19,7 +32,11 @@ export const Route = createFileRoute("/_authenticated/carteira/")({
   head: () => ({
     meta: [
       { title: "Carteira — Investidor Pro" },
-      { name: "description", content: "Acompanhe sua carteira de investimentos: posição consolidada, rentabilidade e evolução patrimonial." },
+      {
+        name: "description",
+        content:
+          "Acompanhe sua carteira de investimentos: posição consolidada, rentabilidade e evolução patrimonial.",
+      },
     ],
   }),
   component: PortfolioOverview,
@@ -156,7 +173,8 @@ function PortfolioOverview() {
       if (portReturns.length > 4) {
         const avgPort = portReturns.reduce((s, r) => s + r, 0) / portReturns.length;
         const avgBench = benchReturns.reduce((s, r) => s + r, 0) / benchReturns.length;
-        let cov = 0, varBench = 0;
+        let cov = 0,
+          varBench = 0;
         for (let i = 0; i < portReturns.length; i++) {
           cov += (portReturns[i] - avgPort) * (benchReturns[i] - avgBench);
           varBench += (benchReturns[i] - avgBench) ** 2;
@@ -197,13 +215,36 @@ function PortfolioOverview() {
 
       {riskMetrics && (
         <section className="grid gap-3 md:grid-cols-4">
-          <KpiCard label="Volatilidade (anual)" value={`${(riskMetrics.volatility * 100).toFixed(1)}%`} />
-          <KpiCard label="Drawdown máx." value={`${(riskMetrics.maxDrawdown * 100).toFixed(1)}%`} tone="negative" />
+          <KpiCard
+            label="Volatilidade (anual)"
+            value={`${(riskMetrics.volatility * 100).toFixed(1)}%`}
+          />
+          <KpiCard
+            label="Drawdown máx."
+            value={`${(riskMetrics.maxDrawdown * 100).toFixed(1)}%`}
+            tone="negative"
+          />
           {riskMetrics.beta !== null && (
-            <KpiCard label="Beta (vs IBOV)" value={riskMetrics.beta.toFixed(2)} tone={riskMetrics.beta < 1 ? "positive" : riskMetrics.beta > 1.2 ? "negative" : undefined} />
+            <KpiCard
+              label="Beta (vs IBOV)"
+              value={riskMetrics.beta.toFixed(2)}
+              tone={
+                riskMetrics.beta < 1 ? "positive" : riskMetrics.beta > 1.2 ? "negative" : undefined
+              }
+            />
           )}
           {riskMetrics.sharpe !== null && (
-            <KpiCard label="Índice Sharpe" value={riskMetrics.sharpe.toFixed(2)} tone={riskMetrics.sharpe >= 0.5 ? "positive" : riskMetrics.sharpe < 0 ? "negative" : undefined} />
+            <KpiCard
+              label="Índice Sharpe"
+              value={riskMetrics.sharpe.toFixed(2)}
+              tone={
+                riskMetrics.sharpe >= 0.5
+                  ? "positive"
+                  : riskMetrics.sharpe < 0
+                    ? "negative"
+                    : undefined
+              }
+            />
           )}
         </section>
       )}
@@ -266,7 +307,11 @@ function PortfolioOverview() {
                     <stop offset="100%" stopColor="var(--color-primary)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                <CartesianGrid
+                  stroke="var(--color-border)"
+                  strokeDasharray="3 3"
+                  vertical={false}
+                />
                 <XAxis
                   dataKey="date"
                   tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -319,11 +364,17 @@ function PortfolioOverview() {
           </div>
           <div className="mt-3 flex items-center justify-center gap-6 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5">
-              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-primary)" }} />
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-primary)" }}
+              />
               Patrimônio
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-chart-2)" }} />
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-chart-2)" }}
+              />
               Total investido
             </span>
           </div>
@@ -336,11 +387,20 @@ function PortfolioOverview() {
             <LineChart className="size-4 text-chart-4" />
             <h2 className="text-sm font-semibold">Rentabilidade vs. Mercado</h2>
           </div>
-          <p className="mb-3 text-xs text-muted-foreground">Base 1000 — comparação da sua carteira com os principais índices</p>
+          <p className="mb-3 text-xs text-muted-foreground">
+            Base 1000 — comparação da sua carteira com os principais índices
+          </p>
           <div className="h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={benchmarkChartData} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
-                <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+              <LineChart
+                data={benchmarkChartData}
+                margin={{ left: 8, right: 8, top: 8, bottom: 0 }}
+              >
+                <CartesianGrid
+                  stroke="var(--color-border)"
+                  strokeDasharray="3 3"
+                  vertical={false}
+                />
                 <XAxis
                   dataKey="date"
                   tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -360,35 +420,84 @@ function PortfolioOverview() {
                   stroke="var(--color-border)"
                 />
                 <Tooltip
-                  contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                  contentStyle={{
+                    background: "var(--color-popover)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: 6,
+                    fontSize: 12,
+                  }}
                   labelFormatter={(l: string) => formatDate(l)}
                   formatter={(v: number, name: string) => {
-                    const labels: Record<string, string> = { portfolio: "Carteira", ibov: "IBOV", idiv: "IDIV", ifix: "IFIX" };
+                    const labels: Record<string, string> = {
+                      portfolio: "Carteira",
+                      ibov: "IBOV",
+                      idiv: "IDIV",
+                      ifix: "IFIX",
+                    };
                     return [`${v.toFixed(1)}`, labels[name] ?? name];
                   }}
                 />
-                <Line type="monotone" dataKey="portfolio" stroke="var(--color-primary)" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="ibov" stroke="var(--color-chart-3)" strokeWidth={1.5} dot={false} strokeDasharray="4 3" />
-                <Line type="monotone" dataKey="idiv" stroke="var(--color-positive)" strokeWidth={1.5} dot={false} strokeDasharray="4 3" />
-                <Line type="monotone" dataKey="ifix" stroke="var(--color-chart-4)" strokeWidth={1.5} dot={false} strokeDasharray="4 3" />
+                <Line
+                  type="monotone"
+                  dataKey="portfolio"
+                  stroke="var(--color-primary)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="ibov"
+                  stroke="var(--color-chart-3)"
+                  strokeWidth={1.5}
+                  dot={false}
+                  strokeDasharray="4 3"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="idiv"
+                  stroke="var(--color-positive)"
+                  strokeWidth={1.5}
+                  dot={false}
+                  strokeDasharray="4 3"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="ifix"
+                  stroke="var(--color-chart-4)"
+                  strokeWidth={1.5}
+                  dot={false}
+                  strokeDasharray="4 3"
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
           <div className="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5">
-              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-primary)" }} />
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-primary)" }}
+              />
               Carteira
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-chart-3)" }} />
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-chart-3)" }}
+              />
               IBOV
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-positive)" }} />
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-positive)" }}
+              />
               IDIV
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="inline-block size-2.5 rounded-sm" style={{ background: "var(--color-chart-4)" }} />
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-chart-4)" }}
+              />
               IFIX
             </span>
           </div>
@@ -422,7 +531,9 @@ function PortfolioOverview() {
                   .sort((a, b) => dividendsByTicker[b.ticker] - dividendsByTicker[a.ticker])
                   .map((p) => {
                     const asset = ASSETS_BY_TICKER[p.ticker];
-                    const totalPerShare = asset ? asset.dividends.reduce((s, d) => s + d.amount, 0) : 0;
+                    const totalPerShare = asset
+                      ? asset.dividends.reduce((s, d) => s + d.amount, 0)
+                      : 0;
                     return (
                       <tr key={p.ticker} className="border-t border-border hover:bg-surface">
                         <td className="px-4 py-2.5">
@@ -512,9 +623,7 @@ function PortfolioOverview() {
                         {formatBRL(p.currentValue)}
                       </td>
                       <td className="tabular px-4 py-2.5 text-right">
-                        <span
-                          className={p.pnl >= 0 ? "text-positive" : "text-negative"}
-                        >
+                        <span className={p.pnl >= 0 ? "text-positive" : "text-negative"}>
                           {formatBRL(p.pnl)}
                         </span>
                       </td>
@@ -540,14 +649,27 @@ function PortfolioOverview() {
                     <Pie
                       data={(() => {
                         const isFii = (t: string) => /^\w+11$/.test(t);
-                        let stockVal = 0, fiiVal = 0;
+                        let stockVal = 0,
+                          fiiVal = 0;
                         for (const p of portfolio.positions) {
                           if (isFii(p.ticker)) fiiVal += p.currentValue;
                           else stockVal += p.currentValue;
                         }
                         return [
-                          { name: "Ações", value: stockVal, pct: portfolio.totalValue > 0 ? (stockVal / portfolio.totalValue) * 100 : 0 },
-                          { name: "FIIs", value: fiiVal, pct: portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0 },
+                          {
+                            name: "Ações",
+                            value: stockVal,
+                            pct:
+                              portfolio.totalValue > 0
+                                ? (stockVal / portfolio.totalValue) * 100
+                                : 0,
+                          },
+                          {
+                            name: "FIIs",
+                            value: fiiVal,
+                            pct:
+                              portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0,
+                          },
                         ];
                       })()}
                       dataKey="value"
@@ -561,8 +683,16 @@ function PortfolioOverview() {
                       <Cell fill="var(--color-chart-4)" />
                     </Pie>
                     <Tooltip
-                      contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
-                      formatter={(v: number, _n, item) => [`${formatBRL(v)} (${item.payload.pct.toFixed(1)}%)`, item.payload.name]}
+                      contentStyle={{
+                        background: "var(--color-popover)",
+                        border: "1px solid var(--color-border)",
+                        borderRadius: 6,
+                        fontSize: 12,
+                      }}
+                      formatter={(v: number, _n, item) => [
+                        `${formatBRL(v)} (${item.payload.pct.toFixed(1)}%)`,
+                        item.payload.name,
+                      ]}
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -570,19 +700,34 @@ function PortfolioOverview() {
               <ul className="mt-4 space-y-1.5 text-sm">
                 {(() => {
                   const isFii = (t: string) => /^\w+11$/.test(t);
-                  let stockVal = 0, fiiVal = 0;
+                  let stockVal = 0,
+                    fiiVal = 0;
                   for (const p of portfolio.positions) {
                     if (isFii(p.ticker)) fiiVal += p.currentValue;
                     else stockVal += p.currentValue;
                   }
                   return [
-                    { name: "Ações", value: stockVal, pct: portfolio.totalValue > 0 ? (stockVal / portfolio.totalValue) * 100 : 0 },
-                    { name: "FIIs", value: fiiVal, pct: portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0 },
+                    {
+                      name: "Ações",
+                      value: stockVal,
+                      pct: portfolio.totalValue > 0 ? (stockVal / portfolio.totalValue) * 100 : 0,
+                    },
+                    {
+                      name: "FIIs",
+                      value: fiiVal,
+                      pct: portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0,
+                    },
                   ].filter((c) => c.value > 0);
                 })().map((c) => (
                   <li key={c.name} className="flex items-center justify-between">
                     <span className="flex items-center gap-2">
-                      <span className="inline-block size-2.5 rounded-sm" style={{ background: c.name === "Ações" ? "var(--color-chart-1)" : "var(--color-chart-4)" }} />
+                      <span
+                        className="inline-block size-2.5 rounded-sm"
+                        style={{
+                          background:
+                            c.name === "Ações" ? "var(--color-chart-1)" : "var(--color-chart-4)",
+                        }}
+                      />
                       <span className="text-muted-foreground">{c.name}</span>
                     </span>
                     <span className="tabular">{c.pct.toFixed(1)}%</span>

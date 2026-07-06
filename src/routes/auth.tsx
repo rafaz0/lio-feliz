@@ -53,10 +53,7 @@ function AuthPage() {
 
       <div className="flex items-center justify-center p-6">
         <div className="w-full max-w-sm">
-          <Link
-            to="/"
-            className="mb-6 inline-flex items-center gap-2 font-semibold md:hidden"
-          >
+          <Link to="/" className="mb-6 inline-flex items-center gap-2 font-semibold md:hidden">
             <LineChart className="size-5 text-primary" /> Investidor Pro
           </Link>
           <Tabs defaultValue="signin">
@@ -92,7 +89,13 @@ function GoogleButton() {
     if (result.redirected) return;
   }
   return (
-    <Button type="button" variant="outline" className="w-full gap-2" onClick={onClick} disabled={pending}>
+    <Button
+      type="button"
+      variant="outline"
+      className="w-full gap-2"
+      onClick={onClick}
+      disabled={pending}
+    >
       <GoogleIcon /> Continuar com Google
     </Button>
   );
@@ -186,7 +189,13 @@ function SignInForm() {
       <form onSubmit={submit} className="grid gap-3">
         <div className="grid gap-1.5">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Input
+            id="email"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="grid gap-1.5">
           <Label htmlFor="password">Senha</Label>
@@ -263,7 +272,13 @@ function SignUpForm() {
         </div>
         <div className="grid gap-1.5">
           <Label htmlFor="email2">Email</Label>
-          <Input id="email2" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Input
+            id="email2"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="grid gap-1.5">
           <Label htmlFor="password2">Senha</Label>

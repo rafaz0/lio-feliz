@@ -80,7 +80,10 @@ function CompararPage() {
   const stockIndicators = useMemo(
     () => [
       { key: "Preço", get: (a: any) => formatBRL(a.price) },
-      { key: "Variação dia", get: (a: any) => `${a.changeDayPct >= 0 ? "+" : ""}${a.changeDayPct.toFixed(2)}%` },
+      {
+        key: "Variação dia",
+        get: (a: any) => `${a.changeDayPct >= 0 ? "+" : ""}${a.changeDayPct.toFixed(2)}%`,
+      },
       { key: "P/L", get: (a: any) => a.fundamentals.pl.toFixed(1) },
       { key: "P/VP", get: (a: any) => a.fundamentals.pvp.toFixed(2) },
       { key: "Dividend Yield", get: (a: any) => formatPctPlain(a.fundamentals.dy) },
@@ -104,11 +107,20 @@ function CompararPage() {
       { key: "Preço", get: (a: (typeof FIIS)[number]) => formatBRL(a.price) },
       { key: "Dividend Yield", get: (a: (typeof FIIS)[number]) => formatPctPlain(a.dy) },
       { key: "P/VP", get: (a: (typeof FIIS)[number]) => a.pvp.toFixed(2) },
-      { key: "Cap Rate", get: (a: (typeof FIIS)[number]) => a.capRate > 0 ? formatPctPlain(a.capRate) : "—" },
+      {
+        key: "Cap Rate",
+        get: (a: (typeof FIIS)[number]) => (a.capRate > 0 ? formatPctPlain(a.capRate) : "—"),
+      },
       { key: "Vacância", get: (a: (typeof FIIS)[number]) => formatPctPlain(a.vacancy) },
       { key: "Vacância Média", get: (a: (typeof FIIS)[number]) => formatPctPlain(a.avgVacancy) },
-      { key: "Liquidez Diária", get: (a: (typeof FIIS)[number]) => formatBRLCompact(a.dailyLiquidity) },
-      { key: "Nº Cotistas", get: (a: (typeof FIIS)[number]) => (a.shareholders / 1000).toFixed(1) + "k" },
+      {
+        key: "Liquidez Diária",
+        get: (a: (typeof FIIS)[number]) => formatBRLCompact(a.dailyLiquidity),
+      },
+      {
+        key: "Nº Cotistas",
+        get: (a: (typeof FIIS)[number]) => (a.shareholders / 1000).toFixed(1) + "k",
+      },
       { key: "Segmento", get: (a: (typeof FIIS)[number]) => a.segment },
     ],
     [],
@@ -130,14 +142,22 @@ function CompararPage() {
           <Button
             variant={mode === "stocks" ? "default" : "ghost"}
             size="sm"
-            onClick={() => { setMode("stocks"); setSelected(["PETR4", "VALE3", "ITUB4"]); setSearch(""); }}
+            onClick={() => {
+              setMode("stocks");
+              setSelected(["PETR4", "VALE3", "ITUB4"]);
+              setSearch("");
+            }}
           >
             <TrendingUp className="mr-1.5 size-3.5" /> Ações
           </Button>
           <Button
             variant={mode === "fiis" ? "default" : "ghost"}
             size="sm"
-            onClick={() => { setMode("fiis"); setSelected(["KNCR11", "HGLG11", "XPML11"]); setSearch(""); }}
+            onClick={() => {
+              setMode("fiis");
+              setSelected(["KNCR11", "HGLG11", "XPML11"]);
+              setSearch("");
+            }}
           >
             <Building2 className="mr-1.5 size-3.5" /> FIIs
           </Button>
@@ -204,18 +224,36 @@ function CompararPage() {
                 <thead className="bg-surface-2 text-xs uppercase text-muted-foreground">
                   <tr>
                     <th className="px-4 py-3 text-left font-medium">Indicador</th>
-                    {assets.map((a: any) => a && <th key={a.ticker} className="px-4 py-3 text-right font-medium">{a.ticker}</th>)}
+                    {assets.map(
+                      (a: any) =>
+                        a && (
+                          <th key={a.ticker} className="px-4 py-3 text-right font-medium">
+                            {a.ticker}
+                          </th>
+                        ),
+                    )}
                   </tr>
                 </thead>
                 <tbody>
                   {indicators.map((ind, i) => (
-                    <tr key={ind.key} className={"border-t border-border " + (i % 2 === 0 ? "bg-card" : "bg-surface/50")}>
+                    <tr
+                      key={ind.key}
+                      className={
+                        "border-t border-border " + (i % 2 === 0 ? "bg-card" : "bg-surface/50")
+                      }
+                    >
                       <td className="px-4 py-2.5 font-medium text-muted-foreground">{ind.key}</td>
-                      {assets.map((a: any) => a && (
-                        <td key={a.ticker} className="tabular px-4 py-2.5 text-right font-semibold">
-                          {ind.get(a)}
-                        </td>
-                      ))}
+                      {assets.map(
+                        (a: any) =>
+                          a && (
+                            <td
+                              key={a.ticker}
+                              className="tabular px-4 py-2.5 text-right font-semibold"
+                            >
+                              {ind.get(a)}
+                            </td>
+                          ),
+                      )}
                     </tr>
                   ))}
                 </tbody>
@@ -227,14 +265,28 @@ function CompararPage() {
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {(mode === "stocks"
                   ? ["P/L", "Dividend Yield", "Payout", "ROE", "EV/EBITDA", "Dív. Líq./EBITDA"]
-                  : ["Dividend Yield", "P/VP", "Cap Rate", "Vacância", "Liquidez Diária", "Nº Cotistas"]
+                  : [
+                      "Dividend Yield",
+                      "P/VP",
+                      "Cap Rate",
+                      "Vacância",
+                      "Liquidez Diária",
+                      "Nº Cotistas",
+                    ]
                 ).map((indKey) => {
                   const ind = indicators.find((i) => i.key === indKey);
                   if (!ind) return null;
                   const values = assets.map((a: any) => a && ind.get(a));
                   const nums = assets.map((a: any) => {
                     if (!a) return 0;
-                    const v = String(ind.get(a)).replace("R$", "").replace(/\./g, "").replace(",", ".").replace("%", "").replace("k", "").replace("—", "0").trim();
+                    const v = String(ind.get(a))
+                      .replace("R$", "")
+                      .replace(/\./g, "")
+                      .replace(",", ".")
+                      .replace("%", "")
+                      .replace("k", "")
+                      .replace("—", "0")
+                      .trim();
                     return Number(v);
                   });
                   const max = Math.max(...nums.filter((n) => !isNaN(n)), 1);
@@ -243,7 +295,9 @@ function CompararPage() {
                   const isNeg = indKey === "Dív. Líq./EBITDA" || indKey === "Vacância";
                   return (
                     <div key={indKey} className="rounded-lg border border-border bg-card p-4">
-                      <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">{indKey}</div>
+                      <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">
+                        {indKey}
+                      </div>
                       <div className="space-y-2">
                         {assets.map((a: any, idx: number) => {
                           if (!a) return null;
@@ -261,7 +315,9 @@ function CompararPage() {
                                   className="h-full rounded-full transition-all"
                                   style={{
                                     width: `${Math.max(2, pct)}%`,
-                                    background: isPositive ? "var(--color-positive)" : "var(--color-negative)",
+                                    background: isPositive
+                                      ? "var(--color-positive)"
+                                      : "var(--color-negative)",
                                   }}
                                 />
                               </div>

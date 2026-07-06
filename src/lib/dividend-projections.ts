@@ -64,7 +64,8 @@ export function buildProjections(): ProjectedDividend[] {
   for (const fii of FIIS) {
     const rand = seededRandom(fii.ticker.charCodeAt(0) + fii.ticker.charCodeAt(1));
     const avgAmount =
-      fii.dividendHistory.reduce((s, d) => s + d.amount, 0) / Math.max(fii.dividendHistory.length, 1);
+      fii.dividendHistory.reduce((s, d) => s + d.amount, 0) /
+      Math.max(fii.dividendHistory.length, 1);
     const baseVal = avgAmount * (0.9 + rand() * 0.2);
 
     for (let m = 1; m <= 6; m++) {

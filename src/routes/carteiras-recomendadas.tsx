@@ -9,7 +9,10 @@ export const Route = createFileRoute("/carteiras-recomendadas")({
   head: () => ({
     meta: [
       { title: "Carteiras Recomendadas — Investidor Pro" },
-      { name: "description", content: "Carteiras recomendadas de ações e FIIs para todos os perfis de investidor." },
+      {
+        name: "description",
+        content: "Carteiras recomendadas de ações e FIIs para todos os perfis de investidor.",
+      },
     ],
   }),
   component: RecommendedPage,
@@ -23,7 +26,11 @@ const RISK_STYLES: Record<string, string> = {
 
 function RiskBadge({ risk }: { risk: string }) {
   return (
-    <span className={"rounded px-2 py-0.5 text-[11px] font-medium uppercase " + (RISK_STYLES[risk] ?? "")}>
+    <span
+      className={
+        "rounded px-2 py-0.5 text-[11px] font-medium uppercase " + (RISK_STYLES[risk] ?? "")
+      }
+    >
       {risk}
     </span>
   );
@@ -78,7 +85,9 @@ function DetailedView({ portfolio: p }: { portfolio: RecommendedPortfolio }) {
                 </td>
                 <td className="px-4 py-2.5 text-muted-foreground">{h.name}</td>
                 <td className="px-4 py-2.5 text-right tabular-nums">{h.weight}%</td>
-                <td className="px-4 py-2.5 text-right tabular-nums text-green-600">{h.dy.toFixed(1)}%</td>
+                <td className="px-4 py-2.5 text-right tabular-nums text-green-600">
+                  {h.dy.toFixed(1)}%
+                </td>
                 <td className="px-4 py-2.5 text-right tabular-nums">{h.pl.toFixed(1)}</td>
               </tr>
             ))}
@@ -91,7 +100,8 @@ function DetailedView({ portfolio: p }: { portfolio: RecommendedPortfolio }) {
 
 function RecommendedPage() {
   const [selected, setSelected] = useState<string>(RECOMMENDED_PORTFOLIOS[0].id);
-  const portfolio = RECOMMENDED_PORTFOLIOS.find((p) => p.id === selected) ?? RECOMMENDED_PORTFOLIOS[0];
+  const portfolio =
+    RECOMMENDED_PORTFOLIOS.find((p) => p.id === selected) ?? RECOMMENDED_PORTFOLIOS[0];
 
   return (
     <div className="min-h-screen bg-background text-foreground">

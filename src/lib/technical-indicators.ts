@@ -48,10 +48,12 @@ export function calcRSI(data: number[], period = 14): (number | null)[] {
   const result: (number | null)[] = [];
   if (data.length < period + 1) return data.map(() => null);
   result.push(null);
-  let gains = 0, losses = 0;
+  let gains = 0,
+    losses = 0;
   for (let i = 1; i <= period; i++) {
     const diff = data[i] - data[i - 1];
-    if (diff >= 0) gains += diff; else losses -= diff;
+    if (diff >= 0) gains += diff;
+    else losses -= diff;
   }
   let avgGain = gains / period;
   let avgLoss = losses / period;
@@ -69,7 +71,11 @@ export function calcRSI(data: number[], period = 14): (number | null)[] {
   return result;
 }
 
-export function calcMACD(data: number[]): { macd: (number | null)[]; macdSignal: (number | null)[]; macdHistogram: (number | null)[] } {
+export function calcMACD(data: number[]): {
+  macd: (number | null)[];
+  macdSignal: (number | null)[];
+  macdHistogram: (number | null)[];
+} {
   const ema12 = calcEMA(data, 12);
   const ema26 = calcEMA(data, 26);
   const macd: (number | null)[] = [];
@@ -77,7 +83,7 @@ export function calcMACD(data: number[]): { macd: (number | null)[]; macdSignal:
     if (ema12[i] === null || ema26[i] === null) macd.push(null);
     else macd.push(ema12[i]! - ema26[i]!);
   }
-  const validMacd = macd.map((v, i) => v !== null ? v : 0);
+  const validMacd = macd.map((v, i) => (v !== null ? v : 0));
   const macdSignal = calcEMA(validMacd, 9);
   const macdHistogram: (number | null)[] = [];
   for (let i = 0; i < data.length; i++) {
@@ -87,7 +93,11 @@ export function calcMACD(data: number[]): { macd: (number | null)[]; macdSignal:
   return { macd, macdSignal, macdHistogram };
 }
 
-export function calcBollingerBands(data: number[], period = 20, multiplier = 2): { bbUpper: (number | null)[]; bbMiddle: (number | null)[]; bbLower: (number | null)[] } {
+export function calcBollingerBands(
+  data: number[],
+  period = 20,
+  multiplier = 2,
+): { bbUpper: (number | null)[]; bbMiddle: (number | null)[]; bbLower: (number | null)[] } {
   const bbMiddle = calcSMA(data, period);
   const bbUpper: (number | null)[] = [];
   const bbLower: (number | null)[] = [];
@@ -113,7 +123,20 @@ export function calcBollingerBands(data: number[], period = 20, multiplier = 2):
 export function calcAll(data: number[]): IndicatorResult {
   if (data.length < 5) {
     const fill: (number | null)[] = data.map(() => null);
-    return { sma20: fill, sma50: fill, sma200: fill, ema12: fill, ema26: fill, rsi14: fill, macd: fill, macdSignal: fill, macdHistogram: fill, bbUpper: fill, bbMiddle: fill, bbLower: fill };
+    return {
+      sma20: fill,
+      sma50: fill,
+      sma200: fill,
+      ema12: fill,
+      ema26: fill,
+      rsi14: fill,
+      macd: fill,
+      macdSignal: fill,
+      macdHistogram: fill,
+      bbUpper: fill,
+      bbMiddle: fill,
+      bbLower: fill,
+    };
   }
   return {
     sma20: calcSMA(data, 20),

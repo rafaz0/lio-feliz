@@ -46,10 +46,14 @@ function FiisPage() {
       return true;
     });
     switch (sortBy) {
-      case "dy": return list.sort((a, b) => b.dy - a.dy);
-      case "price": return list.sort((a, b) => b.price - a.price);
-      case "pvp": return list.sort((a, b) => a.pvp - b.pvp);
-      default: return list;
+      case "dy":
+        return list.sort((a, b) => b.dy - a.dy);
+      case "price":
+        return list.sort((a, b) => b.price - a.price);
+      case "pvp":
+        return list.sort((a, b) => a.pvp - b.pvp);
+      default:
+        return list;
     }
   }, [search, segment, sortBy]);
 
@@ -94,7 +98,9 @@ function FiisPage() {
               <button
                 key={s}
                 onClick={() => setSortBy(s)}
-                className={"font-medium " + (sortBy === s ? "text-foreground" : "hover:text-foreground")}
+                className={
+                  "font-medium " + (sortBy === s ? "text-foreground" : "hover:text-foreground")
+                }
               >
                 {s === "dy" ? "DY" : s === "price" ? "Preço" : "P/VP"}
               </button>
@@ -136,10 +142,20 @@ function FiisPage() {
                     </span>
                   </td>
                   <td className="tabular px-4 py-2.5 text-right">{formatBRL(f.price)}</td>
-                  <td className="tabular px-4 py-2.5 text-right font-semibold text-positive">{f.dy.toFixed(2)}%</td>
+                  <td className="tabular px-4 py-2.5 text-right font-semibold text-positive">
+                    {f.dy.toFixed(2)}%
+                  </td>
                   <td className="tabular px-4 py-2.5 text-right">{f.pvp.toFixed(2)}</td>
                   <td className="tabular px-4 py-2.5 text-right">
-                    <span className={f.vacancy > 8 ? "text-negative" : f.vacancy > 4 ? "text-chart-2" : "text-positive"}>
+                    <span
+                      className={
+                        f.vacancy > 8
+                          ? "text-negative"
+                          : f.vacancy > 4
+                            ? "text-chart-2"
+                            : "text-positive"
+                      }
+                    >
                       {f.vacancy.toFixed(1)}%
                     </span>
                   </td>

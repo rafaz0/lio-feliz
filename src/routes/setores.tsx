@@ -13,7 +13,11 @@ export const Route = createFileRoute("/setores")({
   head: () => ({
     meta: [
       { title: "Setores — Investidor Pro" },
-      { name: "description", content: "Análise de setores da B3: médias de indicadores fundamentalistas por setor e empresas listadas." },
+      {
+        name: "description",
+        content:
+          "Análise de setores da B3: médias de indicadores fundamentalistas por setor e empresas listadas.",
+      },
     ],
   }),
   component: SetoresPage,
@@ -34,7 +38,10 @@ function SetoresPage() {
   const { list } = Route.useLoaderData();
 
   const sectors = useMemo(() => {
-    const withFund = list.filter((a): a is AssetLite & { fundamentals: NonNullable<AssetLite["fundamentals"]> } => a.fundamentals !== null);
+    const withFund = list.filter(
+      (a): a is AssetLite & { fundamentals: NonNullable<AssetLite["fundamentals"]> } =>
+        a.fundamentals !== null,
+    );
     const map = new Map<string, SectorAgg>();
 
     for (const a of withFund) {
@@ -88,9 +95,15 @@ function SetoresPage() {
                 <th className="px-4 py-2.5 text-right font-medium">Empresas</th>
                 <th className="px-4 py-2.5 text-right font-medium">DY médio</th>
                 <th className="px-4 py-2.5 text-right font-medium">P/L médio</th>
-                <th className="hidden md:table-cell px-4 py-2.5 text-right font-medium">P/VP médio</th>
-                <th className="hidden md:table-cell px-4 py-2.5 text-right font-medium">ROE médio</th>
-                <th className="hidden lg:table-cell px-4 py-2.5 text-right font-medium">Valor de mercado médio</th>
+                <th className="hidden md:table-cell px-4 py-2.5 text-right font-medium">
+                  P/VP médio
+                </th>
+                <th className="hidden md:table-cell px-4 py-2.5 text-right font-medium">
+                  ROE médio
+                </th>
+                <th className="hidden lg:table-cell px-4 py-2.5 text-right font-medium">
+                  Valor de mercado médio
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -98,11 +111,19 @@ function SetoresPage() {
                 <tr key={s.sector} className="border-t border-border transition hover:bg-surface">
                   <td className="px-4 py-2.5 font-semibold">{s.sector}</td>
                   <td className="tabular px-4 py-2.5 text-right">{s.count}</td>
-                  <td className="tabular px-4 py-2.5 text-right text-positive">{s.avgDy.toFixed(2)}%</td>
+                  <td className="tabular px-4 py-2.5 text-right text-positive">
+                    {s.avgDy.toFixed(2)}%
+                  </td>
                   <td className="tabular px-4 py-2.5 text-right">{s.avgPl.toFixed(1)}</td>
-                  <td className="hidden md:table-cell tabular px-4 py-2.5 text-right">{s.avgPvp.toFixed(2)}</td>
-                  <td className="hidden md:table-cell tabular px-4 py-2.5 text-right">{s.avgRoe.toFixed(1)}%</td>
-                  <td className="hidden lg:table-cell tabular px-4 py-2.5 text-right text-muted-foreground">{formatBRLCompact(s.avgMarketCap)}</td>
+                  <td className="hidden md:table-cell tabular px-4 py-2.5 text-right">
+                    {s.avgPvp.toFixed(2)}
+                  </td>
+                  <td className="hidden md:table-cell tabular px-4 py-2.5 text-right">
+                    {s.avgRoe.toFixed(1)}%
+                  </td>
+                  <td className="hidden lg:table-cell tabular px-4 py-2.5 text-right text-muted-foreground">
+                    {formatBRLCompact(s.avgMarketCap)}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -110,7 +131,9 @@ function SetoresPage() {
         </div>
 
         <section className="mt-8">
-          <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Empresas por setor</h2>
+          <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Empresas por setor
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {sectors.map((s) => (
               <div key={s.sector} className="rounded-lg border border-border bg-card p-4">
@@ -119,9 +142,15 @@ function SetoresPage() {
                   <span className="text-xs text-muted-foreground">{s.count} empresas</span>
                 </div>
                 <div className="mb-2 flex flex-wrap gap-4 text-xs text-muted-foreground">
-                  <span>DY <span className="tabular text-foreground">{s.avgDy.toFixed(2)}%</span></span>
-                  <span>P/L <span className="tabular text-foreground">{s.avgPl.toFixed(1)}</span></span>
-                  <span>ROE <span className="tabular text-foreground">{s.avgRoe.toFixed(1)}%</span></span>
+                  <span>
+                    DY <span className="tabular text-foreground">{s.avgDy.toFixed(2)}%</span>
+                  </span>
+                  <span>
+                    P/L <span className="tabular text-foreground">{s.avgPl.toFixed(1)}</span>
+                  </span>
+                  <span>
+                    ROE <span className="tabular text-foreground">{s.avgRoe.toFixed(1)}%</span>
+                  </span>
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {s.tickers.map((t) => (

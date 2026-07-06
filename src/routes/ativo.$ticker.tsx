@@ -1,6 +1,19 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState, useMemo, type ReactNode } from "react";
-import { Activity, ArrowLeft, BarChart3, ChartArea, Clock, Database, HelpCircle, Medal, Plus, Star, TrendingUp, Waves } from "lucide-react";
+import {
+  Activity,
+  ArrowLeft,
+  BarChart3,
+  ChartArea,
+  Clock,
+  Database,
+  HelpCircle,
+  Medal,
+  Plus,
+  Star,
+  TrendingUp,
+  Waves,
+} from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
@@ -22,11 +35,22 @@ import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/hooks/use-session";
 import { getAssetData, getFinancialStatements } from "@/lib/data-functions";
-import { fetchYahooNews, type FinancialStatements, type AnnualDividends, aggregateAnnualDividends, computeDividendCAGR } from "@/lib/yahoo.server";
+import {
+  fetchYahooNews,
+  type FinancialStatements,
+  type AnnualDividends,
+  aggregateAnnualDividends,
+  computeDividendCAGR,
+} from "@/lib/yahoo.server";
 import { useWatchlist } from "@/lib/watchlist";
 import { getQuotes } from "@/lib/quotes.functions";
 import { calcAll } from "@/lib/technical-indicators";
-import { Tooltip as UiTooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
+import {
+  Tooltip as UiTooltip,
+  TooltipContent,
+  TooltipTrigger,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatDate } from "@/lib/format";
 import { grahamRating, bazinPriceTeto, avgAnnualYield } from "@/lib/valuation";
@@ -74,7 +98,17 @@ export const Route = createFileRoute("/ativo/$ticker")({
   component: AssetPage,
 });
 
-function TechButton({ icon, label, active, onClick }: { icon: ReactNode; label: string; active: boolean; onClick: () => void }) {
+function TechButton({
+  icon,
+  label,
+  active,
+  onClick,
+}: {
+  icon: ReactNode;
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
   return (
     <button
       onClick={onClick}
@@ -95,13 +129,21 @@ function FinStatementRow({ label, values }: { label: string; values: (string | n
     <tr className="border-t border-border text-xs">
       <td className="px-4 py-2 font-medium text-muted-foreground">{label}</td>
       {values.map((v, i) => (
-        <td key={i} className="tabular px-4 py-2 text-right">{v ?? "—"}</td>
+        <td key={i} className="tabular px-4 py-2 text-right">
+          {v ?? "—"}
+        </td>
       ))}
     </tr>
   );
 }
 
-function FinStatementSection({ tab, data }: { tab: string; data: FinancialStatements | null | undefined }) {
+function FinStatementSection({
+  tab,
+  data,
+}: {
+  tab: string;
+  data: FinancialStatements | null | undefined;
+}) {
   if (data === undefined) {
     return (
       <div className="rounded-lg border border-border bg-card p-4">
@@ -131,7 +173,7 @@ function FinStatementSection({ tab, data }: { tab: string; data: FinancialStatem
 
   if (tab === "dre") {
     const years = data.incomeHistory.slice(0, 5);
-    const fmt = (v: number | null) => v !== null ? formatBRLCompact(v) : null;
+    const fmt = (v: number | null) => (v !== null ? formatBRLCompact(v) : null);
     rows.push(
       { label: "Receita Líquida", values: years.map((y) => fmt(y.totalRevenue)) },
       { label: "Lucro Bruto", values: years.map((y) => fmt(y.grossProfit)) },
@@ -140,7 +182,7 @@ function FinStatementSection({ tab, data }: { tab: string; data: FinancialStatem
     );
   } else if (tab === "balanco") {
     const years = data.balanceSheetHistory.slice(0, 5);
-    const fmt = (v: number | null) => v !== null ? formatBRLCompact(v) : null;
+    const fmt = (v: number | null) => (v !== null ? formatBRLCompact(v) : null);
     rows.push(
       { label: "Ativo Total", values: years.map((y) => fmt(y.totalAssets)) },
       { label: "Passivo Total", values: years.map((y) => fmt(y.totalLiabilities)) },
@@ -148,7 +190,7 @@ function FinStatementSection({ tab, data }: { tab: string; data: FinancialStatem
     );
   } else {
     const years = data.cashFlowHistory.slice(0, 5);
-    const fmt = (v: number | null) => v !== null ? formatBRLCompact(v) : null;
+    const fmt = (v: number | null) => (v !== null ? formatBRLCompact(v) : null);
     rows.push(
       { label: "FCO", values: years.map((y) => fmt(y.operatingCashFlow)) },
       { label: "Capex", values: years.map((y) => fmt(y.capitalExpenditures)) },
@@ -156,11 +198,12 @@ function FinStatementSection({ tab, data }: { tab: string; data: FinancialStatem
     );
   }
 
-  const years = tab === "dre"
-    ? data.incomeHistory.slice(0, 5)
-    : tab === "balanco"
-      ? data.balanceSheetHistory.slice(0, 5)
-      : data.cashFlowHistory.slice(0, 5);
+  const years =
+    tab === "dre"
+      ? data.incomeHistory.slice(0, 5)
+      : tab === "balanco"
+        ? data.balanceSheetHistory.slice(0, 5)
+        : data.cashFlowHistory.slice(0, 5);
 
   return (
     <div className="overflow-x-auto rounded-lg border border-border bg-card">
@@ -169,7 +212,9 @@ function FinStatementSection({ tab, data }: { tab: string; data: FinancialStatem
           <tr>
             <th className="px-4 py-2.5 text-left font-medium">Conta</th>
             {years.map((y) => (
-              <th key={y.endDate} className="px-4 py-2.5 text-right font-medium">{y.endDate.slice(0, 4)}</th>
+              <th key={y.endDate} className="px-4 py-2.5 text-right font-medium">
+                {y.endDate.slice(0, 4)}
+              </th>
             ))}
           </tr>
         </thead>
@@ -183,7 +228,10 @@ function FinStatementSection({ tab, data }: { tab: string; data: FinancialStatem
   );
 }
 
-const INDICATOR_INFO: Record<string, { formula: string; meaning: string; good: string; bad: string }> = {
+const INDICATOR_INFO: Record<
+  string,
+  { formula: string; meaning: string; good: string; bad: string }
+> = {
   "P/L": {
     formula: "Preço ÷ LPA (Lucro por Ação)",
     meaning: "Quantos anos de lucro seriam necessários para recuperar o investimento.",
@@ -202,31 +250,31 @@ const INDICATOR_INFO: Record<string, { formula: string; meaning: string; good: s
     good: "Ideal abaixo de 10. Quanto menor, mais barata a empresa.",
     bad: "Acima de 15 indica empresa cara vs. seu potencial de geração de caixa.",
   },
-  "PSR": {
+  PSR: {
     formula: "Preço ÷ Receita Líquida por Ação",
     meaning: "Relação entre o preço da ação e a receita gerada por ação.",
     good: "Ideal abaixo de 2. Empresas de crescimento podem ter PSR mais alto.",
     bad: "Acima de 5 indica que o mercado está pagando muito pela receita.",
   },
-  "DY": {
+  DY: {
     formula: "(Dividendos por Ação ÷ Preço) × 100",
     meaning: "Percentual do retorno em dividendos sobre o preço atual da ação.",
     good: "Entre 4% e 8% é saudável. Acima de 10% é excelente (mas verifique se é sustentável).",
     bad: "Abaixo de 2% é baixo para quem busca renda. Acima de 15% pode ser insustentável.",
   },
-  "Payout": {
+  Payout: {
     formula: "(Dividendos ÷ Lucro Líquido) × 100",
     meaning: "Percentual do lucro distribuído como dividendos.",
     good: "Entre 25% e 50% é saudável. Empresas maduras podem pagar mais.",
     bad: "Acima de 100% indica que a empresa está pagando mais do que lucra (insustentável).",
   },
-  "ROE": {
+  ROE: {
     formula: "(Lucro Líquido ÷ Patrimônio Líquido) × 100",
     meaning: "Retorno sobre o patrimônio líquido. Mede a eficiência da gestão.",
     good: "Acima de 15% é excelente. Entre 10% e 15% é bom.",
     bad: "Abaixo de 10% pode indicar gestão ineficiente ou negócio de baixa rentabilidade.",
   },
-  "ROIC": {
+  ROIC: {
     formula: "(Lucro Operacional ÷ Capital Investido) × 100",
     meaning: "Retorno sobre o capital investido. Mede a eficiência operacional.",
     good: "Acima de 15% é excelente (empresa com vantagem competitiva).",
@@ -244,13 +292,13 @@ const INDICATOR_INFO: Record<string, { formula: string; meaning: string; good: s
     good: "Abaixo de 1 é baixa alavancagem (folga). Entre 1 e 3 é aceitável.",
     bad: "Acima de 3 indica endividamento elevado e risco de insolvência.",
   },
-  "LPA": {
+  LPA: {
     formula: "Lucro Líquido ÷ Número de Ações",
     meaning: "Quanto do lucro total corresponde a cada ação.",
     good: "Quanto maior, melhor. Deve crescer ao longo do tempo.",
     bad: "LPA negativo significa prejuízo. Verifique a tendência histórica.",
   },
-  "VPA": {
+  VPA: {
     formula: "Patrimônio Líquido ÷ Número de Ações",
     meaning: "Valor contábil de cada ação (quanto sobra por ação se a empresa fechar).",
     good: "Quanto maior, mais capital a empresa tem por ação.",
@@ -362,17 +410,21 @@ function AssetPage() {
   }, [filteredHistory]);
 
   const chartData = useMemo(() => {
-    return (indicatorsData ? filteredHistory.map((d, i) => ({
-      ...d,
-      sma20: indicatorsData.sma20[i],
-      sma50: indicatorsData.sma50[i],
-      sma200: indicatorsData.sma200[i],
-      ema12: indicatorsData.ema12[i],
-      ema26: indicatorsData.ema26[i],
-      bbUpper: indicatorsData.bbUpper[i],
-      bbMiddle: indicatorsData.bbMiddle[i],
-      bbLower: indicatorsData.bbLower[i],
-    })) : filteredHistory) as Record<string, any>[];
+    return (
+      indicatorsData
+        ? filteredHistory.map((d, i) => ({
+            ...d,
+            sma20: indicatorsData.sma20[i],
+            sma50: indicatorsData.sma50[i],
+            sma200: indicatorsData.sma200[i],
+            ema12: indicatorsData.ema12[i],
+            ema26: indicatorsData.ema26[i],
+            bbUpper: indicatorsData.bbUpper[i],
+            bbMiddle: indicatorsData.bbMiddle[i],
+            bbLower: indicatorsData.bbLower[i],
+          }))
+        : filteredHistory
+    ) as Record<string, any>[];
   }, [filteredHistory, indicatorsData]);
 
   const rsiData = useMemo(() => {
@@ -414,7 +466,9 @@ function AssetPage() {
     [currentPrice, avgYield5y],
   );
   const bazinDiscount =
-    bazinTeto && bazinTeto > 0 ? ((bazinTeto - currentPrice) / (currentPrice + bazinTeto)) * 2 : null;
+    bazinTeto && bazinTeto > 0
+      ? ((bazinTeto - currentPrice) / (currentPrice + bazinTeto)) * 2
+      : null;
 
   const scorecardScore = useMemo(
     () =>
@@ -454,13 +508,48 @@ function AssetPage() {
 
   const indicators = [
     { label: "P/L", value: asset.fundamentals.pl.toFixed(1), hint: "Preço / Lucro", tag: "" },
-    { label: "P/VP", value: asset.fundamentals.pvp.toFixed(2), hint: "Preço / Valor Patrimonial", tag: "" },
-    { label: "EV/EBITDA", value: asset.fundamentals.evEbitda.toFixed(1), hint: "Valor da Firma / EBITDA", tag: "" },
-    { label: "PSR", value: asset.fundamentals.psr.toFixed(2), hint: "Preço / Receita Líquida", tag: "" },
-    { label: "DY", value: `${asset.fundamentals.dy.toFixed(2)}%`, hint: "Dividend Yield", tag: asset.fundamentals.dy >= 10 ? "top" : "" },
-    { label: "Payout", value: `${asset.fundamentals.payout.toFixed(1)}%`, hint: "% do lucro distribuído", tag: "" },
-    { label: "ROE", value: `${asset.fundamentals.roe.toFixed(1)}%`, hint: "Return on Equity", tag: "" },
-    { label: "ROIC", value: `${asset.fundamentals.roic.toFixed(1)}%`, hint: "Return on Invested Capital", tag: "" },
+    {
+      label: "P/VP",
+      value: asset.fundamentals.pvp.toFixed(2),
+      hint: "Preço / Valor Patrimonial",
+      tag: "",
+    },
+    {
+      label: "EV/EBITDA",
+      value: asset.fundamentals.evEbitda.toFixed(1),
+      hint: "Valor da Firma / EBITDA",
+      tag: "",
+    },
+    {
+      label: "PSR",
+      value: asset.fundamentals.psr.toFixed(2),
+      hint: "Preço / Receita Líquida",
+      tag: "",
+    },
+    {
+      label: "DY",
+      value: `${asset.fundamentals.dy.toFixed(2)}%`,
+      hint: "Dividend Yield",
+      tag: asset.fundamentals.dy >= 10 ? "top" : "",
+    },
+    {
+      label: "Payout",
+      value: `${asset.fundamentals.payout.toFixed(1)}%`,
+      hint: "% do lucro distribuído",
+      tag: "",
+    },
+    {
+      label: "ROE",
+      value: `${asset.fundamentals.roe.toFixed(1)}%`,
+      hint: "Return on Equity",
+      tag: "",
+    },
+    {
+      label: "ROIC",
+      value: `${asset.fundamentals.roic.toFixed(1)}%`,
+      hint: "Return on Invested Capital",
+      tag: "",
+    },
     {
       label: "Margem Líquida",
       value: `${asset.fundamentals.margemLiquida.toFixed(1)}%`,
@@ -471,10 +560,20 @@ function AssetPage() {
       label: "Dív. Líq./EBITDA",
       value: asset.fundamentals.divLiquidaEbitda.toFixed(2),
       hint: "Alavancagem",
-      tag: asset.fundamentals.divLiquidaEbitda <= 1 ? "baixa" : asset.fundamentals.divLiquidaEbitda >= 3 ? "alta" : "",
+      tag:
+        asset.fundamentals.divLiquidaEbitda <= 1
+          ? "baixa"
+          : asset.fundamentals.divLiquidaEbitda >= 3
+            ? "alta"
+            : "",
     },
     { label: "LPA", value: formatBRL(asset.fundamentals.lpa), hint: "Lucro por ação", tag: "" },
-    { label: "VPA", value: formatBRL(asset.fundamentals.vpa), hint: "Valor patrimonial por ação", tag: "" },
+    {
+      label: "VPA",
+      value: formatBRL(asset.fundamentals.vpa),
+      hint: "Valor patrimonial por ação",
+      tag: "",
+    },
     {
       label: "CAGR Dividendos",
       value: `${asset.fundamentals.dividendCagr.toFixed(1)}%`,
@@ -517,7 +616,12 @@ function AssetPage() {
               <span className="rounded bg-secondary px-2 py-0.5 text-xs uppercase tracking-wider text-muted-foreground">
                 {asset.sector}
               </span>
-              <span className={"inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium uppercase " + (asset.isRealData ? "bg-positive/10 text-positive" : "bg-chart-4/10 text-chart-4")}>
+              <span
+                className={
+                  "inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium uppercase " +
+                  (asset.isRealData ? "bg-positive/10 text-positive" : "bg-chart-4/10 text-chart-4")
+                }
+              >
                 <Database className="size-2.5" />
                 {asset.isRealData ? "dados reais" : "dados mock"}
               </span>
@@ -581,10 +685,7 @@ function AssetPage() {
               {indicators.map((i) => {
                 const info = INDICATOR_INFO[i.label];
                 return (
-                  <div
-                    key={i.label}
-                    className="rounded-md border border-border bg-card p-3"
-                  >
+                  <div key={i.label} className="rounded-md border border-border bg-card p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
                         <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -597,10 +698,15 @@ function AssetPage() {
                                 <HelpCircle className="size-3" />
                               </span>
                             </TooltipTrigger>
-                            <TooltipContent side="top" className="max-w-[260px] space-y-1.5 p-3 text-left">
+                            <TooltipContent
+                              side="top"
+                              className="max-w-[260px] space-y-1.5 p-3 text-left"
+                            >
                               <p className="text-xs font-medium text-foreground">{i.label}</p>
                               <p className="text-[10px] text-foreground/70">{info.formula}</p>
-                              <p className="text-[10px] leading-tight text-foreground/80">{info.meaning}</p>
+                              <p className="text-[10px] leading-tight text-foreground/80">
+                                {info.meaning}
+                              </p>
                               <p className="text-[10px] leading-tight text-positive">{info.good}</p>
                               <p className="text-[10px] leading-tight text-negative">{info.bad}</p>
                             </TooltipContent>
@@ -608,13 +714,20 @@ function AssetPage() {
                         )}
                       </div>
                       {i.tag && (
-                        <span className={
-                          "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
-                          (i.tag === "top" ? "bg-positive/10 text-positive" :
-                           i.tag === "alta" ? "bg-negative/10 text-negative" :
-                           i.tag === "baixa" ? "bg-positive/10 text-positive" :
-                           i.tag === "cresc." ? "bg-chart-2/10 text-chart-2" : "bg-secondary text-muted-foreground")
-                        }>
+                        <span
+                          className={
+                            "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
+                            (i.tag === "top"
+                              ? "bg-positive/10 text-positive"
+                              : i.tag === "alta"
+                                ? "bg-negative/10 text-negative"
+                                : i.tag === "baixa"
+                                  ? "bg-positive/10 text-positive"
+                                  : i.tag === "cresc."
+                                    ? "bg-chart-2/10 text-chart-2"
+                                    : "bg-secondary text-muted-foreground")
+                          }
+                        >
                           {i.tag}
                         </span>
                       )}
@@ -628,167 +741,212 @@ function AssetPage() {
           </section>
 
           <SafeBoundary label="valuation">
-          {(graham.fairValue !== null || bazinTeto !== null || dividendCagrFromHistory !== null || avgYield5y !== null) && (
+            {(graham.fairValue !== null ||
+              bazinTeto !== null ||
+              dividendCagrFromHistory !== null ||
+              avgYield5y !== null) && (
+              <section className="mt-4">
+                <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  Modelos de valuation
+                </h2>
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                  {/* Graham */}
+                  <div className="rounded-md border border-border bg-card p-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                        Graham (Preço Justo)
+                      </span>
+                      {graham.rating !== "indefinido" && (
+                        <span
+                          className={
+                            "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
+                            (graham.rating === "barata"
+                              ? "bg-positive/10 text-positive"
+                              : graham.rating === "cara"
+                                ? "bg-negative/10 text-negative"
+                                : "bg-secondary text-muted-foreground")
+                          }
+                        >
+                          {graham.rating}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">√(22,5 × LPA × VPA)</div>
+                    <div className="tabular mt-1.5 text-lg font-semibold">
+                      {graham.fairValue !== null ? formatBRL(graham.fairValue) : "—"}
+                    </div>
+                    {graham.discount !== null && (
+                      <div
+                        className={
+                          "tabular mt-0.5 text-xs " +
+                          (graham.discount >= 0 ? "text-positive" : "text-negative")
+                        }
+                      >
+                        {graham.discount >= 0 ? "Desconto " : "Prêmio "}
+                        {Math.abs(graham.discount * 100).toFixed(1)}%
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Bazin */}
+                  <div className="rounded-md border border-border bg-card p-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                        Bazin (Preço Teto)
+                      </span>
+                      {bazinDiscount !== null && (
+                        <span
+                          className={
+                            "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
+                            (bazinDiscount >= 0
+                              ? "bg-positive/10 text-positive"
+                              : "bg-negative/10 text-negative")
+                          }
+                        >
+                          {bazinDiscount >= 0 ? "abaixo" : "acima"}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      DY médio {avgYield5y !== null ? `${avgYield5y.toFixed(1)}%` : "—"} a.a. / 6%
+                      esperado
+                    </div>
+                    <div className="tabular mt-1.5 text-lg font-semibold">
+                      {bazinTeto !== null ? formatBRL(bazinTeto) : "—"}
+                    </div>
+                  </div>
+
+                  {/* CAGR dividendos histórico */}
+                  <div className="rounded-md border border-border bg-card p-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                        CAGR Dividendos
+                      </span>
+                      {dividendCagrFromHistory !== null && dividendCagrFromHistory >= 5 && (
+                        <span className="rounded bg-chart-2/10 px-1 py-0.5 text-[9px] font-medium uppercase text-chart-2">
+                          cresc.
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      baseado em {annualDividends.length}{" "}
+                      {annualDividends.length === 1 ? "ano" : "anos"} de histórico
+                    </div>
+                    <div className="tabular mt-1.5 text-lg font-semibold">
+                      {dividendCagrFromHistory !== null
+                        ? `${dividendCagrFromHistory.toFixed(1)}% a.a.`
+                        : "—"}
+                    </div>
+                  </div>
+
+                  {/* DY médio */}
+                  <div className="rounded-md border border-border bg-card p-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                        DY médio
+                      </span>
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">3 anos / 5 anos</div>
+                    <div className="tabular mt-1.5 text-lg font-semibold">
+                      {avgYield3y !== null ? `${avgYield3y.toFixed(2)}%` : "—"}
+                      <span className="text-sm text-muted-foreground"> / </span>
+                      {avgYield5y !== null ? `${avgYield5y.toFixed(2)}%` : "—"}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+          </SafeBoundary>
+
+          <SafeBoundary label="scorecard">
+            {/* Scorecard agregado */}
             <section className="mt-4">
               <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                Modelos de valuation
+                Scorecard agregado
               </h2>
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
-                {/* Graham */}
-                <div className="rounded-md border border-border bg-card p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Graham (Preço Justo)</span>
-                    {graham.rating !== "indefinido" && (
-                      <span className={
-                        "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
-                        (graham.rating === "barata" ? "bg-positive/10 text-positive" :
-                         graham.rating === "cara" ? "bg-negative/10 text-negative" :
-                         "bg-secondary text-muted-foreground")
-                      }>
-                        {graham.rating}
+              <div className="rounded-lg border border-border bg-card p-5">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={
+                          "rounded px-2 py-0.5 text-xs font-medium uppercase tracking-wider " +
+                          ratingColor(scorecardScore.rating).badge
+                        }
+                      >
+                        {ratingLabel(scorecardScore.rating)}
                       </span>
+                      {scorecardScore.isAristocrat && (
+                        <span className="inline-flex items-center gap-1 rounded bg-chart-5/15 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-chart-5">
+                          <Medal className="size-3" /> Aristocrata de Dividendos
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-2 flex items-baseline gap-2">
+                      <div className="tabular text-4xl font-bold tracking-tight">
+                        {scorecardScore.score.toFixed(0)}
+                      </div>
+                      <div className="tabular text-base text-muted-foreground">
+                        / {scorecardScore.maxScore.toFixed(0)}
+                      </div>
+                      <div className="tabular text-sm text-muted-foreground">
+                        ({(scorecardScore.ratio * 100).toFixed(0)}%)
+                      </div>
+                    </div>
+                    {scorecardScore.isAristocrat && scorecardScore.streak > 0 && (
+                      <div className="mt-1 text-xs text-muted-foreground">
+                        {scorecardScore.streak} anos seguidos mantendo/crescendo o dividendo.
+                      </div>
                     )}
                   </div>
-                  <div className="mt-1 text-xs text-muted-foreground">√(22,5 × LPA × VPA)</div>
-                  <div className="tabular mt-1.5 text-lg font-semibold">
-                    {graham.fairValue !== null ? formatBRL(graham.fairValue) : "—"}
-                  </div>
-                  {graham.discount !== null && (
-                    <div className={"tabular mt-0.5 text-xs " + (graham.discount >= 0 ? "text-positive" : "text-negative")}>
-                      {graham.discount >= 0 ? "Desconto " : "Prêmio "}{Math.abs(graham.discount * 100).toFixed(1)}%
-                    </div>
-                  )}
-                </div>
-
-                {/* Bazin */}
-                <div className="rounded-md border border-border bg-card p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Bazin (Preço Teto)</span>
-                    {bazinDiscount !== null && (
-                      <span className={
-                        "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
-                        (bazinDiscount >= 0 ? "bg-positive/10 text-positive" : "bg-negative/10 text-negative")
-                      }>
-                        {bazinDiscount >= 0 ? "abaixo" : "acima"}
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-1 text-xs text-muted-foreground">
-                    DY médio {avgYield5y !== null ? `${avgYield5y.toFixed(1)}%` : "—"} a.a. / 6% esperado
-                  </div>
-                  <div className="tabular mt-1.5 text-lg font-semibold">
-                    {bazinTeto !== null ? formatBRL(bazinTeto) : "—"}
-                  </div>
-                </div>
-
-                {/* CAGR dividendos histórico */}
-                <div className="rounded-md border border-border bg-card p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">CAGR Dividendos</span>
-                    {dividendCagrFromHistory !== null && dividendCagrFromHistory >= 5 && (
-                      <span className="rounded bg-chart-2/10 px-1 py-0.5 text-[9px] font-medium uppercase text-chart-2">
-                        cresc.
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-1 text-xs text-muted-foreground">
-                    baseado em {annualDividends.length} {annualDividends.length === 1 ? "ano" : "anos"} de histórico
-                  </div>
-                  <div className="tabular mt-1.5 text-lg font-semibold">
-                    {dividendCagrFromHistory !== null ? `${dividendCagrFromHistory.toFixed(1)}% a.a.` : "—"}
-                  </div>
-                </div>
-
-                {/* DY médio */}
-                <div className="rounded-md border border-border bg-card p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">DY médio</span>
-                  </div>
-                  <div className="mt-1 text-xs text-muted-foreground">3 anos / 5 anos</div>
-                  <div className="tabular mt-1.5 text-lg font-semibold">
-                     {avgYield3y !== null ? `${avgYield3y.toFixed(2)}%` : "—"}
-                     <span className="text-sm text-muted-foreground"> / </span>
-                     {avgYield5y !== null ? `${avgYield5y.toFixed(2)}%` : "—"}
-                   </div>
-                 </div>
-               </div>
-             </section>
-           )}
-           </SafeBoundary>
-
-           <SafeBoundary label="scorecard">
-           {/* Scorecard agregado */}
-           <section className="mt-4">
-             <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-               Scorecard agregado
-             </h2>
-             <div className="rounded-lg border border-border bg-card p-5">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className={"rounded px-2 py-0.5 text-xs font-medium uppercase tracking-wider " + ratingColor(scorecardScore.rating).badge}>
-                      {ratingLabel(scorecardScore.rating)}
-                    </span>
-                    {scorecardScore.isAristocrat && (
-                      <span className="inline-flex items-center gap-1 rounded bg-chart-5/15 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-chart-5">
-                        <Medal className="size-3" /> Aristocrata de Dividendos
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <div className="tabular text-4xl font-bold tracking-tight">
-                      {scorecardScore.score.toFixed(0)}
-                    </div>
-                    <div className="tabular text-base text-muted-foreground">
-                      / {scorecardScore.maxScore.toFixed(0)}
-                    </div>
-                    <div className="tabular text-sm text-muted-foreground">
-                      ({(scorecardScore.ratio * 100).toFixed(0)}%)
-                    </div>
-                  </div>
-                  {scorecardScore.isAristocrat && scorecardScore.streak > 0 && (
-                    <div className="mt-1 text-xs text-muted-foreground">
-                      {scorecardScore.streak} anos seguidos mantendo/crescendo o dividendo.
-                    </div>
-                  )}
-                </div>
-                <div className="flex h-24 w-32 items-end sm:w-40">
-                  <div className="w-full overflow-hidden rounded bg-secondary" style={{ height: 8 }}>
+                  <div className="flex h-24 w-32 items-end sm:w-40">
                     <div
-                      className={"h-full transition-all " + ratingColor(scorecardScore.rating).bar}
-                      style={{ width: `${scorecardScore.ratio * 100}%` }}
-                    />
+                      className="w-full overflow-hidden rounded bg-secondary"
+                      style={{ height: 8 }}
+                    >
+                      <div
+                        className={
+                          "h-full transition-all " + ratingColor(scorecardScore.rating).bar
+                        }
+                        style={{ width: `${scorecardScore.ratio * 100}%` }}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
-                {scorecardScore.criteria.map((c) => {
-                  const isPct = c.key === "graham" || c.key === "bazin" || c.key === "dy" || c.key === "roe" || c.key === "cagr";
-                  const display =
-                    c.value === null || c.value === undefined
-                      ? "—"
-                      : `${c.value.toFixed(2)}${isPct ? "%" : ""}`;
-                  return (
-                    <div key={c.key} className="rounded-md border border-border p-2">
-                      <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                        {c.label}
+                <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
+                  {scorecardScore.criteria.map((c) => {
+                    const isPct =
+                      c.key === "graham" ||
+                      c.key === "bazin" ||
+                      c.key === "dy" ||
+                      c.key === "roe" ||
+                      c.key === "cagr";
+                    const display =
+                      c.value === null || c.value === undefined
+                        ? "—"
+                        : `${c.value.toFixed(2)}${isPct ? "%" : ""}`;
+                    return (
+                      <div key={c.key} className="rounded-md border border-border p-2">
+                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                          {c.label}
+                        </div>
+                        <div className="mt-1 flex items-baseline gap-1">
+                          <span className="tabular text-sm font-medium">{display}</span>
+                        </div>
+                        <div className="mt-1 text-[10px] text-muted-foreground">{c.detail}</div>
                       </div>
-                      <div className="mt-1 flex items-baseline gap-1">
-                        <span className="tabular text-sm font-medium">{display}</span>
-                      </div>
-                      <div className="mt-1 text-[10px] text-muted-foreground">{c.detail}</div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
 
-              <p className="mt-4 text-xs text-muted-foreground">
-                Score combina desconto Graham, teto Bazin, dividend yield atual, ROE, CAGR de dividendos
-                histórico, P/VP e endividamento. Use como orientação junto com sua tese de longo prazo.
-              </p>
-            </div>
-          </section>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Score combina desconto Graham, teto Bazin, dividend yield atual, ROE, CAGR de
+                  dividendos histórico, P/VP e endividamento. Use como orientação junto com sua tese
+                  de longo prazo.
+                </p>
+              </div>
+            </section>
           </SafeBoundary>
 
           {annualDividends.length > 1 && (
@@ -810,19 +968,29 @@ function AssetPage() {
                   <tbody>
                     {annualDividends.map((y, idx) => {
                       const prev = idx > 0 ? annualDividends[idx - 1].totalPerShare : null;
-                      const delta = prev && prev > 0 ? ((y.totalPerShare - prev) / prev) * 100 : null;
+                      const delta =
+                        prev && prev > 0 ? ((y.totalPerShare - prev) / prev) * 100 : null;
                       return (
                         <tr key={y.year} className="border-t border-border text-xs">
                           <td className="px-3 py-1.5 font-medium tabular">{y.year}</td>
-                          <td className="tabular px-3 py-1.5 text-right">{formatBRL(y.totalPerShare)}</td>
+                          <td className="tabular px-3 py-1.5 text-right">
+                            {formatBRL(y.totalPerShare)}
+                          </td>
                           <td className="tabular px-3 py-1.5 text-right text-muted-foreground">
                             {y.priceAtYearEnd !== null ? formatBRL(y.priceAtYearEnd) : "—"}
                           </td>
                           <td className="tabular px-3 py-1.5 text-right">
                             {y.yieldPct !== null ? `${y.yieldPct.toFixed(2)}%` : "—"}
                           </td>
-                          <td className={"tabular px-3 py-1.5 text-right " + (delta !== null && delta >= 0 ? "text-positive" : "text-negative")}>
-                            {delta !== null ? (delta >= 0 ? "+" : "") + delta.toFixed(1) + "%" : "—"}
+                          <td
+                            className={
+                              "tabular px-3 py-1.5 text-right " +
+                              (delta !== null && delta >= 0 ? "text-positive" : "text-negative")
+                            }
+                          >
+                            {delta !== null
+                              ? (delta >= 0 ? "+" : "") + delta.toFixed(1) + "%"
+                              : "—"}
                           </td>
                         </tr>
                       );
@@ -841,63 +1009,105 @@ function AssetPage() {
               <div className="grid grid-cols-3 gap-2 sm:grid-cols-3 lg:grid-cols-3">
                 <div className="rounded-md border border-border bg-card p-3">
                   <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Volatilidade</span>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                      Volatilidade
+                    </span>
                     <UiTooltip>
                       <TooltipTrigger asChild>
                         <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
                           <HelpCircle className="size-3" />
                         </span>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-[240px] space-y-1.5 p-3 text-left">
+                      <TooltipContent
+                        side="top"
+                        className="max-w-[240px] space-y-1.5 p-3 text-left"
+                      >
                         <p className="text-xs font-medium text-foreground">Volatilidade Anual</p>
-                        <p className="text-[10px] leading-tight text-foreground/80">Desvio padrão anualizado dos retornos diários. Mede o risco do ativo.</p>
-                        <p className="text-[10px] leading-tight text-positive">Abaixo de 20%: baixa volatilidade. Entre 20-35%: moderada.</p>
-                        <p className="text-[10px] leading-tight text-negative">Acima de 35%: alta volatilidade (risco elevado).</p>
+                        <p className="text-[10px] leading-tight text-foreground/80">
+                          Desvio padrão anualizado dos retornos diários. Mede o risco do ativo.
+                        </p>
+                        <p className="text-[10px] leading-tight text-positive">
+                          Abaixo de 20%: baixa volatilidade. Entre 20-35%: moderada.
+                        </p>
+                        <p className="text-[10px] leading-tight text-negative">
+                          Acima de 35%: alta volatilidade (risco elevado).
+                        </p>
                       </TooltipContent>
                     </UiTooltip>
                   </div>
                   <div className="mt-1 text-xs font-medium text-muted-foreground">Anual</div>
-                  <div className="tabular mt-1.5 text-lg font-semibold">{riskMetrics.volatility.toFixed(1)}%</div>
+                  <div className="tabular mt-1.5 text-lg font-semibold">
+                    {riskMetrics.volatility.toFixed(1)}%
+                  </div>
                 </div>
                 <div className="rounded-md border border-border bg-card p-3">
                   <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Drawdown Máx</span>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                      Drawdown Máx
+                    </span>
                     <UiTooltip>
                       <TooltipTrigger asChild>
                         <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
                           <HelpCircle className="size-3" />
                         </span>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-[240px] space-y-1.5 p-3 text-left">
+                      <TooltipContent
+                        side="top"
+                        className="max-w-[240px] space-y-1.5 p-3 text-left"
+                      >
                         <p className="text-xs font-medium text-foreground">Drawdown Máximo</p>
-                        <p className="text-[10px] leading-tight text-foreground/80">Maior queda do pico ao vale no período analisado. Mede o pior cenário.</p>
-                        <p className="text-[10px] leading-tight text-positive">Até -15%: baixo risco de queda. Entre -15% e -30%: moderado.</p>
-                        <p className="text-[10px] leading-tight text-negative">Acima de -30%: alto risco de perda significativa.</p>
+                        <p className="text-[10px] leading-tight text-foreground/80">
+                          Maior queda do pico ao vale no período analisado. Mede o pior cenário.
+                        </p>
+                        <p className="text-[10px] leading-tight text-positive">
+                          Até -15%: baixo risco de queda. Entre -15% e -30%: moderado.
+                        </p>
+                        <p className="text-[10px] leading-tight text-negative">
+                          Acima de -30%: alto risco de perda significativa.
+                        </p>
                       </TooltipContent>
                     </UiTooltip>
                   </div>
                   <div className="mt-1 text-xs font-medium text-muted-foreground">Histórico</div>
-                  <div className="tabular mt-1.5 text-lg font-semibold text-negative">{riskMetrics.maxDrawdown.toFixed(1)}%</div>
+                  <div className="tabular mt-1.5 text-lg font-semibold text-negative">
+                    {riskMetrics.maxDrawdown.toFixed(1)}%
+                  </div>
                 </div>
                 <div className="rounded-md border border-border bg-card p-3">
                   <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Índice Sharpe</span>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                      Índice Sharpe
+                    </span>
                     <UiTooltip>
                       <TooltipTrigger asChild>
                         <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
                           <HelpCircle className="size-3" />
                         </span>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-[240px] space-y-1.5 p-3 text-left">
+                      <TooltipContent
+                        side="top"
+                        className="max-w-[240px] space-y-1.5 p-3 text-left"
+                      >
                         <p className="text-xs font-medium text-foreground">Índice Sharpe</p>
-                        <p className="text-[10px] leading-tight text-foreground/80">(Retorno anual - CDI) ÷ Volatilidade. Mede retorno ajustado ao risco.</p>
-                        <p className="text-[10px] leading-tight text-positive">Acima de 1: excelente. Entre 0.5 e 1: bom.</p>
-                        <p className="text-[10px] leading-tight text-negative">Abaixo de 0.5: retorno insuficiente para o risco. Negativo: perde do CDI.</p>
+                        <p className="text-[10px] leading-tight text-foreground/80">
+                          (Retorno anual - CDI) ÷ Volatilidade. Mede retorno ajustado ao risco.
+                        </p>
+                        <p className="text-[10px] leading-tight text-positive">
+                          Acima de 1: excelente. Entre 0.5 e 1: bom.
+                        </p>
+                        <p className="text-[10px] leading-tight text-negative">
+                          Abaixo de 0.5: retorno insuficiente para o risco. Negativo: perde do CDI.
+                        </p>
                       </TooltipContent>
                     </UiTooltip>
                   </div>
                   <div className="mt-1 text-xs font-medium text-muted-foreground">Ajustado</div>
-                  <div className={"tabular mt-1.5 text-lg font-semibold " + (riskMetrics.sharpe >= 0.5 ? "text-positive" : "text-negative")}>
+                  <div
+                    className={
+                      "tabular mt-1.5 text-lg font-semibold " +
+                      (riskMetrics.sharpe >= 0.5 ? "text-positive" : "text-negative")
+                    }
+                  >
                     {riskMetrics.sharpe.toFixed(2)}
                   </div>
                 </div>
@@ -930,11 +1140,36 @@ function AssetPage() {
             </div>
 
             <div className="mb-3 flex flex-wrap gap-1.5">
-              <TechButton icon={<TrendingUp className="size-3" />} label="SMA" active={showSma} onClick={() => setShowSma(!showSma)} />
-              <TechButton icon={<Activity className="size-3" />} label="EMA" active={showEma} onClick={() => setShowEma(!showEma)} />
-              <TechButton icon={<Waves className="size-3" />} label="Bollinger" active={showBb} onClick={() => setShowBb(!showBb)} />
-              <TechButton icon={<ChartArea className="size-3" />} label="RSI" active={showRsi} onClick={() => setShowRsi(!showRsi)} />
-              <TechButton icon={<BarChart3 className="size-3" />} label="MACD" active={showMacd} onClick={() => setShowMacd(!showMacd)} />
+              <TechButton
+                icon={<TrendingUp className="size-3" />}
+                label="SMA"
+                active={showSma}
+                onClick={() => setShowSma(!showSma)}
+              />
+              <TechButton
+                icon={<Activity className="size-3" />}
+                label="EMA"
+                active={showEma}
+                onClick={() => setShowEma(!showEma)}
+              />
+              <TechButton
+                icon={<Waves className="size-3" />}
+                label="Bollinger"
+                active={showBb}
+                onClick={() => setShowBb(!showBb)}
+              />
+              <TechButton
+                icon={<ChartArea className="size-3" />}
+                label="RSI"
+                active={showRsi}
+                onClick={() => setShowRsi(!showRsi)}
+              />
+              <TechButton
+                icon={<BarChart3 className="size-3" />}
+                label="MACD"
+                active={showMacd}
+                onClick={() => setShowMacd(!showMacd)}
+              />
             </div>
 
             <div className="h-72 w-full">
@@ -954,7 +1189,11 @@ function AssetPage() {
                       />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                  <CartesianGrid
+                    stroke="var(--color-border)"
+                    strokeDasharray="3 3"
+                    vertical={false}
+                  />
                   <XAxis
                     dataKey="date"
                     tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -985,31 +1224,103 @@ function AssetPage() {
                     formatter={(v: number, name: string) => {
                       const labels: Record<string, string> = {
                         close: "Fechamento",
-                        sma20: "SMA 20", sma50: "SMA 50", sma200: "SMA 200",
-                        ema12: "EMA 12", ema26: "EMA 26",
-                        bbUpper: "BB Sup", bbMiddle: "BB Méd", bbLower: "BB Inf",
+                        sma20: "SMA 20",
+                        sma50: "SMA 50",
+                        sma200: "SMA 200",
+                        ema12: "EMA 12",
+                        ema26: "EMA 26",
+                        bbUpper: "BB Sup",
+                        bbMiddle: "BB Méd",
+                        bbLower: "BB Inf",
                       };
                       return [formatBRL(v), labels[name] ?? name];
                     }}
                   />
                   {showBb && chartData.length > 0 && chartData[0].bbUpper != null && (
                     <>
-                      <Area yAxisId="price" type="monotone" dataKey="bbUpper" stroke="var(--color-chart-4)" strokeWidth={1} fill="none" dot={false} />
-                      <Area yAxisId="price" type="monotone" dataKey="bbLower" stroke="var(--color-chart-4)" strokeWidth={1} fill="none" dot={false} />
-                      <Area yAxisId="price" type="monotone" dataKey="bbMiddle" stroke="var(--color-chart-4)" strokeWidth={1} strokeDasharray="4 4" fill="none" dot={false} />
+                      <Area
+                        yAxisId="price"
+                        type="monotone"
+                        dataKey="bbUpper"
+                        stroke="var(--color-chart-4)"
+                        strokeWidth={1}
+                        fill="none"
+                        dot={false}
+                      />
+                      <Area
+                        yAxisId="price"
+                        type="monotone"
+                        dataKey="bbLower"
+                        stroke="var(--color-chart-4)"
+                        strokeWidth={1}
+                        fill="none"
+                        dot={false}
+                      />
+                      <Area
+                        yAxisId="price"
+                        type="monotone"
+                        dataKey="bbMiddle"
+                        stroke="var(--color-chart-4)"
+                        strokeWidth={1}
+                        strokeDasharray="4 4"
+                        fill="none"
+                        dot={false}
+                      />
                     </>
                   )}
                   {showSma && (
                     <>
-                      <Line yAxisId="price" type="monotone" dataKey="sma20" stroke="var(--color-chart-1)" strokeWidth={1.5} dot={false} connectNulls />
-                      <Line yAxisId="price" type="monotone" dataKey="sma50" stroke="var(--color-chart-2)" strokeWidth={1.5} dot={false} connectNulls />
-                      <Line yAxisId="price" type="monotone" dataKey="sma200" stroke="var(--color-chart-3)" strokeWidth={1.5} dot={false} connectNulls />
+                      <Line
+                        yAxisId="price"
+                        type="monotone"
+                        dataKey="sma20"
+                        stroke="var(--color-chart-1)"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        yAxisId="price"
+                        type="monotone"
+                        dataKey="sma50"
+                        stroke="var(--color-chart-2)"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        yAxisId="price"
+                        type="monotone"
+                        dataKey="sma200"
+                        stroke="var(--color-chart-3)"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
                     </>
                   )}
                   {showEma && (
                     <>
-                      <Line yAxisId="price" type="monotone" dataKey="ema12" stroke="var(--color-positive)" strokeWidth={1.5} strokeDasharray="5 3" dot={false} connectNulls />
-                      <Line yAxisId="price" type="monotone" dataKey="ema26" stroke="var(--color-negative)" strokeWidth={1.5} strokeDasharray="5 3" dot={false} connectNulls />
+                      <Line
+                        yAxisId="price"
+                        type="monotone"
+                        dataKey="ema12"
+                        stroke="var(--color-positive)"
+                        strokeWidth={1.5}
+                        strokeDasharray="5 3"
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        yAxisId="price"
+                        type="monotone"
+                        dataKey="ema26"
+                        stroke="var(--color-negative)"
+                        strokeWidth={1.5}
+                        strokeDasharray="5 3"
+                        dot={false}
+                        connectNulls
+                      />
                     </>
                   )}
                   <Area
@@ -1027,22 +1338,65 @@ function AssetPage() {
             {showRsi && rsiData.length > 0 && (
               <div className="mt-4 border-t border-border pt-4">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">RSI (14)</span>
-                  <span className={"text-xs font-semibold " + (rsiData[rsiData.length - 1].rsi! >= 70 ? "text-negative" : rsiData[rsiData.length - 1].rsi! <= 30 ? "text-positive" : "")}>
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    RSI (14)
+                  </span>
+                  <span
+                    className={
+                      "text-xs font-semibold " +
+                      (rsiData[rsiData.length - 1].rsi! >= 70
+                        ? "text-negative"
+                        : rsiData[rsiData.length - 1].rsi! <= 30
+                          ? "text-positive"
+                          : "")
+                    }
+                  >
                     {rsiData[rsiData.length - 1].rsi!.toFixed(1)}
                   </span>
                 </div>
                 <div className="h-20 w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={rsiData} margin={{ left: 8, right: 8, top: 4, bottom: 0 }}>
-                      <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                      <CartesianGrid
+                        stroke="var(--color-border)"
+                        strokeDasharray="3 3"
+                        vertical={false}
+                      />
                       <XAxis dataKey="date" hide />
-                      <YAxis domain={[0, 100]} tick={{ fontSize: 9 }} width={20} stroke="var(--color-border)" ticks={[30, 50, 70]} />
-                      <ReferenceLine y={70} stroke="var(--color-negative)" strokeDasharray="3 3" strokeOpacity={0.5} />
-                      <ReferenceLine y={30} stroke="var(--color-positive)" strokeDasharray="3 3" strokeOpacity={0.5} />
-                      <Line type="monotone" dataKey="rsi" stroke="var(--color-chart-1)" strokeWidth={1.5} dot={false} connectNulls />
+                      <YAxis
+                        domain={[0, 100]}
+                        tick={{ fontSize: 9 }}
+                        width={20}
+                        stroke="var(--color-border)"
+                        ticks={[30, 50, 70]}
+                      />
+                      <ReferenceLine
+                        y={70}
+                        stroke="var(--color-negative)"
+                        strokeDasharray="3 3"
+                        strokeOpacity={0.5}
+                      />
+                      <ReferenceLine
+                        y={30}
+                        stroke="var(--color-positive)"
+                        strokeDasharray="3 3"
+                        strokeOpacity={0.5}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="rsi"
+                        stroke="var(--color-chart-1)"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
                       <Tooltip
-                        contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 11 }}
+                        contentStyle={{
+                          background: "var(--color-popover)",
+                          border: "1px solid var(--color-border)",
+                          borderRadius: 6,
+                          fontSize: 11,
+                        }}
                         labelFormatter={(l: string) => formatDate(l)}
                         formatter={(v: number) => [v.toFixed(1), "RSI"]}
                       />
@@ -1055,23 +1409,57 @@ function AssetPage() {
             {showMacd && macdData.length > 0 && (
               <div className="mt-4 border-t border-border pt-4">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">MACD</span>
-                  <span className="text-xs font-semibold">{macdData[macdData.length - 1].macd!.toFixed(2)}</span>
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    MACD
+                  </span>
+                  <span className="text-xs font-semibold">
+                    {macdData[macdData.length - 1].macd!.toFixed(2)}
+                  </span>
                 </div>
                 <div className="h-24 w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <ComposedChart data={macdData} margin={{ left: 8, right: 8, top: 4, bottom: 0 }}>
-                      <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                    <ComposedChart
+                      data={macdData}
+                      margin={{ left: 8, right: 8, top: 4, bottom: 0 }}
+                    >
+                      <CartesianGrid
+                        stroke="var(--color-border)"
+                        strokeDasharray="3 3"
+                        vertical={false}
+                      />
                       <XAxis dataKey="date" hide />
                       <YAxis tick={{ fontSize: 9 }} width={30} stroke="var(--color-border)" />
                       <Bar dataKey="macdHistogram" fill="var(--color-chart-4)" opacity={0.6} />
-                      <Line type="monotone" dataKey="macd" stroke="var(--color-chart-1)" strokeWidth={1.5} dot={false} connectNulls />
-                      <Line type="monotone" dataKey="macdSignal" stroke="var(--color-chart-2)" strokeWidth={1.5} dot={false} connectNulls />
+                      <Line
+                        type="monotone"
+                        dataKey="macd"
+                        stroke="var(--color-chart-1)"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="macdSignal"
+                        stroke="var(--color-chart-2)"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
                       <Tooltip
-                        contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 11 }}
+                        contentStyle={{
+                          background: "var(--color-popover)",
+                          border: "1px solid var(--color-border)",
+                          borderRadius: 6,
+                          fontSize: 11,
+                        }}
                         labelFormatter={(l: string) => formatDate(l)}
                         formatter={(v: number, name: string) => {
-                          const labels: Record<string, string> = { macd: "MACD", macdSignal: "Sinal", macdHistogram: "Hist." };
+                          const labels: Record<string, string> = {
+                            macd: "MACD",
+                            macdSignal: "Sinal",
+                            macdHistogram: "Hist.",
+                          };
                           return [v.toFixed(2), labels[name] ?? name];
                         }}
                       />
@@ -1106,7 +1494,11 @@ function AssetPage() {
               <div className="h-72 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={divChartData} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
-                    <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                    <CartesianGrid
+                      stroke="var(--color-border)"
+                      strokeDasharray="3 3"
+                      vertical={false}
+                    />
                     <XAxis
                       dataKey="date"
                       tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -1146,7 +1538,7 @@ function AssetPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {asset.dividends.map((d: typeof asset.dividends[number], i: number) => (
+                  {asset.dividends.map((d: (typeof asset.dividends)[number], i: number) => (
                     <tr key={i} className="border-t border-border">
                       <td className="px-4 py-2 text-muted-foreground">{formatDate(d.paidAt)}</td>
                       <td className="px-4 py-2">{d.type}</td>
@@ -1178,7 +1570,11 @@ function AssetPage() {
                     : "bg-secondary text-muted-foreground hover:text-foreground")
                 }
               >
-                {tab === "dre" ? "DRE" : tab === "balanco" ? "Balanço Patrimonial" : "Fluxo de Caixa"}
+                {tab === "dre"
+                  ? "DRE"
+                  : tab === "balanco"
+                    ? "Balanço Patrimonial"
+                    : "Fluxo de Caixa"}
               </button>
             ))}
           </div>
@@ -1187,10 +1583,15 @@ function AssetPage() {
 
         {news.length > 0 && (
           <section className="mt-8">
-            <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Fatos Relevantes</h2>
+            <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Fatos Relevantes
+            </h2>
             <div className="space-y-3">
               {news.map((n, i) => (
-                <article key={i} className="rounded-lg border border-border bg-card p-4 transition hover:bg-surface">
+                <article
+                  key={i}
+                  className="rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+                >
                   <div className="mb-0.5 flex items-center gap-2 text-[11px] text-muted-foreground">
                     <span>{n.source}</span>
                     <span>·</span>

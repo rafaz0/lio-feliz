@@ -23,7 +23,8 @@ export const RECOMMENDED_PORTFOLIOS: RecommendedPortfolio[] = [
   {
     id: "dividendos",
     name: "Carteira Dividendos",
-    description: "Foco em ações com histórico consistente de distribuição de lucros e DY acima de 6%",
+    description:
+      "Foco em ações com histórico consistente de distribuição de lucros e DY acima de 6%",
     risk: "conservador",
     focus: "Renda passiva mensal",
     holders: 2834,
@@ -63,7 +64,8 @@ export const RECOMMENDED_PORTFOLIOS: RecommendedPortfolio[] = [
   {
     id: "crescimento",
     name: "Carteira Crescimento",
-    description: "Empresas com alto potencial de expansão, receita crescente e vantagens competitivas",
+    description:
+      "Empresas com alto potencial de expansão, receita crescente e vantagens competitivas",
     risk: "agressivo",
     focus: "Crescimento acelerado",
     holders: 1421,
@@ -83,7 +85,8 @@ export const RECOMMENDED_PORTFOLIOS: RecommendedPortfolio[] = [
   {
     id: "small-caps",
     name: "Carteira Small Caps",
-    description: "Empresas de menor capitalização com potencial de valuation e crescimento acima da média",
+    description:
+      "Empresas de menor capitalização com potencial de valuation e crescimento acima da média",
     risk: "agressivo",
     focus: "Potencial de valuation",
     holders: 978,
@@ -103,7 +106,8 @@ export const RECOMMENDED_PORTFOLIOS: RecommendedPortfolio[] = [
   {
     id: "fiis",
     name: "Carteira FIIs",
-    description: "Fundos imobiliários de diferentes segmentos com DY acima de 8% e vacância controlada",
+    description:
+      "Fundos imobiliários de diferentes segmentos com DY acima de 8% e vacância controlada",
     risk: "moderado",
     focus: "Renda imobiliária",
     holders: 2134,

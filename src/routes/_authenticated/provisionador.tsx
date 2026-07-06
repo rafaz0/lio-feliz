@@ -3,7 +3,16 @@ import { useMemo, useState } from "react";
 import { DollarSign, PiggyBank, Search, TrendingUp, BarChart3 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Bar, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  CartesianGrid,
+  ComposedChart,
+  Line,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { SiteHeader } from "@/components/site-header";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,7 +25,10 @@ export const Route = createFileRoute("/_authenticated/provisionador")({
   head: () => ({
     meta: [
       { title: "Provisionador de Dividendos — Investidor Pro" },
-      { name: "description", content: "Projete seus dividendos futuros com base no histórico e na sua carteira." },
+      {
+        name: "description",
+        content: "Projete seus dividendos futuros com base no histórico e na sua carteira.",
+      },
     ],
   }),
   component: ProvisionadorPage,
@@ -131,10 +143,26 @@ function ProvisionadorPage() {
             </>
           ) : (
             <>
-              <SummaryCard label="Declarados" value={formatBRL(totalDeclared)} hint="Já declarados" />
-              <SummaryCard label="Próximos 3 meses" value={formatBRL(totalNext3m)} hint="Projeção" />
-              <SummaryCard label="Próximos 6 meses" value={formatBRL(totalNext6m)} hint="Projeção" />
-              <SummaryCard label="Próximos 12 meses" value={formatBRL(totalNext12m)} hint="Projeção" />
+              <SummaryCard
+                label="Declarados"
+                value={formatBRL(totalDeclared)}
+                hint="Já declarados"
+              />
+              <SummaryCard
+                label="Próximos 3 meses"
+                value={formatBRL(totalNext3m)}
+                hint="Projeção"
+              />
+              <SummaryCard
+                label="Próximos 6 meses"
+                value={formatBRL(totalNext6m)}
+                hint="Projeção"
+              />
+              <SummaryCard
+                label="Próximos 12 meses"
+                value={formatBRL(totalNext12m)}
+                hint="Projeção"
+              />
             </>
           )}
         </section>
@@ -148,38 +176,91 @@ function ProvisionadorPage() {
             <div className="rounded-lg border border-border bg-card p-5">
               <div className="h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                  <ComposedChart data={projectedMonthly.map(([month, items]) => {
-                    const [y, m] = month.split("-");
-                    const label = new Date(Number(y), Number(m) - 1).toLocaleDateString("pt-BR", { month: "short" });
-                    const total = items.reduce((s, p) => s + p.amount * p.qty, 0);
-                    let cumulative = 0;
-                    return { label, total: Number(total.toFixed(2)), month };
-                  }).map((d, i, arr) => ({
-                    ...d,
-                    cumulative: arr.slice(0, i + 1).reduce((s, v) => s + v.total, 0),
-                  }))}
+                  <ComposedChart
+                    data={projectedMonthly
+                      .map(([month, items]) => {
+                        const [y, m] = month.split("-");
+                        const label = new Date(Number(y), Number(m) - 1).toLocaleDateString(
+                          "pt-BR",
+                          { month: "short" },
+                        );
+                        const total = items.reduce((s, p) => s + p.amount * p.qty, 0);
+                        let cumulative = 0;
+                        return { label, total: Number(total.toFixed(2)), month };
+                      })
+                      .map((d, i, arr) => ({
+                        ...d,
+                        cumulative: arr.slice(0, i + 1).reduce((s, v) => s + v.total, 0),
+                      }))}
                     margin={{ left: 8, right: 8, top: 8, bottom: 0 }}
                   >
-                    <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="label" tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} stroke="var(--color-border)" interval={0} angle={-20} textAnchor="end" height={30} />
-                    <YAxis yAxisId="left" tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} tickFormatter={(v: number) => `R$${v.toFixed(0)}`} width={60} stroke="var(--color-border)" />
-                    <YAxis yAxisId="right" orientation="right" tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} tickFormatter={(v: number) => `R$${v.toFixed(0)}`} width={60} stroke="var(--color-border)" />
+                    <CartesianGrid
+                      stroke="var(--color-border)"
+                      strokeDasharray="3 3"
+                      vertical={false}
+                    />
+                    <XAxis
+                      dataKey="label"
+                      tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                      stroke="var(--color-border)"
+                      interval={0}
+                      angle={-20}
+                      textAnchor="end"
+                      height={30}
+                    />
+                    <YAxis
+                      yAxisId="left"
+                      tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                      tickFormatter={(v: number) => `R$${v.toFixed(0)}`}
+                      width={60}
+                      stroke="var(--color-border)"
+                    />
+                    <YAxis
+                      yAxisId="right"
+                      orientation="right"
+                      tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                      tickFormatter={(v: number) => `R$${v.toFixed(0)}`}
+                      width={60}
+                      stroke="var(--color-border)"
+                    />
                     <Tooltip
-                      contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                      contentStyle={{
+                        background: "var(--color-popover)",
+                        border: "1px solid var(--color-border)",
+                        borderRadius: 6,
+                        fontSize: 12,
+                      }}
                       formatter={(v: number, name: string) => {
                         if (name === "total") return [formatBRL(v), "Proventos"];
                         if (name === "cumulative") return [formatBRL(v), "Acumulado"];
                         return [v, name];
                       }}
                     />
-                    <Bar yAxisId="left" dataKey="total" fill="var(--color-positive)" radius={[3, 3, 0, 0]} />
-                    <Line yAxisId="right" type="monotone" dataKey="cumulative" stroke="var(--color-chart-1)" strokeWidth={2} dot={false} />
+                    <Bar
+                      yAxisId="left"
+                      dataKey="total"
+                      fill="var(--color-positive)"
+                      radius={[3, 3, 0, 0]}
+                    />
+                    <Line
+                      yAxisId="right"
+                      type="monotone"
+                      dataKey="cumulative"
+                      stroke="var(--color-chart-1)"
+                      strokeWidth={2}
+                      dot={false}
+                    />
                   </ComposedChart>
                 </ResponsiveContainer>
               </div>
               <div className="mt-3 flex items-center justify-center gap-6 text-[10px] text-muted-foreground">
-                <span className="flex items-center gap-1.5"><span className="inline-block size-2.5 rounded-sm bg-positive" /> Proventos mensais</span>
-                <span className="flex items-center gap-1.5"><span className="inline-block size-2.5 rounded-sm bg-chart-1" /> Acumulado</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block size-2.5 rounded-sm bg-positive" /> Proventos
+                  mensais
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block size-2.5 rounded-sm bg-chart-1" /> Acumulado
+                </span>
               </div>
             </div>
           </section>
@@ -198,7 +279,9 @@ function ProvisionadorPage() {
           {!user && (
             <span className="text-xs text-muted-foreground">
               Informe suas quantidades manualmente ou{" "}
-              <Link to="/auth" className="text-primary hover:underline">faça login</Link>{" "}
+              <Link to="/auth" className="text-primary hover:underline">
+                faça login
+              </Link>{" "}
               para usar sua carteira.
             </span>
           )}
@@ -219,7 +302,10 @@ function ProvisionadorPage() {
               });
               const monthTotal = items.reduce((s, p) => s + p.amount * p.qty, 0);
               return (
-                <div key={month} className="overflow-hidden rounded-lg border border-border bg-card">
+                <div
+                  key={month}
+                  className="overflow-hidden rounded-lg border border-border bg-card"
+                >
                   <div className="flex items-center justify-between bg-surface-2 px-4 py-3">
                     <h2 className="text-sm font-semibold capitalize">{monthName}</h2>
                     <span className="text-xs text-muted-foreground">
@@ -268,7 +354,9 @@ function ProvisionadorPage() {
                                   <Input
                                     type="number"
                                     value={manualQtys[p.ticker] ?? ""}
-                                    onChange={(e) => setQuantity(p.ticker, Number(e.target.value) || 0)}
+                                    onChange={(e) =>
+                                      setQuantity(p.ticker, Number(e.target.value) || 0)
+                                    }
                                     className="h-7 w-20 text-right text-xs"
                                     placeholder="0"
                                   />

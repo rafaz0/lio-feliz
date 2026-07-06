@@ -4,7 +4,12 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import type { Operation } from "./portfolio";
 
 const operationInput = z.object({
-  ticker: z.string().trim().min(1).max(10).transform((s) => s.toUpperCase()),
+  ticker: z
+    .string()
+    .trim()
+    .min(1)
+    .max(10)
+    .transform((s) => s.toUpperCase()),
   side: z.enum(["buy", "sell"]),
   quantity: z.number().positive(),
   price: z.number().nonnegative(),

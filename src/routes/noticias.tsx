@@ -5,14 +5,70 @@ import { getFii } from "@/lib/fii-mock-data";
 import { fetchYahooNews, type YahooNewsItem } from "@/lib/yahoo.server";
 
 const FALLBACK_NEWS: YahooNewsItem[] = [
-  { title: "Petrobras aprova pagamento de R$ 15 bilhões em dividendos", summary: "", source: "Investidor Pro", date: "", link: "", tickers: ["PETR4"] },
-  { title: "Vale anuncia investimento recorde de R$ 12 bilhões em 2026", summary: "", source: "Investidor Pro", date: "", link: "", tickers: ["VALE3"] },
-  { title: "Banco Central mantém Selic em 14,75% ao ano", summary: "", source: "Investidor Pro", date: "", link: "", tickers: [] },
-  { title: "IFIX sobe 0,8% com recuperação de FIIs de tijolo", summary: "", source: "Investidor Pro", date: "", link: "", tickers: ["HGRE11", "RBRF11", "JSRE11"] },
-  { title: "WEG expande fábrica nos EUA para atender demanda", summary: "", source: "Investidor Pro", date: "", link: "", tickers: ["WEGE3"] },
-  { title: "BTG Pactual projeta IBOV em 145 mil pontos no fim de 2026", summary: "", source: "Investidor Pro", date: "", link: "", tickers: [] },
-  { title: "Magazine Luiza reporta crescimento de 12% no GMV do 2T26", summary: "", source: "Investidor Pro", date: "", link: "", tickers: ["MGLU3"] },
-  { title: "Taesa é aprovada para novo leilão de transmissão", summary: "", source: "Investidor Pro", date: "", link: "", tickers: ["TAEE11"] },
+  {
+    title: "Petrobras aprova pagamento de R$ 15 bilhões em dividendos",
+    summary: "",
+    source: "Investidor Pro",
+    date: "",
+    link: "",
+    tickers: ["PETR4"],
+  },
+  {
+    title: "Vale anuncia investimento recorde de R$ 12 bilhões em 2026",
+    summary: "",
+    source: "Investidor Pro",
+    date: "",
+    link: "",
+    tickers: ["VALE3"],
+  },
+  {
+    title: "Banco Central mantém Selic em 14,75% ao ano",
+    summary: "",
+    source: "Investidor Pro",
+    date: "",
+    link: "",
+    tickers: [],
+  },
+  {
+    title: "IFIX sobe 0,8% com recuperação de FIIs de tijolo",
+    summary: "",
+    source: "Investidor Pro",
+    date: "",
+    link: "",
+    tickers: ["HGRE11", "RBRF11", "JSRE11"],
+  },
+  {
+    title: "WEG expande fábrica nos EUA para atender demanda",
+    summary: "",
+    source: "Investidor Pro",
+    date: "",
+    link: "",
+    tickers: ["WEGE3"],
+  },
+  {
+    title: "BTG Pactual projeta IBOV em 145 mil pontos no fim de 2026",
+    summary: "",
+    source: "Investidor Pro",
+    date: "",
+    link: "",
+    tickers: [],
+  },
+  {
+    title: "Magazine Luiza reporta crescimento de 12% no GMV do 2T26",
+    summary: "",
+    source: "Investidor Pro",
+    date: "",
+    link: "",
+    tickers: ["MGLU3"],
+  },
+  {
+    title: "Taesa é aprovada para novo leilão de transmissão",
+    summary: "",
+    source: "Investidor Pro",
+    date: "",
+    link: "",
+    tickers: ["TAEE11"],
+  },
 ];
 
 const YAHOO_TICKERS = ["PETR4", "VALE3", "WEGE3", "MGLU3", "ITUB4", "BBDC4", "ABEV3", "BBAS3"];
@@ -68,7 +124,10 @@ function NewsPage() {
 
         <div className="space-y-4">
           {news.map((item, i) => (
-            <article key={i} className="rounded-lg border border-border bg-card p-5 transition hover:bg-surface">
+            <article
+              key={i}
+              className="rounded-lg border border-border bg-card p-5 transition hover:bg-surface"
+            >
               <div className="mb-1 flex items-center gap-2 text-xs text-muted-foreground">
                 <span>{item.source}</span>
                 <span>·</span>

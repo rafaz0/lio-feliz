@@ -1,6 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { ArrowRight, BarChart3, Building2, Calculator, CalendarDays, LineChart, Medal, Newspaper, PiggyBank, Search, Star, Target, TrendingUp, Wallet } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  Building2,
+  Calculator,
+  CalendarDays,
+  LineChart,
+  Medal,
+  Newspaper,
+  PiggyBank,
+  Search,
+  Star,
+  Target,
+  TrendingUp,
+  Wallet,
+} from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { SiteHeader } from "@/components/site-header";
@@ -59,8 +74,12 @@ function HomePage() {
 
   const assetsWithFundamentals = useMemo(() => assets.filter((a) => a.fundamentals), [assets]);
 
-  const gainers = [...assetsWithFundamentals].sort((a, b) => b.changeDayPct - a.changeDayPct).slice(0, 5);
-  const losers = [...assetsWithFundamentals].sort((a, b) => a.changeDayPct - b.changeDayPct).slice(0, 5);
+  const gainers = [...assetsWithFundamentals]
+    .sort((a, b) => b.changeDayPct - a.changeDayPct)
+    .slice(0, 5);
+  const losers = [...assetsWithFundamentals]
+    .sort((a, b) => a.changeDayPct - b.changeDayPct)
+    .slice(0, 5);
   const highDy = [...assetsWithFundamentals]
     .filter((a) => a.fundamentals !== null && a.fundamentals.dy > 0)
     .sort((a, b) => b.fundamentals!.dy - a.fundamentals!.dy)
@@ -80,11 +99,18 @@ function HomePage() {
         <section className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg border border-border bg-card px-5 py-3 text-sm">
           {MARKET_INDICES.map((idx) => (
             <div key={idx.ticker} className="flex items-baseline gap-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{idx.name}</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                {idx.name}
+              </span>
               <span className="tabular font-semibold">{formatIndexValue(idx)}</span>
               {idx.changePct !== 0 && (
-                <span className={"tabular text-xs " + (idx.changePct >= 0 ? "text-positive" : "text-negative")}>
-                  {idx.changePct >= 0 ? "+" : ""}{idx.changePct.toFixed(2)}%
+                <span
+                  className={
+                    "tabular text-xs " + (idx.changePct >= 0 ? "text-positive" : "text-negative")
+                  }
+                >
+                  {idx.changePct >= 0 ? "+" : ""}
+                  {idx.changePct.toFixed(2)}%
                 </span>
               )}
             </div>
@@ -140,13 +166,23 @@ function HomePage() {
         </section>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          <MarketList title="Maiores altas" subtitle="Variação do dia" assets={gainers} tone="positive" />
-          <MarketList title="Maiores quedas" subtitle="Variação do dia" assets={losers} tone="negative" />
+          <MarketList
+            title="Maiores altas"
+            subtitle="Variação do dia"
+            assets={gainers}
+            tone="positive"
+          />
+          <MarketList
+            title="Maiores quedas"
+            subtitle="Variação do dia"
+            assets={losers}
+            tone="negative"
+          />
           <MarketList
             title="Maiores dividendos"
             subtitle="Dividend Yield"
             assets={highDy}
-             metric={(a) => `${a.fundamentals!.dy.toFixed(2)}%`}
+            metric={(a) => `${a.fundamentals!.dy.toFixed(2)}%`}
           />
         </div>
 
@@ -177,7 +213,9 @@ function HomePage() {
                   <th className="px-4 py-2.5 text-right font-medium">Var. dia</th>
                   <th className="hidden md:table-cell px-4 py-2.5 text-right font-medium">DY</th>
                   <th className="hidden md:table-cell px-4 py-2.5 text-right font-medium">P/L</th>
-                  <th className="hidden lg:table-cell px-4 py-2.5 text-right font-medium">Valor de mercado</th>
+                  <th className="hidden lg:table-cell px-4 py-2.5 text-right font-medium">
+                    Valor de mercado
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -193,7 +231,9 @@ function HomePage() {
                       </Link>
                     </td>
                     <td className="px-4 py-2.5 text-muted-foreground">{a.name}</td>
-                    <td className="hidden sm:table-cell px-4 py-2.5 text-muted-foreground">{a.sector ?? "—"}</td>
+                    <td className="hidden sm:table-cell px-4 py-2.5 text-muted-foreground">
+                      {a.sector ?? "—"}
+                    </td>
                     <td className="tabular px-4 py-2.5 text-right">{formatBRL(a.price)}</td>
                     <td className="px-4 py-2.5 text-right">
                       <DeltaPct value={a.changeDayPct} />
@@ -344,18 +384,42 @@ function HomePage() {
       <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
         <div className="mx-auto max-w-[1400px] px-4">
           <div className="mb-4 flex flex-wrap justify-center gap-6">
-            <Link to="/" className="hover:text-foreground">Mercado</Link>
-            <Link to="/fiis" className="hover:text-foreground">FIIs</Link>
-            <Link to="/watchlist" className="hover:text-foreground">Watchlist</Link>
-            <Link to="/dividendos" className="hover:text-foreground">Dividendos</Link>
-            <Link to="/rankings" className="hover:text-foreground">Rankings</Link>
-            <Link to="/setores" className="hover:text-foreground">Setores</Link>
-            <Link to="/comparar" className="hover:text-foreground">Comparar</Link>
-            <Link to="/provisionador" className="hover:text-foreground">Provisionador</Link>
-            <Link to="/metas" className="hover:text-foreground">Metas</Link>
-            <Link to="/calculadoras" className="hover:text-foreground">Calculadoras</Link>
-            <Link to="/noticias" className="hover:text-foreground">Notícias</Link>
-            <Link to="/carteira" className="hover:text-foreground">Carteira</Link>
+            <Link to="/" className="hover:text-foreground">
+              Mercado
+            </Link>
+            <Link to="/fiis" className="hover:text-foreground">
+              FIIs
+            </Link>
+            <Link to="/watchlist" className="hover:text-foreground">
+              Watchlist
+            </Link>
+            <Link to="/dividendos" className="hover:text-foreground">
+              Dividendos
+            </Link>
+            <Link to="/rankings" className="hover:text-foreground">
+              Rankings
+            </Link>
+            <Link to="/setores" className="hover:text-foreground">
+              Setores
+            </Link>
+            <Link to="/comparar" className="hover:text-foreground">
+              Comparar
+            </Link>
+            <Link to="/provisionador" className="hover:text-foreground">
+              Provisionador
+            </Link>
+            <Link to="/metas" className="hover:text-foreground">
+              Metas
+            </Link>
+            <Link to="/calculadoras" className="hover:text-foreground">
+              Calculadoras
+            </Link>
+            <Link to="/noticias" className="hover:text-foreground">
+              Notícias
+            </Link>
+            <Link to="/carteira" className="hover:text-foreground">
+              Carteira
+            </Link>
           </div>
           Investidor Pro · cotações atualizadas automaticamente a cada 5 minutos
           {quotesUpdatedAt

@@ -1,4 +1,5 @@
 <!-- LOVABLE:BEGIN -->
+
 > [!IMPORTANT]
 > This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
 > published git history — force pushing, or rebasing/amending/squashing commits
@@ -7,15 +8,18 @@
 >
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
+
 <!-- LOVABLE:END -->
 
 ## Constraints
+
 - Foco em investidor de longo prazo: fundamentos e dividendos
 - Cripto, day trade, gamificação, cursos e AI chat não são prioridade
 - Projeto conectado ao Lovable — não reescrever histórico git
 - Usuário não é programador — comandos precisam ser claros
 
 ## Relevant Files
+
 - `src/lib/yahoo.server.ts`: funções server-side Yahoo Finance (fundamentos, histórico, dividendos, news) com cache em memória
 - `src/lib/data-functions.ts`: server functions combinadas (Yahoo Finance + BRAPI + mock fallback); `getAssetData` (detalhe), `getAssetList` (500+ ativos), `getAllAssets` (mock enriquecido), `getRealProjections` (projeção real de dividendos via Yahoo + fallback mock)
 - `src/lib/mock-data.ts`: dados mock de 20 ações (usado como fallback/seed)
@@ -40,12 +44,14 @@
 - `src/components/site-header.tsx`: navegação principal + dropdown do usuário com links Carteira/IRPF
 
 ## Commands
+
 - Dev server: `npm run dev` (na pasta do projeto, roda em http://localhost:8080)
 - Lint/check: `npx tsc --noEmit`
 - Build: `npm run build`
 - Type checking requires `powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"` on this machine (PowerShell execution policy restriction)
 
 ## Next Steps Priority
+
 - ✅ Fase 3: calculadoras (DCF, Price Target, CDB) + provisionador com timeline
 - ✅ Fase 4: watchlist + IRPF Helper
 - ✅ Fase 5: fatos relevantes + carteiras recomendadas
@@ -53,6 +59,7 @@
 - Pendente: error/notFound components em páginas que ainda não têm; responsividade mobile; skeletons para loading
 
 ## Data Architecture
+
 - **Listas** (index, rankings): BRAPI batch quotes para preços + mock/Yahoo para fundamentos quando disponíveis
 - **Detalhe** (ativo/$ticker): Yahoo Finance (fundamentos, histórico, dividendos) com cache 1h + fallback mock
 - **FIIs**: BRAPI quotes para preços ao vivo + mock-data para indicadores específicos (vacância, cap rate, etc.)

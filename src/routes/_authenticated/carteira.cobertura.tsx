@@ -3,7 +3,15 @@ import { useMemo, useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ShieldCheck, TrendingUp, Wallet, PiggyBank, Calendar, ArrowRight } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { SiteHeader } from "@/components/site-header";
 import { listOperations } from "@/lib/operations.functions";
 import { getRealProjections, type RealProjection } from "@/lib/data-functions";
@@ -17,8 +25,7 @@ export const Route = createFileRoute("/_authenticated/carteira/cobertura")({
       { title: "Cobertura de Despesas — Investidor Pro" },
       {
         name: "description",
-        content:
-          "Quanto os dividendos da sua carteira cobrem as suas despesas mensais projetadas.",
+        content: "Quanto os dividendos da sua carteira cobrem as suas despesas mensais projetadas.",
       },
     ],
   }),
@@ -150,8 +157,8 @@ function CoberturaPage() {
         </div>
 
         <p className="mb-6 max-w-3xl text-sm text-muted-foreground">
-          Quanto seus dividendos cobrem suas despesas mensais projetadas. Insira o valor de
-          despesas mensuales da sua vida que quer cobrir com renda passiva de dividendos.
+          Quanto seus dividendos cobrem suas despesas mensais projetadas. Insira o valor de despesas
+          mensuales da sua vida que quer cobrir com renda passiva de dividendos.
         </p>
 
         <section className="mb-6 grid gap-3 sm:grid-cols-3">
@@ -172,9 +179,7 @@ function CoberturaPage() {
                 step={50}
               />
             </div>
-            <div className="mt-1 text-[10px] text-muted-foreground">
-              Fica salvo no navegador
-            </div>
+            <div className="mt-1 text-[10px] text-muted-foreground">Fica salvo no navegador</div>
           </div>
 
           {/* Proventos mensais esperados */}
@@ -186,9 +191,7 @@ function CoberturaPage() {
             <div className="tabular mt-2 text-2xl font-bold text-positive">
               {formatBRL(monthlyAvg)}
             </div>
-            <div className="text-[10px] text-muted-foreground">
-              baseado nos próximos 12 meses
-            </div>
+            <div className="text-[10px] text-muted-foreground">baseado nos próximos 12 meses</div>
           </div>
 
           {/* Cobertura */}
@@ -233,7 +236,11 @@ function CoberturaPage() {
                     <stop offset="100%" stopColor="var(--color-positive)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                <CartesianGrid
+                  stroke="var(--color-border)"
+                  strokeDasharray="3 3"
+                  vertical={false}
+                />
                 <XAxis
                   dataKey="month"
                   tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -337,13 +344,7 @@ function CoberturaPage() {
   );
 }
 
-function ProjectionList({
-  projections,
-  total,
-}: {
-  projections: RealProjection[];
-  total: number;
-}) {
+function ProjectionList({ projections, total }: { projections: RealProjection[]; total: number }) {
   return (
     <ul className="divide-y divide-border">
       {projections.map((p, i) => {

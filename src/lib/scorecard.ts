@@ -64,7 +64,8 @@ function grahamScore(discount: number | null): { score: number; detail: string }
   }
   if (discount >= 0.2) return { score: 1, detail: `≥ 20% desconto` };
   if (discount >= 0) return { score: 0.5, detail: `${(discount * 100).toFixed(0)}% desconto` };
-  if (discount >= -0.05) return { score: 0.25, detail: `${(discount * 100).toFixed(0)}% acima (justo)` };
+  if (discount >= -0.05)
+    return { score: 0.25, detail: `${(discount * 100).toFixed(0)}% acima (justo)` };
   return { score: 0, detail: `${(discount * 100).toFixed(0)}% acima (caro)` };
 }
 
@@ -73,7 +74,8 @@ function bazinScore(discount: number | null): { score: number; detail: string } 
     return { score: 0, detail: "sem dados" };
   }
   if (discount >= 0.2) return { score: 1, detail: `≥ 20% abaixo do teto` };
-  if (discount >= 0) return { score: 0.6, detail: `${(discount * 100).toFixed(0)}% abaixo do teto` };
+  if (discount >= 0)
+    return { score: 0.6, detail: `${(discount * 100).toFixed(0)}% abaixo do teto` };
   return { score: 0, detail: `acima do teto` };
 }
 
@@ -92,19 +94,40 @@ export function computeScorecard(inp: ScorecardInputs): ScorecardResult {
   const roe = shape(inp.roe, { cap: 100, full: 20, mid: 15, low: 10 });
   const cagr = shape(inp.ew.dividendCagrFromHistory, { cap: 100, full: 10, mid: 5, low: 0 });
   const pvp = shape(inp.pvp, { cap: 100, full: 1, mid: 1.5, low: 2 });
-  const divida = shape(
-    inp.divLiquidaEbitda,
-    { cap: 100, full: 1, mid: 2, low: 3 },
-  );
+  const divida = shape(inp.divLiquidaEbitda, { cap: 100, full: 1, mid: 2, low: 3 });
 
   const contributions = [
-    { c: graham, w: W_GRAHAM, key: "graham", label: "Graham (desconto)", value: inp.ew.grahamDiscount === null ? null : inp.ew.grahamDiscount * 100 },
-    { c: bazin, w: W_BAZIN, key: "bazin", label: "Bazin (teto)", value: inp.ew.bazinDiscount === null ? null : inp.ew.bazinDiscount * 100 },
+    {
+      c: graham,
+      w: W_GRAHAM,
+      key: "graham",
+      label: "Graham (desconto)",
+      value: inp.ew.grahamDiscount === null ? null : inp.ew.grahamDiscount * 100,
+    },
+    {
+      c: bazin,
+      w: W_BAZIN,
+      key: "bazin",
+      label: "Bazin (teto)",
+      value: inp.ew.bazinDiscount === null ? null : inp.ew.bazinDiscount * 100,
+    },
     { c: dy, w: W_DY, key: "dy", label: "Dividend Yield", value: inp.dy },
     { c: roe, w: W_ROE, key: "roe", label: "ROE", value: inp.roe },
-    { c: cagr, w: W_CAGR, key: "cagr", label: "CAGR dividendos 5a", value: inp.ew.dividendCagrFromHistory },
+    {
+      c: cagr,
+      w: W_CAGR,
+      key: "cagr",
+      label: "CAGR dividendos 5a",
+      value: inp.ew.dividendCagrFromHistory,
+    },
     { c: pvp, w: W_PVP, key: "pvp", label: "P/VP", value: inp.pvp },
-    { c: divida, w: W_DIVIDA, key: "divida", label: "Dív. Líq./EBITDA", value: inp.divLiquidaEbitda },
+    {
+      c: divida,
+      w: W_DIVIDA,
+      key: "divida",
+      label: "Dív. Líq./EBITDA",
+      value: inp.divLiquidaEbitda,
+    },
   ];
 
   const criteria: CriterionResult[] = contributions.map((x) => ({
@@ -126,7 +149,10 @@ export function computeScorecard(inp: ScorecardInputs): ScorecardResult {
   else if (ratio >= 0.4) rating = "observar";
   else rating = "evitar";
 
-  const { isAristocrat, streak } = computeAristocrat(inp.annualDividends, inp.ew.dividendCagrFromHistory);
+  const { isAristocrat, streak } = computeAristocrat(
+    inp.annualDividends,
+    inp.ew.dividendCagrFromHistory,
+  );
 
   return { score, maxScore, rating, ratio, criteria, isAristocrat, streak };
 }
@@ -177,10 +203,14 @@ export function computeAristocrat(
 
 export function ratingLabel(rating: ScorecardResult["rating"]): string {
   switch (rating) {
-    case "comprar": return "Comprar";
-    case "manter": return "Manter";
-    case "observar": return "Observar";
-    case "evitar": return "Evitar";
+    case "comprar":
+      return "Comprar";
+    case "manter":
+      return "Manter";
+    case "observar":
+      return "Observar";
+    case "evitar":
+      return "Evitar";
   }
 }
 
@@ -190,9 +220,21 @@ export function ratingColor(rating: ScorecardResult["rating"]): {
   bar: string;
 } {
   switch (rating) {
-    case "comprar": return { badge: "bg-positive/15 text-positive", ring: "ring-positive/40", bar: "bg-positive" };
-    case "manter": return { badge: "bg-chart-2/15 text-chart-2", ring: "ring-chart-2/40", bar: "bg-chart-2" };
-    case "observar": return { badge: "bg-warning/15 text-warning", ring: "ring-warning/40", bar: "bg-warning" };
-    case "evitar": return { badge: "bg-negative/15 text-negative", ring: "ring-negative/40", bar: "bg-negative" };
+    case "comprar":
+      return {
+        badge: "bg-positive/15 text-positive",
+        ring: "ring-positive/40",
+        bar: "bg-positive",
+      };
+    case "manter":
+      return { badge: "bg-chart-2/15 text-chart-2", ring: "ring-chart-2/40", bar: "bg-chart-2" };
+    case "observar":
+      return { badge: "bg-warning/15 text-warning", ring: "ring-warning/40", bar: "bg-warning" };
+    case "evitar":
+      return {
+        badge: "bg-negative/15 text-negative",
+        ring: "ring-negative/40",
+        bar: "bg-negative",
+      };
   }
 }

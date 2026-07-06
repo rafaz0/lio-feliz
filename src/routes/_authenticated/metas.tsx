@@ -17,7 +17,10 @@ export const Route = createFileRoute("/_authenticated/metas")({
   head: () => ({
     meta: [
       { title: "Metas de Dividendos — Investidor Pro" },
-      { name: "description", content: "Defina sua meta de dividendos mensais e acompanhe o progresso." },
+      {
+        name: "description",
+        content: "Defina sua meta de dividendos mensais e acompanhe o progresso.",
+      },
     ],
   }),
   component: GoalsPage,
@@ -45,7 +48,9 @@ function GoalsPage() {
       if (op.side === "buy") map.set(op.ticker, cur + op.quantity);
       else map.set(op.ticker, Math.max(0, cur - op.quantity));
     }
-    return Array.from(map.entries()).filter(([_, q]) => q > 0).map(([t]) => t);
+    return Array.from(map.entries())
+      .filter(([_, q]) => q > 0)
+      .map(([t]) => t);
   }, [ops]);
 
   const { data: projections, isLoading } = useQuery({
@@ -101,17 +106,28 @@ function GoalsPage() {
                     className="h-9 w-40 text-right text-lg font-bold"
                     placeholder="5.000"
                     autoFocus
-                    onKeyDown={(e) => { if (e.key === "Enter") handleSave(); if (e.key === "Escape") setEditing(false); }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleSave();
+                      if (e.key === "Escape") setEditing(false);
+                    }}
                   />
-                  <Button size="sm" onClick={handleSave}>Salvar</Button>
-                  <Button size="sm" variant="ghost" onClick={() => setEditing(false)}>Cancelar</Button>
+                  <Button size="sm" onClick={handleSave}>
+                    Salvar
+                  </Button>
+                  <Button size="sm" variant="ghost" onClick={() => setEditing(false)}>
+                    Cancelar
+                  </Button>
                 </div>
               ) : (
                 <div className="mt-1 flex items-center gap-3">
-                  <span className="text-3xl font-bold">
-                    {target > 0 ? formatBRL(target) : "—"}
-                  </span>
-                  <button onClick={() => { setInputValue(String(target || "")); setEditing(true); }} className="text-muted-foreground hover:text-foreground transition">
+                  <span className="text-3xl font-bold">{target > 0 ? formatBRL(target) : "—"}</span>
+                  <button
+                    onClick={() => {
+                      setInputValue(String(target || ""));
+                      setEditing(true);
+                    }}
+                    className="text-muted-foreground hover:text-foreground transition"
+                  >
                     <Edit3 className="size-4" />
                   </button>
                 </div>
@@ -139,12 +155,14 @@ function GoalsPage() {
               </div>
               {gap > 0 && (
                 <p className="mt-3 text-sm text-muted-foreground">
-                  Faltam <span className="font-semibold text-foreground">{formatBRL(gap)}/mês</span> para atingir sua meta
+                  Faltam <span className="font-semibold text-foreground">{formatBRL(gap)}/mês</span>{" "}
+                  para atingir sua meta
                 </p>
               )}
               {progress >= 100 && (
                 <p className="mt-3 text-sm font-semibold text-green-600">
-                  Meta atingida! Seus dividendos projetados já cobrem {formatPctPlain(progress / 100)} da sua meta.
+                  Meta atingida! Seus dividendos projetados já cobrem{" "}
+                  {formatPctPlain(progress / 100)} da sua meta.
                 </p>
               )}
             </div>
@@ -153,7 +171,11 @@ function GoalsPage() {
 
         {!user && (
           <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-200">
-            Faça <Link to="/auth" className="font-semibold underline">login</Link> para conectar sua carteira e ver projeções reais.
+            Faça{" "}
+            <Link to="/auth" className="font-semibold underline">
+              login
+            </Link>{" "}
+            para conectar sua carteira e ver projeções reais.
           </div>
         )}
 
@@ -161,8 +183,11 @@ function GoalsPage() {
           <div className="mb-6 rounded-lg border border-dashed border-border bg-card p-8 text-center">
             <Plus className="mx-auto size-6 text-muted-foreground" />
             <p className="mt-2 text-sm text-muted-foreground">
-              Nenhum ativo na carteira.{' '}
-              <Link to="/" className="text-primary hover:underline">Adicione operações</Link> para ver projeções.
+              Nenhum ativo na carteira.{" "}
+              <Link to="/" className="text-primary hover:underline">
+                Adicione operações
+              </Link>{" "}
+              para ver projeções.
             </p>
           </div>
         )}
@@ -188,7 +213,7 @@ function GoalsPage() {
                   cur.count += 1;
                   map.set(p.ticker, cur);
                   return map;
-                }, new Map<string, { name: string; total: number; count: number }>())
+                }, new Map<string, { name: string; total: number; count: number }>()),
               )
                 .sort(([, a], [, b]) => b.total - a.total)
                 .map(([ticker, data]) => {
@@ -232,7 +257,8 @@ function GoalsPage() {
               <TrendingUp className="size-4 text-chart-2" /> Quanto investir a mais?
             </h2>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Para fechar o gap de <strong>{formatBRL(gap)}/mês</strong>, considerando um DY médio de 6% ao ano:
+              Para fechar o gap de <strong>{formatBRL(gap)}/mês</strong>, considerando um DY médio
+              de 6% ao ano:
             </p>
             <p className="mt-2 text-lg font-bold text-primary">
               ~{formatBRL(gap / 0.005)} em novos investimentos

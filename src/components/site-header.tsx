@@ -1,6 +1,17 @@
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { BarChart3, ChevronDown, FileText, LineChart, LogOut, Search, TrendingUp, User, Sparkles } from "lucide-react";
+import {
+  BarChart3,
+  ChevronDown,
+  Coins,
+  FileText,
+  LineChart,
+  LogOut,
+  Search,
+  TrendingUp,
+  User,
+  Sparkles,
+} from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
 import { Button } from "@/components/ui/button";
@@ -27,9 +38,10 @@ export function SiteHeader() {
     const term = q.trim().toUpperCase();
     if (!term) return setMatches([]);
     setMatches(
-      ASSETS.filter(
-        (a) => a.ticker.startsWith(term) || a.name.toUpperCase().includes(term),
-      ).slice(0, 6),
+      ASSETS.filter((a) => a.ticker.startsWith(term) || a.name.toUpperCase().includes(term)).slice(
+        0,
+        6,
+      ),
     );
   }, [q]);
 
@@ -64,12 +76,46 @@ export function SiteHeader() {
           >
             Mercado
           </Link>
-          <Link
-            to="/carteira"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
-          >
-            Carteira
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1.5 text-muted-foreground hover:text-foreground"
+              >
+                <TrendingUp className="size-4" /> Carteira
+                <ChevronDown className="size-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-44">
+              <DropdownMenuItem asChild>
+                <Link to="/carteira/proventos" className="flex items-center gap-2">
+                  <Coins className="size-4" /> Proventos
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/carteira/patrimonio" className="flex items-center gap-2">
+                  <TrendingUp className="size-4" /> Patrimônio
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/carteira/rentabilidade" className="flex items-center gap-2">
+                  <LineChart className="size-4" /> Rentabilidade
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/carteira/analise" className="flex items-center gap-2">
+                  <Sparkles className="size-4" /> Cobertura
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/carteira" className="flex items-center gap-2">
+                  <BarChart3 className="size-4" /> Resumo da carteira
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Link
             to="/dividendos"
             className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
@@ -78,7 +124,11 @@ export function SiteHeader() {
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground hover:text-foreground">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1.5 text-muted-foreground hover:text-foreground"
+              >
                 <BarChart3 className="size-4" /> Análise
                 <ChevronDown className="size-3" />
               </Button>
@@ -179,8 +229,7 @@ export function SiteHeader() {
                   </span>
                   <span
                     className={
-                      "tabular text-xs " +
-                      (m.changeDayPct >= 0 ? "text-positive" : "text-negative")
+                      "tabular text-xs " + (m.changeDayPct >= 0 ? "text-positive" : "text-negative")
                     }
                   >
                     {m.changeDayPct >= 0 ? "+" : ""}
@@ -196,33 +245,33 @@ export function SiteHeader() {
           <>
             <ThemeToggle />
             <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="gap-2">
-                <span className="grid size-7 place-items-center rounded-full bg-primary/15 text-primary">
-                  <User className="size-4" />
-                </span>
-                <span className="hidden text-sm md:inline">
-                  {user.user_metadata?.display_name ?? user.email?.split("@")[0]}
-                </span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-52">
-              <DropdownMenuLabel className="truncate">{user.email}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/carteira" className="flex items-center gap-2">
-                  <TrendingUp className="size-4" /> Minha carteira
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/irpf" className="flex items-center gap-2">
-                  <FileText className="size-4" /> IRPF
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
-                <LogOut className="size-4" /> Sair
-              </DropdownMenuItem>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <span className="grid size-7 place-items-center rounded-full bg-primary/15 text-primary">
+                    <User className="size-4" />
+                  </span>
+                  <span className="hidden text-sm md:inline">
+                    {user.user_metadata?.display_name ?? user.email?.split("@")[0]}
+                  </span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-52">
+                <DropdownMenuLabel className="truncate">{user.email}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/carteira/proventos" className="flex items-center gap-2">
+                    <TrendingUp className="size-4" /> Minha carteira
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/irpf" className="flex items-center gap-2">
+                    <FileText className="size-4" /> IRPF
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
+                  <LogOut className="size-4" /> Sair
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </>

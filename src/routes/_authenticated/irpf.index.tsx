@@ -12,7 +12,11 @@ export const Route = createFileRoute("/_authenticated/irpf/")({
   head: () => ({
     meta: [
       { title: "IRPF Helper — Investidor Pro" },
-      { name: "description", content: "Apuração mensal de ganho de capital para IRPF: ações (15%), FIIs (20%), day-trade, isenção R$ 20k e compensação de prejuízos." },
+      {
+        name: "description",
+        content:
+          "Apuração mensal de ganho de capital para IRPF: ações (15%), FIIs (20%), day-trade, isenção R$ 20k e compensação de prejuízos.",
+      },
     ],
   }),
   component: IrpfHelper,
@@ -37,9 +41,11 @@ function isFii(ticker: string) {
   return FII_RE.test(ticker);
 }
 
-function classifyDayTrade(ops: { traded_at: string; side: "buy" | "sell"; quantity: number; price: number }[]) {
-  return ops.filter((op, i, arr) =>
-    i > 0 && op.side === "sell" && op.traded_at === arr[i - 1]?.traded_at,
+function classifyDayTrade(
+  ops: { traded_at: string; side: "buy" | "sell"; quantity: number; price: number }[],
+) {
+  return ops.filter(
+    (op, i, arr) => i > 0 && op.side === "sell" && op.traded_at === arr[i - 1]?.traded_at,
   );
 }
 
@@ -49,7 +55,9 @@ function splitIntoMonths(ops: { traded_at: string }[]) {
   return Array.from(months).sort();
 }
 
-function calcGainPerTicker(ops: { traded_at: string; side: "buy" | "sell"; quantity: number; price: number }[]) {
+function calcGainPerTicker(
+  ops: { traded_at: string; side: "buy" | "sell"; quantity: number; price: number }[],
+) {
   const sorted = [...ops].sort((a, b) => a.traded_at.localeCompare(b.traded_at));
   let qty = 0;
   let avgPrice = 0;
@@ -66,14 +74,25 @@ function calcGainPerTicker(ops: { traded_at: string; side: "buy" | "sell"; quant
         totalGain += (op.price - avgPrice) * sellQty;
       }
       qty -= sellQty;
-      if (qty <= 0) { qty = 0; avgPrice = 0; }
+      if (qty <= 0) {
+        qty = 0;
+        avgPrice = 0;
+      }
     }
   }
 
   return totalGain;
 }
 
-function calcMonthSummaries(ops: { ticker: string; traded_at: string; side: "buy" | "sell"; quantity: number; price: number }[]): MonthSummary[] {
+function calcMonthSummaries(
+  ops: {
+    ticker: string;
+    traded_at: string;
+    side: "buy" | "sell";
+    quantity: number;
+    price: number;
+  }[],
+): MonthSummary[] {
   const months = splitIntoMonths(ops);
   const summaries: MonthSummary[] = [];
   const cumByType: Record<string, number> = { stock: 0, fii: 0 };
@@ -85,10 +104,14 @@ function calcMonthSummaries(ops: { ticker: string; traded_at: string; side: "buy
     for (const ticker of tickers) {
       const tickerOps = monthOps.filter((o) => o.ticker === ticker);
       const type = isFii(ticker) ? "fii" : "stock";
-      const totalBuy = tickerOps.filter((o) => o.side === "buy").reduce((s, o) => s + o.quantity * o.price, 0);
-      const totalSell = tickerOps.filter((o) => o.side === "sell").reduce((s, o) => s + o.quantity * o.price, 0);
+      const totalBuy = tickerOps
+        .filter((o) => o.side === "buy")
+        .reduce((s, o) => s + o.quantity * o.price, 0);
+      const totalSell = tickerOps
+        .filter((o) => o.side === "sell")
+        .reduce((s, o) => s + o.quantity * o.price, 0);
       const netGain = calcGainPerTicker(tickerOps);
-      const taxRate = type === "fii" ? 0.20 : 0.15;
+      const taxRate = type === "fii" ? 0.2 : 0.15;
       const isDayTrade = classifyDayTrade(tickerOps).length > 0;
       const effectiveRate = isDayTrade ? 0.15 : taxRate;
       const exempt = type === "stock" && totalSell <= 20_000;
@@ -169,7 +192,8 @@ function IrpfHelper() {
       <div className="mx-auto max-w-5xl p-6">
         <h1 className="mb-2 text-2xl font-bold">Ajuda IRPF</h1>
         <p className="text-muted-foreground">
-          Nenhuma operação encontrada. Adicione operações na página de Carteira para usar esta ferramenta.
+          Nenhuma operação encontrada. Adicione operações na página de Carteira para usar esta
+          ferramenta.
         </p>
       </div>
     );
@@ -188,7 +212,12 @@ function IrpfHelper() {
             Apuração mensal de ganho de capital — baseada nas suas operações
           </p>
         </div>
-        <Button variant="outline" size="sm" className="gap-2" onClick={() => exportToCsv(summaries)}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2"
+          onClick={() => exportToCsv(summaries)}
+        >
           <Download className="size-4" /> Exportar CSV
         </Button>
       </div>
@@ -204,7 +233,9 @@ function IrpfHelper() {
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="text-xs text-muted-foreground">Prejuízo acumulado</div>
-          <div className="text-xl font-bold text-red-600">{formatBRL(Math.abs(totals.totalLoss))}</div>
+          <div className="text-xl font-bold text-red-600">
+            {formatBRL(Math.abs(totals.totalLoss))}
+          </div>
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="text-xs text-muted-foreground">IR estimado</div>
@@ -217,11 +248,15 @@ function IrpfHelper() {
           <AlertTriangle className="size-4" /> Atenção
         </div>
         <ul className="ml-5 list-disc space-y-1 text-xs">
-          <li>Ações: alíquota de 15% sobre o ganho líquido. Isento se vendas no mês &le; R$ 20.000.</li>
+          <li>
+            Ações: alíquota de 15% sobre o ganho líquido. Isento se vendas no mês &le; R$ 20.000.
+          </li>
           <li>FIIs: alíquota de 20% sobre o ganho líquido. Não há isenção por valor.</li>
           <li>Day-trade: alíquota de 15% sobre o ganho líquido (sem isenção).</li>
           <li>Prejuízos de meses anteriores compensam ganhos futuros dentro da mesma categoria.</li>
-          <li>Esta ferramenta é uma estimativa. Consulte um contador para sua declaração oficial.</li>
+          <li>
+            Esta ferramenta é uma estimativa. Consulte um contador para sua declaração oficial.
+          </li>
         </ul>
       </div>
 
@@ -242,7 +277,8 @@ function IrpfHelper() {
               <div className="flex items-center gap-4 text-sm">
                 <span>Vendido: {formatBRL(monthTotalSell)}</span>
                 <span className={monthGain >= 0 ? "text-green-600" : "text-red-600"}>
-                  {monthGain >= 0 ? "+" : ""}{formatBRL(monthGain)}
+                  {monthGain >= 0 ? "+" : ""}
+                  {formatBRL(monthGain)}
                 </span>
                 {anyExempt && (
                   <span className="rounded bg-green-100 px-2 py-0.5 text-xs text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -271,20 +307,33 @@ function IrpfHelper() {
                       <td className="px-4 py-2 font-medium">{s.ticker}</td>
                       <td className="px-4 py-2 text-xs text-muted-foreground">
                         {s.type === "fii" ? "FII" : "Ação"}
-                        {classifyDayTrade(ops.filter((o) => o.traded_at.startsWith(s.month) && o.ticker === s.ticker)).length > 0 && (
-                          <span className="ml-1 rounded bg-purple-100 px-1 py-0.5 text-[10px] text-purple-800 dark:bg-purple-900 dark:text-purple-200">DT</span>
+                        {classifyDayTrade(
+                          ops.filter(
+                            (o) => o.traded_at.startsWith(s.month) && o.ticker === s.ticker,
+                          ),
+                        ).length > 0 && (
+                          <span className="ml-1 rounded bg-purple-100 px-1 py-0.5 text-[10px] text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                            DT
+                          </span>
                         )}
                       </td>
                       <td className="px-4 py-2 text-right tabular-nums">{formatBRL(s.totalBuy)}</td>
-                      <td className="px-4 py-2 text-right tabular-nums">{formatBRL(s.totalSell)}</td>
-                      <td className={`px-4 py-2 text-right tabular-nums ${s.netGain >= 0 ? "text-green-600" : "text-red-600"}`}>
-                        {s.netGain >= 0 ? "+" : ""}{formatBRL(s.netGain)}
+                      <td className="px-4 py-2 text-right tabular-nums">
+                        {formatBRL(s.totalSell)}
+                      </td>
+                      <td
+                        className={`px-4 py-2 text-right tabular-nums ${s.netGain >= 0 ? "text-green-600" : "text-red-600"}`}
+                      >
+                        {s.netGain >= 0 ? "+" : ""}
+                        {formatBRL(s.netGain)}
                       </td>
                       <td className="px-4 py-2 text-right tabular-nums">
                         {s.exempt ? (
                           <TooltipProvider>
                             <Tooltip>
-                              <TooltipTrigger className="cursor-help underline decoration-dotted">Isento</TooltipTrigger>
+                              <TooltipTrigger className="cursor-help underline decoration-dotted">
+                                Isento
+                              </TooltipTrigger>
                               <TooltipContent>Vendas &le; R$ 20.000 no mês</TooltipContent>
                             </Tooltip>
                           </TooltipProvider>
@@ -292,7 +341,9 @@ function IrpfHelper() {
                           `${(s.taxRate * 100).toFixed(0)}%`
                         )}
                       </td>
-                      <td className="px-4 py-2 text-right tabular-nums text-amber-600">{formatBRL(s.taxDue)}</td>
+                      <td className="px-4 py-2 text-right tabular-nums text-amber-600">
+                        {formatBRL(s.taxDue)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

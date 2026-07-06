@@ -80,7 +80,10 @@ export function buildPortfolioHistory(
         const sellQty = Math.min(op.quantity, cur.qty);
         cur.totalCost -= avg * sellQty;
         cur.qty -= sellQty;
-        if (cur.qty <= 0.00001) { cur.qty = 0; cur.totalCost = 0; }
+        if (cur.qty <= 0.00001) {
+          cur.qty = 0;
+          cur.totalCost = 0;
+        }
       }
       byTicker.set(op.ticker, cur);
     }
@@ -138,7 +141,7 @@ export function consolidatePortfolio(
     if (qty <= 0) continue;
     const asset = ASSETS_BY_TICKER[ticker];
     const overridePrice = priceOverrides?.[ticker];
-    const currentPrice = typeof overridePrice === "number" ? overridePrice : asset?.price ?? 0;
+    const currentPrice = typeof overridePrice === "number" ? overridePrice : (asset?.price ?? 0);
     const avgPrice = qty > 0 ? totalCost / qty : 0;
     const currentValue = qty * currentPrice;
     const invested = qty * avgPrice;

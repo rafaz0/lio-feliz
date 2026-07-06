@@ -1,6 +1,18 @@
 import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { Activity, ArrowLeft, Building2, ChartArea, Clock, Users, DollarSign, BarChart3, MapPin, TrendingUp, Waves } from "lucide-react";
+import {
+  Activity,
+  ArrowLeft,
+  Building2,
+  ChartArea,
+  Clock,
+  Users,
+  DollarSign,
+  BarChart3,
+  MapPin,
+  TrendingUp,
+  Waves,
+} from "lucide-react";
 import {
   Area,
   Bar,
@@ -31,15 +43,26 @@ export const Route = createFileRoute("/fii/$ticker")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "FII não encontrado — Investidor Pro" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [
+          { title: "FII não encontrado — Investidor Pro" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     }
     const f = loaderData.fii;
     return {
       meta: [
         { title: `${f.ticker} · ${f.name} — Investidor Pro` },
-        { name: "description", content: `${f.ticker} (${f.name}) — DY ${f.dy.toFixed(2)}%, P/VP ${f.pvp.toFixed(2)}, setor ${f.segment}.` },
+        {
+          name: "description",
+          content: `${f.ticker} (${f.name}) — DY ${f.dy.toFixed(2)}%, P/VP ${f.pvp.toFixed(2)}, setor ${f.segment}.`,
+        },
         { property: "og:title", content: `${f.ticker} — ${f.name}` },
-        { property: "og:description", content: `FII ${f.ticker}: DY ${f.dy.toFixed(2)}%, P/VP ${f.pvp.toFixed(2)}, vacância ${f.vacancy.toFixed(1)}%.` },
+        {
+          property: "og:description",
+          content: `FII ${f.ticker}: DY ${f.dy.toFixed(2)}%, P/VP ${f.pvp.toFixed(2)}, vacância ${f.vacancy.toFixed(1)}%.`,
+        },
       ],
     };
   },
@@ -48,7 +71,9 @@ export const Route = createFileRoute("/fii/$ticker")({
       <SiteHeader />
       <div className="mx-auto max-w-2xl px-4 py-20 text-center">
         <h1 className="text-3xl font-semibold">FII não encontrado</h1>
-        <p className="mt-2 text-muted-foreground">Não encontramos esse código na nossa base de FIIs.</p>
+        <p className="mt-2 text-muted-foreground">
+          Não encontramos esse código na nossa base de FIIs.
+        </p>
         <Button asChild className="mt-6">
           <Link to="/fiis">Ver todos os FIIs</Link>
         </Button>
@@ -66,7 +91,10 @@ export const Route = createFileRoute("/fii/$ticker")({
           <p className="mt-2 text-muted-foreground">{error.message}</p>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
             <button
-              onClick={() => { router.invalidate(); reset(); }}
+              onClick={() => {
+                router.invalidate();
+                reset();
+              }}
               className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Tentar novamente
@@ -157,13 +185,51 @@ function FiiPage() {
   }, [filteredHistory, indicatorsData]);
 
   const indicators = [
-    { label: "Dividend Yield", value: `${fii.dy.toFixed(2)}%`, hint: "DY anualizado", icon: TrendingUp },
-    { label: "P/VP", value: fii.pvp.toFixed(2), hint: "Preço / Valor Patrimonial", icon: DollarSign },
-    { label: "Cap Rate", value: fii.capRate > 0 ? `${fii.capRate.toFixed(1)}%` : "—", hint: "Taxa de capitalização", icon: BarChart3 },
-    { label: "Vacância", value: `${fii.vacancy.toFixed(1)}%`, hint: "Vacância física", icon: MapPin },
-    { label: "Vacância Média", value: `${fii.avgVacancy.toFixed(1)}%`, hint: "Média do setor", icon: MapPin },
-    { label: "Liquidez Diária", value: fii.dailyLiquidity >= 1_000_000 ? `R$${(fii.dailyLiquidity / 1_000_000).toFixed(1)}M` : `R$${(fii.dailyLiquidity / 1_000).toFixed(0)}K`, hint: "Volume médio diário", icon: DollarSign },
-    { label: "Cotistas", value: formatNumber(fii.shareholders), hint: "Número de cotistas", icon: Users },
+    {
+      label: "Dividend Yield",
+      value: `${fii.dy.toFixed(2)}%`,
+      hint: "DY anualizado",
+      icon: TrendingUp,
+    },
+    {
+      label: "P/VP",
+      value: fii.pvp.toFixed(2),
+      hint: "Preço / Valor Patrimonial",
+      icon: DollarSign,
+    },
+    {
+      label: "Cap Rate",
+      value: fii.capRate > 0 ? `${fii.capRate.toFixed(1)}%` : "—",
+      hint: "Taxa de capitalização",
+      icon: BarChart3,
+    },
+    {
+      label: "Vacância",
+      value: `${fii.vacancy.toFixed(1)}%`,
+      hint: "Vacância física",
+      icon: MapPin,
+    },
+    {
+      label: "Vacância Média",
+      value: `${fii.avgVacancy.toFixed(1)}%`,
+      hint: "Média do setor",
+      icon: MapPin,
+    },
+    {
+      label: "Liquidez Diária",
+      value:
+        fii.dailyLiquidity >= 1_000_000
+          ? `R$${(fii.dailyLiquidity / 1_000_000).toFixed(1)}M`
+          : `R$${(fii.dailyLiquidity / 1_000).toFixed(0)}K`,
+      hint: "Volume médio diário",
+      icon: DollarSign,
+    },
+    {
+      label: "Cotistas",
+      value: formatNumber(fii.shareholders),
+      hint: "Número de cotistas",
+      icon: Users,
+    },
     { label: "Segmento", value: fii.segment, hint: "Classificação", icon: Building2 },
   ];
 
@@ -201,13 +267,16 @@ function FiiPage() {
                 <div className="mt-1 flex items-center gap-1 text-[10px] text-muted-foreground">
                   <Clock className="size-3" />
                   {new Date(liveQuote.updatedAt).toLocaleTimeString("pt-BR", {
-                    hour: "2-digit", minute: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
                   })}
                 </div>
               )}
             </div>
             <div>
-              <div className="text-xs uppercase tracking-wider text-muted-foreground">Dividend Yield</div>
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                Dividend Yield
+              </div>
               <div className="mt-1 text-2xl font-bold text-positive">{fii.dy.toFixed(2)}%</div>
             </div>
           </div>
@@ -256,7 +325,9 @@ function FiiPage() {
               <button
                 onClick={() => setShowSma(!showSma)}
                 className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium transition ${
-                  showSma ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground"
+                  showSma
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <Activity className="size-3" /> SMA
@@ -264,7 +335,9 @@ function FiiPage() {
               <button
                 onClick={() => setShowEma(!showEma)}
                 className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium transition ${
-                  showEma ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground"
+                  showEma
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <TrendingUp className="size-3" /> EMA
@@ -272,7 +345,9 @@ function FiiPage() {
               <button
                 onClick={() => setShowBb(!showBb)}
                 className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium transition ${
-                  showBb ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground"
+                  showBb
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <Waves className="size-3" /> Bollinger
@@ -280,7 +355,9 @@ function FiiPage() {
               <button
                 onClick={() => setShowRsi(!showRsi)}
                 className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium transition ${
-                  showRsi ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground"
+                  showRsi
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <ChartArea className="size-3" /> RSI
@@ -288,7 +365,9 @@ function FiiPage() {
               <button
                 onClick={() => setShowMacd(!showMacd)}
                 className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium transition ${
-                  showMacd ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground"
+                  showMacd
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <Activity className="size-3" /> MACD
@@ -296,9 +375,20 @@ function FiiPage() {
             </div>
             <div className="h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={priceChartData} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
-                  <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="date" tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} stroke="var(--color-border)" />
+                <ComposedChart
+                  data={priceChartData}
+                  margin={{ left: 8, right: 8, top: 8, bottom: 0 }}
+                >
+                  <CartesianGrid
+                    stroke="var(--color-border)"
+                    strokeDasharray="3 3"
+                    vertical={false}
+                  />
+                  <XAxis
+                    dataKey="date"
+                    tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                    stroke="var(--color-border)"
+                  />
                   <YAxis
                     domain={["auto", "auto"]}
                     tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -307,27 +397,97 @@ function FiiPage() {
                     stroke="var(--color-border)"
                   />
                   <Tooltip
-                    contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                    contentStyle={{
+                      background: "var(--color-popover)",
+                      border: "1px solid var(--color-border)",
+                      borderRadius: 6,
+                      fontSize: 12,
+                    }}
                   />
-                  <Area type="linear" dataKey="close" fill="var(--color-primary)" fillOpacity={0.08} stroke="var(--color-primary)" strokeWidth={2} />
+                  <Area
+                    type="linear"
+                    dataKey="close"
+                    fill="var(--color-primary)"
+                    fillOpacity={0.08}
+                    stroke="var(--color-primary)"
+                    strokeWidth={2}
+                  />
                   {showSma && (
                     <>
-                      <Line type="linear" dataKey="sma20" stroke="#f59e0b" strokeWidth={1.5} dot={false} connectNulls />
-                      <Line type="linear" dataKey="sma50" stroke="#3b82f6" strokeWidth={1.5} dot={false} connectNulls />
-                      <Line type="linear" dataKey="sma200" stroke="#8b5cf6" strokeWidth={1.5} dot={false} connectNulls />
+                      <Line
+                        type="linear"
+                        dataKey="sma20"
+                        stroke="#f59e0b"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        type="linear"
+                        dataKey="sma50"
+                        stroke="#3b82f6"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        type="linear"
+                        dataKey="sma200"
+                        stroke="#8b5cf6"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
                     </>
                   )}
                   {showEma && (
                     <>
-                      <Line type="linear" dataKey="ema12" stroke="#10b981" strokeWidth={1.5} dot={false} connectNulls />
-                      <Line type="linear" dataKey="ema26" stroke="#ef4444" strokeWidth={1.5} dot={false} connectNulls />
+                      <Line
+                        type="linear"
+                        dataKey="ema12"
+                        stroke="#10b981"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        type="linear"
+                        dataKey="ema26"
+                        stroke="#ef4444"
+                        strokeWidth={1.5}
+                        dot={false}
+                        connectNulls
+                      />
                     </>
                   )}
                   {showBb && (
                     <>
-                      <Line type="linear" dataKey="bbUpper" stroke="#a855f7" strokeWidth={1} strokeDasharray="4 4" dot={false} connectNulls />
-                      <Line type="linear" dataKey="bbMiddle" stroke="#a855f7" strokeWidth={1} dot={false} connectNulls />
-                      <Line type="linear" dataKey="bbLower" stroke="#a855f7" strokeWidth={1} strokeDasharray="4 4" dot={false} connectNulls />
+                      <Line
+                        type="linear"
+                        dataKey="bbUpper"
+                        stroke="#a855f7"
+                        strokeWidth={1}
+                        strokeDasharray="4 4"
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        type="linear"
+                        dataKey="bbMiddle"
+                        stroke="#a855f7"
+                        strokeWidth={1}
+                        dot={false}
+                        connectNulls
+                      />
+                      <Line
+                        type="linear"
+                        dataKey="bbLower"
+                        stroke="#a855f7"
+                        strokeWidth={1}
+                        strokeDasharray="4 4"
+                        dot={false}
+                        connectNulls
+                      />
                     </>
                   )}
                 </ComposedChart>
@@ -337,14 +497,36 @@ function FiiPage() {
               <div className="mt-4 h-28 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={rsiData} margin={{ left: 8, right: 8, top: 4, bottom: 0 }}>
-                    <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                    <CartesianGrid
+                      stroke="var(--color-border)"
+                      strokeDasharray="3 3"
+                      vertical={false}
+                    />
                     <XAxis dataKey="date" hide />
-                    <YAxis domain={[0, 100]} tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }} width={30} stroke="var(--color-border)" ticks={[30, 50, 70]} />
+                    <YAxis
+                      domain={[0, 100]}
+                      tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
+                      width={30}
+                      stroke="var(--color-border)"
+                      ticks={[30, 50, 70]}
+                    />
                     <ReferenceLine y={30} stroke="#ef4444" strokeDasharray="4 4" />
                     <ReferenceLine y={70} stroke="#10b981" strokeDasharray="4 4" />
-                    <Line type="linear" dataKey="rsi" stroke="#f59e0b" strokeWidth={1.5} dot={false} connectNulls />
+                    <Line
+                      type="linear"
+                      dataKey="rsi"
+                      stroke="#f59e0b"
+                      strokeWidth={1.5}
+                      dot={false}
+                      connectNulls
+                    />
                     <Tooltip
-                      contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                      contentStyle={{
+                        background: "var(--color-popover)",
+                        border: "1px solid var(--color-border)",
+                        borderRadius: 6,
+                        fontSize: 12,
+                      }}
                     />
                   </ComposedChart>
                 </ResponsiveContainer>
@@ -354,15 +536,42 @@ function FiiPage() {
               <div className="mt-4 h-28 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={macdData} margin={{ left: 8, right: 8, top: 4, bottom: 0 }}>
-                    <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                    <CartesianGrid
+                      stroke="var(--color-border)"
+                      strokeDasharray="3 3"
+                      vertical={false}
+                    />
                     <XAxis dataKey="date" hide />
-                    <YAxis tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }} width={40} stroke="var(--color-border)" />
+                    <YAxis
+                      tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
+                      width={40}
+                      stroke="var(--color-border)"
+                    />
                     <ReferenceLine y={0} stroke="var(--color-border)" />
                     <Bar dataKey="histogram" fill="var(--color-border)" opacity={0.6} />
-                    <Line type="linear" dataKey="macd" stroke="#3b82f6" strokeWidth={1.5} dot={false} connectNulls />
-                    <Line type="linear" dataKey="signal" stroke="#ef4444" strokeWidth={1.5} dot={false} connectNulls />
+                    <Line
+                      type="linear"
+                      dataKey="macd"
+                      stroke="#3b82f6"
+                      strokeWidth={1.5}
+                      dot={false}
+                      connectNulls
+                    />
+                    <Line
+                      type="linear"
+                      dataKey="signal"
+                      stroke="#ef4444"
+                      strokeWidth={1.5}
+                      dot={false}
+                      connectNulls
+                    />
                     <Tooltip
-                      contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                      contentStyle={{
+                        background: "var(--color-popover)",
+                        border: "1px solid var(--color-border)",
+                        borderRadius: 6,
+                        fontSize: 12,
+                      }}
                     />
                   </ComposedChart>
                 </ResponsiveContainer>
@@ -395,7 +604,11 @@ function FiiPage() {
             <div className="h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={divChartData} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
-                  <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                  <CartesianGrid
+                    stroke="var(--color-border)"
+                    strokeDasharray="3 3"
+                    vertical={false}
+                  />
                   <XAxis
                     dataKey="date"
                     tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -438,7 +651,9 @@ function FiiPage() {
                 {fii.dividendHistory.map((d, i) => (
                   <tr key={i} className="border-t border-border">
                     <td className="px-4 py-2 text-muted-foreground">{formatDate(d.paidAt)}</td>
-                    <td className="tabular px-4 py-2 text-right font-medium">{formatBRL(d.amount)}</td>
+                    <td className="tabular px-4 py-2 text-right font-medium">
+                      {formatBRL(d.amount)}
+                    </td>
                   </tr>
                 ))}
               </tbody>

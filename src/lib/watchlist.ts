@@ -45,10 +45,7 @@ export function useWatchlist(): {
 } {
   const tickers = useSyncExternalStore(subscribe, getStored, getStored);
 
-  const isWatching = useCallback(
-    (t: string) => tickers.includes(t.toUpperCase()),
-    [tickers],
-  );
+  const isWatching = useCallback((t: string) => tickers.includes(t.toUpperCase()), [tickers]);
 
   const add = useCallback((t: string) => {
     const upper = t.toUpperCase();

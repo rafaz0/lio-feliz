@@ -11,11 +11,7 @@ export function DeltaPct({ value, className, showSign = true }: Props) {
   const isUp = value >= 0;
   return (
     <span
-      className={cn(
-        "tabular font-medium",
-        isUp ? "text-positive" : "text-negative",
-        className,
-      )}
+      className={cn("tabular font-medium", isUp ? "text-positive" : "text-negative", className)}
     >
       {showSign ? formatPct(value) : `${value.toFixed(2)}%`}
     </span>

@@ -61,33 +61,23 @@ export async function fetchYahooFundamentals(ticker: string): Promise<YahooFunda
     const vpa = bookValue ?? null;
     const dividendYield = summary?.dividendYield?.raw
       ? summary.dividendYield.raw * 100
-      : (stats?.dividendYield?.raw ? stats.dividendYield.raw * 100 : 0);
-    const roe = stats?.returnOnEquity?.raw
-      ? stats.returnOnEquity.raw * 100
-      : null;
-    const roic = stats?.returnOnCapital?.raw
-      ? stats.returnOnCapital.raw * 100
-      : null;
-    const profitMargin = fin?.profitMargins?.raw
-      ? fin.profitMargins.raw * 100
-      : null;
-    const debtToEbitda = stats?.debtToEquity?.raw
-      ? stats.debtToEquity.raw / 100
-      : null;
+      : stats?.dividendYield?.raw
+        ? stats.dividendYield.raw * 100
+        : 0;
+    const roe = stats?.returnOnEquity?.raw ? stats.returnOnEquity.raw * 100 : null;
+    const roic = stats?.returnOnCapital?.raw ? stats.returnOnCapital.raw * 100 : null;
+    const profitMargin = fin?.profitMargins?.raw ? fin.profitMargins.raw * 100 : null;
+    const debtToEbitda = stats?.debtToEquity?.raw ? stats.debtToEquity.raw / 100 : null;
     const enterpriseValue = stats?.enterpriseValue?.raw ?? null;
     const ebitda = fin?.ebitda?.raw ?? null;
-    const evEbitda = (enterpriseValue && ebitda && ebitda > 0)
-      ? enterpriseValue / ebitda
-      : null;
+    const evEbitda = enterpriseValue && ebitda && ebitda > 0 ? enterpriseValue / ebitda : null;
     const payoutRatio = stats?.payoutRatio?.raw
       ? stats.payoutRatio.raw * 100
-      : (stats?.trailingPE?.raw && summary?.dividendYield?.raw
+      : stats?.trailingPE?.raw && summary?.dividendYield?.raw
         ? stats.trailingPE.raw * summary.dividendYield.raw * 100
-        : null);
+        : null;
     const revenuePerShare = fin?.revenuePerShare?.raw ?? null;
-    const psr = (revenuePerShare && currentPrice > 0)
-      ? currentPrice / revenuePerShare
-      : null;
+    const psr = revenuePerShare && currentPrice > 0 ? currentPrice / revenuePerShare : null;
     const sector = price?.sector ?? price?.underlyingSector ?? "";
     const description = price?.longBusinessSummary ?? "";
 
@@ -100,7 +90,7 @@ export async function fetchYahooFundamentals(ticker: string): Promise<YahooFunda
       sector,
       marketCap,
       pl,
-      pvp: (bookValue && currentPrice > 0) ? currentPrice / bookValue : null,
+      pvp: bookValue && currentPrice > 0 ? currentPrice / bookValue : null,
       lpa,
       vpa,
       dy: dividendYield,
@@ -262,11 +252,13 @@ function mapCashFlowEntry(e: Record<string, { raw?: number } | undefined>): Fina
     totalEquity: null,
     operatingCashFlow: opCashFlow,
     capitalExpenditures: capEx,
-    freeCashFlow: (opCashFlow !== null && capEx !== null) ? opCashFlow + capEx : null,
+    freeCashFlow: opCashFlow !== null && capEx !== null ? opCashFlow + capEx : null,
   };
 }
 
-export async function fetchYahooFinancialStatements(ticker: string): Promise<FinancialStatements | null> {
+export async function fetchYahooFinancialStatements(
+  ticker: string,
+): Promise<FinancialStatements | null> {
   const cached = getCached<FinancialStatements>(`fin-stmts-${ticker}`);
   if (cached) return cached;
 
@@ -324,7 +316,14 @@ export async function fetchYahooNews(ticker: string): Promise<YahooNewsItem[]> {
     });
     if (!res.ok) return [];
     const json = await res.json();
-    const news: { title: string; publisher: string; link: string; providerPublishTime: number; type: string; uuid: string }[] = json?.news ?? [];
+    const news: {
+      title: string;
+      publisher: string;
+      link: string;
+      providerPublishTime: number;
+      type: string;
+      uuid: string;
+    }[] = json?.news ?? [];
 
     return news
       .filter((n) => n.type === "STORY")

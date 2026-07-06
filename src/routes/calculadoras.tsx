@@ -11,7 +11,11 @@ export const Route = createFileRoute("/calculadoras")({
   head: () => ({
     meta: [
       { title: "Calculadoras — Investidor Pro" },
-      { name: "description", content: "Calculadoras financeiras: DCF, Preço Teto, CDB, Juros Compostos e Reserva Emergencial." },
+      {
+        name: "description",
+        content:
+          "Calculadoras financeiras: DCF, Preço Teto, CDB, Juros Compostos e Reserva Emergencial.",
+      },
     ],
   }),
   component: CalculatorsPage,
@@ -32,19 +36,39 @@ function CalculatorsPage() {
         </div>
 
         <div className="mb-6 flex flex-wrap gap-2">
-          <Button variant={tab === "compound" ? "default" : "outline"} size="sm" onClick={() => setTab("compound")}>
+          <Button
+            variant={tab === "compound" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setTab("compound")}
+          >
             <PiggyBank className="mr-1.5 size-3.5" /> Juros Compostos
           </Button>
-          <Button variant={tab === "emergency" ? "default" : "outline"} size="sm" onClick={() => setTab("emergency")}>
+          <Button
+            variant={tab === "emergency" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setTab("emergency")}
+          >
             <DollarSign className="mr-1.5 size-3.5" /> Reserva
           </Button>
-          <Button variant={tab === "dcf" ? "default" : "outline"} size="sm" onClick={() => setTab("dcf")}>
+          <Button
+            variant={tab === "dcf" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setTab("dcf")}
+          >
             <TrendingUp className="mr-1.5 size-3.5" /> DCF
           </Button>
-          <Button variant={tab === "priceTarget" ? "default" : "outline"} size="sm" onClick={() => setTab("priceTarget")}>
+          <Button
+            variant={tab === "priceTarget" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setTab("priceTarget")}
+          >
             <Target className="mr-1.5 size-3.5" /> Preço Teto
           </Button>
-          <Button variant={tab === "cdb" ? "default" : "outline"} size="sm" onClick={() => setTab("cdb")}>
+          <Button
+            variant={tab === "cdb" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setTab("cdb")}
+          >
             <Landmark className="mr-1.5 size-3.5" /> CDB
           </Button>
         </div>
@@ -59,8 +83,17 @@ function CalculatorsPage() {
   );
 }
 
-function ResultCard({ label, value, variant }: { label: string; value: string; variant?: "positive" | "negative" | "neutral" }) {
-  const color = variant === "positive" ? "text-positive" : variant === "negative" ? "text-negative" : "";
+function ResultCard({
+  label,
+  value,
+  variant,
+}: {
+  label: string;
+  value: string;
+  variant?: "positive" | "negative" | "neutral";
+}) {
+  const color =
+    variant === "positive" ? "text-positive" : variant === "negative" ? "text-negative" : "";
   return (
     <div>
       <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
@@ -69,13 +102,34 @@ function ResultCard({ label, value, variant }: { label: string; value: string; v
   );
 }
 
-function NumberInput({ label, value, onChange, step, suffix, placeholder }: {
-  label: string; value: number; onChange: (v: number) => void; step?: string; suffix?: string; placeholder?: string;
+function NumberInput({
+  label,
+  value,
+  onChange,
+  step,
+  suffix,
+  placeholder,
+}: {
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+  step?: string;
+  suffix?: string;
+  placeholder?: string;
 }) {
   return (
     <div>
-      <Label>{label}{suffix ? ` (${suffix})` : ""}</Label>
-      <Input type="number" step={step ?? "1"} value={value || ""} placeholder={placeholder ?? "0"} onChange={(e) => onChange(Number(e.target.value) || 0)} />
+      <Label>
+        {label}
+        {suffix ? ` (${suffix})` : ""}
+      </Label>
+      <Input
+        type="number"
+        step={step ?? "1"}
+        value={value || ""}
+        placeholder={placeholder ?? "0"}
+        onChange={(e) => onChange(Number(e.target.value) || 0)}
+      />
     </div>
   );
 }
@@ -98,7 +152,10 @@ function CompoundInterest() {
 
   return (
     <div className="rounded-lg border border-border bg-card p-6">
-      <div className="mb-6 flex items-center gap-2"><PiggyBank className="size-5 text-primary" /><h2 className="text-lg font-semibold">Juros Compostos</h2></div>
+      <div className="mb-6 flex items-center gap-2">
+        <PiggyBank className="size-5 text-primary" />
+        <h2 className="text-lg font-semibold">Juros Compostos</h2>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <NumberInput label="Valor inicial" value={initial} onChange={setInitial} suffix="R$" />
         <NumberInput label="Aporte mensal" value={monthly} onChange={setMonthly} suffix="R$" />
@@ -128,18 +185,44 @@ function EmergencyFund() {
 
   return (
     <div className="rounded-lg border border-border bg-card p-6">
-      <div className="mb-6 flex items-center gap-2"><DollarSign className="size-5 text-primary" /><h2 className="text-lg font-semibold">Reserva Emergencial</h2></div>
+      <div className="mb-6 flex items-center gap-2">
+        <DollarSign className="size-5 text-primary" />
+        <h2 className="text-lg font-semibold">Reserva Emergencial</h2>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <NumberInput label="Gasto mensal" value={monthlyExpense} onChange={setMonthlyExpense} suffix="R$" />
+        <NumberInput
+          label="Gasto mensal"
+          value={monthlyExpense}
+          onChange={setMonthlyExpense}
+          suffix="R$"
+        />
         <NumberInput label="Meses de cobertura" value={monthsCover} onChange={setMonthsCover} />
-        <NumberInput label="Guardado hoje" value={currentSavings} onChange={setCurrentSavings} suffix="R$" />
-        <NumberInput label="Poupança mensal" value={monthlySaving} onChange={setMonthlySaving} suffix="R$" />
+        <NumberInput
+          label="Guardado hoje"
+          value={currentSavings}
+          onChange={setCurrentSavings}
+          suffix="R$"
+        />
+        <NumberInput
+          label="Poupança mensal"
+          value={monthlySaving}
+          onChange={setMonthlySaving}
+          suffix="R$"
+        />
       </div>
       <div className="mt-6 grid grid-cols-2 gap-4 rounded-md bg-surface-2 p-4 sm:grid-cols-4">
         <ResultCard label="Meta" value={formatBRL(target)} />
         <ResultCard label="Já guardado" value={formatBRL(currentSavings)} />
-        <ResultCard label="Falta" value={formatBRL(remaining)} variant={remaining > 0 ? "negative" : "positive"} />
-        <ResultCard label="Tempo" value={timeToGoal > 0 ? `${timeToGoal} meses` : "Meta atingida!"} variant={timeToGoal > 0 ? "neutral" : "positive"} />
+        <ResultCard
+          label="Falta"
+          value={formatBRL(remaining)}
+          variant={remaining > 0 ? "negative" : "positive"}
+        />
+        <ResultCard
+          label="Tempo"
+          value={timeToGoal > 0 ? `${timeToGoal} meses` : "Meta atingida!"}
+          variant={timeToGoal > 0 ? "neutral" : "positive"}
+        />
       </div>
     </div>
   );
@@ -164,40 +247,88 @@ function DcfCalculator() {
   let pvFcf = 0;
   let cf = fcfPerShare;
   for (let y = 1; y <= years1; y++) {
-    cf *= (1 + g1);
+    cf *= 1 + g1;
     pvFcf += cf / Math.pow(1 + d, y);
   }
   for (let y = 1; y <= years2; y++) {
-    cf *= (1 + g2);
+    cf *= 1 + g2;
     pvFcf += cf / Math.pow(1 + d, years1 + y);
   }
 
-  const terminalValue = cf * (1 + tg) / (d - tg);
+  const terminalValue = (cf * (1 + tg)) / (d - tg);
   const pvTerminal = terminalValue / Math.pow(1 + d, years1 + years2);
   const fairValue = pvFcf + pvTerminal;
   const upside = currentPrice > 0 ? ((fairValue - currentPrice) / currentPrice) * 100 : 0;
 
   return (
     <div className="rounded-lg border border-border bg-card p-6">
-      <div className="mb-6 flex items-center gap-2"><TrendingUp className="size-5 text-primary" /><h2 className="text-lg font-semibold">DCF — Fluxo de Caixa Descontado</h2></div>
-      <p className="mb-4 text-xs text-muted-foreground">Valuation pelo método DCF. Preencha o FCF por ação e as premissas de crescimento.</p>
+      <div className="mb-6 flex items-center gap-2">
+        <TrendingUp className="size-5 text-primary" />
+        <h2 className="text-lg font-semibold">DCF — Fluxo de Caixa Descontado</h2>
+      </div>
+      <p className="mb-4 text-xs text-muted-foreground">
+        Valuation pelo método DCF. Preencha o FCF por ação e as premissas de crescimento.
+      </p>
       <div className="grid gap-4 sm:grid-cols-2">
-        <NumberInput label="FCF por ação" value={fcfPerShare} onChange={setFcfPerShare} suffix="R$" step="0.1" />
-        <NumberInput label="Crescimento (anos 1–5)" value={growth1} onChange={setGrowth1} suffix="%" step="0.5" />
+        <NumberInput
+          label="FCF por ação"
+          value={fcfPerShare}
+          onChange={setFcfPerShare}
+          suffix="R$"
+          step="0.1"
+        />
+        <NumberInput
+          label="Crescimento (anos 1–5)"
+          value={growth1}
+          onChange={setGrowth1}
+          suffix="%"
+          step="0.5"
+        />
         <NumberInput label="Período 1" value={years1} onChange={setYears1} suffix="anos" />
-        <NumberInput label="Crescimento (anos 6–10)" value={growth2} onChange={setGrowth2} suffix="%" step="0.5" />
+        <NumberInput
+          label="Crescimento (anos 6–10)"
+          value={growth2}
+          onChange={setGrowth2}
+          suffix="%"
+          step="0.5"
+        />
         <NumberInput label="Período 2" value={years2} onChange={setYears2} suffix="anos" />
-        <NumberInput label="Crescimento terminal" value={terminalGrowth} onChange={setTerminalGrowth} suffix="%" step="0.1" />
-        <NumberInput label="WACC (Taxa de desconto)" value={wacc} onChange={setWacc} suffix="%" step="0.5" />
-        <NumberInput label="Preço atual (opcional)" value={currentPrice} onChange={setCurrentPrice} suffix="R$" step="0.1" />
+        <NumberInput
+          label="Crescimento terminal"
+          value={terminalGrowth}
+          onChange={setTerminalGrowth}
+          suffix="%"
+          step="0.1"
+        />
+        <NumberInput
+          label="WACC (Taxa de desconto)"
+          value={wacc}
+          onChange={setWacc}
+          suffix="%"
+          step="0.5"
+        />
+        <NumberInput
+          label="Preço atual (opcional)"
+          value={currentPrice}
+          onChange={setCurrentPrice}
+          suffix="R$"
+          step="0.1"
+        />
       </div>
       <div className="mt-6 grid grid-cols-2 gap-4 rounded-md bg-surface-2 p-4 sm:grid-cols-4">
         <ResultCard label="Valor Justo" value={formatBRL(fairValue)} variant="positive" />
         <ResultCard label="FCF + Terminal PV" value={formatBRL(pvFcf)} />
         <ResultCard label="PV Terminal" value={formatBRL(pvTerminal)} />
-        <ResultCard label="% Terminal" value={`${fairValue > 0 ? (pvTerminal / fairValue * 100).toFixed(1) : 0}%`} />
+        <ResultCard
+          label="% Terminal"
+          value={`${fairValue > 0 ? ((pvTerminal / fairValue) * 100).toFixed(1) : 0}%`}
+        />
         {currentPrice > 0 && (
-          <ResultCard label="Margem de Segurança" value={`${upside >= 0 ? "+" : ""}${upside.toFixed(1)}%`} variant={upside >= 0 ? "positive" : "negative"} />
+          <ResultCard
+            label="Margem de Segurança"
+            value={`${upside >= 0 ? "+" : ""}${upside.toFixed(1)}%`}
+            variant={upside >= 0 ? "positive" : "negative"}
+          />
         )}
       </div>
     </div>
@@ -236,19 +367,35 @@ function PriceTarget() {
 
   return (
     <div className="rounded-lg border border-border bg-card p-6">
-      <div className="mb-6 flex items-center gap-2"><Target className="size-5 text-primary" /><h2 className="text-lg font-semibold">Preço Teto</h2></div>
-      <p className="mb-4 text-xs text-muted-foreground">Calcule o preço justo com base em múltiplos ou dividend yield esperado.</p>
+      <div className="mb-6 flex items-center gap-2">
+        <Target className="size-5 text-primary" />
+        <h2 className="text-lg font-semibold">Preço Teto</h2>
+      </div>
+      <p className="mb-4 text-xs text-muted-foreground">
+        Calcule o preço justo com base em múltiplos ou dividend yield esperado.
+      </p>
 
       <div className="mb-4 flex gap-2">
         {(["pl", "pvp", "dy"] as const).map((m) => (
-          <Button key={m} variant={method === m ? "default" : "outline"} size="sm" onClick={() => setMethod(m)}>
+          <Button
+            key={m}
+            variant={method === m ? "default" : "outline"}
+            size="sm"
+            onClick={() => setMethod(m)}
+          >
             {m === "pl" ? "P/L" : m === "pvp" ? "P/VP" : "Dividend Yield"}
           </Button>
         ))}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <NumberInput label="Preço atual" value={currentPrice} onChange={setCurrentPrice} suffix="R$" step="0.1" />
+        <NumberInput
+          label="Preço atual"
+          value={currentPrice}
+          onChange={setCurrentPrice}
+          suffix="R$"
+          step="0.1"
+        />
         {method === "pl" && (
           <>
             <NumberInput label="LPA" value={lpa} onChange={setLpa} suffix="R$" step="0.1" />
@@ -265,16 +412,34 @@ function PriceTarget() {
           <>
             <NumberInput label="DY atual" value={dy} onChange={setDy} suffix="%" step="0.5" />
             <NumberInput label="LPA" value={lpa} onChange={setLpa} suffix="R$" step="0.1" />
-            <NumberInput label={`DY alvo`} value={targetDy} onChange={setTargetDy} suffix="%" step="0.5" />
+            <NumberInput
+              label={`DY alvo`}
+              value={targetDy}
+              onChange={setTargetDy}
+              suffix="%"
+              step="0.5"
+            />
           </>
         )}
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-4 rounded-md bg-surface-2 p-4 sm:grid-cols-4">
-        <ResultCard label={`Preço Teto (${label})`} value={formatBRL(targetPrice)} variant="positive" />
+        <ResultCard
+          label={`Preço Teto (${label})`}
+          value={formatBRL(targetPrice)}
+          variant="positive"
+        />
         <ResultCard label="Preço Atual" value={formatBRL(currentPrice)} />
-        <ResultCard label="Upside / Downside" value={`${upside >= 0 ? "+" : ""}${upside.toFixed(1)}%`} variant={upside >= 0 ? "positive" : "negative"} />
-        <ResultCard label="Recomendação" value={upside >= 20 ? "COMPRA" : upside >= 0 ? "NEUTRA" : "VENDA"} variant={upside >= 20 ? "positive" : upside >= 0 ? "neutral" : "negative"} />
+        <ResultCard
+          label="Upside / Downside"
+          value={`${upside >= 0 ? "+" : ""}${upside.toFixed(1)}%`}
+          variant={upside >= 0 ? "positive" : "negative"}
+        />
+        <ResultCard
+          label="Recomendação"
+          value={upside >= 20 ? "COMPRA" : upside >= 0 ? "NEUTRA" : "VENDA"}
+          variant={upside >= 20 ? "positive" : upside >= 0 ? "neutral" : "negative"}
+        />
       </div>
     </div>
   );
@@ -302,11 +467,22 @@ function CdbCalculator() {
 
   return (
     <div className="rounded-lg border border-border bg-card p-6">
-      <div className="mb-6 flex items-center gap-2"><Landmark className="size-5 text-primary" /><h2 className="text-lg font-semibold">Simulador de CDB</h2></div>
-      <p className="mb-4 text-xs text-muted-foreground">Simule a rentabilidade de um CDB com base no % do CDI e prazo.</p>
+      <div className="mb-6 flex items-center gap-2">
+        <Landmark className="size-5 text-primary" />
+        <h2 className="text-lg font-semibold">Simulador de CDB</h2>
+      </div>
+      <p className="mb-4 text-xs text-muted-foreground">
+        Simule a rentabilidade de um CDB com base no % do CDI e prazo.
+      </p>
       <div className="grid gap-4 sm:grid-cols-2">
         <NumberInput label="Valor investido" value={amount} onChange={setAmount} suffix="R$" />
-        <NumberInput label="CDI anual" value={cdiRate} onChange={setCdiRate} suffix="%" step="0.1" />
+        <NumberInput
+          label="CDI anual"
+          value={cdiRate}
+          onChange={setCdiRate}
+          suffix="%"
+          step="0.1"
+        />
         <NumberInput label="% do CDI" value={spread} onChange={setSpread} suffix="%" step="1" />
         <NumberInput label="Prazo" value={days} onChange={setDays} suffix="dias" />
       </div>
@@ -316,7 +492,11 @@ function CdbCalculator() {
         <ResultCard label={`IR (${irRate}%)`} value={`-${formatBRL(irValue)}`} variant="negative" />
         <ResultCard label="Rendimento líquido" value={formatBRL(netReturn)} variant="positive" />
         <ResultCard label="Taxa líquida anual" value={`${netRate.toFixed(2)}%`} />
-        <ResultCard label="Valor final líquido" value={formatBRL(amount + netReturn)} variant="positive" />
+        <ResultCard
+          label="Valor final líquido"
+          value={formatBRL(amount + netReturn)}
+          variant="positive"
+        />
       </div>
     </div>
   );

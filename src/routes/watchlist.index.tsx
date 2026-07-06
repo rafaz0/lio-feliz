@@ -83,9 +83,7 @@ function WatchlistPage() {
     const tickerSet = new Set(tickers);
     return list
       .filter((a) => !tickerSet.has(a.ticker))
-      .filter(
-        (a) => a.ticker.includes(term) || a.name.toUpperCase().includes(term),
-      )
+      .filter((a) => a.ticker.includes(term) || a.name.toUpperCase().includes(term))
       .slice(0, 8);
   }, [search, list, tickers]);
 
@@ -96,9 +94,7 @@ function WatchlistPage() {
         <div className="mb-6 flex items-center gap-3">
           <Star className="size-6 text-primary" />
           <h1 className="text-2xl font-bold tracking-tight">Watchlist</h1>
-          <span className="text-xs text-muted-foreground">
-            {tickers.length} ativos monitorados
-          </span>
+          <span className="text-xs text-muted-foreground">{tickers.length} ativos monitorados</span>
         </div>
 
         {/* Add ticker */}
@@ -128,9 +124,7 @@ function WatchlistPage() {
                 >
                   <Plus className="size-3.5 text-primary" />
                   <span className="font-semibold">{a.ticker}</span>
-                  <span className="truncate text-xs text-muted-foreground">
-                    {a.name}
-                  </span>
+                  <span className="truncate text-xs text-muted-foreground">{a.name}</span>
                 </button>
               ))}
             </div>
@@ -182,7 +176,9 @@ function WatchlistPage() {
                     <td className="px-4 py-2.5 text-muted-foreground">
                       {a.name}
                       {!a.inList && (
-                        <span className="ml-1.5 rounded bg-chart-4/10 px-1 py-0.5 text-[9px] text-chart-4">novo</span>
+                        <span className="ml-1.5 rounded bg-chart-4/10 px-1 py-0.5 text-[9px] text-chart-4">
+                          novo
+                        </span>
                       )}
                     </td>
                     <td className="tabular px-4 py-2.5 text-right">

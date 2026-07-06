@@ -1,7 +1,23 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { fetchYahooFundamentals, fetchYahooHistory, fetchYahooDividends, fetchYahooFinancialStatements, getCached, setCache, type YahooFundamentals, type FinancialStatements } from "./yahoo.server";
-import { ASSETS, ASSETS_BY_TICKER, type Asset, type Dividend, type Sector, type AssetFundamentals } from "./mock-data";
+import {
+  fetchYahooFundamentals,
+  fetchYahooHistory,
+  fetchYahooDividends,
+  fetchYahooFinancialStatements,
+  getCached,
+  setCache,
+  type YahooFundamentals,
+  type FinancialStatements,
+} from "./yahoo.server";
+import {
+  ASSETS,
+  ASSETS_BY_TICKER,
+  type Asset,
+  type Dividend,
+  type Sector,
+  type AssetFundamentals,
+} from "./mock-data";
 import { FIIS, getFii } from "./fii-mock-data";
 
 const BRAPI_BASE = "https://brapi.dev/api";
@@ -12,13 +28,13 @@ const US_SECTORS: Record<string, string> = {
   "Communication Services": "Comunicação",
   "Consumer Cyclical": "Consumo Cíclico",
   "Consumer Defensive": "Consumo Defensivo",
-  "Energy": "Energia",
+  Energy: "Energia",
   "Financial Services": "Financeiro",
-  "Healthcare": "Saúde",
-  "Industrials": "Industriais",
+  Healthcare: "Saúde",
+  Industrials: "Industriais",
   "Real Estate": "Imobiliário",
-  "Technology": "Tecnologia",
-  "Utilities": "Utilidade Pública",
+  Technology: "Tecnologia",
+  Utilities: "Utilidade Pública",
 };
 
 function mapSector(yahooSector: string): Sector {
@@ -43,9 +59,20 @@ export interface AssetLite {
 }
 
 const EMPTY_FUNDS: AssetFundamentals = {
-  pl: 0, pvp: 0, dy: 0, roe: 0, roic: 0, margemLiquida: 0,
-  divLiquidaEbitda: 0, lpa: 0, vpa: 0, marketCap: 0,
-  evEbitda: 0, payout: 0, psr: 0, dividendCagr: 0,
+  pl: 0,
+  pvp: 0,
+  dy: 0,
+  roe: 0,
+  roic: 0,
+  margemLiquida: 0,
+  divLiquidaEbitda: 0,
+  lpa: 0,
+  vpa: 0,
+  marketCap: 0,
+  evEbitda: 0,
+  payout: 0,
+  psr: 0,
+  dividendCagr: 0,
 };
 
 function brapiHeaders() {
@@ -62,7 +89,9 @@ function buildBrapiUrl(path: string): string {
   return url.toString();
 }
 
-async function batchBrapiQuotes(tickers: string[]): Promise<Record<string, { price: number; changePct: number; name: string }>> {
+async function batchBrapiQuotes(
+  tickers: string[],
+): Promise<Record<string, { price: number; changePct: number; name: string }>> {
   const result: Record<string, { price: number; changePct: number; name: string }> = {};
   for (let i = 0; i < tickers.length; i += BRAPI_QUOTE_CHUNK) {
     const chunk = tickers.slice(i, i + BRAPI_QUOTE_CHUNK);
@@ -70,7 +99,7 @@ async function batchBrapiQuotes(tickers: string[]): Promise<Record<string, { pri
       const url = buildBrapiUrl(`/api/quote/${chunk.join(",")}`);
       const res = await fetch(url, { headers: brapiHeaders() });
       if (!res.ok) continue;
-      const json = await res.json() as {
+      const json = (await res.json()) as {
         results?: Array<{
           symbol: string;
           regularMarketPrice?: number;
@@ -95,8 +124,8 @@ async function batchBrapiQuotes(tickers: string[]): Promise<Record<string, { pri
   return result;
 }
 
-export const getAvailableTickers = createServerFn({ method: "GET" })
-  .handler(async (): Promise<string[]> => {
+export const getAvailableTickers = createServerFn({ method: "GET" }).handler(
+  async (): Promise<string[]> => {
     const cached = getCached<string[]>("available-tickers");
     if (cached) return cached;
 
@@ -105,14 +134,15 @@ export const getAvailableTickers = createServerFn({ method: "GET" })
         headers: brapiHeaders(),
       });
       if (!res.ok) throw new Error("BRAPI unavailable");
-      const json = await res.json() as { stocks?: string[] };
+      const json = (await res.json()) as { stocks?: string[] };
       const tickers = json.stocks ?? [];
       setCache("available-tickers", tickers);
       return tickers;
     } catch {
       return ASSETS.map((a) => a.ticker);
     }
-  });
+  },
+);
 
 export const getAssetData = createServerFn({ method: "GET" })
   .validator(z.object({ ticker: z.string().min(1).max(20) }))
@@ -133,9 +163,12 @@ export const getAssetData = createServerFn({ method: "GET" })
     if (cached) {
       yahooFunds = cached.fundamentals;
       yahooHistory = cached.history;
-      yahooDividends = cached.dividends?.map((d) => ({
-        paidAt: d.paidAt, type: "Dividendo" as const, amount: d.amount,
-      })) ?? null;
+      yahooDividends =
+        cached.dividends?.map((d) => ({
+          paidAt: d.paidAt,
+          type: "Dividendo" as const,
+          amount: d.amount,
+        })) ?? null;
     } else {
       const [funds, hist, divs] = await Promise.all([
         fetchYahooFundamentals(ticker),
@@ -144,9 +177,12 @@ export const getAssetData = createServerFn({ method: "GET" })
       ]);
       yahooFunds = funds;
       yahooHistory = hist;
-      yahooDividends = divs?.map((d) => ({
-        paidAt: d.paidAt, type: "Dividendo" as const, amount: d.amount,
-      })) ?? null;
+      yahooDividends =
+        divs?.map((d) => ({
+          paidAt: d.paidAt,
+          type: "Dividendo" as const,
+          amount: d.amount,
+        })) ?? null;
 
       if (funds) {
         setCache(cacheKey, { fundamentals: funds, history: hist, dividends: divs });
@@ -194,7 +230,7 @@ export const getAssetData = createServerFn({ method: "GET" })
       const url = buildBrapiUrl(`/api/quote/${ticker}`);
       const res = await fetch(url, { headers: brapiHeaders() });
       if (res.ok) {
-        const json = await res.json() as {
+        const json = (await res.json()) as {
           results?: Array<{
             symbol: string;
             regularMarketPrice?: number;
@@ -227,10 +263,12 @@ export const getAssetData = createServerFn({ method: "GET" })
   });
 
 export const getAssetList = createServerFn({ method: "GET" })
-  .validator(z.object({
-    limit: z.number().min(1).max(500).default(500),
-    search: z.string().optional(),
-  }))
+  .validator(
+    z.object({
+      limit: z.number().min(1).max(500).default(500),
+      search: z.string().optional(),
+    }),
+  )
   .handler(async ({ data }): Promise<AssetLite[]> => {
     const cached = getCached<AssetLite[]>("asset-list");
     if (cached) {
@@ -244,7 +282,7 @@ export const getAssetList = createServerFn({ method: "GET" })
         headers: brapiHeaders(),
       });
       if (res.ok) {
-        const json = await res.json() as { stocks?: string[] };
+        const json = (await res.json()) as { stocks?: string[] };
         allTickers = json.stocks ?? [];
       } else {
         allTickers = ASSETS.map((a) => a.ticker);
@@ -256,10 +294,9 @@ export const getAssetList = createServerFn({ method: "GET" })
     // Limit to requested amount (plus mock assets)
     const mockTickers = new Set(ASSETS.map((a) => a.ticker));
     const extraTickers = allTickers.filter((t) => !mockTickers.has(t));
-    const selected = [...new Set([
-      ...ASSETS.map((a) => a.ticker),
-      ...extraTickers.slice(0, data.limit),
-    ])];
+    const selected = [
+      ...new Set([...ASSETS.map((a) => a.ticker), ...extraTickers.slice(0, data.limit)]),
+    ];
 
     // Batch fetch quotes from BRAPI
     const liveMap = await batchBrapiQuotes(selected);
@@ -301,13 +338,11 @@ export const getAssetList = createServerFn({ method: "GET" })
 function filterList(list: AssetLite[], search?: string): AssetLite[] {
   if (!search?.trim()) return list;
   const term = search.trim().toUpperCase();
-  return list.filter(
-    (a) => a.ticker.includes(term) || a.name.toUpperCase().includes(term),
-  );
+  return list.filter((a) => a.ticker.includes(term) || a.name.toUpperCase().includes(term));
 }
 
-export const getAllAssets = createServerFn({ method: "GET" })
-  .handler(async (): Promise<RichAsset[]> => {
+export const getAllAssets = createServerFn({ method: "GET" }).handler(
+  async (): Promise<RichAsset[]> => {
     const tickers = ASSETS.map((a) => a.ticker);
     const liveMap = await batchBrapiQuotes(tickers);
 
@@ -320,7 +355,8 @@ export const getAllAssets = createServerFn({ method: "GET" })
         isRealData: false,
       };
     });
-  });
+  },
+);
 
 interface YahooData {
   fundamentals: YahooFundamentals;
@@ -347,9 +383,11 @@ function addMonths(date: Date, n: number): Date {
 }
 
 export const getRealProjections = createServerFn({ method: "POST" })
-  .validator(z.object({
-    tickers: z.array(z.string().min(1).max(10)).min(0).max(50),
-  }))
+  .validator(
+    z.object({
+      tickers: z.array(z.string().min(1).max(10)).min(0).max(50),
+    }),
+  )
   .handler(async ({ data }): Promise<RealProjection[]> => {
     const { tickers } = data;
     if (tickers.length === 0) return [];
@@ -395,7 +433,8 @@ export const getRealProjections = createServerFn({ method: "POST" })
         exDate.setDate(exDate.getDate() - (isFii ? 2 : 3));
         const variation = avgAmount * (0.85 + Math.random() * 0.3);
         const amount = Number(variation.toFixed(2));
-        const status: "declared" | "projected" = isFii && i <= 2 ? "declared" : i === 1 ? "declared" : "projected";
+        const status: "declared" | "projected" =
+          isFii && i <= 2 ? "declared" : i === 1 ? "declared" : "projected";
         projections.push({
           ticker,
           name,
@@ -421,8 +460,8 @@ export interface BenchmarkPoint {
   ifix: number;
 }
 
-export const getBenchmarkData = createServerFn({ method: "GET" })
-  .handler(async (): Promise<BenchmarkPoint[]> => {
+export const getBenchmarkData = createServerFn({ method: "GET" }).handler(
+  async (): Promise<BenchmarkPoint[]> => {
     const cacheKey = "benchmark-history";
     const cached = getCached<BenchmarkPoint[]>(cacheKey);
     if (cached) return cached;
@@ -469,16 +508,19 @@ export const getBenchmarkData = createServerFn({ method: "GET" })
     const idivMap = new Map(idivNorm.map((d) => [d.date, d.value]));
     const ifixMap = new Map(ifixNorm.map((d) => [d.date, d.value]));
 
-    const benchmark: BenchmarkPoint[] = dates.map((date) => ({
-      date,
-      ibov: ibovMap.get(date) ?? 0,
-      idiv: idivMap.get(date) ?? 0,
-      ifix: ifixMap.get(date) ?? 0,
-    })).filter((d) => d.ibov > 0 || d.idiv > 0 || d.ifix > 0);
+    const benchmark: BenchmarkPoint[] = dates
+      .map((date) => ({
+        date,
+        ibov: ibovMap.get(date) ?? 0,
+        idiv: idivMap.get(date) ?? 0,
+        ifix: ifixMap.get(date) ?? 0,
+      }))
+      .filter((d) => d.ibov > 0 || d.idiv > 0 || d.ifix > 0);
 
     setCache(cacheKey, benchmark);
     return benchmark;
-  });
+  },
+);
 
 export const getFinancialStatements = createServerFn({ method: "GET" })
   .validator(z.object({ ticker: z.string().min(1).max(20) }))
