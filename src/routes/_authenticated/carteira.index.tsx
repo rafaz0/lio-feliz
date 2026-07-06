@@ -19,7 +19,7 @@ import {
 import { AlertTriangle, DollarSign, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
-import { getBenchmarkData, type BenchmarkPoint } from "@/lib/data-functions";
+import { getBenchmarkData } from "@/lib/data-functions";
 import { ASSETS_BY_TICKER } from "@/lib/mock-data";
 import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
@@ -71,49 +71,24 @@ function PortfolioOverview() {
     refetchOnWindowFocus: false,
   });
 
-  if (isLoading || !ops) {
-    return (
-      <div className="grid gap-4 md:grid-cols-4">
-        {[...Array(4)].map((_, i) => (
-          <Skeleton key={i} className="h-24" />
-        ))}
-      </div>
-    );
-  }
-
-  const priceOverrides: Record<string, number> = {};
   const quotesData = quotesQuery.data?.quotes ?? {};
+  const priceOverrides: Record<string, number> = {};
   for (const [t, q] of Object.entries(quotesData)) {
     priceOverrides[t] = q.price;
   }
-  const portfolio = consolidatePortfolio(ops, priceOverrides);
-  const isEmpty = portfolio.positions.length === 0;
-
-  const dividendsByTicker: Record<string, number> = {};
-  let totalDividends = 0;
-  for (const p of portfolio.positions) {
-    const asset = ASSETS_BY_TICKER[p.ticker];
-    if (!asset) continue;
-    const totalPerShare = asset.dividends.reduce((s, d) => s + d.amount, 0);
-    const received = totalPerShare * p.quantity;
-    dividendsByTicker[p.ticker] = received;
-    totalDividends += received;
-  }
-  const quotesUpdatedAt = Object.values(quotesData)[0]?.updatedAt;
-  const quotesError = quotesQuery.data?.error;
-  const liveCount = Object.keys(quotesData).length;
-
-  const history = useMemo(
-    () => buildPortfolioHistory(ops ?? [], priceOverrides),
-    [ops, priceOverrides],
-  );
 
   const fetchBenchmark = useServerFn(getBenchmarkData);
   const { data: benchmarkData } = useQuery({
     queryKey: ["benchmark"],
     queryFn: () => fetchBenchmark(),
     staleTime: 3_600_000,
+    enabled: !!ops,
   });
+
+  const history = useMemo(
+    () => buildPortfolioHistory(ops ?? [], priceOverrides),
+    [ops, priceOverrides],
+  );
 
   const benchmarkChartData = useMemo(() => {
     if (!benchmarkData || history.length < 2) return null;
@@ -187,6 +162,33 @@ function PortfolioOverview() {
 
     return { volatility, maxDrawdown, beta, sharpe };
   }, [history, benchmarkChartData]);
+
+  if (isLoading || !ops) {
+    return (
+      <div className="grid gap-4 md:grid-cols-4">
+        {[...Array(4)].map((_, i) => (
+          <Skeleton key={i} className="h-24" />
+        ))}
+      </div>
+    );
+  }
+
+  const portfolio = consolidatePortfolio(ops, priceOverrides);
+  const isEmpty = portfolio.positions.length === 0;
+
+  const dividendsByTicker: Record<string, number> = {};
+  let totalDividends = 0;
+  for (const p of portfolio.positions) {
+    const asset = ASSETS_BY_TICKER[p.ticker];
+    if (!asset) continue;
+    const totalPerShare = asset.dividends.reduce((s, d) => s + d.amount, 0);
+    const received = totalPerShare * p.quantity;
+    dividendsByTicker[p.ticker] = received;
+    totalDividends += received;
+  }
+  const quotesUpdatedAt = Object.values(quotesData)[0]?.updatedAt;
+  const quotesError = quotesQuery.data?.error;
+  const liveCount = Object.keys(quotesData).length;
 
   return (
     <div className="space-y-6">
