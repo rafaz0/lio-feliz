@@ -125,6 +125,7 @@ function DividendosPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar por ticker ou empresa..."
+              autoComplete="off"
               className="h-9 pl-8"
             />
           </div>

@@ -1,8 +1,16 @@
 const YAHOO_BASE = "https://query1.finance.yahoo.com";
 
+const CRYPTO_RE = /^(BTC|ETH|SOL|ADA|DOT|AVAX|MATIC|LINK|XRP|DOGE|USDT|USDC|BNB|TRX|ATOM|FIL|NEAR|APT|SUI|ARB|OP)[-]/;
+const INTERNATIONAL_RE = /^[A-Z]{1,4}\d{0,2}$/;
+
 export function toYahooSymbol(ticker: string): string {
   const t = ticker.toUpperCase().trim();
   if (t.endsWith(".SA")) return t;
+  if (CRYPTO_RE.test(t)) return t;
+  if (INTERNATIONAL_RE.test(t) && t.length >= 3 && t.length <= 5) {
+    const knownBr = /^[A-Z0-9]{4,6}\d$/;
+    if (!knownBr.test(t)) return t;
+  }
   if (/^[A-Z0-9]{4,6}$/.test(t)) return t + ".SA";
   return t;
 }
@@ -403,6 +411,74 @@ export function computeDividendCAGR(annual: AnnualDividends[]): number | null {
 }
 
 const YAHOO_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
+
+const BRAPI_BASE = "https://brapi.dev/api";
+
+export async function fetchBRAPIDividends(
+  ticker: string,
+): Promise<{ paidAt: string; amount: number; label: string }[] | null> {
+  try {
+    const url = `${BRAPI_BASE}/quote/${encodeURIComponent(ticker)}?dividends=true&range=5y`;
+    const res = await fetch(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(10000) });
+    if (!res.ok) return null;
+    const json = await res.json() as {
+      results?: Array<{
+        dividendsData?: {
+          cashDividends?: Array<{
+            paymentDate: string;
+            rate: number;
+            label: string;
+          }>;
+        };
+      }>;
+    };
+    const raw = json?.results?.[0]?.dividendsData?.cashDividends;
+    if (!raw || raw.length === 0) return null;
+    return raw
+      .filter((d) => d.rate > 0 && d.paymentDate)
+      .map((d) => ({
+        paidAt: d.paymentDate.slice(0, 10),
+        amount: d.rate,
+        label: d.label === "JCP" ? "jcp" : "dividendo",
+      }))
+      .filter((d) => d.paidAt.length === 10);
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchBRAPIStockDividends(
+  ticker: string,
+): Promise<{ paidAt: string; factor: number; label: string }[] | null> {
+  try {
+    const url = `${BRAPI_BASE}/quote/${encodeURIComponent(ticker)}?dividends=true&range=5y`;
+    const res = await fetch(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(10000) });
+    if (!res.ok) return null;
+    const json = await res.json() as {
+      results?: Array<{
+        dividendsData?: {
+          stockDividends?: Array<{
+            lastDatePrior: string;
+            factor: number;
+            label: string;
+          }>;
+        };
+      }>;
+    };
+    const raw = json?.results?.[0]?.dividendsData?.stockDividends;
+    if (!raw || raw.length === 0) return null;
+    return raw
+      .filter((d) => d.factor > 0 && d.lastDatePrior)
+      .map((d) => ({
+        paidAt: d.lastDatePrior.slice(0, 10),
+        factor: d.factor,
+        label: d.label === "DESDOBRAMENTO" ? "split" : d.label === "GRUPAMENTO" ? "reverse_split" : "bonus",
+      }))
+      .filter((d) => d.paidAt.length === 10);
+  } catch {
+    return null;
+  }
+}
 
 export async function fetchYahooQuotes(
   tickers: string[],

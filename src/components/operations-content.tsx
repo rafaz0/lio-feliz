@@ -1,9 +1,10 @@
+import { useEffect, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, RefreshCw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
-import { deleteOperation, listOperations } from "@/lib/operations.functions";
+import { deleteOperation, listOperations, syncPendingDividends } from "@/lib/operations.functions";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -12,6 +13,7 @@ import { formatBRL, formatDate, formatQty } from "@/lib/format";
 export function OperationsContent() {
   const list = useServerFn(listOperations);
   const del = useServerFn(deleteOperation);
+  const syncDivs = useServerFn(syncPendingDividends);
   const qc = useQueryClient();
 
   const { data: ops, isLoading } = useQuery({
@@ -28,6 +30,28 @@ export function OperationsContent() {
     onError: (e: Error) => toast.error(e.message),
   });
 
+  const syncMut = useMutation({
+    mutationFn: () => syncDivs(),
+    onSuccess: (r) => {
+      if (r.count > 0) {
+        toast.success(`${r.count} provento(s) sincronizado(s)`);
+      } else {
+        toast.info("Nenhum provento novo encontrado");
+      }
+      qc.invalidateQueries({ queryKey: ["operations"] });
+      qc.invalidateQueries({ queryKey: ["portfolio"] });
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
+  const autoSynced = useRef(false);
+  useEffect(() => {
+    if (!isLoading && ops && !autoSynced.current) {
+      autoSynced.current = true;
+      syncMut.mutate();
+    }
+  }, [isLoading, ops]);
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -37,13 +61,24 @@ export function OperationsContent() {
             Todas as compras e vendas registradas na sua conta.
           </p>
         </div>
-        <AddOperationDialog
-          trigger={
-            <Button className="gap-2">
-              <Plus className="size-4" /> Nova operação
-            </Button>
-          }
-        />
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            className="gap-2"
+            onClick={() => syncMut.mutate()}
+            disabled={syncMut.isPending}
+          >
+            <RefreshCw className={"size-4 " + (syncMut.isPending ? "animate-spin" : "")} />
+            Sincronizar proventos
+          </Button>
+          <AddOperationDialog
+            trigger={
+              <Button className="gap-2">
+                <Plus className="size-4" /> Nova operação
+              </Button>
+            }
+          />
+        </div>
       </div>
 
       {isLoading ? (
@@ -88,19 +123,21 @@ export function OperationsContent() {
                     <td className="px-4 py-2.5">
                       <span
                         className={
-                          "rounded px-2 py-0.5 text-xs font-medium " +
-                          (o.side === "buy"
-                            ? "bg-positive/15 text-positive"
-                            : "bg-negative/15 text-negative")
+                          "rounded px-2 py-0.5 text-xs font-medium " + (
+                            o.side === "buy" ? "bg-positive/15 text-positive" :
+                            o.side === "sell" ? "bg-negative/15 text-negative" :
+                            o.side === "dividend" ? "bg-chart-3/15 text-chart-3" :
+                            "bg-chart-5/15 text-chart-5"
+                          )
                         }
                       >
-                        {o.side === "buy" ? "Compra" : "Venda"}
+                        {o.side === "buy" ? "Compra" : o.side === "sell" ? "Venda" : o.side === "dividend" ? (o.metadata?.tipo_provento === "jcp" ? "JCP" : "Dividendo") : "Bonificação"}
                       </span>
                     </td>
                     <td className="tabular px-4 py-2.5 text-right">{formatQty(o.quantity)}</td>
-                    <td className="tabular px-4 py-2.5 text-right">{formatBRL(o.price)}</td>
+                    <td className="tabular px-4 py-2.5 text-right">{o.side === "bonus" ? "—" : formatBRL(o.price)}</td>
                     <td className="tabular px-4 py-2.5 text-right font-medium">
-                      {formatBRL(o.quantity * o.price)}
+                      {o.side === "bonus" ? "—" : formatBRL(o.quantity * o.price)}
                     </td>
                     <td className="px-4 py-2.5 text-xs uppercase tracking-wider text-muted-foreground">
                       {o.source === "manual" ? "manual" : o.source}

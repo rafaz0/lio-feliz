@@ -2,17 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { AlertTriangle, Download } from "lucide-react";
 import { listOperations } from "@/lib/operations.functions";
+import type { AssetType } from "@/lib/portfolio";
+import { inferAssetType } from "@/lib/portfolio";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { formatBRL } from "@/lib/format";
 
-const FII_RE = /^[A-Z0-9]{4,5}11$/;
-
 interface MonthSummary {
   month: string;
   ticker: string;
-  type: "stock" | "fii";
+  type: AssetType;
   totalBuy: number;
   totalSell: number;
   netGain: number;
@@ -22,9 +22,18 @@ interface MonthSummary {
   cumNet: number;
 }
 
-function isFii(ticker: string) {
-  return FII_RE.test(ticker);
-}
+const TAX_RULES: Record<AssetType, { rate: number; exemption: number; dayTradeRate: number }> = {
+  stock: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
+  fii: { rate: 0.20, exemption: 0, dayTradeRate: 0.15 },
+  bdr: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
+  etf: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
+  etf_internacional: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
+  stock_us: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
+  reit: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
+  fixed_income: { rate: 0.15, exemption: 0, dayTradeRate: 0.15 },
+  crypto: { rate: 0.15, exemption: 35_000, dayTradeRate: 0.15 },
+  other: { rate: 0.15, exemption: 0, dayTradeRate: 0.15 },
+};
 
 function classifyDayTrade(
   ops: { traded_at: string; side: "buy" | "sell"; quantity: number; price: number }[],
@@ -72,6 +81,7 @@ function calcGainPerTicker(
 function calcMonthSummaries(
   ops: {
     ticker: string;
+    asset_type?: AssetType;
     traded_at: string;
     side: "buy" | "sell";
     quantity: number;
@@ -80,7 +90,7 @@ function calcMonthSummaries(
 ): MonthSummary[] {
   const months = splitIntoMonths(ops);
   const summaries: MonthSummary[] = [];
-  const cumByType: Record<string, number> = { stock: 0, fii: 0 };
+  const cumByType = new Map<AssetType, number>();
 
   for (const month of months) {
     const monthOps = ops.filter((o) => o.traded_at.startsWith(month));
@@ -88,7 +98,9 @@ function calcMonthSummaries(
 
     for (const ticker of tickers) {
       const tickerOps = monthOps.filter((o) => o.ticker === ticker);
-      const type = isFii(ticker) ? "fii" : "stock";
+      const firstOp = tickerOps[0];
+      const type = firstOp?.asset_type ?? inferAssetType(ticker);
+      const rules = TAX_RULES[type];
       const totalBuy = tickerOps
         .filter((o) => o.side === "buy")
         .reduce((s, o) => s + o.quantity * o.price, 0);
@@ -96,12 +108,12 @@ function calcMonthSummaries(
         .filter((o) => o.side === "sell")
         .reduce((s, o) => s + o.quantity * o.price, 0);
       const netGain = calcGainPerTicker(tickerOps);
-      const taxRate = type === "fii" ? 0.2 : 0.15;
       const isDayTrade = classifyDayTrade(tickerOps).length > 0;
-      const effectiveRate = isDayTrade ? 0.15 : taxRate;
-      const exempt = type === "stock" && totalSell <= 20_000;
-      cumByType[type] += netGain;
-      const taxable = cumByType[type] > 0 ? netGain : 0;
+      const effectiveRate = isDayTrade ? rules.dayTradeRate : rules.rate;
+      const exempt = rules.exemption > 0 && totalSell <= rules.exemption;
+      const cum = cumByType.get(type) ?? 0;
+      cumByType.set(type, cum + netGain);
+      const taxable = cumByType.get(type)! > 0 ? netGain : 0;
 
       summaries.push({
         month,
@@ -113,7 +125,7 @@ function calcMonthSummaries(
         taxRate: effectiveRate,
         taxDue: exempt || taxable <= 0 ? 0 : taxable * effectiveRate,
         exempt,
-        cumNet: cumByType[type],
+        cumNet: cumByType.get(type)!,
       });
     }
   }
@@ -131,6 +143,12 @@ function calcTotals(summaries: MonthSummary[]) {
   };
 }
 
+const TYPE_LABELS: Record<string, string> = {
+  stock: "Ação", fii: "FII", bdr: "BDR", etf: "ETF",
+  etf_internacional: "ETF Internacional", stock_us: "Stock EUA", reit: "REIT EUA",
+  fixed_income: "Renda Fixa", crypto: "Cripto", other: "Outro",
+};
+
 function exportToCsv(summaries: MonthSummary[]) {
   const header = "Mês,Ticker,Tipo,Total Compras,Total Vendas,Resultado (%)";
 
@@ -138,7 +156,7 @@ function exportToCsv(summaries: MonthSummary[]) {
     [
       s.month,
       s.ticker,
-      s.type === "fii" ? "FII" : "Ação",
+      TYPE_LABELS[s.type] ?? s.type,
       formatBRL(s.totalBuy),
       formatBRL(s.totalSell),
       s.netGain.toFixed(2),
@@ -184,7 +202,11 @@ export function IrpfContent() {
     );
   }
 
-  const summaries = calcMonthSummaries(ops);
+  const buySellOps = ops.filter((o) => o.side === "buy" || o.side === "sell") as {
+    ticker: string; asset_type?: AssetType; traded_at: string;
+    side: "buy" | "sell"; quantity: number; price: number;
+  }[];
+  const summaries = calcMonthSummaries(buySellOps);
   const totals = calcTotals(summaries);
   const months = [...new Set(summaries.map((s) => s.month))].sort().reverse();
 
@@ -245,6 +267,82 @@ export function IrpfContent() {
         </ul>
       </div>
 
+      {/* Annual summary */}
+      <section className="rounded-lg border border-border bg-card p-5">
+        <div className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          Resumo Anual
+        </div>
+        <div className="space-y-3">
+          {Array.from(new Set(summaries.map((s) => s.month.slice(0, 4))))
+            .sort()
+            .reverse()
+            .map((year) => {
+              const yearSum = summaries.filter((s) => s.month.startsWith(year));
+              const yearGain = yearSum.filter((s) => s.netGain > 0).reduce((a, b) => a + b.netGain, 0);
+              const yearLoss = yearSum.filter((s) => s.netGain < 0).reduce((a, b) => a + b.netGain, 0);
+              const yearTax = yearSum.reduce((s, i) => s + i.taxDue, 0);
+              return (
+                <div key={year} className="flex items-center justify-between rounded-md bg-surface p-3 text-sm">
+                  <span className="font-semibold">{year}</span>
+                  <div className="flex items-center gap-4">
+                    <span className="text-muted-foreground">
+                      Ganho: <span className="text-positive font-medium">{formatBRL(yearGain)}</span>
+                    </span>
+                    {yearLoss < 0 && (
+                      <span className="text-muted-foreground">
+                        Prejuízo: <span className="text-negative font-medium">{formatBRL(yearLoss)}</span>
+                      </span>
+                    )}
+                    <span className="text-muted-foreground">
+                      IR devido: <span className="text-amber-600 font-medium">{formatBRL(yearTax)}</span>
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </section>
+
+      {/* Declaration checklist */}
+      <section className="rounded-lg border border-border bg-card p-5">
+        <div className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          Para a declaração anual (Bens e Direitos)
+        </div>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-start gap-2">
+            <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-chart-1" />
+            <span>
+              <strong>Bens e Direitos:</strong> Informe cada ativo pelo seu valor de aquisição
+              (custo total de compra) na data-base de 31/12. Códigos na ficha de Bens e Direitos:
+              31 (Ações), 32 (FIIs), 33 (BDRs/ETFs), 99 (Cripto), 78 (Renda Fixa).
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-chart-2" />
+            <span>
+              <strong>Rendimentos Isentos (Dividendos):</strong> Os dividendos recebidos são isentos
+              de IR e devem ser informados na ficha "Rendimentos Isentos e Não Tributáveis", linha
+              09 (Lucros e dividendos).
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-chart-3" />
+            <span>
+              <strong>Ganho de Capital (Vendas):</strong> Utilize o programa GCAP (Ganho de Capital)
+              da Receita Federal para apurar o imposto. Alíquotas: 15% para ações (com isenção até
+              R$ 20k em vendas/mês) e 20% para FIIs (sem isenção).
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-chart-4" />
+            <span>
+              <strong>Prejuízos:</strong> Prejuízos de anos anteriores podem compensar ganhos
+              futuros na mesma categoria (ações ou FIIs), tanto no mensal quanto no anual.
+            </span>
+          </li>
+        </ul>
+      </section>
+
       {months.map((month) => {
         const monthSum = summaries.filter((s) => s.month === month);
         const monthTotalSell = monthSum.reduce((s, i) => s + i.totalSell, 0);
@@ -295,7 +393,7 @@ export function IrpfContent() {
                         {classifyDayTrade(
                           ops.filter(
                             (o) => o.traded_at.startsWith(s.month) && o.ticker === s.ticker,
-                          ),
+                          ) as { traded_at: string; side: "buy" | "sell"; quantity: number; price: number }[],
                         ).length > 0 && (
                           <span className="ml-1 rounded bg-purple-100 px-1 py-0.5 text-[10px] text-purple-800 dark:bg-purple-900 dark:text-purple-200">
                             DT

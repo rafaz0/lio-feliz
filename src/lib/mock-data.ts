@@ -10,7 +10,9 @@ export type Sector =
   | "Consumo"
   | "Saúde"
   | "Telecom"
-  | "Papel e Celulose";
+  | "Papel e Celulose"
+  | "Criptomoedas"
+  | "Internacional";
 
 export interface AssetFundamentals {
   pl: number;

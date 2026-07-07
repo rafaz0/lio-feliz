@@ -77,6 +77,7 @@ function FiisPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar FII..."
+              autoComplete="off"
               className="h-9 pl-8"
             />
           </div>

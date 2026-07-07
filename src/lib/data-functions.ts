@@ -253,6 +253,40 @@ export const getAssetData = createServerFn({ method: "GET" })
       // ignore
     }
 
+    // Crypto fallback: CoinGecko basic info
+    if (/^(BTC|ETH|SOL|ADA|DOT|AVAX|MATIC|LINK|XRP|DOGE|BNB)[-]/.test(ticker)) {
+      try {
+        const symbol = ticker.split("-")[0].toLowerCase();
+        const cgRes = await fetch(
+          `https://api.coingecko.com/api/v3/coins/${symbol === "btc" ? "bitcoin" : symbol === "eth" ? "ethereum" : symbol}?localization=false&tickers=false&community_data=false&developer_data=false`,
+          { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(5000) },
+        );
+        if (cgRes.ok) {
+          const cg = (await cgRes.json()) as {
+            id: string;
+            name?: string;
+            market_data?: { current_price?: { usd?: number; brl?: number }; price_change_percentage_24h?: number };
+            description?: { en?: string };
+            categories?: string[];
+          };
+          return {
+            ticker,
+            name: cg.name ?? ticker,
+            sector: "Criptomoedas",
+            price: cg.market_data?.current_price?.usd ?? 0,
+            changeDayPct: cg.market_data?.price_change_percentage_24h ?? 0,
+            description: cg.description?.en ?? "",
+            fundamentals: { ...EMPTY_FUNDS },
+            history: [],
+            dividends: [],
+            isRealData: true,
+          };
+        }
+      } catch {
+        // ignore
+      }
+    }
+
     return null;
   });
 
@@ -331,43 +365,191 @@ export const getAllAssets = createServerFn({ method: "GET" }).handler(
   },
 );
 
+import type { AssetType } from "./portfolio";
+
 export interface TickerSuggestion {
   ticker: string;
   name: string;
   price?: number;
   changePct?: number;
+  category?: AssetType;
 }
+
+const EXTRA_SUGGESTIONS: TickerSuggestion[] = [
+  // Crypto
+  { ticker: "BTC-USD", name: "Bitcoin", category: "crypto" },
+  { ticker: "ETH-USD", name: "Ethereum", category: "crypto" },
+  { ticker: "SOL-USD", name: "Solana", category: "crypto" },
+  { ticker: "ADA-USD", name: "Cardano", category: "crypto" },
+  { ticker: "DOT-USD", name: "Polkadot", category: "crypto" },
+  { ticker: "XRP-USD", name: "Ripple", category: "crypto" },
+  { ticker: "DOGE-USD", name: "Dogecoin", category: "crypto" },
+  { ticker: "AVAX-USD", name: "Avalanche", category: "crypto" },
+  { ticker: "LINK-USD", name: "Chainlink", category: "crypto" },
+  // US Stocks
+  { ticker: "AAPL", name: "Apple Inc.", category: "stock_us" },
+  { ticker: "MSFT", name: "Microsoft Corp.", category: "stock_us" },
+  { ticker: "GOOGL", name: "Alphabet Inc.", category: "stock_us" },
+  { ticker: "GOOG", name: "Alphabet Inc. (Class C)", category: "stock_us" },
+  { ticker: "AMZN", name: "Amazon.com Inc.", category: "stock_us" },
+  { ticker: "NVDA", name: "NVIDIA Corp.", category: "stock_us" },
+  { ticker: "META", name: "Meta Platforms Inc.", category: "stock_us" },
+  { ticker: "TSLA", name: "Tesla Inc.", category: "stock_us" },
+  { ticker: "BRK.B", name: "Berkshire Hathaway Inc.", category: "stock_us" },
+  { ticker: "JPM", name: "JPMorgan Chase & Co.", category: "stock_us" },
+  { ticker: "V", name: "Visa Inc.", category: "stock_us" },
+  { ticker: "WMT", name: "Walmart Inc.", category: "stock_us" },
+  { ticker: "JNJ", name: "Johnson & Johnson", category: "stock_us" },
+  { ticker: "PG", name: "Procter & Gamble Co.", category: "stock_us" },
+  { ticker: "XOM", name: "Exxon Mobil Corp.", category: "stock_us" },
+  { ticker: "UNH", name: "UnitedHealth Group Inc.", category: "stock_us" },
+  { ticker: "HD", name: "Home Depot Inc.", category: "stock_us" },
+  { ticker: "KO", name: "Coca-Cola Co.", category: "stock_us" },
+  { ticker: "PEP", name: "PepsiCo Inc.", category: "stock_us" },
+  { ticker: "AVGO", name: "Broadcom Inc.", category: "stock_us" },
+  { ticker: "ORCL", name: "Oracle Corp.", category: "stock_us" },
+  { ticker: "CRM", name: "Salesforce Inc.", category: "stock_us" },
+  { ticker: "AMD", name: "Advanced Micro Devices", category: "stock_us" },
+  { ticker: "NFLX", name: "Netflix Inc.", category: "stock_us" },
+  { ticker: "DIS", name: "Walt Disney Co.", category: "stock_us" },
+  { ticker: "ADBE", name: "Adobe Inc.", category: "stock_us" },
+  { ticker: "INTC", name: "Intel Corp.", category: "stock_us" },
+  { ticker: "CMCSA", name: "Comcast Corp.", category: "stock_us" },
+  { ticker: "BA", name: "Boeing Co.", category: "stock_us" },
+  // US REITs
+  { ticker: "O", name: "Realty Income Corp.", category: "reit" },
+  { ticker: "PLD", name: "Prologis Inc.", category: "reit" },
+  { ticker: "AMT", name: "American Tower Corp.", category: "reit" },
+  { ticker: "WELL", name: "Welltower Inc.", category: "reit" },
+  { ticker: "EQIX", name: "Equinix Inc.", category: "reit" },
+  { ticker: "SPG", name: "Simon Property Group", category: "reit" },
+  { ticker: "PSA", name: "Public Storage", category: "reit" },
+  { ticker: "CCI", name: "Crown Castle Inc.", category: "reit" },
+  { ticker: "DLR", name: "Digital Realty Trust", category: "reit" },
+  { ticker: "AVB", name: "AvalonBay Communities", category: "reit" },
+  { ticker: "EQR", name: "Equity Residential", category: "reit" },
+  { ticker: "VTR", name: "Ventas Inc.", category: "reit" },
+  // US ETFs (broad market) — classified as etf_internacional
+  { ticker: "VT", name: "Vanguard Total World Stock ETF", category: "etf_internacional" },
+  { ticker: "VTI", name: "Vanguard Total Stock Market ETF", category: "etf_internacional" },
+  { ticker: "VXUS", name: "Vanguard Total International Stock ETF", category: "etf_internacional" },
+  { ticker: "BND", name: "Vanguard Total Bond Market ETF", category: "etf_internacional" },
+  { ticker: "SPY", name: "SPDR S&P 500 ETF", category: "etf_internacional" },
+  { ticker: "QQQ", name: "Invesco QQQ Trust", category: "etf_internacional" },
+  { ticker: "VOO", name: "Vanguard S&P 500 ETF", category: "etf_internacional" },
+  { ticker: "IVV", name: "iShares Core S&P 500 ETF", category: "etf_internacional" },
+  { ticker: "IEFA", name: "iShares Core MSCI EAFE ETF", category: "etf_internacional" },
+  { ticker: "EEM", name: "iShares MSCI Emerging Markets ETF", category: "etf_internacional" },
+  { ticker: "VNQ", name: "Vanguard Real Estate ETF", category: "etf_internacional" },
+  { ticker: "GLD", name: "SPDR Gold Shares", category: "etf_internacional" },
+  { ticker: "SCHD", name: "Schwab US Dividend Equity ETF", category: "etf_internacional" },
+  // Brazilian ETFs
+  { ticker: "IVVB11", name: "iShares S&P 500 BDR", category: "bdr" },
+  { ticker: "BOVA11", name: "iShares Ibovespa ETF", category: "etf" },
+  { ticker: "SMAL11", name: "iShares Small Cap ETF", category: "etf" },
+  { ticker: "WRLD11", name: "Global X BDR ETF", category: "bdr" },
+  { ticker: "HASH11", name: "Hashdex Nasdaq Crypto ETF", category: "etf" },
+  // Fixed income
+  { ticker: "TESOURO_SELIC_2027", name: "Tesouro Selic 2027", category: "fixed_income" },
+  { ticker: "TESOURO_SELIC_2029", name: "Tesouro Selic 2029", category: "fixed_income" },
+  { ticker: "TESOURO_PREFIXADO_2028", name: "Tesouro Prefixado 2028", category: "fixed_income" },
+  { ticker: "TESOURO_PREFIXADO_2031", name: "Tesouro Prefixado 2031", category: "fixed_income" },
+  { ticker: "TESOURO_IPCA_2029", name: "Tesouro IPCA+ 2029", category: "fixed_income" },
+  { ticker: "TESOURO_IPCA_2035", name: "Tesouro IPCA+ 2035", category: "fixed_income" },
+  { ticker: "TESOURO_IPCA_2045", name: "Tesouro IPCA+ 2045", category: "fixed_income" },
+  { ticker: "CDB_100_CDI", name: "CDB 100% CDI", category: "fixed_income" },
+  { ticker: "CDB_110_CDI", name: "CDB 110% CDI", category: "fixed_income" },
+  { ticker: "CDB_120_CDI", name: "CDB 120% CDI", category: "fixed_income" },
+  { ticker: "LCI_90_CDI", name: "LCI 90% CDI", category: "fixed_income" },
+  { ticker: "LCA_90_CDI", name: "LCA 90% CDI", category: "fixed_income" },
+  { ticker: "LCI_95_CDI", name: "LCI 95% CDI", category: "fixed_income" },
+  { ticker: "DEBENTURE_IPCA", name: "Debênture IPCA+", category: "fixed_income" },
+  { ticker: "CRI_CDI", name: "CRI", category: "fixed_income" },
+  { ticker: "CRA_CDI", name: "CRA", category: "fixed_income" },
+];
+
+const YAHOO_SEARCH_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
+
+async function searchYahooFinance(
+  query: string,
+): Promise<TickerSuggestion[]> {
+  try {
+    const url = `https://query1.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(query)}&quotesCount=6&newsCount=0`;
+    const res = await fetch(url, { headers: { "User-Agent": YAHOO_SEARCH_UA } });
+    if (!res.ok) return [];
+    const json = (await res.json()) as {
+      quotes?: Array<{
+        symbol: string;
+        shortname?: string;
+        longname?: string;
+        quoteType?: string;
+      }>;
+    };
+    return (json.quotes ?? [])
+      .filter((q) => q.symbol && q.quoteType !== "CRYPTOCURRENCY" && !q.symbol.includes("^"))
+      .map((q) => {
+        const symbol = q.symbol.toUpperCase();
+        const name = q.longname ?? q.shortname ?? symbol;
+        return { ticker: symbol, name };
+      });
+  } catch {
+    return [];
+  }
+}
+
+const TICKER_CACHE_VERSION = "v3";
 
 export const searchTickers = createServerFn({ method: "GET" })
   .validator(z.object({ q: z.string().max(50).default("") }))
   .handler(async ({ data }): Promise<TickerSuggestion[]> => {
-    const cached = getCached<TickerSuggestion[]>("ticker-suggestions");
+    const cached = getCached<TickerSuggestion[]>(`ticker-suggestions-${TICKER_CACHE_VERSION}`);
     let list = cached;
     if (!list) {
+      const brList: TickerSuggestion[] = [];
       try {
         const res = await brapiFetch("/tickers?limit=2000");
         if (res.ok) {
           const json = (await res.json()) as { results?: V2TickerItem[] };
-          list = (json.results ?? [])
-            .filter((r) => r.isActive !== false)
-            .map((r) => ({
-              ticker: r.symbol,
-              name: r.longName ?? r.name ?? r.symbol,
-              price: r.quote?.lastPrice,
-              changePct: r.quote?.changePercent,
-            }));
-          setCache("ticker-suggestions", list);
+          for (const r of json.results ?? []) {
+            if (r.isActive !== false) {
+              brList.push({
+                ticker: r.symbol,
+                name: r.longName ?? r.name ?? r.symbol,
+                price: r.quote?.lastPrice,
+                changePct: r.quote?.changePercent,
+              });
+            }
+          }
         }
       } catch {
-        // fallback
+        // ignore
       }
+      list = [...brList, ...EXTRA_SUGGESTIONS];
+      setCache(`ticker-suggestions-${TICKER_CACHE_VERSION}`, list);
     }
-    const items = list ?? ASSETS.map((a) => ({ ticker: a.ticker, name: a.name, price: a.price, changePct: a.changeDayPct }));
+    const items = list.length > 0
+      ? list
+      : [...ASSETS.map((a) => ({ ticker: a.ticker, name: a.name, price: a.price, changePct: a.changeDayPct })), ...EXTRA_SUGGESTIONS];
     if (!data.q) return items.slice(0, 6);
     const term = data.q.trim().toUpperCase();
-    return items
+
+    const local = items
       .filter((a) => a.ticker.startsWith(term) || a.name.toUpperCase().includes(term))
       .slice(0, 6);
+
+    if (local.length >= 3) return local;
+
+    const yahoo = await searchYahooFinance(data.q);
+    const seen = new Set(local.map((a) => a.ticker));
+    const merged = [...local];
+    for (const y of yahoo) {
+      if (!seen.has(y.ticker)) {
+        merged.push(y);
+        seen.add(y.ticker);
+        if (merged.length >= 6) break;
+      }
+    }
+    return merged;
   });
 
 interface YahooData {

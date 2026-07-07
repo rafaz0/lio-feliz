@@ -273,6 +273,7 @@ function ProvisionadorPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Filtrar por ticker..."
+              autoComplete="off"
               className="h-9 pl-8"
             />
           </div>

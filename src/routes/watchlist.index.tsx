@@ -106,6 +106,7 @@ function WatchlistPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Adicionar ticker..."
+                autoComplete="off"
                 className="h-9 pl-7 text-sm"
               />
             </div>

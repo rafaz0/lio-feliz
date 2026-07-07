@@ -198,6 +198,7 @@ function HomePage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Buscar ticker ou empresa..."
+                autoComplete="off"
                 className="h-8 pl-7 text-sm"
               />
             </div>

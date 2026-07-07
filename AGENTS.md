@@ -50,13 +50,46 @@
 - Build: `npm run build`
 - Type checking requires `powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"` on this machine (PowerShell execution policy restriction)
 
-## Next Steps Priority
+## Work State
 
-- ✅ Fase 3: calculadoras (DCF, Price Target, CDB) + provisionador com timeline
-- ✅ Fase 4: watchlist + IRPF Helper
-- ✅ Fase 5: fatos relevantes + carteiras recomendadas
-- ✅ Pente fino: removidos 10+ imports não utilizados em 8 arquivos; migrados 6 `inputValidator()` → `validator()` (em `data-functions.ts`, `operations.functions.ts`, `quotes.functions.ts`)
-- Pendente: error/notFound components em páginas que ainda não têm; responsividade mobile; skeletons para loading
+### Completed
+- ✅ **Diálogo de lançamento estilo Investidor10**: layout diferente por tipo de ativo (Ações, FIIs, BDRs, ETFs, ETFs Internacionais, Stocks EUA, REITs EUA, Renda Fixa, Cripto, Outros)
+- ✅ **Campos RF**: Emissor, Tipo título, Indexador, Taxa, Forma, Valor, Vencimento, Liquidez diária
+- ✅ **Outros custos**: campo único que entra na base de custo
+- ✅ **Valor total**: cálculo automático exibido no diálogo
+- ✅ **Sugestões fixas**: lista de exemplos por tipo de ativo, filtradas localmente (sem dependência de servidor)
+- ✅ **Novos tipos**: `etf_internacional`, `stock_us`, `reit` adicionados ao `AssetType`
+- ✅ **inferAssetType**: detecta os novos tipos com listas conhecidas + padrão de ticker US (1-5 letras)
+- ✅ **Cache key**: `v3` para evitar dados antigos em cache
+- ✅ **Schema**: `other_costs` + `metadata` (JSON) adicionados ao Operation e ao Zod
+- ✅ **Portfolio**: cálculos de custo incluem `other_costs`; dividendos reduzem custo, bonificações aumentam quantidade
+- ✅ **TYPE_LABELS**: atualizados em carteira.index, carteira.patrimonio, irpf-content
+- ✅ **TAX_RULES**: atualizadas com os novos tipos (15% para todos os US)
+- ✅ **Cleanup**: removido `isTreasury`/layout `treasury` não utilizado; removido `international` antigo
+- ✅ **Fase 3**: calculadoras (DCF, Price Target, CDB) + provisionador com timeline
+- ✅ **Fase 4**: watchlist + IRPF Helper
+- ✅ **Fase 5**: fatos relevantes + carteiras recomendadas
+- ✅ **Pente fino**: removidos 10+ imports não utilizados em 8 arquivos; migrados 6 `inputValidator()` → `validator()`
+- ✅ **Sincronização automática de proventos**: `syncPendingDividends` server function
+  - BRAPI (primário) para ações/FIIs/BDRs brasileiras (dados mensais precisos) com fallback Yahoo Finance
+  - Yahoo Finance para ativos internacionais
+  - Armazena `quantity=cotas, price=valor_por_cota` (exibe por cota + total)
+  - Detecta automaticamente JCP vs Dividendos via label BRAPI
+  - Detecta automaticamente bonificações, desdobramentos e grupamentos via BRAPI stockDividends
+  - Cria operações de bonificação (aumento de quantidade sem custo) e split
+- ✅ **Auto-sync ao carregar** página de Lançamentos
+- ✅ **Botão "Sincronizar proventos"** na página de Lançamentos
+- ✅ **Proventos reais no overview**: carteira.index usa dados de operações de dividendos ao invés de mock
+- ✅ **Bug fix**: aba Provento/Bonificação não resetava modo incorretamente (`resetForm(false)`)
+- ✅ **inferAssetType**: regex corrigido para ações BR (`4-6 letras + 1 dígito`), lista de 40+ ações BR conhecidas
+- ✅ **EXAMPLES expandido**: GOAU4, GGBR4, CSNA3, USIM5, CMIG4, ELET3, EMBR3, JBSS3, BRFS3, B3SA3, RADL3, HAPV3, RAIL3, SUZB3, AZUL4, PRIO3, ENGII11, KLBN11, SLCE3 + mais 20 FIIs, BDRs, ETFs
+- ✅ **TypeScript zero erros** (`npx tsc --noEmit`) e **build de produção** (`npm run build`)
+
+### Pending
+- ❌ error/notFound components em páginas que ainda não têm
+- ❌ Responsividade mobile
+- ❌ Skeletons para loading
+- ❌ Melhorias no diálogo: Tesouro Direto como layout separado, busca BRAPI/Yahoo com filtro funcional
 
 ## Data Architecture
 

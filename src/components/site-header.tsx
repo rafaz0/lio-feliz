@@ -204,6 +204,7 @@ export function SiteHeader() {
               if (e.key === "Escape") setQ("");
             }}
             placeholder="Buscar ticker (PETR4, VALE3…)"
+            autoComplete="off"
             className="h-9 pl-8 uppercase placeholder:normal-case"
           />
           {q.trim() && matches.length > 0 && (

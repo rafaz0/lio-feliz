@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   LineChart,
   Receipt,
-  ShieldCheck,
   Target,
   Wallet,
 } from "lucide-react";
@@ -33,47 +32,40 @@ const TABS = [
     description: "Visão geral da carteira",
   },
   {
+    to: "/carteira/lancamentos",
+    label: "Movimentações",
+    icon: <ClipboardList className="size-4" />,
+    description: "Operações de compra e venda",
+  },
+  {
     to: "/carteira/proventos",
     label: "Proventos",
     icon: <Coins className="size-4" />,
-    description: "Calendário de dividendos e projeção",
+    description: "Recebidos, projetados e cobertura",
   },
   {
     to: "/carteira/patrimonio",
     label: "Patrimônio",
     icon: <Wallet className="size-4" />,
-    description: "Evolução e alocação",
+    description: "Evolução e alocação por classe",
   },
   {
     to: "/carteira/rentabilidade",
     label: "Rentabilidade",
     icon: <LineChart className="size-4" />,
-    description: "Comparativo com benchmarks",
-  },
-  {
-    to: "/carteira/analise",
-    label: "Análise",
-    icon: <ShieldCheck className="size-4" />,
-    description: "Cobertura dos ativos",
-  },
-  {
-    to: "/carteira/lancamentos",
-    label: "Lançamentos",
-    icon: <ClipboardList className="size-4" />,
-    description: "Operações realizadas",
+    description: "Evolução mensal vs. benchmarks",
   },
   {
     to: "/carteira/metas",
     label: "Metas",
     icon: <Target className="size-4" />,
-    description: "Objetivos e progresso",
+    description: "Renda, patrimônio e investimentos",
   },
   {
     to: "/carteira/irpf",
     label: "IRPF",
     icon: <Receipt className="size-4" />,
-    description: "Apuração e declaração",
-    requiresAuth: true,
+    description: "Apuração e declaração anual",
   },
 ] as const;
 
@@ -137,9 +129,7 @@ function CarteiraLayout() {
             </ul>
             <p className="mt-4 hidden items-center gap-2 rounded-md border border-dashed border-border p-3 text-[11px] text-muted-foreground lg:flex">
               <BarChart3 className="size-3.5 shrink-0" />
-              <span>
-                As abas Lançamentos, Metas e IRPF operam dados pessoais e exigem login ativo.
-              </span>
+              <span>Dados pessoais sincronizados com sua conta.</span>
             </p>
           </nav>
           <main className="min-w-0">

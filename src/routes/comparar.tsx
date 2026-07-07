@@ -185,6 +185,7 @@ function CompararPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Adicionar ticker..."
+                  autoComplete="off"
                   className="h-8 w-44 pl-7 text-sm"
                 />
                 {searchMatches.length > 0 && (

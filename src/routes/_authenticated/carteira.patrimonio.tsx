@@ -17,6 +17,7 @@ import {
 } from "recharts";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
+import { getExchangeRates } from "@/lib/exchange.server";
 import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
 import { formatBRL, formatDate } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -34,6 +35,19 @@ export const Route = createFileRoute("/_authenticated/carteira/patrimonio")({
   component: PatrimonioPage,
 });
 
+const TYPE_LABELS: Record<string, string> = {
+  stock: "Ações",
+  fii: "FIIs",
+  bdr: "BDRs",
+  etf: "ETFs",
+  etf_internacional: "ETFs Internacionais",
+  stock_us: "Stocks (EUA)",
+  reit: "REITs (EUA)",
+  fixed_income: "Renda Fixa",
+  crypto: "Cripto",
+  other: "Outros",
+};
+
 const CHART_COLORS = [
   "var(--color-chart-1)",
   "var(--color-chart-2)",
@@ -50,6 +64,14 @@ function PatrimonioPage() {
   const { data: ops, isLoading } = useQuery({
     queryKey: ["operations"],
     queryFn: () => list(),
+  });
+
+  const fetchRates = useServerFn(getExchangeRates);
+  const { data: exchangeRates } = useQuery({
+    queryKey: ["exchange-rates"],
+    queryFn: () => fetchRates(),
+    staleTime: 300_000,
+    refetchInterval: 300_000,
   });
 
   const tickers = Array.from(new Set((ops ?? []).map((o) => o.ticker))).sort();
@@ -71,12 +93,12 @@ function PatrimonioPage() {
   }, [quotesQuery.data]);
 
   const portfolio = useMemo(
-    () => consolidatePortfolio(ops ?? [], priceOverrides),
-    [ops, priceOverrides],
+    () => consolidatePortfolio(ops ?? [], priceOverrides, exchangeRates),
+    [ops, priceOverrides, exchangeRates],
   );
   const history = useMemo(
-    () => buildPortfolioHistory(ops ?? [], priceOverrides),
-    [ops, priceOverrides],
+    () => buildPortfolioHistory(ops ?? [], priceOverrides, exchangeRates),
+    [ops, priceOverrides, exchangeRates],
   );
 
   if (isLoading || !ops) {
@@ -231,27 +253,11 @@ function PatrimonioPage() {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
-                  data={(() => {
-                    const isFii = (t: string) => /^\w+11$/.test(t);
-                    let stockVal = 0,
-                      fiiVal = 0;
-                    for (const p of portfolio.positions) {
-                      if (isFii(p.ticker)) fiiVal += p.currentValue;
-                      else stockVal += p.currentValue;
-                    }
-                    return [
-                      {
-                        name: "Ações",
-                        value: stockVal,
-                        pct: portfolio.totalValue > 0 ? (stockVal / portfolio.totalValue) * 100 : 0,
-                      },
-                      {
-                        name: "FIIs",
-                        value: fiiVal,
-                        pct: portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0,
-                      },
-                    ];
-                  })()}
+                  data={portfolio.typeAllocation.map((t) => ({
+                    name: TYPE_LABELS[t.type] ?? t.type,
+                    value: t.value,
+                    pct: t.pct,
+                  }))}
                   dataKey="value"
                   nameKey="name"
                   innerRadius={40}
@@ -259,8 +265,9 @@ function PatrimonioPage() {
                   stroke="var(--color-background)"
                   strokeWidth={2}
                 >
-                  <Cell fill="var(--color-chart-1)" />
-                  <Cell fill="var(--color-chart-4)" />
+                  {portfolio.typeAllocation.map((_, i) => (
+                    <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                  ))}
                 </Pie>
                 <Tooltip
                   contentStyle={{
@@ -278,39 +285,16 @@ function PatrimonioPage() {
             </ResponsiveContainer>
           </div>
           <ul className="mt-3 space-y-1.5 text-sm">
-            {(() => {
-              const isFii = (t: string) => /^\w+11$/.test(t);
-              let stockVal = 0,
-                fiiVal = 0;
-              for (const p of portfolio.positions) {
-                if (isFii(p.ticker)) fiiVal += p.currentValue;
-                else stockVal += p.currentValue;
-              }
-              return [
-                {
-                  name: "Ações",
-                  value: stockVal,
-                  pct: portfolio.totalValue > 0 ? (stockVal / portfolio.totalValue) * 100 : 0,
-                },
-                {
-                  name: "FIIs",
-                  value: fiiVal,
-                  pct: portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0,
-                },
-              ].filter((c) => c.value > 0);
-            })().map((c) => (
-              <li key={c.name} className="flex items-center justify-between">
+            {portfolio.typeAllocation.map((t, i) => (
+              <li key={t.type} className="flex items-center justify-between">
                 <span className="flex items-center gap-2">
                   <span
                     className="inline-block size-2.5 rounded-sm"
-                    style={{
-                      background:
-                        c.name === "Ações" ? "var(--color-chart-1)" : "var(--color-chart-4)",
-                    }}
+                    style={{ background: CHART_COLORS[i % CHART_COLORS.length] }}
                   />
-                  <span className="text-muted-foreground">{c.name}</span>
+                  <span className="text-muted-foreground">{TYPE_LABELS[t.type] ?? t.type}</span>
                 </span>
-                <span className="tabular">{c.pct.toFixed(1)}%</span>
+                <span className="tabular">{t.pct.toFixed(1)}%</span>
               </li>
             ))}
           </ul>

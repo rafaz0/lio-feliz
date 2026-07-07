@@ -3,7 +3,9 @@ import { useCallback, useSyncExternalStore } from "react";
 const STORAGE_KEY = "investidor-pro-goals";
 
 interface Goals {
-  monthlyTarget: number;
+  monthlyDividendTarget: number;
+  patrimonyTarget: number;
+  monthlySavingsTarget: number;
 }
 
 let cached: Goals | null = null;
@@ -11,13 +13,13 @@ let cached: Goals | null = null;
 function getStored(): Goals {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    const parsed: Goals = raw ? JSON.parse(raw) : { monthlyTarget: 0 };
+    const parsed: Goals = raw ? JSON.parse(raw) : { monthlyDividendTarget: 0, patrimonyTarget: 0, monthlySavingsTarget: 0 };
     if (!cached || JSON.stringify(cached) !== JSON.stringify(parsed)) {
       cached = parsed;
     }
     return cached!;
   } catch {
-    if (!cached) cached = { monthlyTarget: 0 };
+    if (!cached) cached = { monthlyDividendTarget: 0, patrimonyTarget: 0, monthlySavingsTarget: 0 };
     return cached;
   }
 }
@@ -42,14 +44,26 @@ function emit() {
 
 export function useGoals(): {
   goals: Goals;
-  setMonthlyTarget: (value: number) => void;
+  setDividendTarget: (value: number) => void;
+  setPatrimonyTarget: (value: number) => void;
+  setSavingsTarget: (value: number) => void;
 } {
   const goals = useSyncExternalStore(subscribe, getStored, getStored);
 
-  const setMonthlyTarget = useCallback((value: number) => {
-    store({ monthlyTarget: Math.max(0, value) });
+  const setDividendTarget = useCallback((value: number) => {
+    store({ ...getStored(), monthlyDividendTarget: Math.max(0, value) });
     emit();
   }, []);
 
-  return { goals, setMonthlyTarget };
+  const setPatrimonyTarget = useCallback((value: number) => {
+    store({ ...getStored(), patrimonyTarget: Math.max(0, value) });
+    emit();
+  }, []);
+
+  const setSavingsTarget = useCallback((value: number) => {
+    store({ ...getStored(), monthlySavingsTarget: Math.max(0, value) });
+    emit();
+  }, []);
+
+  return { goals, setDividendTarget, setPatrimonyTarget, setSavingsTarget };
 }

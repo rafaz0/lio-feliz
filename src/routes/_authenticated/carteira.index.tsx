@@ -20,7 +20,8 @@ import { AlertTriangle, DollarSign, Info, Plus, RefreshCw, TrendingUp, Wallet } 
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
-import { ASSETS_BY_TICKER } from "@/lib/mock-data";
+import { getExchangeRates } from "@/lib/exchange.server";
+
 import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { DeltaPct } from "@/components/delta-pct";
@@ -41,6 +42,19 @@ export const Route = createFileRoute("/_authenticated/carteira/")({
   }),
   component: PortfolioOverview,
 });
+
+const TYPE_LABELS: Record<string, string> = {
+  stock: "Ações",
+  fii: "FIIs",
+  bdr: "BDRs",
+  etf: "ETFs",
+  etf_internacional: "ETFs Internacionais",
+  stock_us: "Stocks (EUA)",
+  reit: "REITs (EUA)",
+  fixed_income: "Renda Fixa",
+  crypto: "Cripto",
+  other: "Outros",
+};
 
 const CHART_COLORS = [
   "var(--color-chart-1)",
@@ -77,6 +91,14 @@ function PortfolioOverview() {
     priceOverrides[t] = q.price;
   }
 
+  const fetchRates = useServerFn(getExchangeRates);
+  const { data: exchangeRates } = useQuery({
+    queryKey: ["exchange-rates"],
+    queryFn: () => fetchRates(),
+    staleTime: 300_000,
+    refetchInterval: 300_000,
+  });
+
   const fetchBenchmark = useServerFn(getBenchmarkData);
   const { data: benchmarkData } = useQuery({
     queryKey: ["benchmark"],
@@ -86,8 +108,8 @@ function PortfolioOverview() {
   });
 
   const history = useMemo(
-    () => buildPortfolioHistory(ops ?? [], priceOverrides),
-    [ops, priceOverrides],
+    () => buildPortfolioHistory(ops ?? [], priceOverrides, exchangeRates),
+    [ops, priceOverrides, exchangeRates],
   );
 
   const benchmarkChartData = useMemo(() => {
@@ -173,18 +195,16 @@ function PortfolioOverview() {
     );
   }
 
-  const portfolio = consolidatePortfolio(ops, priceOverrides);
+  const portfolio = consolidatePortfolio(ops, priceOverrides, exchangeRates);
   const isEmpty = portfolio.positions.length === 0;
 
   const dividendsByTicker: Record<string, number> = {};
   let totalDividends = 0;
-  for (const p of portfolio.positions) {
-    const asset = ASSETS_BY_TICKER[p.ticker];
-    if (!asset) continue;
-    const totalPerShare = asset.dividends.reduce((s, d) => s + d.amount, 0);
-    const received = totalPerShare * p.quantity;
-    dividendsByTicker[p.ticker] = received;
-    totalDividends += received;
+  for (const op of ops) {
+    if (op.side !== "dividend") continue;
+    const total = op.quantity * op.price;
+    dividendsByTicker[op.ticker] = (dividendsByTicker[op.ticker] ?? 0) + total;
+    totalDividends += total;
   }
   const quotesUpdatedAt = Object.values(quotesData)[0]?.updatedAt;
   const quotesError = quotesQuery.data?.error;
@@ -511,10 +531,10 @@ function PortfolioOverview() {
           <div className="border-b border-border bg-surface-2 px-4 py-3">
             <div className="flex items-center gap-2">
               <DollarSign className="size-4 text-positive" />
-              <h2 className="text-sm font-semibold">Proventos Recebidos (últ. 12 meses)</h2>
+              <h2 className="text-sm font-semibold">Proventos Recebidos</h2>
             </div>
             <p className="text-xs text-muted-foreground">
-              Valor bruto estimado com base na posição atual e histórico de dividendos
+              Dividendos e JCP registrados nas operações
             </p>
           </div>
           <div className="overflow-x-auto">
@@ -522,41 +542,29 @@ function PortfolioOverview() {
               <thead className="bg-card text-xs uppercase text-muted-foreground">
                 <tr>
                   <th className="px-4 py-2.5 text-left font-medium">Ativo</th>
-                  <th className="px-4 py-2.5 text-right font-medium">Qtd</th>
-                  <th className="px-4 py-2.5 text-right font-medium">Total por ação</th>
                   <th className="px-4 py-2.5 text-right font-medium">Proventos</th>
                 </tr>
               </thead>
               <tbody>
-                {portfolio.positions
-                  .filter((p) => dividendsByTicker[p.ticker] > 0)
-                  .sort((a, b) => dividendsByTicker[b.ticker] - dividendsByTicker[a.ticker])
-                  .map((p) => {
-                    const asset = ASSETS_BY_TICKER[p.ticker];
-                    const totalPerShare = asset
-                      ? asset.dividends.reduce((s, d) => s + d.amount, 0)
-                      : 0;
-                    return (
-                      <tr key={p.ticker} className="border-t border-border hover:bg-surface">
-                        <td className="px-4 py-2.5">
-                          <Link
-                            to="/ativo/$ticker"
-                            params={{ ticker: p.ticker }}
-                            className="font-semibold hover:text-primary"
-                          >
-                            {p.ticker}
-                          </Link>
-                        </td>
-                        <td className="tabular px-4 py-2.5 text-right">{formatQty(p.quantity)}</td>
-                        <td className="tabular px-4 py-2.5 text-right text-muted-foreground">
-                          {formatBRL(totalPerShare)}
-                        </td>
-                        <td className="tabular px-4 py-2.5 text-right font-medium text-positive">
-                          {formatBRL(dividendsByTicker[p.ticker])}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                {Object.entries(dividendsByTicker)
+                  .filter(([, total]) => total > 0)
+                  .sort(([, a], [, b]) => b - a)
+                  .map(([ticker, total]) => (
+                    <tr key={ticker} className="border-t border-border hover:bg-surface">
+                      <td className="px-4 py-2.5">
+                        <Link
+                          to="/ativo/$ticker"
+                          params={{ ticker }}
+                          className="font-semibold hover:text-primary"
+                        >
+                          {ticker}
+                        </Link>
+                      </td>
+                      <td className="tabular px-4 py-2.5 text-right font-medium text-positive">
+                        {formatBRL(total)}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -586,7 +594,7 @@ function PortfolioOverview() {
             <div className="border-b border-border bg-surface-2 px-4 py-3">
               <h2 className="text-sm font-semibold">Posições</h2>
               <p className="text-xs text-muted-foreground">
-                Ordenadas por valor atual · preços em tempo real via BRAPI
+                Ordenadas por valor · cotações: BRAPI / CoinGecko / Yahoo
               </p>
             </div>
             <div className="overflow-x-auto">
@@ -597,46 +605,80 @@ function PortfolioOverview() {
                     <th className="px-4 py-2.5 text-right font-medium">Qtd</th>
                     <th className="px-4 py-2.5 text-right font-medium">PM</th>
                     <th className="px-4 py-2.5 text-right font-medium">Preço</th>
-                    <th className="px-4 py-2.5 text-right font-medium">Valor atual</th>
+                    <th className="px-4 py-2.5 text-right font-medium">Valor (BRL)</th>
                     <th className="px-4 py-2.5 text-right font-medium">P/L</th>
                     <th className="px-4 py-2.5 text-right font-medium">%</th>
                     <th className="px-4 py-2.5 text-right font-medium">Peso</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {portfolio.positions.map((p) => (
+                  {portfolio.positions.map((p) => {
+                    const isRf = p.asset_type === "fixed_income";
+                    return (
                     <tr key={p.ticker} className="border-t border-border hover:bg-surface">
                       <td className="px-4 py-2.5">
-                        <Link
-                          to="/ativo/$ticker"
-                          params={{ ticker: p.ticker }}
-                          className="font-semibold hover:text-primary"
-                        >
-                          {p.ticker}
-                        </Link>
-                        <div className="text-xs text-muted-foreground">{p.sector}</div>
+                        <div className="flex items-baseline gap-1.5">
+                          <Link
+                            to="/ativo/$ticker"
+                            params={{ ticker: p.ticker }}
+                            className="font-semibold hover:text-primary"
+                          >
+                            {p.ticker}
+                          </Link>
+                          {p.currency !== "BRL" && (
+                            <span className="rounded bg-muted px-1 py-0.5 text-[10px] font-medium uppercase text-muted-foreground">
+                              {p.currency}
+                            </span>
+                          )}
+                          {isRf && (
+                            <span className="rounded bg-chart-3/10 px-1 py-0.5 text-[10px] font-medium text-chart-3">
+                              RF
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {p.currency !== "BRL"
+                            ? `${p.sector} · ${formatBRL(p.brlValue)}`
+                            : isRf
+                              ? `Renda Fixa · ${formatBRL(p.invested)}`
+                              : p.sector}
+                        </div>
                       </td>
-                      <td className="tabular px-4 py-2.5 text-right">{formatQty(p.quantity)}</td>
-                      <td className="tabular px-4 py-2.5 text-right">{formatBRL(p.avgPrice)}</td>
                       <td className="tabular px-4 py-2.5 text-right">
-                        {formatBRL(p.currentPrice)}
+                        {isRf ? "—" : formatQty(p.quantity)}
+                      </td>
+                      <td className="tabular px-4 py-2.5 text-right">
+                        {isRf ? "—" : p.currency !== "BRL" ? `$${p.avgPrice.toFixed(2)}` : formatBRL(p.avgPrice)}
+                      </td>
+                      <td className="tabular px-4 py-2.5 text-right">
+                        {isRf ? "—" : p.currency !== "BRL" ? `$${p.currentPrice.toFixed(2)}` : formatBRL(p.currentPrice)}
                       </td>
                       <td className="tabular px-4 py-2.5 text-right font-medium">
                         {formatBRL(p.currentValue)}
+                        {p.currency !== "BRL" && (
+                          <div className="text-[11px] text-muted-foreground">
+                            ${(p.brlValue / (exchangeRates?.USD ?? 1)).toFixed(2)}
+                          </div>
+                        )}
                       </td>
                       <td className="tabular px-4 py-2.5 text-right">
-                        <span className={p.pnl >= 0 ? "text-positive" : "text-negative"}>
-                          {formatBRL(p.pnl)}
-                        </span>
+                        {isRf ? (
+                          <span className="text-muted-foreground">—</span>
+                        ) : (
+                          <span className={p.pnl >= 0 ? "text-positive" : "text-negative"}>
+                            {formatBRL(p.pnl)}
+                          </span>
+                        )}
                       </td>
                       <td className="px-4 py-2.5 text-right">
-                        <DeltaPct value={p.pnlPct} />
+                        {isRf ? <span className="text-muted-foreground">—</span> : <DeltaPct value={p.pnlPct} />}
                       </td>
                       <td className="tabular px-4 py-2.5 text-right text-muted-foreground">
                         {p.weight.toFixed(1)}%
                       </td>
                     </tr>
-                  ))}
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -649,31 +691,11 @@ function PortfolioOverview() {
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
-                      data={(() => {
-                        const isFii = (t: string) => /^\w+11$/.test(t);
-                        let stockVal = 0,
-                          fiiVal = 0;
-                        for (const p of portfolio.positions) {
-                          if (isFii(p.ticker)) fiiVal += p.currentValue;
-                          else stockVal += p.currentValue;
-                        }
-                        return [
-                          {
-                            name: "Ações",
-                            value: stockVal,
-                            pct:
-                              portfolio.totalValue > 0
-                                ? (stockVal / portfolio.totalValue) * 100
-                                : 0,
-                          },
-                          {
-                            name: "FIIs",
-                            value: fiiVal,
-                            pct:
-                              portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0,
-                          },
-                        ];
-                      })()}
+                      data={portfolio.typeAllocation.map((t) => ({
+                        name: TYPE_LABELS[t.type] ?? t.type,
+                        value: t.value,
+                        pct: t.pct,
+                      }))}
                       dataKey="value"
                       nameKey="name"
                       innerRadius={35}
@@ -681,8 +703,9 @@ function PortfolioOverview() {
                       stroke="var(--color-background)"
                       strokeWidth={2}
                     >
-                      <Cell fill="var(--color-chart-1)" />
-                      <Cell fill="var(--color-chart-4)" />
+                      {portfolio.typeAllocation.map((_, i) => (
+                        <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                      ))}
                     </Pie>
                     <Tooltip
                       contentStyle={{
@@ -700,39 +723,16 @@ function PortfolioOverview() {
                 </ResponsiveContainer>
               </div>
               <ul className="mt-4 space-y-1.5 text-sm">
-                {(() => {
-                  const isFii = (t: string) => /^\w+11$/.test(t);
-                  let stockVal = 0,
-                    fiiVal = 0;
-                  for (const p of portfolio.positions) {
-                    if (isFii(p.ticker)) fiiVal += p.currentValue;
-                    else stockVal += p.currentValue;
-                  }
-                  return [
-                    {
-                      name: "Ações",
-                      value: stockVal,
-                      pct: portfolio.totalValue > 0 ? (stockVal / portfolio.totalValue) * 100 : 0,
-                    },
-                    {
-                      name: "FIIs",
-                      value: fiiVal,
-                      pct: portfolio.totalValue > 0 ? (fiiVal / portfolio.totalValue) * 100 : 0,
-                    },
-                  ].filter((c) => c.value > 0);
-                })().map((c) => (
-                  <li key={c.name} className="flex items-center justify-between">
+                {portfolio.typeAllocation.map((t, i) => (
+                  <li key={t.type} className="flex items-center justify-between">
                     <span className="flex items-center gap-2">
                       <span
                         className="inline-block size-2.5 rounded-sm"
-                        style={{
-                          background:
-                            c.name === "Ações" ? "var(--color-chart-1)" : "var(--color-chart-4)",
-                        }}
+                        style={{ background: CHART_COLORS[i % CHART_COLORS.length] }}
                       />
-                      <span className="text-muted-foreground">{c.name}</span>
+                      <span className="text-muted-foreground">{TYPE_LABELS[t.type] ?? t.type}</span>
                     </span>
-                    <span className="tabular">{c.pct.toFixed(1)}%</span>
+                    <span className="tabular">{t.pct.toFixed(1)}%</span>
                   </li>
                 ))}
               </ul>
@@ -787,7 +787,7 @@ function PortfolioOverview() {
             </div>
             <p className="flex items-start gap-2 text-xs text-muted-foreground">
               <Info className="mt-0.5 size-3.5 shrink-0" />
-              Cotações via BRAPI (b3). Tickers sem retorno usam preço de referência.
+              Cotações: BRAPI (B3) · CoinGecko (cripto) · Yahoo Finance (internacional). Valores em BRL convertidos pela cotação do dia.
             </p>
           </div>
         </div>

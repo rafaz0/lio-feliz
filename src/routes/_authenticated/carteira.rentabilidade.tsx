@@ -1,9 +1,16 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useMemo } from "react";
+﻿import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { LineChart as LineChartIcon, TrendingUp, Shield, BarChart3 } from "lucide-react";
 import {
+  BarChart3,
+  LineChart as LineChartIcon,
+  Shield,
+  TrendingUp,
+} from "lucide-react";
+import {
+  Bar,
+  BarChart,
   CartesianGrid,
   Line,
   LineChart,
@@ -17,6 +24,7 @@ import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData, type BenchmarkPoint } from "@/lib/data-functions";
 import { buildPortfolioHistory } from "@/lib/portfolio";
 import { formatDate, formatBRL } from "@/lib/format";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const Route = createFileRoute("/_authenticated/carteira/rentabilidade")({
@@ -33,7 +41,20 @@ export const Route = createFileRoute("/_authenticated/carteira/rentabilidade")({
   component: RentabilidadePage,
 });
 
+const periods = [
+  { label: "12M", months: 12 },
+  { label: "24M", months: 24 },
+  { label: "Tudo", months: Infinity },
+] as const;
+
+type BenchmarkKey = "ibov" | "idiv" | "ifix";
+
 function RentabilidadePage() {
+  const [periodIndex, setPeriodIndex] = useState(0);
+  const [visibleBenchmarks, setVisibleBenchmarks] = useState<Set<BenchmarkKey>>(
+    () => new Set(["ibov", "idiv"]),
+  );
+
   const list = useServerFn(listOperations);
   const fetchQuotes = useServerFn(getQuotes);
   const fetchBenchmark = useServerFn(getBenchmarkData);
@@ -74,10 +95,24 @@ function RentabilidadePage() {
   const portBase = history[0]?.value ?? 0;
   const portBaseSafe = portBase > 0 ? portBase : 1;
 
+  const cutoffDate = useMemo(() => {
+    const m = periods[periodIndex].months;
+    if (m === Infinity || !lastDate) return null;
+    const d = new Date(lastDate);
+    d.setMonth(d.getMonth() - m);
+    return d.toISOString().slice(0, 10);
+  }, [periodIndex, lastDate]);
+
+  const filteredHistory = useMemo(
+    () => (cutoffDate ? history.filter((h) => h.date >= cutoffDate) : history),
+    [history, cutoffDate],
+  );
+
   const chartData = useMemo(() => {
     if (!benchmarkData || !firstDate || !lastDate || history.length < 2) return null;
+    const firstFiltered = cutoffDate ?? firstDate;
     return benchmarkData
-      .filter((b) => b.date >= firstDate && b.date <= lastDate)
+      .filter((b) => b.date >= firstFiltered && b.date <= lastDate)
       .map((b) => {
         const portPoint = history.find((h) => h.date === b.date);
         return {
@@ -88,11 +123,52 @@ function RentabilidadePage() {
           portfolio: portPoint ? (portPoint.value / portBaseSafe) * 1000 : null,
         };
       });
-  }, [benchmarkData, history, firstDate, lastDate, portBaseSafe]);
+  }, [benchmarkData, history, firstDate, lastDate, portBaseSafe, cutoffDate]);
+
+  const monthlyReturns = useMemo(() => {
+    if (filteredHistory.length < 2) return [];
+    const months: { month: string; portfolio: number; ibov: number; idiv: number }[] = [];
+    let prevPort = filteredHistory[0].value;
+    const firstBench = chartData?.[0];
+    let prevIbov = firstBench?.ibov ?? 0;
+    let prevIdiv = firstBench?.idiv ?? 0;
+    let currentMonth = filteredHistory[0].date.slice(0, 7);
+    for (let i = 1; i < filteredHistory.length; i++) {
+      const h = filteredHistory[i];
+      const m = h.date.slice(0, 7);
+      if (m !== currentMonth) {
+        const benchPoint = chartData?.find((c) => c.date === h.date);
+        if (benchPoint) {
+          months.push({
+            month: currentMonth,
+            portfolio: prevPort > 0 ? ((h.value - prevPort) / prevPort) * 100 : 0,
+            ibov: prevIbov > 0 ? ((benchPoint.ibov - prevIbov) / prevIbov) * 100 : 0,
+            idiv: prevIdiv > 0 ? ((benchPoint.idiv - prevIdiv) / prevIdiv) * 100 : 0,
+          });
+        }
+        currentMonth = m;
+        prevPort = h.value;
+        if (benchPoint) {
+          prevIbov = benchPoint.ibov;
+          prevIdiv = benchPoint.idiv;
+        }
+      }
+    }
+    return months;
+  }, [filteredHistory, chartData]);
+
+  const toggleBenchmark = (key: BenchmarkKey) => {
+    setVisibleBenchmarks((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
 
   const metrics = useMemo(() => {
-    if (history.length < 4) return null;
-    const values = history.map((h) => h.value);
+    if (filteredHistory.length < 4) return null;
+    const values = filteredHistory.map((h) => h.value);
     const returns: number[] = [];
     for (let i = 1; i < values.length; i++) returns.push(values[i] / values[i - 1] - 1);
 
@@ -137,7 +213,7 @@ function RentabilidadePage() {
     }
 
     const sharpe = volatility > 0 ? (avgReturn * 52 - riskFree) / volatility : null;
-    const portEnd = history[history.length - 1].value;
+    const portEnd = filteredHistory[filteredHistory.length - 1].value;
     const portReturn = portBase > 0 ? (portEnd / portBase - 1) * 100 : 0;
 
     let ibovReturn: number | null = null;
@@ -177,7 +253,7 @@ function RentabilidadePage() {
     );
   }
 
-  if (history.length < 2) {
+  if (filteredHistory.length < 2) {
     return (
       <div className="rounded-lg border border-dashed border-border bg-card p-10 text-center">
         <TrendingUp className="mx-auto size-8 text-muted-foreground" />
@@ -191,6 +267,20 @@ function RentabilidadePage() {
 
   return (
     <div className="space-y-6">
+      {/* Period selector */}
+      <div className="flex items-center gap-2">
+        {periods.map((p, i) => (
+          <Button
+            key={p.label}
+            variant={i === periodIndex ? "default" : "outline"}
+            size="sm"
+            onClick={() => setPeriodIndex(i)}
+          >
+            {p.label}
+          </Button>
+        ))}
+      </div>
+
       {metrics && (
         <section className="grid gap-3 sm:grid-cols-4">
           <KpiCard
@@ -216,18 +306,45 @@ function RentabilidadePage() {
             }
             tone={metrics.idivReturn !== null && metrics.idivReturn >= 0 ? "positive" : "negative"}
           />
-          <KpiCard label="CDI (ref. 14.75% a.a.)" value="+14.75%" tone="positive" />
+          <KpiCard label="CDI (ref. 14,75% a.a.)" value="+14,75%" tone="positive" />
         </section>
       )}
+
+      {/* Benchmark legend toggle */}
+      <div className="flex flex-wrap items-center gap-3">
+        {(["ibov", "idiv", "ifix"] as const).map((key) => {
+          const colors: Record<string, string> = {
+            ibov: "var(--color-chart-3)",
+            idiv: "var(--color-positive)",
+            ifix: "var(--color-chart-4)",
+          };
+          const labels: Record<string, string> = { ibov: "IBOV", idiv: "IDIV", ifix: "IFIX" };
+          return (
+            <button
+              key={key}
+              type="button"
+              onClick={() => toggleBenchmark(key)}
+              className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition-colors ${
+                visibleBenchmarks.has(key)
+                  ? "bg-primary/10 text-foreground"
+                  : "bg-muted text-muted-foreground line-through"
+              }`}
+            >
+              <span
+                className="inline-block size-2 rounded-full"
+                style={{ background: colors[key] }}
+              />
+              {labels[key]}
+            </button>
+          );
+        })}
+      </div>
 
       <section className="rounded-lg border border-border bg-card p-5">
         <div className="mb-4 flex items-center gap-2">
           <LineChartIcon className="size-4 text-chart-4" />
-          <h2 className="text-sm font-semibold">Rentabilidade vs. Mercado (base 1000)</h2>
+          <h2 className="text-sm font-semibold">Evolução do Patrimônio (base 1000)</h2>
         </div>
-        <p className="mb-3 text-xs text-muted-foreground">
-          Comparação da sua carteira com os principais índices brasileiros
-        </p>
         <div className="h-64 w-full">
           {chartData && chartData.length > 1 ? (
             <ResponsiveContainer width="100%" height="100%">
@@ -280,30 +397,36 @@ function RentabilidadePage() {
                   strokeWidth={2}
                   dot={false}
                 />
-                <Line
-                  type="monotone"
-                  dataKey="ibov"
-                  stroke="var(--color-chart-3)"
-                  strokeWidth={1.5}
-                  dot={false}
-                  strokeDasharray="4 3"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="idiv"
-                  stroke="var(--color-positive)"
-                  strokeWidth={1.5}
-                  dot={false}
-                  strokeDasharray="4 3"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="ifix"
-                  stroke="var(--color-chart-4)"
-                  strokeWidth={1.5}
-                  dot={false}
-                  strokeDasharray="4 3"
-                />
+                {visibleBenchmarks.has("ibov") && (
+                  <Line
+                    type="monotone"
+                    dataKey="ibov"
+                    stroke="var(--color-chart-3)"
+                    strokeWidth={1.5}
+                    dot={false}
+                    strokeDasharray="4 3"
+                  />
+                )}
+                {visibleBenchmarks.has("idiv") && (
+                  <Line
+                    type="monotone"
+                    dataKey="idiv"
+                    stroke="var(--color-positive)"
+                    strokeWidth={1.5}
+                    dot={false}
+                    strokeDasharray="4 3"
+                  />
+                )}
+                {visibleBenchmarks.has("ifix") && (
+                  <Line
+                    type="monotone"
+                    dataKey="ifix"
+                    stroke="var(--color-chart-4)"
+                    strokeWidth={1.5}
+                    dot={false}
+                    strokeDasharray="4 3"
+                  />
+                )}
               </LineChart>
             </ResponsiveContainer>
           ) : (
@@ -320,29 +443,119 @@ function RentabilidadePage() {
             />{" "}
             Carteira
           </span>
-          <span className="flex items-center gap-1.5">
-            <span
-              className="inline-block size-2.5 rounded-sm"
-              style={{ background: "var(--color-chart-3)" }}
-            />{" "}
-            IBOV
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span
-              className="inline-block size-2.5 rounded-sm"
-              style={{ background: "var(--color-positive)" }}
-            />{" "}
-            IDIV
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span
-              className="inline-block size-2.5 rounded-sm"
-              style={{ background: "var(--color-chart-4)" }}
-            />{" "}
-            IFIX
-          </span>
+          {visibleBenchmarks.has("ibov") && (
+            <span className="flex items-center gap-1.5">
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-chart-3)" }}
+              />{" "}
+              IBOV
+            </span>
+          )}
+          {visibleBenchmarks.has("idiv") && (
+            <span className="flex items-center gap-1.5">
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-positive)" }}
+              />{" "}
+              IDIV
+            </span>
+          )}
+          {visibleBenchmarks.has("ifix") && (
+            <span className="flex items-center gap-1.5">
+              <span
+                className="inline-block size-2.5 rounded-sm"
+                style={{ background: "var(--color-chart-4)" }}
+              />{" "}
+              IFIX
+            </span>
+          )}
         </div>
       </section>
+
+      {/* Monthly returns */}
+      {monthlyReturns.length > 0 && (
+        <section className="rounded-lg border border-border bg-card p-5">
+          <div className="mb-4 flex items-center gap-2">
+            <BarChart3 className="size-4 text-chart-2" />
+            <h2 className="text-sm font-semibold">Retorno Mensal (%)</h2>
+          </div>
+          <div className="h-48 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={monthlyReturns} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
+                <CartesianGrid
+                  stroke="var(--color-border)"
+                  strokeDasharray="3 3"
+                  vertical={false}
+                />
+                <XAxis
+                  dataKey="month"
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
+                  tickFormatter={(m: string) => {
+                    const [y, mo] = m.split("-");
+                    return `${mo}/${y.slice(2)}`;
+                  }}
+                  interval="preserveStartEnd"
+                  minTickGap={30}
+                  stroke="var(--color-border)"
+                />
+                <YAxis
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  tickFormatter={(v: number) => `${v.toFixed(1)}%`}
+                  width={50}
+                  stroke="var(--color-border)"
+                />
+                <Tooltip
+                  contentStyle={{
+                    background: "var(--color-popover)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: 6,
+                    fontSize: 12,
+                  }}
+                  labelFormatter={(l: string) => {
+                    const [y, m] = l.split("-");
+                    const months = [
+                      "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+                      "Jul", "Ago", "Set", "Out", "Nov", "Dez",
+                    ];
+                    return `${months[Number(m) - 1]}/${y}`;
+                  }}
+                  formatter={(v: number, name: string) => {
+                    const labels: Record<string, string> = {
+                      portfolio: "Carteira",
+                      ibov: "IBOV",
+                      idiv: "IDIV",
+                    };
+                    return [`${v >= 0 ? "+" : ""}${v.toFixed(2)}%`, labels[name] ?? name];
+                  }}
+                />
+                <Bar
+                  dataKey="portfolio"
+                  fill="var(--color-primary)"
+                  radius={[2, 2, 0, 0]}
+                  maxBarSize={16}
+                />
+                {visibleBenchmarks.has("ibov") && (
+                  <Bar
+                    dataKey="ibov"
+                    fill="var(--color-chart-3)"
+                    radius={[2, 2, 0, 0]}
+                    maxBarSize={16}
+                  />
+                )}
+                {visibleBenchmarks.has("idiv") && (
+                  <Bar
+                    dataKey="idiv"
+                    fill="var(--color-positive)"
+                    radius={[2, 2, 0, 0]}
+                    maxBarSize={16}
+                  />
+                )}
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </section>
+      )}
 
       {metrics && (
         <section className="grid gap-3 sm:grid-cols-4">
@@ -381,7 +594,7 @@ function RentabilidadePage() {
             <p className="text-sm font-medium">Rentabilidade passada não garante retorno futuro</p>
             <p className="mt-1 text-xs text-muted-foreground">
               Este comparativo usa dados históricos da sua carteira e benchmarks. O CDI é usado como
-              referência de renda fixa (taxa Selic atual de 14.75% a.a.).
+              referência de renda fixa (taxa Selic atual de 14,75% a.a.).
             </p>
           </div>
         </div>
