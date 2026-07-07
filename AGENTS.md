@@ -11,89 +11,251 @@
 
 <!-- LOVABLE:END -->
 
-## Constraints
+# Projeto: Lio Feliz — Dashboard de Investimentos
 
-- Foco em investidor de longo prazo: fundamentos e dividendos
-- Cripto, day trade, gamificação, cursos e AI chat não são prioridade
-- Projeto conectado ao Lovable — não reescrever histórico git
-- Usuário não é programador — comandos precisam ser claros
+## O Que Estamos Construindo
 
-## Relevant Files
+Um dashboard de carteira de investimentos completo que rivaliza com o **Investidor10**. O foco é **investidor de longo prazo** (fundamentos, dividendos, FIIs, ações BR, stocks US, ETFs). O usuário registra operações de compra/venda e o sistema calcula posição consolidada, rentabilidade, proventos recebidos, IRPF, etc.
 
-- `src/lib/yahoo.server.ts`: funções server-side Yahoo Finance (fundamentos, histórico, dividendos, news) com cache em memória
-- `src/lib/data-functions.ts`: server functions combinadas (Yahoo Finance + BRAPI + mock fallback); `getAssetData` (detalhe), `getAssetList` (500+ ativos), `getAllAssets` (mock enriquecido), `getRealProjections` (projeção real de dividendos via Yahoo + fallback mock)
-- `src/lib/mock-data.ts`: dados mock de 20 ações (usado como fallback/seed)
-- `src/lib/fii-mock-data.ts`: dados mock de 20 FIIs
-- `src/lib/quotes.functions.ts`: server function BRAPI para cotações em tempo real
-- `src/lib/portfolio.ts`: consolidação de carteira + histórico patrimonial
-- `src/lib/watchlist.ts`: hook React `useWatchlist()` com `useSyncExternalStore` + localStorage
-- `src/lib/recommended-portfolios.ts`: dados mock de 5 carteiras recomendadas (Dividendos, Valor, Crescimento, Small Caps, FIIs)
-- `src/routes/ativo.$ticker.tsx`: página de detalhe do ativo (Yahoo Finance + BRAPI) + botão Watchlist + Fatos Relevantes
-- `src/routes/fii.$ticker.tsx`: página de detalhe do FII (BRAPI + mock)
-- `src/routes/dividendos.tsx`: calendário de dividendos (ações + FIIs)
-- `src/routes/rankings.tsx`: rankings com toggle ações/FIIs (dados reais no loader)
-- `src/routes/comparar.tsx`: comparador com toggle ações/FIIs (dados reais no loader)
-- `src/routes/calculadoras.tsx`: 5 calculadoras — Juros Compostos, Reserva de Emergência, DCF, Preço Teto, CDB
-- `src/routes/provisionador.tsx`: provisionador de dividendos com gráfico de timeline (barras + linha acumulada)
-- `src/routes/watchlist.index.tsx`: watchlist com busca, tabela, indicadores (DY, P/L), cotações ao vivo
-- `src/routes/noticias.tsx`: notícias do mercado com dados reais do Yahoo Finance (+ tickers linkáveis)
-- `src/routes/carteiras-recomendadas.tsx`: 5 carteiras pré-definidas com detalhamento por ativo
-- `src/routes/_authenticated/carteira.index.tsx`: visão geral da carteira com gráfico de evolução + link IRPF
-- `src/routes/_authenticated/irpf.index.tsx`: apuração mensal de IRPF (ganho de capital) — ações 15%, FIIs 20%, isenção R$ 20k, exportação CSV
-- `src/routes/index.tsx`: página inicial com busca, tabela de 500+ ativos, links para watchlist e demais seções
-- `src/components/site-header.tsx`: navegação principal + dropdown do usuário com links Carteira/IRPF
+## Stack
 
-## Commands
+- **Framework:** TanStack Start (React + SSR + Vite + Nitro)
+- **UI:** Tailwind CSS + shadcn/ui (Radix primitives)
+- **Build target:** Cloudflare Module Worker
+- **Banco:** Supabase (PostgreSQL) — mas `DEV_MODE=true` usa store em memória
+- **Auth:** Supabase Auth via Lovable Cloud Auth
+- **Deploy:** Cloudflare (npx wrangler)
 
-- Dev server: `npm run dev` (na pasta do projeto, roda em http://localhost:8080)
-- Lint/check: `npx tsc --noEmit`
-- Build: `npm run build`
-- Type checking requires `powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"` on this machine (PowerShell execution policy restriction)
+## Como Rodar
 
-## Work State
+```bash
+cd C:\Users\rafae\AppData\Local\Temp\opencode\lio-feliz
+npm run dev    # http://localhost:8080
+npm run build  # produção
+```
 
-### Completed
-- ✅ **Diálogo de lançamento estilo Investidor10**: layout diferente por tipo de ativo (Ações, FIIs, BDRs, ETFs, ETFs Internacionais, Stocks EUA, REITs EUA, Renda Fixa, Cripto, Outros)
-- ✅ **Campos RF**: Emissor, Tipo título, Indexador, Taxa, Forma, Valor, Vencimento, Liquidez diária
-- ✅ **Outros custos**: campo único que entra na base de custo
-- ✅ **Valor total**: cálculo automático exibido no diálogo
-- ✅ **Sugestões fixas**: lista de exemplos por tipo de ativo, filtradas localmente (sem dependência de servidor)
-- ✅ **Novos tipos**: `etf_internacional`, `stock_us`, `reit` adicionados ao `AssetType`
-- ✅ **inferAssetType**: detecta os novos tipos com listas conhecidas + padrão de ticker US (1-5 letras)
-- ✅ **Cache key**: `v3` para evitar dados antigos em cache
-- ✅ **Schema**: `other_costs` + `metadata` (JSON) adicionados ao Operation e ao Zod
-- ✅ **Portfolio**: cálculos de custo incluem `other_costs`; dividendos reduzem custo, bonificações aumentam quantidade
-- ✅ **TYPE_LABELS**: atualizados em carteira.index, carteira.patrimonio, irpf-content
-- ✅ **TAX_RULES**: atualizadas com os novos tipos (15% para todos os US)
-- ✅ **Cleanup**: removido `isTreasury`/layout `treasury` não utilizado; removido `international` antigo
-- ✅ **Fase 3**: calculadoras (DCF, Price Target, CDB) + provisionador com timeline
-- ✅ **Fase 4**: watchlist + IRPF Helper
-- ✅ **Fase 5**: fatos relevantes + carteiras recomendadas
-- ✅ **Pente fino**: removidos 10+ imports não utilizados em 8 arquivos; migrados 6 `inputValidator()` → `validator()`
-- ✅ **Sincronização automática de proventos**: `syncPendingDividends` server function
-  - BRAPI (primário) para ações/FIIs/BDRs brasileiras (dados mensais precisos) com fallback Yahoo Finance
-  - Yahoo Finance para ativos internacionais
-  - Armazena `quantity=cotas, price=valor_por_cota` (exibe por cota + total)
-  - Detecta automaticamente JCP vs Dividendos via label BRAPI
-  - Detecta automaticamente bonificações, desdobramentos e grupamentos via BRAPI stockDividends
-  - Cria operações de bonificação (aumento de quantidade sem custo) e split
-- ✅ **Auto-sync ao carregar** página de Lançamentos
-- ✅ **Botão "Sincronizar proventos"** na página de Lançamentos
-- ✅ **Proventos reais no overview**: carteira.index usa dados de operações de dividendos ao invés de mock
-- ✅ **Bug fix**: aba Provento/Bonificação não resetava modo incorretamente (`resetForm(false)`)
-- ✅ **inferAssetType**: regex corrigido para ações BR (`4-6 letras + 1 dígito`), lista de 40+ ações BR conhecidas
-- ✅ **EXAMPLES expandido**: GOAU4, GGBR4, CSNA3, USIM5, CMIG4, ELET3, EMBR3, JBSS3, BRFS3, B3SA3, RADL3, HAPV3, RAIL3, SUZB3, AZUL4, PRIO3, ENGII11, KLBN11, SLCE3 + mais 20 FIIs, BDRs, ETFs
-- ✅ **TypeScript zero erros** (`npx tsc --noEmit`) e **build de produção** (`npm run build`)
+Type checking (PowerShell):
+```powershell
+powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"
+```
 
-### Pending
-- ❌ error/notFound components em páginas que ainda não têm
-- ❌ Responsividade mobile
-- ❌ Skeletons para loading
-- ❌ Melhorias no diálogo: Tesouro Direto como layout separado, busca BRAPI/Yahoo com filtro funcional
+## DEV_MODE
 
-## Data Architecture
+`DEV_MODE=true` no `.env` — operações em memória (sem Supabase). Tudo funciona localmente. O servidor reinicia com alterações.
 
-- **Listas** (index, rankings): BRAPI batch quotes para preços + mock/Yahoo para fundamentos quando disponíveis
-- **Detalhe** (ativo/$ticker): Yahoo Finance (fundamentos, histórico, dividendos) com cache 1h + fallback mock
-- **FIIs**: BRAPI quotes para preços ao vivo + mock-data para indicadores específicos (vacância, cap rate, etc.)
-- **Cobertura**: 20 ativos com fundamentos completos (mock + Yahoo) + 500+ ativos com preço e nome via BRAPI
+## Branches
+
+- `main` — branch conectada ao Lovable. Commits pushados sincronizam com o editor Lovable.
+- **Nunca** force push, rebase, amend ou squash commits já publicados.
+
+## Estrutura do Projeto
+
+### Rotas Autenticadas (requer login via Supabase)
+- `/carteira` — visão geral da carteira (gráfico evolução, posições, alocação, proventos)
+- `/carteira/lancamentos` — histórico de operações + botão sincronizar proventos
+- `/carteira/rentabilidade` — rentabilidade vs benchmarks (IBOV, IDIV, IFIX)
+- `/carteira/patrimonio` — evolução patrimonial detalhada
+- `/carteira/analise` — análise de risco
+- `/carteira/cobertura` — cobertura de proventos
+- `/carteira/proventos` — proventos recebidos + projetados
+- `/carteira/metas` — metas financeiras
+- `/carteira/irpf` — apuração IRPF mensal
+- `/irpf` — helper IRPF com exportação CSV
+
+### Rotas Públicas
+- `/` — página inicial com busca de 500+ ativos
+- `/ativo/$ticker` — detalhe do ativo (fundamentos Yahoo + BRAPI)
+- `/fii/$ticker` — detalhe do FII
+- `/dividendos` — calendário de dividendos
+- `/rankings` — rankings ações/FIIs
+- `/comparar` — comparador de ativos
+- `/calculadoras` — 5 calculadoras (Juros Compostos, Reserva, DCF, Preço Teto, CDB)
+- `/provisionador` — provisionador de dividendos com timeline
+- `/watchlist` — watchlist pessoal (localStorage)
+- `/noticias` — notícias do mercado
+- `/carteiras-recomendadas` — 5 carteiras pré-definidas
+
+### Libs Core
+| Arquivo | Descrição |
+|---------|-----------|
+| `src/lib/portfolio.ts` | Tipos (`AssetType`, `Operation`, `OperationSide`), `inferAssetType`, `consolidatePortfolio`, `buildPortfolioHistory` |
+| `src/lib/operations.functions.ts` | Server functions: `listOperations`, `createOperation`, `deleteOperation`, `syncPendingDividends` |
+| `src/lib/yahoo.server.ts` | Yahoo Finance + BRAPI: cotações, dividendos, stockDividends (splits/bonus), fundamentos, cache |
+| `src/lib/data-functions.ts` | Server functions combinadas: `getAssetData`, `getAssetList`, `getRealProjections` |
+| `src/lib/quotes.functions.ts` | Server function BRAPI para cotações em tempo real |
+| `src/lib/exchange.server.ts` | Câmbio USD-BRL via AwesomeAPI |
+| `src/lib/coingecko.server.ts` | Cotações cripto via CoinGecko |
+| `src/lib/format.ts` | `formatBRL`, `formatDate`, `formatQty` |
+| `src/lib/mock-data.ts` | Mock de 20 ações (fallback) |
+| `src/lib/fii-mock-data.ts` | Mock de 20 FIIs |
+
+### Componentes Chave
+| Componente | Descrição |
+|-----------|-----------|
+| `src/components/add-operation-dialog.tsx` | Diálogo de lançamento com layout por tipo de ativo + abas Provento/Bonificação |
+| `src/components/operations-content.tsx` | Tabela de histórico de operações + botão Sincronizar + auto-sync |
+| `src/components/irpf-content.tsx` | Cálculo IRPF mensal |
+
+## Data Flow: Carteira
+
+1. Usuário registra operações via `createOperation` (compra, venda, dividendo, bonificação)
+2. `listOperations` retorna todas as operações
+3. `consolidatePortfolio(operations, priceOverrides, exchangeRates)` calcula:
+   - Posições consolidadas por ticker (qty, avgPrice, totalCost, currentValue, pnl)
+   - Alocação por tipo/setor
+   - Totais da carteira
+4. `buildPortfolioHistory(operations, priceOverrides, exchangeRates)` gera série temporal para gráficos
+5. Dividendos reduzem `totalCost`, bonificações aumentam `qty`
+
+## Dividendos: Formato de Armazenamento
+
+Operações de dividendo armazenam:
+- `quantity` = número de cotas na data do dividendo
+- `price` = valor por cota (ex: 0.35)
+- Total recebido = `quantity * price`
+- `metadata.tipo_provento` = `"dividendo"` ou `"jcp"`
+- `metadata.auto_sync` = `true` (se veio da sincronização automática)
+
+## Sincronização Automática
+
+`syncPendingDividends` (server function, POST):
+1. Para cada ticker com posição aberta:
+2. **BR stocks:** tenta `fetchBRAPIDividends` (dados mensais precisos, distingue DIVIDENDO vs JCP) → fallback `fetchYahooDividends`
+3. **US/International stocks:** `fetchYahooDividends`
+4. Pula dividendos já registrados (mesma data + ticker)
+5. Calcula cotas na data (processa buy/sell/bonus até a data)
+6. Cria operação `{ side: "dividend", quantity: cotas, price: valor_por_cota }`
+7. Também detecta bonificações, splits, grupamentos via `fetchBRAPIStockDividends`
+   - Bonificação: `{ side: "bonus", quantity: aumento }`
+   - Split/Desdobramento: cria bonus operation com cotas extras
+   - Reverse split/Grupamento: não cria (complexo)
+
+## AssetType completo
+```
+stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us | reit | other
+```
+
+## inferAssetType lógica
+1. Known sets (KNOWN_STOCK_US, KNOWN_REITS, KNOWN_ETF_INTL, KNOWN_ETF_BR, KNOWN_BDR, KNOWN_BR_STOCKS)
+2. FII: `/^\w+11$/` (exceto se já for ETF/BDR conhecido)
+3. BR stock: `/^[A-Z0-9]{4,6}\d$/`
+4. BDR: `/^[A-Z]{3,6}3\d$/`
+5. Crypto prefix match
+6. Fixed income prefix match
+7. US ticker fallback: `/^[A-Z]{1,5}(\.[A-Z]{1,2})?$/`
+8. `"other"` como fallback
+
+---
+
+# O QUE FAZER DEPOIS — Bugs e Pendências
+
+## 🔴 Bug 1: Histórico de operações mostra dividendos e bonificações (não deveria)
+
+**Local:** `src/components/operations-content.tsx`
+
+**Problema:** O usuário quer que a aba Lançamentos mostre **apenas** compras e vendas. Dividendos e bonificações estão poluindo a visualização. A sincronização automática (auto-sync) também não deveria estar nesta aba — ou pelo menos o botão "Sincronizar proventos" deveria ficar na aba de Proventos.
+
+**Solução sugerida:**
+- Filtrar `ops` no `operations-content.tsx` para mostrar apenas `side === "buy" || side === "sell"`
+- Mostrar dividendos/bonus em lista separada (ou na aba Proventos)
+- Mover o botão Sync e o auto-sync `useEffect` para a aba de Proventos (`carteira.proventos.tsx` ou `proventos-content.tsx`)
+
+## 🔴 Bug 2: Aba de proventos está vazia
+
+**Local:** `src/routes/_authenticated/carteira.proventos.tsx` e/ou `src/components/proventos-content.tsx`
+
+**Problema:** A página de proventos não exibe os dividendos registrados nas operações.
+
+**Solução sugerida:**
+- Verificar se `proventos-content.tsx` está usando as operações reais (filtradas por `side === "dividend"`)
+- Ou criar um novo componente que liste os dividendos agrupados por ticker
+- Os dividendos syncados via BRAPI/Yahoo devem aparecer aqui
+
+## 🔴 Bug 3: Sincronização fica "carregando" infinitamente
+
+**Local:** `src/components/operations-content.tsx` (auto-sync useEffect)
+
+**Problema:** O `useEffect` de auto-sync dispara a mutation `syncMut.mutate()` que faz uma chamada POST ao servidor. Se o servidor não responder ou demorar, fica carregando para sempre.
+
+**Solução sugerida:**
+- Adicionar timeout na server function (já tem `AbortSignal.timeout(10000)` nas chamadas BRAPI)
+- Adicionar `retry: false` ou `retry: 1` na mutation
+- Melhor: mover sync para a aba de proventos e remover auto-sync da aba de lançamentos
+
+## 🔴 Bug 4: Gráficos de evolução patrimonial não são "linha ascendente"
+
+**Local:** `src/routes/_authenticated/carteira.index.tsx` (AreaChart) e `carteira.patrimonio.tsx`
+
+**Problema:** O usuário quer que os gráficos mostrem **patrimônio acumulado** (linha sempre subindo, refletindo aportes + valorização), não apenas a valorização. Atualmente o gráfico mostra `value` (patrimônio total) que já é o valor acumulado. Talvez o problema seja que o gráfico usa `Area` com fill e o usuário quer visualmente uma "linha ascendente" mais limpa.
+
+**Solução sugerida:**
+- Verificar se `buildPortfolioHistory` está gerando dados corretos de `value` (patrimônio total) e `invested` (total investido)
+- O `value` já inclui aportes + valorização, deveria ser uma linha ascendente naturalmente
+- Talvez o problema seja que o investido (`invested`) está maior que o valor de mercado (`value`), fazendo a linha descer
+- Considerar mostrar gráfico de `value - invested` (lucro acumulado) como alternativa
+- Trocar `AreaChart` por `LineChart` se preferir visual mais limpo
+
+## 🟡 Melhorias Desejadas (Prioridade Média)
+
+- **error/notFound components** em páginas que ainda não têm
+- **Responsividade mobile**
+- **Skeletons para loading** em todas as páginas
+- **Diálogo de lançamento:** busca BRAPI/Yahoo com autocomplete funcional (além das sugestões fixas)
+- **Tesouro Direto** como layout separado no diálogo (exibir Taxa, Vencimento, Valor investido)
+
+## 🟢 Melhorias Futuras (Baixa Prioridade)
+
+- Alertas de proventos próximos
+- Carteira recomendada personalizada
+- Exportação de dados
+- Comparação com meta de renda passiva
+
+---
+
+# Contexto para o Próximo Agente
+
+## Para acessar o projeto
+
+```bash
+# Caminho do projeto
+cd C:\Users\rafae\AppData\Local\Temp\opencode\lio-feliz
+
+# Iniciar servidor
+npm run dev
+
+# Type check
+powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"
+
+# Build
+npm run build
+```
+
+Servidor roda em `http://localhost:8080`.
+
+## Último commit enviado
+
+Branch `main` em `rafaz0/lio-feliz`, commit `8f7f5e5`:
+"feat: sincronizacao automatica de proventos (BRAPI + Yahoo), correcao inferAssetType, examples expandido, dividendos por cota, split/bonus detection"
+
+27 arquivos modificados, 2361 inserções, 640 deleções.
+
+## Data Architecture (resumo)
+
+- **Cotações ao vivo:** BRAPI batch (B3) + CoinGecko (cripto) + Yahoo Finance (internacional)
+- **Fundamentos:** Yahoo Finance + mock-data como fallback
+- **Dividendos:** BRAPI quote endpoint (`?dividends=true&range=5y`) para BR, Yahoo Finance para US
+- **Cache:** Memória com expiração (1h fundamentos, 5min câmbio, 5min cotações)
+- **Câmbio:** AwesomeAPI (`USD-BRL`)
+
+## Tipos de operação suportados
+
+| side | Descrição | quantity | price | Efeito no portfolio |
+|------|-----------|----------|-------|---------------------|
+| buy | Compra | cotas compradas | preço por cota | +qty, +custo |
+| sell | Venda | cotas vendidas | preço por cota | -qty, -custo (proporcional) |
+| dividend | Dividendo/JCP | cotas na data | valor por cota | -custo (total = qty * price) |
+| bonus | Bonificação/Split | cotas bônus | 0 | +qty, sem custo |
+
+## Contas do usuário (se precisar logar)
+
+O sistema usa Supabase Auth com magic link. Em DEV_MODE, algumas funcionalidades não precisam de auth, mas as rotas autenticadas redirecionam para login. O usuário pode estar logado no navegador.
