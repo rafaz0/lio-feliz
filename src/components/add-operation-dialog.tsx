@@ -1,10 +1,14 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import { CalendarIcon } from "lucide-react";
 import { toast } from "sonner";
 import { createOperation } from "@/lib/operations.functions";
-import { searchTickers, type TickerSuggestion } from "@/lib/data-functions";
+import { searchTickers } from "@/lib/data-functions";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogClose,
@@ -18,12 +22,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 interface Props {
   trigger: React.ReactNode;
@@ -37,9 +47,8 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
   const [side, setSide] = useState<"buy" | "sell">("buy");
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState(defaultPrice ? String(defaultPrice) : "");
-  const [tradedAt, setTradedAt] = useState(new Date().toISOString().slice(0, 10));
+  const [tradedAt, setTradedAt] = useState(new Date());
   const [focused, setFocused] = useState(false);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const search = useServerFn(searchTickers);
   const { data: suggestions } = useQuery({
@@ -66,6 +75,7 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
       setQuantity("");
       setPrice(defaultPrice ? String(defaultPrice) : "");
     },
+    onSettled: () => setTradedAt(new Date()),
     onError: (e: Error) => toast.error(e.message),
   });
 
@@ -77,7 +87,13 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
       toast.error("Preencha ticker, quantidade e preço");
       return;
     }
-    mut.mutate({ ticker: ticker.toUpperCase(), side, quantity: q, price: p, traded_at: tradedAt });
+    mut.mutate({
+      ticker: ticker.toUpperCase(),
+      side,
+      quantity: q,
+      price: p,
+      traded_at: tradedAt.toISOString().slice(0, 10),
+    });
   }
 
   return (
@@ -173,14 +189,29 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
             </div>
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="date">Data da operação</Label>
-            <Input
-              id="date"
-              type="date"
-              value={tradedAt}
-              onChange={(e) => setTradedAt(e.target.value)}
-              required
-            />
+            <Label>Data da operação</Label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "justify-start text-left font-normal",
+                    !tradedAt && "text-muted-foreground",
+                  )}
+                >
+                  <CalendarIcon className="mr-2 size-4" />
+                  {tradedAt ? format(tradedAt, "P", { locale: ptBR }) : "Selecione uma data"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={tradedAt}
+                  onSelect={(d) => d && setTradedAt(d)}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
           </div>
           <DialogFooter>
             <DialogClose asChild>
