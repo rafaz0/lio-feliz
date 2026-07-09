@@ -78,7 +78,14 @@ powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"
 ### Libs Core
 | Arquivo | Descrição |
 |---------|-----------|
-| `src/lib/portfolio.ts` | Tipos (`AssetType`, `Operation`, `OperationSide`), `inferAssetType`, `consolidatePortfolio`, `buildPortfolioHistory` |
+| `src/lib/portfolio/models.ts` | Tipos (`AssetType`, `Operation`, `OperationSide`, `Position`, `PortfolioSummary`, `PortfolioHistoryPoint`) |
+| `src/lib/portfolio/asset-types.ts` | `inferAssetType` e listas de tickers conhecidos |
+| `src/lib/portfolio/consolidator.ts` | `calcPositions`, `consolidatePortfolio` |
+| `src/lib/portfolio/history.ts` | `buildPortfolioHistory` |
+| `src/lib/portfolio/index.ts` | Barrel — re-exporta tudo para `@/lib/portfolio` |
+| `src/lib/portfolio.ts` | Barrel — re-exporta de `./portfolio/` (compatibilidade com imports existentes) |
+| `src/lib/tax/rules.ts` | `TAX_RULES`, `calcMonthSummaries`, `calcGainPerTicker`, `classifyDayTrade`, `exportToCsv` e demais funções de apuração IRPF |
+| `src/lib/tax/index.ts` | Barrel do módulo fiscal |
 | `src/lib/operations.functions.ts` | Server functions: `listOperations`, `createOperation`, `deleteOperation`, `syncPendingDividends` |
 | `src/lib/yahoo.server.ts` | Yahoo Finance + BRAPI: cotações, dividendos, stockDividends (splits/bonus), fundamentos, cache |
 | `src/lib/data-functions.ts` | Server functions combinadas: `getAssetData`, `getAssetList`, `getRealProjections` |
