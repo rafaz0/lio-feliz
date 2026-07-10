@@ -80,7 +80,7 @@ Arquivos previstos:
 
 01_PORTFOLIO.md ✅
 
-02_TRANSACTIONS.md 🔴
+02_TRANSACTIONS.md 🟡
 
 03_MARKET_DATA.md ✅
 

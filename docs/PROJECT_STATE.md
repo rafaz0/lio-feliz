@@ -6,7 +6,7 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.0
+**Versão:** 1.1
 
 **Status:** APROVADO
 
@@ -42,13 +42,13 @@
 | 04_DATA_MODEL.md | ✅ |
 | 05_SYSTEM_ARCHITECTURE.md | ✅ |
 
-### Regras de Negócio (7/15)
+### Regras de Negócio (8/15)
 | Documento | Status |
 |-----------|--------|
 | 00_INDEX.md | ✅ |
 | 00_GLOBAL_RULES.md | ✅ |
 | 01_PORTFOLIO.md | ✅ |
-| 02_TRANSACTIONS.md | 🔴 Pendente |
+| 02_TRANSACTIONS.md | 🟡 Em desenvolvimento |
 | 03_MARKET_DATA.md | ✅ |
 | 04_CORPORATE_ACTIONS.md | ✅ |
 | 05_PROVENTOS.md | ✅ |
@@ -118,18 +118,18 @@
 | 09/07/2026 | 02_CORPORATE_ACTION_ENGINE.md v1.1 — escopo corrigido |
 | 09/07/2026 | 19_GLOSSARY.md — Vocabulário Oficial do Projeto |
 | 09/07/2026 | Micro Sprint de Estabilização nº 2 — correção da ordem de leitura |
+| 09/07/2026 | 02_TRANSACTIONS.md v0.9 — Working Draft criado |
 
 ---
 
 # Inconsistências Conhecidas
 
-1. **`02_TRANSACTIONS.md`** — documento de regras de negócio não foi criado.
+Nenhuma inconsistência conhecida no momento.
 
 ---
 
 # Pendências
 
-- [ ] Criar `06_BUSINESS_RULES/02_TRANSACTIONS.md`
 - [ ] Criar demais Business Rules (06 a 13)
 - [ ] Criar Technical Annexes pendentes (03 a 07)
 - [ ] Criar/atualizar documentos complementares (07_PROJECT_CONTEXT.md a 15_PRODUCT_PHILOSOPHY.md)
