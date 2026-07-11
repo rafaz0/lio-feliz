@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.1
+**Versão da Documentação:** 2.2
 
 **Status:** APROVADO
 
@@ -270,6 +270,11 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 2.2
+
+- PS#012 Prompt A (Final): IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado.
+- Nenhuma alteração estrutural no índice de documentação oficial.
 
 ## Versão 2.1
 

@@ -4,7 +4,7 @@
 
 **Documento:** README.md
 
-**Versão:** 1.9
+**Versão:** 1.10
 
 **Status:** APROVADO
 
@@ -36,6 +36,7 @@ Esta pasta contém documentos de apoio ao desenvolvimento do projeto Lio Feliz, 
 | `DEVELOPMENT_METHODOLOGY.md` | Metodologia de desenvolvimento (regras IA, Ciclos de Maturidade). |
 | `KNOWLEDGE_BACKLOG.md` | Registro de conhecimento não promovido (hipóteses, insights, evoluções). |
 | `AI_CONTEXT.md` | Documento oficial de inicialização de conversas com IA (regenerado após cada PS). |
+| `SYNC_HISTORY.md` | Histórico consolidado de todos os Pacotes de Sincronização. |
 | Metodologia | Fluxo Oficial: Ideia → Classificação → Fila → Prompt → OpenCode → Documentação → Baseline. |
 
 ## Fluxo de Inicialização
@@ -46,7 +47,7 @@ O projeto utiliza um fluxo obrigatório de inicialização de conversas:
 |-------|-----------|-----------|
 | 1 | `AGENTS.md` | Ponto de entrada automático (injetado pelo OpenCode). Contém direcionamento para o AI_CONTEXT. |
 | 2 | `AI_CONTEXT.md` | Documento oficial de reconstrução de contexto. Deve ser lido integralmente antes de qualquer resposta técnica. |
-| 3 | `DEVELOPMENT_METHODOLOGY.md` | Define as regras oficiais do processo (IA-001 a IA-016). A Baseline da Conversa e o Protocolo de Pré-Resposta são executados após a leitura do AI_CONTEXT. |
+| 3 | `DEVELOPMENT_METHODOLOGY.md` | Define as regras oficiais do processo (IA-001 a IA-017). A Baseline da Conversa e o Protocolo de Pré-Resposta são executados após a leitura do AI_CONTEXT. |
 
 ---
 
@@ -66,6 +67,10 @@ O objetivo é manter consistência entre toda a documentação do projeto, indep
 ---
 
 ## Histórico
+
+### Versão 1.10
+
+PS#012 Prompt A (Final): IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado. DEVELOPMENT_METHODOLOGY v1.9. AI_CONTEXT v1.4.
 
 ### Versão 1.9
 

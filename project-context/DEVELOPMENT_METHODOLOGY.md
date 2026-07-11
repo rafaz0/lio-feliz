@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 1.8
+**Versão:** 1.9
 
 **Status:** APROVADO
 
@@ -221,7 +221,7 @@ Cada item da fila deverá conter obrigatoriamente:
 
 ### IA-010 — Baseline Obrigatória
 
-Antes de elaborar qualquer resposta relacionada ao projeto, a IA deverá revisar todas as regras metodológicas vigentes (IA-001 até a última).
+Antes de elaborar qualquer resposta relacionada ao projeto, a IA deverá revisar todas as regras metodológicas vigentes (IA-001 até IA-017).
 
 Após elaborar a resposta, deverá verificar novamente se todas as regras foram efetivamente aplicadas.
 
@@ -296,7 +296,7 @@ Antes de qualquer resposta relacionada ao projeto, a IA deverá obrigatoriamente
 4. Identificar o documento atualmente em desenvolvimento.
 5. Confirmar o último Pacote de Sincronização.
 6. Confirmar que está utilizando a metodologia vigente.
-7. Validar conformidade com IA-001 até IA-014.
+7. Validar conformidade com IA-001 até IA-017.
 8. Verificar se a resposta produz novo conhecimento arquitetural, metodológico ou operacional.
 9. Registrar esse conhecimento na Auditoria da Sprint quando aplicável.
 
@@ -309,6 +309,133 @@ Prompts intermediários não geram Relatório Consolidado.
 Apenas o último Prompt de cada Pacote de Sincronização gera o Relatório Consolidado Final.
 
 Os Prompts intermediários continuam atualizando normalmente a documentação e a governança.
+
+#### Relatório Operacional
+
+Ao concluir o último Prompt de um Pacote de Sincronização, o OpenCode deverá exibir o Relatório Consolidado Final diretamente no chat.
+
+Este relatório tem finalidade operacional e de validação.
+
+#### Histórico Permanente
+
+Além da exibição no chat, o resumo permanente da sincronização deverá ser registrado em `project-context/SYNC_HISTORY.md`.
+
+---
+
+### IA-017 — Padronização dos Artefatos Reutilizáveis
+
+#### Objetivo
+
+Garantir consistência, legibilidade, reutilização, rastreabilidade e eliminação de ambiguidades em todos os artefatos reutilizáveis produzidos pela IA.
+
+---
+
+#### IA-017.1 — Escopo
+
+Esta regra aplica-se a qualquer artefato destinado à reutilização ou execução futura, incluindo:
+
+- Prompts destinados ao OpenCode;
+- Prompts destinados a futuras sessões de IA;
+- Procedimentos operacionais;
+- Templates reutilizáveis;
+- Checklists;
+- Guias de execução;
+- Demais artefatos reutilizáveis.
+
+Respostas conversacionais comuns não são afetadas.
+
+---
+
+#### IA-017.2 — Formato Obrigatório
+
+Todo artefato reutilizável deverá ser entregue integralmente em um único bloco Markdown.
+
+Formato obrigatório:
+
+```md
+...
+conteúdo completo do artefato
+...
+```
+
+É proibido:
+
+- dividir o artefato em múltiplos blocos;
+- inserir explicações dentro do bloco;
+- misturar comentários da IA com o conteúdo reutilizável;
+- inserir auditorias ou observações dentro do artefato.
+
+---
+
+#### IA-017.3 — Conteúdo Externo
+
+Todo conteúdo que não pertença ao artefato deverá permanecer fora do bloco Markdown.
+
+Exemplos:
+
+- explicações da IA;
+- observações;
+- justificativas;
+- comentários arquiteturais;
+- Auditoria da Sprint.
+
+---
+
+#### IA-017.4 — Independência
+
+Todo artefato deverá ser autocontido.
+
+Deverá ser possível copiar o artefato isoladamente para execução sem necessidade de adaptações manuais ou dependência da conversa de origem.
+
+---
+
+#### IA-017.5 — Identificação Obrigatória
+
+Todo Prompt de Sincronização deverá conter:
+
+- Pacote de Sincronização;
+- Identificação do Prompt;
+- Título;
+- Objetivo.
+
+---
+
+#### IA-017.6 — Delimitação de Escopo
+
+Todo Prompt deverá declarar explicitamente:
+
+- o que deverá ser implementado;
+- o que não deverá ser implementado;
+- quais itens pertencem a etapas futuras.
+
+---
+
+#### IA-017.7 — Estrutura Mínima
+
+Quando aplicável, os Prompts deverão utilizar:
+
+- Título;
+- Objetivo;
+- Etapas numeradas;
+- Atualizações de Governança;
+- Regenerações;
+- Relatório;
+- Limites de Escopo.
+
+Itens condicionais somente deverão ser utilizados quando fizerem sentido para o Prompt.
+
+---
+
+#### IA-017.8 — Identificação do Encerramento do Pacote
+
+Todo Prompt de Sincronização deverá declarar explicitamente sua condição dentro do pacote.
+
+O OpenCode nunca deverá inferir autonomamente se um Prompt é ou não o último do Pacote.
+
+O próprio Prompt deverá informar explicitamente:
+
+- Prompt intermediário; ou
+- Prompt final.
 
 ---
 
@@ -432,6 +559,10 @@ Será criado após estabilização do domínio principal.
 ---
 
 # 17. Histórico
+
+### Versão 1.9
+
+PS#012: IA-016 expandida (Relatório Operacional, Histórico Permanente). IA-017 criada (Padronização dos Artefatos Reutilizáveis). SYNC_HISTORY.md criado. Referências de baseline atualizadas para IA-017.
 
 ### Versão 1.8
 

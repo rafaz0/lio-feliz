@@ -4,7 +4,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.3
+**Versão:** 1.4
 
 **Status:** APROVADO
 
@@ -13,6 +13,8 @@
 **Responsáveis:** Rafael Santos + IA
 
 **Última atualização:** 10/07/2026
+
+**PS associado:** PS#012
 
 ---
 
@@ -61,12 +63,12 @@ O AI_CONTEXT **não substitui** a documentação oficial (`docs/`). Ele represen
 |---------|--------|
 | **Versão do projeto** | Pós Consolidação nº 1 |
 | **Documentação oficial** | 37 documentos |
-| **Project Context** | 7 documentos |
+| **Project Context** | 8 documentos |
 | **Business Rules** | 9 criados (15 previstos) |
 | **Technical Annexes** | 8 criados (13 previstos) |
 | **ADRs** | 8 aprovados |
 | **Product Backlog** | 21 FEATs (v1.4) |
-| **Último PS concluído** | PS#011 — Inicialização de Conversas |
+| **Último PS concluído** | PS#012 — Padronização dos Artefatos Reutilizáveis |
 | **Documento em desenvolvimento** | 03_TRANSACTION_INTERPRETATION.md (v0.60, N3) |
 | **Working Drafts ativos** | 02_TRANSACTIONS.md (v0.92, N1), 03_TRANSACTION_INTERPRETATION.md (v0.60, N3) |
 | **Fonte Canônica** | H:\Lio Feliz |
@@ -238,12 +240,15 @@ Antes de qualquer resposta relacionada ao projeto, a IA deverá obrigatoriamente
 3. Identificar o documento atualmente em desenvolvimento.
 4. Confirmar o último Pacote de Sincronização.
 5. Confirmar que está utilizando a metodologia vigente.
-6. Validar conformidade com IA-001 até IA-014.
+6. Validar conformidade com IA-001 até IA-017.
 7. Verificar se a resposta produz novo conhecimento arquitetural, metodológico ou operacional.
 8. Registrar esse conhecimento na Auditoria da Sprint quando aplicável.
 
 **IA-016 — Relatórios dos Pacotes de Sincronização**
-Prompts intermediários não geram Relatório Consolidado. Apenas o último Prompt de cada Pacote de Sincronização gera o Relatório Consolidado Final. Os Prompts intermediários continuam atualizando normalmente a documentação e a governança.
+Prompts intermediários não geram Relatório Consolidado. Apenas o último Prompt de cada Pacote de Sincronização gera o Relatório Consolidado Final. Os Prompts intermediários continuam atualizando normalmente a documentação e a governança. Ao concluir o último Prompt, o OpenCode exibe o Relatório Consolidado Final no chat e registra o resumo permanente em `project-context/SYNC_HISTORY.md`.
+
+**IA-017 — Padronização dos Artefatos Reutilizáveis**
+Garante consistência, legibilidade, reutilização, rastreabilidade e eliminação de ambiguidades em todos os artefatos reutilizáveis. Todo artefato deverá ser entregue em um único bloco Markdown autocontido, sem divisões ou explicações internas. Todo Prompt de Sincronização deverá conter identificação obrigatória (Pacote, Prompt, Título, Objetivo), delimitação de escopo explícita e declaração de encerramento (intermediário ou final).
 
 ---
 
@@ -298,6 +303,7 @@ Prompts intermediários não geram Relatório Consolidado. Apenas o último Prom
 | PS#009 | Gestão do Conhecimento | KNOWLEDGE_BACKLOG.md, IA-014, IA-008/IA-009 expandidas, Fluxo Oficial, Baseline da Conversa, Ciclo de Vida, KB-001 a KB-005 |
 | PS#010 | Infraestrutura + Metodologia | AI_CONTEXT (v1.0→v1.2), IA-015, IA-016, Migração H:, Fluxo de Inicialização, WORKFLOW v1.3, DEVELOPMENT_METHODOLOGY v1.7 |
 | PS#011 | Inicialização de Conversas | AGENTS.md com direcionamento ao AI_CONTEXT, IA-015 fortalecida, Fluxo de Inicialização detalhado, AI_CONTEXT v1.3 |
+| PS#012 | Padronização dos Artefatos Reutilizáveis | IA-017 criada, IA-016 expandida (Relatório Operacional, Histórico Permanente), SYNC_HISTORY.md criado, DEVELOPMENT_METHODOLOGY v1.9, AI_CONTEXT v1.4 |
 
 ---
 
@@ -322,7 +328,7 @@ Este checklist deve ser seguido obrigatoriamente sempre que uma nova conversa fo
 - [ ] Executei o Protocolo de Pré-Resposta (IA-015).
 - [ ] Identifiquei a versão atual do projeto.
 - [ ] Identifiquei o documento em desenvolvimento (03_TRANSACTION_INTERPRETATION.md).
-- [ ] Identifiquei o último Pacote de Sincronização aplicado (PS#011).
+- [ ] Identifiquei o último Pacote de Sincronização aplicado (PS#012).
 - [ ] Identifiquei a Fonte Canônica (H:\Lio Feliz).
 - [ ] Identifiquei pendências abertas.
 - [ ] Identifiquei Working Drafts ativos.
@@ -343,6 +349,14 @@ O AI_CONTEXT é construído a partir dos seguintes critérios:
 ---
 
 # Histórico
+
+## Versão 1.4
+
+- IA-017 adicionada (Padronização dos Artefatos Reutilizáveis).
+- IA-016 expandida (Relatório Operacional, Histórico Permanente em SYNC_HISTORY.md).
+- Estado atual atualizado: Project Context 8 documentos, último PS#012.
+- Checklist de Baseline atualizado para PS#012 e IA-017.
+- PS#012 registrado.
 
 ## Versão 1.3
 
