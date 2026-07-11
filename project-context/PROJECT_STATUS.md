@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.7
+**Versão:** 2.8
 
 **Status:** APROVADO
 
@@ -24,7 +24,7 @@
 
 | Aspecto | Status |
 |---------|--------|
-| Documentação oficial | 39 documentos |
+| Documentação oficial | 40 documentos |
 | Architecture Lab | 8 documentos |
 | Project Context | 8 documentos (inclui DEVELOPMENT_METHODOLOGY.md, KNOWLEDGE_BACKLOG.md, AI_CONTEXT.md e SYNC_HISTORY.md) |
 | Fonte Canônica | H:\Lio Feliz |
@@ -155,6 +155,7 @@ ADR-008: Backlog Governance
 | 10/07/2026 | PS#015 Prompt A (Final): IA-018 (PG, DAPS), IA-019 (Economia de Contexto), Padronização Visual, Critérios DOCUMENTACAO_COMPLETA e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6. PS#015 encerrado. |
 | 10/07/2026 | PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0). Documentação oficial: 39 documentos. PS#016 encerrado. |
 | 10/07/2026 | PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído para N1. Trace Identity, Eventos Compostos, Granularidade, Navegação Bidirecional, Invariantes. PS#017 encerrado. |
+| 10/07/2026 | PS#018 Prompt A: 04_PORTFOLIO_LEDGER.md v0.10 criado (Working Draft N0). Documentação oficial: 40 documentos. |
 
 ---
 
@@ -167,11 +168,11 @@ ADR-008: Backlog Governance
 
 ## Histórico
 
+### Versão 2.8
+
+PS#018 Prompt A: 04_PORTFOLIO_LEDGER.md v0.10 criado (Working Draft N0). Documentação oficial: 40 documentos.
+
 ### Versão 2.7
-
-PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído N0→N1 (v0.20). Trace Identity, Eventos Compostos, Granularidade, Navegação Bidirecional, Invariantes INV-001 a INV-005.
-
-### Versão 2.6
 
 ### Versão 2.1
 
