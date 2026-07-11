@@ -4,7 +4,7 @@
 
 **Documento:** README.md
 
-**Versão:** 1.10
+**Versão:** 1.11
 
 **Status:** APROVADO
 
@@ -68,9 +68,11 @@ O objetivo é manter consistência entre toda a documentação do projeto, indep
 
 ## Histórico
 
-### Versão 1.10
+### Versão 1.11
 
-PS#012 Prompt A (Final): IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado. DEVELOPMENT_METHODOLOGY v1.9. AI_CONTEXT v1.4.
+PS#013 Prompt A (Final): Diretrizes Operacionais da Conversa adicionadas ao AI_CONTEXT v1.5. PS#013 encerrado.
+
+### Versão 1.10
 
 ### Versão 1.9
 

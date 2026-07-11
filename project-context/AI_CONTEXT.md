@@ -4,7 +4,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.4
+**Versão:** 1.5
 
 **Status:** APROVADO
 
@@ -14,7 +14,7 @@
 
 **Última atualização:** 10/07/2026
 
-**PS associado:** PS#012
+**PS associado:** PS#013
 
 ---
 
@@ -68,7 +68,7 @@ O AI_CONTEXT **não substitui** a documentação oficial (`docs/`). Ele represen
 | **Technical Annexes** | 8 criados (13 previstos) |
 | **ADRs** | 8 aprovados |
 | **Product Backlog** | 21 FEATs (v1.4) |
-| **Último PS concluído** | PS#012 — Padronização dos Artefatos Reutilizáveis |
+| **Último PS concluído** | PS#013 — Diretrizes Operacionais de Continuidade |
 | **Documento em desenvolvimento** | 03_TRANSACTION_INTERPRETATION.md (v0.60, N3) |
 | **Working Drafts ativos** | 02_TRANSACTIONS.md (v0.92, N1), 03_TRANSACTION_INTERPRETATION.md (v0.60, N3) |
 | **Fonte Canônica** | H:\Lio Feliz |
@@ -304,6 +304,7 @@ Garante consistência, legibilidade, reutilização, rastreabilidade e eliminaç
 | PS#010 | Infraestrutura + Metodologia | AI_CONTEXT (v1.0→v1.2), IA-015, IA-016, Migração H:, Fluxo de Inicialização, WORKFLOW v1.3, DEVELOPMENT_METHODOLOGY v1.7 |
 | PS#011 | Inicialização de Conversas | AGENTS.md com direcionamento ao AI_CONTEXT, IA-015 fortalecida, Fluxo de Inicialização detalhado, AI_CONTEXT v1.3 |
 | PS#012 | Padronização dos Artefatos Reutilizáveis | IA-017 criada, IA-016 expandida (Relatório Operacional, Histórico Permanente), SYNC_HISTORY.md criado, DEVELOPMENT_METHODOLOGY v1.9, AI_CONTEXT v1.4 |
+| PS#013 | Diretrizes Operacionais | Diretrizes Operacionais da Conversa adicionadas ao AI_CONTEXT (Auditoria Contínua, Fila Contínua, Preservação Preventiva, Distinção Conversa/Conhecimento, Continuidade Operacional, Análise Global, Suporte Não Técnico). AI_CONTEXT v1.5. |
 
 ---
 
@@ -328,7 +329,7 @@ Este checklist deve ser seguido obrigatoriamente sempre que uma nova conversa fo
 - [ ] Executei o Protocolo de Pré-Resposta (IA-015).
 - [ ] Identifiquei a versão atual do projeto.
 - [ ] Identifiquei o documento em desenvolvimento (03_TRANSACTION_INTERPRETATION.md).
-- [ ] Identifiquei o último Pacote de Sincronização aplicado (PS#012).
+- [ ] Identifiquei o último Pacote de Sincronização aplicado (PS#013).
 - [ ] Identifiquei a Fonte Canônica (H:\Lio Feliz).
 - [ ] Identifiquei pendências abertas.
 - [ ] Identifiquei Working Drafts ativos.
@@ -348,7 +349,131 @@ O AI_CONTEXT é construído a partir dos seguintes critérios:
 
 ---
 
+# 12. Diretrizes Operacionais da Conversa
+
+## Auditoria Contínua
+
+Durante a evolução do projeto, a IA deverá executar continuamente a Auditoria da Sprint (IA-008).
+
+Sempre que forem identificados:
+- Insights;
+- Hipóteses;
+- Decisões;
+- Evoluções Planejadas;
+- Descobertas arquiteturais relevantes;
+- Descobertas metodológicas relevantes;
+
+a IA deverá classificá-los explicitamente utilizando as categorias oficiais do projeto.
+
+O objetivo é evitar que conhecimentos relevantes permaneçam apenas em conteúdo conversacional.
+
+---
+
+## Fila de Sincronização Contínua
+
+Durante a evolução do projeto, a IA deverá manter continuamente a Fila de Sincronização (IA-009).
+
+Sempre que uma descoberta indicar necessidade futura de atualização da documentação oficial, a IA deverá registrar explicitamente a recomendação na Fila de Sincronização.
+
+O objetivo é garantir rastreabilidade entre descobertas realizadas durante a conversa e futuras sincronizações com o repositório oficial.
+
+---
+
+## Preservação Preventiva do Conhecimento
+
+A IA deverá evitar que conhecimentos relevantes permaneçam apenas em mensagens conversacionais.
+
+Sempre que apropriado, deverá sinalizar explicitamente:
+
+- itens que merecem preservação;
+- itens que merecem validação futura;
+- itens que merecem promoção para documentação oficial;
+- itens que representam apenas hipóteses ainda não validadas.
+
+---
+
+## Distinção entre Conversa e Conhecimento
+
+A IA deverá diferenciar explicitamente:
+
+- conteúdo conversacional;
+- conhecimento arquitetural;
+- conhecimento metodológico;
+- conhecimento oficial;
+- conhecimento candidato à sincronização.
+
+O objetivo é facilitar futuras auditorias e reduzir risco de perda de contexto.
+
+---
+
+## Continuidade Operacional
+
+Salvo quando houver motivo explícito para não fazê-lo, respostas que produzirem conhecimento relevante para o projeto deverão encerrar com:
+
+- Auditoria da Sprint (IA-008);
+- Fila de Sincronização (IA-009).
+
+O objetivo é preservar rastreabilidade e continuidade entre sessões.
+
+---
+
+## Análise Global do Projeto
+
+A IA deverá avaliar continuamente se o contexto disponível é suficiente para análises arquiteturais consistentes.
+
+Quando identificar que:
+
+- múltiplos documentos passaram a possuir forte dependência entre si;
+- uma decisão exigir visão transversal de diversos módulos;
+- houver necessidade de auditoria arquitetural ampla;
+- houver risco de conclusões incorretas por insuficiência de contexto documental;
+- houver necessidade de validação global de consistência;
+
+a IA deverá recomendar explicitamente o envio de uma cópia completa do projeto (ZIP ou equivalente).
+
+A recomendação deverá informar:
+
+- o motivo da necessidade;
+- os documentos potencialmente envolvidos;
+- os benefícios esperados da análise global.
+
+O envio do projeto completo deverá ser tratado como mecanismo complementar ao AI_CONTEXT, utilizado para análises aprofundadas e validações arquiteturais abrangentes.
+
+---
+
+## Suporte ao Usuário Não Técnico
+
+A IA deverá considerar que o usuário não possui perfil técnico de desenvolvimento de software.
+
+Sempre que forem produzidos:
+
+- Prompts de Sincronização;
+- Procedimentos operacionais;
+- Artefatos reutilizáveis;
+- Instruções destinadas ao OpenCode;
+
+a IA deverá priorizar soluções que minimizem edições manuais.
+
+Quando um Prompt ainda não tiver sido executado e receber alterações durante sua elaboração, a IA deverá fornecer uma nova versão completa e consolidada do Prompt.
+
+Deverão ser evitadas instruções que exijam:
+
+- localizar trechos manualmente;
+- mesclar versões manualmente;
+- editar documentos intermediários;
+- reconstruir artefatos reutilizáveis.
+
+O objetivo é garantir simplicidade operacional, reduzir risco de erro humano e manter conformidade com o princípio de artefatos autocontidos definido pela IA-017.
+
+---
+
 # Histórico
+
+## Versão 1.5
+
+- Adicionada seção "Diretrizes Operacionais da Conversa" (§12) com 7 diretrizes: Auditoria Contínua, Fila de Sincronização Contínua, Preservação Preventiva, Distinção Conversa/Conhecimento, Continuidade Operacional, Análise Global, Suporte ao Usuário Não Técnico.
+- Último PS atualizado para PS#013.
+- Checklist de Baseline atualizado para PS#013.
 
 ## Versão 1.4
 
