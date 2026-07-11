@@ -4,7 +4,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.5
+**Versão:** 1.6
 
 **Status:** APROVADO
 
@@ -14,7 +14,7 @@
 
 **Última atualização:** 10/07/2026
 
-**PS associado:** PS#013
+**PS associado:** PS#015
 
 ---
 
@@ -68,7 +68,7 @@ O AI_CONTEXT **não substitui** a documentação oficial (`docs/`). Ele represen
 | **Technical Annexes** | 8 criados (13 previstos) |
 | **ADRs** | 8 aprovados |
 | **Product Backlog** | 21 FEATs (v1.4) |
-| **Último PS concluído** | PS#013 — Diretrizes Operacionais de Continuidade |
+| **Último PS concluído** | PS#015 — Consolidação da Governança de Pendências |
 | **Documento em desenvolvimento** | 03_TRANSACTION_INTERPRETATION.md (v0.60, N3) |
 | **Working Drafts ativos** | 02_TRANSACTIONS.md (v0.92, N1), 03_TRANSACTION_INTERPRETATION.md (v0.60, N3) |
 | **Fonte Canônica** | H:\Lio Feliz |
@@ -240,7 +240,7 @@ Antes de qualquer resposta relacionada ao projeto, a IA deverá obrigatoriamente
 3. Identificar o documento atualmente em desenvolvimento.
 4. Confirmar o último Pacote de Sincronização.
 5. Confirmar que está utilizando a metodologia vigente.
-6. Validar conformidade com IA-001 até IA-017.
+6. Validar conformidade com IA-001 até IA-019.
 7. Verificar se a resposta produz novo conhecimento arquitetural, metodológico ou operacional.
 8. Registrar esse conhecimento na Auditoria da Sprint quando aplicável.
 
@@ -249,6 +249,12 @@ Prompts intermediários não geram Relatório Consolidado. Apenas o último Prom
 
 **IA-017 — Padronização dos Artefatos Reutilizáveis**
 Garante consistência, legibilidade, reutilização, rastreabilidade e eliminação de ambiguidades em todos os artefatos reutilizáveis. Todo artefato deverá ser entregue em um único bloco Markdown autocontido, sem divisões ou explicações internas. Todo Prompt de Sincronização deverá conter identificação obrigatória (Pacote, Prompt, Título, Objetivo), delimitação de escopo explícita e declaração de encerramento (intermediário ou final).
+
+**IA-018 — Governança de Pendências e Continuidade Operacional**
+Garante que sugestões, decisões aprovadas, recomendações e melhorias identificadas durante as conversas não desapareçam. Formaliza Pendências de Governança (PG), Decisões Aprovadas Pendentes de Sincronização (DAPS), ciclo de vida obrigatório, separação entre conhecimento e trabalho, e encerramento formal de auditorias.
+
+**IA-019 — Economia de Contexto**
+Preserva conhecimento utilizando o menor volume de texto possível, sem perda de significado, rastreabilidade, executabilidade ou contexto necessário. Aplica-se à Auditoria da Sprint (apenas novos itens), Pendências Abertas (apenas ativos) e Fila de Sincronização (apenas próximos passos).
 
 ---
 
@@ -305,6 +311,8 @@ Garante consistência, legibilidade, reutilização, rastreabilidade e eliminaç
 | PS#011 | Inicialização de Conversas | AGENTS.md com direcionamento ao AI_CONTEXT, IA-015 fortalecida, Fluxo de Inicialização detalhado, AI_CONTEXT v1.3 |
 | PS#012 | Padronização dos Artefatos Reutilizáveis | IA-017 criada, IA-016 expandida (Relatório Operacional, Histórico Permanente), SYNC_HISTORY.md criado, DEVELOPMENT_METHODOLOGY v1.9, AI_CONTEXT v1.4 |
 | PS#013 | Diretrizes Operacionais | Diretrizes Operacionais da Conversa adicionadas ao AI_CONTEXT (Auditoria Contínua, Fila Contínua, Preservação Preventiva, Distinção Conversa/Conhecimento, Continuidade Operacional, Análise Global, Suporte Não Técnico). AI_CONTEXT v1.5. |
+| PS#014 | Trace Transaction | TRACE_TRANSACTION_ARCHITECTURE.md v1.0 criado. DOCUMENTATION_INDEX v2.3 (seção 7). |
+| PS#015 | Governança de Pendências | IA-018 (PG, DAPS, ciclo de vida), IA-019 (Economia de Contexto), Padronização Visual, Critérios DOCUMENTACAO_COMPLETA.md e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6. |
 
 ---
 
@@ -329,7 +337,7 @@ Este checklist deve ser seguido obrigatoriamente sempre que uma nova conversa fo
 - [ ] Executei o Protocolo de Pré-Resposta (IA-015).
 - [ ] Identifiquei a versão atual do projeto.
 - [ ] Identifiquei o documento em desenvolvimento (03_TRANSACTION_INTERPRETATION.md).
-- [ ] Identifiquei o último Pacote de Sincronização aplicado (PS#013).
+- [ ] Identifiquei o último Pacote de Sincronização aplicado (PS#015).
 - [ ] Identifiquei a Fonte Canônica (H:\Lio Feliz).
 - [ ] Identifiquei pendências abertas.
 - [ ] Identifiquei Working Drafts ativos.
@@ -469,11 +477,15 @@ O objetivo é garantir simplicidade operacional, reduzir risco de erro humano e 
 
 # Histórico
 
-## Versão 1.5
+## Versão 1.6
 
-- Adicionada seção "Diretrizes Operacionais da Conversa" (§12) com 7 diretrizes: Auditoria Contínua, Fila de Sincronização Contínua, Preservação Preventiva, Distinção Conversa/Conhecimento, Continuidade Operacional, Análise Global, Suporte ao Usuário Não Técnico.
-- Último PS atualizado para PS#013.
-- Checklist de Baseline atualizado para PS#013.
+- IA-018 adicionada (Governança de Pendências e Continuidade Operacional — PG, DAPS, ciclo de vida, encerramento de auditorias).
+- IA-019 adicionada (Economia de Contexto).
+- Padronização Visual Operacional (📊📋📌) documentada.
+- Critérios para recomendar DOCUMENTACAO_COMPLETA.md e ZIP formalizados.
+- Último PS atualizado para PS#015. Checklist atualizado.
+
+## Versão 1.5
 
 ## Versão 1.4
 

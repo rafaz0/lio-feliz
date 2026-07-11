@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 1.9
+**Versão:** 1.10
 
 **Status:** APROVADO
 
@@ -221,7 +221,7 @@ Cada item da fila deverá conter obrigatoriamente:
 
 ### IA-010 — Baseline Obrigatória
 
-Antes de elaborar qualquer resposta relacionada ao projeto, a IA deverá revisar todas as regras metodológicas vigentes (IA-001 até IA-017).
+Antes de elaborar qualquer resposta relacionada ao projeto, a IA deverá revisar todas as regras metodológicas vigentes (IA-001 até IA-019).
 
 Após elaborar a resposta, deverá verificar novamente se todas as regras foram efetivamente aplicadas.
 
@@ -296,7 +296,7 @@ Antes de qualquer resposta relacionada ao projeto, a IA deverá obrigatoriamente
 4. Identificar o documento atualmente em desenvolvimento.
 5. Confirmar o último Pacote de Sincronização.
 6. Confirmar que está utilizando a metodologia vigente.
-7. Validar conformidade com IA-001 até IA-017.
+7. Validar conformidade com IA-001 até IA-019.
 8. Verificar se a resposta produz novo conhecimento arquitetural, metodológico ou operacional.
 9. Registrar esse conhecimento na Auditoria da Sprint quando aplicável.
 
@@ -439,6 +439,174 @@ O próprio Prompt deverá informar explicitamente:
 
 ---
 
+### IA-018 — Governança de Pendências e Continuidade Operacional
+
+#### Objetivo
+
+Garantir que sugestões, decisões aprovadas, recomendações e melhorias identificadas durante as conversas não desapareçam antes de serem implementadas ou descartadas formalmente.
+
+---
+
+#### Pendência de Governança (PG)
+
+Uma PG representa qualquer melhoria identificada e aprovada para acompanhamento futuro.
+
+Toda PG deverá possuir:
+
+- Identificador único;
+- Título resumido;
+- Status;
+- Origem;
+- Destino final.
+
+Status permitidos:
+
+- Em Análise
+- Pendente
+- Implementada
+- Descartada
+
+---
+
+#### Ciclo de Vida Obrigatório das PGs
+
+Toda PG deverá seguir obrigatoriamente:
+
+```
+Identificada
+→ Em Análise
+→ Pendente
+→ Implementada
+```
+
+ou
+
+```
+Identificada
+→ Em Análise
+→ Descartada
+```
+
+É proibido encerrar uma discussão relevante sem um estado explícito.
+
+---
+
+#### Histórico de Pendências
+
+**Pendências Ativas:** Lista contendo apenas itens ainda não resolvidos.
+
+**Histórico de Pendências:** Lista contendo itens Implementados ou Descartados, cada um registrando PS responsável, Data e Resultado final.
+
+Objetivo: Preservar rastreabilidade sem poluir as pendências ativas.
+
+---
+
+#### Separação entre Conhecimento e Trabalho
+
+```
+Insight ≠ Pendência
+Hipótese ≠ Pendência
+Decisão ≠ Pendência
+```
+
+Uma PG somente deverá ser criada quando existir ação futura necessária.
+
+Objetivo: Evitar transformar conhecimento em backlog operacional.
+
+---
+
+#### Decisão Aprovada Pendente de Sincronização (DAPS)
+
+Uma decisão considerada correta durante a conversa, mas ainda não enviada ao OpenCode.
+
+Toda DAPS deverá:
+
+- permanecer visível;
+- permanecer rastreável;
+- ser acompanhada até implementação ou descarte.
+
+Objetivo: Evitar perda de decisões aprovadas entre conversas.
+
+---
+
+#### Encerramento Formal de Auditorias
+
+Uma auditoria somente poderá ser considerada encerrada quando:
+
+- todas as PGs estiverem implementadas; ou
+- todas as PGs estiverem descartadas.
+
+Objetivo: Evitar encerramento prematuro.
+
+---
+
+### IA-019 — Economia de Contexto
+
+#### Definição
+
+A IA deve preservar conhecimento utilizando o menor volume de texto possível, desde que não haja perda de:
+
+- significado;
+- rastreabilidade;
+- executabilidade;
+- contexto necessário.
+
+#### Aplicações
+
+**Auditoria da Sprint:** Registrar apenas novos itens.
+
+**Pendências Abertas:** Registrar apenas itens ativos.
+
+**Fila de Sincronização:** Registrar apenas próximos passos relevantes.
+
+Evitar repetições extensas.
+
+---
+
+### Padronização Visual Operacional
+
+Adotar como padrão oficial:
+
+```
+📊 Auditoria da Sprint
+📋 Pendências Abertas
+📌 Fila de Sincronização
+```
+
+Sempre nesta ordem.
+
+Objetivo: Melhorar legibilidade, continuidade entre chats e identificação rápida de informações relevantes.
+
+---
+
+### Critérios para Recomendar DOCUMENTACAO_COMPLETA.md
+
+Recomendar o envio de `DOCUMENTACAO_COMPLETA.md` ao ChatGPT quando:
+
+- novo chat for iniciado;
+- um ou mais PS forem concluídos;
+- documentos estruturais forem criados;
+- documentação relevante sofrer alterações;
+- existir dúvida sobre alinhamento documental.
+
+Não recomendar continuamente sem necessidade.
+
+---
+
+### Critérios para Recomendar ZIP Completo do Projeto
+
+Recomendar o envio do ZIP completo quando:
+
+- houver auditoria arquitetural;
+- implementação relevante for concluída;
+- estrutura de pastas sofrer alterações significativas;
+- houver suspeita de divergência entre documentação e implementação;
+- o ChatGPT indicar necessidade de visão estrutural completa do projeto.
+
+O ZIP não substitui `DOCUMENTACAO_COMPLETA.md`. `DOCUMENTACAO_COMPLETA.md` não substitui o ZIP. Ambos possuem finalidades distintas.
+
+---
+
 # 10. Fluxo Oficial de Preservação do Conhecimento
 
 ```
@@ -560,9 +728,11 @@ Será criado após estabilização do domínio principal.
 
 # 17. Histórico
 
-### Versão 1.9
+### Versão 1.10
 
-PS#012: IA-016 expandida (Relatório Operacional, Histórico Permanente). IA-017 criada (Padronização dos Artefatos Reutilizáveis). SYNC_HISTORY.md criado. Referências de baseline atualizadas para IA-017.
+PS#015: IA-018 criada (Governança de Pendências e Continuidade Operacional — PG, DAPS, Ciclo de Vida, Encerramento de Auditorias). IA-019 criada (Economia de Contexto). Padronização Visual Operacional (📊📋📌). Critérios para DOCUMENTACAO_COMPLETA.md e ZIP. Referências de baseline atualizadas para IA-019.
+
+### Versão 1.9
 
 ### Versão 1.8
 

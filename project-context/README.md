@@ -4,7 +4,7 @@
 
 **Documento:** README.md
 
-**Versão:** 1.12
+**Versão:** 1.13
 
 **Status:** APROVADO
 
@@ -68,11 +68,11 @@ O objetivo é manter consistência entre toda a documentação do projeto, indep
 
 ## Histórico
 
+### Versão 1.13
+
+PS#015 Prompt A (Final): IA-018, IA-019, Padronização Visual, Critérios DOCUMENTACAO_COMPLETA e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6.
+
 ### Versão 1.12
-
-PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md criado. DOCUMENTATION_INDEX v2.3 (seção 7). PROJECT_STATUS v2.4.
-
-### Versão 1.11
 
 ### Versão 1.9
 

@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.4
+**Versão:** 2.5
 
 **Status:** APROVADO
 
@@ -60,7 +60,7 @@ ADR-001 a ADR-008 + 00_INDEX
 ### Demais complementares (07 a 15) — 🟡 Pendentes
 
 ### Project Context
-README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, **WORKFLOW** ✅ (v1.3, fluxo com inicialização), **DEVELOPMENT_METHODOLOGY** ✅ (v1.9, IA-001 a IA-017, IA-016 expandida, AI_CONTEXT oficial, Protocolo de Pré-Resposta), **KNOWLEDGE_BACKLOG** ✅ (v1.2, status oficiais, KB-001 a KB-005), **AI_CONTEXT** ✅ (v1.5, Diretrizes Operacionais da Conversa), **SYNC_HISTORY** ✅ (v1.0)
+README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, **WORKFLOW** ✅ (v1.3, fluxo com inicialização), **DEVELOPMENT_METHODOLOGY** ✅ (v1.10, IA-001 a IA-019, PG, DAPS, Economia de Contexto, Padronização Visual), **KNOWLEDGE_BACKLOG** ✅ (v1.2, status oficiais, KB-001 a KB-005), **AI_CONTEXT** ✅ (v1.6, IA-018, IA-019, Diretrizes Operacionais), **SYNC_HISTORY** ✅ (v1.0)
 
 ---
 
@@ -152,6 +152,7 @@ ADR-008: Backlog Governance
 | 10/07/2026 | PS#012 Prompt A (Final): Padronização dos Artefatos Reutilizáveis. IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado. DEVELOPMENT_METHODOLOGY v1.9. AI_CONTEXT v1.4. PS#012 encerrado. |
 | 10/07/2026 | PS#013 Prompt A (Final): Diretrizes Operacionais da Conversa adicionadas ao AI_CONTEXT. AI_CONTEXT v1.5. PS#013 encerrado. |
 | 10/07/2026 | PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md criado (Contrato Arquitetural de Rastreabilidade Patrimonial). DOCUMENTATION_INDEX v2.3 (seção 7). PROJECT_STATE v1.8. PS#014 encerrado. |
+| 10/07/2026 | PS#015 Prompt A (Final): IA-018 (PG, DAPS), IA-019 (Economia de Contexto), Padronização Visual, Critérios DOCUMENTACAO_COMPLETA e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6. PS#015 encerrado. |
 
 ---
 
@@ -164,11 +165,11 @@ ADR-008: Backlog Governance
 
 ## Histórico
 
+### Versão 2.5
+
+PS#015 Prompt A (Final): IA-018 (PG, DAPS, ciclo de vida, encerramento de auditorias). IA-019 (Economia de Contexto). Padronização Visual Operacional. Critérios DOCUMENTACAO_COMPLETA e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6.
+
 ### Versão 2.4
-
-PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md v1.0 criado (Working Draft). DOCUMENTATION_INDEX v2.3 com seção 7. Documentação oficial: 38 documentos. PS#014 encerrado.
-
-### Versão 2.3
 
 ### Versão 2.1
 

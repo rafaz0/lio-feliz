@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.3
+**Versão da Documentação:** 2.4
 
 **Status:** APROVADO
 
@@ -279,12 +279,12 @@ Este arquivo representa a estrutura oficial da documentação.
 
 # Histórico
 
+## Versão 2.4
+
+- PS#015 Prompt A (Final): IA-018 e IA-019 criadas. Governança de Pendências formalizada.
+- Nenhuma alteração estrutural no índice de documentação oficial.
+
 ## Versão 2.3
-
-- PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md criado (Contrato Arquitetural de Rastreabilidade Patrimonial).
-- Adicionada seção 7: Documentos Arquiteturais.
-
-## Versão 2.2
 
 - PS#012 Prompt A (Final): IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado.
 - Nenhuma alteração estrutural no índice de documentação oficial.
