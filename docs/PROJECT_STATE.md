@@ -6,7 +6,7 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.10
+**Versão:** 1.11
 
 **Status:** APROVADO
 
@@ -139,6 +139,7 @@
 | 10/07/2026 | PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md v1.0 criado. Documentação oficial: 38 documentos. PS#014 encerrado. |
 | 10/07/2026 | PS#015 Prompt A (Final): IA-018, IA-019, Padronização Visual, Critérios DOCUMENTACAO_COMPLETA e ZIP. PS#015 encerrado. |
 | 10/07/2026 | PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0). Documentação oficial: 39 documentos. PS#016 encerrado. |
+| 10/07/2026 | PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído para N1 (v0.20). PS#017 encerrado. |
 
 ---
 

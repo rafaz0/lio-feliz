@@ -2,7 +2,7 @@
 
 Data de geração: 10/07/2026
 Total de arquivos: 37
-Regenerado pelo PS#016
+Regenerado pelo PS#017
 ---
 
 
@@ -10074,11 +10074,11 @@ Este índice registra a estrutura aprovada para futura expansão do documento co
 
 **Documento:** TRACE_TRANSACTION.md
 
-**Versão:** 0.10
+**Versão:** 0.20
 
 **Status:** Working Draft
 
-**Nível de Maturidade:** N0 — Working Draft Inicial
+**Nível de Maturidade:** N1 — Working Draft Consolidado
 
 **Categoria:** Arquitetura de Rastreabilidade
 
@@ -10313,14 +10313,20 @@ TRACE_TRANSACTION (Rastreabilidade)
 - O ciclo de vida de uma operação no sistema.
 - Os papéis dos componentes (produtores, consumidores, transformadores, observadores).
 - A cadeia causal e o contexto econômico.
+- A identidade de rastreabilidade (Trace Identity).
+- Eventos compostos e granularidade da rastreabilidade.
+- Navegação bidirecional (Forward Trace e Reverse Trace).
+- Invariantes arquiteturais de rastreabilidade.
 
 ### O que este documento não define
 
-- Regras de negócio específicas.
-- Regras de interpretação econômica.
-- Estrutura de dados do Portfolio Ledger.
-- Algoritmos do Portfolio Engine.
-- Implementação técnica.
+- implementação técnica;
+- persistência;
+- estruturas de banco;
+- algoritmos do Ledger;
+- algoritmos do Portfolio Engine.
+
+O documento permanece exclusivamente arquitetural.
 
 ### Responsabilidades preservadas
 
@@ -10331,7 +10337,142 @@ TRACE_TRANSACTION (Rastreabilidade)
 
 ---
 
+# 12. Trace Identity
+
+## Definição Conceitual
+
+Identificador lógico que conecta todos os elementos pertencentes à mesma cadeia causal originada por uma operação econômica.
+
+## Objetivos
+
+- Preservar a continuidade da cadeia causal.
+- Permitir rastreamento ponta a ponta.
+- Conectar operação, interpretação, registro e consumo.
+
+## Natureza
+
+O conceito é exclusivamente arquitetural. Não define UUID, chave técnica, estrutura de banco ou implementação específica.
+
+---
+
+# 13. Eventos Compostos
+
+Uma única origem econômica pode produzir múltiplos efeitos patrimoniais.
+
+Exemplos:
+
+- Bonificações;
+- Desdobramentos;
+- Grupamentos;
+- Eventos corporativos complexos.
+
+Fluxo conceitual:
+
+```
+Uma origem
+    ↓
+Múltiplas interpretações
+    ↓
+Múltiplos efeitos
+```
+
+O Trace Transaction deve preservar integralmente esta relação.
+
+---
+
+# 14. Granularidade da Rastreabilidade
+
+## Unidade Rastreável
+
+Princípio recomendado:
+
+> Todo elemento capaz de alterar significado econômico ou estado patrimonial deve ser considerado rastreável.
+
+### Aplicação por estágio da cadeia causal
+
+**Operação:** A operação individual é a unidade rastreável mínima na origem.
+
+**Interpretação:** Cada interpretação aplicada a uma operação é uma unidade rastreável.
+
+**Registro:** Cada estado patrimonial resultante é uma unidade rastreável.
+
+**Consumo:** Cada resultado derivado deve preservar vínculo com as unidades rastreáveis que o originaram.
+
+---
+
+# 15. Navegação Bidirecional
+
+## Forward Trace
+
+Navegação da origem para os efeitos.
+
+```
+Operação
+    ↓
+Interpretação
+    ↓
+Registro
+    ↓
+Resultado
+```
+
+## Reverse Trace
+
+Navegação do resultado para sua origem.
+
+```
+Resultado
+    ↓
+Registro
+    ↓
+Interpretação
+    ↓
+Operação
+```
+
+### Objetivo
+
+Fortalecer capacidades de auditoria, explicabilidade e debugging.
+
+---
+
+# 16. Invariantes Arquiteturais
+
+Os invariantes abaixo representam contratos arquiteturais do Trace Transaction.
+
+### INV-001 — Origem Obrigatória
+
+Toda operação possui origem econômica identificável.
+
+### INV-002 — Interpretação Vinculada
+
+Toda interpretação referencia uma operação válida.
+
+### INV-003 — Registro Associado
+
+Todo registro possui interpretação associada.
+
+### INV-004 — Cadeia Reconstruível
+
+Toda cadeia causal deve ser reconstruível.
+
+### INV-005 — Efeito Rastreável
+
+Nenhum efeito patrimonial pode existir sem origem rastreável.
+
+---
+
 # Histórico
+
+## Versão 0.20
+
+- Evolução do Working Draft para N1 (Working Draft Consolidado).
+- Adicionada seção Trace Identity (§12): identidade lógica de rastreabilidade.
+- Adicionada seção Eventos Compostos (§13): origem única com múltiplos efeitos.
+- Adicionada seção Granularidade da Rastreabilidade (§14): Unidade Rastreável.
+- Adicionada seção Navegação Bidirecional (§15): Forward Trace e Reverse Trace.
+- Adicionada seção Invariantes Arquiteturais (§16): INV-001 a INV-005.
+- Limites de Escopo atualizados para refletir novas seções.
 
 ## Versão 0.10
 

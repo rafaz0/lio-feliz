@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.5
+**Versão da Documentação:** 2.6
 
 **Status:** APROVADO
 
@@ -247,7 +247,7 @@ Documento arquitetural fundacional do Trace Transaction. Natureza: Contrato Arqu
 
 🟡 TRACE_TRANSACTION.md
 
-Working Draft de rastreabilidade arquitetural. Define o fluxo da Operação até o consumo pelos componentes posteriores.
+Working Draft de rastreabilidade arquitetural (N1). Define o fluxo da Operação até o consumo pelos componentes posteriores.
 
 ---
 
@@ -283,12 +283,12 @@ Este arquivo representa a estrutura oficial da documentação.
 
 # Histórico
 
+## Versão 2.6
+
+- PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído para N1 (v0.20).
+- Nenhuma alteração estrutural no índice.
+
 ## Versão 2.5
-
-- PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0).
-- Adicionada entrada para TRACE_TRANSACTION.md na seção 7.
-
-## Versão 2.4
 
 - PS#012 Prompt A (Final): IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado.
 - Nenhuma alteração estrutural no índice de documentação oficial.

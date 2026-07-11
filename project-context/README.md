@@ -4,7 +4,7 @@
 
 **Documento:** README.md
 
-**Versão:** 1.14
+**Versão:** 1.15
 
 **Status:** APROVADO
 
@@ -68,11 +68,11 @@ O objetivo é manter consistência entre toda a documentação do projeto, indep
 
 ## Histórico
 
+### Versão 1.15
+
+PS#017 Prompt A (Final): TRACE_TRANSACTION.md N0→N1 (v0.20). Trace Identity, Invariantes.
+
 ### Versão 1.14
-
-PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0).
-
-### Versão 1.13
 
 ### Versão 1.9
 

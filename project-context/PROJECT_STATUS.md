@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.6
+**Versão:** 2.7
 
 **Status:** APROVADO
 
@@ -154,6 +154,7 @@ ADR-008: Backlog Governance
 | 10/07/2026 | PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md criado (Contrato Arquitetural de Rastreabilidade Patrimonial). DOCUMENTATION_INDEX v2.3 (seção 7). PROJECT_STATE v1.8. PS#014 encerrado. |
 | 10/07/2026 | PS#015 Prompt A (Final): IA-018 (PG, DAPS), IA-019 (Economia de Contexto), Padronização Visual, Critérios DOCUMENTACAO_COMPLETA e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6. PS#015 encerrado. |
 | 10/07/2026 | PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0). Documentação oficial: 39 documentos. PS#016 encerrado. |
+| 10/07/2026 | PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído para N1. Trace Identity, Eventos Compostos, Granularidade, Navegação Bidirecional, Invariantes. PS#017 encerrado. |
 
 ---
 
@@ -166,11 +167,11 @@ ADR-008: Backlog Governance
 
 ## Histórico
 
+### Versão 2.7
+
+PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído N0→N1 (v0.20). Trace Identity, Eventos Compostos, Granularidade, Navegação Bidirecional, Invariantes INV-001 a INV-005.
+
 ### Versão 2.6
-
-PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0). Documentação oficial: 39 documentos.
-
-### Versão 2.5
 
 ### Versão 2.1
 
