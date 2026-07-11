@@ -4,11 +4,11 @@
 
 **Documento:** 04_PORTFOLIO_LEDGER.md
 
-**Versão:** 0.10
+**Versão:** 0.20
 
 **Status:** Working Draft
 
-**Nível de Maturidade:** N0 — Working Draft Inicial
+**Nível de Maturidade:** N1 — Working Draft Consolidado
 
 **Categoria:** Arquitetura Patrimonial
 
@@ -154,7 +154,128 @@ O conjunto de registros do Ledger deve ser suficiente para reconstruir o Estado 
 
 ---
 
-# 8. Relação com TRACE_TRANSACTION
+# 8. Identidade Patrimonial
+
+Identidade lógica que individualiza cada Fato Patrimonial dentro do Ledger.
+
+### Objetivo
+
+Permitir rastreabilidade individual de fatos ao longo da evolução patrimonial.
+
+### Natureza
+
+Trata-se de identidade conceitual, não de implementação técnica. Não define IDs físicos, chaves ou estruturas de banco.
+
+---
+
+# 9. Imutabilidade dos Fatos Patrimoniais
+
+### Princípio
+
+"Nada é apagado."
+
+### Regras
+
+- Fatos Patrimoniais são permanentes.
+- Fatos Patrimoniais não são editados.
+- Fatos Patrimoniais não são removidos.
+- O histórico patrimonial deve permanecer preservado integralmente.
+
+### Consequência Arquitetural
+
+Nenhum Fato Patrimonial poderá ser removido ou alterado após sua criação. Correções deverão ocorrer por compensação.
+
+---
+
+# 10. Correções por Compensação
+
+### Definição
+
+Correções não alteram fatos existentes. Correções geram novos Fatos Patrimoniais.
+
+### Fluxo Conceitual
+
+```
+Fato Original
+    ↓
+Fato Compensatório
+```
+
+### Natureza
+
+O Fato Compensatório possui vínculo patrimonial rastreável com o Fato Original que está corrigindo. O Fato Original permanece inalterado no histórico.
+
+Não utiliza exemplos técnicos, estruturas de dados ou algoritmos.
+
+---
+
+# 11. Encadeamento Patrimonial
+
+### Definição
+
+Fatos Patrimoniais podem possuir relações conceituais com outros Fatos Patrimoniais.
+
+### Exemplos Conceituais
+
+- compensação;
+- retificação;
+- complementação;
+- ajuste patrimonial.
+
+### Objetivo
+
+Permitir reconstrução da evolução patrimonial completa.
+
+### Distinção Importante
+
+- **Causalidade operacional:** pertence ao TRACE_TRANSACTION (vínculo entre operação e efeito).
+- **Evolução patrimonial:** pertence ao PORTFOLIO_LEDGER (relações entre fatos patrimoniais ao longo do tempo).
+
+---
+
+# 12. Navegação Patrimonial
+
+### Forward Navigation
+
+Navegação da origem para a evolução.
+
+```
+Origem
+    ↓
+Evolução
+```
+
+### Reverse Navigation
+
+Navegação do estado atual para o histórico de formação.
+
+```
+Estado Atual
+    ↓
+Histórico de Formação
+```
+
+### Objetivo
+
+Permitir análise retrospectiva do patrimônio.
+
+---
+
+# 13. Reconstruibilidade Patrimonial
+
+### Definição
+
+O histórico completo de Fatos Patrimoniais deve permitir a reconstrução do patrimônio em qualquer ponto temporal.
+
+### Natureza
+
+A reconstrução é consequência direta da preservação integral dos Fatos Patrimoniais. Se todos os fatos são preservados e imutáveis, o estado patrimonial de qualquer momento pode ser reconstruído.
+
+Não aborda implementação técnica.
+
+---
+
+# 14. Relação com TRACE_TRANSACTION
 
 O Trace Transaction (TRACE_TRANSACTION.md) e o Portfolio Ledger possuem responsabilidades distintas e complementares:
 
@@ -168,7 +289,7 @@ O Trace Transaction navega pela cadeia causal. O Ledger armazena os fatos que co
 
 ---
 
-# 9. Relação com PORTFOLIO_ENGINE
+# 15. Relação com PORTFOLIO_ENGINE
 
 O Portfolio Engine (05_PORTFOLIO_ENGINE.md) é o principal consumidor dos Fatos Patrimoniais registrados no Ledger.
 
@@ -188,7 +309,7 @@ O Ledger não conhece os algoritmos do Engine. O Engine não persiste fatos patr
 
 ---
 
-# 10. Invariantes Arquiteturais
+# 16. Invariantes Arquiteturais
 
 ### INV-L001
 
@@ -210,14 +331,35 @@ O Ledger não altera significado econômico.
 
 O Ledger não realiza cálculos patrimoniais.
 
+### INV-L006
+
+Nenhum Fato Patrimonial é removido.
+
+### INV-L007
+
+Toda correção gera novo Fato Patrimonial.
+
+### INV-L008
+
+Toda compensação mantém vínculo patrimonial rastreável.
+
+### INV-L009
+
+Todo histórico patrimonial deve ser reconstruível.
+
+### INV-L010
+
+O estado patrimonial atual não depende da remoção de fatos anteriores.
+
 ---
 
-# 11. Limites de Escopo
+# 17. Limites de Escopo
 
 ### O que o Ledger faz
 
 - Registra Fatos Patrimoniais.
 - Preserva integridade e rastreabilidade.
+- Preserva o histórico patrimonial completo.
 - Disponibiliza Fatos Patrimoniais para consumo.
 
 ### O que o Ledger não faz
@@ -225,21 +367,39 @@ O Ledger não realiza cálculos patrimoniais.
 - Não processa operações.
 - Não interpreta eventos.
 - Não realiza cálculos.
+- Não projeta patrimônio.
+- Não consolida indicadores.
+- Não produz métricas.
+- Não realiza processamento analítico.
 - Não gera relatórios.
 - Não define regras de negócio.
 
 ### O que pertence ao Portfolio Engine
 
+- Cálculo de patrimônio.
 - Cálculo de preço médio.
 - Cálculo de rentabilidade.
 - Cálculo de IR.
 - Projeções e simulações.
 - Derivação de indicadores.
 - Geração de resultados analíticos.
+- Consolidação de métricas patrimoniais.
 
 ---
 
 # Histórico
+
+## Versão 0.20
+
+- Evolução do Working Draft para N1 (Working Draft Consolidado).
+- Adicionada Identidade Patrimonial (§8): identidade lógica de fatos.
+- Adicionada Imutabilidade dos Fatos Patrimoniais (§9): nada é apagado.
+- Adicionadas Correções por Compensação (§10): novos fatos, não alteração.
+- Adicionado Encadeamento Patrimonial (§11): relações entre fatos.
+- Adicionada Navegação Patrimonial (§12): Forward e Reverse Navigation.
+- Adicionada Reconstruibilidade Patrimonial (§13): histórico completo.
+- Adicionados INV-L006 a INV-L010.
+- Limites de Escopo atualizados (separação Ledger vs Engine reforçada).
 
 ## Versão 0.10
 

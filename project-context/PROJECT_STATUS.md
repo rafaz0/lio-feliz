@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.8
+**Versão:** 2.9
 
 **Status:** APROVADO
 
@@ -156,6 +156,7 @@ ADR-008: Backlog Governance
 | 10/07/2026 | PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0). Documentação oficial: 39 documentos. PS#016 encerrado. |
 | 10/07/2026 | PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído para N1. Trace Identity, Eventos Compostos, Granularidade, Navegação Bidirecional, Invariantes. PS#017 encerrado. |
 | 10/07/2026 | PS#018 Prompt A: 04_PORTFOLIO_LEDGER.md v0.10 criado (Working Draft N0). Documentação oficial: 40 documentos. |
+| 10/07/2026 | PS#019 Prompt A: 04_PORTFOLIO_LEDGER.md evoluído para N1 (v0.20). Imutabilidade, Compensação, Reconstruibilidade. |
 
 ---
 
@@ -168,11 +169,11 @@ ADR-008: Backlog Governance
 
 ## Histórico
 
+### Versão 2.9
+
+PS#019 Prompt A: 04_PORTFOLIO_LEDGER.md N0→N1 (v0.20). Imutabilidade, Compensação, Encadeamento, Navegação, Reconstruibilidade. INV-L006 a INV-L010.
+
 ### Versão 2.8
-
-PS#018 Prompt A: 04_PORTFOLIO_LEDGER.md v0.10 criado (Working Draft N0). Documentação oficial: 40 documentos.
-
-### Versão 2.7
 
 ### Versão 2.1
 

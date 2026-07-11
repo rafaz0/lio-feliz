@@ -4,7 +4,7 @@
 
 **Documento:** README.md
 
-**Versão:** 1.16
+**Versão:** 1.17
 
 **Status:** APROVADO
 
@@ -68,11 +68,11 @@ O objetivo é manter consistência entre toda a documentação do projeto, indep
 
 ## Histórico
 
+### Versão 1.17
+
+PS#019 Prompt A: 04_PORTFOLIO_LEDGER.md N0→N1 (v0.20).
+
 ### Versão 1.16
-
-PS#018 Prompt A: 04_PORTFOLIO_LEDGER.md v0.10 (N0) criado.
-
-### Versão 1.15
 
 ### Versão 1.9
 

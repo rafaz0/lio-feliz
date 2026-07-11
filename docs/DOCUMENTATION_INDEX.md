@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.7
+**Versão da Documentação:** 2.8
 
 **Status:** APROVADO
 
@@ -251,7 +251,7 @@ Working Draft de rastreabilidade arquitetural (N1). Define o fluxo da Operação
 
 🟡 04_PORTFOLIO_LEDGER.md
 
-Working Draft inicial (N0). Registro Canônico de Fatos Patrimoniais.
+Working Draft (N1). Registro Canônico de Fatos Patrimoniais.
 
 ---
 
@@ -287,12 +287,12 @@ Este arquivo representa a estrutura oficial da documentação.
 
 # Histórico
 
+## Versão 2.8
+
+- PS#019 Prompt A: 04_PORTFOLIO_LEDGER.md evoluído para N1 (v0.20).
+- Nenhuma alteração estrutural no índice.
+
 ## Versão 2.7
-
-- PS#018 Prompt A: 04_PORTFOLIO_LEDGER.md v0.10 criado (Working Draft N0).
-- Adicionada entrada para 04_PORTFOLIO_LEDGER.md na seção 7.
-
-## Versão 2.6
 
 - PS#012 Prompt A (Final): IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado.
 - Nenhuma alteração estrutural no índice de documentação oficial.
