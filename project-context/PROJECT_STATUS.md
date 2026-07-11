@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.5
+**Versão:** 2.6
 
 **Status:** APROVADO
 
@@ -24,7 +24,7 @@
 
 | Aspecto | Status |
 |---------|--------|
-| Documentação oficial | 38 documentos |
+| Documentação oficial | 39 documentos |
 | Architecture Lab | 8 documentos |
 | Project Context | 8 documentos (inclui DEVELOPMENT_METHODOLOGY.md, KNOWLEDGE_BACKLOG.md, AI_CONTEXT.md e SYNC_HISTORY.md) |
 | Fonte Canônica | H:\Lio Feliz |
@@ -153,6 +153,7 @@ ADR-008: Backlog Governance
 | 10/07/2026 | PS#013 Prompt A (Final): Diretrizes Operacionais da Conversa adicionadas ao AI_CONTEXT. AI_CONTEXT v1.5. PS#013 encerrado. |
 | 10/07/2026 | PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md criado (Contrato Arquitetural de Rastreabilidade Patrimonial). DOCUMENTATION_INDEX v2.3 (seção 7). PROJECT_STATE v1.8. PS#014 encerrado. |
 | 10/07/2026 | PS#015 Prompt A (Final): IA-018 (PG, DAPS), IA-019 (Economia de Contexto), Padronização Visual, Critérios DOCUMENTACAO_COMPLETA e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6. PS#015 encerrado. |
+| 10/07/2026 | PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0). Documentação oficial: 39 documentos. PS#016 encerrado. |
 
 ---
 
@@ -165,11 +166,11 @@ ADR-008: Backlog Governance
 
 ## Histórico
 
+### Versão 2.6
+
+PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0). Documentação oficial: 39 documentos.
+
 ### Versão 2.5
-
-PS#015 Prompt A (Final): IA-018 (PG, DAPS, ciclo de vida, encerramento de auditorias). IA-019 (Economia de Contexto). Padronização Visual Operacional. Critérios DOCUMENTACAO_COMPLETA e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6.
-
-### Versão 2.4
 
 ### Versão 2.1
 
