@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.2
+**Versão da Documentação:** 2.3
 
 **Status:** APROVADO
 
@@ -239,6 +239,14 @@ Arquivos previstos:
 
 ---
 
+# 7. Documentos Arquiteturais
+
+🟡 TRACE_TRANSACTION_ARCHITECTURE.md
+
+Documento arquitetural fundacional do Trace Transaction. Natureza: Contrato Arquitetural de Rastreabilidade Patrimonial.
+
+---
+
 # Legenda
 
 ✅ Concluído
@@ -270,6 +278,11 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 2.3
+
+- PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md criado (Contrato Arquitetural de Rastreabilidade Patrimonial).
+- Adicionada seção 7: Documentos Arquiteturais.
 
 ## Versão 2.2
 

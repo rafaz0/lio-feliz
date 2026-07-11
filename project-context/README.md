@@ -4,7 +4,7 @@
 
 **Documento:** README.md
 
-**Versão:** 1.11
+**Versão:** 1.12
 
 **Status:** APROVADO
 
@@ -68,11 +68,11 @@ O objetivo é manter consistência entre toda a documentação do projeto, indep
 
 ## Histórico
 
+### Versão 1.12
+
+PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md criado. DOCUMENTATION_INDEX v2.3 (seção 7). PROJECT_STATUS v2.4.
+
 ### Versão 1.11
-
-PS#013 Prompt A (Final): Diretrizes Operacionais da Conversa adicionadas ao AI_CONTEXT v1.5. PS#013 encerrado.
-
-### Versão 1.10
 
 ### Versão 1.9
 
