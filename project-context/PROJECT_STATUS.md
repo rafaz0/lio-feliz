@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.2
+**Versão:** 2.1
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsável:** Rafael Santos + IA
 
-**Última atualização:** 09/07/2026
+**Última atualização:** 10/07/2026
 
 ---
 
@@ -24,12 +24,13 @@
 
 | Aspecto | Status |
 |---------|--------|
-| Documentação oficial | 36 documentos |
+| Documentação oficial | 37 documentos |
 | Architecture Lab | 8 documentos |
-| Project Context | 5 documentos (inclui DEVELOPMENT_METHODOLOGY.md) |
+| Project Context | 7 documentos (inclui DEVELOPMENT_METHODOLOGY.md, KNOWLEDGE_BACKLOG.md e AI_CONTEXT.md) |
+| Fonte Canônica | H:\Lio Feliz |
 | Product Backlog | 21 FEATs (v1.4) |
 | ADRs | 8 aprovados |
-| Business Rules | 7 criados (15 previstos) |
+| Business Rules | 9 criados (15 previstos) |
 | Technical Annexes | 8 criados (13 previstos) |
 | Consolidações | nº 1 concluída |
 | Sprints de Estabilização | nº 1 concluída, Micro nº 2 concluída |
@@ -44,8 +45,8 @@
 ### Produto (3/3 ✅)
 03_PRODUCT_REQUIREMENTS, 04_DATA_MODEL, 05_SYSTEM_ARCHITECTURE
 
-### Regras de Negócio (7/15)
-00_INDEX, 00_GLOBAL_RULES, 01_PORTFOLIO, **02_TRANSACTIONS** 🟡, 03_MARKET_DATA, 04_CORPORATE_ACTIONS, 05_PROVENTOS
+### Regras de Negócio (9/15)
+00_INDEX, 00_GLOBAL_RULES, 01_PORTFOLIO, **02_TRANSACTIONS** 🟡 (v0.92, Nível 1), **03_TRANSACTION_INTERPRETATION** 🟡 (v0.60, N3), 03_MARKET_DATA, 04_CORPORATE_ACTIONS, 05_PROVENTOS
 
 ### Anexos Técnicos (8/13)
 00_INDEX, 00_ENGINE_GUIDELINES, 01_PRICE_AVERAGE_ALGORITHMS, 02_CORPORATE_ACTION_ENGINE, 03_PORTFOLIO_CONSOLIDATION_ENGINE, 04_INSIGHT_ENGINE, 05_ENGINE_ORCHESTRATOR, 06_HEALTH_ENGINE
@@ -59,7 +60,7 @@ ADR-001 a ADR-008 + 00_INDEX
 ### Demais complementares (07 a 15) — 🟡 Pendentes
 
 ### Project Context
-README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT_METHODOLOGY** ✅ (v1.1, IA-008 a IA-010)
+README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, **WORKFLOW** ✅ (v1.3, fluxo com inicialização), **DEVELOPMENT_METHODOLOGY** ✅ (v1.7, IA-001 a IA-016, AI_CONTEXT oficial, Protocolo de Pré-Resposta), **KNOWLEDGE_BACKLOG** ✅ (v1.2, status oficiais, KB-001 a KB-005), **AI_CONTEXT** ✅ (v1.1, documento oficial de inicialização)
 
 ---
 
@@ -132,16 +133,69 @@ ADR-008: Backlog Governance
 | 09/07/2026 | DEVELOPMENT_METHODOLOGY.md criado (v1.0) — metodologia oficial de desenvolvimento |
 | 09/07/2026 | WORKFLOW.md v1.2 — metodologia migrada para DEVELOPMENT_METHODOLOGY.md |
 | 09/07/2026 | DEVELOPMENT_METHODOLOGY.md v1.1 — IA-008 a IA-010, Auditoria de Sprint, Filosofia refinada |
+| 10/07/2026 | Pacote de Sincronização #007 concluído |
+| 10/07/2026 | 02_TRANSACTIONS.md v0.92 — Nível 1 consolidado (R1–R12) |
+| 10/07/2026 | DEVELOPMENT_METHODOLOGY.md v1.2 — IA-011 a IA-013, Ciclos de Maturidade N0–N5, OA-001 |
+| 10/07/2026 | Pacote de Sincronização #008 — Prompt A: 03_TRANSACTION_INTERPRETATION.md v0.10 criado |
+| 10/07/2026 | PS#008 Prompt B: 03_TRANSACTION_INTERPRETATION.md v0.20 (N1) — Conceitos Fundamentais consolidados |
+| 10/07/2026 | PS#008 Prompt C: 03_TRANSACTION_INTERPRETATION.md v0.40 (N2) — BR-030 a BR-037 |
+| 10/07/2026 | PS#008 Prompt D: 03_TRANSACTION_INTERPRETATION.md v0.60 (N3) — 8 Casos, Conclusões, Pendências revisadas |
+| 10/07/2026 | PS#009 Prompt A: KNOWLEDGE_BACKLOG.md v1.0 criado, IA-014 adicionada, IA-009 expandida |
+| 10/07/2026 | PS#009 Prompt B: Fluxo Oficial de Preservação do Conhecimento criado, IA-008/IA-009 expandidas |
+| 10/07/2026 | PS#009 Prompt C: Baseline da Conversa (Fase 0), KB-003 adicionado |
+| 10/07/2026 | PS#009 Prompt D: KNOWLEDGE_BACKLOG v1.2 (status, estrutura padrão, KB-004/KB-005), Ciclo de Vida do Conhecimento |
+| 10/07/2026 | PS#010 Prompt A: AI_CONTEXT.md v1.0 criado (documento derivado de integração com ChatGPT) |
+| 10/07/2026 | PS#010 Prompt B: AI_CONTEXT.md v1.1 — conteúdo consolidado (metodologia, regras IA, KB, WDs) |
+| 10/07/2026 | PS#010 Prompt C: AI_CONTEXT formalizado como doc. oficial de inicialização. IA-015, IA-016 criadas. WORKFLOW v1.3 |
+| 10/07/2026 | PS#010 Prompt D (Final): Migração para H:\Lio Feliz\. Backup e Contexto removidos. AI_CONTEXT v1.2. Infraestrutura atualizada. PS#010 encerrado. |
+| 10/07/2026 | PS#011 Prompt A: Inicialização de Conversas fortalecida. AGENTS.md direciona para AI_CONTEXT. IA-015 fortalecida. Fluxo detalhado. AI_CONTEXT v1.3. |
 
 ---
 
 ## Próximos Passos
 
-A definir.
+- Refinar o 03_TRANSACTION_INTERPRETATION.md (Working Draft N3 em andamento)
+- Alimentar KNOWLEDGE_BACKLOG.md com novos itens conforme surgirem
 
 ---
 
 ## Histórico
+
+### Versão 2.1
+
+PS#011 Prompt A: Inicialização de Conversas fortalecida. AGENTS.md agora direciona oficialmente para AI_CONTEXT. IA-015 fortalecida (primeira ação é localizar AI_CONTEXT; indisponibilidade é bloqueante). Fluxo de Inicialização detalhado. AI_CONTEXT v1.3 com seção "Utilização". README v1.9.
+
+### Versão 2.0
+
+PS#010 Prompt D (Final): Migração da Fonte Canônica para H:\Lio Feliz. Infraestrutura atualizada (AGENTS.md, .runvite.bat). Estruturas antigas removidas (Backup, Contexto, tmp). AI_CONTEXT v1.2 (oficial de inicialização). Geração automática do AI_CONTEXT configurada no fluxo. PS#010 encerrado.
+
+### Versão 1.9
+
+PS#010 Prompt C: AI_CONTEXT formalizado como documento oficial de inicialização. IA-015 (Protocolo de Pré-Resposta) e IA-016 (Relatórios dos Pacotes) criadas. WORKFLOW v1.3. DEVELOPMENT_METHODOLOGY v1.7.
+
+### Versão 1.8
+
+PS#010 Prompts A e B concluídos. AI_CONTEXT.md v1.0 → v1.1 (conteúdo consolidado). Project Context: 6 → 7 documentos.
+
+### Versão 1.7
+
+PS#009 Prompt D: KNOWLEDGE_BACKLOG.md v1.2 (status oficiais, estrutura padronizada, KB-004/KB-005). DEVELOPMENT_METHODOLOGY.md v1.6 (Ciclo de Vida do Conhecimento, IA-008 expandida).
+
+### Versão 1.6
+
+PS#009 concluído. DEVELOPMENT_METHODOLOGY.md v1.5 (Fluxo Oficial, Baseline da Conversa, Fase 0). KNOWLEDGE_BACKLOG.md v1.1 (KB-003). IA-008/IA-009 expandidas.
+
+### Versão 1.5
+
+PS#009 Prompt A: KNOWLEDGE_BACKLOG.md v1.0 criado. DEVELOPMENT_METHODOLOGY.md v1.3 (IA-014 adicionada, IA-009 expandida). Project Context: 5 → 6 documentos.
+
+### Versão 1.4
+
+Pacote de Sincronização #008 concluído (Prompts A a D). 03_TRANSACTION_INTERPRETATION.md: v0.10 → v0.60, N0 → N3. BR-030 a BR-037 (4 grupos). 8 Casos de Interpretação. Conclusões Arquiteturais. Documentação oficial: 36 → 37. Business Rules: 9/15.
+
+### Versão 1.3
+
+Pacote de Sincronização #007 concluído. 02_TRANSACTIONS.md v0.92 (Nível 1, R1–R12). DEVELOPMENT_METHODOLOGY.md v1.2 (IA-011 a IA-013, Ciclos de Maturidade N0–N5, OA-001). Business Rules atualizado para 8/15.
 
 ### Versão 1.2
 

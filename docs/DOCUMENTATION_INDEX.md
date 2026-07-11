@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.2
+**Versão da Documentação:** 2.1
 
 **Status:** APROVADO
 
-**Última atualização:** 09/07/2026
+**Última atualização:** 10/07/2026
 
 ---
 
@@ -81,6 +81,8 @@ Arquivos previstos:
 01_PORTFOLIO.md ✅
 
 02_TRANSACTIONS.md 🟡
+
+03_TRANSACTION_INTERPRETATION.md 🟡
 
 03_MARKET_DATA.md ✅
 
@@ -268,6 +270,52 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 2.1
+
+- PS#011 Prompt A: Inicialização de Conversas fortalecida.
+- Nenhuma alteração estrutural no índice de documentação oficial.
+
+## Versão 2.0
+
+- PS#010 Prompt D (Final): Migração para H:\Lio Feliz\. PS#010 encerrado.
+- Nenhuma alteração estrutural no índice de documentação oficial.
+
+## Versão 1.9
+
+- PS#010 Prompt C: AI_CONTEXT formalizado como documento oficial de inicialização.
+- Nenhuma alteração estrutural no índice de documentação oficial.
+
+## Versão 1.8
+
+- PS#010 Prompts A e B: AI_CONTEXT.md v1.1 com conteúdo consolidado.
+- Nenhuma alteração estrutural no índice de documentação oficial.
+
+## Versão 1.7
+
+- PS#009 Prompt D: Ciclo de Vida do Conhecimento, status oficiais.
+- Nenhuma alteração estrutural no índice de documentação oficial.
+
+## Versão 1.6
+
+- PS#009 concluído (conhecimento, fluxo, baseline).
+- Nenhuma alteração estrutural no índice de documentação oficial.
+
+## Versão 1.5
+
+- KNOWLEDGE_BACKLOG.md criado em project-context/ (PS#009).
+- Nenhuma alteração estrutural no índice de documentação oficial.
+
+## Versão 1.4
+
+- Adicionada entrada para 03_TRANSACTION_INTERPRETATION.md 🟡.
+- Início do Working Draft do documento de interpretação patrimonial.
+
+## Versão 1.3
+
+- Sincronização do Pacote de Sincronização #007 (Prompt C/3 — Governança).
+- 02_TRANSACTIONS.md consolidado em v0.92 (Nível 1).
+- Nenhuma alteração estrutural no índice.
 
 ## Versão 1.2
 

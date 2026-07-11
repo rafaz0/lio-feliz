@@ -4,7 +4,7 @@
 
 **Documento:** WORKFLOW.md
 
-**Versão:** 1.2
+**Versão:** 1.4
 
 **Status:** Estável
 
@@ -129,7 +129,42 @@ Regeneração dos Artefatos Derivados
 
 ### 6. Fluxo Oficial de Trabalho com IA
 
-Toda sessão de trabalho deverá seguir o fluxo abaixo.
+Toda sessão de trabalho deverá seguir o fluxo abaixo. Nenhuma etapa poderá ser ignorada.
+
+#### Fluxo de Inicialização (etapas obrigatórias em toda nova conversa)
+
+```
+Nova Conversa
+
+↓
+
+Leitura automática do AGENTS.md
+
+↓
+
+Localizar AI_CONTEXT.md
+
+↓
+
+Ler AI_CONTEXT.md integralmente
+
+↓
+
+Executar Baseline (Fase 0)
+
+↓
+
+Executar IA-015 (Protocolo de Pré-Resposta)
+
+↓
+
+[Barreira — nenhuma resposta técnica antes deste ponto]
+↓
+
+Iniciar o desenvolvimento
+```
+
+#### Fluxo de Trabalho (após inicialização concluída)
 
 ```
 Discussão
@@ -161,6 +196,10 @@ Atualização dos Backups
 ↓
 
 Atualização do Project Context
+
+↓
+
+Regeneração do AI_CONTEXT
 
 ↓
 
@@ -302,6 +341,16 @@ Ambas as categorias, quando aplicáveis, deverão ser registradas no Architectur
 ---
 
 ## Histórico
+
+### Versão 1.4
+
+- Fluxo de Inicialização dividido em dois sub-fluxos: Inicialização (obrigatório em nova conversa) e Trabalho.
+- Etapas detalhadas: Leitura AGENTS.md → Localizar AI_CONTEXT → Ler → Baseline → Protocolo → Barreira → Desenvolvimento.
+- Registrado explicitamente que nenhuma etapa pode ser ignorada.
+
+### Versão 1.3
+
+- Fluxo de Trabalho com IA atualizado: adicionadas etapas de inicialização (AI_CONTEXT, Baseline, Protocolo de Pré-Resposta).
 
 ### Versão 1.2
 

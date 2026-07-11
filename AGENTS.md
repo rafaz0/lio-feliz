@@ -13,6 +13,20 @@
 
 # Projeto: Lio Feliz — Dashboard de Investimentos
 
+## Inicialização Obrigatória do Projeto
+
+Este documento (AGENTS.md) contém apenas um resumo superficial do projeto. Ele **não contém todo o contexto necessário** para o desenvolvimento.
+
+O **AI_CONTEXT.md** é o documento oficial de reconstrução de contexto do projeto.
+
+**Nenhuma atividade relacionada ao projeto deverá iniciar antes da leitura completa do AI_CONTEXT.md.**
+
+> **Instrução obrigatória para a IA:**
+>
+> Leia integralmente o arquivo `project-context/AI_CONTEXT.md` e execute a Baseline da Conversa definida na metodologia (`DEVELOPMENT_METHODOLOGY.md`) antes de qualquer resposta técnica.
+
+---
+
 ## O Que Estamos Construindo
 
 Um dashboard de carteira de investimentos completo que rivaliza com o **Investidor10**. O foco é **investidor de longo prazo** (fundamentos, dividendos, FIIs, ações BR, stocks US, ETFs). O usuário registra operações de compra/venda e o sistema calcula posição consolidada, rentabilidade, proventos recebidos, IRPF, etc.
@@ -29,7 +43,7 @@ Um dashboard de carteira de investimentos completo que rivaliza com o **Investid
 ## Como Rodar
 
 ```bash
-cd C:\Users\rafae\AppData\Local\Temp\opencode\lio-feliz
+cd "H:\Lio Feliz"
 npm run dev    # http://localhost:8080
 npm run build  # produção
 ```
@@ -225,7 +239,7 @@ stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us |
 
 ```bash
 # Caminho do projeto
-cd C:\Users\rafae\AppData\Local\Temp\opencode\lio-feliz
+cd "H:\Lio Feliz"
 
 # Iniciar servidor
 npm run dev
