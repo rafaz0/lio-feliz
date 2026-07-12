@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 3.6
+**Versão da Documentação:** 3.7
 
 **Status:** APROVADO
 

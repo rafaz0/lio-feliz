@@ -2387,7 +2387,7 @@ Fonte: docs/PROJECT_PROGRESS_PANEL.md
 
 **Documento:** PROJECT_PROGRESS_PANEL.md
 
-**VersÃ£o:** 1.1
+**VersÃ£o:** 1.4
 
 **Status:** APROVADO
 
@@ -2496,8 +2496,8 @@ O inÃ­cio da implementaÃ§Ã£o deverÃ¡ ser guiado pelos marcos arquitetura
 
 # 7. PrÃ³ximos Marcos
 
-1. Evoluir `05_PORTFOLIO_ENGINE` para N1.
-2. Iniciar criaÃ§Ã£o das Business Rules restantes (BR-06 a BR-13).
+1. Iniciar implementaÃ§Ã£o estruturada
+2. Criar demais Business Rules (BR-06 a BR-13)
 
 ---
 
@@ -2512,7 +2512,27 @@ O painel deverÃ¡ ser atualizado sempre que:
 
 ---
 
+# 9. Indicadores PÃ³s-Auditoria
+
+| Indicador | Estado |
+|-----------|--------|
+| Arquitetura | ðŸŸ¢ |
+| DocumentaÃ§Ã£o | ðŸŸ¢ |
+| CÃ³digo Existente | ðŸŸ¢ |
+| Reaproveitamento | ðŸŸ¢ 85% |
+| Reescrita NecessÃ¡ria | ðŸŸ¢ 0% |
+
+**EstratÃ©gia:** ConvergÃªncia Arquitetural + RefatoraÃ§Ã£o Incremental (DEC-069B)
+
+---
+
 # HistÃ³rico
+
+## VersÃ£o 1.4 (11/07/2026)
+
+- PS#029A: Indicadores PÃ³s-Auditoria adicionados (Â§9).
+- CÃ³digo: ~85% KEEP, ~15% REFACTOR, 0% REMOVE.
+- EstratÃ©gia DEC-069B registrada.
 
 ## VersÃ£o 1.3 (11/07/2026)
 
@@ -2556,7 +2576,7 @@ Fonte: docs/DOCUMENTATION_INDEX.md
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**VersÃ£o da DocumentaÃ§Ã£o:** 3.6
+**VersÃ£o da DocumentaÃ§Ã£o:** 3.7
 
 **Status:** APROVADO
 
@@ -2936,13 +2956,13 @@ Fonte: docs/PROJECT_STATE.md
 
 **Documento:** PROJECT_STATE.md
 
-**VersÃ£o:** 1.22
+**VersÃ£o:** 1.23
 
 **Status:** APROVADO
 
 **Ãšltima atualizaÃ§Ã£o:** 11/07/2026
 
-**PS associado:** PS#027
+**PS associado:** PS#029A
 
 ---
 

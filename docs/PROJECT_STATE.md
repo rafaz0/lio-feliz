@@ -6,13 +6,13 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.22
+**Versão:** 1.23
 
 **Status:** APROVADO
 
 **Última atualização:** 11/07/2026
 
-**PS associado:** PS#027
+**PS associado:** PS#029A
 
 ---
 

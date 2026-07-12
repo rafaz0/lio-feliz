@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_PROGRESS_PANEL.md
 
-**Versão:** 1.1
+**Versão:** 1.4
 
 **Status:** APROVADO
 
@@ -113,8 +113,8 @@ O início da implementação deverá ser guiado pelos marcos arquiteturais e nã
 
 # 7. Próximos Marcos
 
-1. Evoluir `05_PORTFOLIO_ENGINE` para N1.
-2. Iniciar criação das Business Rules restantes (BR-06 a BR-13).
+1. Iniciar implementação estruturada
+2. Criar demais Business Rules (BR-06 a BR-13)
 
 ---
 
@@ -129,7 +129,27 @@ O painel deverá ser atualizado sempre que:
 
 ---
 
+# 9. Indicadores Pós-Auditoria
+
+| Indicador | Estado |
+|-----------|--------|
+| Arquitetura | 🟢 |
+| Documentação | 🟢 |
+| Código Existente | 🟢 |
+| Reaproveitamento | 🟢 85% |
+| Reescrita Necessária | 🟢 0% |
+
+**Estratégia:** Convergência Arquitetural + Refatoração Incremental (DEC-069B)
+
+---
+
 # Histórico
+
+## Versão 1.4 (11/07/2026)
+
+- PS#029A: Indicadores Pós-Auditoria adicionados (§9).
+- Código: ~85% KEEP, ~15% REFACTOR, 0% REMOVE.
+- Estratégia DEC-069B registrada.
 
 ## Versão 1.3 (11/07/2026)
 

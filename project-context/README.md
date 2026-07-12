@@ -4,7 +4,7 @@
 
 **Documento:** README.md
 
-**Versão:** 1.26
+**Versão:** 1.27
 
 **Status:** APROVADO
 
@@ -70,6 +70,8 @@ O objetivo é manter consistência entre toda a documentação do projeto, indep
 
 ### Versão 1.23
 
+PS#029A Prompt Único: Consolidação Pós-Auditoria de Código. DEC-069B registrada. KEEP ~85%, REFACTOR ~15%. Próxima fase: PS#030.
+PS#029 Prompt Único: Auditoria de Código Existente. Mapa de Convergência gerado.
 PS#027 Prompt Único: 05_PORTFOLIO_ENGINE.md N0 → N1 (v0.10 → v0.20). Ciclo de Vida, Reatividade, Temporalidade, Escopo, Relações. INV-E006 a INV-E010. Domínio 75,0%. Marco de Implementação 🟢 ATINGIDO.
 PS#026 Prompt Único: 04_PORTFOLIO_LEDGER.md N1 → N2 (v0.20 → v0.30). Ciclo de Vida, Tipos, Escopo, Cadeia Patrimonial, Relações Avançadas. INV-L011 a INV-L015. Domínio 71,7%. Marco: Ledger ≥ N2 🟢.
 
