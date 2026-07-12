@@ -507,6 +507,241 @@ Novas Engineering Rules deverÃ£o:
 CriaÃ§Ã£o inicial das Engineering Rules.
 
 ---
+Fonte: docs/ENGINEERING_WORKFLOW.md
+---
+# ENGINEERING_WORKFLOW.md
+
+**Projeto:** Lio Feliz
+
+**Categoria:** Engineering
+
+**VersÃ£o:** 0.10
+
+**Status:** Working Draft
+
+**Maturidade:** N0 â€” Ideia
+
+**ResponsÃ¡veis:** Rafael Santos + IA
+
+---
+
+# 1. Objetivo
+
+Este documento define o fluxo operacional utilizado para transformar decisÃµes arquiteturais em cÃ³digo executÃ¡vel.
+
+Seu objetivo Ã© garantir que toda implementaÃ§Ã£o siga um processo previsÃ­vel, rastreÃ¡vel e alinhado Ã  metodologia do projeto.
+
+---
+
+# 2. VisÃ£o Geral
+
+Toda implementaÃ§Ã£o deverÃ¡ seguir obrigatoriamente o fluxo abaixo.
+
+```
+
+Nova Necessidade
+        â”‚
+        â–¼
+AnÃ¡lise
+        â”‚
+        â–¼
+Arquitetura
+        â”‚
+        â–¼
+Engineering
+        â”‚
+        â–¼
+Implementation Plan
+        â”‚
+        â–¼
+CodificaÃ§Ã£o
+        â”‚
+        â–¼
+ValidaÃ§Ã£o
+        â”‚
+        â–¼
+Pacote de SincronizaÃ§Ã£o
+        â”‚
+        â–¼
+Encerramento
+
+```
+
+Nenhuma etapa deverÃ¡ ser ignorada sem decisÃ£o arquitetural explÃ­cita.
+
+---
+
+# 3. Etapas
+
+## 3.1 IdentificaÃ§Ã£o
+
+Uma necessidade pode surgir de:
+
+- nova funcionalidade;
+- inconsistÃªncia arquitetural;
+- auditoria;
+- refatoraÃ§Ã£o;
+- melhoria tÃ©cnica.
+
+Resultado esperado:
+
+Necessidade claramente descrita.
+
+---
+
+## 3.2 AnÃ¡lise
+
+A necessidade deverÃ¡ ser analisada para responder:
+
+- existe documentaÃ§Ã£o relacionada?
+- existe ADR correspondente?
+- existe Business Rule?
+- existe Working Draft?
+- hÃ¡ impacto arquitetural?
+
+Resultado esperado:
+
+Escopo definido.
+
+---
+
+## 3.3 Arquitetura
+
+Caso necessÃ¡rio:
+
+- atualizar Architecture;
+- criar ADR;
+- revisar Working Drafts.
+
+Nenhuma implementaÃ§Ã£o deverÃ¡ iniciar sem arquitetura aprovada.
+
+---
+
+## 3.4 Planejamento
+
+Criar ou atualizar:
+
+IMPLEMENTATION_PLAN_PSxxx.md
+
+O plano deverÃ¡ definir:
+
+- objetivos;
+- escopo;
+- etapas;
+- critÃ©rios de aceite;
+- riscos;
+- dependÃªncias.
+
+---
+
+## 3.5 ImplementaÃ§Ã£o
+
+Executar exatamente o plano aprovado.
+
+Durante esta etapa deverÃ£o ser evitadas decisÃµes arquiteturais.
+
+Caso novas decisÃµes sejam necessÃ¡rias, retornar Ã  etapa de Arquitetura.
+
+---
+
+## 3.6 ValidaÃ§Ã£o
+
+Validar:
+
+- funcionamento;
+- aderÃªncia arquitetural;
+- documentaÃ§Ã£o;
+- compatibilidade.
+
+Problemas encontrados retornam para ImplementaÃ§Ã£o.
+
+---
+
+## 3.7 SincronizaÃ§Ã£o
+
+Concluir o Pacote de SincronizaÃ§Ã£o correspondente.
+
+Atualizar:
+
+- Knowledge Backlog;
+- Working Drafts;
+- documentaÃ§Ã£o afetada.
+
+---
+
+## 3.8 Encerramento
+
+Uma implementaÃ§Ã£o somente poderÃ¡ ser encerrada quando:
+
+- objetivos concluÃ­dos;
+- documentaÃ§Ã£o atualizada;
+- cÃ³digo validado;
+- sincronizaÃ§Ã£o concluÃ­da.
+
+---
+
+# 4. Fluxos Especiais
+
+## CorreÃ§Ã£o Emergencial
+
+CorreÃ§Ãµes urgentes poderÃ£o seguir fluxo reduzido:
+
+Necessidade
+
+â†“
+
+ImplementaÃ§Ã£o
+
+â†“
+
+ValidaÃ§Ã£o
+
+â†“
+
+SincronizaÃ§Ã£o
+
+Toda decisÃ£o arquitetural deverÃ¡ ser documentada posteriormente.
+
+---
+
+## RefatoraÃ§Ã£o
+
+RefatoraÃ§Ãµes seguem o fluxo completo.
+
+Mesmo sem alterar comportamento funcional, deverÃ£o possuir plano prÃ³prio.
+
+---
+
+# 5. CritÃ©rios de Qualidade
+
+Toda implementaÃ§Ã£o deverÃ¡:
+
+- preservar rastreabilidade;
+- respeitar Engineering Rules;
+- respeitar a Arquitetura Oficial;
+- possuir documentaÃ§Ã£o correspondente.
+
+---
+
+# 6. Indicadores
+
+Durante a evoluÃ§Ã£o do projeto poderÃ£o ser medidos:
+
+- tempo mÃ©dio por PS;
+- quantidade de ADRs;
+- cobertura arquitetural;
+- percentual de convergÃªncia;
+- pendÃªncias abertas.
+
+---
+
+# HistÃ³rico
+
+## v0.10
+
+CriaÃ§Ã£o inicial do fluxo operacional da Engenharia.
+
+---
 Fonte: docs/IMPLEMENTATION_PLAN_PS030.md
 ---
 # IMPLEMENTATION_PLAN_PS030.md
@@ -3615,6 +3850,10 @@ Plano operacional do PS#030 (ConvergÃªncia Arquitetural). Interpretation, Trac
 ðŸŸ¡ ENGINEERING_RULES.md
 
 Regras permanentes da Engenharia (ER-001 a ER-012). PadronizaÃ§Ã£o da implementaÃ§Ã£o arquitetural.
+
+ðŸŸ¡ ENGINEERING_WORKFLOW.md
+
+Fluxo operacional da Engenharia: IdentificaÃ§Ã£o â†’ AnÃ¡lise â†’ Arquitetura â†’ Planejamento â†’ ImplementaÃ§Ã£o â†’ ValidaÃ§Ã£o â†’ SincronizaÃ§Ã£o â†’ Encerramento.
 
 ðŸŸ¢ PROJECT_PROGRESS_PANEL.md
 

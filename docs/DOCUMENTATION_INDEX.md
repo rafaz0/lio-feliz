@@ -277,6 +277,10 @@ Plano operacional do PS#030 (Convergência Arquitetural). Interpretation, Trace,
 
 Regras permanentes da Engenharia (ER-001 a ER-012). Padronização da implementação arquitetural.
 
+🟡 ENGINEERING_WORKFLOW.md
+
+Fluxo operacional da Engenharia: Identificação → Análise → Arquitetura → Planejamento → Implementação → Validação → Sincronização → Encerramento.
+
 🟢 PROJECT_PROGRESS_PANEL.md
 
 Documento Operacional de Acompanhamento. Painel de Progresso do Projeto.
