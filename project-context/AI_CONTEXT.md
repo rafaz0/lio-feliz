@@ -72,7 +72,7 @@ O AI_CONTEXT **não substitui** a documentação oficial (`docs/`). Ele represen
 | **Auditoria de Código** | 🟢 Concluída — KEEP ~85%, REFACTOR ~15%, REMOVE 0% |
 | **Estratégia** | Convergência Arquitetural + Refatoração Incremental (DEC-069B) |
 | **Próxima fase** | PS#030 — Convergência Arquitetural |
-| **Working Drafts ativos** | 01_ENGINEERING.md (v0.10, N0), 02_TRANSACTIONS.md (v0.92, N1 → consolidando), 03_TRANSACTION_INTERPRETATION.md (v0.70, N4), TRACE_TRANSACTION.md (v0.30, N2), 04_PORTFOLIO_LEDGER.md (v0.30, N2), 05_PORTFOLIO_ENGINE.md (v0.20, N1) |
+| **Working Drafts ativos** | 01_ENGINEERING.md (v0.10, N0), ENGINEERING_ROADMAP.md (v0.10, N0), 02_TRANSACTIONS.md (v0.92, N1 → consolidando), 03_TRANSACTION_INTERPRETATION.md (v0.70, N4), TRACE_TRANSACTION.md (v0.30, N2), 04_PORTFOLIO_LEDGER.md (v0.30, N2), 05_PORTFOLIO_ENGINE.md (v0.20, N1) |
 | **Fonte Canônica** | H:\Lio Feliz |
 
 **Principais pendências:**
@@ -315,6 +315,7 @@ Aplicar PG-018. A IA deve manter recomendações abertas visíveis, impedir desa
 | Documento | Versão | Nível | Status | Próximos Passos |
 |-----------|--------|-------|--------|-----------------|
 | 01_ENGINEERING.md | v0.10 | N0 (Working Draft) | 🟡 Em descoberta | Evoluir para N1 |
+| ENGINEERING_ROADMAP.md | v0.10 | N0 (Working Draft) | 🟡 Em descoberta | Evoluir para N1 |
 | 02_TRANSACTIONS.md | v0.92 | N1 → N5 (consolidando) | 🟡 Em elaboração | Promover a N5 |
 | 03_TRANSACTION_INTERPRETATION.md | v0.70 | N4 (Integrado) | 🟢 Validado | Promover a N5 |
 | TRACE_TRANSACTION.md | v0.30 | N2 (Consistente) | 🟢 Validado | Promover a N3 |

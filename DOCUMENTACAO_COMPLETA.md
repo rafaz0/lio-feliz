@@ -151,6 +151,202 @@ Durante sua maturaÃ§Ã£o este documento deverÃ¡ evoluir para incluir:
 CriaÃ§Ã£o do Working Draft.
 
 ---
+Fonte: docs/ENGINEERING_ROADMAP.md
+---
+# ENGINEERING_ROADMAP.md
+
+**Projeto:** Lio Feliz
+
+**Categoria:** Engineering
+
+**VersÃ£o:** 0.10
+
+**Status:** Working Draft
+
+**Maturidade:** N0 â€” Ideia
+
+**ResponsÃ¡veis:** Rafael Santos + IA
+
+---
+
+# 1. Objetivo
+
+Este documento define o roteiro estratÃ©gico da evoluÃ§Ã£o tÃ©cnica do projeto.
+
+Enquanto o Working Draft `01_ENGINEERING.md` estabelece os princÃ­pios da Engenharia, este Roadmap organiza a sequÃªncia lÃ³gica das implementaÃ§Ãµes necessÃ¡rias para convergir o cÃ³digo existente para a arquitetura oficial do projeto.
+
+Seu objetivo Ã© garantir que a implementaÃ§Ã£o ocorra de forma incremental, previsÃ­vel e rastreÃ¡vel.
+
+---
+
+# 2. PrincÃ­pios
+
+O Engineering Roadmap segue os seguintes princÃ­pios:
+
+- ImplementaÃ§Ã£o incremental.
+- ConvergÃªncia arquitetural.
+- DependÃªncias explÃ­citas.
+- ValidaÃ§Ã£o contÃ­nua.
+- PreservaÃ§Ã£o do cÃ³digo existente sempre que possÃ­vel.
+
+---
+
+# 3. EstratÃ©gia Geral
+
+A implementaÃ§Ã£o serÃ¡ organizada em fases.
+
+Cada fase possui objetivos prÃ³prios, critÃ©rios de conclusÃ£o e dependÃªncias claramente definidas.
+
+Nenhuma fase poderÃ¡ iniciar antes que os critÃ©rios mÃ­nimos da fase anterior sejam atendidos, salvo decisÃ£o arquitetural registrada.
+
+---
+
+# 4. Fases
+
+---
+
+## Fase 1 â€” ConvergÃªncia Arquitetural
+
+**Objetivo**
+
+Convergir o cÃ³digo existente para a arquitetura oficial definida na documentaÃ§Ã£o.
+
+**Pacotes previstos**
+
+- PS#030 â€” Interpretation Layer
+- PS#031 â€” Trace Layer
+- PS#032 â€” Ledger Abstraction
+- PS#033 â€” Portfolio Engine Integration
+
+**Resultado esperado**
+
+Toda alteraÃ§Ã£o patrimonial deverÃ¡ percorrer obrigatoriamente a cadeia oficial:
+
+```
+Transaction
+    â†“
+Interpretation
+    â†“
+Trace
+    â†“
+Ledger
+    â†“
+Portfolio Engine
+```
+
+---
+
+## Fase 2 â€” Desacoplamento
+
+Objetivo:
+
+Eliminar dependÃªncias diretas entre camadas do sistema.
+
+Principais atividades:
+
+- RefatoraÃ§Ã£o de Controllers
+- RefatoraÃ§Ã£o de Services
+- RefatoraÃ§Ã£o de Repositories
+- RemoÃ§Ã£o de responsabilidades duplicadas
+
+---
+
+## Fase 3 â€” ConsolidaÃ§Ã£o das Business Rules
+
+Objetivo:
+
+Implementar todas as Business Rules previstas na arquitetura.
+
+Inclui:
+
+- Regras pendentes
+- ValidaÃ§Ãµes
+- ConsistÃªncia entre domÃ­nio e cÃ³digo
+
+---
+
+## Fase 4 â€” Qualidade
+
+Objetivo:
+
+Elevar a confiabilidade da implementaÃ§Ã£o.
+
+Inclui:
+
+- Testes automatizados
+- Auditorias
+- Cobertura de cÃ³digo
+- ValidaÃ§Ã£o arquitetural
+
+---
+
+## Fase 5 â€” Performance
+
+Objetivo:
+
+Otimizar desempenho sem alterar o comportamento funcional.
+
+Inclui:
+
+- Cache
+- OtimizaÃ§Ãµes
+- Profiling
+- Monitoramento
+
+---
+
+# 5. DependÃªncias
+
+As fases deverÃ£o respeitar obrigatoriamente a seguinte ordem:
+
+```
+Arquitetura
+        â†“
+Business Rules
+        â†“
+ImplementaÃ§Ã£o
+        â†“
+Testes
+        â†“
+ValidaÃ§Ã£o
+```
+
+MudanÃ§as excepcionais deverÃ£o ser registradas atravÃ©s de ADR.
+
+---
+
+# 6. CritÃ©rios Gerais de ConclusÃ£o
+
+Uma fase serÃ¡ considerada concluÃ­da quando:
+
+- Todos os objetivos forem implementados.
+- Os critÃ©rios arquiteturais forem atendidos.
+- NÃ£o existirem regressÃµes conhecidas.
+- A documentaÃ§Ã£o correspondente estiver atualizada.
+- O Pacote de SincronizaÃ§Ã£o correspondente tiver sido concluÃ­do.
+
+---
+
+# 7. EvoluÃ§Ã£o Prevista
+
+Este documento deverÃ¡ evoluir para incluir:
+
+- Cronograma estimado.
+- DependÃªncias detalhadas.
+- Indicadores de progresso.
+- MÃ©tricas de implementaÃ§Ã£o.
+- Riscos tÃ©cnicos.
+- EstratÃ©gias alternativas.
+
+---
+
+# HistÃ³rico
+
+## v0.10
+
+CriaÃ§Ã£o inicial do Engineering Roadmap.
+
+---
 Fonte: docs/06_BUSINESS_RULES/03_TRANSACTION_INTERPRETATION.md
 ---
 # Lio Feliz - DocumentaÃ§Ã£o Oficial
@@ -2728,7 +2924,7 @@ Fonte: docs/DOCUMENTATION_INDEX.md
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**VersÃ£o da DocumentaÃ§Ã£o:** 3.8
+**VersÃ£o da DocumentaÃ§Ã£o:** 3.9
 
 **Status:** APROVADO
 
@@ -2986,6 +3182,10 @@ Working Draft (N0). DerivaÃ§Ã£o e consolidaÃ§Ã£o do Estado Patrimonial.
 ðŸŸ¡ 01_ENGINEERING.md
 
 Working Draft (N0). DomÃ­nio de Engenharia â€” processo de implementaÃ§Ã£o arquitetural.
+
+ðŸŸ¡ ENGINEERING_ROADMAP.md
+
+Working Draft (N0). Roteiro estratÃ©gico de evoluÃ§Ã£o tÃ©cnica. Fases: ConvergÃªncia Arquitetural, Desacoplamento, Business Rules, Qualidade, Performance.
 
 ðŸŸ¢ PROJECT_PROGRESS_PANEL.md
 

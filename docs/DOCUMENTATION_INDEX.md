@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 3.8
+**Versão da Documentação:** 3.9
 
 **Status:** APROVADO
 
@@ -264,6 +264,10 @@ Working Draft (N0). Derivação e consolidação do Estado Patrimonial.
 🟡 01_ENGINEERING.md
 
 Working Draft (N0). Domínio de Engenharia — processo de implementação arquitetural.
+
+🟡 ENGINEERING_ROADMAP.md
+
+Working Draft (N0). Roteiro estratégico de evolução técnica. Fases: Convergência Arquitetural, Desacoplamento, Business Rules, Qualidade, Performance.
 
 🟢 PROJECT_PROGRESS_PANEL.md
 
