@@ -269,6 +269,10 @@ Working Draft (N0). Domínio de Engenharia — processo de implementação arqui
 
 Working Draft (N0). Roteiro estratégico de evolução técnica. Fases: Convergência Arquitetural, Desacoplamento, Business Rules, Qualidade, Performance.
 
+🟡 IMPLEMENTATION_PLAN_PS030.md
+
+Plano operacional do PS#030 (Convergência Arquitetural). Interpretation, Trace, Ledger, Engine.
+
 🟢 PROJECT_PROGRESS_PANEL.md
 
 Documento Operacional de Acompanhamento. Painel de Progresso do Projeto.

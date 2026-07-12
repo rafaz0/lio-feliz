@@ -347,6 +347,267 @@ Este documento deverÃ¡ evoluir para incluir:
 CriaÃ§Ã£o inicial do Engineering Roadmap.
 
 ---
+Fonte: docs/IMPLEMENTATION_PLAN_PS030.md
+---
+# IMPLEMENTATION_PLAN_PS030.md
+
+**Projeto:** Lio Feliz
+
+**Categoria:** Engineering
+
+**Pacote de SincronizaÃ§Ã£o:** PS#030
+
+**VersÃ£o:** 0.10
+
+**Status:** Em Planejamento
+
+**ResponsÃ¡veis:** Rafael Santos + IA
+
+---
+
+# 1. Objetivo
+
+O PS#030 inaugura a fase de ConvergÃªncia Arquitetural do projeto.
+
+Seu objetivo Ã© alinhar o cÃ³digo existente Ã  arquitetura oficial definida pela documentaÃ§Ã£o, preservando o mÃ¡ximo possÃ­vel da implementaÃ§Ã£o atual e reduzindo riscos de regressÃ£o.
+
+Este pacote representa o primeiro passo da migraÃ§Ã£o da arquitetura lÃ³gica para a arquitetura executÃ¡vel.
+
+---
+
+# 2. MotivaÃ§Ã£o
+
+A auditoria de cÃ³digo (PS#029) concluiu que aproximadamente:
+
+- KEEP: ~85%
+- REFACTOR: ~15%
+- REMOVE: 0%
+
+Isso demonstra que a arquitetura atual deve convergir gradualmente sobre o cÃ³digo existente, ao invÃ©s de realizar uma reescrita completa.
+
+Este plano operacional define como essa convergÃªncia serÃ¡ executada.
+
+---
+
+# 3. Objetivos do Pacote
+
+## Objetivos principais
+
+- Implementar a Interpretation Layer.
+- Implementar a Trace Layer.
+- Implementar a Ledger Abstraction.
+- Integrar o Portfolio Engine Ã  nova cadeia arquitetural.
+
+---
+
+## Objetivos secundÃ¡rios
+
+- Preservar compatibilidade com o cÃ³digo existente.
+- Evitar alteraÃ§Ãµes desnecessÃ¡rias.
+- Preparar a arquitetura para os prÃ³ximos pacotes.
+
+---
+
+# 4. Escopo
+
+Este pacote contempla exclusivamente:
+
+- Camadas intermediÃ¡rias da arquitetura.
+- IntegraÃ§Ã£o entre os componentes.
+- RefatoraÃ§Ãµes necessÃ¡rias para suportar a nova cadeia.
+
+NÃ£o fazem parte deste pacote:
+
+- OtimizaÃ§Ãµes.
+- Melhorias de performance.
+- Testes avanÃ§ados.
+- Business Rules pendentes.
+- Novas funcionalidades.
+
+---
+
+# 5. Arquitetura Alvo
+
+Toda alteraÃ§Ã£o patrimonial deverÃ¡ seguir obrigatoriamente o fluxo:
+
+```text
+Transaction
+        â†“
+Interpretation
+        â†“
+Trace
+        â†“
+Ledger
+        â†“
+Portfolio Engine
+```
+
+Nenhuma camada poderÃ¡ ignorar a anterior.
+
+---
+
+# 6. Etapas
+
+## Etapa 1 â€” Interpretation Layer
+
+Objetivo
+
+Criar a camada responsÃ¡vel por interpretar Transactions.
+
+Entregas
+
+- ServiÃ§o de interpretaÃ§Ã£o.
+- Contratos.
+- Modelos necessÃ¡rios.
+
+CritÃ©rio de conclusÃ£o
+
+Toda Transaction produz uma Interpretation consistente.
+
+---
+
+## Etapa 2 â€” Trace Layer
+
+Objetivo
+
+Registrar toda transformaÃ§Ã£o patrimonial.
+
+Entregas
+
+- Trace Service.
+- Trace Identity.
+- Cadeia de rastreamento.
+
+CritÃ©rio de conclusÃ£o
+
+Toda Interpretation gera um Trace vÃ¡lido.
+
+---
+
+## Etapa 3 â€” Ledger Abstraction
+
+Objetivo
+
+Introduzir a abstraÃ§Ã£o de Ledger entre Trace e Engine.
+
+Entregas
+
+- Ledger Service.
+- Ledger Models.
+- OperaÃ§Ãµes imutÃ¡veis.
+
+CritÃ©rio de conclusÃ£o
+
+Todo Trace produz registros no Ledger.
+
+---
+
+## Etapa 4 â€” Portfolio Engine
+
+Objetivo
+
+Conectar o Engine Ã  nova arquitetura.
+
+Entregas
+
+- IntegraÃ§Ã£o completa.
+- Consumo do Ledger.
+- AtualizaÃ§Ã£o patrimonial.
+
+CritÃ©rio de conclusÃ£o
+
+O Engine deixa de depender diretamente das Transactions.
+
+---
+
+# 7. DependÃªncias
+
+Este pacote depende dos seguintes documentos:
+
+- 02_TRANSACTIONS.md
+- 03_TRANSACTION_INTERPRETATION.md
+- TRACE_TRANSACTION.md
+- 04_PORTFOLIO_LEDGER.md
+- 05_PORTFOLIO_ENGINE.md
+- 01_ENGINEERING.md
+- ENGINEERING_ROADMAP.md
+
+---
+
+# 8. EstratÃ©gia de MigraÃ§Ã£o
+
+A migraÃ§Ã£o seguirÃ¡ a estratÃ©gia de ConvergÃªncia Arquitetural.
+
+PrincÃ­pios:
+
+- preservar cÃ³digo existente;
+- substituir componentes gradualmente;
+- evitar interrupÃ§Ãµes do sistema;
+- manter compatibilidade durante todo o processo.
+
+Sempre que possÃ­vel, componentes antigos e novos coexistirÃ£o temporariamente.
+
+---
+
+# 9. CritÃ©rios de Aceite
+
+O PS#030 serÃ¡ considerado concluÃ­do quando:
+
+- a cadeia arquitetural estiver implementada;
+- todas as integraÃ§Ãµes estiverem funcionais;
+- nÃ£o existirem dependÃªncias diretas entre Transaction e Portfolio Engine;
+- o cÃ³digo permanecer compatÃ­vel com a arquitetura oficial.
+
+---
+
+# 10. Riscos
+
+Riscos identificados:
+
+- acoplamentos ocultos;
+- dependÃªncias indiretas;
+- regressÃµes funcionais;
+- inconsistÃªncias entre documentaÃ§Ã£o e cÃ³digo.
+
+MitigaÃ§Ãµes:
+
+- implementaÃ§Ã£o incremental;
+- validaÃ§Ãµes frequentes;
+- refatoraÃ§Ã£o controlada.
+
+---
+
+# 11. CritÃ©rios para Encerramento
+
+O pacote poderÃ¡ ser encerrado apenas quando:
+
+- todos os objetivos forem concluÃ­dos;
+- documentaÃ§Ã£o atualizada;
+- cÃ³digo validado;
+- auditoria arquitetural aprovada;
+- prÃ³ximo pacote apto para inÃ­cio.
+
+---
+
+# 12. PrÃ³ximo Pacote
+
+PS#031 â€” Desacoplamento Arquitetural
+
+Objetivos previstos:
+
+- decomposiÃ§Ã£o das rotas;
+- separaÃ§Ã£o definitiva das responsabilidades;
+- eliminaÃ§Ã£o dos acoplamentos remanescentes.
+
+---
+
+# HistÃ³rico
+
+## v0.10
+
+CriaÃ§Ã£o inicial do plano operacional do PS#030.
+
+---
 Fonte: docs/06_BUSINESS_RULES/03_TRANSACTION_INTERPRETATION.md
 ---
 # Lio Feliz - DocumentaÃ§Ã£o Oficial
@@ -3186,6 +3447,10 @@ Working Draft (N0). DomÃ­nio de Engenharia â€” processo de implementaÃ§
 ðŸŸ¡ ENGINEERING_ROADMAP.md
 
 Working Draft (N0). Roteiro estratÃ©gico de evoluÃ§Ã£o tÃ©cnica. Fases: ConvergÃªncia Arquitetural, Desacoplamento, Business Rules, Qualidade, Performance.
+
+ðŸŸ¡ IMPLEMENTATION_PLAN_PS030.md
+
+Plano operacional do PS#030 (ConvergÃªncia Arquitetural). Interpretation, Trace, Ledger, Engine.
 
 ðŸŸ¢ PROJECT_PROGRESS_PANEL.md
 
