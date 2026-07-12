@@ -273,6 +273,10 @@ Working Draft (N0). Roteiro estratégico de evolução técnica. Fases: Converg�
 
 Plano operacional do PS#030 (Convergência Arquitetural). Interpretation, Trace, Ledger, Engine.
 
+🟡 ENGINEERING_RULES.md
+
+Regras permanentes da Engenharia (ER-001 a ER-012). Padronização da implementação arquitetural.
+
 🟢 PROJECT_PROGRESS_PANEL.md
 
 Documento Operacional de Acompanhamento. Painel de Progresso do Projeto.

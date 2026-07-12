@@ -347,6 +347,166 @@ Este documento deverÃ¡ evoluir para incluir:
 CriaÃ§Ã£o inicial do Engineering Roadmap.
 
 ---
+Fonte: docs/ENGINEERING_RULES.md
+---
+# ENGINEERING_RULES.md
+
+**Projeto:** Lio Feliz
+
+**Categoria:** Engineering
+
+**VersÃ£o:** 0.10
+
+**Status:** Working Draft
+
+**Maturidade:** N0 â€” Ideia
+
+**ResponsÃ¡veis:** Rafael Santos + IA
+
+---
+
+# 1. Objetivo
+
+Este documento define as regras permanentes da Engenharia do projeto.
+
+Seu objetivo Ã© padronizar a implementaÃ§Ã£o da arquitetura oficial, garantindo consistÃªncia, previsibilidade e rastreabilidade durante toda a evoluÃ§Ã£o do cÃ³digo.
+
+As Engineering Rules complementam a metodologia do projeto, mas possuem foco exclusivo na implementaÃ§Ã£o tÃ©cnica.
+
+---
+
+# 2. Escopo
+
+Estas regras aplicam-se a:
+
+- novas implementaÃ§Ãµes;
+- refatoraÃ§Ãµes;
+- migraÃ§Ãµes arquiteturais;
+- correÃ§Ãµes estruturais;
+- integraÃ§Ã£o entre componentes.
+
+NÃ£o se aplicam Ã  modelagem do domÃ­nio nem Ã s regras de negÃ³cio.
+
+---
+
+# 3. Engineering Rules
+
+---
+
+## ER-001 â€” Arquitetura Oficial
+
+Toda implementaÃ§Ã£o deverÃ¡ respeitar a arquitetura oficial aprovada.
+
+Nenhuma soluÃ§Ã£o temporÃ¡ria poderÃ¡ substituir permanentemente a arquitetura documentada.
+
+---
+
+## ER-002 â€” ImplementaÃ§Ã£o Incremental
+
+Grandes alteraÃ§Ãµes deverÃ£o ser divididas em pequenas entregas independentes.
+
+Cada etapa deverÃ¡ produzir um sistema funcional.
+
+---
+
+## ER-003 â€” ConvergÃªncia Arquitetural
+
+Sempre que possÃ­vel deverÃ¡ ser priorizada a convergÃªncia sobre o cÃ³digo existente.
+
+Reescritas completas deverÃ£o ser evitadas.
+
+---
+
+## ER-004 â€” DependÃªncias ExplÃ­citas
+
+Toda dependÃªncia arquitetural deverÃ¡ ser claramente identificada.
+
+DependÃªncias implÃ­citas deverÃ£o ser eliminadas progressivamente.
+
+---
+
+## ER-005 â€” Responsabilidade Ãšnica
+
+Cada componente deverÃ¡ possuir uma Ãºnica responsabilidade claramente definida.
+
+---
+
+## ER-006 â€” Camadas ObrigatÃ³rias
+
+Nenhum componente poderÃ¡ ignorar as camadas definidas pela arquitetura oficial.
+
+Fluxos alternativos somente poderÃ£o existir mediante ADR.
+
+---
+
+## ER-007 â€” Compatibilidade
+
+Toda implementaÃ§Ã£o deverÃ¡ preservar compatibilidade durante o processo de migraÃ§Ã£o, salvo decisÃ£o arquitetural em contrÃ¡rio.
+
+---
+
+## ER-008 â€” RefatoraÃ§Ã£o Segura
+
+RefatoraÃ§Ãµes deverÃ£o priorizar alteraÃ§Ãµes estruturais sem modificar comportamento funcional.
+
+---
+
+## ER-009 â€” Rastreabilidade
+
+Toda implementaÃ§Ã£o deverÃ¡ ser rastreÃ¡vel atÃ© pelo menos um dos seguintes artefatos:
+
+- ADR
+- Business Rule
+- Working Draft
+- Pacote de SincronizaÃ§Ã£o
+- Documento de Engenharia
+
+---
+
+## ER-010 â€” CÃ³digo Morto
+
+CÃ³digo obsoleto somente poderÃ¡ ser removido quando:
+
+- nÃ£o possuir dependÃªncias;
+- existir substituiÃ§Ã£o definitiva;
+- a migraÃ§Ã£o estiver concluÃ­da.
+
+---
+
+## ER-011 â€” Planejamento
+
+Nenhuma implementaÃ§Ã£o arquitetural relevante deverÃ¡ iniciar sem um plano de implementaÃ§Ã£o correspondente.
+
+---
+
+## ER-012 â€” CritÃ©rios de ConclusÃ£o
+
+Uma implementaÃ§Ã£o somente poderÃ¡ ser considerada concluÃ­da quando:
+
+- arquitetura respeitada;
+- documentaÃ§Ã£o atualizada;
+- critÃ©rios de aceite atendidos;
+- riscos conhecidos documentados.
+
+---
+
+# 4. EvoluÃ§Ã£o
+
+Novas Engineering Rules deverÃ£o:
+
+- possuir identificador permanente;
+- descrever apenas regras permanentes;
+- evitar decisÃµes especÃ­ficas de um Ãºnico PS.
+
+---
+
+# HistÃ³rico
+
+## v0.10
+
+CriaÃ§Ã£o inicial das Engineering Rules.
+
+---
 Fonte: docs/IMPLEMENTATION_PLAN_PS030.md
 ---
 # IMPLEMENTATION_PLAN_PS030.md
@@ -3451,6 +3611,10 @@ Working Draft (N0). Roteiro estratÃ©gico de evoluÃ§Ã£o tÃ©cnica. Fases: 
 ðŸŸ¡ IMPLEMENTATION_PLAN_PS030.md
 
 Plano operacional do PS#030 (ConvergÃªncia Arquitetural). Interpretation, Trace, Ledger, Engine.
+
+ðŸŸ¡ ENGINEERING_RULES.md
+
+Regras permanentes da Engenharia (ER-001 a ER-012). PadronizaÃ§Ã£o da implementaÃ§Ã£o arquitetural.
 
 ðŸŸ¢ PROJECT_PROGRESS_PANEL.md
 
