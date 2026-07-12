@@ -13,17 +13,24 @@
 
 # Projeto: Lio Feliz — Dashboard de Investimentos
 
+> **⚠️ Caminho canônico do projeto:** `H:\Lio Feliz\`
+>
+> Este é o único diretório oficial. Qualquer outro caminho (ex: `C:\Users\...\Temp\...`) é cópia obsoleta.
+> **Sempre verifique o working directory antes de iniciar.**
+
 ## Inicialização Obrigatória do Projeto
 
 Este documento (AGENTS.md) contém apenas um resumo superficial do projeto. Ele **não contém todo o contexto necessário** para o desenvolvimento.
 
-O **AI_CONTEXT.md** é o documento oficial de reconstrução de contexto do projeto.
+A inicialização segue a Ordem de Precedência Documental:
 
-**Nenhuma atividade relacionada ao projeto deverá iniciar antes da leitura completa do AI_CONTEXT.md.**
+1. **`project-context/AI_CONTEXT.md`** — Estado Operacional e Protocolos
+2. **`project-context/PROJECT_BOOTSTRAP.md`** — Memória Executiva
+3. **`docs/DOCUMENTACAO_COMPLETA.md`** — Fonte Canônica (consulta quando necessário)
 
 > **Instrução obrigatória para a IA:**
 >
-> Leia integralmente o arquivo `project-context/AI_CONTEXT.md` e execute a Baseline da Conversa definida na metodologia (`DEVELOPMENT_METHODOLOGY.md`) antes de qualquer resposta técnica.
+> Leia integralmente `project-context/AI_CONTEXT.md` e `project-context/PROJECT_BOOTSTRAP.md`, execute a Autoverificação Operacional (IA-026), e continue exatamente do último PS registrado.
 
 ---
 

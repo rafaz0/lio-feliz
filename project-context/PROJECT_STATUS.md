@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 3.11
+**Versão:** 1.12
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsável:** Rafael Santos + IA
 
-**Última atualização:** 11/07/2026
+**Última atualização:** 12/07/2026
 
 ---
 
@@ -24,13 +24,12 @@
 
 | Aspecto | Status |
 |---------|--------|
-| Documentação oficial | 43 documentos |
-| Architecture Lab | 8 documentos |
-| Project Context | 8 documentos (inclui DEVELOPMENT_METHODOLOGY.md, KNOWLEDGE_BACKLOG.md, AI_CONTEXT.md e SYNC_HISTORY.md) |
-| Fonte Canônica | H:\Lio Feliz |
+| Documentação oficial | 36 documentos |
+| Architecture Lab | 12 documentos |
+| Project Context | 9 documentos (inclui DEVELOPMENT_METHODOLOGY.md, AI_OPERATION_CHECKLIST.md, PS_TEMPLATE.md, PROJECT_BOOTSTRAP.md) |
 | Product Backlog | 21 FEATs (v1.4) |
 | ADRs | 8 aprovados |
-| Business Rules | 9 criados (15 previstos) |
+| Business Rules | 7 criados (15 previstos) |
 | Technical Annexes | 8 criados (13 previstos) |
 | Consolidações | nº 1 concluída |
 | Sprints de Estabilização | nº 1 concluída, Micro nº 2 concluída |
@@ -45,8 +44,8 @@
 ### Produto (3/3 ✅)
 03_PRODUCT_REQUIREMENTS, 04_DATA_MODEL, 05_SYSTEM_ARCHITECTURE
 
-### Regras de Negócio (9/15)
-00_INDEX, 00_GLOBAL_RULES, 01_PORTFOLIO, **02_TRANSACTIONS** 🟡 (v0.92, Nível 1), **03_TRANSACTION_INTERPRETATION** 🟡 (v0.60, N3), 03_MARKET_DATA, 04_CORPORATE_ACTIONS, 05_PROVENTOS
+### Regras de Negócio (7/15)
+00_INDEX, 00_GLOBAL_RULES, 01_PORTFOLIO, **02_TRANSACTIONS** 🟡, 03_MARKET_DATA, 04_CORPORATE_ACTIONS, 05_PROVENTOS
 
 ### Anexos Técnicos (8/13)
 00_INDEX, 00_ENGINE_GUIDELINES, 01_PRICE_AVERAGE_ALGORITHMS, 02_CORPORATE_ACTION_ENGINE, 03_PORTFOLIO_CONSOLIDATION_ENGINE, 04_INSIGHT_ENGINE, 05_ENGINE_ORCHESTRATOR, 06_HEALTH_ENGINE
@@ -60,7 +59,7 @@ ADR-001 a ADR-008 + 00_INDEX
 ### Demais complementares (07 a 15) — 🟡 Pendentes
 
 ### Project Context
-README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, **WORKFLOW** ✅ (v1.3, fluxo com inicialização), **DEVELOPMENT_METHODOLOGY** ✅ (v1.10, IA-001 a IA-019, PG, DAPS, Economia de Contexto, Padronização Visual), **KNOWLEDGE_BACKLOG** ✅ (v1.2, status oficiais, KB-001 a KB-005), **AI_CONTEXT** ✅ (v1.6, IA-018, IA-019, Diretrizes Operacionais), **SYNC_HISTORY** ✅ (v1.0)
+README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT_METHODOLOGY** ✅ (v1.6), AI_CONTEXT ✅ (v1.4), AI_OPERATION_CHECKLIST ✅ (v1.2), PS_TEMPLATE ✅
 
 ---
 
@@ -71,8 +70,11 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, **WORKFLOW** ✅ (v1.3, flu
 | 00_CONSTITUTION.md | Em evolução (v0.1) |
 | 01_DOMAIN_MODEL.md | Em construção |
 | 02_DOMAIN_LAWS.md | Em construção |
+| 02_ENGINEERING_ROADMAP.md | N0 — Ideia |
 | 03_KNOWLEDGE_FLOW.md | Em construção |
+| 03_IMPLEMENTATION_PLAN.md | N0 — Ideia |
 | 04_CANONICAL_LANGUAGE.md | Em construção |
+| 04_MILESTONES.md | N0 — Ideia |
 | 05_RESEARCH_LOG.md | Ativo |
 | 06_IDEAS_BACKLOG.md | Ativo |
 
@@ -123,6 +125,8 @@ ADR-008: Backlog Governance
 
 | Data | Evento |
 |------|--------|
+| 12/07/2026 | PS#030B — Refinamento dos Protocolos Operacionais concluído |
+| 12/07/2026 | IA-015 fortalecido, IA-025/IA-026 criados, PG-019/OP-002/OP-003 atualizados |
 | 09/07/2026 | Consolidação nº 1 concluída |
 | 09/07/2026 | Sprint de Estabilização nº 1 |
 | 09/07/2026 | Micro Sprint de Estabilização nº 2 |
@@ -133,131 +137,77 @@ ADR-008: Backlog Governance
 | 09/07/2026 | DEVELOPMENT_METHODOLOGY.md criado (v1.0) — metodologia oficial de desenvolvimento |
 | 09/07/2026 | WORKFLOW.md v1.2 — metodologia migrada para DEVELOPMENT_METHODOLOGY.md |
 | 09/07/2026 | DEVELOPMENT_METHODOLOGY.md v1.1 — IA-008 a IA-010, Auditoria de Sprint, Filosofia refinada |
-| 10/07/2026 | Pacote de Sincronização #007 concluído |
-| 10/07/2026 | 02_TRANSACTIONS.md v0.92 — Nível 1 consolidado (R1–R12) |
-| 10/07/2026 | DEVELOPMENT_METHODOLOGY.md v1.2 — IA-011 a IA-013, Ciclos de Maturidade N0–N5, OA-001 |
-| 10/07/2026 | Pacote de Sincronização #008 — Prompt A: 03_TRANSACTION_INTERPRETATION.md v0.10 criado |
-| 10/07/2026 | PS#008 Prompt B: 03_TRANSACTION_INTERPRETATION.md v0.20 (N1) — Conceitos Fundamentais consolidados |
-| 10/07/2026 | PS#008 Prompt C: 03_TRANSACTION_INTERPRETATION.md v0.40 (N2) — BR-030 a BR-037 |
-| 10/07/2026 | PS#008 Prompt D: 03_TRANSACTION_INTERPRETATION.md v0.60 (N3) — 8 Casos, Conclusões, Pendências revisadas |
-| 10/07/2026 | PS#009 Prompt A: KNOWLEDGE_BACKLOG.md v1.0 criado, IA-014 adicionada, IA-009 expandida |
-| 10/07/2026 | PS#009 Prompt B: Fluxo Oficial de Preservação do Conhecimento criado, IA-008/IA-009 expandidas |
-| 10/07/2026 | PS#009 Prompt C: Baseline da Conversa (Fase 0), KB-003 adicionado |
-| 10/07/2026 | PS#009 Prompt D: KNOWLEDGE_BACKLOG v1.2 (status, estrutura padrão, KB-004/KB-005), Ciclo de Vida do Conhecimento |
-| 10/07/2026 | PS#010 Prompt A: AI_CONTEXT.md v1.0 criado (documento derivado de integração com ChatGPT) |
-| 10/07/2026 | PS#010 Prompt B: AI_CONTEXT.md v1.1 — conteúdo consolidado (metodologia, regras IA, KB, WDs) |
-| 10/07/2026 | PS#010 Prompt C: AI_CONTEXT formalizado como doc. oficial de inicialização. IA-015, IA-016 criadas. WORKFLOW v1.3 |
-| 10/07/2026 | PS#010 Prompt D (Final): Migração para H:\Lio Feliz\. Backup e Contexto removidos. AI_CONTEXT v1.2. Infraestrutura atualizada. PS#010 encerrado. |
-| 10/07/2026 | PS#011 Prompt A: Inicialização de Conversas fortalecida. AGENTS.md direciona para AI_CONTEXT. IA-015 fortalecida. Fluxo detalhado. AI_CONTEXT v1.3. |
-| 10/07/2026 | PS#012 Prompt A (Final): Padronização dos Artefatos Reutilizáveis. IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado. DEVELOPMENT_METHODOLOGY v1.9. AI_CONTEXT v1.4. PS#012 encerrado. |
-| 10/07/2026 | PS#013 Prompt A (Final): Diretrizes Operacionais da Conversa adicionadas ao AI_CONTEXT. AI_CONTEXT v1.5. PS#013 encerrado. |
-| 10/07/2026 | PS#014 Prompt A (Final): TRACE_TRANSACTION_ARCHITECTURE.md criado (Contrato Arquitetural de Rastreabilidade Patrimonial). DOCUMENTATION_INDEX v2.3 (seção 7). PROJECT_STATE v1.8. PS#014 encerrado. |
-| 10/07/2026 | PS#015 Prompt A (Final): IA-018 (PG, DAPS), IA-019 (Economia de Contexto), Padronização Visual, Critérios DOCUMENTACAO_COMPLETA e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6. PS#015 encerrado. |
-| 10/07/2026 | PS#016 Prompt A (Final): TRACE_TRANSACTION.md v0.10 criado (Working Draft N0). Documentação oficial: 39 documentos. PS#016 encerrado. |
-| 10/07/2026 | PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído para N1. Trace Identity, Eventos Compostos, Granularidade, Navegação Bidirecional, Invariantes. PS#017 encerrado. |
-| 10/07/2026 | PS#018 Prompt A: 04_PORTFOLIO_LEDGER.md v0.10 criado (Working Draft N0). Documentação oficial: 40 documentos. |
-| 10/07/2026 | PS#019 Prompt A: 04_PORTFOLIO_LEDGER.md evoluído para N1 (v0.20). Imutabilidade, Compensação, Reconstruibilidade. |
-| 10/07/2026 | PS#020 Prompt A: PORTFOLIO_ENGINE_ARCHITECTURE.md v1.0 criado (Contrato Arquitetural de Consolidação Patrimonial). Documentação oficial: 41 documentos. |
-| 10/07/2026 | PS#021 Prompt Único: 05_PORTFOLIO_ENGINE.md v0.10 (N0) criado. Documentação oficial: 42 documentos. |
-| 10/07/2026 | PS#022 Prompt Único: Consolidação da Governança, Continuidade e Economia de Contexto. PG-012, DAPS-001, DAPS-002, PG-015, PG-016, EP-001, PG-013, PG-014. DEVELOPMENT_METHODOLOGY v1.11. AI_CONTEXT v1.7. |
-| 10/07/2026 | PS#023 Prompt Único: PROJECT_PROGRESS_PANEL.md v1.0 criado (Painel de Progresso). Documentação oficial: 43 documentos. |
-| 10/07/2026 | PS#024 Prompt Único: 03_TRANSACTION_INTERPRETATION.md N3 → N4 (v0.60 → v0.70). Interpretation Identity, Cadeia, Navegação, Reconstruibilidade, Consistência. INV-I006 a INV-I010. Documentação oficial: 43 documentos. |
-| 11/07/2026 | PS#029A Prompt Único: Consolidação Pós-Auditoria de Código. DEC-069B registrada. KEEP ~85%, REFACTOR ~15%, REMOVE 0%. Próxima fase: PS#030 Convergência Arquitetural. |
-| 11/07/2026 | PS#029 Prompt Único: Auditoria de Código Existente. Mapa de Convergência: ~85% KEEP, ~15% REFACTOR. Gaps críticos: Interpretation, Trace, Ledger abstraction. |
-| 11/07/2026 | PS#028A Prompt Único: Correção de inconsistências no AI_CONTEXT (INS-169). PGR-009 registrado. |
-| 11/07/2026 | PS#027 Prompt Único: 05_PORTFOLIO_ENGINE.md N0 → N1 (v0.10 → v0.20). Ciclo de Vida, Reatividade, Temporalidade, Escopo, Relações. INV-E006 a INV-E010. Domínio 75,0%. **Marco de Implementação 🟢 ATINGIDO.** |
-| 11/07/2026 | PS#026 Prompt Único: 04_PORTFOLIO_LEDGER.md N1 → N2 (v0.20 → v0.30). Ciclo de Vida, Tipos, Escopo, Cadeia Patrimonial, Relações Avançadas. INV-L011 a INV-L015. Domínio 71,7%. Marco: Ledger ≥ N2 🟢. |
-| 11/07/2026 | PS#026A Prompt Único: Governança de Transição, Continuidade e Inicialização de Chats. PG-017, PG-018, DAPS-003, EP-002, IA-023, IA-024. DEVELOPMENT_METHODOLOGY v1.12. AI_CONTEXT v2.1. |
-| 10/07/2026 | PS#025 Prompt Único: TRACE_TRANSACTION.md N1 → N2 (v0.20 → v0.30). Ciclo de Vida, Tipos, Escopo, Reconstrução. INV-006 a INV-010. Documentação oficial: 43 documentos. |
+| 12/07/2026 | PS#030B — IA-015, IA-025, IA-026, PG-019, OP-002, OP-003. DEVELOPMENT_METHODOLOGY.md v1.2. AI_CONTEXT.md criado. |
+| 12/07/2026 | PS#030C — IA-016, IA-027, OP-007. Fluxo de Evidências Externas. DEVELOPMENT_METHODOLOGY.md v1.3. |
+| 12/07/2026 | PS#030D (Prompt 1) — IA-028, IA-029, OP-008, OP-009, Painel Operacional. AI_OPERATION_CHECKLIST.md. PROJECT_PROGRESS_PANEL.md. DEVELOPMENT_METHODOLOGY.md v1.4. |
+| 12/07/2026 | Emenda PS#030D — Ritual OP-002 inomitível. OP-010, OP-011. PS_TEMPLATE.md. DEVELOPMENT_METHODOLOGY.md v1.5. |
+| 12/07/2026 | Emenda Final PS#030D — OP-012. IA-026 atualizada. Backlog Estratégico (BK-001, BK-002). DEVELOPMENT_METHODOLOGY.md v1.6. AI_CONTEXT.md v1.4. AI_OPERATION_CHECKLIST.md v1.2. |
+| 12/07/2026 | PS#031 (Prompt 1) — PROJECT_BOOTSTRAP.md criado. Nova camada de inicialização rápida. |
+| 12/07/2026 | PS#032 (Prompt 2) — IA-030, Strategic Backlog, Fonte Canônica. AI_CONTEXT simplificado. |
+| 12/07/2026 | PS#033 (Prompt 3) — Regeneração Global. Ordem de Precedência. Marco Documentação Consolidada. |
+| 12/07/2026 | Atualização operacional — PROJECT_BOOTSTRAP v2.0 (Runtime). AI_CONTEXT v1.8 simplificado. |
 
 ---
 
 ## Próximos Passos
 
-- Refinar o 03_TRANSACTION_INTERPRETATION.md (Working Draft N3 em andamento)
-- Alimentar KNOWLEDGE_BACKLOG.md com novos itens conforme surgirem
+Engineering N1 — PI-001 Interpretation Layer.
 
 ---
 
 ## Histórico
 
-### Versão 3.11
+### Versão 1.10
 
-PS#029A: Consolidação Pós-Auditoria de Código. DEC-069B registrada. KEEP ~85%, REFACTOR ~15%, REMOVE 0%. Próxima fase: PS#030 Convergência Arquitetural.
-
-### Versão 3.10
-
-PS#029: Auditoria de Código Existente. Mapa de Convergência: ~85% KEEP, ~15% REFACTOR. Gaps críticos: Interpretation, Trace, Ledger abstraction.
-
-### Versão 3.9
-
-PS#028A: Correção de inconsistências no AI_CONTEXT (INS-169). PGR-009 registrado.
-
-### Versão 3.8
-
-PS#027 Prompt Único: 05_PORTFOLIO_ENGINE.md N0 → N1 (v0.10 → v0.20). Ciclo de Vida, Reatividade, Temporalidade, Escopo, Relações. INV-E006 a INV-E010. Domínio 75,0%. **Marco de Implementação 🟢 ATINGIDO.**
-
-### Versão 3.7
-
-PS#026 Prompt Único: 04_PORTFOLIO_LEDGER.md N1 → N2 (v0.20 → v0.30). Ciclo de Vida, Tipos, Escopo, Cadeia Patrimonial, Relações Avançadas. INV-L011 a INV-L015. Domínio 71,7%. Marco: Ledger ≥ N2 🟢.
-
-### Versão 3.6
-
-PS#026A Prompt Único: Governança de Transição, Continuidade e Inicialização de Chats. PG-017, PG-018, DAPS-003, EP-002, IA-023, IA-024. DEVELOPMENT_METHODOLOGY v1.12. AI_CONTEXT v2.1.
-
-### Versão 3.5
-
-PS#025 Prompt Único: TRACE_TRANSACTION.md N1 → N2 (v0.20 → v0.30). INV-006 a INV-010. Domínio Principal progresso: 68,3%.
-
-### Versão 3.4
-
-PS#022 Prompt Único: Consolidação da Governança, Continuidade e Economia de Contexto. PG-012, DAPS-001, DAPS-002, PG-015, PG-016, EP-001, PG-013, PG-014. DEVELOPMENT_METHODOLOGY v1.11. AI_CONTEXT v1.7.
-
-### Versão 3.1
-
-PS#020 Prompt A: PORTFOLIO_ENGINE_ARCHITECTURE.md v1.0 criado (Contrato Arquitetural). Documentação oficial: 41 documentos.
-
-### Versão 2.9
-
-### Versão 2.1
-
-PS#011 Prompt A: Inicialização de Conversas fortalecida. AGENTS.md agora direciona oficialmente para AI_CONTEXT. IA-015 fortalecida (primeira ação é localizar AI_CONTEXT; indisponibilidade é bloqueante). Fluxo de Inicialização detalhado. AI_CONTEXT v1.3 com seção "Utilização". README v1.9.
-
-### Versão 2.0
-
-PS#010 Prompt D (Final): Migração da Fonte Canônica para H:\Lio Feliz. Infraestrutura atualizada (AGENTS.md, .runvite.bat). Estruturas antigas removidas (Backup, Contexto, tmp). AI_CONTEXT v1.2 (oficial de inicialização). Geração automática do AI_CONTEXT configurada no fluxo. PS#010 encerrado.
+PROJECT_BOOTSTRAP.md v2.0 (Runtime Operacional). AI_CONTEXT.md v1.8 simplificado. Regras operacionais migradas para o Bootstrap.
 
 ### Versão 1.9
 
-PS#010 Prompt C: AI_CONTEXT formalizado como documento oficial de inicialização. IA-015 (Protocolo de Pré-Resposta) e IA-016 (Relatórios dos Pacotes) criadas. WORKFLOW v1.3. DEVELOPMENT_METHODOLOGY v1.7.
+PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Documental. Marco Documentação Consolidada registrado. Ciclo metodológico encerrado. Próxima etapa: Engineering N1.
 
 ### Versão 1.8
 
-PS#010 Prompts A e B concluídos. AI_CONTEXT.md v1.0 → v1.1 (conteúdo consolidado). Project Context: 6 → 7 documentos.
+PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.12
+
+Continuidade Arquitetural formalizada (IA-031). Bootstrap v2.1 com PI-001 completo. DEVELOPMENT_METHODOLOGY.md v1.9. AI_CONTEXT.md v1.10. AI_OPERATION_CHECKLIST.md v1.5.
+
+### Versão 1.11
+
+Runtime do Bootstrap consolidado. PROJECT_BOOTSTRAP.md v2.0 autossuficiente. AI_CONTEXT.md v1.9.
+
+### Versão 1.10
+
+PS#033 — Regeneração Global. Marco Documentação Consolidada. AI_CONTEXT.md v1.7. AI_OPERATION_CHECKLIST.md v1.4.
+
+### Versão 1.9
+
+PS#032 (Prompt 2) — Consolidação Metodológica. IA-030, Strategic Backlog. AI_CONTEXT.md v1.6.
+
+### Versão 1.8
+
+PS#031 (Prompt 1) — Bootstrap do Projeto. PROJECT_BOOTSTRAP.md criado. AI_CONTEXT.md v1.5.
 
 ### Versão 1.7
 
-PS#009 Prompt D: KNOWLEDGE_BACKLOG.md v1.2 (status oficiais, estrutura padronizada, KB-004/KB-005). DEVELOPMENT_METHODOLOGY.md v1.6 (Ciclo de Vida do Conhecimento, IA-008 expandida).
+Emenda Final ao PS#030D — OP-012, IA-026, Backlog Estratégico. AI_CONTEXT.md v1.4. AI_OPERATION_CHECKLIST.md v1.2.
 
 ### Versão 1.6
 
-PS#009 concluído. DEVELOPMENT_METHODOLOGY.md v1.5 (Fluxo Oficial, Baseline da Conversa, Fase 0). KNOWLEDGE_BACKLOG.md v1.1 (KB-003). IA-008/IA-009 expandidas.
+Emenda ao PS#030D — Ritual OP-002 inomitível. OP-010, OP-011. PS_TEMPLATE.md.
 
 ### Versão 1.5
 
-PS#009 Prompt A: KNOWLEDGE_BACKLOG.md v1.0 criado. DEVELOPMENT_METHODOLOGY.md v1.3 (IA-014 adicionada, IA-009 expandida). Project Context: 5 → 6 documentos.
+PS#030D (Prompt 1) — IA-028, IA-029, OP-008, OP-009, Painel Operacional. PROJECT_PROGRESS_PANEL.md criado. DEVELOPMENT_METHODOLOGY.md v1.4.
 
 ### Versão 1.4
 
-Pacote de Sincronização #008 concluído (Prompts A a D). 03_TRANSACTION_INTERPRETATION.md: v0.10 → v0.60, N0 → N3. BR-030 a BR-037 (4 grupos). 8 Casos de Interpretação. Conclusões Arquiteturais. Documentação oficial: 36 → 37. Business Rules: 9/15.
-
-### Versão 1.3
-
-Pacote de Sincronização #007 concluído. 02_TRANSACTIONS.md v0.92 (Nível 1, R1–R12). DEVELOPMENT_METHODOLOGY.md v1.2 (IA-011 a IA-013, Ciclos de Maturidade N0–N5, OA-001). Business Rules atualizado para 8/15.
+PS#030C — IA-016, IA-027, OP-007. Fluxo de Evidências Externas. DEVELOPMENT_METHODOLOGY.md v1.3.
 
 ### Versão 1.2
 
-DEVELOPMENT_METHODOLOGY.md atualizado para v1.1. Novas regras IA registradas: IA-008, IA-009, IA-010. Auditoria de Sprint adicionada à metodologia.
+PS#030B — Refinamento dos Protocolos Operacionais. IA-015 fortalecido. IA-025, IA-026 criados. PG-019, OP-002, OP-003 formalizados. DEVELOPMENT_METHODOLOGY.md v1.2. AI_CONTEXT.md criado. SYNC_HISTORY.md criado. Auditoria de Sprint adicionada à metodologia. Novas regras IA: IA-008, IA-009, IA-010.
 
 ### Versão 1.1
 

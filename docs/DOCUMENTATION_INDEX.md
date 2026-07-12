@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 3.9
+**Versão da Documentação:** 1.12
 
 **Status:** APROVADO
 
-**Última atualização:** 11/07/2026
+**Última atualização:** 12/07/2026
 
 ---
 
@@ -81,8 +81,6 @@ Arquivos previstos:
 01_PORTFOLIO.md ✅
 
 02_TRANSACTIONS.md 🟡
-
-03_TRANSACTION_INTERPRETATION.md 🟡
 
 03_MARKET_DATA.md ✅
 
@@ -175,6 +173,30 @@ Vocabulário oficial do projeto. Define cada conceito relevante com uma única d
 
 ---
 
+✅ SYNC_HISTORY.md
+
+Registro oficial de sincronizações (Pacotes de Sincronização).
+
+---
+
+📄 PROJECT_BOOTSTRAP.md
+
+Documento de inicialização rápida. Memória executiva resumida para continuidade entre chats.
+
+---
+
+📄 09_STRATEGIC_BACKLOG.md (architecture-lab)
+
+Repositório oficial de melhorias estratégicas aprovadas para implementação futura.
+
+---
+
+📄 DOCUMENTACAO_COMPLETA.md
+
+Artefato derivado. Consolidação da documentação para leitura e consulta. Fonte de verdade são os documentos individuais.
+
+---
+
 # 5. Decisões Arquiteturais
 
 ✅ 18_ARCHITECTURAL_DECISIONS/
@@ -239,54 +261,6 @@ Arquivos previstos:
 
 ---
 
-# 7. Documentos Arquiteturais
-
-🟡 TRACE_TRANSACTION_ARCHITECTURE.md
-
-Documento arquitetural fundacional do Trace Transaction. Natureza: Contrato Arquitetural de Rastreabilidade Patrimonial.
-
-🟡 TRACE_TRANSACTION.md
-
-Working Draft de rastreabilidade arquitetural (N1). Define o fluxo da Operação até o consumo pelos componentes posteriores.
-
-🟡 04_PORTFOLIO_LEDGER.md
-
-Working Draft (N1). Registro Canônico de Fatos Patrimoniais.
-
-🟡 PORTFOLIO_ENGINE_ARCHITECTURE.md
-
-Documento arquitetural fundacional do Portfolio Engine. Natureza: Contrato Arquitetural de Consolidação Patrimonial.
-
-🟡 05_PORTFOLIO_ENGINE.md
-
-Working Draft (N0). Derivação e consolidação do Estado Patrimonial.
-
-🟡 01_ENGINEERING.md
-
-Working Draft (N0). Domínio de Engenharia — processo de implementação arquitetural.
-
-🟡 ENGINEERING_ROADMAP.md
-
-Working Draft (N0). Roteiro estratégico de evolução técnica. Fases: Convergência Arquitetural, Desacoplamento, Business Rules, Qualidade, Performance.
-
-🟡 IMPLEMENTATION_PLAN_PS030.md
-
-Plano operacional do PS#030 (Convergência Arquitetural). Interpretation, Trace, Ledger, Engine.
-
-🟡 ENGINEERING_RULES.md
-
-Regras permanentes da Engenharia (ER-001 a ER-012). Padronização da implementação arquitetural.
-
-🟡 ENGINEERING_WORKFLOW.md
-
-Fluxo operacional da Engenharia: Identificação → Análise → Arquitetura → Planejamento → Implementação → Validação → Sincronização → Encerramento.
-
-🟢 PROJECT_PROGRESS_PANEL.md
-
-Documento Operacional de Acompanhamento. Painel de Progresso do Projeto.
-
----
-
 # Legenda
 
 ✅ Concluído
@@ -319,65 +293,42 @@ Este arquivo representa a estrutura oficial da documentação.
 
 # Histórico
 
-## Versão 2.9
+## Versão 1.11
 
-- PS#020 Prompt A: PORTFOLIO_ENGINE_ARCHITECTURE.md v1.0 criado.
-- Adicionada entrada na seção 7.
+- Continuidade Arquitetural formalizada (IA-031). Resumo Operacional Canônico obrigatório. Bootstrap v2.1 com PI-001 completo.
 
-## Versão 3.3
+## Versão 1.10
 
-- PS#025 Prompt Único: TRACE_TRANSACTION.md evoluído de N1 para N2 (v0.20 → v0.30).
-
-## Versão 3.2
-
-- PS#012 Prompt A (Final): IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado.
-- Nenhuma alteração estrutural no índice de documentação oficial.
-
-## Versão 2.1
-
-- PS#011 Prompt A: Inicialização de Conversas fortalecida.
-- Nenhuma alteração estrutural no índice de documentação oficial.
-
-## Versão 2.0
-
-- PS#010 Prompt D (Final): Migração para H:\Lio Feliz\. PS#010 encerrado.
-- Nenhuma alteração estrutural no índice de documentação oficial.
+- Auditoria de Runtime concluída. Bootstrap v2.0 comprovadamente autossuficiente. PROJECT_BOOTSTRAP.md v2.0.
 
 ## Versão 1.9
 
-- PS#010 Prompt C: AI_CONTEXT formalizado como documento oficial de inicialização.
-- Nenhuma alteração estrutural no índice de documentação oficial.
+- Marco Documentação Consolidada registrado. Ciclo metodológico encerrado.
 
 ## Versão 1.8
 
-- PS#010 Prompts A e B: AI_CONTEXT.md v1.1 com conteúdo consolidado.
-- Nenhuma alteração estrutural no índice de documentação oficial.
+- Adicionada entrada para 09_STRATEGIC_BACKLOG.md (PS#032 — Consolidação Metodológica).
 
 ## Versão 1.7
 
-- PS#009 Prompt D: Ciclo de Vida do Conhecimento, status oficiais.
-- Nenhuma alteração estrutural no índice de documentação oficial.
+- Adicionada entrada para PROJECT_BOOTSTRAP.md (PS#031 — Bootstrap do Projeto).
 
 ## Versão 1.6
 
-- PS#009 concluído (conhecimento, fluxo, baseline).
-- Nenhuma alteração estrutural no índice de documentação oficial.
+- Atualização de vigência documental (Emenda Final ao PS#030D).
 
 ## Versão 1.5
 
-- KNOWLEDGE_BACKLOG.md criado em project-context/ (PS#009).
-- Nenhuma alteração estrutural no índice de documentação oficial.
+- Atualização de vigência documental (Emenda ao PS#030D).
 
 ## Versão 1.4
 
-- Adicionada entrada para 03_TRANSACTION_INTERPRETATION.md 🟡.
-- Início do Working Draft do documento de interpretação patrimonial.
+- Atualização de vigência documental (PS#030D — Prompt 1).
 
 ## Versão 1.3
 
-- Sincronização do Pacote de Sincronização #007 (Prompt C/3 — Governança).
-- 02_TRANSACTIONS.md consolidado em v0.92 (Nível 1).
-- Nenhuma alteração estrutural no índice.
+- Adicionada entrada para SYNC_HISTORY.md.
+- Adicionada entrada para DOCUMENTACAO_COMPLETA.md (artefato derivado).
 
 ## Versão 1.2
 

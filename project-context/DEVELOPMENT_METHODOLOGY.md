@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 1.12
+**Versão:** 1.9
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsáveis:** Rafael Santos + IA
 
-**Última atualização:** 10/07/2026
+**Última atualização:** 12/07/2026
 
 ---
 
@@ -46,20 +46,7 @@ Ele torna-se referência oficial para toda futura colaboração entre Rafael, IA
 
 ---
 
-# 4. Desenvolvimento por Ciclos de Maturidade
-
-Todo documento evolui através dos seguintes níveis de maturidade:
-
-- **Nível 0 — Ideia**: Conceito identificado, sem registro formal.
-- **Nível 1 — Working Draft**: Documento criado, em evolução ativa.
-- **Nível 2 — Consistente**: Conceitos estabilizados, estrutura consolidada.
-- **Nível 3 — Integrado**: Documento coerente com os demais documentos do domínio.
-- **Nível 4 — Validado**: Revisado e aprovado pela equipe.
-- **Nível 5 — Oficial**: Promovido a documentação oficial (v1.0+).
-
----
-
-# 5. Refinamento Incremental
+# 4. Refinamento Incremental
 
 ```
 Discussão
@@ -83,7 +70,7 @@ Versão Oficial
 
 ---
 
-# 6. Atualizações do Projeto
+# 5. Atualizações do Projeto
 
 Sempre que existir:
 
@@ -99,7 +86,7 @@ Evitar múltiplos prompts pequenos.
 
 ---
 
-# 7. Preservação do Conhecimento
+# 6. Preservação do Conhecimento
 
 > Regra Permanente nº 12
 
@@ -110,18 +97,532 @@ Sempre que surgir:
 - decisão adiada;
 - alteração permanente do fluxo de trabalho;
 
-essa informação deverá obrigatoriamente ser registrada através de pelo menos uma das seguintes ações:
+essa informação deverá obrigatoriamente ser registrada através de:
 
-- atualização imediata de um documento existente;
-- inclusão como evolução planejada;
-- inclusão como pendência formal em um Working Draft;
-- inclusão na metodologia, quando alterar permanentemente o processo de desenvolvimento.
+- documento oficial;
+- evolução planejada;
+- ou Working Draft.
 
 Nunca permanecer apenas na conversa.
 
 ---
 
-# 8. Auditoria de Sprint
+# 7. Metodologia de Trabalho com IA
+
+**IA-001 —** Sempre que uma melhoria surgir durante a criação de um prompt, ela deverá ser incorporada automaticamente ao próprio prompt. Nunca apresentada separadamente.
+
+**IA-002 —** Antes de finalizar qualquer prompt para o OpenCode, a IA deverá realizar uma Auditoria de Conhecimento. Objetivo: garantir que nenhuma decisão importante permaneça apenas na conversa.
+
+**IA-003 —** Sempre consolidar todas as decisões tomadas desde a última atualização do projeto em um único prompt, quando possível.
+
+**IA-004 —** Quando uma decisão não puder ser implementada imediatamente, indicar automaticamente onde ela deverá ser registrada.
+
+**IA-005 —** A IA deverá distinguir entre: conhecimento do domínio, metodologia, governança e documentação, registrando cada informação no local apropriado.
+
+**IA-006 —** Sempre que identificar uma melhoria metodológica durante a elaboração de um prompt, a IA deverá incorporá-la ao prompt atual. Nunca deixar melhorias importantes para um prompt futuro.
+
+**IA-007 —** Ao encerrar uma sessão importante de arquitetura, a IA deverá verificar se existe alguma decisão que faria falta caso a conversa fosse encerrada naquele momento. Se existir, essa decisão deverá ser incorporada imediatamente ao próximo prompt de atualização.
+
+**IA-008 — Avaliação Automática de Atualização do Projeto**
+
+Ao concluir qualquer bloco significativo de desenvolvimento arquitetural, a IA deverá realizar automaticamente uma avaliação da Sprint.
+
+Essa avaliação deverá informar:
+
+- quantidade de decisões consolidadas;
+- quantidade de novos conceitos descobertos;
+- novos marcos arquiteturais;
+- necessidade (ou não) de atualização do projeto;
+- justificativa da decisão;
+- próximo marco esperado.
+
+O usuário não deverá precisar perguntar se é o momento adequado para atualizar o projeto. Essa responsabilidade passa a ser da IA.
+
+**IA-009 — Classificação Automática das Descobertas**
+
+Sempre que surgir uma nova informação durante uma discussão arquitetural, a IA deverá classificá-la automaticamente como uma das categorias abaixo:
+
+- Conceito do Domínio
+- Business Rule
+- Arquitetura
+- Governança
+- Metodologia
+- Evolução Planejada
+
+Essa classificação determinará automaticamente onde a informação deverá ser registrada futuramente.
+
+**Objetivo:** Evitar perda de conhecimento e facilitar a organização da documentação.
+
+**IA-010 — Consolidação Inteligente de Prompts**
+
+Sempre que um prompt para o OpenCode estiver sendo elaborado, toda melhoria identificada durante sua construção deverá ser incorporada imediatamente ao próprio prompt.
+
+A IA não deverá apresentar melhorias metodológicas importantes separadamente.
+
+Caso exista dúvida sobre a conveniência da alteração, deverá consultar o usuário antes da geração do prompt.
+
+**Objetivo:** Eliminar retrabalho e garantir que cada prompt represente o estado mais atualizado do projeto.
+
+**IA-015 — Persistência Operacional**
+
+Após concluir a Baseline da sessão, a IA deverá manter o Estado Operacional ativo durante toda a conversa.
+
+Esse estado somente poderá ser alterado quando ocorrer uma das situações abaixo:
+
+- novo Pacote de Sincronização;
+- nova Baseline;
+- mudança explícita de objetivo pelo usuário;
+- nova evidência objetiva aprovada.
+
+A Baseline não encerra após a primeira resposta. O Estado Operacional permanece ativo durante toda a sessão. O protocolo deverá ser revalidado sempre que ocorrer mudança significativa de contexto.
+
+**IA-016 — Relatórios Operacionais**
+
+Todo Relatório Consolidado Final deverá conter obrigatoriamente:
+
+### Sugestões Técnicas
+
+Cada sugestão deverá informar:
+
+- descrição;
+- justificativa;
+- benefício esperado;
+- impacto;
+- necessidade ou não de DEC.
+
+Caso não existam sugestões, registrar explicitamente:
+
+"Nenhuma sugestão identificada."
+
+### Oportunidades Futuras
+
+Registrar melhorias observadas durante a implementação que:
+
+- não pertencem ao escopo do PS atual;
+- não justificam interrupção da execução;
+- podem originar futuros INS ou PS.
+
+Caso inexistentes, registrar explicitamente:
+
+"Nenhuma oportunidade identificada."
+
+**IA-025 — Continuidade Operacional**
+
+A IA deverá assumir que o objetivo atual permanece válido até que exista:
+
+- solicitação explícita do usuário;
+- nova Baseline;
+- evidência objetiva que justifique alteração.
+
+**IA-026 — Autoverificação Operacional**
+
+Antes de qualquer resposta relacionada ao projeto, a IA deverá executar internamente:
+
+- Estou no modo correto?
+- Existe DEC ativa?
+- Existe evidência objetiva para alterar a direção?
+- O plano atual permanece válido?
+- Esta resposta constitui uma Entrega Relevante?
+- Existe algum item registrado no Backlog Estratégico?
+
+Caso não exista evidência objetiva, priorizar a execução do plano vigente.
+
+Se a resposta constituir uma Entrega Relevante, o ritual de encerramento (OP-002) é obrigatório e não poderá ser omitido.
+
+Se existir Backlog Estratégico ativo, verificar se deve ser exibido. Nunca omitir automaticamente.
+
+**IA-027 — Tratamento de Evidências Externas**
+
+Ferramentas auxiliares podem produzir evidências. Essas evidências jamais alteram automaticamente:
+
+- arquitetura;
+- metodologia;
+- governança;
+- documentação oficial.
+
+Toda Evidência Externa deverá ser validada pelo ChatGPT. Somente após validação poderá resultar em:
+
+- INS;
+- DEC;
+- novo PS;
+- atualização documental.
+
+Considera-se Evidência Externa qualquer informação produzida por ferramentas auxiliares durante:
+
+- implementação;
+- auditoria;
+- validação;
+- testes;
+- análise documental.
+
+Exemplos: OpenCode, ferramentas de análise estática, validações automatizadas, futuras ferramentas oficialmente adotadas.
+
+**IA-028 — Agrupamento Inteligente de Execução**
+
+Quando um Pacote de Sincronização for dividido em múltiplos prompts, o ChatGPT deverá informar explicitamente ao OpenCode:
+
+- Prompt Único
+
+OU
+
+- Prompt X de N
+
+Somente o último prompt deverá solicitar Relatório Consolidado Final. Todos os anteriores deverão informar explicitamente que o relatório não deve ser gerado.
+
+**IA-029 — Baseline Operacional**
+
+A documentação enviada no início de um chat constitui a Baseline Operacional.
+
+`AI_CONTEXT.md`, `PROJECT_BOOTSTRAP.md` e `DOCUMENTACAO_COMPLETA.md` passam a ser a única fonte oficial de verdade da sessão.
+
+A IA deverá abandonar estados inferidos anteriormente e utilizar exclusivamente essa baseline.
+
+Somente inconsistências internas da documentação ou novas informações fornecidas durante a sessão poderão justificar alterações.
+
+**IA-031 — Continuidade Arquitetural entre Chats**
+
+Toda nova etapa oficial do projeto (PI, DEC, Documento Estrutural, Marco ou equivalente) deverá possuir um Resumo Operacional Canônico antes de ser registrada no `PROJECT_BOOTSTRAP.md`.
+
+O Resumo Operacional Canônico deverá conter obrigatoriamente:
+
+- Nome
+- Objetivo
+- Motivação
+- Entregável esperado
+- Estrutura mínima esperada
+- Resultado esperado
+- Critério de conclusão
+
+O resumo deverá ser elaborado durante o planejamento arquitetural (ChatGPT) e apenas posteriormente incorporado pelo OpenCode.
+
+O OpenCode não deverá criar resumos arquiteturais por iniciativa própria; sua responsabilidade é registrar fielmente o resumo aprovado.
+
+**Objetivo:** Garantir que qualquer novo chat consiga compreender imediatamente a próxima etapa do projeto sem depender da memória do chat anterior ou de documentação externa.
+
+**IA-030 — Gestão Contínua do Backlog Estratégico**
+
+Toda melhoria aprovada e adiada recebe um identificador BK e é registrada no Strategic Backlog (`09_STRATEGIC_BACKLOG.md`).
+
+Toda melhoria recém-identificada deve aparecer automaticamente em 📋 Pendências até seu registro oficial.
+
+Antes de criar um novo PS, verificar se existe BK compatível no Strategic Backlog.
+
+Quando um BK for implementado, atualizar automaticamente o Strategic Backlog.
+
+BKs obsoletos não devem ser removidos; devem ser arquivados com justificativa.
+
+---
+
+# 8. Protocolos de Governança
+
+**PG-019 — Estabilidade das Decisões**
+
+Durante o Modo Execução toda DEC aprovada deverá ser considerada válida.
+
+A reavaliação somente será permitida quando existir evidência objetiva.
+
+Consideram-se evidências objetivas:
+
+- inconsistências identificadas;
+- conflitos documentais;
+- resultados da implementação;
+- auditorias;
+- problemas de arquitetura;
+- solicitações explícitas do usuário.
+
+Na ausência de evidência objetiva a IA deverá continuar executando o plano vigente.
+
+### Reavaliação Construtiva
+
+Permitida quando baseada em evidências objetivas.
+
+### Reavaliação Improdutiva
+
+Não permitida durante o Modo Execução.
+
+### Fluxo Oficial de Evidências Externas
+
+```
+ChatGPT
+
+↓
+
+Define PS
+
+↓
+
+Ferramenta Auxiliar
+
+↓
+
+Executa
+
+↓
+
+Produz Relatório Consolidado Final
+
+↓
+
+Produz Sugestões Técnicas
+
+↓
+
+Produz Oportunidades Futuras
+
+↓
+
+Usuário
+
+↓
+
+Apresenta Relatório
+
+↓
+
+ChatGPT
+
+↓
+
+Valida Evidências
+
+↓
+
+Caso necessário:
+
+  - gera INS;
+  - cria DEC;
+  - propõe novo PS.
+```
+
+---
+
+# 9. Protocolos Operacionais
+
+### OP-002 — Encerramento por Entrega Relevante
+
+Os rituais de encerramento deixam de depender apenas do término de um PS. Passam a depender do conceito de Entrega Relevante.
+
+Considera-se Entrega Relevante toda resposta que:
+
+- cria documentação;
+- produz auditorias;
+- define arquitetura;
+- aprova decisões;
+- cria Pacotes de Sincronização;
+- gera prompts para implementação;
+- consolida conhecimento do projeto.
+
+Toda Entrega Relevante deverá obrigatoriamente encerrar utilizando exatamente a sequência abaixo, sem omissão ou reinterpretação pela IA:
+
+📊 Auditoria da Sprint
+
+📋 Pendências
+
+📌 Fila de Sincronização
+
+❤️ Saúde do Chat
+
+Este ritual torna-se parte oficial da metodologia. Não poderá ser omitido por interpretação da IA.
+
+### OP-003 — Formato Visual Padronizado
+
+Toda Entrega Relevante deverá utilizar o seguinte formato visual ao finalizar a resposta:
+
+📊 Auditoria da Sprint
+
+📋 Pendências
+
+📌 Fila de Sincronização
+
+❤️ Saúde do Chat
+
+### OP-007 — Classificação das Sugestões
+
+Toda sugestão deverá ser classificada em uma única categoria.
+
+Categorias oficiais:
+
+- Correção
+- Otimização
+- Simplificação
+- Refatoração
+- Documentação
+- Governança
+- Arquitetura
+
+### OP-008 — Fluxo de Múltiplos Prompts
+
+Quando um Pacote de Sincronização for executado em múltiplos prompts:
+
+- Cada prompt deverá ser identificado como "Prompt X de N";
+- Somente o último prompt solicitará Relatório Consolidado Final;
+- Os anteriores deverão declarar explicitamente: "Não gerar Relatório Consolidado Final nesta etapa."
+
+### OP-009 — Estrutura Padrão de Prompts
+
+Todo prompt enviado ao OpenCode deverá seguir obrigatoriamente a estrutura abaixo:
+
+1. **Objetivo** — O que deve ser feito.
+2. **Implementação** — O que implementar e em quais arquivos.
+3. **Atualizações Obrigatórias** — Quais documentos devem ser alterados.
+4. **DOCUMENTACAO_COMPLETA** — Instrução sobre regeneração ou não.
+5. **Relatório Consolidado Final** — Quando aplicável.
+6. **Sugestões Técnicas** — Conforme IA-016.
+7. **Oportunidades Futuras** — Conforme IA-016.
+8. **Registro em SYNC_HISTORY** — Instrução sobre registro ou não.
+
+### OP-010 — Checklist Vinculado aos Protocolos
+
+Todo novo protocolo operacional criado deverá obrigatoriamente atualizar o `AI_OPERATION_CHECKLIST.md`. Caso contrário, o protocolo será considerado incompleto.
+
+### OP-011 — Template Vinculado aos Protocolos
+
+O `PS_TEMPLATE.md` deverá sempre refletir os protocolos IA, PG, OP e PGR vigentes. Sempre que houver alteração operacional relevante, o template deverá ser revisado.
+
+### OP-012 — Classificação Oficial das Pendências
+
+A metodologia reconhece oficialmente três categorias independentes de pendências.
+
+### 1 — Pendências da Sprint
+
+Representam exclusivamente atividades da sprint ativa. Podem ser removidas automaticamente quando concluídas.
+
+### 2 — Backlog Estratégico
+
+Representa melhorias aprovadas que ainda não foram implementadas.
+
+Características:
+
+- nunca poderá desaparecer automaticamente;
+- somente poderá ser removido quando implementado ou descartado formalmente por nova DEC, INS ou auditoria.
+
+Sempre que existir backlog estratégico ativo, ele deverá ser apresentado após as Pendências da Sprint.
+
+Toda oportunidade futura aprovada durante auditorias deverá ser registrada oficialmente no Backlog Estratégico. Não poderá permanecer apenas no histórico do chat.
+
+### 3 — Fila de Execução
+
+Representa apenas a sequência planejada do projeto. Não substitui Pendências nem Backlog Estratégico.
+
+### Ciclo de Vida dos BK
+
+Todo BK deverá seguir o ciclo de vida abaixo:
+
+```
+Proposto
+    ↓
+Validado
+    ↓
+Registrado
+    ↓
+Planejado
+    ↓
+Em Implementação
+    ↓
+Concluído
+    ↓
+Arquivado
+```
+
+### Princípio da Fonte Canônica
+
+Cada informação relevante do projeto deve possuir uma única fonte canônica. Os demais documentos devem apenas resumir ou referenciar essa informação.
+
+Não é permitido manter cópias independentes de conteúdos que possam divergir ao longo do tempo.
+
+### Ordem Oficial de Precedência Documental
+
+Em caso de divergência entre documentos, a precedência é definida pela ordem abaixo:
+
+```
+1. DOCUMENTACAO_COMPLETA.md     Fonte Canônica
+2. PROJECT_BOOTSTRAP.md         Memória Executiva
+3. AI_CONTEXT.md                Estado Operacional
+```
+
+Sempre prevalece o documento de maior precedência.
+
+---
+
+# 10. Painel Operacional e Indicadores
+
+### Layout Oficial do Painel
+
+O Painel Operacional deverá seguir obrigatoriamente o layout abaixo:
+
+```
+📋 Painel Operacional
+
+Projeto:
+Modo:
+PS Atual:
+Marco:
+
+🏛 Governança
+[barra de progresso]
+
+🏗 Arquitetura
+[barra de progresso]
+
+⚙ Engineering
+[barra de progresso]
+
+💻 Código
+[barra de progresso]
+```
+
+### Política de Exibição
+
+O Painel Operacional deverá ser exibido automaticamente apenas quando ocorrer pelo menos um dos eventos abaixo:
+
+- início de novo chat (Baseline Operacional);
+- alteração do PS ativo;
+- alteração do Marco;
+- alteração dos percentuais;
+- solicitação explícita do usuário.
+
+Caso contrário, não deverá ser exibido.
+
+### Separação Visual
+
+O Painel Operacional não deverá conter:
+
+- Saúde do Chat;
+- Auditoria;
+- Pendências;
+- Fila.
+
+Esses elementos pertencem exclusivamente ao encerramento das Entregas Relevantes (OP-002).
+
+### Critérios dos Percentuais
+
+Todos os percentuais do Dashboard deverão possuir critérios objetivos e documentados. Cada domínio deverá possuir:
+
+- total previsto;
+- total concluído;
+- fórmula de cálculo.
+
+Não será permitido utilizar estimativas subjetivas.
+
+### Atualização dos Indicadores
+
+Os percentuais somente poderão ser alterados quando ocorrer:
+
+- conclusão documental;
+- conclusão de PI;
+- conclusão de Milestone;
+- conclusão de Release;
+- outro evento oficialmente definido.
+
+Não poderão ser alterados manualmente sem justificativa documental.
+
+### Documentação das Fórmulas
+
+A fórmula utilizada para cálculo de cada percentual do Dashboard deverá ser registrada oficialmente em `PROJECT_PROGRESS_PANEL.md`, garantindo reprodutibilidade entre diferentes sessões da IA.
+
+---
+
+# 11. Auditoria de Sprint
 
 Este fluxo deverá ser executado sempre antes de qualquer sincronização com o OpenCode.
 
@@ -151,853 +652,19 @@ Atualização do Projeto
 
 **Descoberta:** Todo novo conceito ou decisão é identificado durante a discussão arquitetural.
 
-**Classificação:** A IA classifica automaticamente a descoberta.
+**Classificação:** A IA classifica automaticamente a descoberta (IA-009).
 
-**Auditoria de Conhecimento:** Verifica se alguma decisão importante permanece apenas na conversa.
+**Auditoria de Conhecimento:** Verifica se alguma decisão importante permanece apenas na conversa (IA-002).
 
 **Consolidação:** Todas as descobertas são reunidas em um único prompt.
 
-**Prompt Único:** Um prompt consolidado é gerado para o OpenCode.
+**Prompt Único:** Um prompt consolidado é gerado para o OpenCode (IA-003).
 
 **Atualização do Projeto:** O prompt é executado, e o projeto é atualizado.
 
 ---
 
-# 9. Metodologia de Trabalho com IA
-
-**IA-001 —** Sempre que uma melhoria surgir durante a criação de um prompt, ela deverá ser incorporada automaticamente ao próprio prompt. Nunca apresentada separadamente.
-
-**IA-002 —** Antes de finalizar qualquer prompt para o OpenCode, a IA deverá realizar uma Auditoria de Conhecimento. Objetivo: garantir que nenhuma decisão importante permaneça apenas na conversa.
-
-**IA-003 —** Sempre consolidar todas as decisões tomadas desde a última atualização do projeto em um único prompt, quando possível.
-
-**IA-004 —** Quando uma decisão não puder ser implementada imediatamente, indicar automaticamente onde ela deverá ser registrada.
-
-**IA-005 —** A IA deverá distinguir entre: conhecimento do domínio, metodologia, governança e documentação, registrando cada informação no local apropriado.
-
-**IA-006 —** Sempre que identificar uma melhoria metodológica durante a elaboração de um prompt, a IA deverá incorporá-la ao prompt atual. Nunca deixar melhorias importantes para um prompt futuro.
-
-**IA-007 —** Ao encerrar uma sessão importante de arquitetura, a IA deverá verificar se existe alguma decisão que faria falta caso a conversa fosse encerrada naquele momento. Se existir, essa decisão deverá ser incorporada imediatamente ao próximo prompt de atualização.
-
----
-
-### IA-008 — Auditoria da Sprint
-
-A Auditoria da Sprint é o registro formal do conhecimento produzido em cada sessão de desenvolvimento.
-
-Deverá conter obrigatoriamente:
-
-- decisões;
-- hipóteses;
-- evoluções planejadas;
-- insights;
-- itens adicionados na fila de sincronização;
-- itens aguardando prompt;
-- itens aguardando OpenCode;
-- novos registros KB;
-- alterações de Categoria;
-- alterações de Status;
-- conhecimentos promovidos;
-- conhecimentos arquivados.
-
----
-
-### IA-009 — Fila de Sincronização
-
-A Fila de Sincronização é responsável por registrar tudo aquilo que ainda não foi incorporado oficialmente ao projeto.
-
-A fila deve existir apenas até a geração do Prompt de Sincronização correspondente.
-
-Após a criação do prompt, os itens deixam de ser considerados pendentes para fins de desenvolvimento.
-
-Cada item da fila deverá conter obrigatoriamente:
-
-- categoria (KB-T1 a KB-T4);
-- documento destino;
-- status;
-- próxima ação.
-
----
-
-### IA-010 — Baseline Obrigatória
-
-Antes de elaborar qualquer resposta relacionada ao projeto, a IA deverá revisar todas as regras metodológicas vigentes (IA-001 até IA-019).
-
-Após elaborar a resposta, deverá verificar novamente se todas as regras foram efetivamente aplicadas.
-
-Essa verificação passa a ser obrigatória.
-
----
-
-### IA-011 — Sincronização Conceitual
-
-Após a criação de um Prompt de Sincronização:
-
-- o desenvolvimento continua normalmente;
-- o projeto passa a considerar conceitualmente aquelas alterações como sincronizadas;
-- permanece apenas a pendência operacional de execução no OpenCode e validação do relatório.
-
-A sincronização nunca interrompe o desenvolvimento arquitetural.
-
----
-
-### IA-012 — Especialização dos Prompts
-
-Toda sincronização deverá ser organizada por responsabilidade.
-
-Categorias oficiais:
-
-- Domínio;
-- Metodologia;
-- Governança.
-
-Cada prompt altera apenas os documentos pertencentes à sua categoria.
-
----
-
-### IA-013 — Pacotes de Sincronização
-
-Toda sincronização oficial deverá ocorrer através de um Pacote de Sincronização.
-
-Cada pacote poderá conter um ou mais prompts especializados.
-
-Somente o último prompt deverá solicitar o Relatório Consolidado Final.
-
----
-
-### IA-014 — Classificação do Conhecimento
-
-Sempre que surgir uma ideia relevante durante o desenvolvimento, ela deverá obrigatoriamente receber uma classificação oficial antes do fim da Sprint.
-
-Categorias:
-
-- Decisão
-- Hipótese
-- Evolução Planejada
-- Insight
-
-Nenhuma ideia poderá permanecer apenas na conversa.
-
----
-
-### IA-015 — Protocolo de Pré-Resposta
-
-Esta regra é **obrigatória e bloqueante**. Nenhuma resposta técnica poderá ser produzida antes de sua conclusão.
-
-**Em uma nova conversa, a primeira ação obrigatória é localizar e ler o AI_CONTEXT.md.**
-
-Caso o AI_CONTEXT esteja indisponível, a IA deverá interromper o fluxo normal e solicitar o documento ao usuário antes de prosseguir.
-
-Antes de qualquer resposta relacionada ao projeto, a IA deverá obrigatoriamente:
-
-1. Localizar e ler o AI_CONTEXT.md.
-2. Validar o AI_CONTEXT.
-3. Identificar a versão atual do projeto.
-4. Identificar o documento atualmente em desenvolvimento.
-5. Confirmar o último Pacote de Sincronização.
-6. Confirmar que está utilizando a metodologia vigente.
-7. Validar conformidade com IA-001 até IA-019.
-8. Verificar se a resposta produz novo conhecimento arquitetural, metodológico ou operacional.
-9. Registrar esse conhecimento na Auditoria da Sprint quando aplicável.
-
----
-
-### IA-016 — Relatórios dos Pacotes de Sincronização
-
-Prompts intermediários não geram Relatório Consolidado.
-
-Apenas o último Prompt de cada Pacote de Sincronização gera o Relatório Consolidado Final.
-
-Os Prompts intermediários continuam atualizando normalmente a documentação e a governança.
-
-#### Relatório Operacional
-
-Ao concluir o último Prompt de um Pacote de Sincronização, o OpenCode deverá exibir o Relatório Consolidado Final diretamente no chat.
-
-Este relatório tem finalidade operacional e de validação.
-
-#### Histórico Permanente
-
-Além da exibição no chat, o resumo permanente da sincronização deverá ser registrado em `project-context/SYNC_HISTORY.md`.
-
----
-
-### IA-017 — Padronização dos Artefatos Reutilizáveis
-
-#### Objetivo
-
-Garantir consistência, legibilidade, reutilização, rastreabilidade e eliminação de ambiguidades em todos os artefatos reutilizáveis produzidos pela IA.
-
----
-
-#### IA-017.1 — Escopo
-
-Esta regra aplica-se a qualquer artefato destinado à reutilização ou execução futura, incluindo:
-
-- Prompts destinados ao OpenCode;
-- Prompts destinados a futuras sessões de IA;
-- Procedimentos operacionais;
-- Templates reutilizáveis;
-- Checklists;
-- Guias de execução;
-- Demais artefatos reutilizáveis.
-
-Respostas conversacionais comuns não são afetadas.
-
----
-
-#### IA-017.2 — Formato Obrigatório
-
-Todo artefato reutilizável deverá ser entregue integralmente em um único bloco Markdown.
-
-Formato obrigatório:
-
-```md
-...
-conteúdo completo do artefato
-...
-```
-
-É proibido:
-
-- dividir o artefato em múltiplos blocos;
-- inserir explicações dentro do bloco;
-- misturar comentários da IA com o conteúdo reutilizável;
-- inserir auditorias ou observações dentro do artefato.
-
----
-
-#### IA-017.3 — Conteúdo Externo
-
-Todo conteúdo que não pertença ao artefato deverá permanecer fora do bloco Markdown.
-
-Exemplos:
-
-- explicações da IA;
-- observações;
-- justificativas;
-- comentários arquiteturais;
-- Auditoria da Sprint.
-
----
-
-#### IA-017.4 — Independência
-
-Todo artefato deverá ser autocontido.
-
-Deverá ser possível copiar o artefato isoladamente para execução sem necessidade de adaptações manuais ou dependência da conversa de origem.
-
----
-
-#### IA-017.5 — Identificação Obrigatória
-
-Todo Prompt de Sincronização deverá conter:
-
-- Pacote de Sincronização;
-- Identificação do Prompt;
-- Título;
-- Objetivo.
-
----
-
-#### IA-017.6 — Delimitação de Escopo
-
-Todo Prompt deverá declarar explicitamente:
-
-- o que deverá ser implementado;
-- o que não deverá ser implementado;
-- quais itens pertencem a etapas futuras.
-
----
-
-#### IA-017.7 — Estrutura Mínima
-
-Quando aplicável, os Prompts deverão utilizar:
-
-- Título;
-- Objetivo;
-- Etapas numeradas;
-- Atualizações de Governança;
-- Regenerações;
-- Relatório;
-- Limites de Escopo.
-
-Itens condicionais somente deverão ser utilizados quando fizerem sentido para o Prompt.
-
----
-
-#### IA-017.8 — Identificação do Encerramento do Pacote
-
-Todo Prompt de Sincronização deverá declarar explicitamente sua condição dentro do pacote.
-
-O OpenCode nunca deverá inferir autonomamente se um Prompt é ou não o último do Pacote.
-
-O próprio Prompt deverá informar explicitamente:
-
-- Prompt intermediário; ou
-- Prompt final.
-
----
-
-### IA-018 — Governança de Pendências e Continuidade Operacional
-
-#### Objetivo
-
-Garantir que sugestões, decisões aprovadas, recomendações e melhorias identificadas durante as conversas não desapareçam antes de serem implementadas ou descartadas formalmente.
-
----
-
-#### Pendência de Governança (PG)
-
-Uma PG representa qualquer melhoria identificada e aprovada para acompanhamento futuro.
-
-Toda PG deverá possuir:
-
-- Identificador único;
-- Título resumido;
-- Status;
-- Origem;
-- Destino final.
-
-Status permitidos:
-
-- Em Análise
-- Pendente
-- Implementada
-- Descartada
-
----
-
-#### Ciclo de Vida Obrigatório das PGs
-
-Toda PG deverá seguir obrigatoriamente:
-
-```
-Identificada
-→ Em Análise
-→ Pendente
-→ Implementada
-```
-
-ou
-
-```
-Identificada
-→ Em Análise
-→ Descartada
-```
-
-É proibido encerrar uma discussão relevante sem um estado explícito.
-
----
-
-#### Histórico de Pendências
-
-**Pendências Ativas:** Lista contendo apenas itens ainda não resolvidos.
-
-**Histórico de Pendências:** Lista contendo itens Implementados ou Descartados, cada um registrando PS responsável, Data e Resultado final.
-
-Objetivo: Preservar rastreabilidade sem poluir as pendências ativas.
-
----
-
-#### Separação entre Conhecimento e Trabalho
-
-```
-Insight ≠ Pendência
-Hipótese ≠ Pendência
-Decisão ≠ Pendência
-```
-
-Uma PG somente deverá ser criada quando existir ação futura necessária.
-
-Objetivo: Evitar transformar conhecimento em backlog operacional.
-
----
-
-#### Decisão Aprovada Pendente de Sincronização (DAPS)
-
-Uma decisão considerada correta durante a conversa, mas ainda não enviada ao OpenCode.
-
-Toda DAPS deverá:
-
-- permanecer visível;
-- permanecer rastreável;
-- ser acompanhada até implementação ou descarte.
-
-Objetivo: Evitar perda de decisões aprovadas entre conversas.
-
----
-
-#### Encerramento Formal de Auditorias
-
-Uma auditoria somente poderá ser considerada encerrada quando:
-
-- todas as PGs estiverem implementadas; ou
-- todas as PGs estiverem descartadas.
-
-Objetivo: Evitar encerramento prematuro.
-
----
-
-### IA-019 — Economia de Contexto
-
-#### Definição
-
-A IA deve preservar conhecimento utilizando o menor volume de texto possível, desde que não haja perda de:
-
-- significado;
-- rastreabilidade;
-- executabilidade;
-- contexto necessário.
-
-#### Aplicações
-
-**Auditoria da Sprint:** Registrar apenas novos itens.
-
-**Pendências Abertas:** Registrar apenas itens ativos.
-
-**Fila de Sincronização:** Registrar apenas próximos passos relevantes.
-
-Evitar repetições extensas.
-
----
-
-### IA-020 — Continuidade Operacional (PG-012, DAPS-001, DAPS-002)
-
-Toda PG ou DAPS aprovada deve permanecer visível até implementação ou encerramento. A IA deve monitorar a saúde do chat (🟢/🟡/🔴) e recomendar troca preventiva quando identificar degradação de contexto, excesso de complexidade ou risco de perda de rastreabilidade.
-
----
-
-### IA-021 — Economia de Anexos e Painel de Progresso (PG-015, PG-016)
-
-DOCUMENTACAO_COMPLETA.md solicitado apenas em novo chat, grande evolução ou necessidade global. ZIP solicitado apenas para validação cruzada ou inspeção estrutural. Painel de Progresso compacto com estágio atual, evolução documental e próximos marcos.
-
----
-
-### IA-022 — Padronização Metodológica (PG-013, PG-014, EP-001)
-
-Rastreabilidade obrigatória para INS, DEC, PG, DAPS, EP com unicidade e continuidade histórica. Respostas operacionais seguem: 📊 Auditoria da Sprint → 📋 Pendências Abertas → 📌 Fila de Sincronização. Maturidade documental: N0=20%, N1=40%, N2=60%, N3=80%, N4=90%, N5=100%.
-
----
-
-### IA-023 — Inicialização Padronizada
-
-Sempre que um novo chat receber a baseline adequada, executar automaticamente PG-017. Apresentar diagnóstico inicial contendo: último PS, próximo PS, estado do Painel, pendências, recomendações abertas e saúde do chat.
-
----
-
-### IA-024 — Persistência de Recomendações
-
-Aplicar PG-018. A IA deve manter recomendações abertas visíveis, impedir desaparecimento de recomendações aprovadas e registrar encerramento formal.
-
----
-
-### Padronização Visual Operacional
-
-Adotar como padrão oficial:
-
-```
-📊 Auditoria da Sprint
-📋 Pendências Abertas
-📌 Fila de Sincronização
-```
-
-Sempre nesta ordem.
-
-Objetivo: Melhorar legibilidade, continuidade entre chats e identificação rápida de informações relevantes.
-
----
-
-### Critérios para Recomendar DOCUMENTACAO_COMPLETA.md
-
-Recomendar o envio de `DOCUMENTACAO_COMPLETA.md` ao ChatGPT quando:
-
-- novo chat for iniciado;
-- um ou mais PS forem concluídos;
-- documentos estruturais forem criados;
-- documentação relevante sofrer alterações;
-- existir dúvida sobre alinhamento documental.
-
-Não recomendar continuamente sem necessidade.
-
----
-
-### Critérios para Recomendar ZIP Completo do Projeto
-
-Recomendar o envio do ZIP completo quando:
-
-- houver auditoria arquitetural;
-- implementação relevante for concluída;
-- estrutura de pastas sofrer alterações significativas;
-- houver suspeita de divergência entre documentação e implementação;
-- o ChatGPT indicar necessidade de visão estrutural completa do projeto.
-
-O ZIP não substitui `DOCUMENTACAO_COMPLETA.md`. `DOCUMENTACAO_COMPLETA.md` não substitui o ZIP. Ambos possuem finalidades distintas.
-
----
-
-# 10. Continuidade Operacional
-
-## PG-012 — Persistência de PGs e DAPS
-
-Toda pendência metodológica aprovada deverá permanecer visível nas respostas operacionais até sua implementação ou encerramento formal.
-
-### Ciclo de Vida de PGs e DAPS
-
-```
-Aberto
-↓
-Em Avaliação
-↓
-Aprovado
-↓
-Implementado
-↓
-Encerrado
-```
-
-Nenhuma PG ou DAPS aprovada poderá desaparecer das respostas enquanto permanecer aberta.
-
----
-
-## DAPS-001 — Saúde do Chat
-
-Critério oficial de monitoramento da saúde da conversa.
-
-### Níveis
-
-🟢 **Saudável** — Chat dentro da capacidade operacional recomendada.
-
-🟡 **Atenção** — Chat ainda utilizável, porém acumulando complexidade. Avaliar encerramento planejado.
-
-🔴 **Troca Recomendada** — Chat próximo do limite operacional seguro. Preparar consolidação e iniciar novo chat.
-
-### Percentuais
-
-Percentuais só poderão ser exibidos quando calculados por critérios definidos.
-
-Escala conceitual inicial:
-
-| Percentual | Significado |
-|-----------|-------------|
-| 100% | Chat recém-iniciado |
-| 80% | Muito confortável |
-| 60% | Atenção |
-| 40% | Troca recomendada |
-| 20% | Alto risco de degradação |
-
-Os critérios poderão evoluir futuramente.
-
----
-
-## DAPS-002 — Troca Planejada de Chat
-
-A IA deve recomendar abertura de novo chat quando identificar:
-
-- degradação de contexto;
-- aumento excessivo de complexidade;
-- necessidade recorrente de reexplicação;
-- excesso de pacotes executados em uma única conversa;
-- risco de perda de rastreabilidade.
-
-A recomendação deverá ser preventiva, nunca corretiva.
-
----
-
-# 11. Economia de Contexto
-
-## PG-015 — Estratégia de Economia de Anexos
-
-### DOCUMENTACAO_COMPLETA.md
-
-Solicitar apenas quando:
-- iniciar novo chat;
-- ocorrer grande evolução documental;
-- houver necessidade de visão global atualizada.
-
-Evitar solicitações repetitivas.
-
-### ZIP do Projeto
-
-Solicitar apenas quando:
-- múltiplos documentos dependerem de validação cruzada;
-- houver necessidade de inspeção estrutural ampla;
-- existir risco de divergência entre documentação e repositório.
-
-Evitar solicitação prematura.
-
-A IA deve orientar o usuário sobre o momento adequado de envio.
-
----
-
-## PG-016 — Painel de Progresso
-
-Painel operacional compacto com os seguintes objetivos:
-
-- demonstrar estágio atual do projeto;
-- demonstrar evolução documental;
-- indicar próximos marcos;
-- reduzir sensação de estagnação.
-
-O painel deverá permanecer compacto.
-
----
-
-## EP-001 — Critérios Oficiais de Maturidade
-
-Tabela oficial de maturidade documental:
-
-| Nível | Percentual |
-|-------|-----------|
-| N0 | 20% |
-| N1 | 40% |
-| N2 | 60% |
-| N3 | 80% |
-| N4 | 90% |
-| N5 | 100% |
-
-Permitir utilização desses valores no Painel de Progresso.
-
-Os percentuais representam maturidade documental, não volume de trabalho.
-
----
-
-# 12. Padronização Metodológica
-
-## PG-013 — Governança de Numeração
-
-Rastreabilidade obrigatória para:
-
-- INS (Insights)
-- DEC (Decisões)
-- PG (Pendências de Governança)
-- DAPS (Decisões Aprovadas Pendentes de Sincronização)
-- EP (Evoluções Planejadas)
-
-Garantir unicidade e continuidade histórica.
-
----
-
-## PG-014 — Padronização Visual Operacional
-
-Estrutura padrão das respostas operacionais:
-
-```
-📊 Auditoria da Sprint
-
-📋 Pendências Abertas
-
-📌 Fila de Sincronização
-```
-
-Sempre nesta ordem.
-
-### Indicadores Visuais
-
-🟢 Saudável
-
-🟡 Atenção
-
-🔴 Troca Recomendada
-
-Objetivo: Permitir leitura rápida do estado do projeto com mínima utilização de contexto.
-
----
-
-# 13. Governança de Transição e Continuidade
-
-## PG-017 — Protocolo de Inicialização de Chat
-
-Garantir que todo novo chat execute uma sequência padronizada de diagnóstico e retomada.
-
-### Fluxo Oficial
-
-1. Ler AI_CONTEXT.md
-2. Identificar Último PS executado
-3. Identificar Próximo PS previsto
-4. Ler PROJECT_PROGRESS_PANEL.md
-5. Carregar PGs, DAPS, EPs e PGRs abertos
-6. Avaliar Saúde do Chat anterior (quando disponível)
-7. Apresentar Diagnóstico Inicial Compacto
-
-Todo novo chat deve conseguir retomar o projeto sem depender do histórico completo do chat anterior.
-
----
-
-## PG-018 — Registro Persistente de Recomendações
-
-Garantir que recomendações aprovadas não desapareçam ao longo dos ciclos de conversa.
-
-### Ciclo de Vida
-
-```
-Aberta
-↓
-Em Avaliação
-↓
-Aprovada
-↓
-Implementada
-ou
-Descartada
-↓
-Encerrada
-```
-
-### Identificação
-
-Cada recomendação deve possuir identificador próprio: PGR-001, PGR-002, PGR-003...
-
-### Regras
-
-- Recomendações abertas devem aparecer nos diagnósticos.
-- Recomendações aprovadas permanecem visíveis até implementação ou descarte formal.
-- Recomendações encerradas podem sair dos diagnósticos operacionais.
-
-Este mecanismo existe para evitar perda de ideias relevantes durante trocas de chat.
-
----
-
-## DAPS-003 — Checklist de Transição de Chat
-
-Antes da troca de chat verificar:
-
-- ☐ AI_CONTEXT atualizado
-- ☐ Último PS registrado
-- ☐ Próximo PS definido
-- ☐ PROJECT_PROGRESS_PANEL atualizado
-- ☐ Pendências abertas atualizadas
-- ☐ Recomendações abertas atualizadas
-- ☐ Saúde do Chat registrada
-- ☐ DOCUMENTACAO_COMPLETA regenerada (quando necessário)
-
-Garantir continuidade segura entre ciclos.
-
----
-
-## EP-002 — Baseline Mínima de Continuidade
-
-### Operação Normal
-
-Enviar apenas: AI_CONTEXT.md
-
-### Auditoria Arquitetural
-
-Enviar: AI_CONTEXT.md + DOCUMENTACAO_COMPLETA.md
-
-### Revisão Estrutural Profunda
-
-Enviar: ZIP completo do projeto
-
-Minimizar uso de anexos sem comprometer continuidade. Alinhado com PG-015 (Economia de Anexos).
-
----
-
-# 14. Fluxo Oficial de Preservação do Conhecimento
-
-```
-Nova ideia
-     ↓
-Classificação (IA-014)
-     ↓
-Fila de Sincronização (IA-009)
-     ↓
-Prompt de Sincronização
-     ↓
-   OpenCode
-     ↓
-Documentação Oficial
-     ↓
-Regenerar AI_CONTEXT
-     ↓
-Baseline Atualizada
-```
-
-Nenhuma ideia poderá ignorar esse fluxo.
-
----
-
-# 15. Baseline da Conversa
-
-Sempre que uma nova conversa for iniciada, antes de qualquer discussão arquitetural deverá ser executada uma Fase 0 obrigatória.
-
-Caso o AI_CONTEXT esteja disponível, ele deverá substituir a leitura individual dos documentos de contexto.
-
-Os documentos oficiais continuam sendo a fonte de verdade. O AI_CONTEXT apenas consolida essas informações.
-
-A Fase 0 consiste em:
-
-1. Utilizar o AI_CONTEXT como fonte primária de contexto.
-2. Validar a consistência da documentação.
-3. Identificar o último Pacote de Sincronização aplicado.
-4. Executar o Protocolo de Pré-Resposta (IA-015).
-5. Declarar explicitamente a Baseline carregada.
-6. Somente após isso iniciar novas decisões arquiteturais.
-
-Esta etapa torna-se obrigatória para todos os futuros ciclos de desenvolvimento.
-
----
-
-# 16. Ciclo de Vida do Conhecimento
-
-Todo conhecimento possui duas classificações independentes.
-
-- **Categoria** define a natureza do conhecimento.
-- **Status** define seu estágio de maturidade.
-
-A mudança de Categoria e a mudança de Status são processos independentes e poderão ocorrer em momentos distintos.
-
----
-
-# 17. AI_CONTEXT
-
-## Natureza
-
-AI_CONTEXT é um documento derivado. Ele não contém conhecimento inédito. Nunca deve ser editado manualmente. Deve ser regenerado automaticamente após cada Pacote de Sincronização. Sua única finalidade é servir como interface entre OpenCode e ChatGPT.
-
-## Documento Oficial de Inicialização
-
-AI_CONTEXT.md passa a ser o documento oficial de inicialização das conversas com IA.
-
-Sempre que uma nova conversa for iniciada, a IA deverá utilizar o AI_CONTEXT como fonte primária de contexto.
-
-## Fluxo Oficial de Inicialização
-
-```
-Nova Conversa
-     ↓
-Receber AI_CONTEXT
-     ↓
-Executar Baseline (Fase 0)
-     ↓
-Executar Protocolo de Pré-Resposta (IA-015)
-     ↓
-Prosseguir normalmente
-```
-
----
-
-# 18. Objetivos Arquiteturais
-
-Os documentos são instrumentos para atingir um Objetivo Arquitetural (OA-XXX).
-
-- Um objetivo pode envolver vários documentos.
-- Um documento pode participar de diferentes objetivos ao longo da evolução do projeto.
-
-### OA-001 — Modelagem do Domínio Patrimonial
-
-**Objetivo:** Definir como o sistema representa, registra, interpreta e reconstrói alterações patrimoniais.
-
----
-
-# 19. Checkpoint de Sincronização
-
-Sempre que um Working Draft atingir o nível planejado para a sprint, deverá ser consolidado através de um Pacote de Sincronização antes do início de um novo Working Draft dependente.
-
----
-
-# 20. Evoluções Planejadas
+# 12. Evoluções Planejadas
 
 ### DOMAIN_CONCEPTS.md
 
@@ -1013,53 +680,43 @@ Será criado após estabilização do domínio principal.
 
 ---
 
-# 21. Histórico
-
-### Versão 1.12
-
-PS#026A: PG-017 (Protocolo de Inicialização de Chat), PG-018 (Registro Persistente de Recomendações), DAPS-003 (Checklist de Transição), EP-002 (Baseline Mínima de Continuidade), IA-023, IA-024. Seções 13-20 renumeradas para 14-21.
-
-### Versão 1.11
-
-PS#022: Capítulo 1 — Continuidade Operacional (PG-012, DAPS-001, DAPS-002). Capítulo 2 — Economia de Contexto (PG-015, PG-016, EP-001). Capítulo 3 — Padronização Metodológica (PG-013, PG-014). Seções 10-17 renumeradas para 13-20.
-
-### Versão 1.10
-
-PS#015: IA-018 criada (Governança de Pendências e Continuidade Operacional — PG, DAPS, Ciclo de Vida, Encerramento de Auditorias). IA-019 criada (Economia de Contexto). Padronização Visual Operacional (📊📋📌). Critérios para DOCUMENTACAO_COMPLETA.md e ZIP. Referências de baseline atualizadas para IA-019.
+# 13. Histórico
 
 ### Versão 1.9
 
+IA-031 (Continuidade Arquitetural entre Chats) criada. Resumo Operacional Canônico obrigatório para toda nova etapa oficial. Responsabilidades entre ChatGPT e OpenCode formalizadas.
+
 ### Versão 1.8
 
-IA-015 fortalecida: localizar AI_CONTEXT é a primeira ação obrigatória; indisponibilidade é bloqueante. Nenhuma resposta técnica antes da conclusão da Baseline.
+PS#033 (Prompt 3). Ordem Oficial de Precedência Documental formalizada. Marco Documentação Consolidada registrado. Ciclo metodológico encerrado.
 
 ### Versão 1.7
 
-Criada seção AI_CONTEXT (§13) como documento oficial de inicialização. Adicionadas IA-015 (Protocolo de Pré-Resposta) e IA-016 (Relatórios dos Pacotes). Baseline da Conversa atualizada para utilizar AI_CONTEXT como fonte primária. Seções 13-16 renumeradas para 14-17.
+PS#032 (Prompt 2). IA-030 criada. Princípio da Fonte Canônica formalizado. Ciclo de Vida dos BK adicionado. OP-012 atualizado. IA-029 atualizada com PROJECT_BOOTSTRAP.
 
 ### Versão 1.6
 
-Criada seção "Ciclo de Vida do Conhecimento" (§12). IA-008 expandida (status do conhecimento). KNOWLEDGE_BACKLOG.md v1.2 (status oficiais, estrutura padronizada, KB-004, KB-005). Seções 13-15 renumeradas para 14-16.
+Emenda Final ao PS#030D. OP-012 criado. IA-026 atualizada com verificação de Backlog Estratégico. INS-195 a INS-197 encerrados.
 
 ### Versão 1.5
 
-Criada seção "Baseline da Conversa" (§11) com Fase 0 obrigatória. Seções 12-14 renumeradas para 13-15.
+Emenda ao PS#030D. Ritual de encerramento (OP-002) tornado explícito e inomitível. IA-026 atualizada com referência ao ritual. Adicionados OP-010 (Checklist Vinculado aos Protocolos) e OP-011 (Template Vinculado aos Protocolos). PS_TEMPLATE.md criado. INS-190 a INS-194 encerrados.
 
 ### Versão 1.4
 
-Criada seção "Fluxo Oficial de Preservação do Conhecimento" (§10). IA-008 expandida (7 itens obrigatórios). IA-009 reformulada (categoria, documento destino, status, próxima ação). Seções 11-13 renumeradas para 12-14.
+PS#030D (Prompt 1) — Consolidação Operacional. Adicionados IA-028 (Agrupamento Inteligente), IA-029 (Baseline Operacional), OP-008 (Fluxo de Múltiplos Prompts), OP-009 (Estrutura Padrão de Prompts). Criada seção §10 — Painel Operacional e Indicadores (layout, exibição, percentuais, fórmulas). Auditoria de Sprint renumerada para §11. Evoluções Planejadas renumerada para §12. Histórico renumerado para §13. INS-180 a INS-189 tratados.
 
 ### Versão 1.3
 
-Adicionada IA-014 (Classificação do Conhecimento). IA-009 expandida (categoria, documento de destino, motivo da classificação). KNOWLEDGE_BACKLOG.md criado como instrumento oficial da IA-014.
+PS#030C — Integração de Evidências Externas. Adicionado IA-016 (Relatórios Operacionais — Sugestões Técnicas e Oportunidades Futuras). Adicionado IA-027 (Tratamento de Evidências Externas). Adicionado OP-007 (Classificação das Sugestões). Adicionado Fluxo Oficial de Evidências Externas em §8. INS-179 encerrado.
 
 ### Versão 1.2
 
-Adicionados Ciclos de Maturidade (Níveis 0-5). Regra nº 12 fortalecida com 4 ações obrigatórias. IA-008 a IA-013 formalizadas (Auditoria da Sprint, Fila de Sincronização, Baseline Obrigatória, Sincronização Conceitual, Especialização dos Prompts, Pacotes de Sincronização). Criada seção Objetivos Arquiteturais (OA-001). Criada seção Checkpoint de Sincronização. IA-008/009/010 anteriores substituídas pelas versões formais. Seções renumeradas.
+PS#030B — Refinamento dos Protocolos Operacionais. Adicionados IA-015 (Persistência Operacional), IA-025 (Continuidade Operacional), IA-026 (Autoverificação Operacional). Criada seção §8 — Protocolos de Governança (PG-019 — Estabilidade das Decisões). Criada seção §9 — Protocolos Operacionais (OP-002 — Encerramento por Entrega Relevante, OP-003 — Formato Visual Padronizado). Auditoria de Sprint renumerada para §10. Evoluções Planejadas renumerada para §11. Histórico renumerado para §12. INS-175, INS-176, INS-177, INS-178 encerrados.
 
 ### Versão 1.1
 
-Refinamento da Filosofia da Metodologia (evolução contínua). Adicionadas regras IA-008 (Avaliação Automática de Sprint), IA-009 (Classificação Automática das Descobertas), IA-010 (Consolidação Inteligente de Prompts). Criada seção Auditoria de Sprint (§8). Evoluções Planejadas renumerada para §9. Histórico renumerado para §10.
+Refinamento da Filosofia da Metodologia (evolução contínua). Adicionadas regras IA-008 (Avaliação Automática de Sprint), IA-009 (Classificação Automática das Descobertas), IA-010 (Consolidação Inteligente de Prompts). Criada seção Auditoria de Sprint (§8 à época). Evoluções Planejadas renumerada para §9 (à época). Histórico renumerado para §10 (à época).
 
 ### Versão 1.0
 
