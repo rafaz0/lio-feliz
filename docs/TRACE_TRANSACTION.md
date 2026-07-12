@@ -4,11 +4,11 @@
 
 **Documento:** TRACE_TRANSACTION.md
 
-**Versão:** 0.20
+**Versão:** 0.30
 
 **Status:** Working Draft
 
-**Nível de Maturidade:** N1 — Working Draft Consolidado
+**Nível de Maturidade:** N2 — Working Draft Consolidado
 
 **Categoria:** Arquitetura de Rastreabilidade
 
@@ -247,6 +247,11 @@ TRACE_TRANSACTION (Rastreabilidade)
 - Eventos compostos e granularidade da rastreabilidade.
 - Navegação bidirecional (Forward Trace e Reverse Trace).
 - Invariantes arquiteturais de rastreabilidade.
+- Ciclo de vida do Trace (criação, propagação, persistência, consulta, reconstrução).
+- Tipos de rastreabilidade (direta, derivada, composta).
+- Escopo da rastreabilidade (deve/pode/não pertence).
+- Reconstrução da cadeia causal (parcial, completa, investigação, impacto).
+- Relações arquiteturais avançadas (Interpretation, Ledger, Engine).
 
 ### O que este documento não define
 
@@ -254,7 +259,9 @@ TRACE_TRANSACTION (Rastreabilidade)
 - persistência;
 - estruturas de banco;
 - algoritmos do Ledger;
-- algoritmos do Portfolio Engine.
+- algoritmos do Portfolio Engine;
+- regras de negócio;
+- regras de interpretação.
 
 O documento permanece exclusivamente arquitetural.
 
@@ -390,9 +397,153 @@ Toda cadeia causal deve ser reconstruível.
 
 Nenhum efeito patrimonial pode existir sem origem rastreável.
 
+### INV-006 — Persistência da Cadeia
+
+A cadeia rastreável não pode ser perdida durante o ciclo de vida dos componentes.
+
+### INV-007 — Integridade da Reconstrução
+
+Reconstruções devem preservar relações causais originais.
+
+### INV-008 — Continuidade de Rastreabilidade
+
+Toda derivação relevante deve manter vínculo rastreável com sua origem.
+
+### INV-009 — Delimitação de Escopo
+
+O Trace não deve assumir responsabilidades pertencentes a outros componentes.
+
+### INV-010 — Explicabilidade Arquitetural
+
+Toda relação rastreável deve possuir significado arquitetural identificável.
+
+---
+
+# 17. Ciclo de Vida do Trace
+
+O Trace não é apenas um registro estático. Ele participa ativamente do ciclo de vida informacional do domínio.
+
+### Criação
+
+Momento em que uma unidade rastreável passa a existir, originada por uma operação econômica ou por uma interpretação.
+
+### Propagação
+
+Como as relações de rastreabilidade se expandem ao longo do fluxo arquitetural, conectando operação, interpretação, registro e consumo.
+
+### Persistência
+
+Como a rastreabilidade permanece disponível ao longo do tempo, garantindo que a cadeia causal não seja perdida entre sessões ou versões.
+
+### Consulta
+
+Como a cadeia de rastreabilidade pode ser acessada por consumidores autorizados para fins de auditoria, debugging e explicabilidade.
+
+### Reconstrução
+
+Como eventos e estados patrimoniais podem ser reconstruídos utilizando a cadeia rastreável, permitindo investigação histórica e análise de impacto.
+
+---
+
+# 18. Tipos de Rastreabilidade
+
+### Rastreabilidade Direta
+
+Ligação explícita entre origem e destino. Exemplo: uma operação ligada diretamente à sua interpretação.
+
+### Rastreabilidade Derivada
+
+Ligação obtida por inferência da cadeia causal. Exemplo: um efeito patrimonial ligado à operação original através da interpretação e do registro.
+
+### Rastreabilidade Composta
+
+Ligação formada por múltiplos elementos rastreáveis. Exemplo: um evento composto que produz múltiplas interpretações e múltiplos registros, todos vinculados à mesma origem.
+
+A Rastreabilidade Derivada estende a Direta quando a ligação explícita não está disponível. A Rastreabilidade Composta agrupa múltiplas cadeiras em uma única origem.
+
+---
+
+# 19. Escopo da Rastreabilidade
+
+### Deve ser rastreado
+
+Elementos obrigatórios para reconstrução patrimonial:
+- operações econômicas;
+- interpretações aplicadas;
+- registros patrimoniais;
+- efeitos sobre posições;
+- vínculos entre cada etapa da cadeia.
+
+### Pode ser rastreado
+
+Elementos opcionais com valor operacional:
+- metadados temporais;
+- versões de regras aplicadas;
+- eventos intermediários;
+- decisões de auditoria.
+
+### Não pertence ao Trace
+
+Informações que não fazem parte da responsabilidade arquitetural do componente:
+- regras de negócio;
+- algoritmos de interpretação;
+- estrutura do Ledger;
+- cálculos do Portfolio Engine.
+
+---
+
+# 20. Reconstrução da Cadeia Causal
+
+### Reconstrução Parcial
+
+Recomposição de um segmento específico da cadeia causal, suficiente para responder a uma pergunta de auditoria ou debugging.
+
+### Reconstrução Completa
+
+Recomposição integral da cadeia desde a operação original até o consumo final, preservando todas as relações e contextos.
+
+### Investigação Histórica
+
+Utilização da cadeia rastreável para analisar eventos passados, compreender decisões de interpretação e verificar a correção dos registros patrimoniais.
+
+### Análise de Impacto
+
+Identificação de todos os efeitos derivados de uma mesma origem ou decisão, permitindo avaliar consequências patrimoniais completas.
+
+O Trace Transaction suporta auditoria avançada através destes mecanismos de reconstrução.
+
+---
+
+# 21. Relações Arquiteturais Avançadas
+
+### Transaction Interpretation
+
+A interpretação fornece significado econômico. O Trace preserva e navega esse significado, sem modificá-lo.
+
+### Portfolio Ledger
+
+O Ledger registra fatos patrimoniais. O Trace preserva os vínculos entre esses fatos e suas origens econômicas, garantindo rastreabilidade integral.
+
+### Portfolio Engine
+
+O Engine consolida estado patrimonial. O Trace fornece a cadeia causal que permite ao Engine reconstruir estados e validar consistência.
+
+O Trace Transaction atua como mecanismo transversal de explicabilidade e rastreabilidade, conectando todos os componentes da arquitetura patrimonial.
+
 ---
 
 # Histórico
+
+## Versão 0.30
+
+- Evolução do Working Draft para N2 (Consistente).
+- Adicionada seção Ciclo de Vida do Trace (§17): criação, propagação, persistência, consulta, reconstrução.
+- Adicionada seção Tipos de Rastreabilidade (§18): direta, derivada, composta.
+- Adicionada seção Escopo da Rastreabilidade (§19): deve/pode/não pertence.
+- Adicionada seção Reconstrução da Cadeia Causal (§20): parcial, completa, investigação, impacto.
+- Adicionada seção Relações Arquiteturais Avançadas (§21): Interpretation, Ledger, Engine.
+- Adicionados invariantes INV-006 a INV-010.
+- Limites de Escopo atualizados para refletir novas seções.
 
 ## Versão 0.20
 

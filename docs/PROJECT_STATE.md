@@ -6,11 +6,13 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.13
+**Versão:** 1.22
 
 **Status:** APROVADO
 
-**Última atualização:** 10/07/2026
+**Última atualização:** 11/07/2026
+
+**PS associado:** PS#027
 
 ---
 
@@ -142,6 +144,12 @@
 | 10/07/2026 | PS#017 Prompt A (Final): TRACE_TRANSACTION.md evoluído para N1 (v0.20). PS#017 encerrado. |
 | 10/07/2026 | PS#018 Prompt A: 04_PORTFOLIO_LEDGER.md v0.10 criado (Working Draft N0). Documentação oficial: 40 documentos. |
 | 10/07/2026 | PS#019 Prompt A: 04_PORTFOLIO_LEDGER.md evoluído para N1 (v0.20). Imutabilidade, Compensação, Reconstruibilidade. |
+| 10/07/2026 | PS#020 Prompt A: PORTFOLIO_ENGINE_ARCHITECTURE.md v1.0 criado. Documentação oficial: 41 documentos. |
+| 10/07/2026 | PS#021 Prompt Único: 05_PORTFOLIO_ENGINE.md v0.10 (N0) criado. Documentação oficial: 42 documentos. |
+| 10/07/2026 | PS#022 Prompt Único: Consolidação da Governança, Continuidade e Economia de Contexto. DEVELOPMENT_METHODOLOGY v1.11. AI_CONTEXT v1.7. |
+| 10/07/2026 | PS#023 Prompt Único: PROJECT_PROGRESS_PANEL.md v1.0 criado (Painel de Progresso). Documentação oficial: 43 documentos. |
+| 10/07/2026 | PS#024 Prompt Único: 03_TRANSACTION_INTERPRETATION.md N3 → N4 (v0.60 → v0.70). INV-I006 a INV-I010. Documentação oficial: 43 documentos. |
+| 10/07/2026 | PS#025 Prompt Único: TRACE_TRANSACTION.md N1 → N2 (v0.20 → v0.30). INV-006 a INV-010. Documentação oficial: 43 documentos. |
 
 ---
 

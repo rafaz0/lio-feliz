@@ -6,11 +6,11 @@
 
 **Documento:** 03_TRANSACTION_INTERPRETATION.md
 
-**Versão:** 0.60
+**Versão:** 0.70
 
 **Status:** 🟡 Em elaboração (Working Draft)
 
-**Nível:** N3
+**Nível:** N4
 
 **Categoria:** Business Rules
 
@@ -22,13 +22,9 @@
 
 ---
 
-> **Observação:** Este documento representa uma versão de trabalho (Working Draft).
->
-> Seu conteúdo encontra-se em evolução inicial durante a abertura do domínio de interpretação patrimonial do Lio Feliz.
->
-> Nenhum conceito ou regra aqui presente é definitivo.
->
-> Nenhuma implementação deve ser baseada exclusivamente neste documento enquanto seu status permanecer "Em elaboração".
+> **Observação:** Este documento representa um Working Draft em estágio avançado (N4).
+> 
+> Seu conteúdo encontra-se validado e coerente com os demais documentos do domínio.
 
 ---
 
@@ -133,7 +129,95 @@ Os Efeitos Patrimoniais representam a saída oficial produzida pela Interpretaç
 
 ---
 
-# 6. Business Rules
+# 6. Interpretation Identity
+
+A interpretação não é a transação. A interpretação não é o evento econômico. A interpretação representa a leitura semântica realizada pelo domínio sobre uma transação observada.
+
+Interpretation Identity é a identidade conceitual da interpretação produzida. Essa identidade permite rastreabilidade e consistência ao longo do sistema.
+
+Cada interpretação possui identidade própria, distinta da identidade da transação que a originou.
+
+---
+
+# 7. Cadeia de Interpretação
+
+Uma interpretação pode influenciar ou contextualizar interpretações posteriores.
+
+### Origem Interpretativa
+
+Identificação da interpretação que deu origem a um encadeamento.
+
+### Dependência Interpretativa
+
+Relação entre uma interpretação e interpretações anteriores das quais ela depende para manter consistência semântica.
+
+### Continuidade Interpretativa
+
+Preservação do encadeamento interpretativo ao longo da evolução patrimonial.
+
+A cadeia de interpretação contribui para auditoria e rastreabilidade, permitindo que qualquer interpretação seja contextualizada dentro da sequência de acontecimentos do domínio.
+
+---
+
+# 8. Navegação de Interpretação
+
+Mecanismos conceituais de navegação na cadeia interpretativa.
+
+### Forward Interpretation
+
+Responde: **"O que esta interpretação produziu?"**
+
+Permite navegar da interpretação para os Efeitos Patrimoniais gerados e para o consumo pelos componentes posteriores.
+
+### Reverse Interpretation
+
+Responde: **"Qual interpretação originou este resultado?"**
+
+Permite navegar de um Efeito Patrimonial ou de um estado patrimonial de volta à interpretação que o gerou.
+
+Essa navegação é fundamental para auditoria e investigação operacional.
+
+---
+
+# 9. Reconstruibilidade da Interpretação
+
+Uma interpretação deve ser reproduzível a partir dos mesmos insumos e regras.
+
+### Repetibilidade
+
+A mesma transação, processada novamente, deve produzir a mesma interpretação.
+
+### Previsibilidade
+
+O resultado da interpretação deve ser antecipável com base nas regras do domínio.
+
+### Verificabilidade
+
+Deve ser possível verificar a correção de uma interpretação comparando-a com a interpretação esperada para aquela transação.
+
+Interpretações não devem depender de estados ocultos ou informações externas não rastreadas.
+
+---
+
+# 10. Consistência Interpretativa
+
+Transações equivalentes sob as mesmas regras devem produzir interpretações equivalentes.
+
+### Estabilidade Semântica
+
+O significado atribuído a uma transação não deve variar ao longo do tempo sem alteração explícita das regras.
+
+### Consistência de Classificação
+
+Transações da mesma natureza devem receber classificações interpretativas consistentes.
+
+### Previsibilidade do Domínio
+
+O comportamento interpretativo deve ser previsível com base no conhecimento das regras, permitindo que consumidores antecipem os Efeitos Patrimoniais.
+
+---
+
+# 11. Business Rules
 
 > As Business Rules definem o comportamento conceitual da Interpretação Patrimonial.
 >
@@ -193,7 +277,73 @@ A única interpretação válida é a definida pelo domínio.
 
 ---
 
-# 7. Casos de Interpretação
+# 12. Invariantes da Interpretação
+
+### INV-I001
+
+A interpretação é determinística.
+
+### INV-I002
+
+A interpretação pertence ao domínio.
+
+### INV-I003
+
+A interpretação independe do consumidor.
+
+### INV-I004
+
+Toda interpretação produz Efeitos Patrimoniais.
+
+### INV-I005
+
+Cada Efeito altera exatamente uma Posição Patrimonial.
+
+### INV-I006 — Reprodutibilidade Interpretativa
+
+Uma interpretação deve poder ser reproduzida a partir dos mesmos dados e regras.
+
+### INV-I007 — Consistência Semântica
+
+Transações equivalentes devem produzir interpretações equivalentes.
+
+### INV-I008 — Rastreabilidade Interpretativa
+
+Toda interpretação deve possuir origem rastreável.
+
+### INV-I009 — Navegabilidade Interpretativa
+
+Deve ser possível percorrer a cadeia interpretativa em ambos os sentidos.
+
+### INV-I010 — Independência de Estado Oculto
+
+A interpretação não pode depender de informações não observáveis ou não registradas.
+
+---
+
+# 13. Relações Arquiteturais
+
+```
+Transaction
+    ↓
+Interpretation
+    ↓
+Trace Transaction
+    ↓
+Portfolio Ledger
+    ↓
+Portfolio Engine
+```
+
+A interpretação atua como ponte semântica entre a transação e a rastreabilidade patrimonial.
+
+Ela traduz o fato econômico bruto (Transaction) em significado reconhecido pelo domínio (Interpretation), que é então preservado pelo Trace Transaction, registrado no Portfolio Ledger e consumido pelo Portfolio Engine.
+
+Sem a interpretação, a transação permanece um dado sem significado econômico. Sem a interpretação, o Trace não possui conteúdo semântico para preservar.
+
+---
+
+# 14. Casos de Interpretação
 
 > Os casos abaixo possuem finalidade exclusivamente conceitual.
 >
@@ -266,7 +416,7 @@ Exemplo: Conversão BRL → USD.
 
 ---
 
-# 8. Conclusões Arquiteturais
+# 15. Conclusões Arquiteturais
 
 As seguintes conclusões foram validadas pelos Casos de Interpretação:
 
@@ -278,7 +428,7 @@ As seguintes conclusões foram validadas pelos Casos de Interpretação:
 
 ---
 
-# 9. Pendências Arquiteturais
+# 16. Pendências Arquiteturais
 
 ## Resolvidas
 
@@ -300,6 +450,17 @@ As seguintes hipóteses permanecem em aberto e não representam decisões oficia
 ---
 
 # Histórico
+
+## Versão 0.70
+
+- Interpretation Identity (§6): identidade lógica da interpretação.
+- Cadeia de Interpretação (§7): origem, dependência e continuidade interpretativa.
+- Navegação de Interpretação (§8): Forward e Reverse Interpretation.
+- Reconstruibilidade da Interpretação (§9): repetibilidade, previsibilidade, verificabilidade.
+- Consistência Interpretativa (§10): estabilidade semântica, consistência de classificação, previsibilidade.
+- Invariantes INV-I006 a INV-I010 adicionados.
+- Relações Arquiteturais (§13): fluxo Transaction → Engine com interpretação como ponte semântica.
+- Nível N4 — identidade arquitetural consolidada e validada.
 
 ## Versão 0.60
 

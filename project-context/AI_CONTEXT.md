@@ -4,7 +4,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.6
+**Versão:** 2.3
 
 **Status:** APROVADO
 
@@ -14,7 +14,7 @@
 
 **Última atualização:** 10/07/2026
 
-**PS associado:** PS#015
+**PS associado:** PS#027
 
 ---
 
@@ -62,23 +62,23 @@ O AI_CONTEXT **não substitui** a documentação oficial (`docs/`). Ele represen
 | Aspecto | Status |
 |---------|--------|
 | **Versão do projeto** | Pós Consolidação nº 1 |
-| **Documentação oficial** | 37 documentos |
-| **Project Context** | 8 documentos |
-| **Business Rules** | 9 criados (15 previstos) |
+| **Documentação oficial** | 43 documentos |
+| **Project Context** | 9 documentos |
+| **Business Rules** | 5 criados (13 previstos) |
 | **Technical Annexes** | 8 criados (13 previstos) |
 | **ADRs** | 8 aprovados |
 | **Product Backlog** | 21 FEATs (v1.4) |
-| **Último PS concluído** | PS#015 — Consolidação da Governança de Pendências |
-| **Documento em desenvolvimento** | 03_TRANSACTION_INTERPRETATION.md (v0.60, N3) |
-| **Working Drafts ativos** | 02_TRANSACTIONS.md (v0.92, N1), 03_TRANSACTION_INTERPRETATION.md (v0.60, N3) |
+| **Último PS concluído** | PS#027 — Evolução 05_PORTFOLIO_ENGINE para N1 — **Marco de Implementação 🟢 ATINGIDO** |
+| **Documento em desenvolvimento** | 04_PORTFOLIO_LEDGER.md (N1 → N2) |
+| **Working Drafts ativos** | 02_TRANSACTIONS.md (v0.92, N1 → consolidando), 03_TRANSACTION_INTERPRETATION.md (v0.70, N4), TRACE_TRANSACTION.md (v0.30, N2), 04_PORTFOLIO_LEDGER.md (v0.20, N1), 05_PORTFOLIO_ENGINE.md (v0.10, N0) |
 | **Fonte Canônica** | H:\Lio Feliz |
 
 **Principais pendências:**
+- Evoluir 04_PORTFOLIO_LEDGER.md (N1 → N2)
+- Evoluir 05_PORTFOLIO_ENGINE.md (N0 → N1)
+- Promover 02_TRANSACTIONS.md para N5
 - Criar demais Business Rules (06 a 13)
-- Criar Technical Annexes pendentes (03 a 07)
-- Criar documentos complementares (07 a 15)
 - KB-001 a KB-005 no Knowledge Backlog
-- Refinar 03_TRANSACTION_INTERPRETATION.md (N3)
 
 ---
 
@@ -166,6 +166,8 @@ A Fase 0 consiste em:
 4. Executar o Protocolo de Pré-Resposta (IA-015).
 5. Declarar explicitamente a Baseline carregada.
 6. Somente após isso iniciar novas decisões arquiteturais.
+
+Após a execução da Baseline, quando relevante, a IA deverá apresentar um resumo compacto do Painel de Progresso (PROJECT_PROGRESS_PANEL.md), contendo: progresso do Domínio Principal, Business Rules e status do Marco de Implementação. O resumo deve permanecer enxuto para respeitar PG-015 (Economia de Contexto).
 
 ## Ciclo de Vida do Conhecimento
 
@@ -256,6 +258,21 @@ Garante que sugestões, decisões aprovadas, recomendações e melhorias identif
 **IA-019 — Economia de Contexto**
 Preserva conhecimento utilizando o menor volume de texto possível, sem perda de significado, rastreabilidade, executabilidade ou contexto necessário. Aplica-se à Auditoria da Sprint (apenas novos itens), Pendências Abertas (apenas ativos) e Fila de Sincronização (apenas próximos passos).
 
+**IA-020 — Continuidade Operacional (PG-012, DAPS-001, DAPS-002)**
+Toda PG ou DAPS aprovada deve permanecer visível até implementação ou encerramento. A IA deve monitorar a saúde do chat (🟢/🟡/🔴) e recomendar troca preventiva quando identificar degradação de contexto, excesso de complexidade ou risco de perda de rastreabilidade.
+
+**IA-021 — Economia de Anexos e Painel de Progresso (PG-015, PG-016)**
+DOCUMENTACAO_COMPLETA.md solicitado apenas em novo chat, grande evolução ou necessidade global. ZIP solicitado apenas para validação cruzada ou inspeção estrutural. Painel de Progresso compacto com estágio atual, evolução documental e próximos marcos.
+
+**IA-022 — Padronização Metodológica (PG-013, PG-014, EP-001)**
+Rastreabilidade obrigatória para INS, DEC, PG, DAPS, EP com unicidade e continuidade histórica. Respostas operacionais seguem: 📊 Auditoria da Sprint → 📋 Pendências Abertas → 📌 Fila de Sincronização. Maturidade documental: N0=20%, N1=40%, N2=60%, N3=80%, N4=90%, N5=100%.
+
+**IA-023 — Inicialização Padronizada**
+Sempre que um novo chat receber a baseline adequada, executar automaticamente PG-017. Apresentar diagnóstico inicial contendo: último PS, próximo PS, estado do Painel, pendências, recomendações abertas e saúde do chat.
+
+**IA-024 — Persistência de Recomendações**
+Aplicar PG-018. A IA deve manter recomendações abertas visíveis, impedir desaparecimento de recomendações aprovadas e registrar encerramento formal.
+
 ---
 
 # 6. Knowledge Backlog
@@ -295,8 +312,13 @@ Preserva conhecimento utilizando o menor volume de texto possível, sem perda de
 
 | Documento | Versão | Nível | Status | Próximos Passos |
 |-----------|--------|-------|--------|-----------------|
-| 02_TRANSACTIONS.md | v0.92 | N1 (Working Draft) | 🟡 Em elaboração | Consolidar Nível 2 |
-| 03_TRANSACTION_INTERPRETATION.md | v0.60 | N3 (Integrado) | 🟡 Em elaboração | Refinar para N4 |
+| 02_TRANSACTIONS.md | v0.92 | N1 → N5 (consolidando) | 🟡 Em elaboração | Promover a N5 |
+| 03_TRANSACTION_INTERPRETATION.md | v0.70 | N4 (Integrado) | 🟢 Validado | Promover a N5 |
+| TRACE_TRANSACTION.md | v0.30 | N2 (Consistente) | 🟢 Validado | Promover a N3 |
+| 04_PORTFOLIO_LEDGER.md | v0.30 | N2 (Consistente) | 🟢 Validado | Promover a N3 |
+
+<!-- PS#026A entry removed. Governance PS already consolidated in v2.1 history. -->
+| 05_PORTFOLIO_ENGINE.md | v0.20 | N1 (Working Draft Consolidado) | 🟢 Validado | Promover a N2 |
 
 ---
 
@@ -313,17 +335,27 @@ Preserva conhecimento utilizando o menor volume de texto possível, sem perda de
 | PS#013 | Diretrizes Operacionais | Diretrizes Operacionais da Conversa adicionadas ao AI_CONTEXT (Auditoria Contínua, Fila Contínua, Preservação Preventiva, Distinção Conversa/Conhecimento, Continuidade Operacional, Análise Global, Suporte Não Técnico). AI_CONTEXT v1.5. |
 | PS#014 | Trace Transaction | TRACE_TRANSACTION_ARCHITECTURE.md v1.0 criado. DOCUMENTATION_INDEX v2.3 (seção 7). |
 | PS#015 | Governança de Pendências | IA-018 (PG, DAPS, ciclo de vida), IA-019 (Economia de Contexto), Padronização Visual, Critérios DOCUMENTACAO_COMPLETA.md e ZIP. DEVELOPMENT_METHODOLOGY v1.10. AI_CONTEXT v1.6. |
+| PS#016 | Working Draft Trace Transaction | TRACE_TRANSACTION.md v0.10 (N0) criado. Documentação oficial: 39 documentos. |
+| PS#017 | Evolução Trace Transaction N1 | TRACE_TRANSACTION.md N0→N1 (v0.20). Trace Identity, Eventos Compostos, Granularidade, Navegação Bidirecional. |
+| PS#018 | Working Draft Portfolio Ledger | 04_PORTFOLIO_LEDGER.md v0.10 (N0) criado. Documentação oficial: 40 documentos. |
+| PS#019 | Evolução Portfolio Ledger N1 | 04_PORTFOLIO_LEDGER.md N0→N1 (v0.20). Imutabilidade, Compensação, Reconstruibilidade. |
+| PS#020 | Arquitetura Portfolio Engine | PORTFOLIO_ENGINE_ARCHITECTURE.md v1.0 criado (Contrato Arquitetural). Documentação oficial: 41 documentos. |
+| PS#021 | Working Draft Portfolio Engine | 05_PORTFOLIO_ENGINE.md v0.10 (N0) criado. Documentação oficial: 42 documentos. |
+| PS#022 | Consolidação da Governança | PG-012, DAPS-001, DAPS-002, PG-015, PG-016, EP-001, PG-013, PG-014. DEVELOPMENT_METHODOLOGY v1.11. AI_CONTEXT v1.7. |
+| PS#023 | Painel de Progresso | PROJECT_PROGRESS_PANEL.md v1.0 criado. Documentação oficial: 43 documentos. AI_CONTEXT v1.8. |
+| PS#024 | Evolução N3→N4 | 03_TRANSACTION_INTERPRETATION.md v0.70 (N4). Interpretation Identity, Cadeia, Navegação, Reconstruibilidade, Consistência. INV-I006 a INV-I010. AI_CONTEXT v1.9. |
+| PS#025 | Evolução N1→N2 | TRACE_TRANSACTION.md v0.30 (N2). Ciclo de Vida, Tipos, Escopo, Reconstrução. INV-006 a INV-010. AI_CONTEXT v2.0. |
+| PS#026A | Governança de Transição e Continuidade | PG-017 (Protocolo de Inicialização de Chat), PG-018 (Registro Persistente de Recomendações), DAPS-003 (Checklist de Transição), EP-002 (Baseline Mínima de Continuidade), IA-023, IA-024. DEVELOPMENT_METHODOLOGY v1.12. AI_CONTEXT v2.1. |
+| PS#026 | Evolução Portfolio Ledger N1→N2 | 04_PORTFOLIO_LEDGER.md v0.30 (N2). Ciclo de Vida, Tipos, Escopo, Cadeia, Relações Avançadas. INV-L011 a INV-L015. Domínio 71,7%. Marco: Ledger ≥ N2 🟢. AI_CONTEXT v2.2. |
+| PS#027 | Evolução Portfolio Engine N0→N1 | 05_PORTFOLIO_ENGINE.md v0.20 (N1). Ciclo de Vida, Reatividade, Temporalidade, Escopo, Relações. INV-E006 a INV-E010. Domínio 75,0%. **Marco de Implementação 🟢 ATINGIDO.** AI_CONTEXT v2.3. |
 
 ---
 
 # 9. Próximas Prioridades
 
-1. **Refinar 03_TRANSACTION_INTERPRETATION.md** (Working Draft N3 → N4)
-2. **Construir próximos Working Drafts** (04_PORTFOLIO_LEDGER.md, 05_PORTFOLIO_ENGINE.md)
-3. **Criar demais Business Rules** (06 a 13)
-4. **Criar Technical Annexes pendentes** (03_REBALANCING_ALGORITHMS a 07_PERFORMANCE_GUIDELINES)
-5. **Criar documentos complementares** (07_PROJECT_CONTEXT.md a 15_PRODUCT_PHILOSOPHY.md)
-6. **Avaliar KB-001 a KB-005** conforme surgirem oportunidades
+1. **Iniciar implementação** (Marco de Implementação 🟢 ATINGIDO)
+2. **Criar demais Business Rules** (06 a 13)
+3. **Avaliar KB-001 a KB-005** conforme surgirem oportunidades
 
 ---
 
@@ -336,8 +368,8 @@ Este checklist deve ser seguido obrigatoriamente sempre que uma nova conversa fo
 - [ ] Executei a Fase 0 (Baseline da Conversa).
 - [ ] Executei o Protocolo de Pré-Resposta (IA-015).
 - [ ] Identifiquei a versão atual do projeto.
-- [ ] Identifiquei o documento em desenvolvimento (03_TRANSACTION_INTERPRETATION.md).
-- [ ] Identifiquei o último Pacote de Sincronização aplicado (PS#015).
+- [ ] Identifiquei o documento em desenvolvimento (04_PORTFOLIO_LEDGER.md).
+- [ ] Identifiquei o último Pacote de Sincronização aplicado (PS#027).
 - [ ] Identifiquei a Fonte Canônica (H:\Lio Feliz).
 - [ ] Identifiquei pendências abertas.
 - [ ] Identifiquei Working Drafts ativos.
@@ -475,7 +507,108 @@ O objetivo é garantir simplicidade operacional, reduzir risco de erro humano e 
 
 ---
 
+# 13. Continuidade Operacional
+
+## DAPS-001 — Saúde do Chat
+
+Níveis:
+- 🟢 Saudável — Chat dentro da capacidade operacional recomendada.
+- 🟡 Atenção — Chat ainda utilizável, porém acumulando complexidade.
+- 🔴 Troca Recomendada — Chat próximo do limite operacional seguro.
+
+Escala conceitual: 100% (recém-iniciado), 80% (confortável), 60% (atenção), 40% (troca recomendada), 20% (alto risco).
+
+## DAPS-002 — Troca Planejada de Chat
+
+Recomendar novo chat quando houver: degradação de contexto, complexidade excessiva, reexplicação recorrente, excesso de pacotes ou risco de perda de rastreabilidade. Recomendação preventiva, nunca corretiva.
+
+## PG-017 — Protocolo de Inicialização de Chat
+
+Fluxo oficial: 1. Ler AI_CONTEXT.md → 2. Identificar Último PS → 3. Identificar Próximo PS → 4. Ler PROJECT_PROGRESS_PANEL.md → 5. Carregar PGs, DAPS, EPs e PGRs abertos → 6. Avaliar Saúde do Chat anterior → 7. Apresentar Diagnóstico Inicial Compacto.
+
+## PG-018 — Registro Persistente de Recomendações
+
+Ciclo de vida: Aberta → Em Avaliação → Aprovada → Implementada/Descartada → Encerrada. Identificadores: PGR-001, PGR-002... Recomendações abertas visíveis nos diagnósticos; aprovadas permanecem até implementação; encerradas podem sair.
+
+## DAPS-003 — Checklist de Transição de Chat
+
+Antes da troca: ☐ AI_CONTEXT atualizado ☐ Último PS registrado ☐ Próximo PS definido ☐ PROJECT_PROGRESS_PANEL atualizado ☐ Pendências abertas atualizadas ☐ Recomendações abertas atualizadas ☐ Saúde do Chat registrada ☐ DOCUMENTACAO_COMPLETA regenerada (quando necessário).
+
+## EP-002 — Baseline Mínima de Continuidade
+
+Operação Normal: AI_CONTEXT.md. Auditoria Arquitetural: AI_CONTEXT.md + DOCUMENTACAO_COMPLETA.md. Revisão Estrutural Profunda: ZIP completo. Alinhado com PG-015.
+
+---
+
+# 14. Painel de Progresso
+
+Compacto. Deve conter: estágio atual do projeto, evolução documental, próximos marcos.
+
+Maturidade documental (EP-001): N0=20%, N1=40%, N2=60%, N3=80%, N4=90%, N5=100%.
+
+---
+
+# 15. Padronização Visual Operacional
+
+Respostas operacionais obrigatoriamente na ordem:
+
+```
+📊 Auditoria da Sprint
+📋 Pendências Abertas
+📌 Fila de Sincronização
+```
+
+Indicadores: 🟢 Saudável, 🟡 Atenção, 🔴 Troca Recomendada.
+
+---
+
 # Histórico
+
+## Versão 2.3
+
+- PS#027: 05_PORTFOLIO_ENGINE.md evoluído para v0.20 (N1).
+- Working Drafts ativos e prioridades atualizados.
+- Último PS atualizado para PS#027.
+- **Marco de Implementação 🟢 ATINGIDO.**
+
+## Versão 2.2
+
+- PS#026: 04_PORTFOLIO_LEDGER.md evoluído para v0.30 (N2).
+- Working Drafts ativos e prioridades atualizados.
+- Último PS atualizado para PS#026. Checklist atualizado.
+
+## Versão 2.1
+
+- PS#026A: PG-017 (Protocolo de Inicialização de Chat), PG-018 (Registro Persistente de Recomendações), DAPS-003 (Checklist de Transição), EP-002 (Baseline Mínima de Continuidade), IA-023, IA-024.
+- DEVELOPMENT_METHODOLOGY atualizado para v1.12.
+
+## Versão 2.0
+
+- TRACE_TRANSACTION.md atualizado para v0.30 (N2).
+- Working Drafts ativos e prioridades atualizados.
+- Último PS atualizado para PS#025. Checklist atualizado.
+
+## Versão 1.9
+
+- 03_TRANSACTION_INTERPRETATION.md atualizado para v0.70 (N4).
+- Working Drafts ativos e prioridades atualizados.
+- Último PS atualizado para PS#024. Checklist atualizado.
+
+## Versão 1.8
+
+- PROJECT_PROGRESS_PANEL.md v1.0 adicionado como referência.
+- Baseline atualizada: apresentar resumo compacto do Painel de Progresso quando relevante.
+- Estado atual atualizado: documentação oficial 43 documentos, último PS#023.
+- PS#023 registrado na tabela de Pacotes.
+
+## Versão 1.7
+
+- IA-020 adicionada (Continuidade Operacional — PG-012, DAPS-001, DAPS-002).
+- IA-021 adicionada (Economia de Anexos e Painel de Progresso — PG-015, PG-016).
+- IA-022 adicionada (Padronização Metodológica — PG-013, PG-014, EP-001).
+- Working Drafts ativos atualizados: 04_PORTFOLIO_LEDGER.md e 05_PORTFOLIO_ENGINE.md adicionados.
+- Último PS atualizado para PS#022. Checklist atualizado.
+- Documentação oficial: 40 documentos. Project Context: 9 documentos.
 
 ## Versão 1.6
 

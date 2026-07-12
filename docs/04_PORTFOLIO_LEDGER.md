@@ -4,17 +4,17 @@
 
 **Documento:** 04_PORTFOLIO_LEDGER.md
 
-**Versão:** 0.20
+**Versão:** 0.30
 
 **Status:** Working Draft
 
-**Nível de Maturidade:** N1 — Working Draft Consolidado
+**Nível de Maturidade:** N2 — Working Draft Consolidado
 
 **Categoria:** Arquitetura Patrimonial
 
 **Responsáveis:** Rafael Santos + IA
 
-**Última atualização:** 10/07/2026
+**Última atualização:** 11/07/2026
 
 ---
 
@@ -275,41 +275,125 @@ Não aborda implementação técnica.
 
 ---
 
-# 14. Relação com TRACE_TRANSACTION
+# 14. Ciclo de Vida Patrimonial
 
-O Trace Transaction (TRACE_TRANSACTION.md) e o Portfolio Ledger possuem responsabilidades distintas e complementares:
+Formalização do ciclo de vida completo dos fatos patrimoniais dentro do Ledger.
 
-| Aspecto | Trace Transaction | Portfolio Ledger |
-|---------|-------------------|------------------|
-| Responsabilidade | Preservar a cadeia causal | Registrar Fatos Patrimoniais |
-| O que preserva | Vínculos entre origem e efeito | Fatos Patrimoniais em si |
-| Consumidores | Auditoria, debugging, explicabilidade | Portfolio Engine, relatórios |
+## 14.1 Criação
 
-O Trace Transaction navega pela cadeia causal. O Ledger armazena os fatos que compõem essa cadeia.
+Um fato patrimonial nasce no Ledger a partir de uma interpretação econômica validada. A criação é o ponto de entrada do fato no registro canônico e estabelece o vínculo inicial com a operação que o originou.
 
----
+## 14.2 Persistência
 
-# 15. Relação com PORTFOLIO_ENGINE
+Uma vez criado, o fato patrimonial permanece disponível ao longo do tempo sem possibilidade de remoção. A persistência é condição fundamental para a integridade histórica do patrimônio.
 
-O Portfolio Engine (05_PORTFOLIO_ENGINE.md) é o principal consumidor dos Fatos Patrimoniais registrados no Ledger.
+## 14.3 Correção
 
-O fluxo conceitual de consumo:
+Correções não alteram fatos existentes. Correções geram novos fatos patrimoniais que se vinculam ao fato original por compensação. O fato original permanece inalterado e visível no histórico.
 
-```
-Ledger
-    ↓ (Fatos Patrimoniais)
-Portfolio Engine
-    ↓ (Cálculos, derivações)
-Resultados Patrimoniais
-```
+## 14.4 Consulta
 
-O Ledger fornece os Fatos Patrimoniais brutos. O Engine aplica cálculos, derivações e transformações analíticas para produzir resultados patrimoniais (posições, saldos, indicadores).
+O Ledger deve permitir a navegação e recuperação dos fatos patrimoniais registrados. A consulta abrange tanto fatos individuais quanto conjuntos de fatos que compõem estados patrimoniais.
 
-O Ledger não conhece os algoritmos do Engine. O Engine não persiste fatos patrimoniais.
+## 14.5 Reconstrução
+
+O conjunto completo de fatos patrimoniais preservados deve permitir a reconstrução de estados patrimoniais passados. A reconstrução é consequência direta da persistência integral e da imutabilidade dos registros.
 
 ---
 
-# 16. Invariantes Arquiteturais
+# 15. Tipos de Fatos Patrimoniais
+
+Classificação arquitetural dos fatos patrimoniais segundo sua origem e função.
+
+## 15.1 Fato Primário
+
+Representa a origem patrimonial registrada. É o fato gerado diretamente a partir da interpretação de uma operação econômica. Não depende de outros fatos patrimoniais para existir.
+
+## 15.2 Fato Derivado
+
+Originado a partir de outros fatos patrimoniais. Sua existência pressupõe a existência prévia de um ou mais fatos primários ou derivados. Exemplos conceituais incluem ajustes proporcionais e realocações patrimoniais.
+
+## 15.3 Fato de Correção
+
+Criado especificamente para compensações, ajustes ou retificações. Vincula-se ao fato original que está corrigindo e não o altera. O fato original permanece íntegro no histórico.
+
+## 15.4 Fato de Consolidação
+
+Utilizado para suportar agregações patrimoniais e estados consolidados. Representa um fato resultante da combinação de múltiplos fatos patrimoniais para formação de uma visão agregada do patrimônio.
+
+---
+
+# 16. Escopo Patrimonial
+
+Limites arquiteturais do Ledger: o que pertence, o que pode pertencer e o que não pertence ao seu domínio de responsabilidade.
+
+## 16.1 Deve Pertencer ao Ledger
+
+Elementos obrigatoriamente patrimoniais:
+- Fatos patrimoniais resultantes de interpretações econômicas
+- Registros de alterações patrimoniais individuais
+- Vínculos de rastreabilidade patrimonial entre fatos
+- Histórico completo de evolução patrimonial
+
+## 16.2 Pode Pertencer ao Ledger
+
+Elementos auxiliares ou complementares que podem estar presentes sem comprometer a identidade do Ledger:
+- Metadados temporais dos registros
+- Identificadores conceituais de navegação
+- Informações de contexto patrimonial não essenciais
+
+## 16.3 Não Pertence ao Ledger
+
+Elementos sem responsabilidade patrimonial:
+- Cálculos, projeções ou simulações
+- Regras de negócio ou validações
+- Relatórios, dashboards ou indicadores
+- Processamento analítico ou derivações
+- Qualquer elemento cuja alteração não represente um fato patrimonial
+
+---
+
+# 17. Integridade da Cadeia Patrimonial
+
+A cadeia patrimonial é a sequência encadeada de fatos patrimoniais que documenta a evolução do patrimônio ao longo do tempo. Sua integridade é garantida por quatro relações fundamentais:
+
+### Relação Histórica
+
+Vínculo temporal entre fatos patrimoniais. Um fato posterior herda o contexto patrimonial do fato anterior, formando uma sequência cronológica ininterrupta.
+
+### Relação Causal
+
+Vínculo de origem entre fatos. Um fato derivado ou de correção possui relação causal com o fato que o motivou. A causalidade é unidirecional e rastreável.
+
+### Dependência Patrimonial
+
+Relação em que a existência ou validade de um fato patrimonial depende de outro. Fatos derivados dependem de fatos primários. Fatos de consolidação dependem dos fatos que agregam.
+
+### Continuidade Patrimonial
+
+Garantia de que a cadeia patrimonial permanece navegável em qualquer ponto do histórico. Não pode haver lacunas ou rupturas que impeçam a reconstrução do estado patrimonial.
+
+---
+
+# 18. Relações Arquiteturais Avançadas
+
+Relações do Ledger com os demais componentes da arquitetura patrimonial.
+
+### Transaction Interpretation
+
+A interpretação semântica dos eventos econômicos (03_TRANSACTION_INTERPRETATION.md) é a origem dos fatos patrimoniais registrados no Ledger. O Ledger não interpreta eventos; ele recebe fatos já interpretados e os preserva. A interpretação responde "o que este evento significa para o patrimônio?". O Ledger responde "onde este significado é registrado e preservado?".
+
+### Trace Transaction
+
+O Trace Transaction (TRACE_TRANSACTION.md) preserva a cadeia causal entre operação, interpretação e fato patrimonial. Enquanto o Ledger armazena o fato em si, o Trace Transaction preserva os vínculos de rastreabilidade que conectam cada fato à sua origem. Os dois componentes são complementares: o Trace Transaction navega pela cadeia causal; o Ledger armazena os fatos que compõem essa cadeia.
+
+### Portfolio Engine
+
+O Portfolio Engine (05_PORTFOLIO_ENGINE.md) é o principal consumidor dos fatos patrimoniais registrados no Ledger. O Ledger fornece fatos patrimoniais brutos. O Engine aplica cálculos, derivações e transformações analíticas para produzir resultados patrimoniais (posições, saldos, indicadores). O Ledger não conhece os algoritmos do Engine. O Engine não persiste fatos patrimoniais.
+
+---
+
+# 19. Invariantes Arquiteturais
 
 ### INV-L001
 
@@ -351,9 +435,29 @@ Todo histórico patrimonial deve ser reconstruível.
 
 O estado patrimonial atual não depende da remoção de fatos anteriores.
 
+### INV-L011 — Persistência Patrimonial
+
+Fatos patrimoniais devem permanecer preservados integralmente ao longo de todo o ciclo de vida do sistema.
+
+### INV-L012 — Integridade Histórica
+
+A história patrimonial não pode ser corrompida. Nenhuma operação pode alterar, remover ou ocultar fatos patrimoniais passados.
+
+### INV-L013 — Continuidade Patrimonial
+
+A cadeia patrimonial deve permanecer navegável em qualquer ponto do histórico, sem lacunas ou rupturas.
+
+### INV-L014 — Delimitação de Responsabilidade
+
+O Ledger não deve assumir responsabilidades externas ao seu escopo patrimonial. Cálculos, projeções e análises pertencem ao Portfolio Engine.
+
+### INV-L015 — Reconstruibilidade Integral
+
+Estados patrimoniais passados devem ser passíveis de reconstrução a partir do conjunto de fatos patrimoniais preservados.
+
 ---
 
-# 17. Limites de Escopo
+# 20. Limites de Escopo
 
 ### O que o Ledger faz
 
@@ -388,6 +492,17 @@ O estado patrimonial atual não depende da remoção de fatos anteriores.
 ---
 
 # Histórico
+
+## Versão 0.30
+
+- Evolução do Working Draft para N2 (Working Draft Consolidado).
+- Adicionado Ciclo de Vida Patrimonial (§14): Criação, Persistência, Correção, Consulta, Reconstrução.
+- Adicionados Tipos de Fatos Patrimoniais (§15): Primário, Derivado, Correção, Consolidação.
+- Adicionado Escopo Patrimonial (§16): Deve/Pode/Não Pertence ao Ledger.
+- Adicionada Integridade da Cadeia Patrimonial (§17): Relação Histórica, Causal, Dependência, Continuidade.
+- Adicionadas Relações Arquiteturais Avançadas (§18): Transaction Interpretation, Trace Transaction, Portfolio Engine.
+- Adicionados INV-L011 a INV-L015 (Persistência, Integridade Histórica, Continuidade, Delimitação, Reconstruibilidade).
+- Seções renumeradas: antigos §14-§17 deslocados para §18-§20.
 
 ## Versão 0.20
 

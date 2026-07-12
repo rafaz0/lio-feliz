@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 1.10
+**Versão:** 1.12
 
 **Status:** APROVADO
 
@@ -563,6 +563,36 @@ Evitar repetições extensas.
 
 ---
 
+### IA-020 — Continuidade Operacional (PG-012, DAPS-001, DAPS-002)
+
+Toda PG ou DAPS aprovada deve permanecer visível até implementação ou encerramento. A IA deve monitorar a saúde do chat (🟢/🟡/🔴) e recomendar troca preventiva quando identificar degradação de contexto, excesso de complexidade ou risco de perda de rastreabilidade.
+
+---
+
+### IA-021 — Economia de Anexos e Painel de Progresso (PG-015, PG-016)
+
+DOCUMENTACAO_COMPLETA.md solicitado apenas em novo chat, grande evolução ou necessidade global. ZIP solicitado apenas para validação cruzada ou inspeção estrutural. Painel de Progresso compacto com estágio atual, evolução documental e próximos marcos.
+
+---
+
+### IA-022 — Padronização Metodológica (PG-013, PG-014, EP-001)
+
+Rastreabilidade obrigatória para INS, DEC, PG, DAPS, EP com unicidade e continuidade histórica. Respostas operacionais seguem: 📊 Auditoria da Sprint → 📋 Pendências Abertas → 📌 Fila de Sincronização. Maturidade documental: N0=20%, N1=40%, N2=60%, N3=80%, N4=90%, N5=100%.
+
+---
+
+### IA-023 — Inicialização Padronizada
+
+Sempre que um novo chat receber a baseline adequada, executar automaticamente PG-017. Apresentar diagnóstico inicial contendo: último PS, próximo PS, estado do Painel, pendências, recomendações abertas e saúde do chat.
+
+---
+
+### IA-024 — Persistência de Recomendações
+
+Aplicar PG-018. A IA deve manter recomendações abertas visíveis, impedir desaparecimento de recomendações aprovadas e registrar encerramento formal.
+
+---
+
 ### Padronização Visual Operacional
 
 Adotar como padrão oficial:
@@ -607,7 +637,264 @@ O ZIP não substitui `DOCUMENTACAO_COMPLETA.md`. `DOCUMENTACAO_COMPLETA.md` não
 
 ---
 
-# 10. Fluxo Oficial de Preservação do Conhecimento
+# 10. Continuidade Operacional
+
+## PG-012 — Persistência de PGs e DAPS
+
+Toda pendência metodológica aprovada deverá permanecer visível nas respostas operacionais até sua implementação ou encerramento formal.
+
+### Ciclo de Vida de PGs e DAPS
+
+```
+Aberto
+↓
+Em Avaliação
+↓
+Aprovado
+↓
+Implementado
+↓
+Encerrado
+```
+
+Nenhuma PG ou DAPS aprovada poderá desaparecer das respostas enquanto permanecer aberta.
+
+---
+
+## DAPS-001 — Saúde do Chat
+
+Critério oficial de monitoramento da saúde da conversa.
+
+### Níveis
+
+🟢 **Saudável** — Chat dentro da capacidade operacional recomendada.
+
+🟡 **Atenção** — Chat ainda utilizável, porém acumulando complexidade. Avaliar encerramento planejado.
+
+🔴 **Troca Recomendada** — Chat próximo do limite operacional seguro. Preparar consolidação e iniciar novo chat.
+
+### Percentuais
+
+Percentuais só poderão ser exibidos quando calculados por critérios definidos.
+
+Escala conceitual inicial:
+
+| Percentual | Significado |
+|-----------|-------------|
+| 100% | Chat recém-iniciado |
+| 80% | Muito confortável |
+| 60% | Atenção |
+| 40% | Troca recomendada |
+| 20% | Alto risco de degradação |
+
+Os critérios poderão evoluir futuramente.
+
+---
+
+## DAPS-002 — Troca Planejada de Chat
+
+A IA deve recomendar abertura de novo chat quando identificar:
+
+- degradação de contexto;
+- aumento excessivo de complexidade;
+- necessidade recorrente de reexplicação;
+- excesso de pacotes executados em uma única conversa;
+- risco de perda de rastreabilidade.
+
+A recomendação deverá ser preventiva, nunca corretiva.
+
+---
+
+# 11. Economia de Contexto
+
+## PG-015 — Estratégia de Economia de Anexos
+
+### DOCUMENTACAO_COMPLETA.md
+
+Solicitar apenas quando:
+- iniciar novo chat;
+- ocorrer grande evolução documental;
+- houver necessidade de visão global atualizada.
+
+Evitar solicitações repetitivas.
+
+### ZIP do Projeto
+
+Solicitar apenas quando:
+- múltiplos documentos dependerem de validação cruzada;
+- houver necessidade de inspeção estrutural ampla;
+- existir risco de divergência entre documentação e repositório.
+
+Evitar solicitação prematura.
+
+A IA deve orientar o usuário sobre o momento adequado de envio.
+
+---
+
+## PG-016 — Painel de Progresso
+
+Painel operacional compacto com os seguintes objetivos:
+
+- demonstrar estágio atual do projeto;
+- demonstrar evolução documental;
+- indicar próximos marcos;
+- reduzir sensação de estagnação.
+
+O painel deverá permanecer compacto.
+
+---
+
+## EP-001 — Critérios Oficiais de Maturidade
+
+Tabela oficial de maturidade documental:
+
+| Nível | Percentual |
+|-------|-----------|
+| N0 | 20% |
+| N1 | 40% |
+| N2 | 60% |
+| N3 | 80% |
+| N4 | 90% |
+| N5 | 100% |
+
+Permitir utilização desses valores no Painel de Progresso.
+
+Os percentuais representam maturidade documental, não volume de trabalho.
+
+---
+
+# 12. Padronização Metodológica
+
+## PG-013 — Governança de Numeração
+
+Rastreabilidade obrigatória para:
+
+- INS (Insights)
+- DEC (Decisões)
+- PG (Pendências de Governança)
+- DAPS (Decisões Aprovadas Pendentes de Sincronização)
+- EP (Evoluções Planejadas)
+
+Garantir unicidade e continuidade histórica.
+
+---
+
+## PG-014 — Padronização Visual Operacional
+
+Estrutura padrão das respostas operacionais:
+
+```
+📊 Auditoria da Sprint
+
+📋 Pendências Abertas
+
+📌 Fila de Sincronização
+```
+
+Sempre nesta ordem.
+
+### Indicadores Visuais
+
+🟢 Saudável
+
+🟡 Atenção
+
+🔴 Troca Recomendada
+
+Objetivo: Permitir leitura rápida do estado do projeto com mínima utilização de contexto.
+
+---
+
+# 13. Governança de Transição e Continuidade
+
+## PG-017 — Protocolo de Inicialização de Chat
+
+Garantir que todo novo chat execute uma sequência padronizada de diagnóstico e retomada.
+
+### Fluxo Oficial
+
+1. Ler AI_CONTEXT.md
+2. Identificar Último PS executado
+3. Identificar Próximo PS previsto
+4. Ler PROJECT_PROGRESS_PANEL.md
+5. Carregar PGs, DAPS, EPs e PGRs abertos
+6. Avaliar Saúde do Chat anterior (quando disponível)
+7. Apresentar Diagnóstico Inicial Compacto
+
+Todo novo chat deve conseguir retomar o projeto sem depender do histórico completo do chat anterior.
+
+---
+
+## PG-018 — Registro Persistente de Recomendações
+
+Garantir que recomendações aprovadas não desapareçam ao longo dos ciclos de conversa.
+
+### Ciclo de Vida
+
+```
+Aberta
+↓
+Em Avaliação
+↓
+Aprovada
+↓
+Implementada
+ou
+Descartada
+↓
+Encerrada
+```
+
+### Identificação
+
+Cada recomendação deve possuir identificador próprio: PGR-001, PGR-002, PGR-003...
+
+### Regras
+
+- Recomendações abertas devem aparecer nos diagnósticos.
+- Recomendações aprovadas permanecem visíveis até implementação ou descarte formal.
+- Recomendações encerradas podem sair dos diagnósticos operacionais.
+
+Este mecanismo existe para evitar perda de ideias relevantes durante trocas de chat.
+
+---
+
+## DAPS-003 — Checklist de Transição de Chat
+
+Antes da troca de chat verificar:
+
+- ☐ AI_CONTEXT atualizado
+- ☐ Último PS registrado
+- ☐ Próximo PS definido
+- ☐ PROJECT_PROGRESS_PANEL atualizado
+- ☐ Pendências abertas atualizadas
+- ☐ Recomendações abertas atualizadas
+- ☐ Saúde do Chat registrada
+- ☐ DOCUMENTACAO_COMPLETA regenerada (quando necessário)
+
+Garantir continuidade segura entre ciclos.
+
+---
+
+## EP-002 — Baseline Mínima de Continuidade
+
+### Operação Normal
+
+Enviar apenas: AI_CONTEXT.md
+
+### Auditoria Arquitetural
+
+Enviar: AI_CONTEXT.md + DOCUMENTACAO_COMPLETA.md
+
+### Revisão Estrutural Profunda
+
+Enviar: ZIP completo do projeto
+
+Minimizar uso de anexos sem comprometer continuidade. Alinhado com PG-015 (Economia de Anexos).
+
+---
+
+# 14. Fluxo Oficial de Preservação do Conhecimento
 
 ```
 Nova ideia
@@ -631,7 +918,7 @@ Nenhuma ideia poderá ignorar esse fluxo.
 
 ---
 
-# 11. Baseline da Conversa
+# 15. Baseline da Conversa
 
 Sempre que uma nova conversa for iniciada, antes de qualquer discussão arquitetural deverá ser executada uma Fase 0 obrigatória.
 
@@ -652,7 +939,7 @@ Esta etapa torna-se obrigatória para todos os futuros ciclos de desenvolvimento
 
 ---
 
-# 12. Ciclo de Vida do Conhecimento
+# 16. Ciclo de Vida do Conhecimento
 
 Todo conhecimento possui duas classificações independentes.
 
@@ -663,7 +950,7 @@ A mudança de Categoria e a mudança de Status são processos independentes e po
 
 ---
 
-# 13. AI_CONTEXT
+# 17. AI_CONTEXT
 
 ## Natureza
 
@@ -691,7 +978,7 @@ Prosseguir normalmente
 
 ---
 
-# 14. Objetivos Arquiteturais
+# 18. Objetivos Arquiteturais
 
 Os documentos são instrumentos para atingir um Objetivo Arquitetural (OA-XXX).
 
@@ -704,13 +991,13 @@ Os documentos são instrumentos para atingir um Objetivo Arquitetural (OA-XXX).
 
 ---
 
-# 15. Checkpoint de Sincronização
+# 19. Checkpoint de Sincronização
 
 Sempre que um Working Draft atingir o nível planejado para a sprint, deverá ser consolidado através de um Pacote de Sincronização antes do início de um novo Working Draft dependente.
 
 ---
 
-# 16. Evoluções Planejadas
+# 20. Evoluções Planejadas
 
 ### DOMAIN_CONCEPTS.md
 
@@ -726,7 +1013,15 @@ Será criado após estabilização do domínio principal.
 
 ---
 
-# 17. Histórico
+# 21. Histórico
+
+### Versão 1.12
+
+PS#026A: PG-017 (Protocolo de Inicialização de Chat), PG-018 (Registro Persistente de Recomendações), DAPS-003 (Checklist de Transição), EP-002 (Baseline Mínima de Continuidade), IA-023, IA-024. Seções 13-20 renumeradas para 14-21.
+
+### Versão 1.11
+
+PS#022: Capítulo 1 — Continuidade Operacional (PG-012, DAPS-001, DAPS-002). Capítulo 2 — Economia de Contexto (PG-015, PG-016, EP-001). Capítulo 3 — Padronização Metodológica (PG-013, PG-014). Seções 10-17 renumeradas para 13-20.
 
 ### Versão 1.10
 

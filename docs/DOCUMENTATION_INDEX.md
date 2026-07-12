@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.8
+**Versão da Documentação:** 3.6
 
 **Status:** APROVADO
 
-**Última atualização:** 10/07/2026
+**Última atualização:** 11/07/2026
 
 ---
 
@@ -253,6 +253,18 @@ Working Draft de rastreabilidade arquitetural (N1). Define o fluxo da Operação
 
 Working Draft (N1). Registro Canônico de Fatos Patrimoniais.
 
+🟡 PORTFOLIO_ENGINE_ARCHITECTURE.md
+
+Documento arquitetural fundacional do Portfolio Engine. Natureza: Contrato Arquitetural de Consolidação Patrimonial.
+
+🟡 05_PORTFOLIO_ENGINE.md
+
+Working Draft (N0). Derivação e consolidação do Estado Patrimonial.
+
+🟢 PROJECT_PROGRESS_PANEL.md
+
+Documento Operacional de Acompanhamento. Painel de Progresso do Projeto.
+
 ---
 
 # Legenda
@@ -287,12 +299,16 @@ Este arquivo representa a estrutura oficial da documentação.
 
 # Histórico
 
-## Versão 2.8
+## Versão 2.9
 
-- PS#019 Prompt A: 04_PORTFOLIO_LEDGER.md evoluído para N1 (v0.20).
-- Nenhuma alteração estrutural no índice.
+- PS#020 Prompt A: PORTFOLIO_ENGINE_ARCHITECTURE.md v1.0 criado.
+- Adicionada entrada na seção 7.
 
-## Versão 2.7
+## Versão 3.3
+
+- PS#025 Prompt Único: TRACE_TRANSACTION.md evoluído de N1 para N2 (v0.20 → v0.30).
+
+## Versão 3.2
 
 - PS#012 Prompt A (Final): IA-017 criada. IA-016 expandida. SYNC_HISTORY.md criado.
 - Nenhuma alteração estrutural no índice de documentação oficial.
