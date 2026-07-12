@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 3.8
+**Versão:** 3.9
 
 **Status:** APROVADO
 
@@ -162,6 +162,7 @@ ADR-008: Backlog Governance
 | 10/07/2026 | PS#022 Prompt Único: Consolidação da Governança, Continuidade e Economia de Contexto. PG-012, DAPS-001, DAPS-002, PG-015, PG-016, EP-001, PG-013, PG-014. DEVELOPMENT_METHODOLOGY v1.11. AI_CONTEXT v1.7. |
 | 10/07/2026 | PS#023 Prompt Único: PROJECT_PROGRESS_PANEL.md v1.0 criado (Painel de Progresso). Documentação oficial: 43 documentos. |
 | 10/07/2026 | PS#024 Prompt Único: 03_TRANSACTION_INTERPRETATION.md N3 → N4 (v0.60 → v0.70). Interpretation Identity, Cadeia, Navegação, Reconstruibilidade, Consistência. INV-I006 a INV-I010. Documentação oficial: 43 documentos. |
+| 11/07/2026 | PS#028A Prompt Único: Correção de inconsistências no AI_CONTEXT (INS-169). PGR-009 registrado. |
 | 11/07/2026 | PS#027 Prompt Único: 05_PORTFOLIO_ENGINE.md N0 → N1 (v0.10 → v0.20). Ciclo de Vida, Reatividade, Temporalidade, Escopo, Relações. INV-E006 a INV-E010. Domínio 75,0%. **Marco de Implementação 🟢 ATINGIDO.** |
 | 11/07/2026 | PS#026 Prompt Único: 04_PORTFOLIO_LEDGER.md N1 → N2 (v0.20 → v0.30). Ciclo de Vida, Tipos, Escopo, Cadeia Patrimonial, Relações Avançadas. INV-L011 a INV-L015. Domínio 71,7%. Marco: Ledger ≥ N2 🟢. |
 | 11/07/2026 | PS#026A Prompt Único: Governança de Transição, Continuidade e Inicialização de Chats. PG-017, PG-018, DAPS-003, EP-002, IA-023, IA-024. DEVELOPMENT_METHODOLOGY v1.12. AI_CONTEXT v2.1. |
@@ -177,6 +178,10 @@ ADR-008: Backlog Governance
 ---
 
 ## Histórico
+
+### Versão 3.9
+
+PS#028A: Correção de inconsistências no AI_CONTEXT (INS-169). PGR-009 registrado.
 
 ### Versão 3.8
 

@@ -395,6 +395,38 @@
 - Iniciar implementação
 - Criar demais Business Rules (06 a 13)
 
+---
+
+## PS#028A
+
+**Data:** 11/07/2026
+
+**Objetivo:** Correção de Inconsistência de Consolidação no AI_CONTEXT (INS-169)
+
+**Arquivos criados:** Nenhum
+
+**Arquivos modificados:**
+- `project-context/AI_CONTEXT.md` (v2.3 → v2.4)
+- `project-context/PROJECT_STATUS.md` (v3.8 → v3.9)
+- `project-context/SYNC_HISTORY.md` (atualizado)
+- `DOCUMENTACAO_COMPLETA.md` (regenerado)
+
+**Arquivos removidos:** Nenhum
+
+**Regras adicionadas:** Nenhuma
+
+**PGs adicionados:** Nenhum
+
+**PGRs registrados:** PGR-009 (Regeneração Completa do AI_CONTEXT)
+
+**INS registrados:** INS-169 (Inconsistência de Consolidação — corrigida)
+
+**Knowledge Backlog impactado:** Nenhum
+
+**Pendências remanescentes:**
+- Iniciar implementação
+- Criar demais Business Rules (06 a 13)
+
 ---## PS#026
 
 **Data:** 11/07/2026

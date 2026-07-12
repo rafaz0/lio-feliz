@@ -4,7 +4,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 2.3
+**Versão:** 2.4
 
 **Status:** APROVADO
 
@@ -14,7 +14,7 @@
 
 **Última atualização:** 10/07/2026
 
-**PS associado:** PS#027
+**PS associado:** PS#028A
 
 ---
 
@@ -69,13 +69,10 @@ O AI_CONTEXT **não substitui** a documentação oficial (`docs/`). Ele represen
 | **ADRs** | 8 aprovados |
 | **Product Backlog** | 21 FEATs (v1.4) |
 | **Último PS concluído** | PS#027 — Evolução 05_PORTFOLIO_ENGINE para N1 — **Marco de Implementação 🟢 ATINGIDO** |
-| **Documento em desenvolvimento** | 04_PORTFOLIO_LEDGER.md (N1 → N2) |
-| **Working Drafts ativos** | 02_TRANSACTIONS.md (v0.92, N1 → consolidando), 03_TRANSACTION_INTERPRETATION.md (v0.70, N4), TRACE_TRANSACTION.md (v0.30, N2), 04_PORTFOLIO_LEDGER.md (v0.20, N1), 05_PORTFOLIO_ENGINE.md (v0.10, N0) |
+| **Working Drafts ativos** | 02_TRANSACTIONS.md (v0.92, N1 → consolidando), 03_TRANSACTION_INTERPRETATION.md (v0.70, N4), TRACE_TRANSACTION.md (v0.30, N2), 04_PORTFOLIO_LEDGER.md (v0.30, N2), 05_PORTFOLIO_ENGINE.md (v0.20, N1) |
 | **Fonte Canônica** | H:\Lio Feliz |
 
 **Principais pendências:**
-- Evoluir 04_PORTFOLIO_LEDGER.md (N1 → N2)
-- Evoluir 05_PORTFOLIO_ENGINE.md (N0 → N1)
 - Promover 02_TRANSACTIONS.md para N5
 - Criar demais Business Rules (06 a 13)
 - KB-001 a KB-005 no Knowledge Backlog
@@ -530,6 +527,14 @@ Fluxo oficial: 1. Ler AI_CONTEXT.md → 2. Identificar Último PS → 3. Identif
 
 Ciclo de vida: Aberta → Em Avaliação → Aprovada → Implementada/Descartada → Encerrada. Identificadores: PGR-001, PGR-002... Recomendações abertas visíveis nos diagnósticos; aprovadas permanecem até implementação; encerradas podem sair.
 
+### PGR-009 — Regeneração Completa do AI_CONTEXT
+
+Garantir que documentos derivados permaneçam sincronizados com o estado real do projeto. Motivação: evitar divergência entre PROJECT_STATUS, PROJECT_PROGRESS_PANEL e AI_CONTEXT. **Status:** Implementada via PS#028A.
+
+### INS-169 — Inconsistência de Consolidação no AI_CONTEXT
+
+**Tipo:** Inconsistência de Consolidação. **Severidade:** Baixa. **Status:** Corrigida via PS#028A. Referências a 04_PORTFOLIO_LEDGER (N1) e 05_PORTFOLIO_ENGINE (N0) atualizadas para N2 e N1. Pendências concluídas removidas. Marco de Implementação alinhado.
+
 ## DAPS-003 — Checklist de Transição de Chat
 
 Antes da troca: ☐ AI_CONTEXT atualizado ☐ Último PS registrado ☐ Próximo PS definido ☐ PROJECT_PROGRESS_PANEL atualizado ☐ Pendências abertas atualizadas ☐ Recomendações abertas atualizadas ☐ Saúde do Chat registrada ☐ DOCUMENTACAO_COMPLETA regenerada (quando necessário).
@@ -563,6 +568,13 @@ Indicadores: 🟢 Saudável, 🟡 Atenção, 🔴 Troca Recomendada.
 ---
 
 # Histórico
+
+## Versão 2.4
+
+- PS#028A: Correção de inconsistências no AI_CONTEXT (INS-169).
+- PGR-009 registrado (Regeneração Completa do AI_CONTEXT).
+- Working Drafts atualizados para Ledger N2 e Engine N1.
+- Pendências concluídas removidas.
 
 ## Versão 2.3
 
