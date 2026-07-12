@@ -1,4 +1,156 @@
 ﻿---
+Fonte: docs/01_ENGINEERING.md
+---
+# 01_ENGINEERING.md
+
+**Categoria:** Working Draft
+
+**VersÃ£o:** 0.10
+
+**Maturidade:** N0 â€” Ideia
+
+**Status:** Em Descoberta
+
+---
+
+# 1. Objetivo
+
+Este Working Draft define o domÃ­nio de Engenharia do projeto Lio Feliz.
+
+Seu objetivo Ã© documentar como a arquitetura aprovada Ã© transformada em software de maneira incremental, rastreÃ¡vel e alinhada Ã  metodologia oficial do projeto.
+
+Este documento nÃ£o descreve regras de negÃ³cio nem arquitetura funcional do sistema.
+
+Seu foco Ã© exclusivamente o processo de implementaÃ§Ã£o.
+
+---
+
+# 2. Escopo
+
+O domÃ­nio Engineering Ã© responsÃ¡vel por responder perguntas como:
+
+- Em qual ordem a arquitetura serÃ¡ implementada?
+- Quais etapas compÃµem cada Pacote de ImplementaÃ§Ã£o?
+- Quais dependÃªncias existem entre as implementaÃ§Ãµes?
+- Como acompanhar o progresso tÃ©cnico?
+- Como conduzir migraÃ§Ãµes arquiteturais sem interromper o desenvolvimento?
+
+---
+
+# 3. Fora do Escopo
+
+NÃ£o pertence ao domÃ­nio Engineering:
+
+- Modelagem do DomÃ­nio
+- Business Rules
+- ADRs
+- GovernanÃ§a
+- Metodologia
+- CÃ³digo-fonte
+
+Esses assuntos permanecem em seus respectivos documentos oficiais.
+
+---
+
+# 4. PrincÃ­pios
+
+O domÃ­nio Engineering adota os seguintes princÃ­pios:
+
+## E-001 â€” ImplementaÃ§Ã£o Incremental
+
+Toda evoluÃ§Ã£o arquitetural deve ocorrer em pequenas etapas independentes.
+
+---
+
+## E-002 â€” ConvergÃªncia Arquitetural
+
+Sempre que possÃ­vel, a arquitetura deve convergir gradualmente sobre o cÃ³digo existente, evitando reescritas completas.
+
+---
+
+## E-003 â€” Planejamento Antes da CodificaÃ§Ã£o
+
+Toda implementaÃ§Ã£o relevante deve possuir planejamento prÃ©vio.
+
+---
+
+## E-004 â€” Rastreabilidade
+
+Cada etapa implementada deve ser rastreÃ¡vel atÃ©:
+
+- ADR
+- Business Rule
+- Working Draft
+- Pacote de SincronizaÃ§Ã£o
+
+quando aplicÃ¡vel.
+
+---
+
+# 5. Artefatos
+
+Inicialmente este domÃ­nio utiliza trÃªs artefatos.
+
+## Engineering Roadmap
+
+Descreve a evoluÃ§Ã£o estratÃ©gica da implementaÃ§Ã£o.
+
+---
+
+## Implementation Plan
+
+Descreve detalhadamente uma implementaÃ§Ã£o especÃ­fica.
+
+---
+
+## Milestones
+
+Registram marcos tÃ©cnicos importantes.
+
+---
+
+# 6. Estado Atual
+
+Marco atual:
+
+ConvergÃªncia Arquitetural
+
+Pacote atual:
+
+PS#030
+
+Objetivos imediatos:
+
+- Interpretation Layer
+
+- Trace Layer
+
+- Ledger Abstraction
+
+- Engine Integration
+
+---
+
+# 7. EvoluÃ§Ã£o Prevista
+
+Durante sua maturaÃ§Ã£o este documento deverÃ¡ evoluir para incluir:
+
+- CritÃ©rios de ConclusÃ£o
+- EstratÃ©gias de MigraÃ§Ã£o
+- GestÃ£o de DependÃªncias
+- GestÃ£o de Riscos
+- MÃ©tricas de Progresso
+- CritÃ©rios de ProntidÃ£o
+
+---
+
+# HistÃ³rico
+
+## v0.10
+
+CriaÃ§Ã£o do Working Draft.
+
+---
 Fonte: docs/06_BUSINESS_RULES/03_TRANSACTION_INTERPRETATION.md
 ---
 # Lio Feliz - DocumentaÃ§Ã£o Oficial
@@ -2576,7 +2728,7 @@ Fonte: docs/DOCUMENTATION_INDEX.md
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**VersÃ£o da DocumentaÃ§Ã£o:** 3.7
+**VersÃ£o da DocumentaÃ§Ã£o:** 3.8
 
 **Status:** APROVADO
 
@@ -2830,6 +2982,10 @@ Documento arquitetural fundacional do Portfolio Engine. Natureza: Contrato Arqui
 ðŸŸ¡ 05_PORTFOLIO_ENGINE.md
 
 Working Draft (N0). DerivaÃ§Ã£o e consolidaÃ§Ã£o do Estado Patrimonial.
+
+ðŸŸ¡ 01_ENGINEERING.md
+
+Working Draft (N0). DomÃ­nio de Engenharia â€” processo de implementaÃ§Ã£o arquitetural.
 
 ðŸŸ¢ PROJECT_PROGRESS_PANEL.md
 

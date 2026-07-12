@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 3.7
+**Versão da Documentação:** 3.8
 
 **Status:** APROVADO
 
@@ -260,6 +260,10 @@ Documento arquitetural fundacional do Portfolio Engine. Natureza: Contrato Arqui
 🟡 05_PORTFOLIO_ENGINE.md
 
 Working Draft (N0). Derivação e consolidação do Estado Patrimonial.
+
+🟡 01_ENGINEERING.md
+
+Working Draft (N0). Domínio de Engenharia — processo de implementação arquitetural.
 
 🟢 PROJECT_PROGRESS_PANEL.md
 
