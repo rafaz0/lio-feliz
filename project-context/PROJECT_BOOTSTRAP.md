@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.15
+**Versão:** 2.19
 
 **Status:** APROVADO
 
@@ -36,7 +36,7 @@ Documentação Consolidada (Concluído)
 
 ## PI Atual
 
-PI-002 v1.0 — Canonical Investment Model (Approved)
+PI-003 v1.0 — Canonical Operations & Event Flow Architecture (Approved)
 
 ## PS Atual
 
@@ -451,9 +451,24 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 | Entregável esperado | Documento canônico PI-001 contendo toda a especificação necessária para implementação da camada de interpretação |
 | Estrutura | 26 seções: Objetivo, Motivação, Problema, Responsabilidade, Escopo, Fora do Escopo, Critérios de Conclusão, Princípios (5), Fluxo Geral, Contrato de Entrada, Contrato de Saída, Garantias, Invariantes (6), Interfaces, Dependências, Regras Operacionais (6), Tratamento de Falhas, Casos Limite (7), Restrições (5), Critérios de Aceite (7), Impacto, Extensibilidade, Diretrizes (6), Riscos, Critérios de Aprovação, Histórico |
 | Resultado esperado | Especificação completa, consistente e aprovada, servindo como base oficial para a implementação da camada de interpretação |
-| Próximo passo | EWO-001 autorizada (adiada — ver Engineering Outlook) |
-
+| Próximo passo | Concluído. Engineering N1 consolidado. |
+ 
 > **Resumo Operacional Canônico:** Este resumo deve conter informações suficientes para que uma nova IA consiga iniciar corretamente a etapa sem consultar outros documentos.
+
+### PI-003 v1.0 — Canonical Operations & Event Flow Architecture (Approved)
+
+| Campo | Valor |
+|-------|-------|
+| Identificador | PI-003 |
+| Versão | v1.0 (Approved) |
+| Status | Approved |
+| Documento | `architecture-lab/PI-003.md` |
+| Objetivo | Estabelecer a arquitetura operacional canônica do sistema, definindo como operações financeiras são processadas, transformadas em eventos e utilizadas para derivar o Modelo Canônico (PI-002) |
+| Motivação | Completar a Trindade Arquitetural do Engineering N1: interpretação (PI-001) + representação (PI-002) + comportamento operacional (PI-003) |
+| Entregável esperado | Especificação completa do modelo operacional, fluxo de eventos, cadeia causal Operação → Evento → Transição → Estado |
+| Estrutura | 24 seções: Objetivo, Escopo, Posicionamento, Fundação Conceitual, Princípios (3), Modelo Operacional, Objetivos, Ciclo de Vida, Fluxo de Eventos, Modelo de Eventos, Transições, Rejeições, Idempotência, Responsabilidades (6), Contratos, Invariantes (8), Compatibilidade, Fronteiras, Critérios, Riscos, Evolução, Referências, Conclusão, Histórico |
+| Resultado esperado | Trindade Arquitetural do Engineering N1 consolidada |
+| Próximo passo | Planejar EWO-001 — Implementação do núcleo arquitetural. |
 
 ### PI-002 v1.0 — Canonical Investment Model (Approved)
 
@@ -468,83 +483,45 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 | Entregável esperado | Especificação completa da ontologia, contratos, identidades e invariantes do domínio |
 | Estrutura | 25 seções: Objetivo, Posicionamento, Responsabilidades, Excluídas, Canonical Source of Truth, Considerações, Ontologia (2-12), Identidade, Identificadores, Contratos, Invariantes (8), Princípios (4), Temporalidade, Evolução, Compatibilidade, Critérios, Riscos, Future Work, Histórico |
 | Resultado esperado | Especificação completa, consistente e aprovada, servindo como base semântica oficial do domínio |
-| Próximo passo | Materializar PI-003 v0.1 (Draft). |
+| Próximo passo | Concluído. PI-003 v1.0 Approved — Engineering N1 consolidado. |
 
 ## Engineering Outlook
 
-### Próxima PI
+### Trindade Arquitetural do Engineering N1 — Consolidada
 
-**ID:** PI-003
+| PI | Título | Status |
+|----|--------|--------|
+| PI-001 | Interpretation Layer | ✅ v1.0 Approved |
+| PI-002 | Canonical Investment Model | ✅ v1.0 Approved |
+| PI-003 | Canonical Operations & Event Flow Architecture | ✅ v1.0 Approved |
 
-**Título:** Canonical Operations & Event Flow Architecture
+A fundação arquitetural do Engineering N1 encontra-se completa. As três especificações estabelecem a base normativa obrigatória para toda implementação futura.
 
-**Documento:** `architecture-lab/PI-003.md`
+### Próxima Etapa
 
-**Objetivo:** Projetar a arquitetura de operações canônicas e fluxo de eventos do sistema, estabelecendo o elo entre a Interpretation Layer (PI-001) e o Modelo Canônico (PI-002).
+**ID:** EWO-001
 
-**Dependências:** PI-002 Approved, PI-001 Approved.
+**Título:** Implementação do Núcleo Arquitetural
 
-**Escopo previsto:**
+**Documento:** `architecture-lab/EWO-001.md` (a criar)
 
-- **Operations Model:** Definição das operações canônicas válidas do sistema (ex.: registrar posição, atualizar preço, aplicar corporate action, consolidar carteira).
-- **Event Flow Architecture:** Fluxo de eventos desde a interpretação (PI-001) até a aplicação no modelo canônico (PI-002), incluindo validação, roteamento e persistência.
-- **State Derivation:** Mecanismo arquitetural de derivação de estado a partir do histórico de eventos (conectando IA-002 da PI-002).
-- **Engine Contract:** Interface contratual obrigatória para todos os motores do sistema — lifecycle, contratos de entrada/saída, invariantes.
-- **Pipeline Architecture:** Cadeia completa: operação canônica → validação contratual → processamento → resposta canônica.
-- **Compatibilidade:** Preservação dos contratos de PI-001 e das entidades/invariantes de PI-002.
+**Dependências:** PI-001 Approved, PI-002 Approved, PI-003 Approved.
 
-**Resultado esperado:** Especificação Draft completa, revisada e promovida a Approved, consolidando o núcleo arquitetural do Engineering N1.
-
-### PI Atual
-
-**ID:** PI-002
-
-**Título:** Canonical Investment Model
-
-**Status:** Approved v1.0
-
-**Documento:** `architecture-lab/PI-002.md`
-
-**Objetivo:** Definir o modelo canônico de representação dos investimentos do sistema, estabelecendo uma estrutura única, extensível e independente da origem dos dados.
-
-**Escopo previsto:**
-
-- Modelo unificado para todos os tipos de investimentos.
-- Identidade canônica dos ativos.
-- Contratos fundamentais.
-- Estrutura de normalização.
-- Compatibilidade com a Interpretation Layer (PI-001).
-- Suporte ao mercado brasileiro.
-- Preparação para mercados internacionais.
-- Preparação para múltiplas moedas.
-- Extensibilidade para novos instrumentos financeiros.
-- Independência da origem dos dados.
-
-**Dependências:** PI-001 Approved.
-
-**Resultado esperado:** PI-002 Draft concluída ✓. Approved v1.0.
+**Objetivo:** Implementar o núcleo arquitetural do sistema a partir das três PIs aprovadas.
 
 **Observações:**
 
-- Engineering Review concluída. PI-002 promovida a Approved.
-- PI-003 definida: Canonical Operations & Event Flow Architecture.
-- EWO-001 autorizada, aguardando consolidação do Engineering N1 (PI-003).
+- EWO-001 encontrava-se autorizada desde a aprovação da PI-001, mas adiada por prioridade arquitetural das PIs do Engineering N1.
+- Com a consolidação do Engineering N1, EWO-001 torna-se a próxima etapa oficial.
+- PI-004 não demonstrou necessidade arquitetural neste momento. Poderá ser criada futuramente se houver demanda para nova especificação.
 
 ### Prioridade Arquitetural
 
 A aprovação de uma PI autoriza sua implementação, mas não determina sua execução imediata.
 
-A ordem efetiva de execução é definida pelo Engineering Outlook. A estratégia oficial do projeto estabelece que a arquitetura do Engineering N1 deve ser consolidada antes do início da implementação.
+O Engineering N1 foi consolidado com três PIs aprovadas. A implementação do núcleo arquitetural via EWO-001 constitui a próxima etapa oficial do projeto.
 
-Consequentemente:
-
-- PI-002 (Canonical Investment Model) possui prioridade arquitetural sobre EWO-001.
-- EWO-001 permanece autorizada, porém adiada por decisão arquitetural.
-- A implementação será iniciada somente após a consolidação da arquitetura do Engineering N1 (PI-003 incluída), salvo decisão formal em sentido contrário.
-
-O fluxo metodológico PI → EWO → Implementação → ER permanece inalterado. O ajuste refere-se exclusivamente à prioridade temporal das atividades.
-
-> **Fonte Canônica:** O Engineering Outlook representa apenas o planejamento da próxima etapa da engenharia. Ele não substitui PI, Strategic Backlog, Constituição ou Methodology. Após a definição da PI-003, o Engineering N1 conta com três PIs: PI-001 (Interpretation Layer), PI-002 (Canonical Investment Model), PI-003 (Canonical Operations & Event Flow Architecture).
+O fluxo metodológico PI → EWO → Implementação → ER permanece inalterado.
 
 ## Contrato de Execução
 
@@ -558,6 +535,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.19
+
+ER-003 concluída. PI-003 v1.0 (Approved). Engineering N1 consolidado. Engineering Outlook atualizado com a Trindade Arquitetural. Próximo passo: EWO-001.
 
 ## v2.18
 

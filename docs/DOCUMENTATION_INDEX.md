@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.26
+**Versão da Documentação:** 1.27
 
 **Status:** APROVADO
 
@@ -193,7 +193,7 @@ Repositório oficial de melhorias estratégicas aprovadas para implementação f
 
 📄 PI-003.md (architecture-lab)
 
-Engineering Specification oficial da Canonical Operations & Event Flow Architecture. (planejada)
+Engineering Specification oficial da Canonical Operations & Event Flow Architecture. v1.0 (Approved). Consolida a Trindade Arquitetural do Engineering N1.
 
 ---
 
@@ -310,6 +310,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.27
+
+- ER-003 — Engineering Review da PI-003 aprovada. PI-003 v1.0 (Approved). Engineering N1 consolidado. Bootstrap v2.19.
 
 ## Versão 1.26
 
