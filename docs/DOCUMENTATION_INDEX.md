@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.22
+**Versão da Documentação:** 1.23
 
 **Status:** APROVADO
 
@@ -191,6 +191,12 @@ Repositório oficial de melhorias estratégicas aprovadas para implementação f
 
 ---
 
+📄 PI-002.md (architecture-lab)
+
+Engineering Specification oficial do Canonical Investment Model. v0.1 (Draft). Fonte Canônica da ontologia do domínio financeiro.
+
+---
+
 📄 PI-001.md (architecture-lab)
 
 Engineering Specification oficial da Interpretation Layer. v0.1 (Draft). Fonte Canônica de engenharia da camada de interpretação.
@@ -298,6 +304,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.23
+
+- PI-002 v0.1 (Draft) — Canonical Investment Model materializada. Bootstrap v2.14.
 
 ## Versão 1.22
 

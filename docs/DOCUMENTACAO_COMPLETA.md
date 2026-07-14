@@ -4,7 +4,7 @@
 
 **Documento:** DOCUMENTACAO_COMPLETA.md
 
-**Versão:** 1.20
+**Versão:** 1.21
 
 **Status:** Artefato Derivado
 

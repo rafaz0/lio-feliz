@@ -2,7 +2,7 @@
 
 **Documento:** 09_STRATEGIC_BACKLOG.md
 
-**Versão:** 0.11
+**Versão:** 0.12
 
 **Maturidade:** N0 — Ideia
 
@@ -68,6 +68,76 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 
 ---
 
+## BK-008 — GOV-001: Idioma Oficial da Documentação
+
+| Campo | Valor |
+|-------|-------|
+| Estado | Proposto |
+| Descrição | Formalizar português brasileiro como idioma oficial das especificações. Permitir inglês apenas para nomes próprios e terminologia oficialmente adotada. |
+| Motivação | Padronização linguística da documentação |
+| Benefícios | Consistência terminológica, eliminação de ambiguidades |
+| Prioridade | Média |
+| Bloqueios | Nenhum |
+| Critério de revisão | Após estabilização do Engineering N1. |
+
+---
+
+## BK-009 — GOV-002: Fluxo Oficial de Elaboração de PIs
+
+| Campo | Valor |
+|-------|-------|
+| Estado | Proposto |
+| Descrição | Formalizar o fluxo: Concepção Arquitetural → Engineering Review Conceitual → Redação da PI → Engineering Review Documental → Approved. Registrar no Bootstrap e/ou AI_OPERATION_CHECKLIST. |
+| Motivação | Falta de registro formal do fluxo de criação de PIs |
+| Benefícios | Clareza sobre o processo de maturação das PIs |
+| Prioridade | Média |
+| Bloqueios | Nenhum |
+| Critério de revisão | Após estabilização do Engineering N1. |
+
+---
+
+## BK-010 — GOV-003: Glossário Arquitetural Compartilhado
+
+| Campo | Valor |
+|-------|-------|
+| Estado | Proposto |
+| Descrição | Centralizar os conceitos arquiteturais utilizados pelas PIs em um glossário compartilhado |
+| Motivação | Evitar dispersão de definições entre múltiplos documentos |
+| Benefícios | Consistência entre PIs, facilidade de consulta |
+| Prioridade | Baixa |
+| Bloqueios | Nenhum |
+| Critério de revisão | Após estabilização do Engineering N1. |
+
+---
+
+## BK-011 — GOV-004: Referências Normativas
+
+| Campo | Valor |
+|-------|-------|
+| Estado | Proposto |
+| Descrição | Padronização de referências normativas entre documentos |
+| Motivação | Referências atualmente sem padrão formal |
+| Benefícios | Rastreabilidade e consistência documental |
+| Prioridade | Baixa |
+| Bloqueios | Nenhum |
+| Critério de revisão | Após estabilização do Engineering N1. |
+
+---
+
+## BK-012 — GOV-005: Política de Identificadores Arquiteturais
+
+| Campo | Valor |
+|-------|-------|
+| Estado | Proposto |
+| Descrição | Avaliar padronização da numeração de PAs, IAs e demais identificadores arquiteturais |
+| Motivação | Possível conflito de numeração entre PIs |
+| Benefícios | Padronização e rastreabilidade dos identificadores |
+| Prioridade | Baixa |
+| Bloqueios | Nenhum |
+| Critério de revisão | Após estabilização do Engineering N1. |
+
+---
+
 # Backlog Concluído
 
 ## BK-001 — Simplificar AI_CONTEXT
@@ -127,6 +197,10 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 ---
 
 # Histórico
+
+## v0.12
+
+GOV-001 a GOV-005 registrados como BK-008 a BK-012. Pendências metodológicas formalizadas no backlog.
 
 ## v0.11
 

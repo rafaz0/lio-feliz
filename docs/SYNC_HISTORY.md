@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.19
+**Versão:** 1.20
 
 **Status:** APROVADO
 
@@ -762,7 +762,41 @@ Elaborar PI-002 (Canonical Investment Model). EWO-001 autorizada porém adiada.
 
 ---
 
+## PI-002 — Implementação da PI-002 (Canonical Investment Model)
+
+**Tipo:** Consolidação de Engenharia
+
+**Data:** 13/07/2026
+
+### Arquivo Criado
+
+- `architecture-lab/PI-002.md` — PI-002 v0.1 (Draft), 25 seções
+
+### Documentos Atualizados
+
+- PROJECT_BOOTSTRAP.md → v2.14 (PI Atual, Engineering Outlook, Próximo Passo)
+- 09_STRATEGIC_BACKLOG.md → v0.12 (BK-008 a BK-012 — GOV-001 a GOV-005)
+- DOCUMENTACAO_COMPLETA.md → v1.21
+- DOCUMENTATION_INDEX.md → v1.23
+- PROJECT_STATUS.md → v1.23
+- PROJECT_STATE.md → v1.20
+- SYNC_HISTORY.md → v1.20
+
+### Validação
+
+PI-002 compatível com PI-001 (complementar, sem sobreposição). Engineering Outlook preservado. Nenhuma regressão identificada.
+
+### Próxima Etapa Recomendada
+
+Engineering Review da PI-002 v0.1 (Draft → Approved).
+
+---
+
 # Histórico
+
+### Versão 1.20
+
+Registro da PI-002 — Implementação do Canonical Investment Model.
 
 ### Versão 1.19
 

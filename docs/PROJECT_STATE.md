@@ -6,7 +6,7 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.19
+**Versão:** 1.20
 
 **Status:** APROVADO
 
@@ -140,6 +140,7 @@
 | 13/07/2026 | Engineering Outlook (EO-001). Seção padronizada de planejamento da próxima PI no Bootstrap. Bootstrap v2.10. |
 | 13/07/2026 | ER-001 — Engineering Review aprovada. PI-001 v1.0 Approved. Bootstrap v2.11. |
 | 13/07/2026 | Ajuste Metodológico — Prioridade Arquitetural. PI-002 antes de EWO-001. Bootstrap v2.12. |
+| 13/07/2026 | PI-002 v0.1 (Draft) — Canonical Investment Model materializada. GOV-001 a GOV-005. Bootstrap v2.14. |
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.13
+**Versão:** 2.14
 
 **Status:** APROVADO
 
@@ -36,7 +36,7 @@ Documentação Consolidada (Concluído)
 
 ## PI Atual
 
-PI-001 v1.0 — Interpretation Layer (Approved)
+PI-002 v0.1 — Canonical Investment Model (Draft)
 
 ## PS Atual
 
@@ -62,7 +62,7 @@ Marco: Documentação Consolidada
 
 ## Objetivos Ativos
 
-Consolidar a arquitetura do Engineering N1: elaborar PI-002 (Canonical Investment Model) antes de emitir EWO-001.
+Consolidar a arquitetura do Engineering N1: realizar Engineering Review da PI-002 para promover a Approved.
 
 ## DEC Ativas
 
@@ -78,7 +78,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-Engineering N1 — PI-002 Canonical Investment Model (prioridade arquitetural sobre EWO-001).
+Engineering N1 — Engineering Review da PI-002 v0.1 (Draft) para Approved.
 
 ---
 
@@ -450,13 +450,46 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 > **Resumo Operacional Canônico:** Este resumo deve conter informações suficientes para que uma nova IA consiga iniciar corretamente a etapa sem consultar outros documentos.
 
+### PI-002 v0.1 — Canonical Investment Model (Draft)
+
+| Campo | Valor |
+|-------|-------|
+| Identificador | PI-002 |
+| Versão | v0.1 (Draft) |
+| Status | Draft |
+| Documento | `architecture-lab/PI-002.md` |
+| Objetivo | Definir o modelo canônico de representação dos investimentos do sistema, estabelecendo uma estrutura única, extensível e independente da origem dos dados |
+| Motivação | Consolidar a linguagem semântica do domínio financeiro antes de iniciar a implementação |
+| Entregável esperado | Especificação completa da ontologia, contratos, identidades e invariantes do domínio |
+| Estrutura | 25 seções: Objetivo, Posicionamento, Responsabilidades, Excluídas, Canonical Source of Truth, Considerações, Ontologia (2-12), Identidade, Identificadores, Contratos, Invariantes (8), Princípios (4), Temporalidade, Evolução, Compatibilidade, Critérios, Riscos, Future Work, Histórico |
+| Resultado esperado | Especificação completa, consistente e aprovada, servindo como base semântica oficial do domínio |
+| Próximo passo | Engineering Review → Approved |
+
 ## Engineering Outlook
 
 ### Próxima PI
 
+**ID:** PI-003
+
+**Título:** (a definir)
+
+**Documento:** `architecture-lab/PI-003.md`
+
+**Objetivo:** A definir durante a Engineering Review da PI-002.
+
+**Dependências:** PI-002 Approved.
+
+**Resultado esperado:** A definir.
+
+### PI Atual
+
 **ID:** PI-002
 
 **Título:** Canonical Investment Model
+
+**Status:** Draft v0.1
+
+**Documento:** `architecture-lab/PI-002.md`
 
 **Objetivo:** Definir o modelo canônico de representação dos investimentos do sistema, estabelecendo uma estrutura única, extensível e independente da origem dos dados.
 
@@ -482,7 +515,7 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 - Não iniciar implementação de código.
 - A PI-002 deverá utilizar a PI-001 como documento arquitetural base.
 
-**Prioridade Arquitetural:**
+### Prioridade Arquitetural
 
 A aprovação de uma PI autoriza sua implementação, mas não determina sua execução imediata.
 
@@ -510,6 +543,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.14
+
+PI-002 v0.1 (Draft) materializada. Engineering Outlook atualizado com PI-002 como PI Atual e PI-003 como próxima. Próximo Passo Operacional expandido com PI-002.
 
 ## v2.13
 
