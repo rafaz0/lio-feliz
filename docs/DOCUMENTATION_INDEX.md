@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.27
+**Versão da Documentação:** 1.28
 
 **Status:** APROVADO
 
@@ -310,6 +310,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.28
+
+- OP-015 + Baseline Arquitetural. Bootstrap v2.20. Custo documental como requisito arquitetural.
 
 ## Versão 1.27
 

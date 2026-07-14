@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.19
+**Versão:** 2.20
 
 **Status:** APROVADO
 
@@ -17,6 +17,18 @@
 > Ele deve ser completamente autossuficiente.
 >
 > Após carregar `AI_CONTEXT.md` e `PROJECT_BOOTSTRAP.md`, a IA deverá conseguir continuar o projeto sem consultar qualquer outro documento.
+
+---
+
+🚀 **Bootstrap Rápido**
+
+Se esta é a primeira interação da IA com o projeto, a ordem recomendada de leitura é:
+
+1. **PROJECT_BOOTSTRAP** (estado atual + baseline arquitetural)
+2. **AI_OPERATION_CHECKLIST** (protocolo operacional)
+3. **DEVELOPMENT_METHODOLOGY** (regras do projeto)
+
+As PIs (PI-001, PI-002, PI-003) devem ser consultadas apenas quando uma decisão exigir detalhes arquiteturais.
 
 ---
 
@@ -485,6 +497,72 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 | Resultado esperado | Especificação completa, consistente e aprovada, servindo como base semântica oficial do domínio |
 | Próximo passo | Concluído. PI-003 v1.0 Approved — Engineering N1 consolidado. |
 
+## Baseline Arquitetural Atual
+
+### Engineering N1
+
+**Status:** Consolidado
+
+### Arquitetura Oficial
+
+```
+PI-001 — Interpretation Layer
+
+    ↓
+
+PI-002 — Canonical Investment Model
+
+    ↓
+
+PI-003 — Canonical Operations & Event Flow Architecture
+```
+
+### Resumo Executivo
+
+| PI | Papel | Descrição |
+|----|-------|-----------|
+| PI-001 | Como interpretar | Transforma informações externas em Operações Canônicas |
+| PI-002 | O que representa o domínio | Define a ontologia, identidade, contratos e invariantes do Modelo Canônico |
+| PI-003 | Como o domínio evolui | Estabelece a cadeia causal Operação → Evento → Transição → Estado |
+
+### Fluxo Arquitetural Geral
+
+```
+Fontes Externas
+    ↓
+PI-001 — Interpretation Layer
+    ↓
+Operação Canônica
+    ↓
+PI-003 — Canonical Operations & Event Flow
+    ↓
+Estado Derivado
+    ↓
+PI-002 — Canonical Investment Model
+    ↓
+Carteira Oficial
+```
+
+### Documentos Normativos
+
+- PI-001 — Interpretation Layer
+- PI-002 — Canonical Investment Model
+- PI-003 — Canonical Operations & Event Flow Architecture
+
+### Próxima EWO
+
+- EWO-001 — Implementação do Núcleo Arquitetural
+
+### Checklist para futuras Engineering Work Orders
+
+Toda EWO deverá demonstrar aderência explícita a:
+
+- [ ] PI-001 — Interpretation Layer
+- [ ] PI-002 — Canonical Investment Model
+- [ ] PI-003 — Canonical Operations & Event Flow Architecture
+
+---
+
 ## Engineering Outlook
 
 ### Trindade Arquitetural do Engineering N1 — Consolidada
@@ -535,6 +613,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.20
+
+OP-015 implementado. Bootstrap evoluído: Bootstrap Rapido + Baseline Arquitetural Atual adicionados. Custo documental reconhecido como requisito arquitetural.
 
 ## v2.19
 

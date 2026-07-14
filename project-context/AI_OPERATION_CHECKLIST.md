@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.20
+**Versão:** 1.21
 
 **Status:** APROVADO
 

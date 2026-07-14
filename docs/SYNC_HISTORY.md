@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.24
+**Versão:** 1.25
 
 **Status:** APROVADO
 
@@ -960,7 +960,54 @@ Planejar EWO-001 — Implementação do núcleo arquitetural.
 
 ---
 
+## Sprint de Consolidação Documental — OP-015
+
+**Tipo:** Melhoria Metodológica
+
+**Data:** 13/07/2026
+
+### Itens Implementados
+
+| ID | Item | Status |
+|----|------|--------|
+| OP-015 | Política de Consolidação Documental | ✅ Adicionado |
+| BOOT-001 | Bootstrap Rápido no início do Bootstrap | ✅ Adicionado |
+| BOOT-002 | Baseline Arquitetural Atual no Bootstrap | ✅ Adicionado |
+
+### OP-015 — Política de Consolidação Documental
+
+**Mudança:** Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados. Criação de novos documentos exige justificativa metodológica.
+
+### Bootstrap Rápido
+
+**Mudança:** Bloco inicial adicionado ao PROJECT_BOOTSTRAP orientando a ordem de leitura para novas IAs.
+
+### Baseline Arquitetural Atual
+
+**Mudança:** Seção compacta adicionada ao Bootstrap consolidando a visão executiva da Trindade Arquitetural, fluxo geral, documentos normativos e checklist para futuras EWOs.
+
+### Documentos Atualizados
+
+- DEVELOPMENT_METHODOLOGY.md → v2.6 (OP-015)
+- PROJECT_BOOTSTRAP.md → v2.20 (Bootstrap Rápido + Baseline)
+- AI_OPERATION_CHECKLIST.md → v1.21
+- DOCUMENTACAO_COMPLETA.md → v1.26
+- DOCUMENTATION_INDEX.md → v1.28
+- PROJECT_STATUS.md → v1.28
+- PROJECT_STATE.md → v1.25
+- SYNC_HISTORY.md → v1.25
+
+### Próxima Etapa Recomendada
+
+Planejar EWO-001 — Implementação do Núcleo Arquitetural.
+
+---
+
 # Histórico
+
+### Versão 1.25
+
+Registro da Sprint de Consolidação Documental — OP-015, Bootstrap Rápido, Baseline Arquitetural.
 
 ### Versão 1.24
 

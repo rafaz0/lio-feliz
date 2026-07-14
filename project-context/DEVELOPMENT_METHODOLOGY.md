@@ -1,10 +1,10 @@
-# Development Methodology — Lio Feliz
+﻿# Development Methodology — Lio Feliz
 
 **Projeto:** Lio Feliz
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.5
+**Versão:** 2.6
 
 **Status:** APROVADO
 
@@ -654,7 +654,21 @@ Engineering Review Documental
 
 ---
 
+### OP-015 — Política de Consolidação Documental
 
+A quantidade de documentos oficiais é considerada um requisito arquitetural do projeto.
+
+Quanto maior o número de documentos, maior o custo operacional de bootstrap entre sessões de IA. Portanto, a metodologia estabelece os seguintes princípios:
+
+- **Evitar criação de novos documentos** quando o conteúdo puder ser incorporado de forma coerente a documentos canônicos existentes.
+- **Priorizar documentos centrais ricos em contexto** (ex.: PROJECT_BOOTSTRAP) como destino de consolidação.
+- **Reduzir o custo operacional de bootstrap** entre IAs mantendo o número de documentos oficialmente necessários o menor possível.
+- **Considerar o custo operacional da documentação como um requisito arquitetural** — toda criação de novo documento deverá possuir justificativa metodológica clara.
+- **Incorporar ao invés de referenciar** quando o conteúdo for pequeno o suficiente para não comprometer a coesão do documento canônico.
+
+Propostas de novos documentos devem ser avaliadas contra estes princípios antes de serem aprovadas.
+
+---
 
 # 10. Fluxo de Engenharia (PI → EWO → ER)
 
@@ -1012,6 +1026,10 @@ Será criado após estabilização do domínio principal.
 ---
 
 # 14. Histórico
+
+### Versão 2.6
+
+OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
 
 ### Versão 2.5
 
