@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.25
+**Versão:** 1.26
 
 **Status:** APROVADO
 
@@ -151,6 +151,7 @@ ADR-008: Backlog Governance
 | 13/07/2026 | Engineering Outlook (EO-001) — Seção padronizada de planejamento da próxima PI (PI-002). Bootstrap v2.10. |
 | 13/07/2026 | ER-001 — Engineering Review da PI-001 aprovada. PI-001 promovida a v1.0 Approved. Bootstrap v2.11. |
 | 13/07/2026 | Prioridade Arquitetural — PI-002 definida como prioridade sobre EWO-001. Bootstrap v2.12. |
+| 13/07/2026 | G-001 — Sprint de Governança. GOV-001 e GOV-002 implementados. OP-013/OP-014. Bootstrap v2.18. |
 | 13/07/2026 | PI-003 definida: Canonical Operations & Event Flow Architecture. Bootstrap v2.17. |
 | 13/07/2026 | ER-002 — Engineering Review da PI-002 aprovada. PI-002 promovida a v1.0 Approved. Bootstrap v2.16. |
 | 13/07/2026 | PI-002 v0.1 (Draft) — Canonical Investment Model materializada. GOV-001 a GOV-005 registrados. Bootstrap v2.14. |
@@ -176,6 +177,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.26
+
+G-001 — Sprint de Governança. GOV-001 e GOV-002 implementados. OP-013/OP-014. Bootstrap v2.18.
 
 ### Versão 1.25
 

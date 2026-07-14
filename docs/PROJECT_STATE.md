@@ -6,7 +6,7 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.22
+**Versão:** 1.23
 
 **Status:** APROVADO
 
@@ -140,6 +140,7 @@
 | 13/07/2026 | Engineering Outlook (EO-001). Seção padronizada de planejamento da próxima PI no Bootstrap. Bootstrap v2.10. |
 | 13/07/2026 | ER-001 — Engineering Review aprovada. PI-001 v1.0 Approved. Bootstrap v2.11. |
 | 13/07/2026 | Ajuste Metodológico — Prioridade Arquitetural. PI-002 antes de EWO-001. Bootstrap v2.12. |
+| 13/07/2026 | G-001 — Sprint de Governança. GOV-001 e GOV-002 implementados. OP-013/OP-014. Bootstrap v2.18. |
 | 13/07/2026 | PI-003 definida: Canonical Operations & Event Flow Architecture. Bootstrap v2.17. |
 | 13/07/2026 | ER-002 — Engineering Review da PI-002 aprovada. PI-002 v1.0 Approved. Bootstrap v2.16. |
 | 13/07/2026 | PI-002 v0.1 (Draft) — Canonical Investment Model materializada. GOV-001 a GOV-005. Bootstrap v2.14. |

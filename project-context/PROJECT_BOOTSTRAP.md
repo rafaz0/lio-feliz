@@ -179,9 +179,11 @@ Toda resposta operacional deve terminar com:
 ```
 📊 Auditoria da Sprint
     Avaliar o que foi feito, descoberto e classificado.
-    📐 Decisões Arquiteturais Capturadas — registrar cada decisão
-    arquitetural incorporada à documentação oficial na sprint,
-    com identificador, documento, impacto e status (Nova/Alterada/Consolidada).
+    📐 Decisões Arquiteturais Capturadas
+      • Nome: [nome da decisão]
+      • Documento: [documento onde foi incorporada]
+      • Impacto: [impacto arquitetural resumido]
+      • Status: Nova / Alterada / Consolidada
 📋 Pendências
     Listar pendências abertas da sprint atual e Backlog Estratégico ativo.
 ❤️ Saúde do Chat
@@ -556,6 +558,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.18
+
+G-001: Sprint de Governança. GOV-001 e GOV-002 implementados. OP-013/OP-014 adicionados. Formato de Decisões Arquiteturais Capturadas padronizado.
 
 ## v2.17
 

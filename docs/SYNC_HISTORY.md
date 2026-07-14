@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.22
+**Versão:** 1.23
 
 **Status:** APROVADO
 
@@ -867,7 +867,61 @@ Materializar PI-003 v0.1 (Draft) — Canonical Operations & Event Flow Architect
 
 ---
 
+## G-001 — Sprint de Governança
+
+**Tipo:** Governança
+
+**Data:** 13/07/2026
+
+### Itens Implementados
+
+| ID | Item | Status |
+|----|------|--------|
+| GOV-001 | Idioma Oficial da Documentação (OP-013) | ✅ Concluído |
+| GOV-002 | Fluxo de Elaboração de PIs (OP-014) | ✅ Concluído |
+| PAD-001 | Formato padronizado de Decisões Arquiteturais Capturadas em relatórios | ✅ Concluído |
+
+### GOV-001 — Idioma Oficial
+
+**Mudança:** Português brasileiro oficializado como idioma da documentação. Inglês permitido apenas para nomes próprios, componentes oficiais e terminologia consolidada.
+
+**Documentos alterados:** DEVELOPMENT_METHODOLOGY.md (OP-013 adicionado), Bootstrap (ritual sincronizado).
+
+### GOV-002 — Fluxo de Elaboração de PIs
+
+**Mudança:** Fluxo de 5 etapas formalizado: Concepção Arquitetural → ER Conceitual → Redação da PI → ER Documental → Approved.
+
+**Documentos alterados:** DEVELOPMENT_METHODOLOGY.md (OP-014 adicionado, §10.1 referenciado).
+
+### Padronização dos Relatórios
+
+**Mudança:** Seção "Decisões Arquiteturais Capturadas" padronizada obrigatoriamente em todos os relatórios futuros com formato: Nome, Documento, Impacto, Status.
+
+**Documentos alterados:** DEVELOPMENT_METHODOLOGY.md (OP-003 atualizado), Bootstrap (ritual atualizado), AI_OPERATION_CHECKLIST (sincronizado).
+
+### Documentos Atualizados
+
+- DEVELOPMENT_METHODOLOGY.md → v2.5 (OP-013, OP-014, OP-003)
+- PROJECT_BOOTSTRAP.md → v2.18 (ritual, versão)
+- 09_STRATEGIC_BACKLOG.md → v0.13 (BK-008, BK-009 → Concluído)
+- AI_OPERATION_CHECKLIST.md → v1.19
+- DOCUMENTACAO_COMPLETA.md → v1.24
+- DOCUMENTATION_INDEX.md → v1.26
+- PROJECT_STATUS.md → v1.26
+- PROJECT_STATE.md → v1.23
+- SYNC_HISTORY.md → v1.23
+
+### Próxima Etapa Recomendada
+
+Materializar PI-003 v0.1 (Draft) — Canonical Operations & Event Flow Architecture.
+
+---
+
 # Histórico
+
+### Versão 1.23
+
+Registro da G-001 — Sprint de Governança. GOV-001, GOV-002 e padronização de relatórios.
 
 ### Versão 1.22
 

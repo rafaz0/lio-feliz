@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.25
+**Versão da Documentação:** 1.26
 
 **Status:** APROVADO
 
@@ -310,6 +310,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.26
+
+- G-001 — Sprint de Governança. GOV-001, GOV-002, padronização de relatórios. Bootstrap v2.18.
 
 ## Versão 1.25
 

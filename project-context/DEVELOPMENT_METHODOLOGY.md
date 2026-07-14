@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.4
+**Versão:** 2.5
 
 **Status:** APROVADO
 
@@ -482,12 +482,16 @@ Toda Entrega Relevante deverá utilizar o seguinte formato visual ao finalizar a
 
 📊 Auditoria da Sprint
     Incluir obrigatoriamente:
+
     📐 Decisões Arquiteturais Capturadas
-      Registrar cada decisão arquitetural incorporada
-      à documentação oficial na sprint, com:
-      identificador (quando existir), nome, documento,
-      impacto arquitetural resumido e status
-      (Nova / Alterada / Consolidada).
+      • Nome: nome da decisão
+      • Documento: documento onde foi incorporada
+      • Impacto: impacto arquitetural resumido
+      • Status: Nova / Alterada / Consolidada
+
+    A seção é obrigatória em todos os relatórios futuros.
+    Cada linha deve conter uma decisão individual.
+    Nenhuma decisão estratégica pode ficar sem registro.
 
 📋 Pendências
 
@@ -609,7 +613,48 @@ Em caso de divergência entre documentos, a precedência é definida pela ordem 
 
 Sempre prevalece o documento de maior precedência.
 
+### OP-013 — Idioma Oficial da Documentação
+
+O português brasileiro é o idioma oficial de toda a documentação do projeto.
+
+O inglês é permitido **exclusivamente** para:
+
+- nomes próprios (ex.: Rafael Santos, Lio Feliz);
+- componentes oficiais (ex.: Interpretation Layer, Canonical Investment Model, Engine Core);
+- terminologia arquitetural consolidada (ex.: Draft, Approved, Review, Engineering Work Order, Invariant, Contract, Ontology, Pipeline);
+- siglas e acrônimos consagrados (ex.: PI, EWO, ER, ADR, BK, IA, OP).
+
+Nenhum documento metodológico, especificação de engenharia, relatório ou comunicado interno deverá utilizar inglês fora dessas exceções.
+
+### OP-014 — Fluxo de Elaboração de PIs
+
+A criação de uma nova PI segue obrigatoriamente as etapas abaixo:
+
+```
+Concepção Arquitetural
+       ↓
+Engineering Review Conceitual
+       ↓
+Redação da PI
+       ↓
+Engineering Review Documental
+       ↓
+      Approved
+```
+
+**Concepção Arquitetural:** O Arquiteto (ChatGPT) identifica a necessidade, define o escopo, os objetivos, as entidades envolvidas e os contratos preliminares. O resultado é registrado no Engineering Outlook.
+
+**Engineering Review Conceitual:** O Arquiteto valida a consistência da concepção antes da redação. Verifica alinhamento com PIs existentes, Constitution e Strategic Backlog. Sem aprovação conceitual, a PI não deve ser redigida.
+
+**Redação da PI:** O Arquiteto redige a especificação completa. O OpenCode materializa o documento. Durante esta fase, a PI encontra-se em **Draft**.
+
+**Engineering Review Documental:** Revisão completa da especificação materializada, conforme critérios de consistência interna, externa, semântica e metodológica.
+
+**Approved:** A PI atinge o status Approved, tornando-se imutável e fonte canônica de engenharia.
+
 ---
+
+
 
 # 10. Fluxo de Engenharia (PI → EWO → ER)
 
@@ -618,6 +663,8 @@ Sempre prevalece o documento de maior precedência.
 Toda PI aprovada é um **Contrato Oficial de Implementação**.
 
 Após **Approved**, a PI torna-se a única Fonte Canônica de Engenharia daquela funcionalidade. Toda implementação deve segui-la integralmente. Nenhum prompt pode substituir, resumir ou reinterpretar decisões arquiteturais da PI.
+
+O fluxo de elaboração que antecede o estado Draft é definido pelo protocolo **OP-014 (Fluxo de Elaboração de PIs)**, compreendendo as etapas de Concepção Arquitetural, Engineering Review Conceitual, Redação da PI e Engineering Review Documental antes de atingir Approved.
 
 #### Versionamento Oficial
 
@@ -965,6 +1012,10 @@ Será criado após estabilização do domínio principal.
 ---
 
 # 14. Histórico
+
+### Versão 2.5
+
+GOV-001 (Idioma Oficial) implementado como OP-013. GOV-002 (Fluxo de Elaboração) implementado como OP-014 com referência em §10.1. OP-003 atualizado com formato padronizado de Decisões Arquiteturais Capturadas.
 
 ### Versão 2.4
 

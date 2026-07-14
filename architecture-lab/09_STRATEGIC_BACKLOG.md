@@ -2,7 +2,7 @@
 
 **Documento:** 09_STRATEGIC_BACKLOG.md
 
-**Versão:** 0.12
+**Versão:** 0.13
 
 **Maturidade:** N0 — Ideia
 
@@ -72,13 +72,14 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 
 | Campo | Valor |
 |-------|-------|
-| Estado | Proposto |
+| Estado | Concluído |
 | Descrição | Formalizar português brasileiro como idioma oficial das especificações. Permitir inglês apenas para nomes próprios e terminologia oficialmente adotada. |
 | Motivação | Padronização linguística da documentação |
 | Benefícios | Consistência terminológica, eliminação de ambiguidades |
 | Prioridade | Média |
 | Bloqueios | Nenhum |
-| Critério de revisão | Após estabilização do Engineering N1. |
+| Implementação | OP-013 adicionado ao DEVELOPMENT_METHODOLOGY.md. Bootstrap sincronizado. |
+| Data | 13/07/2026 |
 
 ---
 
@@ -86,13 +87,14 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 
 | Campo | Valor |
 |-------|-------|
-| Estado | Proposto |
-| Descrição | Formalizar o fluxo: Concepção Arquitetural → Engineering Review Conceitual → Redação da PI → Engineering Review Documental → Approved. Registrar no Bootstrap e/ou AI_OPERATION_CHECKLIST. |
+| Estado | Concluído |
+| Descrição | Formalizar o fluxo: Concepção Arquitetural → Engineering Review Conceitual → Redação da PI → Engineering Review Documental → Approved. |
 | Motivação | Falta de registro formal do fluxo de criação de PIs |
 | Benefícios | Clareza sobre o processo de maturação das PIs |
 | Prioridade | Média |
 | Bloqueios | Nenhum |
-| Critério de revisão | Após estabilização do Engineering N1. |
+| Implementação | OP-014 adicionado ao DEVELOPMENT_METHODOLOGY.md. §10.1 referenciado. |
+| Data | 13/07/2026 |
 
 ---
 
