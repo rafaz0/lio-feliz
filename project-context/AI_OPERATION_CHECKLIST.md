@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.14
+**Versão:** 1.15
 
 **Status:** APROVADO
 
@@ -27,6 +27,7 @@ Antes de responder, verificar:
 - [ ] Existe evidência objetiva para alterar a direção?
 - [ ] O plano atual permanece válido?
 - [ ] Esta resposta constitui uma Entrega Relevante?
+- [ ] Existe alteração no repositório que precisa ser enviada ao GitHub? (GS-002)
 - [ ] Existe algum item registrado no Backlog Estratégico?
 - [ ] Existe melhoria aprovada ainda não registrada no Strategic Backlog?
 - [ ] Existe BK compatível antes da criação deste PS?
@@ -136,6 +137,12 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 
 ---
 
+## Sincronização GitHub (GS-002)
+
+- [ ] Após alterações no repositório, executar `git add`, `git commit`, `git push`.
+- [ ] Verificar se todos os arquivos modificados foram incluídos.
+- [ ] Mensagem de commit descritiva.
+
 ## Backlog Estratégico e Strategic Backlog
 
 - [ ] Existe Backlog Estratégico ativo?
@@ -147,6 +154,10 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 ---
 
 # Histórico
+
+### Versão 1.15
+
+GS-002 — Sincronização Automática com GitHub. Verificação pré-resposta e seção de sincronização adicionadas. Compatibilidade com PROJECT_BOOTSTRAP.md v2.13.
 
 ### Versão 1.14
 

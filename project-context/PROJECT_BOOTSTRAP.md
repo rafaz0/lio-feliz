@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.12
+**Versão:** 2.13
 
 **Status:** APROVADO
 
@@ -93,6 +93,7 @@ Antes de responder, verificar obrigatoriamente:
 - [ ] Existe evidência objetiva para alterar a direção?
 - [ ] O plano atual permanece válido?
 - [ ] Esta resposta constitui uma Entrega Relevante?
+- [ ] Existe alteração no repositório que precisa ser enviada ao GitHub? (GS-002)
 - [ ] Existe Backlog Estratégico ativo?
 - [ ] Existe melhoria aprovada não registrada no Strategic Backlog?
 - [ ] Existe BK compatível antes de criar um novo PS?
@@ -135,6 +136,7 @@ A IA:
 - **continua exatamente** do último Estado Operacional
 - **persiste o Estado Operacional** durante toda a conversa (IA-015)
 - **evidências externas** não alteram automaticamente documentação — devem ser validadas antes (IA-027)
+- **sincroniza com o GitHub imediatamente** após qualquer alteração no repositório (GS-002)
 
 ## Dashboard Executivo — Documentação
 
@@ -508,6 +510,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.13
+
+GS-002 — Sincronização Automática com GitHub. Regra de comportamento e verificação IA-026 adicionadas.
 
 ## v2.12
 
