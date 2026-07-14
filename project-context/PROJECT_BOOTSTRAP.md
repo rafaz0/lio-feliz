@@ -466,7 +466,7 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 | Entregável esperado | Especificação completa da ontologia, contratos, identidades e invariantes do domínio |
 | Estrutura | 25 seções: Objetivo, Posicionamento, Responsabilidades, Excluídas, Canonical Source of Truth, Considerações, Ontologia (2-12), Identidade, Identificadores, Contratos, Invariantes (8), Princípios (4), Temporalidade, Evolução, Compatibilidade, Critérios, Riscos, Future Work, Histórico |
 | Resultado esperado | Especificação completa, consistente e aprovada, servindo como base semântica oficial do domínio |
-| Próximo passo | Concluído. Próxima etapa: definir PI-003. |
+| Próximo passo | Materializar PI-003 v0.1 (Draft). |
 
 ## Engineering Outlook
 
@@ -474,15 +474,24 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 **ID:** PI-003
 
-**Título:** (a definir)
+**Título:** Canonical Operations & Event Flow Architecture
 
 **Documento:** `architecture-lab/PI-003.md`
 
-**Objetivo:** Definir tema e escopo da PI-003 para continuidade do Engineering N1.
+**Objetivo:** Projetar a arquitetura de operações canônicas e fluxo de eventos do sistema, estabelecendo o elo entre a Interpretation Layer (PI-001) e o Modelo Canônico (PI-002).
 
-**Dependências:** PI-002 Approved.
+**Dependências:** PI-002 Approved, PI-001 Approved.
 
-**Resultado esperado:** A definir.
+**Escopo previsto:**
+
+- **Operations Model:** Definição das operações canônicas válidas do sistema (ex.: registrar posição, atualizar preço, aplicar corporate action, consolidar carteira).
+- **Event Flow Architecture:** Fluxo de eventos desde a interpretação (PI-001) até a aplicação no modelo canônico (PI-002), incluindo validação, roteamento e persistência.
+- **State Derivation:** Mecanismo arquitetural de derivação de estado a partir do histórico de eventos (conectando IA-002 da PI-002).
+- **Engine Contract:** Interface contratual obrigatória para todos os motores do sistema — lifecycle, contratos de entrada/saída, invariantes.
+- **Pipeline Architecture:** Cadeia completa: operação canônica → validação contratual → processamento → resposta canônica.
+- **Compatibilidade:** Preservação dos contratos de PI-001 e das entidades/invariantes de PI-002.
+
+**Resultado esperado:** Especificação Draft completa, revisada e promovida a Approved, consolidando o núcleo arquitetural do Engineering N1.
 
 ### PI Atual
 
@@ -516,8 +525,8 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 **Observações:**
 
 - Engineering Review concluída. PI-002 promovida a Approved.
-- PI-003 pendente de definição.
-- EWO-001 autorizada, aguardando definição da ordem.
+- PI-003 definida: Canonical Operations & Event Flow Architecture.
+- EWO-001 autorizada, aguardando consolidação do Engineering N1 (PI-003).
 
 ### Prioridade Arquitetural
 
@@ -529,11 +538,11 @@ Consequentemente:
 
 - PI-002 (Canonical Investment Model) possui prioridade arquitetural sobre EWO-001.
 - EWO-001 permanece autorizada, porém adiada por decisão arquitetural.
-- A implementação será iniciada somente após a consolidação da arquitetura prevista para o Engineering N1, salvo decisão formal em sentido contrário.
+- A implementação será iniciada somente após a consolidação da arquitetura do Engineering N1 (PI-003 incluída), salvo decisão formal em sentido contrário.
 
 O fluxo metodológico PI → EWO → Implementação → ER permanece inalterado. O ajuste refere-se exclusivamente à prioridade temporal das atividades.
 
-> **Fonte Canônica:** O Engineering Outlook representa apenas o planejamento da próxima etapa da engenharia. Ele não substitui PI, Strategic Backlog, Constituição ou Methodology. Após a conclusão da PI-002, este bloco foi atualizado para refletir o próximo passo: definição da PI-003.
+> **Fonte Canônica:** O Engineering Outlook representa apenas o planejamento da próxima etapa da engenharia. Ele não substitui PI, Strategic Backlog, Constituição ou Methodology. Após a definição da PI-003, o Engineering N1 conta com três PIs: PI-001 (Interpretation Layer), PI-002 (Canonical Investment Model), PI-003 (Canonical Operations & Event Flow Architecture).
 
 ## Contrato de Execução
 
@@ -547,6 +556,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.17
+
+PI-003 definida: Canonical Operations & Event Flow Architecture. Engineering Outlook atualizado com escopo completo.
 
 ## v2.16
 

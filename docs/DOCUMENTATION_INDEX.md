@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.24
+**Versão da Documentação:** 1.25
 
 **Status:** APROVADO
 
@@ -191,6 +191,12 @@ Repositório oficial de melhorias estratégicas aprovadas para implementação f
 
 ---
 
+📄 PI-003.md (architecture-lab)
+
+Engineering Specification oficial da Canonical Operations & Event Flow Architecture. (planejada)
+
+---
+
 📄 PI-002.md (architecture-lab)
 
 Engineering Specification oficial do Canonical Investment Model. v1.0 (Approved). Fonte Canônica da ontologia do domínio financeiro.
@@ -304,6 +310,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.25
+
+- PI-003 definida: Canonical Operations & Event Flow Architecture. Bootstrap v2.17.
 
 ## Versão 1.24
 

@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.21
+**Versão:** 1.22
 
 **Status:** APROVADO
 
@@ -829,7 +829,49 @@ Definir PI-003 para continuidade do Engineering N1. EWO-001 autorizada, aguardan
 
 ---
 
+## Definição do Escopo da PI-003
+
+**Tipo:** Definição Arquitetural
+
+**Data:** 13/07/2026
+
+### Escopo Definido
+
+**PI-003: Canonical Operations & Event Flow Architecture**
+
+Engenharia responsável por projetar a arquitetura de operações canônicas e fluxo de eventos do sistema, estabelecendo o elo entre a Interpretation Layer (PI-001) e o Modelo Canônico (PI-002).
+
+### Componentes do Escopo
+
+- **Operations Model:** Operações canônicas válidas do sistema
+- **Event Flow Architecture:** Fluxo de eventos da interpretação à aplicação no modelo canônico
+- **State Derivation:** Derivação de estado a partir do histórico de eventos (IA-002)
+- **Engine Contract:** Interface contratual obrigatória para todos os motores
+- **Pipeline Architecture:** Cadeia completa operação → validação → processamento → resposta
+- **Compatibilidade:** Preservação dos contratos de PI-001 e entidades/invariantes de PI-002
+
+### Documentos Atualizados
+
+- PROJECT_BOOTSTRAP.md → v2.17 (Engineering Outlook, Próximo Passo)
+- PI-002.md → v1.0 (Future Work atualizado)
+- DOCUMENTACAO_COMPLETA.md → v1.23
+- DOCUMENTATION_INDEX.md → v1.25
+- PROJECT_STATUS.md → v1.25
+- PROJECT_STATE.md → v1.22
+- SYNC_HISTORY.md → v1.22
+- AI_OPERATION_CHECKLIST.md → v1.18
+
+### Próxima Etapa Recomendada
+
+Materializar PI-003 v0.1 (Draft) — Canonical Operations & Event Flow Architecture.
+
+---
+
 # Histórico
+
+### Versão 1.22
+
+Registro da Definição do Escopo da PI-003 — Canonical Operations & Event Flow Architecture.
 
 ### Versão 1.21
 
