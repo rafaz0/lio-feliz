@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.14
+**Versão:** 2.15
 
 **Status:** APROVADO
 
@@ -179,6 +179,9 @@ Toda resposta operacional deve terminar com:
 ```
 📊 Auditoria da Sprint
     Avaliar o que foi feito, descoberto e classificado.
+    📐 Decisões Arquiteturais Capturadas — registrar cada decisão
+    arquitetural incorporada à documentação oficial na sprint,
+    com identificador, documento, impacto e status (Nova/Alterada/Consolidada).
 📋 Pendências
     Listar pendências abertas da sprint atual e Backlog Estratégico ativo.
 ❤️ Saúde do Chat
@@ -543,6 +546,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.15
+
+Seção "Decisões Arquiteturais Capturadas" adicionada ao Ritual Obrigatório de Encerramento. AI_OPERATION_CHECKLIST sincronizado.
 
 ## v2.14
 

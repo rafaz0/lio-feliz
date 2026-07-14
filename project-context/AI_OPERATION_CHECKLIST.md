@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.15
+**Versão:** 1.16
 
 **Status:** APROVADO
 
@@ -45,7 +45,7 @@ Se existir Backlog Estratégico ativo, verificar se deve ser exibido. Nunca omit
 
 Se a resposta for uma Entrega Relevante, o ritual abaixo é **obrigatório e inomitível**:
 
-- [ ] 📊 Auditoria da Sprint
+- [ ] 📊 Auditoria da Sprint (incluir 📐 Decisões Arquiteturais Capturadas)
 - [ ] 📋 Pendências
 - [ ] 📌 Fila de Sincronização
 - [ ] ❤️ Saúde do Chat
@@ -154,6 +154,10 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 ---
 
 # Histórico
+
+### Versão 1.16
+
+Seção obrigatória "Decisões Arquiteturais Capturadas" adicionada ao ritual de encerramento de Entregas Relevantes.
 
 ### Versão 1.15
 

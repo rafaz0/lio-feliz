@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.3
+**Versão:** 2.4
 
 **Status:** APROVADO
 
@@ -481,6 +481,13 @@ Este ritual torna-se parte oficial da metodologia. Não poderá ser omitido por 
 Toda Entrega Relevante deverá utilizar o seguinte formato visual ao finalizar a resposta:
 
 📊 Auditoria da Sprint
+    Incluir obrigatoriamente:
+    📐 Decisões Arquiteturais Capturadas
+      Registrar cada decisão arquitetural incorporada
+      à documentação oficial na sprint, com:
+      identificador (quando existir), nome, documento,
+      impacto arquitetural resumido e status
+      (Nova / Alterada / Consolidada).
 
 📋 Pendências
 
@@ -958,6 +965,10 @@ Será criado após estabilização do domínio principal.
 ---
 
 # 14. Histórico
+
+### Versão 2.4
+
+Seção obrigatória "Decisões Arquiteturais Capturadas" adicionada ao OP-003 (Formato Visual Padronizado). Ritual de encerramento atualizado.
 
 ### Versão 2.3
 
