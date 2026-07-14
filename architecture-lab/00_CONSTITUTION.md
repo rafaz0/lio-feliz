@@ -1,6 +1,6 @@
 # CONSTITUIÇÃO ARQUITETURAL DO LIO FELIZ
 
-**Versão:** 0.1
+**Versão:** 0.2
 
 **Status:** Em evolução
 
@@ -80,6 +80,18 @@ Resultados devem ser reproduzíveis. Em caso de conflito entre performance e det
 ## Evolução acima da Rigidez
 
 A arquitetura deve evoluir. Princípios são estáveis; implementações são transitórias.
+
+## Universalidade
+
+A arquitetura do Lio Feliz deve ser universal em relação aos instrumentos financeiros suportados. O sistema não deve presumir um conjunto fixo de instrumentos, mas sim oferecer uma estrutura extensível que permita suportar renda fixa, renda variável, fundos, FIIs, ETFs, BDRs, stocks, REITs, ADRs, criptomoedas e futuros instrumentos financeiros sem necessidade de reestruturação arquitetural.
+
+A universalidade aplica-se também à origem dos dados: o sistema não deve ser acoplado a provedores específicos de informação financeira.
+
+## Multi-Mercado
+
+A arquitetura deve preparar-se nativamente para operação em múltiplos mercados: Brasil, exterior, múltiplas bolsas, múltiplas corretoras e múltiplas moedas. Essa preparação é estrutural e deve estar presente desde o modelo de dados até os mecanismos de consolidação.
+
+Multi-Mercado não significa implementar todos os mercados simultaneamente, mas sim projetar a arquitetura de forma que novos mercados possam ser adicionados sem ruptura.
 
 ---
 
@@ -187,8 +199,12 @@ Toda funcionalidade deve justificar-se à luz dos princípios. Nenhuma funcional
 
 Esta é a primeira versão da Constituição Arquitetural do Lio Feliz.
 
-Versão: 0.1
+Versão: 0.2
 
 Status: Em evolução
 
 Próximos passos: validar os princípios contra cenários reais do domínio e evoluir o modelo conceitual.
+
+### v0.2 — 13/07/2026
+
+Princípios Universalidade e Multi-Mercado adicionados como princípios fundamentais da arquitetura.

@@ -2,13 +2,13 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.1
+**Versão:** 2.12
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 12/07/2026
+**Última atualização:** 13/07/2026
 
 ---
 
@@ -34,6 +34,10 @@ Execução
 
 Documentação Consolidada (Concluído)
 
+## PI Atual
+
+PI-001 v1.0 — Interpretation Layer (Approved)
+
 ## PS Atual
 
 Nenhum PS ativo no momento.
@@ -58,7 +62,7 @@ Marco: Documentação Consolidada
 
 ## Objetivos Ativos
 
-Aguardando definição do próximo PS.
+Consolidar a arquitetura do Engineering N1: elaborar PI-002 (Canonical Investment Model) antes de emitir EWO-001.
 
 ## DEC Ativas
 
@@ -69,10 +73,12 @@ Nenhuma.
 | BK | Descrição | Prioridade | Estado |
 |----|-----------|------------|--------|
 | BK-005 | PROJECT_MANIFEST.md | Baixa | Proposto |
+| BK-006 | Licensing & Feature Access Layer | Média | Proposto |
+| BK-007 | Comercialização | Média | Proposto |
 
 ## Próxima Etapa
 
-Engineering N1 — PI-001 Interpretation Layer.
+Engineering N1 — PI-002 Canonical Investment Model (prioridade arquitetural sobre EWO-001).
 
 ---
 
@@ -90,6 +96,9 @@ Antes de responder, verificar obrigatoriamente:
 - [ ] Existe Backlog Estratégico ativo?
 - [ ] Existe melhoria aprovada não registrada no Strategic Backlog?
 - [ ] Existe BK compatível antes de criar um novo PS?
+- [ ] A tarefa atual possui Template, Protocolo ou Procedimento Oficial?
+
+Se SIM na última verificação → revisar obrigatoriamente a seção correspondente do PROJECT_BOOTSTRAP.md antes de executar a tarefa.
 
 Sem evidência objetiva, executar o plano vigente. Backlog ativo nunca é omitido automaticamente.
 
@@ -171,18 +180,60 @@ Toda resposta operacional deve terminar com:
 📋 Pendências
     Listar pendências abertas da sprint atual e Backlog Estratégico ativo.
 ❤️ Saúde do Chat
-    Estado da conversa, próximos passos imediatos.
+    Status: 🟢 Saudável
 ```
 
-### Objetivo de Cada Bloco
+O bloco **❤️ Saúde do Chat** deve seguir o formato de classificação abaixo.
 
-| Bloco | Objetivo |
-|-------|----------|
-| 📊 Auditoria da Sprint | Avaliar entregas, descobertas e classificar |
-| 📋 Pendências | Registrar o que ainda precisa ser feito |
-| ❤️ Saúde do Chat | Estado da conversa e próximos passos |
+### Formato do ❤️ Saúde do Chat
 
-> O Ritual é obrigatório e inomitível em toda Entrega Relevante (OP-002).
+**🟢 Saudável** — todos os indicadores na normalidade:
+
+```
+❤️ Saúde do Chat
+
+Status: 🟢 Saudável
+```
+
+**🟡 Atenção** — um ou mais indicadores com risco moderado. Exibir apenas os que justificam:
+
+```
+❤️ Saúde do Chat
+
+Status: 🟡 Atenção
+
+• <indicador 1>
+• <indicador 2>
+```
+
+**🔴 Crítico** — evidências de perda de confiabilidade. Exibir apenas os responsáveis:
+
+```
+❤️ Saúde do Chat
+
+Status: 🔴 Crítico
+
+• <indicador responsável>
+• Recomenda-se iniciar um novo chat.
+```
+
+### Indicadores de Classificação
+
+| # | Indicador | O que avaliar |
+|---|-----------|---------------|
+| 1 | Continuidade lógica | Contradições, perda de contexto, repetições anormais |
+| 2 | Carga operacional | Quantidade de mensagens, volume de contexto acumulado |
+| 3 | Integridade metodológica | Pendências Persistentes preservadas, protocolos respeitados, templates usados |
+| 4 | Integridade arquitetural | Propostas incompatíveis com decisões existentes, reconstrução desnecessária |
+| 5 | Necessidade de reinicialização | Evidências de que novo chat reduziria risco operacional |
+
+### Regras
+
+- 🟢 usar quando todos os indicadores estiverem normais
+- 🟡 usar quando houver risco moderado em ≥1 indicador
+- 🔴 usar quando houver evidência objetiva de perda de confiabilidade
+- Apenas indicadores responsáveis pelo status devem ser exibidos
+- O Ritual é obrigatório e inomitível em toda Entrega Relevante (OP-002)
 
 ## Templates Oficiais
 
@@ -221,6 +272,24 @@ Não gerar RCF. Executar alterações e confirmar.
 ### Pacotes de Sincronização (PS)
 
 Usar para criar novo PS. Seguir `PS_TEMPLATE.md`. Sempre verificar antes se existe BK compatível no Strategic Backlog (IA-030).
+
+### Engineering Work Order (EWO)
+
+Usar para enviar ordens operacionais ao OpenCode baseadas em PI aprovadas.
+
+Referenciar obrigatoriamente uma ou mais PI em estado **Approved** com a versão específica (`PI-XXX vX.X`).
+
+A EWO não pode criar arquitetura; apenas executa especificações aprovadas.
+
+Estrutura: identificação, PI(s) referenciada(s) com versão, objetivo, escopo, restrições, arquivos previstos, critérios de aceite, relatório obrigatório, observações.
+
+### Engineering Review (ER)
+
+Usar para revisar tecnicamente a implementação após execução da EWO.
+
+A ER não altera arquitetura; apenas valida aderência à PI.
+
+Estrutura: conformidade com PI, respeito a contratos arquiteturais, avaliação de regressão, complexidade, observações, melhorias, aprovação final.
 
 ### Checklist Vinculado (OP-010)
 
@@ -264,6 +333,18 @@ Melhorias observadas durante execução que não pertencem ao escopo atual. Regi
 
 Toda sugestão deve ser classificada em uma única categoria: Correção, Otimização, Simplificação, Refatoração, Documentação, Governança ou Arquitetura.
 
+### Verificação Pré-EWO
+
+Antes de gerar qualquer EWO, verificar obrigatoriamente:
+
+- existência da PI referenciada com versão específica (`PI-XXX vX.X`)
+- status **Approved** da PI
+- versão vigente da PI
+- ausência de PI mais recente que substitua a referenciada
+- materialização não altera conteúdo arquitetural da PI (IA-033)
+
+Qualquer condição não atendida → interromper a implementação.
+
 ## Gestão do Backlog
 
 ```
@@ -280,6 +361,64 @@ Implementação
 Atualização do BK (Concluído / Arquivado)
 ```
 
+## Gatilhos Operacionais (IA-032)
+
+Determinadas tarefas exigem reconsulta obrigatória ao `PROJECT_BOOTSTRAP.md` antes da execução.
+
+### Prompt OpenCode
+
+Antes de gerar qualquer Prompt para o OpenCode:
+
+- Revisar obrigatoriamente o Template Oficial de Prompt.
+- Confirmar que toda a estrutura obrigatória está sendo seguida.
+
+### Pacote de Sincronização
+
+Antes de gerar qualquer PS:
+
+- Revisar o template oficial correspondente.
+
+### Alterações Metodológicas
+
+Antes de propor qualquer alteração de Runtime, Governança, Protocolos ou Engenharia:
+
+- Revisar as seções correspondentes do `PROJECT_BOOTSTRAP.md`.
+- Confirmar que a proposta não duplica uma regra já existente.
+
+### Alterações Arquiteturais
+
+Antes de propor alterações arquiteturais:
+
+- Revisar as decisões arquiteturais disponíveis no bootstrap.
+- Caso exista dúvida ou informação insuficiente, interromper a inferência e solicitar a `DOCUMENTACAO_COMPLETA.md`, o documento específico relacionado ao tema ou o ZIP do projeto, conforme o protocolo de escalonamento documental.
+
+Nunca reconstruir arquitetura por hipótese quando houver possibilidade de existir documentação oficial.
+
+### Gestão de Pendências
+
+Antes de atualizar o bloco de Pendências:
+
+- Revisar as regras de gestão de pendências.
+- Garantir que Pendências Persistentes nunca sejam removidas por engano.
+- Garantir a separação entre Pendências Persistentes e Pendências da Conversa.
+- Verificar se existe backlog estratégico ativo — nunca declarar "Nenhum item identificado" quando houver.
+
+### Materialização de Pl
+
+Antes de materializar uma Pl no repositório:
+
+- Confirmar que a Pl foi criada e aprovada pelo ChatGPT (Arquiteto do Projeto), não pelo OpenCode.
+- A materialização não pode alterar conteúdo arquitetural da Pl.
+- Se o conteúdo arquitetural não estiver completo, interromper a materialização e registrar pendência.
+
+### Ritual de Encerramento
+
+Antes de gerar o encerramento da resposta:
+
+- Revisar o protocolo OP-002.
+- Garantir que todos os blocos obrigatórios estejam presentes.
+- Garantir que a estrutura siga o padrão oficial.
+
 ## Ordem de Precedência
 
 ```
@@ -292,19 +431,70 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 ## Próximo Passo Operacional
 
-### Engineering N1 — PI-001 Interpretation Layer
+### PI-001 v1.0 — Interpretation Layer (Approved)
 
 | Campo | Valor |
 |-------|-------|
-| Nome | PI-001 — Interpretation Layer |
+| Identificador | PI-001 |
+| Versão | v1.0 (Approved) |
+| Status | Approved |
+| Documento | `architecture-lab/PI-001.md` |
 | Objetivo | Projetar a primeira especificação de engenharia responsável por interpretar as intenções do usuário e transformá-las em operações internas do sistema, estabelecendo a ponte entre a interação do usuário e os componentes centrais da arquitetura |
 | Motivação | Iniciar oficialmente a fase de Engineering através da criação do primeiro artefato canônico de implementação, preservando a rastreabilidade entre Arquitetura, Engineering e Código |
 | Entregável esperado | Documento canônico PI-001 contendo toda a especificação necessária para implementação da camada de interpretação |
-| Estrutura mínima esperada | 1. Objetivo — 2. Motivação — 3. Problema que resolve — 4. Escopo — 5. Fora do escopo — 6. Requisitos Funcionais — 7. Requisitos Não Funcionais — 8. Arquitetura Geral — 9. Pipeline de Interpretação — 10. Componentes — 11. Interfaces — 12. Fluxo de Dados — 13. Dependências — 14. Critérios de Prontidão — 15. Critérios de Conclusão — 16. Estratégia de Implementação — 17. Riscos — 18. Evidências Esperadas — 19. Histórico |
+| Estrutura | 26 seções: Objetivo, Motivação, Problema, Responsabilidade, Escopo, Fora do Escopo, Critérios de Conclusão, Princípios (5), Fluxo Geral, Contrato de Entrada, Contrato de Saída, Garantias, Invariantes (6), Interfaces, Dependências, Regras Operacionais (6), Tratamento de Falhas, Casos Limite (7), Restrições (5), Critérios de Aceite (7), Impacto, Extensibilidade, Diretrizes (6), Riscos, Critérios de Aprovação, Histórico |
 | Resultado esperado | Especificação completa, consistente e aprovada, servindo como base oficial para a implementação da camada de interpretação |
-| Critério de conclusão | PI-001 documentado, validado metodologicamente e pronto para iniciar a implementação do código |
+| Próximo passo | EWO-001 autorizada (adiada — ver Engineering Outlook) |
 
 > **Resumo Operacional Canônico:** Este resumo deve conter informações suficientes para que uma nova IA consiga iniciar corretamente a etapa sem consultar outros documentos.
+
+## Engineering Outlook
+
+### Próxima PI
+
+**ID:** PI-002
+
+**Título:** Canonical Investment Model
+
+**Objetivo:** Definir o modelo canônico de representação dos investimentos do sistema, estabelecendo uma estrutura única, extensível e independente da origem dos dados.
+
+**Escopo previsto:**
+
+- Modelo unificado para todos os tipos de investimentos.
+- Identidade canônica dos ativos.
+- Contratos fundamentais.
+- Estrutura de normalização.
+- Compatibilidade com a Interpretation Layer (PI-001).
+- Suporte ao mercado brasileiro.
+- Preparação para mercados internacionais.
+- Preparação para múltiplas moedas.
+- Extensibilidade para novos instrumentos financeiros.
+- Independência da origem dos dados.
+
+**Dependências:** PI-001 Approved.
+
+**Resultado esperado:** PI-002 Draft concluída.
+
+**Observações:**
+
+- Não iniciar implementação de código.
+- A PI-002 deverá utilizar a PI-001 como documento arquitetural base.
+
+**Prioridade Arquitetural:**
+
+A aprovação de uma PI autoriza sua implementação, mas não determina sua execução imediata.
+
+A ordem efetiva de execução é definida pelo Engineering Outlook. A estratégia oficial do projeto estabelece que a arquitetura do Engineering N1 deve ser consolidada antes do início da implementação.
+
+Consequentemente:
+
+- PI-002 (Canonical Investment Model) possui prioridade arquitetural sobre EWO-001.
+- EWO-001 permanece autorizada, porém adiada por decisão arquitetural.
+- A implementação será iniciada somente após a consolidação da arquitetura prevista para o Engineering N1, salvo decisão formal em sentido contrário.
+
+O fluxo metodológico PI → EWO → Implementação → ER permanece inalterado. O ajuste refere-se exclusivamente à prioridade temporal das atividades.
+
+> **Fonte Canônica:** O Engineering Outlook representa apenas o planejamento da próxima etapa da engenharia. Ele não substitui PI, Strategic Backlog, Constituição ou Methodology. Após a conclusão da próxima PI, este bloco deverá ser atualizado para refletir a etapa seguinte.
 
 ## Contrato de Execução
 
@@ -318,6 +508,46 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.12
+
+Prioridade Arquitetural. Engineering Outlook esclarecido: PI aprovada não implica implementação imediata. PI-002 definida como prioridade arquitetural sobre EWO-001. AI_OPERATION_CHECKLIST atualizado.
+
+## v2.11
+
+ER-001 concluída. PI-001 promovida a v1.0 (Approved). Próximo passo: EWO-001 → Implementação.
+
+## v2.10
+
+Engineering Outlook (EO-001) adicionado. Seção padronizada para planejamento da próxima PI (PI-002 — Canonical Investment Model). AI_OPERATION_CHECKLIST atualizado com verificação de alinhamento ao EO.
+
+## v2.9
+
+Classificação Arquitetural. BK-006 e BK-007 adicionados ao Backlog. Universalidade e Multi-Mercado registrados como Princípios Arquiteturais na Constituição. IA-036 referenciado.
+
+## v2.8
+
+Consolidação Metodológica. Verificação Pré-EWO atualizada com materialização (IA-033). Gatilho de Materialização de PI adicionado. Gestão de Pendências atualizada com regra de backlog. Papeis das Ferramentas sincronizados com DEVELOPMENT_METHODOLOGY.md v2.2.
+
+## v2.7
+
+PI-001 v0.1 (Draft) criada e registrada. Próximo Passo atualizado com versão, status e documento. Dashboard atualizado com PI Atual.
+
+## v2.6
+
+Versionamento e Imutabilidade das PI. EWO passa a exigir versão específica da PI. Verificação Pré-EWO atualizada com versão.
+
+## v2.5
+
+Fluxo de Engenharia (PI → EWO → ER) integrado ao Runtime. Templates EWO e ER adicionados. Verificação Pré-EWO registrada. Próximo Passo vinculado ao ciclo de vida de PI.
+
+## v2.4
+
+OP-002 consolidado como Fonte Canônica exclusiva da ❤️ Saúde do Chat. Princípio da Fonte Canônica aplicado: cópia removida do DEVELOPMENT_METHODOLOGY.md.
+
+## v2.3
+
+OP-002 evoluído: ❤️ Saúde do Chat com formato padronizado (🟢🟡🔴) e 5 indicadores de classificação. IA-031 Gatilhos renumerado para IA-032. Referências sincronizadas.
 
 ## v2.1
 

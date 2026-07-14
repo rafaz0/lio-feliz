@@ -4,13 +4,13 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.5
+**Versão:** 1.14
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 12/07/2026
+**Última atualização:** 13/07/2026
 
 ---
 
@@ -30,6 +30,9 @@ Antes de responder, verificar:
 - [ ] Existe algum item registrado no Backlog Estratégico?
 - [ ] Existe melhoria aprovada ainda não registrada no Strategic Backlog?
 - [ ] Existe BK compatível antes da criação deste PS?
+- [ ] A tarefa atual possui Template, Protocolo ou Procedimento Oficial?
+
+Se SIM → revisar obrigatoriamente a seção correspondente do PROJECT_BOOTSTRAP.md antes de executar a tarefa.
 
 Caso não exista evidência objetiva, priorizar a execução do plano vigente.
 
@@ -89,10 +92,42 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 
 ---
 
+## Fluxo de Engenharia (PI → EWO → ER)
+
+- [ ] Antes de gerar EWO: PI existe, está Approved, versão vigente, sem PI mais recente?
+- [ ] Implementação segue integralmente a PI referenciada?
+- [ ] Materialização não altera conteúdo arquitetural da PI? (IA-033)
+- [ ] A PI a ser usada como base possui documento oficial, versão e status válido? (IA-034)
+
 ## Continuidade Arquitetural (IA-031)
 
 - [ ] A próxima etapa oficial possui Resumo Operacional Canônico no PROJECT_BOOTSTRAP.md?
 - [ ] Caso não possua: registrar pendência e impedir o encerramento definitivo da etapa até que o resumo seja criado e incorporado
+
+## Materialização de Documentos (IA-033)
+
+- [ ] A PI foi criada pelo ChatGPT (Arquiteto do Projeto), não pelo OpenCode?
+- [ ] A materialização preserva o conteúdo arquitetural original sem alterações?
+
+## Limites de Responsabilidade (IA-035)
+
+- [ ] Estou validando apenas informações disponíveis no meu contexto?
+- [ ] Não estou reconstruindo decisões arquiteturais ausentes?
+- [ ] Não estou criando arquitetura por inferência?
+
+## Engineering Outlook (EO-001)
+
+- [ ] A tarefa atual corresponde à próxima etapa descrita no Engineering Outlook?
+- [ ] Caso negativo: reconsultar o PROJECT_BOOTSTRAP.md antes da execução.
+- [ ] A existência de uma PI aprovada não implica início automático da implementação.
+- [ ] Antes de iniciar qualquer EWO, verificar se o Engineering Outlook define outra prioridade arquitetural.
+
+## Classificação de Decisões Estratégicas (IA-036)
+
+- [ ] A decisão estratégica foi classificada em exatamente uma categoria?
+- [ ] Categoria: Princípio Arquitetural / PI / Strategic Backlog / Documento Metodológico?
+- [ ] Foi registrada na Fonte Canônica adequada?
+- [ ] Não permaneceu exclusivamente na memória da conversa?
 
 ## Checklist Vinculado (OP-010)
 
@@ -112,6 +147,42 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 ---
 
 # Histórico
+
+### Versão 1.14
+
+Prioridade Arquitetural. EO-001 esclarecido: PI aprovada não implica implementação imediata. Verificação de prioridade antes de EWO adicionada. Compatibilidade com PROJECT_BOOTSTRAP.md v2.12.
+
+### Versão 1.13
+
+Engineering Outlook (EO-001). Adicionada verificação de alinhamento ao Engineering Outlook. Compatibilidade com PROJECT_BOOTSTRAP.md v2.10.
+
+### Versão 1.12
+
+Classificação Arquitetural. Adicionada verificação de classificação de decisões estratégicas (IA-036). Compatibilidade com DEVELOPMENT_METHODOLOGY.md v2.3.
+
+### Versão 1.11
+
+Consolidação Metodológica. Adicionadas verificações de materialização (IA-033), dependência entre PI (IA-034) e limites de responsabilidade (IA-035). Compatibilidade com DEVELOPMENT_METHODOLOGY.md v2.2.
+
+### Versão 1.10
+
+PI-001 v0.1 (Draft) materializada. Compatibilidade com Bootstrap v2.7.
+
+### Versão 1.9
+
+Verificação Pré-EWO atualizada: PI deve ser referenciada com versão específica (PI-XXX vX.X). Compatibilidade com v2.1.
+
+### Versão 1.8
+
+Fluxo de Engenharia (PI → EWO → ER). Seção de verificação pré-EWO adicionada. Compatibilidade com DEVELOPMENT_METHODOLOGY.md v2.0.
+
+### Versão 1.7
+
+OP-002 evoluído (GS-001.1). IA-031 Gatilhos Operacionais renumerado para IA-032. Referência no histórico corrigida.
+
+### Versão 1.6
+
+IA-026 expandida: nova verificação "A tarefa atual possui Template, Protocolo ou Procedimento Oficial?" adicionada. IA-032 Gatilhos Operacionais refletidos.
 
 ### Versão 1.5
 

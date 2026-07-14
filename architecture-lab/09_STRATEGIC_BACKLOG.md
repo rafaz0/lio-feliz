@@ -2,13 +2,13 @@
 
 **Documento:** 09_STRATEGIC_BACKLOG.md
 
-**Versão:** 0.10
+**Versão:** 0.11
 
 **Maturidade:** N0 — Ideia
 
 **Status:** Em Descoberta
 
-**Última atualização:** 12/07/2026
+**Última atualização:** 13/07/2026
 
 ---
 
@@ -37,6 +37,34 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 | Prioridade | Baixa |
 | Bloqueios | Nenhum |
 | Critério de revisão | Após estabilização do Engineering N1. Não implementar neste PS. |
+
+---
+
+## BK-006 — Licensing & Feature Access Layer
+
+| Campo | Valor |
+|-------|-------|
+| Estado | Proposto |
+| Descrição | Camada de licenciamento e controle de acesso a funcionalidades planos, assinatura, licenciamento e controle de funcionalidades |
+| Motivação | Formalizar evolução futura da arquitetura para suportar comercialização |
+| Benefícios | Arquitetura preparada para modelo de negócio sem reestruturação |
+| Prioridade | Média |
+| Bloqueios | Nenhum |
+| Critério de revisão | Após estabilização do Engineering N1 e definição do modelo de negócio. |
+
+---
+
+## BK-007 — Comercialização
+
+| Campo | Valor |
+|-------|-------|
+| Estado | Proposto |
+| Descrição | Suporte a planos, assinatura, licenciamento e controle de funcionalidades para comercialização do sistema |
+| Motivação | Registrar oficialmente a preparação arquitetural para modelo de negócio |
+| Benefícios | Arquitetura preparada para comercialização sem reestruturação |
+| Prioridade | Média |
+| Bloqueios | Nenhum |
+| Critério de revisão | Após definição do modelo de negócio e estabilização do Engineering N1. |
 
 ---
 
@@ -99,6 +127,10 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 ---
 
 # Histórico
+
+## v0.11
+
+Classificação Arquitetural. BK-006 (Licensing & Feature Access Layer) e BK-007 (Comercialização) registrados como Strategic Backlog. Universalidade e Multi-Mercado classificados como Princípios Arquiteturais na Constituição.
 
 ## v0.10
 

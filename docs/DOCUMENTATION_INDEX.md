@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.12
+**Versão da Documentação:** 1.22
 
 **Status:** APROVADO
 
-**Última atualização:** 12/07/2026
+**Última atualização:** 13/07/2026
 
 ---
 
@@ -191,6 +191,12 @@ Repositório oficial de melhorias estratégicas aprovadas para implementação f
 
 ---
 
+📄 PI-001.md (architecture-lab)
+
+Engineering Specification oficial da Interpretation Layer. v0.1 (Draft). Fonte Canônica de engenharia da camada de interpretação.
+
+---
+
 📄 DOCUMENTACAO_COMPLETA.md
 
 Artefato derivado. Consolidação da documentação para leitura e consulta. Fonte de verdade são os documentos individuais.
@@ -292,6 +298,48 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.22
+
+- Ajuste Metodológico — Prioridade Arquitetural. PI-002 antes de EWO-001. Bootstrap v2.12.
+
+## Versão 1.21
+
+- ER-001 — Engineering Review aprovada. PI-001 v1.0 Approved. Bootstrap v2.11.
+
+## Versão 1.20
+
+- Engineering Outlook (EO-001). Seção padronizada de planejamento da próxima PI no Bootstrap. Bootstrap v2.10.
+
+## Versão 1.19
+
+- Consolidação Arquitetural — Classificação das Decisões Estratégicas. Universalidade e Multi-Mercado como Princípios Arquiteturais. BK-006 e BK-007. IA-036. DEVELOPMENT_METHODOLOGY.md v2.3. Bootstrap v2.9.
+
+## Versão 1.18
+
+- Consolidação Metodológica — Governança das PI e Gestão de Backlog. Papéis das Ferramentas formalizados. IA-033/034/035. DEVELOPMENT_METHODOLOGY.md v2.2. Bootstrap v2.8.
+
+## Versão 1.17
+
+- PI-001 v0.1 (Draft) — Interpretation Layer materializada. Bootstrap v2.7.
+
+## Versão 1.16
+
+## Versão 1.15
+
+- Versionamento e Imutabilidade das PI. DEVELOPMENT_METHODOLOGY.md v2.1.
+
+## Versão 1.14
+
+- Fluxo de Engenharia (PI → EWO → ER) formalizado. DEVELOPMENT_METHODOLOGY.md v2.0.
+
+## Versão 1.13
+
+- OP-002 consolidado como Fonte Canônica exclusiva da ❤️ Saúde do Chat.
+
+## Versão 1.12
+
+- OP-002 evoluído (GS-001.1). ❤️ Saúde do Chat classificado 🟢🟡🔴. IA-031 Gatilhos renumerado para IA-032.
 
 ## Versão 1.11
 

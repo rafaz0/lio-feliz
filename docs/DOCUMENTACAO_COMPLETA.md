@@ -4,17 +4,17 @@
 
 **Documento:** DOCUMENTACAO_COMPLETA.md
 
-**Versão:** 1.10
+**Versão:** 1.20
 
 **Status:** Artefato Derivado
 
-**Última atualização:** 12/07/2026
+**Última atualização:** 13/07/2026
 
 ---
 
 > **Aviso:** Este é um artefato derivado gerado para leitura e consulta. A fonte de verdade é a documentação individual na Fonte Canônica (`docs/`, `architecture-lab/`, `project-context/`). Em caso de divergência, prevalecem os documentos individuais.
 
-> **Inicialização rápida:** Utilize `PROJECT_BOOTSTRAP.md` (v2.1) como Runtime Operacional. Este documento (`DOCUMENTACAO_COMPLETA.md`) é a Fonte Canônica para consulta quando necessário.
+> **Inicialização rápida:** Utilize `PROJECT_BOOTSTRAP.md` (v2.8) como Runtime Operacional. Este documento (`DOCUMENTACAO_COMPLETA.md`) é a Fonte Canônica para consulta quando necessário.
 
 ---
 
@@ -222,6 +222,26 @@ Em caso de divergência, prevalece o documento de maior precedência.
 ---
 
 # Histórico
+
+### Versão 1.14
+
+PI-001 v0.1 (Draft) materializada. Bootstrap v2.7.
+
+### Versão 1.13
+
+Versionamento e Imutabilidade das PI. DEVELOPMENT_METHODOLOGY.md v2.1. Bootstrap v2.6.
+
+### Versão 1.12
+
+Fluxo de Engenharia (PI → EWO → ER) formalizado. DEVELOPMENT_METHODOLOGY.md v2.0. Bootstrap v2.5.
+
+### Versão 1.11
+
+OP-002 estabelecido como Fonte Canônica exclusiva da ❤️ Saúde do Chat. Bootstrap v2.4.
+
+### Versão 1.10
+
+OP-002 evoluído (GS-001.1). ❤️ Saúde do Chat com formato classificado 🟢🟡🔴. IA-031 Gatilhos renumerado para IA-032. Bootstrap v2.3.
 
 ### Versão 1.9
 

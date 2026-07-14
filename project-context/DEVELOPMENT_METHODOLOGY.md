@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 1.9
+**Versão:** 2.3
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsáveis:** Rafael Santos + IA
 
-**Última atualização:** 12/07/2026
+**Última atualização:** 13/07/2026
 
 ---
 
@@ -311,6 +311,54 @@ Quando um BK for implementado, atualizar automaticamente o Strategic Backlog.
 
 BKs obsoletos não devem ser removidos; devem ser arquivados com justificativa.
 
+**IA-033 — Materialização das Pl**
+
+As decisões arquiteturais que originam uma Pl são elaboradas externamente (ChatGPT/Arquiteto do Projeto) durante o planejamento arquitetural.
+
+O OpenCode não é autor das Pl. Sua responsabilidade é exclusivamente materializar uma Pl previamente aprovada, registrando-a como documento oficial no repositório.
+
+A materialização não poderá alterar conteúdo arquitetural da Pl. Qualquer divergência arquitetural identificada durante a materialização deverá ser registrada como Oportunidade Futura e tratada em nova versão da Pl, nunca alterada durante a materialização.
+
+**IA-034 — Regra de Dependência entre Pl**
+
+Uma Pl somente poderá servir de base para outra Pl quando atender cumulativamente a:
+
+- existir como documento oficial no repositório (arquivo físico);
+- possuir versão identificada (ex.: v1.0);
+- possuir status válido conforme metodologia (Draft, Review, Approved, Implementation, Completed, Validated).
+
+Pl sem documento oficial, versão ou status não poderá ser referenciada como base para nova Pl.
+
+**IA-035 — Limites de Responsabilidade da lA**
+
+Uma IA somente poderá validar informações que estejam disponíveis em seu contexto.
+
+O OpenCode pode:
+
+- validar consistência documental;
+- validar sincronização;
+- validar implementação.
+
+O OpenCode não pode:
+
+- reconstruir decisões arquiteturais;
+- descobrir decisões tomadas apenas em conversas;
+- criar arquitetura por inferência.
+
+**IA-036 — Classificação de Decisões Estratégicas**
+
+Toda decisão estratégica do projeto deverá ser classificada em exatamente uma das categorias abaixo:
+
+**Princípio Arquitetural** — Verdade fundamental da arquitetura. Registrada na Constituição Arquitetural (`00_CONSTITUTION.md`).
+
+**Pl** — Especificação de engenharia. Registrada como documento PI no `architecture-lab/`.
+
+**Strategic Backlog** — Melhoria futura aprovada. Registrada no `09_STRATEGIC_BACKLOG.md`.
+
+**Documento Metodológico** — Regra de metodologia, governança ou operação. Registrada no documento metodológico correspondente.
+
+Nenhuma decisão estratégica poderá permanecer exclusivamente na memória das conversas. Toda decisão deve ser registrada em sua Fonte Canônica antes do encerramento da etapa.
+
 ---
 
 # 8. Protocolos de Governança
@@ -422,6 +470,10 @@ Toda Entrega Relevante deverá obrigatoriamente encerrar utilizando exatamente a
 
 ❤️ Saúde do Chat
 
+O formato classificado (🟢🟡🔴), os indicadores e as regras de classificação da **❤️ Saúde do Chat** são definidos exclusivamente pelo `PROJECT_BOOTSTRAP.md` (seção Ritual Obrigatório de Encerramento, sob o protocolo OP-002).
+
+O OP-002 é a única fonte canônica. Nenhum outro documento deve conter cópias independentes desta definição. Alterações devem ser realizadas exclusivamente no OP-002.
+
 Este ritual torna-se parte oficial da metodologia. Não poderá ser omitido por interpretação da IA.
 
 ### OP-003 — Formato Visual Padronizado
@@ -504,6 +556,14 @@ Toda oportunidade futura aprovada durante auditorias deverá ser registrada ofic
 
 Representa apenas a sequência planejada do projeto. Não substitui Pendências nem Backlog Estratégico.
 
+### 4 — Melhorias Metodológicas
+
+Melhorias na metodologia do projeto identificadas durante a sprint. Devem ser registradas separadamente das Pendências da Sprint e do Backlog Estratégico.
+
+A Auditoria da Sprint deve distinguir obrigatoriamente entre as quatro categorias acima.
+
+Não é permitido utilizar "Nenhum item identificado" ou equivalente quando existir backlog estratégico previamente registrado no Strategic Backlog. A existência do backlog deve ser reconhecida mesmo quando nenhum item novo foi adicionado. A auditoria deve informar "backlog atualizado" ou "backlog inalterado".
+
 ### Ciclo de Vida dos BK
 
 Todo BK deverá seguir o ciclo de vida abaixo:
@@ -544,7 +604,220 @@ Sempre prevalece o documento de maior precedência.
 
 ---
 
-# 10. Painel Operacional e Indicadores
+# 10. Fluxo de Engenharia (PI → EWO → ER)
+
+### 10.1 Engineering Specification (PI)
+
+Toda PI aprovada é um **Contrato Oficial de Implementação**.
+
+Após **Approved**, a PI torna-se a única Fonte Canônica de Engenharia daquela funcionalidade. Toda implementação deve segui-la integralmente. Nenhum prompt pode substituir, resumir ou reinterpretar decisões arquiteturais da PI.
+
+#### Versionamento Oficial
+
+Toda PI deve possuir:
+
+- **Identificador** (ex.: PI-001)
+- **Versão** (ex.: v1.0)
+- **Status** (conforme ciclo de vida)
+- **Data da versão**
+- **Histórico resumido** de alterações
+
+A versão integra oficialmente a identidade da PI. Exemplo: `PI-001 v1.0`.
+
+#### Ciclo de Vida
+
+```
+Draft
+  ↓
+Review
+  ↓
+Approved
+  ↓
+Implementation
+  ↓
+Completed
+  ↓
+Validated
+```
+
+#### Regras de Transição
+
+- **Draft → Review:** PI completa, elegível para revisão.
+- **Review → Approved:** Aprovada após revisão técnica. A partir deste estado, implementações podem iniciar.
+- **Approved → Implementation:** EWO criada referenciando a PI.
+- **Implementation → Completed:** Implementação finalizada conforme a PI.
+- **Completed → Validated:** Engineering Review aprovada.
+
+#### Imutabilidade após Approved
+
+Ao atingir **Approved**, a PI torna-se imutável.
+
+Nenhuma alteração arquitetural pode ser realizada nessa versão. Caso necessária, criar nova versão da PI. A versão anterior aprovada permanece preservada para auditoria e rastreabilidade.
+
+Implementações somente podem iniciar quando a PI estiver em **Approved**.
+
+---
+
+### 10.2 Engineering Work Order (EWO)
+
+A EWO é a ordem operacional enviada ao OpenCode.
+
+Ela referencia obrigatoriamente uma ou mais PI aprovadas.
+
+**A EWO não pode criar arquitetura.** Ela apenas executa especificações previamente aprovadas.
+
+#### Template Oficial da EWO
+
+```
+# EWO-XXX
+
+**Base de Engenharia:** PI-XXX vX.X
+**Objetivo:** [o que deve ser feito]
+**Escopo:** [limites da implementação]
+**Restrições:** [o que não pode ser feito]
+**Arquivos previstos:** [lista de arquivos]
+**Critérios de aceite:** [condições para aprovação]
+**Relatório obrigatório:** [sim/não]
+**Observações:** [informações adicionais]
+```
+
+---
+
+### 10.3 Engineering Review (ER)
+
+A ER é a revisão técnica realizada após a implementação.
+
+**A ER não altera arquitetura.** Ela apenas valida aderência à PI.
+
+#### Template Oficial da ER
+
+```
+# ER-XXX
+
+**PI Referenciada:** PI-XXX vX.X
+**EWO Referenciada:** EWO-XXX
+
+**Conformidade com a PI:** [atende/não atende]
+**Respeito aos contratos arquiteturais:** [sim/não]
+**Avaliação de regressão:** [baixa/média/alta]
+**Complexidade:** [baixa/média/alta]
+**Observações técnicas:** [descrição]
+**Melhorias sugeridas:** [lista]
+**Aprovação final:** [aprovada/reprovada]
+```
+
+---
+
+### 10.4 Fluxo Oficial de Engenharia
+
+```
+Necessidade
+  ↓
+Arquitetura
+  ↓
+PI
+  ↓
+Review
+  ↓
+Approved
+  ↓
+EWO
+  ↓
+Implementação
+  ↓
+Auditoria da Sprint
+  ↓
+Engineering Review
+  ↓
+Validação
+  ↓
+Baseline
+```
+
+---
+
+### 10.5 Fontes Canônicas
+
+- **PROJECT_BOOTSTRAP.md:** Fonte Canônica da metodologia operacional.
+- **PI (estado Approved):** Fonte Canônica da engenharia daquela funcionalidade. A versão específica é parte integrante da Fonte Canônica.
+- **EWO:** Sem autoridade arquitetural. Apenas referência PI aprovadas.
+- **ER:** Não altera arquitetura. Apenas valida aderência.
+
+---
+
+### 10.6 Rastreabilidade Histórica
+
+Cada implementação deve ser vinculada de forma inequívoca à versão da PI que serviu como sua Fonte Canônica. A EWO deve referenciar explicitamente `PI-XXX vX.X`. Não é permitido referenciar apenas o identificador da PI.
+
+Isso garante que auditorias futuras consigam identificar exatamente qual especificação originou determinada implementação.
+
+### 10.7 Regras Operacionais
+
+Antes de gerar qualquer EWO, a IA deverá verificar obrigatoriamente:
+
+- existência da PI referenciada com versão específica (`PI-XXX vX.X`);
+- status **Approved** da PI;
+- versão vigente da PI;
+- ausência de PI mais recente que substitua a referenciada.
+
+Qualquer condição não atendida → interromper a implementação.
+
+---
+
+### 10.7 Compatibilidade com Protocolos Existentes
+
+| Protocolo | Compatibilidade |
+|-----------|----------------|
+| OP-002 | ER substitui auditoria de engenharia; ritual mantido |
+| OP-010 | Novo protocolo deve atualizar AI_OPERATION_CHECKLIST.md |
+| OP-012 | EWO não substitui BK; são complementares |
+| IA-026 | EWO dispara Autoverificação antes da geração |
+| IA-032 | Gatilho de Prompt inclui verificação de PI na EWO |
+
+Nenhuma duplicação de regras existentes. Referências cruzadas utilizadas quando apropriado.
+
+### 10.8 Papeis das Ferramentas
+
+O fluxo de engenharia do Lio Feliz reconhece dois papeis complementares:
+
+#### ChatGPT (Arquiteto do Projeto)
+
+Responsável por:
+
+- Arquitetura
+- Engenharia de requisitos
+- Pls (criação e aprovação)
+- Decisões estruturais
+- Evolução metodológica
+- Planejamento
+
+#### OpenCode (Engenheiro de Implementação)
+
+Responsável por:
+
+- Materialização documental
+- Implementação de código
+- Sincronização
+- Refatoração
+- Auditoria técnica
+- Validação de consistência do repositório
+
+> **Observação:** Esses papéis representam responsabilidades dentro do fluxo de trabalho deste projeto, e não capacidades gerais das ferramentas. A documentação descreve o processo específico adotado pelo Lio Feliz, sem fazer afirmações universais sobre o que cada ferramenta pode ou não fazer em outros contextos.
+
+### 10.9 Integração com o Strategic Backlog
+
+O arquivo `architecture-lab/09_STRATEGIC_BACKLOG.md` é a Fonte Canônica para backlog estratégico do projeto.
+
+A Auditoria da Sprint deverá informar apenas:
+
+- backlog atualizado;
+- ou backlog inalterado.
+
+Nunca deverá sugerir inexistência de backlog quando ele existir no Strategic Backlog.
+
+---
+
+# 11. Painel Operacional e Indicadores
 
 ### Layout Oficial do Painel
 
@@ -622,7 +895,7 @@ A fórmula utilizada para cálculo de cada percentual do Dashboard deverá ser r
 
 ---
 
-# 11. Auditoria de Sprint
+# 12. Auditoria de Sprint
 
 Este fluxo deverá ser executado sempre antes de qualquer sincronização com o OpenCode.
 
@@ -662,9 +935,13 @@ Atualização do Projeto
 
 **Atualização do Projeto:** O prompt é executado, e o projeto é atualizado.
 
+### Categorias da Auditoria
+
+A Auditoria da Sprint deve observar as categorias oficiais definidas no OP-012 (Classificação Oficial das Pendências), distinguindo obrigatoriamente entre Pendências da Sprint, Backlog Estratégico, Fila de Execução e Melhorias Metodológicas.
+
 ---
 
-# 12. Evoluções Planejadas
+# 13. Evoluções Planejadas
 
 ### DOMAIN_CONCEPTS.md
 
@@ -680,7 +957,31 @@ Será criado após estabilização do domínio principal.
 
 ---
 
-# 13. Histórico
+# 14. Histórico
+
+### Versão 2.3
+
+IA-036 (Classificação de Decisões Estratégicas) adicionado. Categorias oficiais: Princípio Arquitetural, PI, Strategic Backlog, Documento Metodológico. Nenhuma decisão pode permanecer exclusivamente na memória das conversas.
+
+### Versão 2.2
+
+Papéis das Ferramentas formalizados (ChatGPT como Arquiteto do Projeto, OpenCode como Engenheiro de Implementação). IA-033 (Materialização das PI), IA-034 (Regra de Dependência entre PI), IA-035 (Limites de Responsabilidade da IA) adicionados em §7. OP-012 atualizado com 4ª categoria (Melhorias Metodológicas) e regra de reconhecimento obrigatório do backlog. §10.8 (Papéis das Ferramentas) e §10.9 (Integração com Strategic Backlog) adicionados. §12 atualizado com referência ao OP-012.
+
+### Versão 2.1
+
+Versionamento e Imutabilidade das PI. PI passa a exigir identificador + versão. Imutabilidade após Approved. EWO e ER passam a referenciar versão específica da PI. Rastreabilidade Histórica formalizada.
+
+### Versão 2.0
+
+Fluxo de Engenharia formalizado (PI → EWO → ER). §10 criado com: Ciclo de Vida de PI (6 estados), Template EWO, Template ER, Fluxo Oficial, Fontes Canônicas, Regras Operacionais. Seções §11-§14 renumeradas. Compatibilidade com protocolos existentes garantida.
+
+### Versão 1.11
+
+OP-002 estabelecido como Fonte Canônica exclusiva da ❤️ Saúde do Chat. Cópia parcial removida do DEVELOPMENT_METHODOLOGY — agora referencia apenas o Bootstrap.
+
+### Versão 1.10
+
+OP-002 evoluído (GS-001.1). ❤️ Saúde do Chat com formato classificado 🟢🟡🔴 e 5 indicadores. Referência ao Bootstrap como fonte dos critérios detalhados. IA-031 Gatilhos Operacionais renumerado para IA-032.
 
 ### Versão 1.9
 

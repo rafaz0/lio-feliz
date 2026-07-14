@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.12
+**Versão:** 1.22
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsável:** Rafael Santos + IA
 
-**Última atualização:** 12/07/2026
+**Última atualização:** 13/07/2026
 
 ---
 
@@ -146,12 +146,17 @@ ADR-008: Backlog Governance
 | 12/07/2026 | PS#032 (Prompt 2) — IA-030, Strategic Backlog, Fonte Canônica. AI_CONTEXT simplificado. |
 | 12/07/2026 | PS#033 (Prompt 3) — Regeneração Global. Ordem de Precedência. Marco Documentação Consolidada. |
 | 12/07/2026 | Atualização operacional — PROJECT_BOOTSTRAP v2.0 (Runtime). AI_CONTEXT v1.8 simplificado. |
+| 13/07/2026 | Consolidação Metodológica — Governança das PI e Gestão de Backlog. Papéis das Ferramentas, IA-033/034/035. DEVELOPMENT_METHODOLOGY.md v2.2. Bootstrap v2.8. |
+| 13/07/2026 | Consolidação Arquitetural — Classificação das Decisões Estratégicas. Universalidade e Multi-Mercado como princípios. BK-006 e BK-007 criados. IA-036. DEVELOPMENT_METHODOLOGY.md v2.3. Bootstrap v2.9. |
+| 13/07/2026 | Engineering Outlook (EO-001) — Seção padronizada de planejamento da próxima PI (PI-002). Bootstrap v2.10. |
+| 13/07/2026 | ER-001 — Engineering Review da PI-001 aprovada. PI-001 promovida a v1.0 Approved. Bootstrap v2.11. |
+| 13/07/2026 | Prioridade Arquitetural — PI-002 definida como prioridade sobre EWO-001. Bootstrap v2.12. |
 
 ---
 
 ## Próximos Passos
 
-Engineering N1 — PI-001 Interpretation Layer.
+PI-002 (Canonical Investment Model) — prioridade arquitetural.
 
 ---
 
@@ -168,6 +173,46 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.22
+
+Prioridade Arquitetural. Engineering Outlook esclarecido: PI-002 antes de EWO-001. Bootstrap v2.12.
+
+### Versão 1.21
+
+ER-001 — Engineering Review da PI-001 aprovada. PI-001 v1.0 Approved. Bootstrap v2.11.
+
+### Versão 1.20
+
+Engineering Outlook (EO-001). Seção padronizada de planejamento da próxima PI. Bootstrap v2.10. AI_OPERATION_CHECKLIST.md v1.13.
+
+### Versão 1.19
+
+Classificação Arquitetural. Universalidade e Multi-Mercado como Princípios Arquiteturais. BK-006 e BK-007 criados. IA-036 adicionado. DEVELOPMENT_METHODOLOGY.md v2.3. Bootstrap v2.9.
+
+### Versão 1.18
+
+Consolidação Metodológica. Papéis das Ferramentas formalizados. IA-033, IA-034, IA-035 criados. DEVELOPMENT_METHODOLOGY.md v2.2. Bootstrap v2.8. AI_OPERATION_CHECKLIST.md v1.11.
+
+### Versão 1.17
+
+PI-001 v0.1 (Draft) materializada. Bootstrap v2.7. AI_OPERATION_CHECKLIST.md v1.10.
+
+### Versão 1.16
+
+Versionamento e Imutabilidade das PI. DEVELOPMENT_METHODOLOGY.md v2.1. Bootstrap v2.6. AI_OPERATION_CHECKLIST.md v1.9.
+
+### Versão 1.15
+
+Fluxo de Engenharia (PI → EWO → ER) formalizado. DEVELOPMENT_METHODOLOGY.md v2.0. Bootstrap v2.5. AI_OPERATION_CHECKLIST.md v1.8.
+
+### Versão 1.14
+
+OP-002 consolidado como Fonte Canônica exclusiva da ❤️ Saúde do Chat. Bootstrap v2.4. DEVELOPMENT_METHODOLOGY.md v1.11.
+
+### Versão 1.13
+
+OP-002 evoluído (GS-001.1). ❤️ Saúde do Chat classificado 🟢🟡🔴. IA-031 Gatilhos renumerado para IA-032. Bootstrap v2.3. DEVELOPMENT_METHODOLOGY.md v1.10. AI_OPERATION_CHECKLIST.md v1.7.
 
 ### Versão 1.12
 
