@@ -36,7 +36,7 @@ Documentação Consolidada (Concluído)
 
 ## PI Atual
 
-PI-002 v0.1 — Canonical Investment Model (Draft)
+PI-002 v1.0 — Canonical Investment Model (Approved)
 
 ## PS Atual
 
@@ -62,7 +62,7 @@ Marco: Documentação Consolidada
 
 ## Objetivos Ativos
 
-Consolidar a arquitetura do Engineering N1: realizar Engineering Review da PI-002 para promover a Approved.
+Consolidar a arquitetura do Engineering N1: definir PI-003 e preparar EWO-001.
 
 ## DEC Ativas
 
@@ -78,7 +78,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-Engineering N1 — Engineering Review da PI-002 v0.1 (Draft) para Approved.
+Engineering N1 — Definir PI-003. EWO-001 autorizada (pendente definição da ordem).
 
 ---
 
@@ -453,20 +453,20 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 > **Resumo Operacional Canônico:** Este resumo deve conter informações suficientes para que uma nova IA consiga iniciar corretamente a etapa sem consultar outros documentos.
 
-### PI-002 v0.1 — Canonical Investment Model (Draft)
+### PI-002 v1.0 — Canonical Investment Model (Approved)
 
 | Campo | Valor |
 |-------|-------|
 | Identificador | PI-002 |
-| Versão | v0.1 (Draft) |
-| Status | Draft |
+| Versão | v1.0 (Approved) |
+| Status | Approved |
 | Documento | `architecture-lab/PI-002.md` |
 | Objetivo | Definir o modelo canônico de representação dos investimentos do sistema, estabelecendo uma estrutura única, extensível e independente da origem dos dados |
 | Motivação | Consolidar a linguagem semântica do domínio financeiro antes de iniciar a implementação |
 | Entregável esperado | Especificação completa da ontologia, contratos, identidades e invariantes do domínio |
 | Estrutura | 25 seções: Objetivo, Posicionamento, Responsabilidades, Excluídas, Canonical Source of Truth, Considerações, Ontologia (2-12), Identidade, Identificadores, Contratos, Invariantes (8), Princípios (4), Temporalidade, Evolução, Compatibilidade, Critérios, Riscos, Future Work, Histórico |
 | Resultado esperado | Especificação completa, consistente e aprovada, servindo como base semântica oficial do domínio |
-| Próximo passo | Engineering Review → Approved |
+| Próximo passo | Concluído. Próxima etapa: definir PI-003. |
 
 ## Engineering Outlook
 
@@ -478,7 +478,7 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 **Documento:** `architecture-lab/PI-003.md`
 
-**Objetivo:** A definir durante a Engineering Review da PI-002.
+**Objetivo:** Definir tema e escopo da PI-003 para continuidade do Engineering N1.
 
 **Dependências:** PI-002 Approved.
 
@@ -490,7 +490,7 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 **Título:** Canonical Investment Model
 
-**Status:** Draft v0.1
+**Status:** Approved v1.0
 
 **Documento:** `architecture-lab/PI-002.md`
 
@@ -511,12 +511,13 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 **Dependências:** PI-001 Approved.
 
-**Resultado esperado:** PI-002 Draft concluída.
+**Resultado esperado:** PI-002 Draft concluída ✓. Approved v1.0.
 
 **Observações:**
 
-- Não iniciar implementação de código.
-- A PI-002 deverá utilizar a PI-001 como documento arquitetural base.
+- Engineering Review concluída. PI-002 promovida a Approved.
+- PI-003 pendente de definição.
+- EWO-001 autorizada, aguardando definição da ordem.
 
 ### Prioridade Arquitetural
 
@@ -532,7 +533,7 @@ Consequentemente:
 
 O fluxo metodológico PI → EWO → Implementação → ER permanece inalterado. O ajuste refere-se exclusivamente à prioridade temporal das atividades.
 
-> **Fonte Canônica:** O Engineering Outlook representa apenas o planejamento da próxima etapa da engenharia. Ele não substitui PI, Strategic Backlog, Constituição ou Methodology. Após a conclusão da próxima PI, este bloco deverá ser atualizado para refletir a etapa seguinte.
+> **Fonte Canônica:** O Engineering Outlook representa apenas o planejamento da próxima etapa da engenharia. Ele não substitui PI, Strategic Backlog, Constituição ou Methodology. Após a conclusão da PI-002, este bloco foi atualizado para refletir o próximo passo: definição da PI-003.
 
 ## Contrato de Execução
 
@@ -546,6 +547,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.16
+
+Engineering Review da PI-002 concluída. PI-002 v1.0 (Approved). Engineering Outlook atualizado: próximo passo é definição da PI-003.
 
 ## v2.15
 

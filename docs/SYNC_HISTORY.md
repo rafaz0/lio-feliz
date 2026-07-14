@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.20
+**Versão:** 1.21
 
 **Status:** APROVADO
 
@@ -786,13 +786,54 @@ Elaborar PI-002 (Canonical Investment Model). EWO-001 autorizada porém adiada.
 
 PI-002 compatível com PI-001 (complementar, sem sobreposição). Engineering Outlook preservado. Nenhuma regressão identificada.
 
+### Próxima Etapa Recomendada (substituída)
+
+Engineering Review da PI-002 v0.1 concluída. PI-002 promovida a v1.0 Approved. Ver ER-002 acima.
+
+---
+
+## Engineering Review — PI-002 v1.0 (ER-002)
+
+**Tipo:** Engineering Review
+
+**Data:** 13/07/2026
+
+### Resultado
+
+**APROVADA** — PI-002 promovida a v1.0 (Approved).
+
+### Documentos Atualizados
+
+- PI-002.md → v1.0 (Approved)
+- PROJECT_BOOTSTRAP.md → v2.16 (PI Atual, Engineering Outlook, Próximo Passo)
+- DEVELOPMENT_METHODOLOGY.md → v2.4 (changelog)
+- AI_OPERATION_CHECKLIST.md → v1.17 (version bump)
+- DOCUMENTACAO_COMPLETA.md → v1.22
+- DOCUMENTATION_INDEX.md → v1.24
+- PROJECT_STATUS.md → v1.24
+- PROJECT_STATE.md → v1.21
+- SYNC_HISTORY.md → v1.21
+
+### Conformidade
+
+| Critério | Resultado |
+|----------|-----------|
+| Consistência Interna | ✅ Aprovada |
+| Consistência Externa | ✅ Aprovada |
+| Consistência Semântica | ✅ Aprovada |
+| Consistência Metodológica | ✅ Aprovada |
+
 ### Próxima Etapa Recomendada
 
-Engineering Review da PI-002 v0.1 (Draft → Approved).
+Definir PI-003 para continuidade do Engineering N1. EWO-001 autorizada, aguardando definição da ordem.
 
 ---
 
 # Histórico
+
+### Versão 1.21
+
+Registro da Engineering Review — PI-002 v1.0 Approved (ER-002).
 
 ### Versão 1.20
 

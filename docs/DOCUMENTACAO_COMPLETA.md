@@ -4,7 +4,7 @@
 
 **Documento:** DOCUMENTACAO_COMPLETA.md
 
-**Versão:** 1.21
+**Versão:** 1.22
 
 **Status:** Artefato Derivado
 
@@ -14,7 +14,7 @@
 
 > **Aviso:** Este é um artefato derivado gerado para leitura e consulta. A fonte de verdade é a documentação individual na Fonte Canônica (`docs/`, `architecture-lab/`, `project-context/`). Em caso de divergência, prevalecem os documentos individuais.
 
-> **Inicialização rápida:** Utilize `PROJECT_BOOTSTRAP.md` (v2.8) como Runtime Operacional. Este documento (`DOCUMENTACAO_COMPLETA.md`) é a Fonte Canônica para consulta quando necessário.
+> **Inicialização rápida:** Utilize `PROJECT_BOOTSTRAP.md` (v2.16) como Runtime Operacional. Este documento (`DOCUMENTACAO_COMPLETA.md`) é a Fonte Canônica para consulta quando necessário.
 
 ---
 
