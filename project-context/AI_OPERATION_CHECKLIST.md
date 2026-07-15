@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.22
+**Versão:** 1.23
 
 **Status:** APROVADO
 
@@ -146,6 +146,31 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 - [ ] Working tree limpa após o push.
 - [ ] Relatório de implementação contém bloco "Estado da Sincronização" (GOV-003).
 
+## Checklist Obrigatório de Encerramento (GOV-004)
+
+Ao final de toda implementação, slice ou engineering review, verificar:
+
+- [ ] ☐ Código implementado
+- [ ] ☐ Testes aprovados
+- [ ] ☐ Lint aprovado
+- [ ] ☐ Build aprovado
+- [ ] ☐ Commit criado
+- [ ] ☐ Push confirmado
+- [ ] ☐ GitHub sincronizado
+- [ ] ☐ Working Tree limpa
+- [ ] ☐ Relatório emitido
+- [ ] ☐ HEAD registrado
+
+## Verificação Pós-Sincronização (GOV-004)
+
+Após o push, executar:
+
+- [ ] Checkout limpo ou `git stash`
+- [ ] Build em ambiente limpo
+- [ ] Lint
+- [ ] Testes (quando disponíveis)
+- [ ] Estado sincronizado confirmado íntegro
+
 ## Auditoria Pós-Operação Crítica (GOV-003)
 
 Executar obrigatoriamente após rebase, merge com conflitos ou resolução manual de conflitos:
@@ -168,6 +193,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.18
+
+GOV-004 incorporado. Novas seções: "Checklist Obrigatório de Encerramento" (10 itens) e "Verificação Pós-Sincronização". Compatibilidade com PROJECT_BOOTSTRAP.md v2.22 e EWO-001.md.
 
 ### Versão 1.17
 

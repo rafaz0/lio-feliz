@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.29
+**Versão:** 1.30
 
 **Status:** APROVADO
 
@@ -160,6 +160,7 @@ ADR-008: Backlog Governance
 | 15/07/2026 | AIR-001 — Auditoria de Integridade do Repositório. Divergência entre estado metodológico e estado real detectada: Core Foundation (C-001, C-002) nunca existiu no repositório. |
 | 15/07/2026 | GIT-FORENSICS-001 — Investigação Forense do Repositório. Conclusão: não há evidências de que a implementação tenha existido. |
 | 15/07/2026 | GOV-003 — Regras de Governança Pós-Auditoria. Sincronização obrigatória, estado oficial do projeto, fluxo obrigatório de implementação, auditoria pós-rebase. Bootstrap v2.21. AI_OPERATION_CHECKLIST v1.17. |
+| 15/07/2026 | GOV-004 — Consolidação Final da Governança. Verificação pós-sincronização, checklist obrigatório de encerramento, EWO-001 refinada com slices independentes. Decisões: validate() pós-construtor (temporária), EntityId desacoplado, Money escopo reduzido. Bootstrap v2.22. AI_OPERATION_CHECKLIST v1.18. EWO-001.md criado. |
 
 ---
 
@@ -182,6 +183,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.30
+
+GOV-004 implementado. Consolidação final da governança: verificação pós-sincronização, checklist obrigatório de encerramento (10 itens), EWO-001 refinada com slices independentes. Decisões registradas: validate() pós-construtor (temporária), EntityId desacoplado, Money com escopo reduzido. Bootstrap v2.22. AI_OPERATION_CHECKLIST v1.18. EWO-001.md criado.
 
 ### Versão 1.29
 

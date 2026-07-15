@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.21
+**Versão:** 2.22
 
 **Status:** APROVADO
 
@@ -396,6 +396,38 @@ executar obrigatoriamente uma Auditoria de Integridade (AIR) antes de iniciar no
 
 Nenhuma implementação poderá iniciar enquanto a auditoria não for concluída e aprovada.
 
+### 6. Verificação Pós-Sincronização
+
+Após o push, executar obrigatoriamente:
+
+1. Checkout limpo em diretório temporário (ou `git stash && git checkout -- .` no próprio repositório)
+2. `npm install` (se necessário)
+3. `npm run build`
+4. `npm run lint`
+5. Testes (quando disponíveis)
+6. Confirmar que o estado sincronizado permanece íntegro
+
+Nenhuma slice pode ser considerada encerrada sem esta verificação.
+
+### 7. Checklist Obrigatório de Encerramento
+
+Toda implementação, slice, sprint ou engineering review deverá encerrar com o checklist abaixo:
+
+```
+☐ Código implementado
+☐ Testes aprovados
+☐ Lint aprovado
+☐ Build aprovado
+☐ Commit criado
+☐ Push confirmado
+☐ GitHub sincronizado
+☐ Working Tree limpa
+☐ Relatório emitido
+☐ HEAD registrado
+```
+
+O relatório final deverá reproduzir este checklist com o status de cada item.
+
 ## Regras Operacionais
 
 ### Quando criar PS
@@ -659,16 +691,17 @@ A fundação arquitetural do Engineering N1 encontra-se completa. As três espec
 
 **Título:** Implementação do Núcleo Arquitetural
 
-**Documento:** `architecture-lab/EWO-001.md` (a criar)
+**Documento:** `architecture-lab/EWO-001.md`
 
 **Dependências:** PI-001 Approved, PI-002 Approved, PI-003 Approved.
 
-**Objetivo:** Implementar o núcleo arquitetural do sistema a partir das três PIs aprovadas.
+**Objetivo:** Implementar o núcleo arquitetural do sistema — C-001 (Core Foundation) e C-002 (Modelo Canônico inicial) — conforme plano detalhado na EWO-001.
 
 **Observações:**
 
-- EWO-001 encontrava-se autorizada desde a aprovação da PI-001, mas adiada por prioridade arquitetural das PIs do Engineering N1.
-- Com a consolidação do Engineering N1, EWO-001 torna-se a próxima etapa oficial.
+- EWO-001 encontrava-se autorizada desde a aprovação da PI-001, mas teve sua execução adiada por prioridade arquitetural das PIs do Engineering N1 e posteriormente pelas auditorias AIR-001 e GIT-FORENSICS-001.
+- Com a consolidação do Engineering N1, a correção dos conflitos de rebase e a formalização do GOV-003 e GOV-004, EWO-001 torna-se a próxima etapa oficial do projeto.
+- O plano foi refinado pelo GOV-004 com as lições aprendidas durante a revisão técnica.
 - PI-004 não demonstrou necessidade arquitetural neste momento. Poderá ser criada futuramente se houver demanda para nova especificação.
 
 ### Prioridade Arquitetural
@@ -691,6 +724,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.22
+
+GOV-004 implementado. Consolidação final da governança: verificação pós-sincronização (Fase 5), checklist obrigatório de encerramento (10 itens), EWO-001 refinada com slices independentes. Decisões registradas: validate() pós-construtor (temporária), EntityId desacoplado, Money com escopo reduzido. AI_OPERATION_CHECKLIST e PROJECT_STATUS sincronizados. EWO-001.md criado.
 
 ## v2.21
 
