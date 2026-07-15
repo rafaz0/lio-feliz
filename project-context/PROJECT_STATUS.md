@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.30
+**Versão:** 1.31
 
 **Status:** APROVADO
 
@@ -161,12 +161,14 @@ ADR-008: Backlog Governance
 | 15/07/2026 | GIT-FORENSICS-001 — Investigação Forense do Repositório. Conclusão: não há evidências de que a implementação tenha existido. |
 | 15/07/2026 | GOV-003 — Regras de Governança Pós-Auditoria. Sincronização obrigatória, estado oficial do projeto, fluxo obrigatório de implementação, auditoria pós-rebase. Bootstrap v2.21. AI_OPERATION_CHECKLIST v1.17. |
 | 15/07/2026 | GOV-004 — Consolidação Final da Governança. Verificação pós-sincronização, checklist obrigatório de encerramento, EWO-001 refinada com slices independentes. Decisões: validate() pós-construtor (temporária), EntityId desacoplado, Money escopo reduzido. Bootstrap v2.22. AI_OPERATION_CHECKLIST v1.18. EWO-001.md criado. |
+| 15/07/2026 | C-001 — Core Foundation concluída. 5 Slices implementadas: Result+DomainError, ValueObject, Entity+EntityId, AggregateRoot, DomainEvent. 13 arquivos de domínio, 83 testes, zero regressões. |
+| 15/07/2026 | GOV-005 — Consolidação das Lições Aprendidas da Materialização da Core Foundation. Convenções registradas: DomainEvent.finalize(), sem validate() no Entity, encapsulamento AggregateRoot, imutabilidade ValueObject. BK-008 registrado. Bootstrap v2.23. AI_OPERATION_CHECKLIST v1.19. |
 
 ---
 
 ## Próximos Passos
 
-Planejar EWO-001 — Implementação do núcleo arquitetural.
+C-002 — Modelo Canônico do Domínio (Ticker, Quantity, Money, AssetId, PortfolioId, OperationId, InstitutionId, Asset).
 
 ---
 
@@ -183,6 +185,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.31
+
+GOV-005 implementado. C-001 (Core Foundation) concluída — 5 Slices, 13 arquivos de domínio, 83 testes, zero regressões. Convenções da Core Foundation registradas. BK-008 registrado. Bootstrap v2.23. AI_OPERATION_CHECKLIST v1.19.
 
 ### Versão 1.30
 

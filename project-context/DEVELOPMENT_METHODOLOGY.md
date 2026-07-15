@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.7
+**Versão:** 2.8
 
 **Status:** APROVADO
 
@@ -1030,6 +1030,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.7
+
+GOV-005 (Consolidação das Lições Aprendidas da Core Foundation) implementado. C-001 concluída: 5 Slices independentes, 83 testes, zero regressões — evidência de que a estratégia de slices da EWO-001 mostrou-se adequada. Registro do fluxo de conhecimento: Implementação → Validação → Registro documental → Encerramento. Pendência metodológica registrada (BK-008: substituição futura do mecanismo finalize()). Convenções da Core Foundation registradas. Bootstrap v2.23. AI_OPERATION_CHECKLIST v1.19. PROJECT_STATUS v1.31.
 
 ### Versão 2.6
 

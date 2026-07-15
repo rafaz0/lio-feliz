@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.22
+**Versão:** 2.23
 
 **Status:** APROVADO
 
@@ -44,7 +44,7 @@ Execução
 
 ## Marco Atual
 
-Documentação Consolidada (Concluído)
+C-001 — Core Foundation (Concluído)
 
 ## PI Atual
 
@@ -62,7 +62,7 @@ Nenhum PS ativo no momento.
 Projeto: Lio Feliz
 Modo: Execução
 PS Atual: —
-Marco: Documentação Consolidada
+Marco: C-001 (Core Foundation)
 
 🏛 Governanca    [████░░░░░░]  ~60%
 🏗 Arquitetura   [████░░░░░░]  ~40%
@@ -74,7 +74,7 @@ Marco: Documentação Consolidada
 
 ## Objetivos Ativos
 
-Consolidar a arquitetura do Engineering N1: definir PI-003 e preparar EWO-001.
+Materializar C-002 (Modelo Canônico).
 
 ## DEC Ativas
 
@@ -84,13 +84,16 @@ Nenhuma.
 
 | BK | Descrição | Prioridade | Estado |
 |----|-----------|------------|--------|
+| BK | Descrição | Prioridade | Estado |
+|----|-----------|------------|--------|
 | BK-005 | PROJECT_MANIFEST.md | Baixa | Proposto |
 | BK-006 | Licensing & Feature Access Layer | Média | Proposto |
 | BK-007 | Comercialização | Média | Proposto |
+| BK-008 | Substituição do mecanismo finalize() do DomainEvent | Baixa | Observação |
 
 ## Próxima Etapa
 
-Engineering N1 — Definir PI-003. EWO-001 autorizada (pendente definição da ordem).
+C-002 — Modelo Canônico (Value Objects concretos: Ticker, Quantity, Money, AssetId, PortfolioId, OperationId, InstitutionId, Asset).
 
 ---
 
@@ -685,9 +688,7 @@ Toda EWO deverá demonstrar aderência explícita a:
 
 A fundação arquitetural do Engineering N1 encontra-se completa. As três especificações estabelecem a base normativa obrigatória para toda implementação futura.
 
-### Próxima Etapa
-
-**ID:** EWO-001
+### EWO-001 — Executado
 
 **Título:** Implementação do Núcleo Arquitetural
 
@@ -695,14 +696,60 @@ A fundação arquitetural do Engineering N1 encontra-se completa. As três espec
 
 **Dependências:** PI-001 Approved, PI-002 Approved, PI-003 Approved.
 
-**Objetivo:** Implementar o núcleo arquitetural do sistema — C-001 (Core Foundation) e C-002 (Modelo Canônico inicial) — conforme plano detalhado na EWO-001.
+**Status:** ✅ C-001 (Core Foundation) concluída — 5 Slices, 83 testes, zero regressões.
 
-**Observações:**
+**Resultados:**
 
-- EWO-001 encontrava-se autorizada desde a aprovação da PI-001, mas teve sua execução adiada por prioridade arquitetural das PIs do Engineering N1 e posteriormente pelas auditorias AIR-001 e GIT-FORENSICS-001.
-- Com a consolidação do Engineering N1, a correção dos conflitos de rebase e a formalização do GOV-003 e GOV-004, EWO-001 torna-se a próxima etapa oficial do projeto.
-- O plano foi refinado pelo GOV-004 com as lições aprendidas durante a revisão técnica.
-- PI-004 não demonstrou necessidade arquitetural neste momento. Poderá ser criada futuramente se houver demanda para nova especificação.
+| Slice | Componentes | Testes | Commit |
+|---|---|---|---|
+| 01 | Result + DomainError | 30 | `a0fdfcb` |
+| 02 | ValueObject | 17 | `4ca45f2` |
+| 03 | Entity + EntityId | 16 | `1fbadf2` |
+| 04 | AggregateRoot | 11 | `2e09435` |
+| 05 | DomainEvent | 9 | `3051a37` |
+
+**Próximo passo:** C-002 (Modelo Canônico).
+
+### C-002 — Pendente
+
+**Título:** Modelo Canônico do Domínio
+
+**Escopo previsto:** Ticker, Quantity, Money, AssetId, PortfolioId, OperationId, InstitutionId, Asset.
+
+**Dependências:** C-001 concluída (Result, ValueObject, Entity, EntityId, AggregateRoot, DomainEvent).
+
+## Convenções da Core Foundation (GOV-005)
+
+Registros formais das decisões de implementação da C-001.
+
+### 1. DomainEvent e finalize()
+
+`Object.freeze()` no construtor da classe base `DomainEvent` impede subclasses que utilizam parameter properties do TypeScript de inicializarem corretamente seu estado.
+
+**Convenção:** Toda subclasse de `DomainEvent` deve invocar `finalize()` ao final do construtor.
+
+Esta decisão não altera a arquitetura, não representa dívida arquitetural; é uma convenção de implementação da Core Foundation.
+
+### 2. Entity e validate()
+
+`Entity` não executa `validate()` no construtor (ER-C002-001). Validação, quando implementada, ocorre após a construção completa.
+
+### 3. AggregateRoot
+
+- Eventos registrados exclusivamente internamente (addDomainEvent é protected).
+- Eventos nunca participam da identidade de uma Entity.
+- `getDomainEvents()` retorna cópia do array interno (encapsulamento).
+
+### 4. ValueObject
+
+Totalmente imutável. `Object.freeze` no construtor da classe base. Comparação estrutural por `equals()`.
+
+### 5. DomainEvent
+
+- Imutável após `finalize()`.
+- Não representa Entity nem ValueObject — não implementa `equals()`.
+- Identificador gerado internamente (desacoplado de UUIDv7).
+- Timestamp automático (`occurredOn`) definido na construção.
 
 ### Prioridade Arquitetural
 
@@ -724,6 +771,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.23
+
+GOV-005 implementado. C-001 (Core Foundation) concluída — 5 Slices, 13 arquivos de domínio, 83 testes, zero regressões. Engineering Outlook atualizado: EWO-001 executado, C-002 como próximo passo. Convenções da Core Foundation registradas: DomainEvent.finalize(), sem validate() no construtor Entity, AggregateRoot encapsulado, ValueObject imutável, DomainEvent sem equals(). BK-008 registrado como pendência de baixa prioridade (finalize()). AI_OPERATION_CHECKLIST, PROJECT_STATUS e DEVELOPMENT_METHODOLOGY sincronizados.
 
 ## v2.22
 

@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.23
+**Versão:** 1.24
 
 **Status:** APROVADO
 
@@ -171,6 +171,15 @@ Após o push, executar:
 - [ ] Testes (quando disponíveis)
 - [ ] Estado sincronizado confirmado íntegro
 
+## Convenções da Core Foundation (GOV-005)
+
+Ao implementar classes que estendem a Core Foundation:
+
+- [ ] Toda subclasse de `DomainEvent` invoca `this.finalize()` ao final do construtor
+- [ ] `Entity` NÃO executa `validate()` no construtor (ER-C002-001)
+- [ ] Eventos registrados via `addDomainEvent()` (protected) — nunca expostos diretamente
+- [ ] Value Objects permanecem totalmente imutáveis
+
 ## Auditoria Pós-Operação Crítica (GOV-003)
 
 Executar obrigatoriamente após rebase, merge com conflitos ou resolução manual de conflitos:
@@ -193,6 +202,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.19
+
+GOV-005 incorporado. Nova seção "Convenções da Core Foundation" com checklist de DomainEvent.finalize(), sem validate() no Entity, encapsulamento de eventos, imutabilidade de ValueObjects. Compatibilidade com PROJECT_BOOTSTRAP.md v2.23.
 
 ### Versão 1.18
 
