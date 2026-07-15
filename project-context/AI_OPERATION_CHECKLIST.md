@@ -4,13 +4,13 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.21
+**Versão:** 1.22
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 13/07/2026
+**Última atualização:** 15/07/2026
 
 ---
 
@@ -142,6 +142,20 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 - [ ] Após alterações no repositório, executar `git add`, `git commit`, `git push`.
 - [ ] Verificar se todos os arquivos modificados foram incluídos.
 - [ ] Mensagem de commit descritiva.
+- [ ] Push confirmado com sucesso no GitHub.
+- [ ] Working tree limpa após o push.
+- [ ] Relatório de implementação contém bloco "Estado da Sincronização" (GOV-003).
+
+## Auditoria Pós-Operação Crítica (GOV-003)
+
+Executar obrigatoriamente após rebase, merge com conflitos ou resolução manual de conflitos:
+
+- [ ] Auditoria de Integridade (AIR) executada antes de novas implementações.
+- [ ] Ausência de marcadores de conflito (`<<<<<<<`, `=======`, `>>>>>>>`).
+- [ ] Build executa sem erros.
+- [ ] Lint sem erros críticos (excluindo formatação).
+- [ ] Testes (quando disponíveis) executam sem falhas.
+- [ ] Estado oficial do repositório registrado no relatório.
 
 ## Backlog Estratégico e Strategic Backlog
 
@@ -154,6 +168,10 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 ---
 
 # Histórico
+
+### Versão 1.17
+
+GOV-003 incorporado. GS-002 expandido com verificação de push confirmado e working tree limpa. Nova seção "Auditoria Pós-Operação Crítica" adicionada. Compatibilidade com PROJECT_BOOTSTRAP.md v2.21.
 
 ### Versão 1.16
 

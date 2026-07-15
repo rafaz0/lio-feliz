@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.28
+**Versão:** 1.29
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsável:** Rafael Santos + IA
 
-**Última atualização:** 13/07/2026
+**Última atualização:** 15/07/2026
 
 ---
 
@@ -157,6 +157,9 @@ ADR-008: Backlog Governance
 | 13/07/2026 | PI-003 definida: Canonical Operations & Event Flow Architecture. Bootstrap v2.17. |
 | 13/07/2026 | ER-002 — Engineering Review da PI-002 aprovada. PI-002 promovida a v1.0 Approved. Bootstrap v2.16. |
 | 13/07/2026 | PI-002 v0.1 (Draft) — Canonical Investment Model materializada. GOV-001 a GOV-005 registrados. Bootstrap v2.14. |
+| 15/07/2026 | AIR-001 — Auditoria de Integridade do Repositório. Divergência entre estado metodológico e estado real detectada: Core Foundation (C-001, C-002) nunca existiu no repositório. |
+| 15/07/2026 | GIT-FORENSICS-001 — Investigação Forense do Repositório. Conclusão: não há evidências de que a implementação tenha existido. |
+| 15/07/2026 | GOV-003 — Regras de Governança Pós-Auditoria. Sincronização obrigatória, estado oficial do projeto, fluxo obrigatório de implementação, auditoria pós-rebase. Bootstrap v2.21. AI_OPERATION_CHECKLIST v1.17. |
 
 ---
 
@@ -179,6 +182,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.29
+
+GOV-003 implementado. AIR-001 e GIT-FORENSICS-001 concluídas. Regras de Governança Pós-Auditoria incorporadas. Bootstrap v2.21. AI_OPERATION_CHECKLIST v1.17.
 
 ### Versão 1.28
 

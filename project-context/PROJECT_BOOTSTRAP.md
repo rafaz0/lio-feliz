@@ -2,13 +2,13 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.20
+**Versão:** 2.21
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 13/07/2026
+**Última atualização:** 15/07/2026
 
 ---
 
@@ -318,6 +318,84 @@ Todo novo protocolo operacional deve atualizar `AI_OPERATION_CHECKLIST.md`. Caso
 
 `PS_TEMPLATE.md` deve refletir os protocolos IA, PG, OP, PGR vigentes. Revisar sempre que houver alteração operacional relevante.
 
+## Regras de Governança Pós-Auditoria (GOV-003)
+
+Incorporadas após AIR-001 e GIT-FORENSICS-001. Nenhuma Sprint, Slice, Engineering Review ou implementação poderá ser considerada concluída sem cumprir integralmente as regras abaixo.
+
+### 1. Sincronização Obrigatória
+
+Após toda implementação concluída, executar obrigatoriamente:
+
+1. Testes (quando disponíveis)
+2. Lint
+3. `git add`
+4. `git commit` (mensagem descritiva)
+5. `git push`
+6. Confirmar sincronização com o GitHub
+
+Nenhuma Sprint, Slice ou Engineering Review poderá ser considerada concluída antes da confirmação do push.
+
+### 2. Estado Oficial do Projeto
+
+O estado oficial do projeto é o estado do repositório Git versionado.
+
+Relatórios de implementação, documentos arquiteturais ou registros metodológicos não substituem a existência do código no repositório oficial. Toda decisão de continuidade deve ser baseada no que está versionado, não no que foi planejado ou relatado.
+
+### 3. Fluxo Obrigatório de Implementação
+
+Toda implementação deverá seguir rigorosamente o fluxo abaixo:
+
+```
+Prompt
+  ↓
+Implementação
+  ↓
+Testes (quando disponíveis)
+  ↓
+Lint
+  ↓
+Commit
+  ↓
+Push
+  ↓
+Confirmação do Push
+  ↓
+Relatório Final
+```
+
+Cada etapa é condição obrigatória para a próxima. Nenhuma etapa pode ser suprimida.
+
+### 4. Bloco Obrigatório nos Relatórios
+
+Todo relatório de implementação deverá conter obrigatoriamente o bloco abaixo ao final:
+
+```
+Estado da Sincronização
+• Commit: <hash>
+• Branch: <nome>
+• Push: <confirmado / pendente>
+• GitHub: <sincronizado / divergente>
+• Working Tree: <limpa / suja>
+```
+
+### 5. Auditoria Pós-Rebase
+
+Sempre que ocorrer qualquer das operações abaixo:
+
+- rebase
+- merge complexo (com conflitos)
+- resolução manual de conflitos
+
+executar obrigatoriamente uma Auditoria de Integridade (AIR) antes de iniciar novas implementações. A auditoria deve verificar, no mínimo:
+
+- marcadores de conflito residuais (`<<<<<<<`, `=======`, `>>>>>>>`)
+- integridade dos imports
+- build
+- lint
+- testes (quando disponíveis)
+
+Nenhuma implementação poderá iniciar enquanto a auditoria não for concluída e aprovada.
+
 ## Regras Operacionais
 
 ### Quando criar PS
@@ -613,6 +691,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.21
+
+GOV-003 implementado. Regras de Governança Pós-Auditoria incorporadas após AIR-001 e GIT-FORENSICS-001: sincronização obrigatória, estado oficial do projeto, fluxo obrigatório de implementação, bloco de sincronização em relatórios, auditoria pós-rebase. AI_OPERATION_CHECKLIST e PROJECT_STATUS sincronizados.
 
 ## v2.20
 

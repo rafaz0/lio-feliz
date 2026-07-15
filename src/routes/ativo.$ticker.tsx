@@ -17,7 +17,6 @@ import { SiteHeader } from "@/components/site-header";
 import { DeltaPct } from "@/components/delta-pct";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { Button } from "@/components/ui/button";
-import { Tooltip as UiTooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSession } from "@/hooks/use-session";
 import { getAssetData, getFinancialStatements } from "@/lib/data-functions";
 import {
@@ -34,13 +33,11 @@ import {
   Tooltip as UiTooltip,
   TooltipContent,
   TooltipTrigger,
-  TooltipProvider,
 } from "@/components/ui/tooltip";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatDate } from "@/lib/format";
 import { grahamRating, bazinPriceTeto, avgAnnualYield } from "@/lib/valuation";
 import { computeScorecard, ratingLabel, ratingColor } from "@/lib/scorecard";
-import { SafeBoundary } from "@/components/safe-boundary";
 
 export const Route = createFileRoute("/ativo/$ticker")({
   loader: async ({ params }) => {
@@ -664,8 +661,9 @@ function AssetPage() {
                 </div>
                 <div className="tabular mt-1.5 text-lg font-semibold">{i.value}</div>
               </div>
-            </section>
-          </SafeBoundary>
+            ))}
+          </div>
+          </section>
 
           {annualDividends.length > 1 && (
             <section className="mt-4">
@@ -832,7 +830,6 @@ function AssetPage() {
               </div>
             </section>
           )}
-        </TooltipProvider>
 
         {/* Chart + dividends */}
         <section className="mt-8 grid gap-6 lg:grid-cols-[2fr_1fr]">
@@ -1252,14 +1249,6 @@ function AssetPage() {
               </thead>
               <tbody>
                 {asset.dividends.map((d: (typeof asset.dividends)[number], i: number) => (
-                  <tr key={i} className="border-t border-border">
-                    <td className="px-4 py-2 text-muted-foreground">{formatDate(d.paidAt)}</td>
-                    <td className="px-4 py-2">{d.type}</td>
-                    <td className="tabular px-4 py-2 text-right">{formatBRL(d.amount)}</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {asset.dividends.map((d: (typeof asset.dividends)[number], i: number) => (
                     <tr key={i} className="border-t border-border">
                       <td className="px-4 py-2 text-muted-foreground">{formatDate(d.paidAt)}</td>
                       <td className="px-4 py-2">{d.type}</td>
@@ -1269,7 +1258,6 @@ function AssetPage() {
                 </tbody>
               </table>
             </div>
-          </div>
         </section>
 
         <section className="mt-8 rounded-lg border border-border bg-card p-6">

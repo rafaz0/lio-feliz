@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.6
+**Versão:** 2.7
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsáveis:** Rafael Santos + IA
 
-**Última atualização:** 13/07/2026
+**Última atualização:** 15/07/2026
 
 ---
 
@@ -1030,6 +1030,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.6
+
+GOV-003 (Regras de Governança Pós-Auditoria) implementado. Incorporado ao PROJECT_BOOTSTRAP.md v2.21 e AI_OPERATION_CHECKLIST.md v1.17. Regras: sincronização obrigatória, estado oficial do projeto, fluxo obrigatório de implementação, bloco de sincronização em relatórios, auditoria pós-rebase.
 
 ### Versão 2.5
 
