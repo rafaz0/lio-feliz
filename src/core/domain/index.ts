@@ -4,3 +4,4 @@ export { ValueObject } from "./value-object";
 export { EntityId } from "./entity-id";
 export { Entity } from "./entity";
 export { AggregateRoot } from "./aggregate-root";
+export { DomainEvent } from "./domain-event";

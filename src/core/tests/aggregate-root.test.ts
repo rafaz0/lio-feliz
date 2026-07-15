@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { EntityId, AggregateRoot } from "@/core/domain";
+import { EntityId, AggregateRoot, DomainEvent } from "@/core/domain";
 
 class TestId extends EntityId<string> {
   constructor(value: string) {
@@ -7,28 +7,35 @@ class TestId extends EntityId<string> {
   }
 }
 
-interface TestEvent {
-  type: string;
-  data: Record<string, unknown>;
+class TestEvent extends DomainEvent {
+  constructor(
+    aggregateId: string,
+    correlationId: string,
+    public readonly data: string,
+    public readonly eventType: string = "test",
+  ) {
+    super(aggregateId, correlationId, eventType);
+    this.finalize();
+  }
 }
 
-class TestAggregate extends AggregateRoot<TestId, TestEvent> {
+class TestAggregate extends AggregateRoot<TestId> {
   constructor(id: TestId) {
     super(id);
   }
 
   doSomething(data: string): void {
-    this.addDomainEvent({ type: "did_something", data: { value: data } });
+    this.addDomainEvent(new TestEvent(this.id.value, "corr-1", data, "did_something"));
   }
 
   triggerMultiple(): void {
-    this.addDomainEvent({ type: "event_1", data: {} });
-    this.addDomainEvent({ type: "event_2", data: {} });
-    this.addDomainEvent({ type: "event_3", data: {} });
+    this.addDomainEvent(new TestEvent(this.id.value, "corr-1", "a", "event_1"));
+    this.addDomainEvent(new TestEvent(this.id.value, "corr-1", "b", "event_2"));
+    this.addDomainEvent(new TestEvent(this.id.value, "corr-1", "c", "event_3"));
   }
 }
 
-class OtherAggregate extends AggregateRoot<TestId, TestEvent> {
+class OtherAggregate extends AggregateRoot<TestId> {
   constructor(id: TestId) {
     super(id);
   }
@@ -46,7 +53,7 @@ describe("AggregateRoot", () => {
       agg.doSomething("hello");
       const events = agg.getDomainEvents();
       expect(events).toHaveLength(1);
-      expect(events[0].type).toBe("did_something");
+      expect(events[0].eventName).toBe("did_something");
     });
 
     it("preserves event order", () => {
@@ -55,18 +62,18 @@ describe("AggregateRoot", () => {
       agg.doSomething("second");
       agg.doSomething("third");
       const events = agg.getDomainEvents();
-      expect(events[0].data.value).toBe("first");
-      expect(events[1].data.value).toBe("second");
-      expect(events[2].data.value).toBe("third");
+      expect(events[0].data).toBe("first");
+      expect(events[1].data).toBe("second");
+      expect(events[2].data).toBe("third");
     });
 
     it("preserves order with different event types", () => {
       const agg = new TestAggregate(new TestId("agg-1"));
       agg.triggerMultiple();
       const events = agg.getDomainEvents();
-      expect(events[0].type).toBe("event_1");
-      expect(events[1].type).toBe("event_2");
-      expect(events[2].type).toBe("event_3");
+      expect(events[0].eventName).toBe("event_1");
+      expect(events[1].eventName).toBe("event_2");
+      expect(events[2].eventName).toBe("event_3");
     });
 
     it("clears events", () => {
@@ -92,7 +99,7 @@ describe("AggregateRoot", () => {
       const agg = new TestAggregate(new TestId("agg-1"));
       agg.doSomething("hello");
       const events = agg.getDomainEvents();
-      events.pop();
+      (events as unknown[]).pop();
       expect(agg.getDomainEvents()).toHaveLength(1);
     });
   });
