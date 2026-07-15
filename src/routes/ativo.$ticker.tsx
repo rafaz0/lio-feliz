@@ -1,21 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useState, useMemo, type ReactNode } from "react";
-import {
-  Activity,
-  ArrowLeft,
-  BarChart3,
-  ChartArea,
-  Clock,
-  Database,
-  HelpCircle,
-  Medal,
-  Plus,
-  Star,
-  TrendingUp,
-  Waves,
-} from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
+import { ArrowLeft, Info, Plus } from "lucide-react";
 import {
   Area,
   Bar,
@@ -33,6 +17,7 @@ import { SiteHeader } from "@/components/site-header";
 import { DeltaPct } from "@/components/delta-pct";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { Button } from "@/components/ui/button";
+import { Tooltip as UiTooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSession } from "@/hooks/use-session";
 import { getAssetData, getFinancialStatements } from "@/lib/data-functions";
 import {
@@ -507,84 +492,65 @@ function AssetPage() {
   );
 
   const indicators = [
-    { label: "P/L", value: asset.fundamentals.pl.toFixed(1), hint: "Preço / Lucro", tag: "" },
+    {
+      label: "P/L",
+      value: asset.fundamentals.pl.toFixed(1),
+      tooltip:
+        "Preço sobre Lucro. Indica quantos anos de lucro são necessários para pagar o preço atual da ação. Um P/L baixo pode sugerir ação subvalorizada; um P/L alto pode indicar expectativa de crescimento futuro. Compare com empresas do mesmo setor.",
+    },
     {
       label: "P/VP",
       value: asset.fundamentals.pvp.toFixed(2),
-      hint: "Preço / Valor Patrimonial",
-      tag: "",
-    },
-    {
-      label: "EV/EBITDA",
-      value: asset.fundamentals.evEbitda.toFixed(1),
-      hint: "Valor da Firma / EBITDA",
-      tag: "",
-    },
-    {
-      label: "PSR",
-      value: asset.fundamentals.psr.toFixed(2),
-      hint: "Preço / Receita Líquida",
-      tag: "",
+      tooltip:
+        "Preço sobre Valor Patrimonial. Compara o valor de mercado da empresa com seu patrimônio líquido contábil. P/VP < 1 pode indicar ação negociada abaixo do valor contábil; P/VP > 1 é comum em empresas com bons retornos. Bancos e seguradoras costumam usar este indicador.",
     },
     {
       label: "DY",
       value: `${asset.fundamentals.dy.toFixed(2)}%`,
-      hint: "Dividend Yield",
-      tag: asset.fundamentals.dy >= 10 ? "top" : "",
-    },
-    {
-      label: "Payout",
-      value: `${asset.fundamentals.payout.toFixed(1)}%`,
-      hint: "% do lucro distribuído",
-      tag: "",
+      tooltip:
+        "Dividend Yield (Rendimento de Dividendos). Mostra quanto a empresa pagou em dividendos nos últimos 12 meses em relação ao preço da ação. Para investidores de longo prazo, um DY consistente e crescente é desejável. Atenção: DY muito alto pode ser insustentável.",
     },
     {
       label: "ROE",
       value: `${asset.fundamentals.roe.toFixed(1)}%`,
-      hint: "Return on Equity",
-      tag: "",
+      tooltip:
+        "Return on Equity (Retorno sobre Patrimônio Líquido). Mede a capacidade da empresa de gerar lucro com o capital dos acionistas. ROE alto e consistente indica gestão eficiente. ROE > 15% é geralmente considerado bom, mas deve-se avaliar junto com o endividamento.",
     },
     {
       label: "ROIC",
       value: `${asset.fundamentals.roic.toFixed(1)}%`,
-      hint: "Return on Invested Capital",
-      tag: "",
+      tooltip:
+        "Return on Invested Capital (Retorno sobre Capital Investido). Mede o retorno gerado sobre todo o capital investido na empresa (próprio + dívida). É um dos indicadores mais importantes para avaliar a eficiência real da empresa. ROIC consistentemente acima do custo de capital indica vantagem competitiva.",
     },
     {
       label: "Margem Líquida",
       value: `${asset.fundamentals.margemLiquida.toFixed(1)}%`,
-      hint: "Lucro Líquido / Receita",
-      tag: "",
+      tooltip:
+        "Margem Líquida. Mostra qual percentual da receita se transforma em lucro líquido. Margens altas indicam poder de precificação e eficiência operacional. Compare com o histórico da própria empresa e com concorrentes do setor.",
     },
     {
       label: "Dív. Líq./EBITDA",
       value: asset.fundamentals.divLiquidaEbitda.toFixed(2),
-      hint: "Alavancagem",
-      tag:
-        asset.fundamentals.divLiquidaEbitda <= 1
-          ? "baixa"
-          : asset.fundamentals.divLiquidaEbitda >= 3
-            ? "alta"
-            : "",
+      tooltip:
+        "Dívida Líquida sobre EBITDA. Mede o nível de alavancagem da empresa: quantos anos de geração de caixa operacional (EBITDA) seriam necessários para pagar toda a dívida líquida. Valores abaixo de 2x são considerados confortáveis; acima de 3x pode indicar risco financeiro elevado.",
     },
-    { label: "LPA", value: formatBRL(asset.fundamentals.lpa), hint: "Lucro por ação", tag: "" },
+    {
+      label: "LPA",
+      value: formatBRL(asset.fundamentals.lpa),
+      tooltip:
+        "Lucro por Ação. É o lucro líquido da empresa dividido pelo número de ações em circulação. Indica quanto de lucro cada ação representa. Use o LPA para calcular o P/L e acompanhar o crescimento dos lucros ao longo do tempo.",
+    },
     {
       label: "VPA",
       value: formatBRL(asset.fundamentals.vpa),
-      hint: "Valor patrimonial por ação",
-      tag: "",
-    },
-    {
-      label: "CAGR Dividendos",
-      value: `${asset.fundamentals.dividendCagr.toFixed(1)}%`,
-      hint: "Crescimento anual de dividendos",
-      tag: asset.fundamentals.dividendCagr >= 5 ? "cresc." : "",
+      tooltip:
+        "Valor Patrimonial por Ação. É o patrimônio líquido dividido pelo número de ações. Representa o valor contábil de cada ação. Use o VPA para calcular o P/VP e avaliar se a ação está cara ou barata em relação ao seu valor contábil.",
     },
     {
       label: "Valor de mercado",
       value: formatBRLCompact(asset.fundamentals.marketCap),
-      hint: "Market cap",
-      tag: "",
+      tooltip:
+        "Market Cap (Valor de Mercado). É o valor total da empresa na bolsa (preço da ação × número de ações). Empresas maiores tendem a ser mais estáveis; empresas menores podem ter mais potencial de crescimento, mas com maior risco. Também chamado de capitalização de mercado.",
     },
   ];
 
@@ -676,275 +642,27 @@ function AssetPage() {
         </section>
 
         {/* Indicators grid */}
-        <TooltipProvider>
-          <section className="mt-8">
-            <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              Indicadores fundamentalistas
-            </h2>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
-              {indicators.map((i) => {
-                const info = INDICATOR_INFO[i.label];
-                return (
-                  <div key={i.label} className="rounded-md border border-border bg-card p-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                          {i.hint}
-                        </span>
-                        {info && (
-                          <UiTooltip>
-                            <TooltipTrigger asChild>
-                              <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
-                                <HelpCircle className="size-3" />
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent
-                              side="top"
-                              className="max-w-[260px] space-y-1.5 p-3 text-left"
-                            >
-                              <p className="text-xs font-medium text-foreground">{i.label}</p>
-                              <p className="text-[10px] text-foreground/70">{info.formula}</p>
-                              <p className="text-[10px] leading-tight text-foreground/80">
-                                {info.meaning}
-                              </p>
-                              <p className="text-[10px] leading-tight text-positive">{info.good}</p>
-                              <p className="text-[10px] leading-tight text-negative">{info.bad}</p>
-                            </TooltipContent>
-                          </UiTooltip>
-                        )}
-                      </div>
-                      {i.tag && (
-                        <span
-                          className={
-                            "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
-                            (i.tag === "top"
-                              ? "bg-positive/10 text-positive"
-                              : i.tag === "alta"
-                                ? "bg-negative/10 text-negative"
-                                : i.tag === "baixa"
-                                  ? "bg-positive/10 text-positive"
-                                  : i.tag === "cresc."
-                                    ? "bg-chart-2/10 text-chart-2"
-                                    : "bg-secondary text-muted-foreground")
-                          }
-                        >
-                          {i.tag}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-1 text-xs font-medium text-muted-foreground">{i.label}</div>
-                    <div className="tabular mt-1.5 text-lg font-semibold">{i.value}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          <SafeBoundary label="valuation">
-            {(graham.fairValue !== null ||
-              bazinTeto !== null ||
-              dividendCagrFromHistory !== null ||
-              avgYield5y !== null) && (
-              <section className="mt-4">
-                <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Modelos de valuation
-                </h2>
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
-                  {/* Graham */}
-                  <div className="rounded-md border border-border bg-card p-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                        Graham (Preço Justo)
-                      </span>
-                      {graham.rating !== "indefinido" && (
-                        <span
-                          className={
-                            "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
-                            (graham.rating === "barata"
-                              ? "bg-positive/10 text-positive"
-                              : graham.rating === "cara"
-                                ? "bg-negative/10 text-negative"
-                                : "bg-secondary text-muted-foreground")
-                          }
-                        >
-                          {graham.rating}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-1 text-xs text-muted-foreground">√(22,5 × LPA × VPA)</div>
-                    <div className="tabular mt-1.5 text-lg font-semibold">
-                      {graham.fairValue !== null ? formatBRL(graham.fairValue) : "—"}
-                    </div>
-                    {graham.discount !== null && (
-                      <div
-                        className={
-                          "tabular mt-0.5 text-xs " +
-                          (graham.discount >= 0 ? "text-positive" : "text-negative")
-                        }
-                      >
-                        {graham.discount >= 0 ? "Desconto " : "Prêmio "}
-                        {Math.abs(graham.discount * 100).toFixed(1)}%
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Bazin */}
-                  <div className="rounded-md border border-border bg-card p-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                        Bazin (Preço Teto)
-                      </span>
-                      {bazinDiscount !== null && (
-                        <span
-                          className={
-                            "rounded px-1 py-0.5 text-[9px] font-medium uppercase " +
-                            (bazinDiscount >= 0
-                              ? "bg-positive/10 text-positive"
-                              : "bg-negative/10 text-negative")
-                          }
-                        >
-                          {bazinDiscount >= 0 ? "abaixo" : "acima"}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-1 text-xs text-muted-foreground">
-                      DY médio {avgYield5y !== null ? `${avgYield5y.toFixed(1)}%` : "—"} a.a. / 6%
-                      esperado
-                    </div>
-                    <div className="tabular mt-1.5 text-lg font-semibold">
-                      {bazinTeto !== null ? formatBRL(bazinTeto) : "—"}
-                    </div>
-                  </div>
-
-                  {/* CAGR dividendos histórico */}
-                  <div className="rounded-md border border-border bg-card p-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                        CAGR Dividendos
-                      </span>
-                      {dividendCagrFromHistory !== null && dividendCagrFromHistory >= 5 && (
-                        <span className="rounded bg-chart-2/10 px-1 py-0.5 text-[9px] font-medium uppercase text-chart-2">
-                          cresc.
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-1 text-xs text-muted-foreground">
-                      baseado em {annualDividends.length}{" "}
-                      {annualDividends.length === 1 ? "ano" : "anos"} de histórico
-                    </div>
-                    <div className="tabular mt-1.5 text-lg font-semibold">
-                      {dividendCagrFromHistory !== null
-                        ? `${dividendCagrFromHistory.toFixed(1)}% a.a.`
-                        : "—"}
-                    </div>
-                  </div>
-
-                  {/* DY médio */}
-                  <div className="rounded-md border border-border bg-card p-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                        DY médio
-                      </span>
-                    </div>
-                    <div className="mt-1 text-xs text-muted-foreground">3 anos / 5 anos</div>
-                    <div className="tabular mt-1.5 text-lg font-semibold">
-                      {avgYield3y !== null ? `${avgYield3y.toFixed(2)}%` : "—"}
-                      <span className="text-sm text-muted-foreground"> / </span>
-                      {avgYield5y !== null ? `${avgYield5y.toFixed(2)}%` : "—"}
-                    </div>
-                  </div>
+        <section className="mt-8">
+          <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Indicadores fundamentalistas
+          </h2>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+            {indicators.map((i) => (
+              <div key={i.label} className="rounded-md border border-border bg-card p-3">
+                <div className="flex items-center gap-1">
+                  <span className="text-xs font-medium text-muted-foreground">{i.label}</span>
+                  <UiTooltip>
+                    <TooltipTrigger asChild>
+                      <button className="inline-flex size-3.5 items-center justify-center rounded-full text-muted-foreground/60 hover:text-muted-foreground">
+                        <Info className="size-3" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-[280px] text-xs leading-relaxed">
+                      {i.tooltip}
+                    </TooltipContent>
+                  </UiTooltip>
                 </div>
-              </section>
-            )}
-          </SafeBoundary>
-
-          <SafeBoundary label="scorecard">
-            {/* Scorecard agregado */}
-            <section className="mt-4">
-              <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                Scorecard agregado
-              </h2>
-              <div className="rounded-lg border border-border bg-card p-5">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span
-                        className={
-                          "rounded px-2 py-0.5 text-xs font-medium uppercase tracking-wider " +
-                          ratingColor(scorecardScore.rating).badge
-                        }
-                      >
-                        {ratingLabel(scorecardScore.rating)}
-                      </span>
-                      {scorecardScore.isAristocrat && (
-                        <span className="inline-flex items-center gap-1 rounded bg-chart-5/15 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-chart-5">
-                          <Medal className="size-3" /> Aristocrata de Dividendos
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-2 flex items-baseline gap-2">
-                      <div className="tabular text-4xl font-bold tracking-tight">
-                        {scorecardScore.score.toFixed(0)}
-                      </div>
-                      <div className="tabular text-base text-muted-foreground">
-                        / {scorecardScore.maxScore.toFixed(0)}
-                      </div>
-                      <div className="tabular text-sm text-muted-foreground">
-                        ({(scorecardScore.ratio * 100).toFixed(0)}%)
-                      </div>
-                    </div>
-                    {scorecardScore.isAristocrat && scorecardScore.streak > 0 && (
-                      <div className="mt-1 text-xs text-muted-foreground">
-                        {scorecardScore.streak} anos seguidos mantendo/crescendo o dividendo.
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex h-24 w-32 items-end sm:w-40">
-                    <div
-                      className="w-full overflow-hidden rounded bg-secondary"
-                      style={{ height: 8 }}
-                    >
-                      <div
-                        className={
-                          "h-full transition-all " + ratingColor(scorecardScore.rating).bar
-                        }
-                        style={{ width: `${scorecardScore.ratio * 100}%` }}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
-                  {scorecardScore.criteria.map((c) => {
-                    const isPct =
-                      c.key === "graham" ||
-                      c.key === "bazin" ||
-                      c.key === "dy" ||
-                      c.key === "roe" ||
-                      c.key === "cagr";
-                    const display =
-                      c.value === null || c.value === undefined
-                        ? "—"
-                        : `${c.value.toFixed(2)}${isPct ? "%" : ""}`;
-                    return (
-                      <div key={c.key} className="rounded-md border border-border p-2">
-                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                          {c.label}
-                        </div>
-                        <div className="mt-1 flex items-baseline gap-1">
-                          <span className="tabular text-sm font-medium">{display}</span>
-                        </div>
-                        <div className="mt-1 text-[10px] text-muted-foreground">{c.detail}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <p className="mt-4 text-xs text-muted-foreground">
-                  Score combina desconto Graham, teto Bazin, dividend yield atual, ROE, CAGR de
-                  dividendos histórico, P/VP e endividamento. Use como orientação junto com sua tese
-                  de longo prazo.
-                </p>
+                <div className="tabular mt-1.5 text-lg font-semibold">{i.value}</div>
               </div>
             </section>
           </SafeBoundary>
@@ -1524,17 +1242,20 @@ function AssetPage() {
                 </ResponsiveContainer>
               </div>
             </div>
-            <div className="overflow-hidden rounded-lg border border-border bg-card">
-              <div className="border-b border-border bg-surface-2 px-4 py-3">
-                <h2 className="text-sm font-semibold">Últimos proventos</h2>
-                <p className="text-xs text-muted-foreground">Por ação, últimos 12 meses</p>
-              </div>
-              <table className="w-full text-sm">
-                <thead className="text-xs uppercase text-muted-foreground">
-                  <tr>
-                    <th className="px-4 py-2 text-left font-medium">Data</th>
-                    <th className="px-4 py-2 text-left font-medium">Tipo</th>
-                    <th className="px-4 py-2 text-right font-medium">Valor</th>
+            <table className="w-full text-sm">
+              <thead className="text-xs uppercase text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-2 text-left font-medium">Data</th>
+                  <th className="px-4 py-2 text-left font-medium">Tipo</th>
+                  <th className="px-4 py-2 text-right font-medium">Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                {asset.dividends.map((d: (typeof asset.dividends)[number], i: number) => (
+                  <tr key={i} className="border-t border-border">
+                    <td className="px-4 py-2 text-muted-foreground">{formatDate(d.paidAt)}</td>
+                    <td className="px-4 py-2">{d.type}</td>
+                    <td className="tabular px-4 py-2 text-right">{formatBRL(d.amount)}</td>
                   </tr>
                 </thead>
                 <tbody>

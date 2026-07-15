@@ -662,13 +662,9 @@ function PortfolioOverview() {
                         )}
                       </td>
                       <td className="tabular px-4 py-2.5 text-right">
-                        {isRf ? (
-                          <span className="text-muted-foreground">—</span>
-                        ) : (
-                          <span className={p.pnl >= 0 ? "text-positive" : "text-negative"}>
-                            {formatBRL(p.pnl)}
-                          </span>
-                        )}
+                        <span className={p.pnl >= 0 ? "text-positive" : "text-negative"}>
+                          {formatBRL(p.pnl)}
+                        </span>
                       </td>
                       <td className="px-4 py-2.5 text-right">
                         {isRf ? <span className="text-muted-foreground">—</span> : <DeltaPct value={p.pnlPct} />}

@@ -1,27 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
-import {
-  ArrowRight,
-  BarChart3,
-  Building2,
-  Calculator,
-  CalendarDays,
-  LineChart,
-  Medal,
-  Newspaper,
-  PiggyBank,
-  Search,
-  Star,
-  Target,
-  TrendingUp,
-  Wallet,
-} from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
+import { ArrowRight, Info, LineChart, TrendingUp, Wallet } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { DeltaPct } from "@/components/delta-pct";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ASSETS } from "@/lib/mock-data";
 import { getAssetList, type AssetLite } from "@/lib/data-functions";
 import { MARKET_INDICES, formatIndexValue } from "@/lib/market-indices";
@@ -212,10 +194,23 @@ function HomePage() {
                   <th className="hidden sm:table-cell px-4 py-2.5 text-left font-medium">Setor</th>
                   <th className="px-4 py-2.5 text-right font-medium">Preço</th>
                   <th className="px-4 py-2.5 text-right font-medium">Var. dia</th>
-                  <th className="hidden md:table-cell px-4 py-2.5 text-right font-medium">DY</th>
-                  <th className="hidden md:table-cell px-4 py-2.5 text-right font-medium">P/L</th>
-                  <th className="hidden lg:table-cell px-4 py-2.5 text-right font-medium">
-                    Valor de mercado
+                  <th className="px-4 py-2.5 text-right font-medium">
+                    <ThHint
+                      label="DY"
+                      tooltip="Dividend Yield. Rendimento de dividendos pagos nos últimos 12 meses em relação ao preço da ação."
+                    />
+                  </th>
+                  <th className="px-4 py-2.5 text-right font-medium">
+                    <ThHint
+                      label="P/L"
+                      tooltip="Preço / Lucro. Quantos anos de lucro para pagar o preço da ação. Menor pode indicar ação mais barata; maior pode indicar expectativa de crescimento."
+                    />
+                  </th>
+                  <th className="px-4 py-2.5 text-right font-medium">
+                    <ThHint
+                      label="Valor de mercado"
+                      tooltip="Market Cap. Valor total da empresa na bolsa (preço × ações). Empresas maiores tendem a ser mais estáveis."
+                    />
                   </th>
                 </tr>
               </thead>
@@ -430,6 +425,24 @@ function HomePage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function ThHint({ label, tooltip }: { label: string; tooltip: string }) {
+  return (
+    <span className="inline-flex items-center gap-1">
+      {label}
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button className="inline-flex size-3.5 items-center justify-center rounded-full text-muted-foreground/50 hover:text-muted-foreground">
+            <Info className="size-3" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="max-w-[260px] text-xs leading-relaxed">
+          {tooltip}
+        </TooltipContent>
+      </Tooltip>
+    </span>
   );
 }
 
