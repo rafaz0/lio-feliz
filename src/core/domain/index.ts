@@ -6,3 +6,4 @@ export { Entity } from "./entity";
 export { AggregateRoot } from "./aggregate-root";
 export { DomainEvent } from "./domain-event";
 export { Ticker } from "./value-objects/ticker";
+export { Quantity } from "./value-objects/quantity";
