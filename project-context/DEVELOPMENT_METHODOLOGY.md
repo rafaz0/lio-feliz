@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.11
+**Versão:** 2.12
 
 **Status:** APROVADO
 
@@ -106,6 +106,8 @@ essa informação deverá obrigatoriamente ser registrada através de:
 Nunca permanecer apenas na conversa.
 
 > **Lição aprendida (GOV-006):** Durante a implementação da Core Foundation observou-se que sugestões não materializadas tinham alta probabilidade de serem esquecidas entre conversas. A partir deste marco, toda melhoria deve gerar imediatamente uma implementação, um prompt ou um registro metodológico (BK). Nenhuma recomendação arquitetural, metodológica ou operacional pode permanecer exclusivamente como texto na resposta da IA.
+
+> **Lição aprendida (GOV-008):** Durante a sprint de consolidação documental, o OpenCode executou implementações em `C:\lio-feliz` — um clone residual — ao invés do diretório canônico `H:\Lio Feliz\`. A causa raiz foi a ausência de verificação explícita do working directory antes do início da execução. A partir deste marco, toda sessão deve verificar o working directory como passo zero antes de qualquer operação. Nenhuma implementação pode ocorrer em diretório não canônico.
 
 ---
 
@@ -1036,6 +1038,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.12
+
+GOV-008 implementado. Lição aprendida registrada: verificação de working directory como passo zero obrigatório. Nenhuma implementação em diretório não canônico. Compatibilidade com PROJECT_BOOTSTRAP.md v2.27 e AI_OPERATION_CHECKLIST.md v1.27.
 
 ### Versão 2.11
 

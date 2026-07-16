@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.26
+**Versão:** 2.27
 
 **Status:** APROVADO
 
@@ -121,6 +121,7 @@ Sem evidência objetiva, executar o plano vigente. Backlog ativo nunca é omitid
 ## Fluxo Oficial de Inicialização
 
 ```
+0. Verificar working directory (GOV-008)
 1. Ler AI_CONTEXT.md (identidade, estado, referências)
 2. Ler PROJECT_BOOTSTRAP.md (runtime operacional completo)
 3. Restaurar Estado Operacional automaticamente
@@ -131,6 +132,7 @@ Sem evidência objetiva, executar o plano vigente. Backlog ativo nunca é omitid
 
 ## Checklist Obrigatório
 
+- [ ] Working directory verificado — confere com o caminho canônico (GOV-008)
 - [ ] Estado restaurado
 - [ ] Projeto identificado
 - [ ] Marco identificado
@@ -896,6 +898,37 @@ Documentos de maior precedência prevalecem sobre os de menor precedência. Docu
 
 ---
 
+# Verificação de Workspace (GOV-008)
+
+**Contexto:** Durante a sprint de consolidação documental, o OpenCode utilizou `C:\lio-feliz` como working directory, divergindo do caminho canônico `H:\Lio Feliz\` definido no AGENTS.md. A causa raiz foi a ausência de verificação explícita do working directory antes do início da execução.
+
+## Causa Raiz
+
+| Fator | Detalhe |
+|-------|---------|
+| Working directory padrão | A sessão foi iniciada em `C:\`, sem vinculação a um workspace específico |
+| AGENTS.md não consultado | A instrução explícita "Sempre verifique o working directory antes de iniciar" não foi executada antes da implementação |
+| Ausência de bloqueio | Nenhum mecanismo automático impede a IA de operar em diretório não canônico |
+| Clone residual | `C:\lio-feliz` existia como clone residual, mas não era o diretório oficial |
+
+## Medidas Preventivas
+
+1. **Passo 0 no Fluxo de Inicialização:** Verificar working directory antes de qualquer operação.
+2. **Checklist Obrigatório:** Item "Working directory verificado" adicionado como primeira verificação.
+3. **Autoverificação IA-026 expandida:** Nova pergunta "O working directory corresponde ao caminho canônico do projeto?" adicionada.
+4. **Regra de comportamento adicionada:** Se o working directory divergir do canônico, interromper e reportar antes de iniciar qualquer implementação.
+
+## Regra de Comportamento
+
+Se o working directory atual não corresponder ao caminho canônico `H:\Lio Feliz\`:
+1. Interromper imediatamente qualquer inferência operacional.
+2. Reportar a divergência ao usuário com o caminho correto.
+3. Aguardar instruções antes de prosseguir.
+
+Nenhuma implementação, leitura ou alteração de arquivos pode ocorrer em diretório não canônico.
+
+---
+
 # Technical Roadmap (GOV-006)
 
 Melhorias futuras identificadas durante a Engineering Review (ER-C001-C002-001). **Não constituem dívida técnica atual e não bloqueiam nenhuma Sprint.**
@@ -983,6 +1016,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.27
+
+GOV-008 implementado. Verificação de Workspace (GOV-008) adicionada como seção independente. Causa raiz documentada (working directory divergente). Medidas preventivas: Passo 0 no Fluxo de Inicialização, checklist obrigatório expandido, regra de comportamento de bloqueio. Bootstrap v2.27. AI_OPERATION_CHECKLIST v1.27. PROJECT_STATUS v1.35. DEVELOPMENT_METHODOLOGY v2.12.
 
 ## v2.26
 

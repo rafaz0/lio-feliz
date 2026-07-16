@@ -15,8 +15,8 @@
 
 > **⚠️ Caminho canônico do projeto:** `H:\Lio Feliz\`
 >
-> Este é o único diretório oficial. Qualquer outro caminho (ex: `C:\Users\...\Temp\...`) é cópia obsoleta.
-> **Sempre verifique o working directory antes de iniciar.**
+> Este é o **único diretório oficial**. Qualquer outro caminho (ex: `C:\lio-feliz`, `C:\Users\...\Temp\...`) NÃO é o diretório do projeto.
+> **AÇÃO OBRIGATÓRIA:** Verifique o working directory da ferramenta (ex: Bash `pwd`). Se NÃO for `H:\Lio Feliz\`, interrompa e reporte antes de qualquer operação. (GOV-008)
 
 ## Inicialização Obrigatória do Projeto
 

@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.34
+**Versão:** 1.35
 
 **Status:** APROVADO
 
@@ -168,6 +168,8 @@ ADR-008: Backlog Governance
 | 15/07/2026 | GOV-006 — Consolidação da Core Foundation. Core API Frozen (7 componentes). Technical Roadmap criado. Projeto entra em fase de evolução do domínio de investimentos. Bootstrap v2.24. |
 | 15/07/2026 | GOV-006 atualizado — regras Materialização Obrigatória de Melhorias + Objetividade Operacional incorporadas. Bootstrap v2.25. |
 | 15/07/2026 | GOV-007 — Fluxo Oficial da Engenharia, Mapa de Dependências Documentais, Regra de Precedência Documental. Bootstrap v2.26. |
+| 15/07/2026 | AIR-002 — Auditoria de Workspace. Detectado uso de `C:\lio-feliz` ao invés do caminho canônico `H:\Lio Feliz\`. Causa raiz: ausência de verificação explícita do working directory. |
+| 15/07/2026 | GOV-008 — Verificação de Workspace. Passo 0 no Fluxo de Inicialização, checklist expandido, regra de bloqueio para working directory divergente. Bootstrap v2.27. AI_OPERATION_CHECKLIST v1.27. DEVELOPMENT_METHODOLOGY v2.12. |
 
 ---
 
@@ -190,6 +192,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.35
+
+GOV-008 implementado. AIR-002 concluída. Detecção e correção de working directory divergente. Medidas preventivas incorporadas: Passo 0 no Fluxo de Inicialização, verificação explícita na Pré-Resposta, regra de bloqueio. Bootstrap v2.27. AI_OPERATION_CHECKLIST v1.27. DEVELOPMENT_METHODOLOGY v2.12.
 
 ### Versão 1.34
 

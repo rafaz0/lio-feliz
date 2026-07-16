@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.26
+**Versão:** 1.27
 
 **Status:** APROVADO
 
@@ -22,6 +22,7 @@
 
 Antes de responder, verificar:
 
+- [ ] O working directory corresponde ao caminho canônico `H:\Lio Feliz\`? (GOV-008)
 - [ ] Estou no modo correto?
 - [ ] Existe DEC ativa?
 - [ ] Existe evidência objetiva para alterar a direção?
@@ -225,6 +226,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.27
+
+GOV-008 implementado. Nova verificação "O working directory corresponde ao caminho canônico H:\Lio Feliz\?" adicionada como primeiro item da Pré-Resposta. Compatibilidade com PROJECT_BOOTSTRAP.md v2.27.
 
 ### Versão 1.26
 
