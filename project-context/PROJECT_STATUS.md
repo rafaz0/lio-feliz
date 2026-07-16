@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.37
+**Versão:** 1.38
 
 **Status:** APROVADO
 
@@ -172,6 +172,7 @@ ADR-008: Backlog Governance
 | 15/07/2026 | GOV-008 — Verificação de Workspace. Passo 0 no Fluxo de Inicialização, checklist expandido, regra de bloqueio para working directory divergente. Bootstrap v2.27. AI_OPERATION_CHECKLIST v1.27. DEVELOPMENT_METHODOLOGY v2.12. |
 | 15/07/2026 | GOV-009 — Eliminação do Workspace Duplicado. Clone residual `C:\lio-feliz` removido. Bundle de backup criado em `H:\lio-feliz-backup-gov009.bundle`. Projeto passa a ter exatamente um clone oficial. Bootstrap v2.28. AI_OPERATION_CHECKLIST v1.28. DEVELOPMENT_METHODOLOGY v2.13. |
 | 15/07/2026 | GOV-010 — Workspace Oficial e Inicialização Segura. Scripts: workspace-check.ps1 (Workspace Guard), start-opencode.ps1, start-opencode.bat. Passo 0 no Fluxo de Inicialização. OpenCode deve ser iniciado exclusivamente pelos scripts oficiais. Bootstrap v2.29. AI_OPERATION_CHECKLIST v1.29. DOCUMENTATION_INDEX v1.31. DEVELOPMENT_METHODOLOGY v2.14. |
+| 15/07/2026 | GOV-011 — Hardening da Inicialização do Workspace. Workspace Guard tornado guardião bloqueante (8 verificações). WORKSPACE_FINGERPRINT.md criado. Detecção de clone duplicado. Regra: nenhuma engenharia sem validação. Convenção: workspace oficial único. Bootstrap v2.30. AI_OPERATION_CHECKLIST v1.30. DEVELOPMENT_METHODOLOGY v2.15. DOCUMENTATION_INDEX v1.32. |
 
 ---
 
@@ -194,6 +195,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.38
+
+GOV-011 implementado. Hardening da inicialização: Workspace Guard bloqueante, WORKSPACE_FINGERPRINT.md, detecção de clone duplicado, banner de identidade. Bootstrap v2.30. AI_OPERATION_CHECKLIST v1.30. DEVELOPMENT_METHODOLOGY v2.15. DOCUMENTATION_INDEX v1.32.
 
 ### Versão 1.37
 

@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.14
+**Versão:** 2.15
 
 **Status:** APROVADO
 
@@ -112,6 +112,8 @@ Nunca permanecer apenas na conversa.
 > **Lição aprendida (GOV-009):** Após GOV-008, foi confirmado que dois clones válidos existiam simultaneamente. O clone residual `C:\lio-feliz` foi removido e um bundle de backup foi criado. A partir deste marco, o projeto possui exatamente um clone oficial. Qualquer referência futura a outro clone constitui erro operacional.
 
 > **Lição aprendida (GOV-010):** A inicialização do ambiente também faz parte da engenharia. O workspace deve ser validado antes do bootstrap. Um Workspace Guard (tools/workspace-check.ps1) foi criado como passo zero obrigatório. Nenhuma sessão do OpenCode pode iniciar sem validação prévia do workspace oficial. A abertura manual do OpenCode em diretório arbitrário constitui violação de protocolo.
+
+> **Lição aprendida (GOV-011):** O Workspace Guard foi endurecido para ser um guardião bloqueante. Além das verificações básicas, agora valida fingerprint, documentos obrigatórios, detecta clones duplicados e exibe banner de identidade. Nenhuma atividade de engenharia pode começar antes da validação completa. O PASSO 0 é inomitível.
 
 ---
 
@@ -1042,6 +1044,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.15
+
+GOV-011 implementado. Lição aprendida: Workspace Guard endurecido como guardião bloqueante. Fingerprint, documentos obrigatórios e detecção de clone duplicado. Compatibilidade com PROJECT_BOOTSTRAP.md v2.30 e AI_OPERATION_CHECKLIST.md v1.30.
 
 ### Versão 2.14
 

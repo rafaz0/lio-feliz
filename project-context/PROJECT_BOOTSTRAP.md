@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.29
+**Versão:** 2.30
 
 **Status:** APROVADO
 
@@ -121,7 +121,7 @@ Sem evidência objetiva, executar o plano vigente. Backlog ativo nunca é omitid
 ## Fluxo Oficial de Inicialização
 
 ```
-0. Verificar working directory (GOV-008)
+0. Executar Workspace Guard — tools/workspace-check.ps1 (GOV-011)
 1. Ler AI_CONTEXT.md (identidade, estado, referências)
 2. Ler PROJECT_BOOTSTRAP.md (runtime operacional completo)
 3. Restaurar Estado Operacional automaticamente
@@ -132,7 +132,7 @@ Sem evidência objetiva, executar o plano vigente. Backlog ativo nunca é omitid
 
 ## Checklist Obrigatório
 
-- [ ] Working directory verificado — confere com o caminho canônico (GOV-008)
+- [ ] Workspace Guard executado (GOV-011)
 - [ ] Estado restaurado
 - [ ] Projeto identificado
 - [ ] Marco identificado
@@ -981,6 +981,68 @@ O Passo 0 é inomitível. Se o Workspace Guard falhar, nenhuma operação subseq
 
 ---
 
+# Hardening da Inicialização do Workspace (GOV-011)
+
+## Workspace Guard Bloqueante
+
+O `workspace-check.ps1` foi endurecido para atuar como **guardião bloqueante**. As seguintes verificações são obrigatórias:
+
+| # | Verificação | Critério |
+|---|-------------|----------|
+| 1 | Diretório oficial | `H:\Lio Feliz` deve existir |
+| 2 | Git toplevel | `git rev-parse --show-toplevel` deve corresponder exatamente |
+| 3 | Remote | `origin` deve ser `git@github.com:rafaz0/lio-feliz.git` |
+| 4 | HEAD | `git rev-parse HEAD` deve existir |
+| 5 | Branch | Deve ser `main` |
+| 6 | Working Tree | Verificada (limpa/suja — informativo, não bloqueante) |
+| 7 | Documentos obrigatórios | AGENTS.md, PROJECT_BOOTSTRAP.md, AI_OPERATION_CHECKLIST.md, WORKSPACE_FINGERPRINT.md |
+| 8 | Clone duplicado | Verifica existência de `C:\lio-feliz` (alerta) |
+
+**Se qualquer item obrigatório falhar:** o Workspace Guard imprime erro em vermelho, explica o motivo e retorna Exit Code 1. O script `start-opencode.ps1` (e `.bat`) bloqueia a abertura do OpenCode.
+
+## Workspace Fingerprint
+
+O arquivo `project-context/WORKSPACE_FINGERPRINT.md` é a identidade oficial do workspace. Sua existência é validada pelo Workspace Guard em toda inicialização.
+
+## Verificação de Clone Duplicado
+
+O Workspace Guard verifica automaticamente a existência de `C:\lio-feliz`. Se existir, emite alerta sem apagar automaticamente.
+
+## Workspace Identity
+
+No início de toda execução, o Workspace Guard exibe:
+
+```
+============================================
+  LIO FELIZ
+  Workspace Oficial
+  H:\Lio Feliz
+  Branch: main
+  HEAD:   xxxxxxx
+  Remote: git@github.com:rafaz0/lio-feliz.git
+============================================
+```
+
+## Regra Operacional
+
+Nenhuma atividade de engenharia pode começar antes da validação completa do Workspace Guard. O PASSO 0 é inomitível e obrigatório.
+
+## Nova Convenção
+
+O Workspace Oficial do projeto Lio Feliz é: `H:\Lio Feliz`.
+
+Todo clone adicional é considerado secundário. Jamais iniciar engenharia em outro clone sem Engineering Review documentada.
+
+## Scripts Atualizados
+
+| Script | Descrição |
+|--------|-----------|
+| `tools/workspace-check.ps1` | Workspace Guard — guardião bloqueante com fingerprint, clone check e banner |
+| `tools/start-opencode.ps1` | Inicialização oficial — delega ao Workspace Guard, bloqueia se falhar |
+| `tools/start-opencode.bat` | Equivalente CMD — delega ao Workspace Guard via PowerShell |
+
+---
+
 # Technical Roadmap (GOV-006)
 
 Melhorias futuras identificadas durante a Engineering Review (ER-C001-C002-001). **Não constituem dívida técnica atual e não bloqueiam nenhuma Sprint.**
@@ -1068,6 +1130,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.30
+
+GOV-011 implementado. Hardening da Inicialização do Workspace. Workspace Guard tornado guardião bloqueante com 8 verificações obrigatórias. WORKSPACE_FINGERPRINT.md criado como identidade oficial. Detecção de clone duplicado. Workspace Identity banner. Regra operacional: nenhuma engenharia antes da validação. Convenção: workspace oficial único. Bootstrap v2.30. AI_OPERATION_CHECKLIST v1.30. PROJECT_STATUS v1.38. DEVELOPMENT_METHODOLOGY v2.15. DOCUMENTATION_INDEX v1.32.
 
 ## v2.29
 

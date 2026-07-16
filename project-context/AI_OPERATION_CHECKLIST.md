@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.29
+**Versão:** 1.30
 
 **Status:** APROVADO
 
@@ -18,16 +18,18 @@
 
 ---
 
-## PASSO 0 — Workspace Validation (GOV-010)
+## PASSO 0 — Workspace Validation (GOV-011)
 
-- [ ] Workspace Guard executado (`tools/workspace-check.ps1`)
+- [ ] Workspace Guard executado (`tools/workspace-check.ps1`) — Exit Code 0
 - [ ] Working directory confirmado: `H:\Lio Feliz\`
 - [ ] Git toplevel confirmado: `H:\Lio Feliz\`
 - [ ] Remote confirmado: `git@github.com:rafaz0/lio-feliz.git`
 - [ ] Branch confirmada: `main`
 - [ ] Working Tree limpa (ou aviso registrado)
+- [ ] WORKSPACE_FINGERPRINT.md existe e é válido
+- [ ] Nenhum clone duplicado detectado (ou alerta registrado)
 
-**Se o Workspace Guard falhar → interromper imediatamente. Nenhuma operação pode prosseguir.**
+**Se o Workspace Guard falhar (Exit Code != 0) → interromper imediatamente. Nenhuma operação de engenharia pode prosseguir.**
 
 ---
 
@@ -239,6 +241,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.30
+
+GOV-011 implementado. PASSO 0 endurecido: 8 verificações obrigatórias, validação de WORKSPACE_FINGERPRINT.md, detecção de clone duplicado. Bloqueio total se Workspace Guard falhar. Compatibilidade com PROJECT_BOOTSTRAP.md v2.30.
 
 ### Versão 1.29
 

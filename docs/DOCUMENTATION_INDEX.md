@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.31
+**Versão da Documentação:** 1.32
 
 **Status:** APROVADO
 
@@ -235,19 +235,25 @@ Artefato derivado. Consolidação da documentação para leitura e consulta. Fon
 
 📄 `tools/workspace-check.ps1`
 
-Workspace Guard oficial. Valida diretório, git, remote, HEAD, branch e working tree. Exit Code 0 = OK, 1 = erro. Reutilizável por automações. (GOV-010)
+Workspace Guard oficial — guardião bloqueante. Valida diretório, git, remote, HEAD, branch, working tree, fingerprint e detecta clones duplicados. Exit Code 0 = OK, 1 = bloqueado. (GOV-011)
 
 ---
 
 📄 `tools/start-opencode.ps1`
 
-Script oficial de inicialização do projeto. Valida workspace e abre o OpenCode. (GOV-010)
+Script oficial de inicialização do projeto. Executa Workspace Guard e abre o OpenCode. Bloqueia se o Guard falhar. (GOV-011)
 
 ---
 
 📄 `tools/start-opencode.bat`
 
-Equivalente CMD do script de inicialização. (GOV-010)
+Equivalente CMD do script de inicialização. (GOV-011)
+
+---
+
+📄 `project-context/WORKSPACE_FINGERPRINT.md`
+
+Identidade oficial do workspace. Sua existência é validada pelo Workspace Guard em toda inicialização. (GOV-011)
 
 ---
 
@@ -346,6 +352,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.32
+
+- GOV-011 implementado. Entradas atualizadas para tools/ (GOV-011). WORKSPACE_FINGERPRINT.md adicionado. Bootstrap v2.30.
 
 ## Versão 1.31
 
