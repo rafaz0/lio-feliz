@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.27
+**Versão:** 2.28
 
 **Status:** APROVADO
 
@@ -929,6 +929,25 @@ Nenhuma implementação, leitura ou alteração de arquivos pode ocorrer em dire
 
 ---
 
+# Eliminação do Workspace Duplicado (GOV-009)
+
+**Contexto:** Após GOV-008, foi confirmada a existência de dois clones válidos do mesmo repositório: `C:\lio-feliz` (clone residual) e `H:\Lio Feliz\` (oficial). O clone em C:\lio-feliz foi removido para eliminar definitivamente qualquer possibilidade de operação em diretório não canônico.
+
+## Ação Executada
+
+1. Auditoria de segurança confirmou HEAD `e4b3470`, branch `main`, remote SSH, working tree limpa em ambos os clones.
+2. Bundle Git criado em `H:\lio-feliz-backup-gov009.bundle` (987 KB).
+3. Clone `C:\lio-feliz` removido completamente (`Remove-Item -Recurse -Force`).
+4. Workspace `H:\Lio Feliz\` validado como único clone oficial.
+
+## Regra Definitiva
+
+O projeto Lio Feliz possui **exatamente um** clone oficial: `H:\Lio Feliz\`.
+
+Qualquer referência futura a outro clone constitui erro operacional e deve ser tratado como violação de protocolo.
+
+---
+
 # Technical Roadmap (GOV-006)
 
 Melhorias futuras identificadas durante a Engineering Review (ER-C001-C002-001). **Não constituem dívida técnica atual e não bloqueiam nenhuma Sprint.**
@@ -1016,6 +1035,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.28
+
+GOV-009 implementado. Eliminação do Workspace Duplicado. Clone residual `C:\lio-feliz` removido. Bundle de backup criado. Projeto passa a ter exatamente um clone oficial. Bootstrap v2.28. AI_OPERATION_CHECKLIST v1.28. PROJECT_STATUS v1.36. DEVELOPMENT_METHODOLOGY v2.13.
 
 ## v2.27
 

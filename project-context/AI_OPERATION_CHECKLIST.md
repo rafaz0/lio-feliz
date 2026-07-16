@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.27
+**Versão:** 1.28
 
 **Status:** APROVADO
 
@@ -226,6 +226,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.28
+
+GOV-009 implementado. Clone residual C:\lio-feliz removido. Workspace oficial exclusivo confirmado: H:\Lio Feliz\. Compatibilidade com PROJECT_BOOTSTRAP.md v2.28.
 
 ### Versão 1.27
 

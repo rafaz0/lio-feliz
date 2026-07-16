@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.12
+**Versão:** 2.13
 
 **Status:** APROVADO
 
@@ -108,6 +108,8 @@ Nunca permanecer apenas na conversa.
 > **Lição aprendida (GOV-006):** Durante a implementação da Core Foundation observou-se que sugestões não materializadas tinham alta probabilidade de serem esquecidas entre conversas. A partir deste marco, toda melhoria deve gerar imediatamente uma implementação, um prompt ou um registro metodológico (BK). Nenhuma recomendação arquitetural, metodológica ou operacional pode permanecer exclusivamente como texto na resposta da IA.
 
 > **Lição aprendida (GOV-008):** Durante a sprint de consolidação documental, o OpenCode executou implementações em `C:\lio-feliz` — um clone residual — ao invés do diretório canônico `H:\Lio Feliz\`. A causa raiz foi a ausência de verificação explícita do working directory antes do início da execução. A partir deste marco, toda sessão deve verificar o working directory como passo zero antes de qualquer operação. Nenhuma implementação pode ocorrer em diretório não canônico.
+
+> **Lição aprendida (GOV-009):** Após GOV-008, foi confirmado que dois clones válidos existiam simultaneamente. O clone residual `C:\lio-feliz` foi removido e um bundle de backup foi criado. A partir deste marco, o projeto possui exatamente um clone oficial. Qualquer referência futura a outro clone constitui erro operacional.
 
 ---
 
@@ -1038,6 +1040,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.13
+
+GOV-009 implementado. Lição aprendida registrada: clone residual removido, workspace único oficializado. Nenhum clone alternativo é permitido. Compatibilidade com PROJECT_BOOTSTRAP.md v2.28 e AI_OPERATION_CHECKLIST.md v1.28.
 
 ### Versão 2.12
 
