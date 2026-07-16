@@ -7,3 +7,4 @@ export { AggregateRoot } from "./aggregate-root";
 export { DomainEvent } from "./domain-event";
 export { Ticker } from "./value-objects/ticker";
 export { Quantity } from "./value-objects/quantity";
+export { Money } from "./value-objects/money";
