@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.40
+**Versão:** 1.41
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsável:** Rafael Santos + IA
 
-**Última atualização:** 17/07/2026
+**Última atualização:** 18/07/2026
 
 ---
 
@@ -175,6 +175,7 @@ ADR-008: Backlog Governance
 | 15/07/2026 | GOV-011 — Hardening da Inicialização do Workspace. Workspace Guard tornado guardião bloqueante (8 verificações). WORKSPACE_FINGERPRINT.md criado. Detecção de clone duplicado. Regra: nenhuma engenharia sem validação. Convenção: workspace oficial único. Bootstrap v2.30. AI_OPERATION_CHECKLIST v1.30. DEVELOPMENT_METHODOLOGY v2.15. DOCUMENTATION_INDEX v1.32. |
 | 16/07/2026 | GOV-008 refinado — PASSO 0 generalizado para Agente Executor. Fluxo da Engenharia refinado (PI fonte exclusiva de arquitetura, EWO materializador). AI_OPERATION_CHECKLIST v1.31, Bootstrap v2.31, PROJECT_STATUS v1.39, DOCUMENTATION_INDEX v1.33. |
 | 17/07/2026 | GOV-009 implementado — Sincronização Operacional obrigatória. Ciclo completo de 8 etapas, regra de consistência do estado, Lembrete Obrigatório no template Prompt OpenCode. AI_OPERATION_CHECKLIST v1.32, Bootstrap v2.32, PROJECT_STATUS v1.40, DOCUMENTATION_INDEX v1.34. |
+| 18/07/2026 | SYNC-001 implementado — Bootstrap consolidado como Runtime Operacional permanente. Engineering Outlook reestruturado. Regra de Promoção de Conhecimento Permanente adicionada. Regra de Qualidade de Prompts para Agente Executor. AI_OPERATION_CHECKLIST v1.33, Bootstrap v2.33, PROJECT_STATUS v1.41, DOCUMENTATION_INDEX v1.35. |
 
 ---
 
@@ -197,6 +198,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.41
+
+SYNC-001 implementado. Bootstrap consolidado como Runtime Operacional permanente. Engineering Outlook em PARTE A. Regra de Promoção de Conhecimento Permanente. AI_OPERATION_CHECKLIST expandido com Qualidade de Prompts. Bootstrap v2.33. AI_OPERATION_CHECKLIST v1.33. DOCUMENTATION_INDEX v1.35.
 
 ### Versão 1.40
 

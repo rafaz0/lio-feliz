@@ -2,33 +2,49 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.32
+**Versão:** 2.33
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 17/07/2026
+**Última atualização:** 18/07/2026
 
 ---
 
-> **O PROJECT_BOOTSTRAP é o Runtime Operacional oficial da IA.**
+> **O PROJECT_BOOTSTRAP é o Runtime Operacional oficial da Engenharia.**
 >
-> Ele deve ser completamente autossuficiente.
+> Ele consolida todo o conhecimento operacional permanente necessário para a
+> continuidade da engenharia — não apenas um snapshot do estado atual do projeto.
 >
-> Após carregar `AI_CONTEXT.md` e `PROJECT_BOOTSTRAP.md`, a IA deverá conseguir continuar o projeto sem consultar qualquer outro documento.
+> Ao carregar apenas `PROJECT_BOOTSTRAP.md` e `AI_OPERATION_CHECKLIST.md`,
+> uma nova IA deve conseguir compreender corretamente:
+> * o estado atual da engenharia;
+> * o fluxo metodológico vigente;
+> * as decisões permanentes;
+> * as responsabilidades dos agentes;
+> * o próximo objetivo macro da engenharia;
+> * as pendências estratégicas;
+> * o comportamento esperado durante toda a execução do projeto.
+>
+> Nenhum documento histórico (PROJECT_STATUS, SYNC_HISTORY, GOVs passados)
+> deve ser necessário para restaurar informações operacionais permanentes.
 
 ---
 
 🚀 **Bootstrap Rápido**
 
-Se esta é a primeira interação da IA com o projeto, a ordem recomendada de leitura é:
+O Runtime Operacional do projeto é composto exclusivamente por:
 
-1. **PROJECT_BOOTSTRAP** (estado atual + baseline arquitetural)
-2. **AI_OPERATION_CHECKLIST** (protocolo operacional)
-3. **DEVELOPMENT_METHODOLOGY** (regras do projeto)
+1. **PROJECT_BOOTSTRAP** — Memória operacional permanente da engenharia
+2. **AI_OPERATION_CHECKLIST** — Protocolo operacional executável
 
-As PIs (PI-001, PI-002, PI-003) devem ser consultadas apenas quando uma decisão exigir detalhes arquiteturais.
+Estes dois documentos são **autossuficientes** para restaurar o estado operacional completo.
+
+Documentos complementares devem ser consultados apenas quando necessário:
+- **DEVELOPMENT_METHODOLOGY** — Regras metodológicas detalhadas
+- **PIs (PI-001, PI-002, PI-003)** — Detalhamento arquitetural
+- **PROJECT_STATUS / SYNC_HISTORY** — Histórico cronológico (não contêm decisões permanentes)
 
 ---
 
@@ -94,6 +110,33 @@ Nenhuma.
 ## Próxima Etapa
 
 Evolução do domínio financeiro. Modelagem dos agregados: Portfolio, Position, Operation, Institution, Dividend, CorporateAction, AssetPrice.
+
+## Engineering Outlook
+
+> **Aviso:** Esta seção é apenas orientativa. Não define arquitetura, não substitui PI, Engineering Review ou EWO. Seu único objetivo é orientar a continuidade do projeto.
+
+### Estado Atual da Engenharia
+
+A etapa de construção da infraestrutura (Core Foundation + Modelo Canônico) foi concluída com 10 Slices, 175 testes e zero regressões. A Core API encontra-se congelada (7 componentes estáveis). O projeto está oficialmente na **fase de evolução do domínio de investimentos**.
+
+### Próxima Frente de Engenharia
+
+A próxima fase prevê a modelagem dos agregados financeiros (Portfolio, Position, Operation, Institution, Dividend, CorporateAction, AssetPrice), iniciando com a especificação arquitetural.
+
+### Documentação Prevista
+
+| Documento | Finalidade | Status |
+|-----------|------------|--------|
+| PI-004 | Arquitetura do Aggregate Portfolio | Previsto |
+| EWO-002 | Implementação do Aggregate Portfolio | Previsto |
+| ER-C003-001 | Engineering Review da próxima Wave | Previsto |
+
+### Observações Relevantes
+
+- Engineering N1 consolidado (PI-001, PI-002, PI-003 aprovados)
+- EWO-001 concluído — detalhes na seção abaixo
+- Nenhuma PI nova em execução no momento
+- Backlog estratégico com 4 BKs ativos (BK-005 a BK-008)
 
 ---
 
@@ -588,6 +631,19 @@ Antes de gerar qualquer EWO, verificar obrigatoriamente:
 - materialização não altera conteúdo arquitetural da PI (IA-033)
 
 Qualquer condição não atendida → interromper a implementação.
+
+### Promoção de Conhecimento Permanente (SYNC-001)
+
+Toda decisão que altere permanentemente a forma como futuras IAs deverão operar deve obrigatoriamente ser promovida para o **PROJECT_BOOTSTRAP.md** e, quando aplicável, para o **AI_OPERATION_CHECKLIST.md**.
+
+Documentos históricos (PROJECT_STATUS, SYNC_HISTORY, GOVs passados) **não substituem** essa atualização. O Bootstrap é a memória operacional permanente; os demais documentos são apenas registros cronológicos.
+
+**Regra:** Ao final de toda implementação que introduza uma regra, protocolo, convenção, responsabilidade ou comportamento operacional novo, verificar:
+1. A decisão está refletida no PROJECT_BOOTSTRAP.md?
+2. Se aplicável, está refletida no AI_OPERATION_CHECKLIST.md?
+3. Um novo chat iniciado apenas com esses dois documentos restauraria corretamente a decisão?
+
+Se a resposta para (3) for NÃO → a implementação está incompleta.
 
 ## Gestão do Backlog
 
@@ -1197,15 +1253,10 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 
 ---
 
-# Engineering Outlook
-
-## Fase Atual
-
-A etapa de construção da infraestrutura foi concluída. O projeto entra oficialmente na fase de **evolução do domínio de investimentos**.
-
-### EWO-001 — Concluído
+# EWO-001 — Detalhamento
 
 **Título:** Implementação do Núcleo Arquitetural (Core Foundation + Modelo Canônico)
+**Status:** ✅ Concluído
 
 | Fase | Status |
 |---|---|
@@ -1241,6 +1292,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.33
+
+SYNC-001 implementado. PROJECT_BOOTSTRAP consolidado como Runtime Operacional da Engenharia (memória permanente, não snapshot). Header expandido com escopo explícito de continuidade. Bootstrap Rápido reformulado: Runtime composto exclusivamente por Bootstrap + Checklist. Engineering Outlook consolidado em PARTE A com estado, próxima frente, documentação prevista e observações. EWO-001 detalhamento preservado em seção própria. Nova regra "Promoção de Conhecimento Permanente" adicionada às Regras Operacionais. Bootstrap v2.33. AI_OPERATION_CHECKLIST v1.33. PROJECT_STATUS v1.41. DOCUMENTATION_INDEX v1.35.
 
 ## v2.32
 

@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.34
+**Versão da Documentação:** 1.35
 
 **Status:** APROVADO
 
-**Última atualização:** 17/07/2026
+**Última atualização:** 18/07/2026
 
 ---
 
@@ -352,6 +352,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.35
+
+- SYNC-001 implementado. Bootstrap consolidado como Runtime Operacional permanente. Engineering Outlook em PARTE A. Regra de Promoção de Conhecimento Permanente. AI_OPERATION_CHECKLIST expandido com Qualidade de Prompts. Bootstrap v2.33.
 
 ## Versão 1.34
 

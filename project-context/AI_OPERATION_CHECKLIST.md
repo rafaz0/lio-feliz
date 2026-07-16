@@ -4,13 +4,13 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.32
+**Versão:** 1.33
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 17/07/2026
+**Última atualização:** 18/07/2026
 
 ---
 
@@ -98,6 +98,23 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 - [ ] Sugestões Técnicas
 - [ ] Oportunidades Futuras
 - [ ] Registro em SYNC_HISTORY
+
+## Qualidade dos Prompts para o Agente Executor (SYNC-001)
+
+O Agente Executor não possui acesso às conversas do ChatGPT. Ele executa exclusivamente o que está descrito no prompt recebido.
+
+**Regra:** Todo prompt produzido para o Agente Executor deve ser **autossuficiente**. Não deve depender de contexto implícito nem assumir conhecimento proveniente de conversas anteriores.
+
+Checklist de prompt autossuficiente:
+
+- [ ] Contexto suficiente para compreender o problema?
+- [ ] Problema identificado explicitamente?
+- [ ] Objetivo claro e mensurável?
+- [ ] Implementação esperada detalhada?
+- [ ] Restrições documentadas?
+- [ ] Critérios de aceite definidos?
+- [ ] Atualizações documentais esperadas listadas?
+- [ ] Lembrete Operacional Obrigatório (GOV-009) incluído ao final?
 
 ---
 
@@ -255,6 +272,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.33
+
+SYNC-001 implementado. Nova seção "Qualidade dos Prompts para o Agente Executor" com regra de autossuficiência e checklist de 8 itens. Compatibilidade com PROJECT_BOOTSTRAP.md v2.33.
 
 ### Versão 1.32
 

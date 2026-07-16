@@ -4,11 +4,11 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.27
+**Versão:** 1.28
 
 **Status:** APROVADO
 
-**Última atualização:** 17/07/2026
+**Última atualização:** 18/07/2026
 
 ---
 
@@ -1003,6 +1003,48 @@ Planejar EWO-001 — Implementação do Núcleo Arquitetural.
 
 ---
 
+## SYNC-001 — Consolidação do PROJECT_BOOTSTRAP como Runtime Operacional
+
+**Tipo:** Governança / Consolidação Operacional
+
+**Data:** 18/07/2026
+
+### Alterações Realizadas
+
+**Alteração 1 — Runtime Operacional**
+- Header do PROJECT_BOOTSTRAP expandido: documento passa a ser explicitamente a memória operacional permanente da engenharia (não apenas snapshot)
+- Escopo de continuidade documentado: 7 itens que uma nova IA deve compreender apenas com Bootstrap + Checklist
+- Bootstrap Rápido reformulado: Runtime é composto exclusivamente por Bootstrap + Checklist
+
+**Alteração 2 — Engineering Outlook**
+- Nova seção Engineering Outlook consolidada em PARTE A do Bootstrap (seção permanente e orientativa)
+- Contém: estado atual, próxima frente, documentação prevista, observações relevantes
+- EWO-001 detalhamento (tabela de Slices) preservado em seção própria ao final
+
+**Alteração 3 — Promoção de Conhecimento Permanente**
+- Nova regra operacional: toda decisão permanente deve ser promovida ao Bootstrap e ao Checklist
+- Documentos históricos (PROJECT_STATUS, SYNC_HISTORY) não substituem essa atualização
+- Regra de verificação em 3 perguntas para validar a promoção
+
+**Alteração 4 — Qualidade dos Prompts para o Agente Executor**
+- Nova seção no AI_OPERATION_CHECKLIST: "Qualidade dos Prompts para o Agente Executor"
+- Regra: todo prompt deve ser autossuficiente (sem contexto implícito)
+- Checklist de 8 itens para validar autossuficiência
+
+### Documentos Atualizados
+
+- PROJECT_BOOTSTRAP.md → v2.33
+- AI_OPERATION_CHECKLIST.md → v1.33
+- DOCUMENTATION_INDEX.md → v1.35
+- PROJECT_STATUS.md → v1.41
+- SYNC_HISTORY.md → v1.28
+
+### Decisões Arquiteturais
+
+Nenhuma decisão arquitetural foi alterada. Nenhuma PI, EWO ou código modificado.
+
+---
+
 ## GOV-009 — Hardening da Sincronização Operacional
 
 **Tipo:** Governança / Hardening Operacional
@@ -1088,6 +1130,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.28
+
+Registro do SYNC-001 — Consolidação do PROJECT_BOOTSTRAP como Runtime Operacional. Engineering Outlook consolidado. Promoção de Conhecimento Permanente. Qualidade de Prompts.
 
 ### Versão 1.27
 
