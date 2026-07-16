@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.33
+**Versão:** 2.34
 
 **Status:** APROVADO
 
@@ -109,7 +109,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-Evolução do domínio financeiro. Modelagem dos agregados: Portfolio, Position, Operation, Institution, Dividend, CorporateAction, AssetPrice.
+A próxima etapa oficial da engenharia é a **ER-004** — Engineering Review da PI-004 (Modelo Patrimonial). Após a ER, será elaborada a **EWO-002** para implementação do domínio patrimonial.
 
 ## Engineering Outlook
 
@@ -117,25 +117,30 @@ Evolução do domínio financeiro. Modelagem dos agregados: Portfolio, Position,
 
 ### Estado Atual da Engenharia
 
-A etapa de construção da infraestrutura (Core Foundation + Modelo Canônico) foi concluída com 10 Slices, 175 testes e zero regressões. A Core API encontra-se congelada (7 componentes estáveis). O projeto está oficialmente na **fase de evolução do domínio de investimentos**.
+- Trindade Arquitetural do Engineering N1 consolidada (PI-001, PI-002, PI-003)
+- EWO-001 concluído — Core Foundation + Modelo Canônico (10 Slices, 175 testes)
+- Core API congelada (7 componentes estáveis)
+- **PI-004 concluída** — Arquitetura do Domínio Patrimonial consolidada
+- O projeto está oficialmente na **fase de evolução do domínio de investimentos**
 
 ### Próxima Frente de Engenharia
 
-A próxima fase prevê a modelagem dos agregados financeiros (Portfolio, Position, Operation, Institution, Dividend, CorporateAction, AssetPrice), iniciando com a especificação arquitetural.
+A próxima etapa oficial é a **ER-004** — Engineering Review da PI-004, para interpretação, validação e refinamento arquitetural. Após a ER, será elaborada a **EWO-002** para implementação do domínio patrimonial (Portfolio, Financial Events, Projections).
 
 ### Documentação Prevista
 
 | Documento | Finalidade | Status |
 |-----------|------------|--------|
-| PI-004 | Arquitetura do Aggregate Portfolio | Previsto |
-| EWO-002 | Implementação do Aggregate Portfolio | Previsto |
-| ER-C003-001 | Engineering Review da próxima Wave | Previsto |
+| PI-004 | Arquitetura do Domínio Patrimonial | ✅ Concluído |
+| ER-004 | Engineering Review da PI-004 | Previsto |
+| EWO-002 | Implementação do Domínio Patrimonial | Previsto (após ER-004) |
 
 ### Observações Relevantes
 
 - Engineering N1 consolidado (PI-001, PI-002, PI-003 aprovados)
+- PI-004 aprovada — 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013)
+- Personal Finance Domain e Decision Support definidos como módulos complementares
 - EWO-001 concluído — detalhes na seção abaixo
-- Nenhuma PI nova em execução no momento
 - Backlog estratégico com 4 BKs ativos (BK-005 a BK-008)
 
 ---
@@ -1227,23 +1232,23 @@ Melhorias futuras identificadas durante a Engineering Review (ER-C001-C002-001).
 
 Os documentos abaixo estão previstos para criação futura. **Ainda não existem** — deverão ser criados apenas quando a evolução do projeto exigir.
 
-### PI-004 — Arquitetura do Aggregate Portfolio
+### PI-004 — Modelo Patrimonial do Lio Feliz
 
-**Finalidade:** Definir a arquitetura do Aggregate Portfolio. Responsável por estabelecer as regras de composição da carteira, agregados, invariantes e responsabilidades.
+**Finalidade:** Definir a arquitetura do domínio patrimonial, incluindo princípios, linguagem ubíqua, bounded contexts, Aggregate Root Portfolio, invariantes, modelo de evolução patrimonial e projeções.
 
-**Status:** Previsto
+**Status:** ✅ **Concluído** — `architecture-lab/PI-004.md` v1.0 (Approved)
 
-### EWO-002 — Implementação do Aggregate Portfolio
+### ER-004 — Engineering Review da PI-004
 
-**Finalidade:** Planejar a implementação da PI-004 em Sprints incrementais.
+**Finalidade:** Interpretar, validar e refinar a arquitetura definida pela PI-004 antes da elaboração da EWO-002.
 
-**Status:** Previsto
+**Status:** Previsto (próxima etapa oficial)
 
-### ER-C003-001 — Engineering Review da Próxima Wave
+### EWO-002 — Implementação do Domínio Patrimonial
 
-**Finalidade:** Revisar tecnicamente a implementação da próxima Engineering Wave.
+**Finalidade:** Materializar a arquitetura aprovada pela PI-004 em Slices de implementação para o domínio patrimonial (Portfolio, Financial Events, Projections).
 
-**Status:** Previsto
+**Status:** Previsto (após ER-004)
 
 ### GOV-007 — Lições da Próxima Wave
 
@@ -1292,6 +1297,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.34
+
+PI-004 aprovada — Arquitetura do Domínio Patrimonial consolidada. 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013). **Decisões permanentes promovidas (SYNC-001): Personal Finance Domain (domínio complementar opcional, não altera Investment Domain, alimenta apenas Wealth Projection) e Decision Support (camada consultiva superior, natureza analítica, nunca modifica domínio).** ER-004.md criada (Approved). Engineering Outlook atualizado: PI-004 ✅, ER-004 prevista, EWO-002 após ER-004. Bootstrap v2.34. AI_OPERATION_CHECKLIST v1.33. PROJECT_STATUS v1.42. DOCUMENTATION_INDEX v1.36.
 
 ## v2.33
 

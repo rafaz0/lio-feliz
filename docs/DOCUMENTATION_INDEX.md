@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.35
+**Versão da Documentação:** 1.36
 
 **Status:** APROVADO
 
@@ -191,6 +191,18 @@ Repositório oficial de melhorias estratégicas aprovadas para implementação f
 
 ---
 
+📄 PI-004.md (architecture-lab)
+
+Engineering Specification oficial do Modelo Patrimonial do Lio Feliz. v1.0 (Approved). 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013). Define Portfolio como Aggregate Root, Financial Events como mecanismo de evolução, Projections como visões derivadas. Personal Finance Domain e Decision Support como módulos complementares.
+
+---
+
+📄 ER-004.md (architecture-lab)
+
+Engineering Review da PI-004. v1.0 (Approved). Gap analysis completo, validação de aderência ao Core Foundation, 8-11 slices estimadas para EWO-002. Aprovada para materialização via EWO-002.
+
+---
+
 📄 PI-003.md (architecture-lab)
 
 Engineering Specification oficial da Canonical Operations & Event Flow Architecture. v1.0 (Approved). Consolida a Trindade Arquitetural do Engineering N1.
@@ -352,6 +364,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.36
+
+- PI-004 aprovada e integrada ao índice oficial. ER-004 criada (Approved). Documentação do domínio patrimonial consolidada. Próxima etapa: EWO-002.
 
 ## Versão 1.35
 

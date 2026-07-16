@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.41
+**Versão:** 1.42
 
 **Status:** APROVADO
 
@@ -125,6 +125,7 @@ ADR-008: Backlog Governance
 
 | Data | Evento |
 |------|--------|
+| 18/07/2026 | **PI-004 aprovada** — Arquitetura do Domínio Patrimonial consolidada. 12 DAs (DA-001 a DA-012), 13 Invariantes (I-001 a I-013). Próxima etapa: ER-004. |
 | 12/07/2026 | PS#030B — Refinamento dos Protocolos Operacionais concluído |
 | 12/07/2026 | IA-015 fortalecido, IA-025/IA-026 criados, PG-019/OP-002/OP-003 atualizados |
 | 09/07/2026 | Consolidação nº 1 concluída |
@@ -181,7 +182,7 @@ ADR-008: Backlog Governance
 
 ## Próximos Passos
 
-Evolução do domínio financeiro. Previstos: PI-004 (Aggregate Portfolio), EWO-002, modelo de domínio de investimentos.
+Engineering Review da PI-004 (ER-004). Após aprovação, elaboração da EWO-002 para implementação do domínio patrimonial (Portfolio, Financial Events, Projections).
 
 ---
 
@@ -198,6 +199,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.42
+
+PI-004 aprovada — Arquitetura do Domínio Patrimonial consolidada. 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013). Personal Finance Domain e Decision Support definidos como módulos complementares. Próxima etapa oficial: ER-004. PROJECT_BOOTSTRAP atualizado para refletir decisões permanentes. ER-004.md criado.
 
 ### Versão 1.41
 

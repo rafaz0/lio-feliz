@@ -1129,6 +1129,37 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#034
+
+**Data:** 18/07/2026
+
+**Objetivo:** Sprint Documental — Integração Oficial da PI-004 (Modelo Patrimonial)
+
+**Arquivos criados:**
+- `architecture-lab/ER-004.md`
+
+**Arquivos modificados:**
+- `architecture-lab/PI-004.md` (já existia, validado e confirmado v1.0 Approved)
+- `project-context/PROJECT_BOOTSTRAP.md` (v2.33 → v2.34)
+- `project-context/PROJECT_STATUS.md` (v1.41 → v1.42)
+- `docs/DOCUMENTATION_INDEX.md` (v1.35 → v1.36)
+- `docs/SYNC_HISTORY.md` (atualizado)
+
+**Decisões Arquiteturais Registradas (Promovidas para Memória Permanente - SYNC-001):**
+- **Personal Finance Domain** — Domínio complementar opcional (contas bancárias, caixa, receitas, despesas, patrimônio não investido). Não integra núcleo obrigatório. Não altera Investment Domain. Alimenta apenas Wealth Projection. Implementação futura sem impacto arquitetural (DA-007, I-011, I-012).
+- **Decision Support** — Camada consultiva superior (rebalanceamento, próxima compra, análises, indicadores, IR, alertas). Natureza exclusivamente analítica. Nunca modifica domínio diretamente. Consome projeções do Investment Domain (DA-006, I-013).
+
+**Regras de Governança Atualizadas:**
+- PROJECT_BOOTSTRAP: Engineering Outlook atualizado (PI-004 ✅, ER-004 prevista, EWO-002 após ER-004). Decisões permanentes promovidas.
+- AI_OPERATION_CHECKLIST: Verificado — nenhuma nova regra operacional necessária além das já existentes.
+
+**Pendências remanescentes:**
+- ER-004 — Engineering Review da PI-004 (próxima etapa oficial)
+- EWO-002 — Implementação do Domínio Patrimonial (após ER-004)
+- Backlog Estratégico ativo: BK-005 a BK-008
+
+---
+
 # Histórico
 
 ### Versão 1.28
