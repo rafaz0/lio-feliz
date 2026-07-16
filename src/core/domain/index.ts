@@ -8,3 +8,7 @@ export { DomainEvent } from "./domain-event";
 export { Ticker } from "./value-objects/ticker";
 export { Quantity } from "./value-objects/quantity";
 export { Money } from "./value-objects/money";
+export { AssetId } from "./identifiers/asset-id";
+export { PortfolioId } from "./identifiers/portfolio-id";
+export { OperationId } from "./identifiers/operation-id";
+export { InstitutionId } from "./identifiers/institution-id";
