@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.9
+**Versão:** 2.10
 
 **Status:** APROVADO
 
@@ -104,6 +104,8 @@ essa informação deverá obrigatoriamente ser registrada através de:
 - ou Working Draft.
 
 Nunca permanecer apenas na conversa.
+
+> **Lição aprendida (GOV-006):** Durante a implementação da Core Foundation observou-se que sugestões não materializadas tinham alta probabilidade de serem esquecidas entre conversas. A partir deste marco, toda melhoria deve gerar imediatamente uma implementação, um prompt ou um registro metodológico (BK). Nenhuma recomendação arquitetural, metodológica ou operacional pode permanecer exclusivamente como texto na resposta da IA.
 
 ---
 
@@ -1030,6 +1032,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.10
+
+GOV-006 atualizado. Duas novas regras metodológicas: (1) Materialização Obrigatória de Melhorias — nenhuma recomendação pode permanecer apenas na resposta; deve ser implementada, convertida em prompt ou registrada como BK. (2) Objetividade Operacional — priorizar progresso concreto, evitar respostas reflexivas sem artefato executável. Lição aprendida registrada: sugestões não materializadas têm alta probabilidade de serem esquecidas entre conversas. Bootstrap v2.25. AI_OPERATION_CHECKLIST v1.26. PROJECT_STATUS v1.33.
 
 ### Versão 2.9
 

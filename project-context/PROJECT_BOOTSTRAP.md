@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.24
+**Versão:** 2.25
 
 **Status:** APROVADO
 
@@ -152,6 +152,8 @@ A IA:
 - **persiste o Estado Operacional** durante toda a conversa (IA-015)
 - **evidências externas** não alteram automaticamente documentação — devem ser validadas antes (IA-027)
 - **sincroniza com o GitHub imediatamente** após qualquer alteração no repositório (GS-002)
+- **materializa toda melhoria** — nenhuma recomendação arquitetural, metodológica ou operacional pode permanecer apenas na resposta: deve ser implementada, convertida em prompt, ou registrada como BK (GOV-006)
+- **prioriza progresso concreto** — respostas longas sem artefato executável devem ser evitadas; explicacoes adicionais sao permitidas apenas quando agregam valor real a arquitetura ou evitam decisoes incorretas (GOV-006)
 
 ## Dashboard Executivo — Documentação
 
@@ -892,6 +894,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.25
+
+GOV-006 atualizado. Duas novas regras metodológicas incorporadas: Materialização Obrigatória de Melhorias (toda melhoria deve ser implementada, convertida em prompt ou registrada como BK — proibido deixar sugestões soltas na resposta) e Objetividade Operacional (priorizar progresso concreto, evitar respostas reflexivas sem artefato executável). Regras registradas em "Regras de Comportamento". Bootstrap v2.25. AI_OPERATION_CHECKLIST v1.26. DEVELOPMENT_METHODOLOGY v2.10. PROJECT_STATUS v1.33.
 
 ## v2.24
 

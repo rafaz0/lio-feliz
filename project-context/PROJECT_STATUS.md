@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.32
+**Versão:** 1.33
 
 **Status:** APROVADO
 
@@ -166,6 +166,7 @@ ADR-008: Backlog Governance
 | 15/07/2026 | C-002 — Núcleo Inicial do Domínio concluído. 3 Slices: Ticker+Quantity+Money, Identificadores (AssetId, PortfolioId, OperationId, InstitutionId), Asset. 92 testes novos. |
 | 15/07/2026 | ER-C001-C002-001 — Engineering Review de Consolidação aprovada. Classificação: Excelente. Nenhuma divergência encontrada. Core Foundation aprovada como base definitiva. |
 | 15/07/2026 | GOV-006 — Consolidação da Core Foundation. Core API Frozen (7 componentes). Technical Roadmap criado. Projeto entra em fase de evolução do domínio de investimentos. Bootstrap v2.24. |
+| 15/07/2026 | GOV-006 atualizado — regras Materialização Obrigatória de Melhorias + Objetividade Operacional incorporadas. Bootstrap v2.25. |
 
 ---
 
@@ -188,6 +189,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.33
+
+GOV-006 atualizado. Duas novas regras: Materialização Obrigatória de Melhorias e Objetividade Operacional. Lição aprendida registrada no DEVELOPMENT_METHODOLOGY. Bootstrap v2.25. AI_OPERATION_CHECKLIST v1.26. DEVELOPMENT_METHODOLOGY v2.10.
 
 ### Versão 1.32
 

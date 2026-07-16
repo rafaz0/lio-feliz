@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.25
+**Versão:** 1.26
 
 **Status:** APROVADO
 
@@ -161,6 +161,18 @@ Ao final de toda implementação, slice ou engineering review, verificar:
 - [ ] ☐ Relatório emitido
 - [ ] ☐ HEAD registrado
 
+## Materialização Obrigatória de Melhorias (GOV-006)
+
+Ao encerrar qualquer implementação, verificar:
+
+- [ ] Houve alguma melhoria identificada durante esta implementação?
+- [ ] Todas as melhorias foram:
+  - implementadas imediatamente; ou
+  - convertidas em prompt para implementação posterior; ou
+  - registradas como BK (Strategic Backlog)?
+- [ ] Alguma sugestão permaneceu apenas na resposta?
+- [ ] Se SIM → operação considerada incompleta — a melhoria precisa ser materializada antes do encerramento.
+
 ## Verificação Pós-Sincronização (GOV-004)
 
 Após o push, executar:
@@ -213,6 +225,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.26
+
+GOV-006 atualizado. Nova seção "Materialização Obrigatória de Melhorias" — toda melhoria deve ser implementada, convertida em prompt ou registrada como BK. Proibido deixar sugestões soltas. Compatibilidade com PROJECT_BOOTSTRAP.md v2.25.
 
 ### Versão 1.25
 
