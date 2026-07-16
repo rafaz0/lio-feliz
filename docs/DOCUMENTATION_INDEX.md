@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.30
+**Versão da Documentação:** 1.31
 
 **Status:** APROVADO
 
@@ -233,6 +233,24 @@ Artefato derivado. Consolidação da documentação para leitura e consulta. Fon
 
 ---
 
+📄 `tools/workspace-check.ps1`
+
+Workspace Guard oficial. Valida diretório, git, remote, HEAD, branch e working tree. Exit Code 0 = OK, 1 = erro. Reutilizável por automações. (GOV-010)
+
+---
+
+📄 `tools/start-opencode.ps1`
+
+Script oficial de inicialização do projeto. Valida workspace e abre o OpenCode. (GOV-010)
+
+---
+
+📄 `tools/start-opencode.bat`
+
+Equivalente CMD do script de inicialização. (GOV-010)
+
+---
+
 # 5. Decisões Arquiteturais
 
 ✅ 18_ARCHITECTURAL_DECISIONS/
@@ -328,6 +346,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.31
+
+- GOV-010 implementado. Entradas adicionadas para tools/workspace-check.ps1, start-opencode.ps1 e start-opencode.bat. Bootstrap v2.29.
 
 ## Versão 1.30
 

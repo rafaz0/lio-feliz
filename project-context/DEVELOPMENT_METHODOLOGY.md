@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.13
+**Versão:** 2.14
 
 **Status:** APROVADO
 
@@ -110,6 +110,8 @@ Nunca permanecer apenas na conversa.
 > **Lição aprendida (GOV-008):** Durante a sprint de consolidação documental, o OpenCode executou implementações em `C:\lio-feliz` — um clone residual — ao invés do diretório canônico `H:\Lio Feliz\`. A causa raiz foi a ausência de verificação explícita do working directory antes do início da execução. A partir deste marco, toda sessão deve verificar o working directory como passo zero antes de qualquer operação. Nenhuma implementação pode ocorrer em diretório não canônico.
 
 > **Lição aprendida (GOV-009):** Após GOV-008, foi confirmado que dois clones válidos existiam simultaneamente. O clone residual `C:\lio-feliz` foi removido e um bundle de backup foi criado. A partir deste marco, o projeto possui exatamente um clone oficial. Qualquer referência futura a outro clone constitui erro operacional.
+
+> **Lição aprendida (GOV-010):** A inicialização do ambiente também faz parte da engenharia. O workspace deve ser validado antes do bootstrap. Um Workspace Guard (tools/workspace-check.ps1) foi criado como passo zero obrigatório. Nenhuma sessão do OpenCode pode iniciar sem validação prévia do workspace oficial. A abertura manual do OpenCode em diretório arbitrário constitui violação de protocolo.
 
 ---
 
@@ -1040,6 +1042,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.14
+
+GOV-010 implementado. Lição aprendida: a inicialização do ambiente também faz parte da engenharia. Workspace Guard criado como passo zero obrigatório. Compatibilidade com PROJECT_BOOTSTRAP.md v2.29 e AI_OPERATION_CHECKLIST.md v1.29.
 
 ### Versão 2.13
 

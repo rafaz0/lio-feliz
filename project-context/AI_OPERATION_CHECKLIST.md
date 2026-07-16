@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.28
+**Versão:** 1.29
 
 **Status:** APROVADO
 
@@ -15,6 +15,19 @@
 ---
 
 **Objetivo:** Checklist operacional obrigatório antes de qualquer resposta relacionada ao projeto. Transforma IA-026 em procedimento executável.
+
+---
+
+## PASSO 0 — Workspace Validation (GOV-010)
+
+- [ ] Workspace Guard executado (`tools/workspace-check.ps1`)
+- [ ] Working directory confirmado: `H:\Lio Feliz\`
+- [ ] Git toplevel confirmado: `H:\Lio Feliz\`
+- [ ] Remote confirmado: `git@github.com:rafaz0/lio-feliz.git`
+- [ ] Branch confirmada: `main`
+- [ ] Working Tree limpa (ou aviso registrado)
+
+**Se o Workspace Guard falhar → interromper imediatamente. Nenhuma operação pode prosseguir.**
 
 ---
 
@@ -226,6 +239,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.29
+
+GOV-010 implementado. Novo PASSO 0 — Workspace Validation. Execução obrigatória do Workspace Guard antes de qualquer operação. Bloqueio total se a validação falhar. Compatibilidade com PROJECT_BOOTSTRAP.md v2.29.
 
 ### Versão 1.28
 

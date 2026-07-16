@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.28
+**Versão:** 2.29
 
 **Status:** APROVADO
 
@@ -948,6 +948,39 @@ Qualquer referência futura a outro clone constitui erro operacional e deve ser 
 
 ---
 
+# Inicialização Oficial do Projeto (GOV-010)
+
+O OpenCode **deve** ser iniciado exclusivamente pelos scripts oficiais localizados em `tools/`. Nunca abrir diretamente um clone ou iniciar o OpenCode de um diretório arbitrário.
+
+## Scripts Oficiais
+
+| Script | Finalidade |
+|--------|-----------|
+| `tools/workspace-check.ps1` | Workspace Guard — valida diretório, git, remote, HEAD, branch e working tree. Exit Code 0 = OK, 1 = erro. Reutilizável por outras automações. |
+| `tools/start-opencode.ps1` | Inicialização completa: valida workspace e abre o OpenCode. |
+| `tools/start-opencode.bat` | Equivalente CMD para ambientes sem PowerShell. |
+
+## Fluxo Obrigatório de Inicialização
+
+```
+0. Executar Workspace Guard (tools/workspace-check.ps1)
+1. Ler AI_CONTEXT.md
+2. Ler PROJECT_BOOTSTRAP.md
+3. Restaurar Estado Operacional
+4. Entrar em modo Execução
+5. Continuar da próxima etapa oficial
+```
+
+O Passo 0 é inomitível. Se o Workspace Guard falhar, nenhuma operação subsequente pode ocorrer.
+
+## Regra de Inicialização
+
+- Toda sessão do OpenCode para o Lio Feliz deve começar executando `tools\workspace-check.ps1`.
+- O script `tools\start-opencode.ps1` (ou `.bat`) é o método oficial de abertura do projeto.
+- Iniciar o OpenCode manualmente de qualquer outro diretório constitui violação de protocolo.
+
+---
+
 # Technical Roadmap (GOV-006)
 
 Melhorias futuras identificadas durante a Engineering Review (ER-C001-C002-001). **Não constituem dívida técnica atual e não bloqueiam nenhuma Sprint.**
@@ -1035,6 +1068,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.29
+
+GOV-010 implementado. Inicialização Oficial do Projeto criada. Scripts: `tools/workspace-check.ps1` (Workspace Guard), `tools/start-opencode.ps1`, `tools/start-opencode.bat`. Passo 0 no Fluxo de Inicialização — Workspace Guard obrigatório antes de qualquer operação. Regra de inicialização: OpenCode deve ser aberto exclusivamente pelos scripts oficiais. Bootstrap v2.29. AI_OPERATION_CHECKLIST v1.29. PROJECT_STATUS v1.37. DEVELOPMENT_METHODOLOGY v2.14.
 
 ## v2.28
 
