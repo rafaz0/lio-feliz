@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.28
+**Versão da Documentação:** 1.29
 
 **Status:** APROVADO
 
@@ -197,6 +197,18 @@ Engineering Specification oficial da Canonical Operations & Event Flow Architect
 
 ---
 
+📄 EWO-001.md (architecture-lab)
+
+Engineering Work Order oficial da Implementação do Núcleo Arquitetural (C-001 + C-002). Concluído — 10 Slices, 175 testes, zero regressões.
+
+---
+
+📄 ER-C001-C002-001
+
+Engineering Review de Consolidação da Core Foundation. Classificação: Excelente. Nenhuma divergência encontrada. Core API Frozen.
+
+---
+
 📄 PI-002.md (architecture-lab)
 
 Engineering Specification oficial do Canonical Investment Model. v1.0 (Approved). Fonte Canônica da ontologia do domínio financeiro.
@@ -310,6 +322,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.29
+
+- GOV-006 implementado. C-001 + C-002 concluídos (10 Slices, 175 testes). ER-C001-C002-001 aprovada. Core API Frozen. Entradas adicionadas para EWO-001.md e ER-C001-C002-001. Bootstrap v2.24.
 
 ## Versão 1.28
 

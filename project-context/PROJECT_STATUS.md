@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.31
+**Versão:** 1.32
 
 **Status:** APROVADO
 
@@ -163,12 +163,15 @@ ADR-008: Backlog Governance
 | 15/07/2026 | GOV-004 — Consolidação Final da Governança. Verificação pós-sincronização, checklist obrigatório de encerramento, EWO-001 refinada com slices independentes. Decisões: validate() pós-construtor (temporária), EntityId desacoplado, Money escopo reduzido. Bootstrap v2.22. AI_OPERATION_CHECKLIST v1.18. EWO-001.md criado. |
 | 15/07/2026 | C-001 — Core Foundation concluída. 5 Slices implementadas: Result+DomainError, ValueObject, Entity+EntityId, AggregateRoot, DomainEvent. 13 arquivos de domínio, 83 testes, zero regressões. |
 | 15/07/2026 | GOV-005 — Consolidação das Lições Aprendidas da Materialização da Core Foundation. Convenções registradas: DomainEvent.finalize(), sem validate() no Entity, encapsulamento AggregateRoot, imutabilidade ValueObject. BK-008 registrado. Bootstrap v2.23. AI_OPERATION_CHECKLIST v1.19. |
+| 15/07/2026 | C-002 — Núcleo Inicial do Domínio concluído. 3 Slices: Ticker+Quantity+Money, Identificadores (AssetId, PortfolioId, OperationId, InstitutionId), Asset. 92 testes novos. |
+| 15/07/2026 | ER-C001-C002-001 — Engineering Review de Consolidação aprovada. Classificação: Excelente. Nenhuma divergência encontrada. Core Foundation aprovada como base definitiva. |
+| 15/07/2026 | GOV-006 — Consolidação da Core Foundation. Core API Frozen (7 componentes). Technical Roadmap criado. Projeto entra em fase de evolução do domínio de investimentos. Bootstrap v2.24. |
 
 ---
 
 ## Próximos Passos
 
-C-002 — Modelo Canônico do Domínio (Ticker, Quantity, Money, AssetId, PortfolioId, OperationId, InstitutionId, Asset).
+Evolução do domínio financeiro. Previstos: PI-004 (Aggregate Portfolio), EWO-002, modelo de domínio de investimentos.
 
 ---
 
@@ -185,6 +188,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.32
+
+GOV-006 implementado. C-001 + C-002 concluídos (10 Slices, 175 testes). ER-C001-C002-001 aprovada (Excelente). Core API Frozen. Technical Roadmap criado. Projeto entra em evolução do domínio de investimentos. Bootstrap v2.24. AI_OPERATION_CHECKLIST v1.25.
 
 ### Versão 1.31
 

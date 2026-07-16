@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.23
+**Versão:** 2.24
 
 **Status:** APROVADO
 
@@ -44,11 +44,11 @@ Execução
 
 ## Marco Atual
 
-C-001 — Core Foundation (Concluído)
+C-001 + C-002 — Core Foundation e Núcleo do Domínio (Concluídos)
 
 ## PI Atual
 
-PI-003 v1.0 — Canonical Operations & Event Flow Architecture (Approved)
+Core API Frozen — Componentes da Core Foundation estabilizados. Nenhuma PI nova em execução.
 
 ## PS Atual
 
@@ -62,19 +62,19 @@ Nenhum PS ativo no momento.
 Projeto: Lio Feliz
 Modo: Execução
 PS Atual: —
-Marco: C-001 (Core Foundation)
+Marco: C-001 + C-002 (Core Foundation + Núcleo do Domínio)
 
-🏛 Governanca    [████░░░░░░]  ~60%
-🏗 Arquitetura   [████░░░░░░]  ~40%
-⚙ Engineering   [██░░░░░░░░]  ~20%
-💻 Codigo        [░░░░░░░░░░]  ~0%
+🏛 Governanca    [████████░░]  ~80%
+🏗 Arquitetura   [████████░░]  ~80%
+⚙ Engineering   [████████░░]  ~80%
+💻 Codigo        [█████░░░░░]  ~50%
 ```
 
 > Fórmulas dos percentuais em `PROJECT_PROGRESS_PANEL.md`.
 
 ## Objetivos Ativos
 
-Materializar C-002 (Modelo Canônico).
+Evolução do domínio de investimentos. Próxima fase: modelagem financeira (Portfolio, Position, Operation).
 
 ## DEC Ativas
 
@@ -93,7 +93,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-C-002 — Modelo Canônico (Value Objects concretos: Ticker, Quantity, Money, AssetId, PortfolioId, OperationId, InstitutionId, Asset).
+Evolução do domínio financeiro. Modelagem dos agregados: Portfolio, Position, Operation, Institution, Dividend, CorporateAction, AssetPrice.
 
 ---
 
@@ -676,48 +676,6 @@ Toda EWO deverá demonstrar aderência explícita a:
 
 ---
 
-## Engineering Outlook
-
-### Trindade Arquitetural do Engineering N1 — Consolidada
-
-| PI | Título | Status |
-|----|--------|--------|
-| PI-001 | Interpretation Layer | ✅ v1.0 Approved |
-| PI-002 | Canonical Investment Model | ✅ v1.0 Approved |
-| PI-003 | Canonical Operations & Event Flow Architecture | ✅ v1.0 Approved |
-
-A fundação arquitetural do Engineering N1 encontra-se completa. As três especificações estabelecem a base normativa obrigatória para toda implementação futura.
-
-### EWO-001 — Executado
-
-**Título:** Implementação do Núcleo Arquitetural
-
-**Documento:** `architecture-lab/EWO-001.md`
-
-**Dependências:** PI-001 Approved, PI-002 Approved, PI-003 Approved.
-
-**Status:** ✅ C-001 (Core Foundation) concluída — 5 Slices, 83 testes, zero regressões.
-
-**Resultados:**
-
-| Slice | Componentes | Testes | Commit |
-|---|---|---|---|
-| 01 | Result + DomainError | 30 | `a0fdfcb` |
-| 02 | ValueObject | 17 | `4ca45f2` |
-| 03 | Entity + EntityId | 16 | `1fbadf2` |
-| 04 | AggregateRoot | 11 | `2e09435` |
-| 05 | DomainEvent | 9 | `3051a37` |
-
-**Próximo passo:** C-002 (Modelo Canônico).
-
-### C-002 — Pendente
-
-**Título:** Modelo Canônico do Domínio
-
-**Escopo previsto:** Ticker, Quantity, Money, AssetId, PortfolioId, OperationId, InstitutionId, Asset.
-
-**Dependências:** C-001 concluída (Result, ValueObject, Entity, EntityId, AggregateRoot, DomainEvent).
-
 ## Convenções da Core Foundation (GOV-005)
 
 Registros formais das decisões de implementação da C-001.
@@ -759,6 +717,169 @@ O Engineering N1 foi consolidado com três PIs aprovadas. A implementação do n
 
 O fluxo metodológico PI → EWO → Implementação → ER permanece inalterado.
 
+---
+
+# Core API Frozen (GOV-006)
+
+A partir de 15/07/2026, os seguintes componentes da Core Foundation passam a ser considerados **infraestrutura consolidada e estável**:
+
+| Componente | Status | Arquivo |
+|---|---|---|
+| Result | 🧊 Congelado | `src/core/domain/result.ts` |
+| DomainError | 🧊 Congelado | `src/core/domain/errors.ts` |
+| ValueObject | 🧊 Congelado | `src/core/domain/value-object.ts` |
+| EntityId | 🧊 Congelado | `src/core/domain/entity-id.ts` |
+| Entity | 🧊 Congelado | `src/core/domain/entity.ts` |
+| AggregateRoot | 🧊 Congelado | `src/core/domain/aggregate-root.ts` |
+| DomainEvent | 🧊 Congelado | `src/core/domain/domain-event.ts` |
+
+## Regras do Congelamento
+
+1. **Alterações comportamentais** nestes componentes somente poderão ocorrer mediante:
+   - Engineering Review específica que justifique a alteração
+   - Atualização das PIs correspondentes
+   - Atualização do EWO correspondente
+
+2. **Correções de bug** continuam permitidas sem necessidade de ER específica, desde que:
+   - Não alterem o comportamento esperado da API pública
+   - Sejam documentadas no commit e no relatório
+
+3. **Refatorações comportamentais** deixam de ser livres — qualquer alteração que modifique contratos públicos, semântica de `equals()`, imutabilidade ou encapsulamento precisa seguir o fluxo completo (ER → PI → EWO).
+
+4. **Novas classes** que estendem a Core Foundation (ex: novos ValueObjects, EntityIds, AggregateRoots) **não** são afetadas pelo congelamento — apenas as classes base listadas acima.
+
+## Resultado da Engineering Review (ER-C001-C002-001)
+
+- **Classificação:** Excelente
+- **Divergências encontradas:** Nenhuma
+- **Core Foundation aprovada como base definitiva do domínio:** SIM
+- **Detalhes completos:** `docs/ER-C001-C002-001.md` (arquivo de relatório)
+
+---
+
+# Documentos Fundamentais do Projeto
+
+### PROJECT_BOOTSTRAP
+
+Documento central de inicialização do projeto. Define o estado operacional atual, os documentos obrigatórios, o fluxo de trabalho e o ponto oficial de continuidade para qualquer novo chat.
+
+### PROJECT_STATUS
+
+Registro histórico do projeto. Contém linha do tempo, versões, Engineering Reviews, Governanças, Sprints e eventos importantes.
+
+### AI_OPERATION_CHECKLIST
+
+Checklist obrigatório executado antes e após qualquer implementação. Garante aderência metodológica, sincronização Git, encerramento e auditorias.
+
+### DEVELOPMENT_METHODOLOGY
+
+Define a metodologia oficial de desenvolvimento, governança, fluxo PI → EWO → Sprint → ER → GOV e regras permanentes do projeto.
+
+### DOCUMENTATION_INDEX
+
+Índice mestre da documentação. Permite localizar rapidamente qualquer documento do projeto.
+
+### PROJECT_STATE
+
+Fotografia resumida do estado atual do projeto. Deve permitir que uma IA compreenda rapidamente em qual estágio o desenvolvimento se encontra.
+
+### PI (Architecture Specification)
+
+Documento de arquitetura de implementação. Define como determinada camada deverá ser construída. Não contém implementação. Congela decisões arquitetônicas.
+
+### Engineering Review (ER)
+
+Documento técnico de revisão. Analisa implementações já concluídas. Pode gerar recomendações. Não implementa mudanças.
+
+### Engineering Wave Order (EWO)
+
+Plano executivo de implementação. Transforma PIs aprovadas em sequência de Sprints. Define ordem de execução.
+
+### Governança (GOV)
+
+Atualizações metodológicas do projeto. Registra novas regras operacionais, convenções e lições aprendidas.
+
+### Sprint
+
+Unidade incremental de implementação. Cada Sprint deve possuir escopo limitado, testes, sincronização Git e relatório final.
+
+---
+
+# Technical Roadmap (GOV-006)
+
+Melhorias futuras identificadas durante a Engineering Review (ER-C001-C002-001). **Não constituem dívida técnica atual e não bloqueiam nenhuma Sprint.**
+
+| Item | Descrição | Prazo |
+|---|---|---|
+| UUID_V7_REGEX compartilhado | Extrair regex duplicado dos 4 identificadores para módulo compartilhado | Médio prazo |
+| UUIDv7 para DomainEvent.eventId | Substituir geração atual (`Date.now()` + `Math.random()`) por UUIDv7 | Médio prazo |
+| deepFreeze para VOs compostos | Implementar congelamento profundo se VOs aninhados surgirem | Longo prazo |
+| Classe base `UuidV7Id` | Abstração entre EntityId e identificadores concretos para reduzir duplicação | Longo prazo |
+
+---
+
+# Próximos Documentos Previstos (GOV-006)
+
+Os documentos abaixo estão previstos para criação futura. **Ainda não existem** — deverão ser criados apenas quando a evolução do projeto exigir.
+
+### PI-004 — Arquitetura do Aggregate Portfolio
+
+**Finalidade:** Definir a arquitetura do Aggregate Portfolio. Responsável por estabelecer as regras de composição da carteira, agregados, invariantes e responsabilidades.
+
+**Status:** Previsto
+
+### EWO-002 — Implementação do Aggregate Portfolio
+
+**Finalidade:** Planejar a implementação da PI-004 em Sprints incrementais.
+
+**Status:** Previsto
+
+### ER-C003-001 — Engineering Review da Próxima Wave
+
+**Finalidade:** Revisar tecnicamente a implementação da próxima Engineering Wave.
+
+**Status:** Previsto
+
+### GOV-007 — Lições da Próxima Wave
+
+**Finalidade:** Registrar as lições aprendidas após a conclusão da próxima Engineering Wave, caso novas convenções sejam necessárias.
+
+**Status:** Previsto
+
+---
+
+# Engineering Outlook
+
+## Fase Atual
+
+A etapa de construção da infraestrutura foi concluída. O projeto entra oficialmente na fase de **evolução do domínio de investimentos**.
+
+### EWO-001 — Concluído
+
+**Título:** Implementação do Núcleo Arquitetural (Core Foundation + Modelo Canônico)
+
+| Fase | Status |
+|---|---|
+| C-001 — Core Foundation (5 Slices) | ✅ Concluído |
+| C-002 — Modelo Canônico (3 Slices) | ✅ Concluído |
+| ER-C001-C002-001 | ✅ Aprovada |
+| GOV-006 — Consolidação | ✅ Implementado |
+
+| Slice | Componentes | Testes | Commit |
+|---|---|---|---|
+| C-001 Slice 01 | Result + DomainError | 30 | `a0fdfcb` |
+| C-001 Slice 02 | ValueObject | 17 | `4ca45f2` |
+| C-001 Slice 03 | Entity + EntityId | 16 | `1fbadf2` |
+| C-001 Slice 04 | AggregateRoot | 11 | `2e09435` |
+| C-001 Slice 05 | DomainEvent | 9 | `3051a37` |
+| C-002 Slice 01A | Ticker | 17 | `5f2f1ab` |
+| C-002 Slice 01B | Quantity | 15 | `0c3ede8` |
+| C-002 Slice 01C | Money | 23 | `aaa9df3` |
+| C-002 Slice 02 | AssetId, PortfolioId, OperationId, InstitutionId | 24 | `d320399` |
+| C-002 Slice 03 | Asset | 13 | `05b7259` |
+
+**Total: 10 Slices, 175 testes, zero regressões.**
+
 ## Contrato de Execução
 
 Ao carregar este documento a IA assume automaticamente que:
@@ -771,6 +892,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.24
+
+GOV-006 implementado. C-001 + C-002 concluídos: 10 Slices, 175 testes, zero regressões. ER-C001-C002-001 aprovada — Core Foundation classificada como Excelente, sem divergências. Core API Frozen: 7 componentes congelados (Result, DomainError, ValueObject, EntityId, Entity, AggregateRoot, DomainEvent). Engineering Outlook reestruturado — EWO-001 concluído, projeto entra na fase de evolução do domínio de investimentos. Seções adicionadas: Core API Frozen (regras de congelamento), Documentos Fundamentais do Projeto (11 resumos), Technical Roadmap (4 itens), Próximos Documentos Previstos (4 documentos). Dashboard atualizado. Próximo framework: PI-004 (Aggregate Portfolio). AI_OPERATION_CHECKLIST, PROJECT_STATUS, DEVELOPMENT_METHODOLOGY, DOCUMENTATION_INDEX, PROJECT_STATE, EWO-001 sincronizados.
 
 ## v2.23
 

@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.8
+**Versão:** 2.9
 
 **Status:** APROVADO
 
@@ -1030,6 +1030,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.9
+
+GOV-006 (Consolidação da Core Foundation) implementado. C-001 + C-002 concluídos (10 Slices, 175 testes). ER-C001-C002-001 aprovada — classificação Excelente, sem divergências. Core API Frozen: 7 componentes base congelados. Alterações comportamentais passam a exigir ER + PI + EWO. Correções de bug continuam permitidas. Technical Roadmap criado com 4 itens de melhoria futura. Projeto entra em fase de evolução do domínio de investimentos. Bootstrap v2.24. AI_OPERATION_CHECKLIST v1.25. PROJECT_STATUS v1.32.
 
 ### Versão 2.7
 

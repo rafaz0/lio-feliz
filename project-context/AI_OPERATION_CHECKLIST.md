@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.24
+**Versão:** 1.25
 
 **Status:** APROVADO
 
@@ -180,6 +180,17 @@ Ao implementar classes que estendem a Core Foundation:
 - [ ] Eventos registrados via `addDomainEvent()` (protected) — nunca expostos diretamente
 - [ ] Value Objects permanecem totalmente imutáveis
 
+## Core API Frozen (GOV-006)
+
+Ao propor alterações nos componentes da Core Foundation:
+
+- [ ] O componente a ser alterado está na lista congelada? (Result, DomainError, ValueObject, EntityId, Entity, AggregateRoot, DomainEvent)
+- [ ] Se SIM: existe ER específica que justifique a alteração?
+- [ ] Se SIM: as PIs correspondentes foram atualizadas?
+- [ ] Se SIM: o EWO correspondente foi atualizado?
+- [ ] Se NÃO (é correção de bug): a correção não altera comportamento esperado da API pública?
+- [ ] Se NÃO (é nova classe estendendo Core Foundation): sem restrições — o congelamento não se aplica
+
 ## Auditoria Pós-Operação Crítica (GOV-003)
 
 Executar obrigatoriamente após rebase, merge com conflitos ou resolução manual de conflitos:
@@ -202,6 +213,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.25
+
+GOV-006 incorporado. Nova seção "Core API Frozen" com checklist de verificação obrigatória antes de alterar componentes congelados. Compatibilidade com PROJECT_BOOTSTRAP.md v2.24.
 
 ### Versão 1.19
 

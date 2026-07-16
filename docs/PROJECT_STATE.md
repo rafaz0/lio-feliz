@@ -6,7 +6,7 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.25
+**Versão:** 1.26
 
 **Status:** APROVADO
 
@@ -146,6 +146,9 @@
 | 13/07/2026 | PI-003 definida: Canonical Operations & Event Flow Architecture. Bootstrap v2.17. |
 | 13/07/2026 | ER-002 — Engineering Review da PI-002 aprovada. PI-002 v1.0 Approved. Bootstrap v2.16. |
 | 13/07/2026 | PI-002 v0.1 (Draft) — Canonical Investment Model materializada. GOV-001 a GOV-005. Bootstrap v2.14. |
+| 15/07/2026 | C-001 + C-002 concluídos. 10 Slices, 175 testes, zero regressões. |
+| 15/07/2026 | ER-C001-C002-001 aprovada. Core Foundation classificada como Excelente. |
+| 15/07/2026 | GOV-006 — Core API Frozen. Technical Roadmap. Projeto entra em evolução do domínio de investimentos. Bootstrap v2.24. |
 
 ---
 
