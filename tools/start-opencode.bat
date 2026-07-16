@@ -8,7 +8,7 @@ REM ========================================
 
 setlocal enabledelayedexpansion
 
-set CANONICAL_PATH=H:\lio feliz
+set CANONICAL_PATH=H:\Lio Feliz
 set OPCODE_CMD=opencode.cmd
 
 where %OPCODE_CMD% >nul 2>nul

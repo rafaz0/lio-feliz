@@ -7,7 +7,7 @@
 #>
 
 $ErrorActionPreference = "Stop"
-$canonicalPath = "H:\lio feliz"
+$canonicalPath = "H:\Lio Feliz"
 $canonicalRemote = "git@github.com:rafaz0/lio-feliz.git"
 
 function Write-ErrorAndExit {

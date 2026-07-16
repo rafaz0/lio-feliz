@@ -7,7 +7,7 @@
 #>
 
 $ErrorActionPreference = "Stop"
-$canonicalPath = "H:\lio feliz"
+$canonicalPath = "H:\Lio Feliz"
 
 # Caminho do executável OpenCode — detectar automaticamente ou usar fallback
 $OPCODE_CMD = if (Get-Command "opencode" -ErrorAction SilentlyContinue) {
