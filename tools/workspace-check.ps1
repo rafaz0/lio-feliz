@@ -18,7 +18,10 @@ $requiredFiles = @(
   "project-context/AI_OPERATION_CHECKLIST.md",
   "project-context/WORKSPACE_FINGERPRINT.md"
 )
-$duplicatePaths = @("C:\lio-feliz")
+$duplicatePaths = @(
+  "C:\lio-feliz",
+  "$env:LOCALAPPDATA\Temp\opencode\lio-feliz"
+)
 
 $allOk = $true
 $errors = @()
