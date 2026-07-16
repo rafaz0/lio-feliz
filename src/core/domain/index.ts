@@ -12,3 +12,4 @@ export { AssetId } from "./identifiers/asset-id";
 export { PortfolioId } from "./identifiers/portfolio-id";
 export { OperationId } from "./identifiers/operation-id";
 export { InstitutionId } from "./identifiers/institution-id";
+export { Asset } from "./entities/asset";
