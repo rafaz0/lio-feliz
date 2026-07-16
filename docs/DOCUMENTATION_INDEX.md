@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.29
+**Versão da Documentação:** 1.30
 
 **Status:** APROVADO
 
@@ -209,6 +209,12 @@ Engineering Review de Consolidação da Core Foundation. Classificação: Excele
 
 ---
 
+📄 PROJECT_BOOTSTRAP.md (seção "Fluxo Oficial da Engenharia")
+
+Fluxo oficial do projeto: Visão → PI → ER → EWO → Slices → Validação → Commit → Report → GOV → PROJECT_STATUS. Mapa de Dependências Documentais e Regra de Precedência (GOV-007).
+
+---
+
 📄 PI-002.md (architecture-lab)
 
 Engineering Specification oficial do Canonical Investment Model. v1.0 (Approved). Fonte Canônica da ontologia do domínio financeiro.
@@ -322,6 +328,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.30
+
+- GOV-007 implementado. Fluxo Oficial da Engenharia e Mapa de Dependências Documentais referenciados. Entrada adicionada para a seção Fluxo Oficial. Bootstrap v2.26.
 
 ## Versão 1.29
 

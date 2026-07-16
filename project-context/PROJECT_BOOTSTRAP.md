@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.25
+**Versão:** 2.26
 
 **Status:** APROVADO
 
@@ -807,6 +807,95 @@ Unidade incremental de implementação. Cada Sprint deve possuir escopo limitado
 
 ---
 
+# Fluxo Oficial da Engenharia (GOV-007)
+
+```
+Visão do Produto
+        │
+        ▼
+Product Increment (PI)
+        │
+        ▼
+Engineering Review (ER)   (quando necessário)
+        │
+        ▼
+Engineering Wave (EWO)
+        │
+        ▼
+Implementação das Slices
+        │
+        ▼
+Validação
+(Build + Lint + Testes)
+        │
+        ▼
+Commit + Push
+        │
+        ▼
+Sprint Report
+        │
+        ▼
+Governança (GOV)
+(se houver evolução metodológica)
+        │
+        ▼
+PROJECT_STATUS
+(histórico permanente)
+```
+
+Este é o fluxo oficial do projeto. Nenhuma implementação pode ignorá-lo.
+
+---
+
+# Mapa de Dependências Documentais (GOV-007)
+
+| Documento | Finalidade | Pode gerar |
+|---|---|---|
+| PI | Define arquitetura | ER, EWO |
+| ER | Analisa arquitetura | PI revisada, GOV, BK |
+| EWO | Planeja implementação | Slices |
+| Slice | Implementa código | Sprint Report |
+| Sprint Report | Evidências de execução | PROJECT_STATUS |
+| GOV | Evolui metodologia | Bootstrap, Checklist |
+| PROJECT_STATUS | Histórico oficial | Nunca gera implementação |
+
+## Papel de cada documento
+
+| Documento | Papel |
+|---|---|
+| PI | Define arquitetura. Fonte canônica de engenharia. |
+| ER | Valida arquitetura. Não altera. Apenas analisa. |
+| EWO | Planeja implementação. Não cria arquitetura. |
+| GOV | Evolui metodologia. Registra lições e convenções. |
+| Sprint Report | Registra execução da slice. Evidência de conclusão. |
+| PROJECT_STATUS | Preserva histórico permanente. |
+| PROJECT_BOOTSTRAP | Coordena toda a operação. Runtime oficial. |
+| AI_OPERATION_CHECKLIST | Controla execução operacional. Checklist obrigatório. |
+
+## Regra de Precedência Documental
+
+Em caso de conflito entre documentos, a ordem oficial de autoridade é:
+
+```
+PROJECT_BOOTSTRAP
+        ↓
+PI Approved
+        ↓
+ER
+        ↓
+EWO
+        ↓
+GOV
+        ↓
+Sprint Reports
+        ↓
+PROJECT_STATUS
+```
+
+Documentos de maior precedência prevalecem sobre os de menor precedência. Documentos ausentes não têm autoridade.
+
+---
+
 # Technical Roadmap (GOV-006)
 
 Melhorias futuras identificadas durante a Engineering Review (ER-C001-C002-001). **Não constituem dívida técnica atual e não bloqueiam nenhuma Sprint.**
@@ -894,6 +983,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.26
+
+GOV-007 implementado. Fluxo Oficial da Engenharia documentado (Visão → PI → ER → EWO → Slices → Validação → Commit → Report → GOV → PROJECT_STATUS). Mapa de Dependências Documentais criado (7 documentos, finalidade e geradores). Papéis de cada documento definidos. Regra de Precedência Documental estabelecida (Bootstrap > PI Approved > ER > EWO > GOV > Sprint Reports > PROJECT_STATUS). Bootstrap v2.26.
 
 ## v2.25
 

@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.33
+**Versão:** 1.34
 
 **Status:** APROVADO
 
@@ -167,6 +167,7 @@ ADR-008: Backlog Governance
 | 15/07/2026 | ER-C001-C002-001 — Engineering Review de Consolidação aprovada. Classificação: Excelente. Nenhuma divergência encontrada. Core Foundation aprovada como base definitiva. |
 | 15/07/2026 | GOV-006 — Consolidação da Core Foundation. Core API Frozen (7 componentes). Technical Roadmap criado. Projeto entra em fase de evolução do domínio de investimentos. Bootstrap v2.24. |
 | 15/07/2026 | GOV-006 atualizado — regras Materialização Obrigatória de Melhorias + Objetividade Operacional incorporadas. Bootstrap v2.25. |
+| 15/07/2026 | GOV-007 — Fluxo Oficial da Engenharia, Mapa de Dependências Documentais, Regra de Precedência Documental. Bootstrap v2.26. |
 
 ---
 
@@ -189,6 +190,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.34
+
+GOV-007 implementado. Fluxo Oficial da Engenharia, Mapa de Dependências Documentais, Papel de Cada Documento e Regra de Precedência Documental registrados no Bootstrap. Bootstrap v2.26. DEVELOPMENT_METHODOLOGY v2.11.
 
 ### Versão 1.33
 

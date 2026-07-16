@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.10
+**Versão:** 2.11
 
 **Status:** APROVADO
 
@@ -780,6 +780,8 @@ A ER é a revisão técnica realizada após a implementação.
 
 ### 10.4 Fluxo Oficial de Engenharia
 
+O fluxo oficial completo do projeto encontra-se documentado no **PROJECT_BOOTSTRAP.md** (seção "Fluxo Oficial da Engenharia", GOV-007). O diagrama abaixo é um resumo metodológico — o fluxo completo com precedência e dependências documentais está no Bootstrap.
+
 ```
 Necessidade
   ↓
@@ -803,6 +805,8 @@ Validação
   ↓
 Baseline
 ```
+
+**GOV-007** adicionou ao fluxo oficial: Mapa de Dependências Documentais (quem gera quem), Papel de Cada Documento (responsabilidade individual) e Regra de Precedência Documental (hierarquia de autoridade). Consulte o Bootstrap para detalhes completos.
 
 ---
 
@@ -1032,6 +1036,10 @@ Será criado após estabilização do domínio principal.
 ### Versão 2.6
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
+
+### Versão 2.11
+
+GOV-007 implementado. Fluxo Oficial da Engenharia e Mapa de Dependências Documentais consolidados no PROJECT_BOOTSTRAP. Seção §10 atualizada com referência ao fluxo oficial. Bootstrap v2.26. PROJECT_STATUS v1.34.
 
 ### Versão 2.10
 
