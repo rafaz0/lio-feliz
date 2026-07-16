@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.32
+**Versão da Documentação:** 1.34
 
 **Status:** APROVADO
 
-**Última atualização:** 13/07/2026
+**Última atualização:** 17/07/2026
 
 ---
 
@@ -211,7 +211,7 @@ Engineering Review de Consolidação da Core Foundation. Classificação: Excele
 
 📄 PROJECT_BOOTSTRAP.md (seção "Fluxo Oficial da Engenharia")
 
-Fluxo oficial do projeto: Visão → PI → ER → EWO → Slices → Validação → Commit → Report → GOV → PROJECT_STATUS. Mapa de Dependências Documentais e Regra de Precedência (GOV-007).
+Fluxo oficial do projeto: PROJECT_BOOTSTRAP → PI (define arquitetura) → ER (valida) → EWO (materializa) → Slices → Validação → Commit → Report → GOV → PROJECT_STATUS. Mapa de Dependências Documentais e Regra de Precedência (GOV-007). PI é fonte exclusiva de arquitetura; EWO não define arquitetura.
 
 ---
 
@@ -352,6 +352,14 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.34
+
+- GOV-009 implementado. Sincronização Operacional obrigatória. Ciclo completo de 8 etapas, regra de consistência do estado, bloco de relatório expandido. Bootstrap v2.32.
+
+## Versão 1.33
+
+- GOV-008 refinado. PASSO 0 generalizado para Agente Executor. Fluxo da Engenharia atualizado: PI define arquitetura, EWO apenas materializa. Bootstrap v2.31.
 
 ## Versão 1.32
 

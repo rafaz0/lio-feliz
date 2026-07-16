@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.38
+**Versão:** 1.40
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsável:** Rafael Santos + IA
 
-**Última atualização:** 15/07/2026
+**Última atualização:** 17/07/2026
 
 ---
 
@@ -173,6 +173,8 @@ ADR-008: Backlog Governance
 | 15/07/2026 | GOV-009 — Eliminação do Workspace Duplicado. Clone residual `C:\lio-feliz` removido. Bundle de backup criado em `H:\lio-feliz-backup-gov009.bundle`. Projeto passa a ter exatamente um clone oficial. Bootstrap v2.28. AI_OPERATION_CHECKLIST v1.28. DEVELOPMENT_METHODOLOGY v2.13. |
 | 15/07/2026 | GOV-010 — Workspace Oficial e Inicialização Segura. Scripts: workspace-check.ps1 (Workspace Guard), start-opencode.ps1, start-opencode.bat. Passo 0 no Fluxo de Inicialização. OpenCode deve ser iniciado exclusivamente pelos scripts oficiais. Bootstrap v2.29. AI_OPERATION_CHECKLIST v1.29. DOCUMENTATION_INDEX v1.31. DEVELOPMENT_METHODOLOGY v2.14. |
 | 15/07/2026 | GOV-011 — Hardening da Inicialização do Workspace. Workspace Guard tornado guardião bloqueante (8 verificações). WORKSPACE_FINGERPRINT.md criado. Detecção de clone duplicado. Regra: nenhuma engenharia sem validação. Convenção: workspace oficial único. Bootstrap v2.30. AI_OPERATION_CHECKLIST v1.30. DEVELOPMENT_METHODOLOGY v2.15. DOCUMENTATION_INDEX v1.32. |
+| 16/07/2026 | GOV-008 refinado — PASSO 0 generalizado para Agente Executor. Fluxo da Engenharia refinado (PI fonte exclusiva de arquitetura, EWO materializador). AI_OPERATION_CHECKLIST v1.31, Bootstrap v2.31, PROJECT_STATUS v1.39, DOCUMENTATION_INDEX v1.33. |
+| 17/07/2026 | GOV-009 implementado — Sincronização Operacional obrigatória. Ciclo completo de 8 etapas, regra de consistência do estado, Lembrete Obrigatório no template Prompt OpenCode. AI_OPERATION_CHECKLIST v1.32, Bootstrap v2.32, PROJECT_STATUS v1.40, DOCUMENTATION_INDEX v1.34. |
 
 ---
 
@@ -195,6 +197,14 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.40
+
+GOV-009 implementado. Sincronização Operacional obrigatória: ciclo completo de 8 etapas, regra de consistência do estado, Lembrete Obrigatório no template Prompt OpenCode. Bootstrap v2.32. AI_OPERATION_CHECKLIST v1.32. DOCUMENTATION_INDEX v1.34.
+
+### Versão 1.39
+
+GOV-008 refinado. PASSO 0 generalizado para Agente Executor. Fluxo da Engenharia refinado (PI fonte exclusiva de arquitetura, EWO materializador). Bootstrap v2.31. AI_OPERATION_CHECKLIST v1.31. DOCUMENTATION_INDEX v1.33.
 
 ### Versão 1.38
 

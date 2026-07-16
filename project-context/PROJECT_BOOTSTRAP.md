@@ -2,13 +2,13 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.30
+**Versão:** 2.32
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 15/07/2026
+**Última atualização:** 17/07/2026
 
 ---
 
@@ -64,10 +64,10 @@ Modo: Execução
 PS Atual: —
 Marco: C-001 + C-002 (Core Foundation + Núcleo do Domínio)
 
-🏛 Governanca    [████████░░]  ~80%
-🏗 Arquitetura   [████████░░]  ~80%
-⚙ Engineering   [████████░░]  ~80%
-💻 Codigo        [█████░░░░░]  ~50%
+🏛 Governanca    [█████████░░]  ~90%
+🏗 Arquitetura   [████████░░]   ~80%
+⚙ Engineering   [████████░░]   ~80%
+💻 Codigo        [█████░░░░░]   ~50%
 ```
 
 > Fórmulas dos percentuais em `PROJECT_PROGRESS_PANEL.md`.
@@ -118,16 +118,44 @@ Se SIM na última verificação → revisar obrigatoriamente a seção correspon
 
 Sem evidência objetiva, executar o plano vigente. Backlog ativo nunca é omitido automaticamente.
 
+## PASSO 0 — Workspace Validation (Responsabilidade do Agente Executor)
+
+Este passo pertence exclusivamente ao **Agente Executor**, isto é, à ferramenta ou IA que possui acesso direto ao workspace do projeto, ao repositório Git e ao ambiente local de desenvolvimento.
+
+Exemplos incluem, entre outros:
+
+* OpenCode
+* futuros agentes de desenvolvimento
+* IDEs com agentes autônomos
+* qualquer ferramenta capaz de executar o Workspace Guard
+
+O ChatGPT **não é um Agente Executor** e, portanto:
+
+* não executa o Workspace Guard;
+* não valida o estado do Git;
+* não verifica Branch, HEAD, Remote ou Working Tree;
+* não confirma o WORKSPACE_FINGERPRINT;
+* não realiza inferências sobre o estado do workspace.
+
+Ao receber o PROJECT_BOOTSTRAP.md e o AI_OPERATION_CHECKLIST.md, o ChatGPT deve assumir que o PASSO 0 já foi executado quando houver evidência operacional suficiente, por exemplo:
+
+* o usuário informar que o bootstrap foi realizado;
+* for apresentado o relatório do Workspace Guard;
+* a conversa for continuação de uma sessão iniciada por um Agente Executor.
+
+Na ausência dessa evidência, o ChatGPT apenas registra que a validação do workspace permanece sob responsabilidade do Agente Executor, sem bloquear a restauração do contexto arquitetural.
+
 ## Fluxo Oficial de Inicialização
 
 ```
-0. Executar Workspace Guard — tools/workspace-check.ps1 (GOV-011)
-1. Ler AI_CONTEXT.md (identidade, estado, referências)
-2. Ler PROJECT_BOOTSTRAP.md (runtime operacional completo)
-3. Restaurar Estado Operacional automaticamente
-4. Entrar automaticamente em modo Execução
-5. Continuar exatamente da próxima etapa oficial
-6. Proibido retornar ao modo consultivo sem necessidade
+ PASSO 0.  Workspace Validation — Agente Executor (GOV-011)
+      ↓
+ 1. Ler AI_CONTEXT.md (identidade, estado, referências)
+ 2. Ler PROJECT_BOOTSTRAP.md (runtime operacional completo)
+ 3. Restaurar Estado Operacional automaticamente
+ 4. Entrar automaticamente em modo Execução
+ 5. Continuar exatamente da próxima etapa oficial
+ 6. Proibido retornar ao modo consultivo sem necessidade
 ```
 
 ## Checklist Obrigatório
@@ -269,9 +297,9 @@ Usar para respostas do dia a dia dentro de um PS ativo.
 
 Estrutura: resposta direta + Ritual de Encerramento (quando aplicável).
 
-### Prompt OpenCode
+### Prompt OpenCode (Agente Executor)
 
-Usar quando for necessário executar alterações via OpenCode.
+Usar quando for necessário executar alterações via OpenCode ou qualquer Agente Executor.
 
 Estrutura:
 1. Objetivo
@@ -282,6 +310,30 @@ Estrutura:
 6. Sugestões Técnicas
 7. Oportunidades Futuras
 8. Registro em SYNC_HISTORY
+
+**Lembrete Operacional Obrigatório** — Deve ser acrescentado ao final de todo prompt destinado ao Agente Executor:
+
+```
+--- Lembrete Operacional Obrigatório (GOV-009) ---
+
+Ao concluir esta atividade, execute o ciclo completo de sincronização,
+salvo instrução explícita do usuário em contrário.
+
+Checklist obrigatório:
+• Workspace Guard (quando aplicável);
+• Testes / Build / Lint (quando aplicáveis);
+• git add;
+• git commit;
+• git push;
+• Confirmar sincronização no repositório remoto;
+• Confirmar Working Tree limpa;
+• Registrar HEAD;
+• Atualizar a documentação de governança pertinente;
+• Emitir o relatório final de sincronização.
+
+O encerramento da Sprint somente deve ocorrer após a confirmação
+da sincronização completa.
+```
 
 ### Múltiplos Prompts
 
@@ -324,6 +376,59 @@ Todo novo protocolo operacional deve atualizar `AI_OPERATION_CHECKLIST.md`. Caso
 ### Template Vinculado (OP-011)
 
 `PS_TEMPLATE.md` deve refletir os protocolos IA, PG, OP, PGR vigentes. Revisar sempre que houver alteração operacional relevante.
+
+# Sincronização Operacional (GOV-009)
+
+## Regra de Sincronização Obrigatória
+
+Toda implementação, seja de código ou documentação, deve encerrar obrigatoriamente o ciclo completo de sincronização, salvo quando houver instrução explícita do usuário para interromper o processo.
+
+### Ciclo Completo de Sincronização
+
+1. Executar validações aplicáveis (testes, build, lint quando pertinentes);
+2. `git add`;
+3. `git commit`;
+4. `git push`;
+5. Confirmar que o repositório remoto recebeu o commit;
+6. Confirmar que a Working Tree está limpa;
+7. Registrar o HEAD final;
+8. Emitir o relatório de encerramento.
+
+### Consistência do Estado da Sincronização
+
+Os estados abaixo são mutuamente dependentes e nunca podem ser apresentados de forma inconsistente.
+
+**Exemplo incorreto:**
+```
+• Commit: pendente
+• Push: pendente
+• GitHub: sincronizado
+```
+
+**Exemplo correto (antes da sincronização):**
+```
+• Commit: pendente
+• Push: pendente
+• GitHub: não sincronizado
+• Working Tree: suja
+```
+
+**Exemplo correto (após a sincronização):**
+```
+• Commit: confirmado
+• Push: confirmado
+• GitHub: sincronizado
+• Working Tree: limpa
+• HEAD registrado
+```
+
+O relatório final deve refletir fielmente o estado real do repositório.
+
+### Aplicação
+
+Esta regra aplica-se a toda implementação, seja de código ou documentação, incluindo alterações de governança, metodologia, templates e documentação arquitetural. O encerramento de qualquer Sprint, Slice ou Engineering Review somente ocorre após a confirmação da sincronização completa.
+
+---
 
 ## Regras de Governança Pós-Auditoria (GOV-003)
 
@@ -378,12 +483,15 @@ Todo relatório de implementação deverá conter obrigatoriamente o bloco abaix
 
 ```
 Estado da Sincronização
-• Commit: <hash>
+• Commit: <hash> / pendente
 • Branch: <nome>
-• Push: <confirmado / pendente>
-• GitHub: <sincronizado / divergente>
-• Working Tree: <limpa / suja>
+• Push: confirmado / pendente
+• GitHub: sincronizado / não sincronizado / divergente
+• Working Tree: limpa / suja
+• HEAD registrado: <hash> / ---
 ```
+
+**Regra de consistência:** Os campos são mutuamente dependentes. Se `Commit` é pendente, `Push` não pode ser confirmado e `GitHub` não pode ser sincronizado. Se `Push` é confirmado e `GitHub` é sincronizado, a `Working Tree` deve estar limpa. HEAD deve estar registrado quando o ciclo de sincronização foi concluído.
 
 ### 5. Auditoria Pós-Rebase
 
@@ -811,38 +919,30 @@ Unidade incremental de implementação. Cada Sprint deve possuir escopo limitado
 
 # Fluxo Oficial da Engenharia (GOV-007)
 
+O fluxo abaixo estabelece a cadeia completa desde a visão do produto até o registro histórico. Cada documento possui responsabilidade distinta e precedência definida.
+
+**Regra fundamental:** a **PI (Product Increment) define a arquitetura**; a **EWO (Engineering Work Order) apenas materializa essa arquitetura em Slices de implementação**. Nenhuma EWO deve ser interpretada como documento de definição arquitetural.
+
 ```
-Visão do Produto
-        │
-        ▼
-Product Increment (PI)
-        │
-        ▼
-Engineering Review (ER)   (quando necessário)
-        │
-        ▼
-Engineering Wave (EWO)
-        │
-        ▼
+PROJECT_BOOTSTRAP
+        ↓
+Product Increment (PI) — Define a arquitetura
+        ↓
+Engineering Review (ER) — Valida a arquitetura (quando aplicável)
+        ↓
+Engineering Wave (EWO) — Materializa a arquitetura em Slices
+        ↓
 Implementação das Slices
-        │
-        ▼
-Validação
-(Build + Lint + Testes)
-        │
-        ▼
+        ↓
+Validação (Build + Lint + Testes)
+        ↓
 Commit + Push
-        │
-        ▼
+        ↓
 Sprint Report
-        │
-        ▼
-Governança (GOV)
-(se houver evolução metodológica)
-        │
-        ▼
-PROJECT_STATUS
-(histórico permanente)
+        ↓
+Governança (GOV) — Se houver evolução metodológica
+        ↓
+PROJECT_STATUS — Histórico permanente
 ```
 
 Este é o fluxo oficial do projeto. Nenhuma implementação pode ignorá-lo.
@@ -853,21 +953,21 @@ Este é o fluxo oficial do projeto. Nenhuma implementação pode ignorá-lo.
 
 | Documento | Finalidade | Pode gerar |
 |---|---|---|
-| PI | Define arquitetura | ER, EWO |
-| ER | Analisa arquitetura | PI revisada, GOV, BK |
-| EWO | Planeja implementação | Slices |
-| Slice | Implementa código | Sprint Report |
-| Sprint Report | Evidências de execução | PROJECT_STATUS |
-| GOV | Evolui metodologia | Bootstrap, Checklist |
-| PROJECT_STATUS | Histórico oficial | Nunca gera implementação |
+| PI | **Define** arquitetura — fonte canônica de engenharia | ER, EWO |
+| ER | **Valida** arquitetura — não altera, apenas analisa | PI revisada, GOV, BK |
+| EWO | **Materializa** arquitetura em Slices — não define arquitetura | Slices |
+| Slice | **Implementa** código | Sprint Report |
+| Sprint Report | **Registra** evidências de execução | PROJECT_STATUS |
+| GOV | **Evolui** metodologia | Bootstrap, Checklist |
+| PROJECT_STATUS | **Preserva** histórico oficial | Nunca gera implementação |
 
 ## Papel de cada documento
 
 | Documento | Papel |
 |---|---|
-| PI | Define arquitetura. Fonte canônica de engenharia. |
-| ER | Valida arquitetura. Não altera. Apenas analisa. |
-| EWO | Planeja implementação. Não cria arquitetura. |
+| PI | Define arquitetura. Fonte canônica de engenharia. Nenhum outro documento pode criar ou modificar arquitetura. |
+| ER | Valida arquitetura executada. Não altera. Apenas analisa. |
+| EWO | Planeja e organiza a implementação. Não cria arquitetura. Materializa decisões já aprovadas em PIs. |
 | GOV | Evolui metodologia. Registra lições e convenções. |
 | Sprint Report | Registra execução da slice. Evidência de conclusão. |
 | PROJECT_STATUS | Preserva histórico permanente. |
@@ -881,11 +981,11 @@ Em caso de conflito entre documentos, a ordem oficial de autoridade é:
 ```
 PROJECT_BOOTSTRAP
         ↓
-PI Approved
+PI Approved (fonte exclusiva de arquitetura)
         ↓
 ER
         ↓
-EWO
+EWO (executa arquitetura, não a define)
         ↓
 GOV
         ↓
@@ -894,13 +994,17 @@ Sprint Reports
 PROJECT_STATUS
 ```
 
-Documentos de maior precedência prevalecem sobre os de menor precedência. Documentos ausentes não têm autoridade.
+Documentos de maior precedência prevalecem sobre os de menor precedência. Documentos ausentes não têm autoridade. Nenhum documento de nível inferior pode contrariar a arquitetura definida por uma PI Approved.
 
 ---
 
 # Verificação de Workspace (GOV-008)
 
 **Contexto:** Durante a sprint de consolidação documental, o OpenCode utilizou `C:\lio-feliz` como working directory, divergindo do caminho canônico `H:\Lio Feliz\` definido no AGENTS.md. A causa raiz foi a ausência de verificação explícita do working directory antes do início da execução.
+
+## Natureza da Regra
+
+A verificação de workspace é uma **responsabilidade do Agente Executor** (OpenCode ou ferramenta similar com acesso ao sistema de arquivos local). O ChatGPT não possui acesso ao workspace e, portanto, não executa esta verificação — apenas assume sua conclusão mediante evidência operacional suficiente.
 
 ## Causa Raiz
 
@@ -913,12 +1017,12 @@ Documentos de maior precedência prevalecem sobre os de menor precedência. Docu
 
 ## Medidas Preventivas
 
-1. **Passo 0 no Fluxo de Inicialização:** Verificar working directory antes de qualquer operação.
+1. **Passo 0 no Fluxo de Inicialização:** Verificar working directory antes de qualquer operação (responsabilidade do Agente Executor).
 2. **Checklist Obrigatório:** Item "Working directory verificado" adicionado como primeira verificação.
 3. **Autoverificação IA-026 expandida:** Nova pergunta "O working directory corresponde ao caminho canônico do projeto?" adicionada.
 4. **Regra de comportamento adicionada:** Se o working directory divergir do canônico, interromper e reportar antes de iniciar qualquer implementação.
 
-## Regra de Comportamento
+## Regra de Comportamento (Agente Executor)
 
 Se o working directory atual não corresponder ao caminho canônico `H:\Lio Feliz\`:
 1. Interromper imediatamente qualquer inferência operacional.
@@ -950,7 +1054,9 @@ Qualquer referência futura a outro clone constitui erro operacional e deve ser 
 
 # Inicialização Oficial do Projeto (GOV-010)
 
-O OpenCode **deve** ser iniciado exclusivamente pelos scripts oficiais localizados em `tools/`. Nunca abrir diretamente um clone ou iniciar o OpenCode de um diretório arbitrário.
+A inicialização do workspace é responsabilidade do **Agente Executor** (OpenCode ou ferramenta similar com acesso local). O ChatGPT não executa esta etapa, apenas a assume como concluída quando há evidência operacional suficiente.
+
+O Agente Executor **deve** ser iniciado exclusivamente pelos scripts oficiais localizados em `tools/`. Nunca abrir diretamente um clone ou iniciar o Agente Executor de um diretório arbitrário.
 
 ## Scripts Oficiais
 
@@ -963,21 +1069,22 @@ O OpenCode **deve** ser iniciado exclusivamente pelos scripts oficiais localizad
 ## Fluxo Obrigatório de Inicialização
 
 ```
-0. Executar Workspace Guard (tools/workspace-check.ps1)
-1. Ler AI_CONTEXT.md
-2. Ler PROJECT_BOOTSTRAP.md
-3. Restaurar Estado Operacional
-4. Entrar em modo Execução
-5. Continuar da próxima etapa oficial
+ PASSO 0.  Workspace Validation — Agente Executor (tools/workspace-check.ps1)
+      ↓
+ 1. Ler AI_CONTEXT.md
+ 2. Ler PROJECT_BOOTSTRAP.md
+ 3. Restaurar Estado Operacional
+ 4. Entrar em modo Execução
+ 5. Continuar da próxima etapa oficial
 ```
 
-O Passo 0 é inomitível. Se o Workspace Guard falhar, nenhuma operação subsequente pode ocorrer.
+O Passo 0 é inomitível para o Agente Executor. Se o Workspace Guard falhar, nenhuma operação subsequente pode ocorrer.
 
 ## Regra de Inicialização
 
-- Toda sessão do OpenCode para o Lio Feliz deve começar executando `tools\workspace-check.ps1`.
+- Toda sessão do Agente Executor para o Lio Feliz deve começar executando `tools\workspace-check.ps1`.
 - O script `tools\start-opencode.ps1` (ou `.bat`) é o método oficial de abertura do projeto.
-- Iniciar o OpenCode manualmente de qualquer outro diretório constitui violação de protocolo.
+- Iniciar o Agente Executor manualmente de qualquer outro diretório constitui violação de protocolo.
 
 ---
 
@@ -1025,7 +1132,11 @@ No início de toda execução, o Workspace Guard exibe:
 
 ## Regra Operacional
 
-Nenhuma atividade de engenharia pode começar antes da validação completa do Workspace Guard. O PASSO 0 é inomitível e obrigatório.
+Nenhuma atividade de engenharia pode começar antes da validação completa do Workspace Guard. O PASSO 0 é inomitível e obrigatório para o Agente Executor.
+
+## Escopo da Regra
+
+Esta regra aplica-se exclusivamente ao **Agente Executor** (ferramenta com acesso ao sistema de arquivos local). O ChatGPT não executa o Workspace Guard — apenas assume sua conclusão quando houver evidência operacional suficiente (relatório do Guard, confirmação do usuário, continuidade de sessão iniciada por Agente Executor).
 
 ## Nova Convenção
 
@@ -1130,6 +1241,14 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.32
+
+GOV-009 implementado. Sincronização Operacional: nova seção com regra de sincronização obrigatória, ciclo completo de 8 etapas, regra de consistência do estado da sincronização com exemplos válidos e inválidos. Bloco Obrigatório nos Relatórios expandido com HEAD e regra de consistência. Template Prompt OpenCode atualizado com Lembrete Operacional Obrigatório (GOV-009). Dashboard: Governança ~90%. Bootstrap v2.32. AI_OPERATION_CHECKLIST v1.32. PROJECT_STATUS v1.40. DOCUMENTATION_INDEX v1.34.
+
+## v2.31
+
+GOV-008 refinado. PASSO 0 generalizado para "Agente Executor", desacoplado de ferramenta específica (OpenCode). ChatGPT explicitamente excluído da responsabilidade de validação de workspace. Fluxo Oficial da Engenharia refinado: PI como fonte exclusiva de arquitetura, EWO como mero materializador. Regra de Precedência Documental reforçada. Dashboard: Governança ~85%. Bootstrap v2.31. AI_OPERATION_CHECKLIST v1.31. PROJECT_STATUS v1.39. DOCUMENTATION_INDEX v1.33.
 
 ## v2.30
 

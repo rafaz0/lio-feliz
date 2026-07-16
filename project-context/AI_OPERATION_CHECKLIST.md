@@ -4,13 +4,13 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.30
+**Versão:** 1.32
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 15/07/2026
+**Última atualização:** 17/07/2026
 
 ---
 
@@ -19,6 +19,10 @@
 ---
 
 ## PASSO 0 — Workspace Validation (GOV-011)
+
+> **Nota para o ChatGPT:** Este checklist pertence exclusivamente ao **Agente Executor** (ferramenta com acesso ao workspace local). O ChatGPT não executa o Workspace Guard, não valida Git, Branch, HEAD, Remote ou Working Tree. Ao receber este documento, assuma que o PASSO 0 já foi executado quando houver evidência operacional suficiente (relatório do Guard, confirmação do usuário, continuidade de sessão prévia). Na ausência dessa evidência, registre a pendência sem bloquear a restauração do contexto arquitetural.
+
+**Checklist do Agente Executor:**
 
 - [ ] Workspace Guard executado (`tools/workspace-check.ps1`) — Exit Code 0
 - [ ] Working directory confirmado: `H:\Lio Feliz\`
@@ -37,7 +41,7 @@
 
 Antes de responder, verificar:
 
-- [ ] O working directory corresponde ao caminho canônico `H:\Lio Feliz\`? (GOV-008)
+- [ ] **(Agente Executor apenas)** O working directory corresponde ao caminho canônico `H:\Lio Feliz\`? (GOV-008)
 - [ ] Estou no modo correto?
 - [ ] Existe DEC ativa?
 - [ ] Existe evidência objetiva para alterar a direção?
@@ -115,6 +119,8 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 - [ ] Implementação segue integralmente a PI referenciada?
 - [ ] Materialização não altera conteúdo arquitetural da PI? (IA-033)
 - [ ] A PI a ser usada como base possui documento oficial, versão e status válido? (IA-034)
+- [ ] A EWO materializa arquitetura já definida pela PI — não cria nem modifica arquitetura?
+- [ ] Nenhuma EWO está sendo interpretada como documento de definição arquitetural?
 
 ## Continuidade Arquitetural (IA-031)
 
@@ -153,14 +159,22 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 
 ---
 
-## Sincronização GitHub (GS-002)
+## Sincronização GitHub (GS-002 / GOV-009)
 
-- [ ] Após alterações no repositório, executar `git add`, `git commit`, `git push`.
-- [ ] Verificar se todos os arquivos modificados foram incluídos.
-- [ ] Mensagem de commit descritiva.
-- [ ] Push confirmado com sucesso no GitHub.
-- [ ] Working tree limpa após o push.
-- [ ] Relatório de implementação contém bloco "Estado da Sincronização" (GOV-003).
+- [ ] Validações aplicáveis executadas (testes, build, lint)?
+- [ ] `git add` executado (todos os arquivos modificados incluídos)?
+- [ ] `git commit` executado (mensagem descritiva)?
+- [ ] `git push` confirmado com sucesso no repositório remoto?
+- [ ] Repositório remoto recebeu o commit (confirmado)?
+- [ ] Working tree limpa após o push?
+- [ ] HEAD final registrado?
+- [ ] Relatório de implementação contém bloco "Estado da Sincronização" (GOV-003)?
+
+**Regra de consistência do estado da sincronização:** Os campos do bloco
+"Estado da Sincronização" são mutuamente dependentes. Commit pendente →
+Push não pode ser confirmado → GitHub não pode ser sincronizado. Push
+confirmado + GitHub sincronizado → Working Tree deve estar limpa. HEAD
+deve estar registrado quando o ciclo de sincronização foi concluído.
 
 ## Checklist Obrigatório de Encerramento (GOV-004)
 
@@ -241,6 +255,14 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.32
+
+GOV-009 implementado. Sincronização GitHub (GS-002) expandida com ciclo completo de 8 etapas e regra de consistência do estado da sincronização (commit pendente → push não confirmado → github não sincronizado). Compatibilidade com PROJECT_BOOTSTRAP.md v2.32.
+
+### Versão 1.31
+
+GOV-008 refinado. PASSO 0 explicitado como responsabilidade exclusiva do Agente Executor. Nota para ChatGPT adicionada: não executa validação de workspace, apenas assume conclusão mediante evidência. Pré-Resposta atualizada com marcação "(Agente Executor apenas)". Fluxo de Engenharia expandido: verificações de que EWO não define arquitetura. Compatibilidade com PROJECT_BOOTSTRAP.md v2.31.
 
 ### Versão 1.30
 

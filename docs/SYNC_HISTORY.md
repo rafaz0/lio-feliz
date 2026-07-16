@@ -4,11 +4,11 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.25
+**Versão:** 1.27
 
 **Status:** APROVADO
 
-**Última atualização:** 13/07/2026
+**Última atualização:** 17/07/2026
 
 ---
 
@@ -1003,7 +1003,99 @@ Planejar EWO-001 — Implementação do Núcleo Arquitetural.
 
 ---
 
+## GOV-009 — Hardening da Sincronização Operacional
+
+**Tipo:** Governança / Hardening Operacional
+
+**Data:** 17/07/2026
+
+### Alterações Realizadas
+
+**Alteração 1 — Sincronização Obrigatória**
+- Nova seção "Sincronização Operacional (GOV-009)" no PROJECT_BOOTSTRAP.md
+- Regra: toda implementação (código ou documentação) deve encerrar com ciclo completo de sincronização
+- Ciclo completo de 8 etapas: validações → git add → git commit → git push → confirmação remota → working tree limpa → HEAD registrado → relatório
+- Exceção: instrução explícita do usuário para interromper
+
+**Alteração 2 — Consistência do Estado da Sincronização**
+- Bloco Obrigatório nos Relatórios expandido: HEAD adicionado, regra de consistência documentada
+- Exemplos de estados válidos e inválidos no Bootstrap
+- AI_OPERATION_CHECKLIST: GS-002 expandido com regra de consistência
+
+**Alteração 3 — Lembrete Obrigatório ao Agente Executor**
+- Template "Prompt OpenCode" renomeado para "Prompt OpenCode (Agente Executor)"
+- Bloco "Lembrete Operacional Obrigatório (GOV-009)" adicionado ao final do template
+
+**Alteração 4 — Template Oficial**
+- Template Prompt OpenCode no Bootstrap atualizado permanentemente com o lembrete
+- PS_TEMPLATE.md não modificado (é template de PS, não de prompt operacional)
+
+### Documentos Atualizados
+
+- PROJECT_BOOTSTRAP.md → v2.32
+- AI_OPERATION_CHECKLIST.md → v1.32
+- DOCUMENTATION_INDEX.md → v1.34
+- PROJECT_STATUS.md → v1.40
+- SYNC_HISTORY.md → v1.27
+
+### Decisões Arquiteturais
+
+Nenhuma decisão arquitetural foi alterada. Apenas fortalecimento da governança operacional.
+
+### Validação
+
+Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão identificada.
+
+---
+
+## GOV-008 — Refinamento da Governança Operacional
+
+**Tipo:** Governança / Refinamento Documental
+
+**Data:** 16/07/2026
+
+### Alterações Realizadas
+
+**Alteração 1 — PASSO 0 (Workspace Validation)**
+- PASSO 0 generalizado para "Agente Executor", desacoplado de ferramenta específica (OpenCode)
+- ChatGPT explicitamente excluído da responsabilidade de validação de workspace
+- PROJECT_BOOTSTRAP.md: Fluxo de Inicialização, GOV-008, GOV-010, GOV-011 atualizados
+- AI_OPERATION_CHECKLIST.md: PASSO 0 e Pré-Resposta atualizados com nota para ChatGPT
+
+**Alteração 2 — Precisão do Fluxo Documental**
+- Fluxo Oficial da Engenharia refinado: PROJECT_BOOTSTRAP → PI (arquitetura) → ER → EWO (materialização) → Slices → ...
+- PI estabelecida como fonte **exclusiva** de definição arquitetural
+- EWO explicitada como mero materializador de arquitetura já aprovada
+- Regra de Precedência Documental reforçada
+- AI_OPERATION_CHECKLIST: novas verificações no Fluxo de Engenharia
+
+### Documentos Atualizados
+
+- PROJECT_BOOTSTRAP.md → v2.31
+- AI_OPERATION_CHECKLIST.md → v1.31
+- DOCUMENTATION_INDEX.md → v1.33
+- PROJECT_STATUS.md → v1.39
+- SYNC_HISTORY.md → v1.26
+
+### Decisões Arquiteturais
+
+Nenhuma decisão arquitetural foi alterada. Apenas ambiguidades documentais foram eliminadas.
+
+### Validação
+
+Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão identificada.
+
+---
+
 # Histórico
+
+### Versão 1.27
+
+Registro do GOV-009 — Hardening da Sincronização Operacional. Ciclo completo de sincronização obrigatório. Consistência do estado. Lembrete Obrigatório no template Prompt OpenCode.
+
+### Versão 1.26
+
+Registro do GOV-008 — Refinamento da Governança Operacional. PASSO 0 generalizado para Agente Executor. Fluxo Documental refinado.
 
 ### Versão 1.25
 
