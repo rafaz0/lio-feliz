@@ -242,8 +242,17 @@ stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us |
 
 # Como Usar os Agentes Customizados
 
-O OpenCode agora possui agentes especializados para cada fase do desenvolvimento.
+O OpenCode possui agentes especializados para cada fase do desenvolvimento.
 Use **@** seguido do nome do agente para invocá-los.
+
+## Divisão de Responsabilidades
+
+| Papel | Ferramenta | Responsabilidade |
+|-------|-----------|-----------------|
+| **Arquiteto / Revisor / Auditor** | ChatGPT | Planejamento, definição de diretrizes, Engineering Review, auditoria de governança |
+| **Executor** | OpenCode | Implementação de código, testes, build, lint, commit, push, relatórios |
+
+## Agentes do OpenCode
 
 | Comando | Função | Quando usar |
 |---------|--------|-------------|

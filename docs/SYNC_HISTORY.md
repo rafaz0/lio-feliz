@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.32
+**Versão:** 1.33
 
 **Status:** APROVADO
 
@@ -1221,7 +1221,28 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#037 — GOV-012: Divisão de Responsabilidades ChatGPT/OpenCode
+
+**Data:** 18/07/2026
+
+**Tipo:** Governança / Metodologia
+
+**Objetivo:** Institucionalizar a nova divisão de responsabilidades entre ChatGPT (Arquiteto/Planejador/Auditor/Revisor) e OpenCode (Agente Executor).
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.36 → v2.37: nova seção "Divisão de Responsabilidades ChatGPT/OpenCode" com papéis, responsabilidades e fluxo integrado
+- `project-context/AI_OPERATION_CHECKLIST.md` — v1.34 → v1.35: pré-resposta reorganizada por papel, seção de divisão de responsabilidades adicionada
+- `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção "Papéis na Engenharia" definindo ChatGPT e OpenCode
+- `project-context/DEVELOPMENT_METHODOLOGY.md` — v2.16 → v2.17: IA-036 adicionada com tabela de papéis e fluxo obrigatório
+- `AGENTS.md` — tabela de divisão de responsabilidades adicionada
+
+---
+
 # Histórico
+
+### Versão 1.33
+
+GOV-012 — Divisão de Responsabilidades ChatGPT/OpenCode institucionalizada.
 
 ### Versão 1.32
 

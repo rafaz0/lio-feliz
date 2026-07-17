@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.34
+**Versão:** 1.35
 
 **Status:** APROVADO
 
@@ -18,11 +18,20 @@
 
 ---
 
+## Divisão de Responsabilidades
+
+Conforme definido no PROJECT_BOOTSTRAP:
+
+- **ChatGPT** — Arquiteto de Implementação, Planejador Estratégico, Auditor Técnico, Revisor de Engenharia, Guardião da Governança
+- **OpenCode (Agente Executor)** — Implementação de código, testes, build, lint, commit, push, relatórios de sincronização, Workspace Guard
+
+O ChatGPT não produz planos detalhados de implementação quando o OpenCode possui contexto suficiente. O ChatGPT concentra-se em validação metodológica, arquitetural e estratégica.
+
 ## PASSO 0 — Workspace Validation (GOV-011)
 
-> **Nota para o ChatGPT:** Este checklist pertence exclusivamente ao **Agente Executor** (ferramenta com acesso ao workspace local). O ChatGPT não executa o Workspace Guard, não valida Git, Branch, HEAD, Remote ou Working Tree. Ao receber este documento, assuma que o PASSO 0 já foi executado quando houver evidência operacional suficiente (relatório do Guard, confirmação do usuário, continuidade de sessão prévia). Na ausência dessa evidência, registre a pendência sem bloquear a restauração do contexto arquitetural.
+> **Nota para o ChatGPT:** O Workspace Validation pertence exclusivamente ao **Agente Executor (OpenCode)**. O ChatGPT não executa o Workspace Guard, não valida Git, Branch, HEAD, Remote ou Working Tree. Ao receber este documento, assuma que o PASSO 0 já foi executado quando houver evidência operacional suficiente (relatório do Guard, confirmação do usuário, continuidade de sessão prévia do OpenCode). Na ausência dessa evidência, registre a pendência sem bloquear a restauração do contexto arquitetural.
 
-**Checklist do Agente Executor:**
+**Checklist do Agente Executor (OpenCode):**
 
 - [ ] Workspace Guard executado (`tools/workspace-check.ps1`) — Exit Code 0
 - [ ] Working directory confirmado: `H:\Lio Feliz\`
@@ -41,7 +50,20 @@
 
 Antes de responder, verificar:
 
-- [ ] **(Agente Executor apenas)** O working directory corresponde ao caminho canônico `H:\Lio Feliz\`? (GOV-008)
+### Para o ChatGPT (funções de arquitetura, revisão e governança):
+
+- [ ] Estou atuando dentro do meu papel (Arquiteto/Planejador/Auditor/Revisor)? (GOV-012)
+- [ ] Existe documentação arquitetural suficiente (PI, ER, EWO) para a atividade? (AI_ENGINEERING_PROTOCOL)
+- [ ] A tarefa atual requer implementação direta de código? Se sim, delegar ao OpenCode.
+- [ ] O OpenCode possui contexto suficiente para executar a implementação sem plano detalhado do ChatGPT?
+
+### Para o OpenCode (Agente Executor):
+
+- [ ] O working directory corresponde ao caminho canônico `H:\Lio Feliz\`? (GOV-008)
+- [ ] A implementação respeita integralmente os limites da PI/ER/EWO vigente?
+
+### Comum a ambos:
+
 - [ ] Estou no modo correto?
 - [ ] Existe DEC ativa?
 - [ ] Existe evidência objetiva para alterar a direção?
@@ -328,6 +350,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.35
+
+GOV-012 — Divisão de Responsabilidades ChatGPT/OpenCode. Pré-Resposta reorganizada por papel (ChatGPT: arquitetura/revisão/governança; OpenCode: execução). Compatibilidade com PROJECT_BOOTSTRAP v2.37.
 
 ### Versão 1.34
 

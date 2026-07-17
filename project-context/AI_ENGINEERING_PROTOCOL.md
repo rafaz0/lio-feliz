@@ -12,11 +12,36 @@ Em caso de conflito documental, prevalece a ordem oficial de precedência defini
 
 ---
 
+# Papéis na Engenharia
+
+A engenharia do Lio Feliz distingue dois papéis complementares:
+
+### ChatGPT — Arquitetura e Governança
+
+- Define objetivos, critérios de aceite e diretrizes de implementação
+- Planeja a estratégia de Slices e a ordem de execução
+- Revisa a conformidade arquitetural (Engineering Review)
+- Audita governança e qualidade
+- Preserva a integridade documental
+
+### OpenCode — Execução
+
+- Materializa o código das Slices
+- Executa testes, build e lint
+- Realiza commit, push e relatórios de sincronização
+- Opera o Workspace Guard
+
+O ChatGPT **não substitui** o OpenCode em tarefas de implementação. Toda implementação de código deve ser executada pelo OpenCode.
+
+---
+
 # Princípio Fundamental
 
 A IA não é autora da arquitetura.
 
-A IA é responsável por materializar, revisar e validar a arquitetura previamente aprovada.
+O ChatGPT é responsável por planejar, revisar e validar a arquitetura previamente aprovada.
+
+O OpenCode é responsável por materializar a arquitetura em código.
 
 Sempre que houver ausência de informação suficiente, a IA deverá interromper o trabalho e solicitar a documentação correspondente.
 

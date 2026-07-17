@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.16
+**Versão:** 2.17
 
 **Status:** APROVADO
 
@@ -368,6 +368,17 @@ Toda decisão estratégica do projeto deverá ser classificada em exatamente uma
 **Documento Metodológico** — Regra de metodologia, governança ou operação. Registrada no documento metodológico correspondente.
 
 Nenhuma decisão estratégica poderá permanecer exclusivamente na memória das conversas. Toda decisão deve ser registrada em sua Fonte Canônica antes do encerramento da etapa.
+
+**IA-036 — Divisão de Responsabilidades ChatGPT/OpenCode**
+
+A engenharia do Lio Feliz opera com dois papéis complementares:
+
+| Papel | Atribuições |
+|-------|-------------|
+| **ChatGPT** (Arquiteto/Planejador/Auditor/Revisor) | Define objetivos, critérios de aceite e diretrizes. Planeja Slices. Realiza Engineering Review. Audita governança. Preserva documentação permanente. Não implementa código diretamente. |
+| **OpenCode** (Agente Executor) | Implementa código das Slices. Executa testes, build e lint. Realiza commit, push e relatórios de sincronização. Executa o Workspace Guard. |
+
+O ChatGPT não produz planos detalhados de implementação quando o OpenCode possui contexto suficiente para fazê-lo. Toda implementação obrigatoriamente passa por: Planejamento (ChatGPT) → Implementação (OpenCode) → Engineering Review (ChatGPT) → Auditoria (ChatGPT) → Engineering Closure (ChatGPT).
 
 ---
 
@@ -1039,6 +1050,10 @@ A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto 
 ---
 
 # 14. Histórico
+
+### Versão 2.17
+
+GOV-012 — Divisão de Responsabilidades ChatGPT/OpenCode. IA-036 adicionada em §7 definindo papéis: ChatGPT como Arquiteto/Planejador/Auditor/Revisor; OpenCode como Agente Executor. Fluxo obrigatório: Planejamento → Implementação → Engineering Review → Auditoria → Engineering Closure.
 
 ### Versão 2.16
 

@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.36
+**Versão:** 2.37
 
 **Status:** APROVADO
 
@@ -168,30 +168,60 @@ Se SIM na última verificação → revisar obrigatoriamente a seção correspon
 
 Sem evidência objetiva, executar o plano vigente. Backlog ativo nunca é omitido automaticamente.
 
-## PASSO 0 — Workspace Validation (Responsabilidade do Agente Executor)
+## Divisão de Responsabilidades ChatGPT / OpenCode
 
-Este passo pertence exclusivamente ao **Agente Executor**, isto é, à ferramenta ou IA que possui acesso direto ao workspace do projeto, ao repositório Git e ao ambiente local de desenvolvimento.
+A engenharia do Lio Feliz opera com dois papéis complementares e bem definidos.
 
-Exemplos incluem, entre outros:
+### ChatGPT — Planejamento, Arquitetura e Governança
 
-* OpenCode
-* futuros agentes de desenvolvimento
-* IDEs com agentes autônomos
-* qualquer ferramenta capaz de executar o Workspace Guard
+O ChatGPT atua como:
 
-O ChatGPT **não é um Agente Executor** e, portanto:
+- **Arquiteto de Implementação**: define objetivos, critérios de aceite e diretrizes de implementação com base nas PIs, ERs e EWOs aprovadas
+- **Planejador Estratégico**: organiza a ordem de execução, identifica dependências e elabora a estratégia de Slices
+- **Auditor Técnico**: valida conformidade arquitetural, metodológica e documental
+- **Revisor de Engenharia**: realiza Engineering Reviews ao final de cada Slice
+- **Guardião da Governança**: preserva a integridade dos documentos permanentes (Bootstrap, Checklist, Protocolos)
 
-* não executa o Workspace Guard;
-* não valida o estado do Git;
-* não verifica Branch, HEAD, Remote ou Working Tree;
-* não confirma o WORKSPACE_FINGERPRINT;
-* não realiza inferências sobre o estado do workspace.
+**O ChatGPT não produz planos detalhados de implementação quando o OpenCode possui contexto suficiente para fazê-lo.** O ChatGPT concentra-se na validação metodológica, arquitetural e estratégica, delegando a execução concreta ao OpenCode.
+
+### OpenCode — Execução, Implementação e Sincronização
+
+O OpenCode atua como **Agente Executor** e é responsável por:
+
+- leitura contínua do repositório e do workspace
+- implementação do código das Slices
+- execução de testes, build e lint
+- commit e push
+- relatórios de sincronização
+- execução do Workspace Guard (GOV-011)
+- validação do estado do Git (Branch, HEAD, Remote, Working Tree)
+- confirmação do WORKSPACE_FINGERPRINT
+
+### Fluxo de Trabalho Integrado
+
+```
+ChatGPT: Planejamento → Diretrizes → Revisão → Auditoria
+    ↓                                                        ↓
+OpenCode: Implementação → Testes → Build → Commit → Push → Relatório
+    ↓
+Engineering Review (ChatGPT)
+    ↓
+Engineering Closure (ChatGPT)
+```
+
+Toda implementação obrigatoriamente passa por:
+
+**Planejamento → Implementação → Engineering Review → Auditoria → Engineering Closure**
+
+### PASSO 0 — Workspace Validation (Responsabilidade do Agente Executor)
+
+Este passo pertence exclusivamente ao **Agente Executor** (OpenCode). Conforme definido acima, o ChatGPT não executa o Workspace Guard, não valida o estado do Git, não verifica Branch, HEAD, Remote ou Working Tree.
 
 Ao receber o PROJECT_BOOTSTRAP.md e o AI_OPERATION_CHECKLIST.md, o ChatGPT deve assumir que o PASSO 0 já foi executado quando houver evidência operacional suficiente, por exemplo:
 
 * o usuário informar que o bootstrap foi realizado;
 * for apresentado o relatório do Workspace Guard;
-* a conversa for continuação de uma sessão iniciada por um Agente Executor.
+* a conversa for continuação de uma sessão iniciada pelo OpenCode.
 
 Na ausência dessa evidência, o ChatGPT apenas registra que a validação do workspace permanece sob responsabilidade do Agente Executor, sem bloquear a restauração do contexto arquitetural.
 
@@ -1292,6 +1322,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.37
+
+GOV-012 — Divisão de Responsabilidades ChatGPT/OpenCode institucionalizada. ChatGPT: Arquiteto de Implementação, Planejador Estratégico, Auditor Técnico, Revisor de Engenharia, Guardião da Governança. OpenCode: Agente Executor (implementação, testes, build, lint, commit, push, relatórios). Fluxo integrado documentado. PROJECT_BOOTSTRAP v2.37, AI_OPERATION_CHECKLIST v1.35, AI_ENGINEERING_PROTOCOL atualizado, DEVELOPMENT_METHODOLOGY IA-036 adicionado.
 
 ## v2.36
 
