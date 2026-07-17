@@ -291,3 +291,45 @@ A metodologia deve ser a menor possível. Nova regra só existe quando elimina p
 ### Engineering Review
 
 Durante toda ER, verificar se existe melhoria metodológica. Se sim, registrar descrição, origem, impacto e destino. Se não, registrar "Nenhuma melhoria metodológica identificada."
+
+---
+
+# Pipeline Contínuo de Engenharia (GOV-018)
+
+O fluxo entre ChatGPT e OpenCode segue automaticamente o pipeline abaixo, sem confirmações intermediárias.
+
+```
+ChatGPT                                 OpenCode
+───────                                 ───────
+Planejamento                            Implementação
+                                        Relatório de Implementação
+                                        Engineering Closure
+                                        Relatório de Closure
+Engineering Review
+Planejamento da próxima Slice
+```
+
+### Comportamento
+
+Cada etapa entrega obrigatoriamente o artefato esperado para a etapa seguinte.
+
+### Interrupções
+
+O pipeline só deve ser interrompido para:
+- bloqueador técnico
+- dúvida arquitetural
+- ausência de documentação
+- violação da PI
+- violação da EWO
+- falha na Core Foundation
+- conflito metodológico
+
+### ChatGPT
+
+Ao finalizar uma Engineering Review: emitir parecer, registrar conhecimento capturado (GOV-015), identificar melhorias para o próximo prompt e produzir imediatamente o Planejamento da próxima etapa. Não perguntar "Deseja prosseguir?".
+
+### OpenCode
+
+Ao concluir implementação: executar testes, validar build e emitir Relatório de Implementação. Não perguntar "Deseja Engineering Review?".
+
+Após ER aprovada: executar Engineering Closure, sincronizar Git e emitir Relatório de Closure. Não perguntar "Deseja prosseguir para a próxima Slice?". A próxima etapa pertence ao ChatGPT.

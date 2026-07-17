@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.43
+**Versão:** 2.44
 
 **Status:** APROVADO
 
@@ -408,6 +408,76 @@ Ao término de grandes marcos (ex: encerramento de EWO), avaliar atividade de Co
 **ChatGPT:** identificar problemas recorrentes, avaliar necessidade real de evolução, propor novas GOV apenas com evidências, evitar crescimento desnecessário da documentação, identificar consolidação futura.
 
 **OpenCode:** implementar alterações documentais, sincronizar, registrar versões, executar GOV-011. Não criar novas políticas metodológicas por iniciativa própria.
+
+---
+
+## Pipeline Contínuo de Engenharia (GOV-018)
+
+O fluxo entre ChatGPT e OpenCode segue automaticamente o pipeline abaixo, sem necessidade de confirmações intermediárias.
+
+```
+ChatGPT
+Planejamento
+
+↓
+
+OpenCode
+Implementação
+
+↓
+
+OpenCode
+Relatório de Implementação
+
+↓
+
+ChatGPT
+Engineering Review
+
+↓
+
+OpenCode
+Engineering Closure
+
+↓
+
+OpenCode
+Relatório de Closure
+
+↓
+
+ChatGPT
+Planejamento da próxima Slice
+
+↓
+
+OpenCode
+Implementação
+```
+
+### Comportamento
+
+Cada etapa entrega obrigatoriamente o artefato esperado para a etapa seguinte.
+
+O pipeline só é interrompido quando existe:
+
+- bloqueador técnico;
+- dúvida arquitetural;
+- ausência de documentação;
+- violação da PI;
+- violação da EWO;
+- falha na Core Foundation;
+- conflito metodológico.
+
+Fora dessas situações, o fluxo continua automaticamente.
+
+### Responsabilidades
+
+**ChatGPT:** ao finalizar uma Engineering Review, emitir parecer, registrar conhecimento capturado, identificar melhorias para o próximo prompt e produzir imediatamente o Planejamento da próxima etapa. Não perguntar "Deseja prosseguir?".
+
+**OpenCode:** ao concluir implementação, executar testes, validar build e emitir Relatório de Implementação. Não perguntar "Deseja Engineering Review?". Após ER aprovada, executar Engineering Closure, sincronizar Git e emitir Relatório de Closure. Não perguntar "Deseja prosseguir para a próxima Slice?".
+
+---
 
 ## Dashboard Executivo — Documentação
 
@@ -1460,6 +1530,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.44
+
+GOV-018 — Pipeline Contínuo de Engenharia institucionalizado. Fluxo automático sem confirmações intermediárias. Responsabilidades de cada etapa definidas. Exceções para interrupção documentadas. PROJECT_BOOTSTRAP v2.44, AI_OPERATION_CHECKLIST v1.40, AI_ENGINEERING_PROTOCOL atualizado, DEVELOPMENT_METHODOLOGY IA-041 adicionado, AGENTS.md atualizado.
 
 ## v2.43
 

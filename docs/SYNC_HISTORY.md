@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.39
+**Versão:** 1.41
 
 **Status:** APROVADO
 
@@ -1316,13 +1316,45 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#044 — GOV-018: Pipeline Contínuo de Engenharia
+
+**Data:** 18/07/2026
+
+**Tipo:** Governança / Metodologia
+
+**Objetivo:** Eliminar interrupções desnecessárias entre etapas da engenharia institucionalizando o fluxo automático do pipeline.
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.43 → v2.44: nova seção GOV-018 com pipeline, exceções e responsabilidades
+- `project-context/AI_OPERATION_CHECKLIST.md` — v1.39 → v1.40: nova seção de verificação do pipeline
+- `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção GOV-018
+- `project-context/DEVELOPMENT_METHODOLOGY.md` — v2.21 → v2.22: IA-041 adicionada
+- `AGENTS.md` — pipeline GOV-018 adicionado
+- `docs/SYNC_HISTORY.md` — v1.40 → v1.41: PS#044 registrado
+
+---
+
+## Piloto — Contexto para a Próxima Slice
+
+**Data:** 18/07/2026
+
+**Tipo:** Piloto Operacional (experimental)
+
+**Objetivo:** Produzir bloco de transferência de contexto entre Engineering Closures para reduzir deriva arquitetural entre Slices consecutivas.
+
+**Natureza:** Experimental. Não faz parte da metodologia oficial. Sua efetividade será avaliada após algumas Slices. Poderá futuramente originar proposta metodológica conforme GOV-017.
+
+**Nenhum documento metodológico foi alterado.**
+
+---
+
 ## PS#043 — GOV-017: Governança Evolutiva da Metodologia
 
 **Data:** 18/07/2026
 
 **Tipo:** Governança / Metodologia
 
-**Objetivo:** Institucionalizar o processo oficial de evolução da metodologia baseado em evidências.
+**Objetivo:** Institutionalizar o processo oficial de evolução da metodologia baseado em evidências.
 
 **Arquivos modificados:**
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.42 → v2.43: seção GOV-017 com origens, fluxo, Princípio da Metodologia Mínima
@@ -1349,6 +1381,14 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.41
+
+GOV-018 — Pipeline Contínuo de Engenharia. Fluxo automático sem confirmações intermediárias. PS#044 registrado.
+
+### Versão 1.40
+
+Piloto — Contexto para a Próxima Slice. Prática experimental para transferência de contexto entre Slices.
 
 ### Versão 1.39
 

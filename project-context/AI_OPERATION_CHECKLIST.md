@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.39
+**Versão:** 1.40
 
 **Status:** APROVADO
 
@@ -373,9 +373,22 @@ Seção obrigatória ao final de toda Engineering Review:
   * Se SIM → registrar descrição, origem da evidência, impacto esperado e destino
   * Se NÃO → registrar "Nenhuma melhoria metodológica identificada."
 
+## Pipeline Contínuo de Engenharia (GOV-018)
+
+- [ ] A próxima etapa está definida pelo pipeline? (GOV-018)
+  * Se SIM → executar sem solicitar confirmação
+  * Se NÃO → verificar se existe bloqueador; se não houver, prosseguir
+- [ ] Existe bloqueador que justifique interrupção do pipeline?
+  * Bloqueadores válidos: técnico, arquitetural, documentação, PI, EWO, Core Foundation, metodologia
+  * Se NÃO houver bloqueador → continuar automaticamente
+
 ---
 
 # Histórico
+
+### Versão 1.40
+
+GOV-018 — Pipeline Contínuo de Engenharia. Nova seção de verificação do pipeline na Pré-Resposta com regras de interrupção. Compatibilidade com PROJECT_BOOTSTRAP v2.44.
 
 ### Versão 1.39
 

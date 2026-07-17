@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.21
+**Versão:** 2.22
 
 **Status:** APROVADO
 
@@ -437,6 +437,58 @@ Fluxo: Problema observado → Evidências → Análise → Proposta → GOV → 
 | **OpenCode** (Agente Executor) | Implementa código das Slices. Executa testes, build e lint. Realiza commit, push e relatórios de sincronização. Executa o Workspace Guard. |
 
 O ChatGPT não produz planos detalhados de implementação quando o OpenCode possui contexto suficiente para fazê-lo. Toda implementação obrigatoriamente passa por: Planejamento (ChatGPT) → Implementação (OpenCode) → Engineering Review (ChatGPT) → Auditoria (ChatGPT) → Engineering Closure (ChatGPT).
+
+**IA-041 — Execução Automática das Próximas Etapas (GOV-018)**
+
+O fluxo entre ChatGPT e OpenCode segue automaticamente o pipeline abaixo, sem necessidade de confirmações intermediárias.
+
+```
+ChatGPT
+Planejamento
+
+↓
+
+OpenCode
+Implementação
+
+↓
+
+OpenCode
+Relatório de Implementação
+
+↓
+
+ChatGPT
+Engineering Review
+
+↓
+
+OpenCode
+Engineering Closure
+
+↓
+
+OpenCode
+Relatório de Closure
+
+↓
+
+ChatGPT
+Planejamento da próxima Slice
+
+↓
+
+OpenCode
+Implementação
+```
+
+Cada etapa entrega obrigatoriamente o artefato esperado para a etapa seguinte.
+
+**Interrupções permitidas:** bloqueador técnico, dúvida arquitetural, ausência de documentação, violação da PI, violação da EWO, falha na Core Foundation, conflito metodológico. Fora dessas situações, o pipeline continua automaticamente.
+
+**ChatGPT:** ao finalizar ER, emitir parecer + conhecimento capturado + melhorias + planejamento da próxima etapa. Não perguntar "Deseja prosseguir?".
+
+**OpenCode:** ao concluir implementação, executar testes + build + relatório. Não perguntar "Deseja Engineering Review?". Após ER aprovada, executar Closure + Git + relatório. Não perguntar "Deseja prosseguir?".
 
 ---
 
@@ -1087,6 +1139,10 @@ A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto 
 ---
 
 # 14. Histórico
+
+### Versão 2.22
+
+GOV-018 — Pipeline Contínuo de Engenharia. IA-041 adicionada em §7. Fluxo automático sem confirmações intermediárias. Interrupções permitidas documentadas.
 
 ### Versão 2.21
 

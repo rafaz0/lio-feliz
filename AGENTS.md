@@ -249,8 +249,25 @@ Use **@** seguido do nome do agente para invocá-los.
 
 | Papel | Ferramenta | Responsabilidade |
 |-------|-----------|-----------------|
-| **Arquiteto / Revisor / Auditor / Otimizador** | ChatGPT | Planejamento, definição de diretrizes, Engineering Review, auditoria de governança, **identificação e incorporação contínua de melhorias (GOV-015)** |
-| **Executor** | OpenCode | Implementação de código, testes, build, lint, commit, push, relatórios, **execução de melhorias incorporadas no prompt (GOV-015)** |
+| **Arquiteto / Revisor / Auditor / Otimizador** | ChatGPT | Planejamento, definição de diretrizes, Engineering Review, auditoria de governança, **identificação e incorporação contínua de melhorias (GOV-015)**, planejamento da próxima etapa (GOV-018) |
+| **Executor** | OpenCode | Implementação de código, testes, build, lint, commit, push, relatórios, **execução de melhorias incorporadas no prompt (GOV-015)**, Engineering Closure (GOV-018) |
+
+## Pipeline Contínuo (GOV-018)
+
+O fluxo entre ChatGPT e OpenCode é automático, sem confirmações intermediárias:
+
+```
+Planejamento (ChatGPT)
+    → Implementação + Relatório (OpenCode)
+    → Engineering Review (ChatGPT)
+    → Engineering Closure + Relatório (OpenCode)
+    → Planejamento próxima Slice (ChatGPT)
+    → ...
+```
+
+Interrupção apenas para: bloqueador técnico, dúvida arquitetural, documentação insuficiente, violação de PI/EWO/Core Foundation ou conflito metodológico.
+
+---
 
 ## Agentes do OpenCode
 
