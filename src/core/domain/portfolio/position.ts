@@ -1,12 +1,5 @@
 import { ValueObject, Ticker, Quantity, Money } from "@/core/domain";
 
-export interface PositionProps {
-  ticker: Ticker;
-  quantity: Quantity;
-  avgCost: Money;
-  totalCost: Money;
-}
-
 export class Position extends ValueObject<{
   ticker: Ticker;
   quantity: Quantity;
