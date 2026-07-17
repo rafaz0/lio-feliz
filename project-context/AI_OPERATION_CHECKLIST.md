@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.33
+**Versão:** 1.34
 
 **Status:** APROVADO
 
@@ -176,6 +176,62 @@ Checklist de prompt autossuficiente:
 
 ---
 
+---
+
+## Política de Sincronização Obrigatória
+
+Sempre que qualquer arquivo oficial do projeto for criado, modificado, removido ou aprovado, a IA deverá executar obrigatoriamente o ciclo completo de sincronização antes de considerar a atividade encerrada.
+
+### Ciclo Completo de Sincronização
+
+1. Verificar os arquivos modificados.
+2. Validar que as alterações foram aprovadas.
+3. Atualizar a documentação relacionada, quando necessário.
+4. Executar build, lint e testes, quando aplicável.
+5. Realizar commit com mensagem compatível com a alteração.
+6. Realizar push para o repositório remoto.
+7. Confirmar que a sincronização foi concluída com sucesso.
+8. Emitir o Relatório de Sincronização.
+
+### Relatório de Sincronização Obrigatório
+
+Ao final de qualquer atividade que produza alterações persistentes, a IA deverá emitir obrigatoriamente um relatório contendo, no mínimo:
+
+- Tipo da atividade;
+- Documentos alterados;
+- Arquivos alterados;
+- Resumo das alterações;
+- Status do build;
+- Status do lint;
+- Status dos testes;
+- Commit realizado;
+- Push realizado;
+- Status da sincronização remota;
+- Pendências existentes.
+
+### Exceção
+
+Caso nenhuma alteração tenha sido persistida no repositório, a IA deverá informar explicitamente:
+
+> Não foi realizada sincronização Git porque nenhuma alteração persistente foi produzida nesta atividade.
+
+Essa mensagem é obrigatória e substitui o Relatório de Sincronização.
+
+### Critério de Encerramento
+
+Nenhuma atividade poderá ser considerada concluída enquanto existir alguma alteração aprovada ainda não sincronizada com o repositório remoto.
+
+Caso a sincronização falhe, a atividade deverá permanecer com status **Pendente de Sincronização**, e a IA deverá informar claramente:
+
+- qual etapa falhou;
+- qual comando não foi concluído;
+- quais arquivos permanecem pendentes;
+- quais ações são necessárias para concluir a sincronização.
+
+É proibido informar que uma atividade foi concluída quando houver alterações locais ainda não sincronizadas.
+
+---
+
 ## Sincronização GitHub (GS-002 / GOV-009)
 
 - [ ] Validações aplicáveis executadas (testes, build, lint)?
@@ -272,6 +328,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.34
+
+Política de Sincronização Obrigatória institucionalizada. Nova seção com ciclo completo (8 etapas), Relatório de Sincronização Obrigatório (11 campos), exceção para ausência de alterações e status "Pendente de Sincronização" em caso de falha. Compatibilidade com PROJECT_BOOTSTRAP.md v2.36.
 
 ### Versão 1.33
 

@@ -1197,6 +1197,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 # Histórico
 
+### Versão 1.30
+
+Política de Sincronização Obrigatória institucionalizada. PROJECT_BOOTSTRAP v2.36: regra expandida para criação/modificação/remoção/aprovação, ciclo de 10 etapas, relatório obrigatório, exceção e status de falha. AI_OPERATION_CHECKLIST v1.34: nova seção com política, ciclo, relatório, exceção e pendência de sincronização. EWO-002 v1.1 aprovada (9 Slices). AI_ENGINEERING_PROTOCOL.md adicionado à governança.
+
 ### Versão 1.29
 
 PS#035 — Sprint Documental GOV-010. Consolidação final da governança pós-Engineering Audit 001. AI_CONTEXT objetivo EWO-002. Bootstrap limpo (histórico PIs, Technical Roadmap, Precedência #1, ER-004✅). DOCUMENTATION_INDEX limpo (9 docs inexistentes removidos). STRATEGIC_BACKLOG BK-010/011/012 fechados. DEVELOPMENT_METHODOLOGY: Engineering Audit formalizada, seção obsoleta removida. ER-C001-C002-001 criada. Engenharia apta para EWO-002.

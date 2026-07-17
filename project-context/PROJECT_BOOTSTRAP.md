@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.35
+**Versão:** 2.36
 
 **Status:** APROVADO
 
@@ -431,18 +431,22 @@ Todo novo protocolo operacional deve atualizar `AI_OPERATION_CHECKLIST.md`. Caso
 
 ## Regra de Sincronização Obrigatória
 
+Sempre que qualquer arquivo oficial do projeto for criado, modificado, removido ou aprovado, a IA deverá executar obrigatoriamente o ciclo completo de sincronização antes de considerar a atividade encerrada.
+
 Toda implementação, seja de código ou documentação, deve encerrar obrigatoriamente o ciclo completo de sincronização, salvo quando houver instrução explícita do usuário para interromper o processo.
 
 ### Ciclo Completo de Sincronização
 
-1. Executar validações aplicáveis (testes, build, lint quando pertinentes);
-2. `git add`;
-3. `git commit`;
-4. `git push`;
-5. Confirmar que o repositório remoto recebeu o commit;
-6. Confirmar que a Working Tree está limpa;
-7. Registrar o HEAD final;
-8. Emitir o relatório de encerramento.
+1. Verificar os arquivos modificados;
+2. Validar que as alterações foram aprovadas;
+3. Atualizar a documentação relacionada, quando necessário;
+4. Executar build, lint e testes, quando aplicável;
+5. `git add`;
+6. `git commit` (mensagem compatível com a alteração);
+7. `git push`;
+8. Confirmar que a sincronização foi concluída com sucesso;
+9. Registrar o HEAD final;
+10. Emitir o Relatório de Sincronização.
 
 ### Consistência do Estado da Sincronização
 
@@ -477,6 +481,35 @@ O relatório final deve refletir fielmente o estado real do repositório.
 ### Aplicação
 
 Esta regra aplica-se a toda implementação, seja de código ou documentação, incluindo alterações de governança, metodologia, templates e documentação arquitetural. O encerramento de qualquer Sprint, Slice ou Engineering Review somente ocorre após a confirmação da sincronização completa.
+
+### Relatório de Sincronização Obrigatório
+
+O relatório de encerramento referido no passo 8 do ciclo completo deverá conter, no mínimo:
+
+- Tipo da atividade;
+- Documentos alterados;
+- Arquivos alterados;
+- Resumo das alterações;
+- Status do build, lint e testes;
+- Commit e hash;
+- Push confirmado;
+- Status da sincronização remota;
+- Pendências existentes.
+
+### Exceção
+
+Caso nenhuma alteração persistente tenha sido produzida durante a atividade, a seguinte mensagem substitui o relatório:
+
+> Não foi realizada sincronização Git porque nenhuma alteração persistente foi produzida nesta atividade.
+
+### Falha de Sincronização
+
+Se a sincronização falhar em qualquer etapa, a atividade permanece com status **Pendente de Sincronização** e o relatório deve informar:
+
+- qual etapa falhou;
+- qual comando não foi concluído;
+- quais arquivos permanecem pendentes;
+- quais ações são necessárias para concluir a sincronização.
 
 ---
 
@@ -1259,6 +1292,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.36
+
+Política de Sincronização Obrigatória institucionalizada. Regra expandida: aplica-se a toda criação, modificação, remoção ou aprovação de arquivos oficiais. Ciclo completo ampliado de 8 para 10 etapas (verificação de arquivos + validação de aprovação + atualização de documentação). Relatório de Sincronização Obrigatório definido com 11 campos. Exceção documentada (ausência de alterações persistentes). Falha de sincronização com status "Pendente de Sincronização" e procedimento de relato. AI_OPERATION_CHECKLIST v1.34 sincronizado. Bootstrap v2.36.
 
 ## v2.35
 
