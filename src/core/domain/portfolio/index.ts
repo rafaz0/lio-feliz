@@ -4,3 +4,8 @@ export { BuyEvent } from "./buy-event";
 export { SellEvent } from "./sell-event";
 export { DividendEvent } from "./dividend-event";
 export { JcpEvent } from "./jcp-event";
+export { BonusEvent } from "./bonus-event";
+export { SplitEvent } from "./split-event";
+export { GroupingEvent } from "./grouping-event";
+export { AmortizationEvent } from "./amortization-event";
+export { AdjustmentEvent } from "./adjustment-event";
