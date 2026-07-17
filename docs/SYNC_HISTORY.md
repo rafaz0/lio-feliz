@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.35
+**Versão:** 1.36
 
 **Status:** APROVADO
 
@@ -1275,7 +1275,35 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#040 — Slice 3: DividendEvent e JcpEvent
+
+**Data:** 18/07/2026
+
+**Tipo:** Implementação
+
+**Objetivo:** Materializar os eventos de rendimento (Dividend e JCP) como subtipos de Financial Event.
+
+**Componentes implementados:**
+- DividendEvent — 12 testes
+- JcpEvent — 12 testes
+
+**Resultados:** 245/245 testes passando (16/16 arquivos). Build aprovado. Zero regressões.
+
+**Arquivos criados/modificados:**
+- `src/core/domain/portfolio/dividend-event.ts`
+- `src/core/domain/portfolio/jcp-event.ts`
+- `src/core/domain/portfolio/index.ts` — exports adicionados
+- `src/core/tests/portfolio/dividend-event.test.ts`
+- `src/core/tests/portfolio/jcp-event.test.ts`
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.39 → v2.40: tabela EWO-002 atualizada (3/9)
+
+---
+
 # Histórico
+
+### Versão 1.36
+
+Slice 3 — DividendEvent e JcpEvent implementados. 245/245 testes passando. 3/9 Slices da EWO-002 concluídas.
 
 ### Versão 1.35
 

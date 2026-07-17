@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.39
+**Versão:** 2.40
 
 **Status:** APROVADO
 
@@ -862,7 +862,7 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 | Objetivo | Definir a arquitetura do domínio patrimonial: Aggregate Root Portfolio, Financial Events, Projections, Bounded Contexts, Invariantes |
 | Entregável esperado | Especificação completa da arquitetura patrimonial (12 DAs, 13 Invariantes, 4 Bounded Contexts) |
 | Resultado | Arquitetura do domínio patrimonial consolidada |
-| Próximo passo | **EWO-002** — Slice 1 (CLOSED), Slice 2 (CLOSED). Próxima etapa: **Slice 3** — Dividend e JCP. |
+| Próximo passo | **EWO-002** — Slice 1 (CLOSED), Slice 2 (CLOSED), Slice 3 (IMPLEMENTADO). Próxima etapa: **Engineering Review da Slice 3**. |
 
 > **Resumo Operacional Canônico:** PI-004 aprovada define Portfolio como Aggregate Root principal, Financial Events como mecanismo de evolução patrimonial, Projections como visões derivadas. Personal Finance Domain e Decision Support como módulos complementares. ER-004 validou aderência ao Core Foundation e estimou 8-11 slices para EWO-002.
 
@@ -1371,7 +1371,7 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 |---|---|---|---|---|
 | Slice 1 — Fundação | FinancialEvent (abstração base), Position | 22 | `2b18059` | ✅ CLOSED |
 | Slice 2 — Operações | BuyEvent, SellEvent | 24 | `8763e65` | ✅ CLOSED |
-| Slice 3 — Rendimentos | Dividend, JCP | — | — | ⏳ Pendente |
+| Slice 3 — Rendimentos | DividendEvent, JcpEvent | 24 | *(pending)* | ✅ Implementado |
 | Slice 4 — Corporativos/Ajuste | Bonus, Split, Grouping, Amortization, Adjustment | — | — | ⏳ Pendente |
 | Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | — | — | ⏳ Pendente |
 | Slice 6 — Projeções | PortfolioProjector | — | — | ⏳ Pendente |
@@ -1379,7 +1379,7 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 | Slice 8 — Consolidada | Portfolio History, Wealth Projection | — | — | ⏳ Pendente |
 | Slice 9 — Consolidação | Todas DAs + Invariantes | — | — | ⏳ Pendente |
 
-**Progresso: 2/9 Slices concluídas. 46 testes. Zero regressões.**
+**Progresso: 3/9 Slices concluídas. 70 testes. Zero regressões.**
 
 ## Contrato de Execução
 
@@ -1393,6 +1393,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.40
+
+Slice 3 — DividendEvent e JcpEvent implementados. 245/245 testes passando (16/16). EWO-002 progresso: 3/9 Slices. PROJECT_BOOTSTRAP v2.40.
 
 ## v2.39
 
