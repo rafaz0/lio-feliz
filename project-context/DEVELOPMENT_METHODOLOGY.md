@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.19
+**Versão:** 2.20
 
 **Status:** APROVADO
 
@@ -409,6 +409,14 @@ Nenhuma oportunidade identificada durante atividades de engenharia poderá perma
 **ChatGPT:** identifica, classifica, decide destino, incorpora em prompts.
 **OpenCode:** executa melhorias incorporadas, registra no relatório, não remove sem justificativa.
 
+**IA-039 — Padronização do Encerramento das Respostas Estratégicas (GOV-016)**
+
+O ❤️ **Saúde do Chat** está oficialmente removido da metodologia. Nenhum documento operacional pode referenciá-lo.
+
+Respostas estratégicas do ChatGPT (planejamento, engenharia, ER, auditoria, estratégia, governança, análise arquitetural) devem encerrar com o formato GOV-016: Estado da Engenharia, Resultado da Auditoria, Conhecimento Capturado, Pendências Oficiais, Painel Executivo.
+
+Utilizar apenas informações objetivas e verificáveis. Não repetir informações já apresentadas. Facilitar retomada em novos chats.
+
 | Papel | Atribuições |
 |-------|-------------|
 | **ChatGPT** (Arquiteto/Planejador/Auditor/Revisor) | Define objetivos, critérios de aceite e diretrizes. Planeja Slices. Realiza Engineering Review. Audita governança. Preserva documentação permanente. Não implementa código diretamente. |
@@ -517,44 +525,23 @@ Considera-se Entrega Relevante toda resposta que:
 - gera prompts para implementação;
 - consolida conhecimento do projeto.
 
-Toda Entrega Relevante deverá obrigatoriamente encerrar utilizando exatamente a sequência abaixo, sem omissão ou reinterpretação pela IA:
+Toda Entrega Relevante deverá obrigatoriamente encerrar utilizando o formato oficial definido abaixo, sem omissão ou reinterpretação pela IA.
 
-📊 Auditoria da Sprint
+### GOV-016 — Ritual de Encerramento Estratégico (substitui OP-002 e OP-003)
 
-📋 Pendências
+O ❤️ **Saúde do Chat** está oficialmente removido da metodologia. Nenhum documento operacional poderá referenciá-lo.
 
-📌 Fila de Sincronização
+Toda resposta estratégica do ChatGPT (planejamento, engenharia, ER, auditoria, estratégia, governança, análise arquitetural) deverá encerrar com:
 
-❤️ Saúde do Chat
+```
+📊 Estado da Engenharia
+📐 Resultado da Auditoria
+💡 Conhecimento Capturado
+📋 Pendências Oficiais
+📈 Painel Executivo
+```
 
-O formato classificado (🟢🟡🔴), os indicadores e as regras de classificação da **❤️ Saúde do Chat** são definidos exclusivamente pelo `PROJECT_BOOTSTRAP.md` (seção Ritual Obrigatório de Encerramento, sob o protocolo OP-002).
-
-O OP-002 é a única fonte canônica. Nenhum outro documento deve conter cópias independentes desta definição. Alterações devem ser realizadas exclusivamente no OP-002.
-
-Este ritual torna-se parte oficial da metodologia. Não poderá ser omitido por interpretação da IA.
-
-### OP-003 — Formato Visual Padronizado
-
-Toda Entrega Relevante deverá utilizar o seguinte formato visual ao finalizar a resposta:
-
-📊 Auditoria da Sprint
-    Incluir obrigatoriamente:
-
-    📐 Decisões Arquiteturais Capturadas
-      • Nome: nome da decisão
-      • Documento: documento onde foi incorporada
-      • Impacto: impacto arquitetural resumido
-      • Status: Nova / Alterada / Consolidada
-
-    A seção é obrigatória em todos os relatórios futuros.
-    Cada linha deve conter uma decisão individual.
-    Nenhuma decisão estratégica pode ficar sem registro.
-
-📋 Pendências
-
-📌 Fila de Sincronização
-
-❤️ Saúde do Chat
+Utilizar apenas informações objetivas e verificáveis. Não repetir informações já apresentadas durante a resposta.
 
 ### OP-007 — Classificação das Sugestões
 
@@ -1086,6 +1073,10 @@ A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto 
 ---
 
 # 14. Histórico
+
+### Versão 2.20
+
+GOV-016 — Padronização do Encerramento das Respostas Estratégicas. ❤️ Saúde do Chat removido. IA-039 adicionada em §7. Ritual GOV-016 substitui OP-002/OP-003.
 
 ### Versão 2.19
 

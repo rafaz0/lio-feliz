@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.41
+**Versão:** 2.42
 
 **Status:** APROVADO
 
@@ -385,77 +385,50 @@ Início de novo chat (Baseline), alteração de PS, alteração de Marco, altera
 
 ### Quando Ocultar
 
-Não exibir se nenhum dos eventos acima ocorreu. O Painel não contém Saúde do Chat, Auditoria, Pendências ou Fila.
+Não exibir se nenhum dos eventos acima ocorreu. O Painel não contém Auditoria, Pendências ou Fila.
 
-## Ritual Obrigatório de Encerramento
+## Ritual de Encerramento Estratégico (GOV-016)
 
-Toda resposta operacional deve terminar com:
+Respostas do ChatGPT em atividades relevantes (planejamento, engenharia, Engineering Review, auditoria, estratégia, governança, análise arquitetural) devem encerrar com o formato abaixo.
 
-```
-📊 Auditoria da Sprint
-    Avaliar o que foi feito, descoberto e classificado.
-    📐 Decisões Arquiteturais Capturadas
-      • Nome: [nome da decisão]
-      • Documento: [documento onde foi incorporada]
-      • Impacto: [impacto arquitetural resumido]
-      • Status: Nova / Alterada / Consolidada
-📋 Pendências
-    Listar pendências abertas da sprint atual e Backlog Estratégico ativo.
-❤️ Saúde do Chat
-    Status: 🟢 Saudável
-```
+Utilizar apenas informações objetivas e verificáveis. Não repetir informações já apresentadas durante a resposta.
 
-O bloco **❤️ Saúde do Chat** deve seguir o formato de classificação abaixo.
-
-### Formato do ❤️ Saúde do Chat
-
-**🟢 Saudável** — todos os indicadores na normalidade:
+### Formato Oficial
 
 ```
-❤️ Saúde do Chat
+📊 Estado da Engenharia
+    EWO atual:
+    Slice atual:
+    Situação:
+    Próxima etapa imediata:
 
-Status: 🟢 Saudável
+📐 Resultado da Auditoria
+    [Itens efetivamente analisados — ex: conformidade arquitetural,
+    aderência à PI/EWO, Core Foundation preservada, rastreabilidade]
+
+💡 Conhecimento Capturado
+    [Melhorias incorporadas, BK criados, TD criadas,
+    decisões descartadas, ou "Nenhum novo conhecimento registrado."]
+
+📋 Pendências Oficiais
+    [Apenas pendências decorrentes da conversa atual]
+
+📈 Painel Executivo
+    EWO em execução:
+    Slices concluídas:
+    Engineering Reviews aprovadas:
+    Closures concluídas:
+    Bloqueadores ativos:
 ```
-
-**🟡 Atenção** — um ou mais indicadores com risco moderado. Exibir apenas os que justificam:
-
-```
-❤️ Saúde do Chat
-
-Status: 🟡 Atenção
-
-• <indicador 1>
-• <indicador 2>
-```
-
-**🔴 Crítico** — evidências de perda de confiabilidade. Exibir apenas os responsáveis:
-
-```
-❤️ Saúde do Chat
-
-Status: 🔴 Crítico
-
-• <indicador responsável>
-• Recomenda-se iniciar um novo chat.
-```
-
-### Indicadores de Classificação
-
-| # | Indicador | O que avaliar |
-|---|-----------|---------------|
-| 1 | Continuidade lógica | Contradições, perda de contexto, repetições anormais |
-| 2 | Carga operacional | Quantidade de mensagens, volume de contexto acumulado |
-| 3 | Integridade metodológica | Pendências Persistentes preservadas, protocolos respeitados, templates usados |
-| 4 | Integridade arquitetural | Propostas incompatíveis com decisões existentes, reconstrução desnecessária |
-| 5 | Necessidade de reinicialização | Evidências de que novo chat reduziria risco operacional |
 
 ### Regras
 
-- 🟢 usar quando todos os indicadores estiverem normais
-- 🟡 usar quando houver risco moderado em ≥1 indicador
-- 🔴 usar quando houver evidência objetiva de perda de confiabilidade
-- Apenas indicadores responsáveis pelo status devem ser exibidos
-- O Ritual é obrigatório e inomitível em toda Entrega Relevante (OP-002)
+- Refletir exclusivamente o papel estratégico do ChatGPT
+- Utilizar apenas informações objetivas e verificáveis
+- Evitar estimativas subjetivas
+- Não repetir informações já apresentadas durante a resposta
+- Facilitar a retomada da conversa em novos chats
+- Obrigatório em toda Entrega Relevante (GOV-016)
 
 ## Templates Oficiais
 
@@ -1431,6 +1404,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.42
+
+GOV-016 — Padronização do Encerramento das Respostas Estratégicas do ChatGPT. ❤️ Saúde do Chat removido oficialmente da metodologia. Novo Ritual de Encerramento Estratégico institucionalizado (Estado da Engenharia, Resultado da Auditoria, Conhecimento Capturado, Pendências Oficiais, Painel Executivo). PROJECT_BOOTSTRAP v2.42, AI_OPERATION_CHECKLIST v1.38, AI_ENGINEERING_PROTOCOL atualizado, DEVELOPMENT_METHODOLOGY IA-039 adicionado.
 
 ## v2.41
 

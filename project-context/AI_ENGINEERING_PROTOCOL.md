@@ -252,3 +252,17 @@ A implementação apenas materializa decisões já aprovadas.
 Qualquer necessidade de alteração arquitetural deverá reiniciar o fluxo oficial:
 
 PI → Engineering Review → EWO → Implementação.
+
+---
+
+# Ritual de Encerramento Estratégico (GOV-016)
+
+Respostas estratégicas do ChatGPT (planejamento, engenharia, ER, auditoria, estratégia, governança, análise arquitetural) devem encerrar com:
+
+```📊 Estado da Engenharia
+📐 Resultado da Auditoria
+💡 Conhecimento Capturado
+📋 Pendências Oficiais
+📈 Painel Executivo```
+
+Utilizar apenas informações objetivas e verificáveis. O ❤️ Saúde do Chat está oficialmente removido da metodologia.

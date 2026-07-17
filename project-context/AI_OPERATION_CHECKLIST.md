@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.37
+**Versão:** 1.38
 
 **Status:** APROVADO
 
@@ -97,10 +97,11 @@ Se existir Backlog Estratégico ativo, verificar se deve ser exibido. Nunca omit
 
 Se a resposta for uma Entrega Relevante, o ritual abaixo é **obrigatório e inomitível**:
 
-- [ ] 📊 Auditoria da Sprint (incluir 📐 Decisões Arquiteturais Capturadas)
-- [ ] 📋 Pendências
-- [ ] 📌 Fila de Sincronização
-- [ ] ❤️ Saúde do Chat
+- [ ] 📊 Estado da Engenharia
+- [ ] 📐 Resultado da Auditoria
+- [ ] 💡 Conhecimento Capturado
+- [ ] 📋 Pendências Oficiais
+- [ ] 📈 Painel Executivo
 
 ---
 
@@ -372,6 +373,10 @@ Seção obrigatória ao final de toda Engineering Review:
 ---
 
 # Histórico
+
+### Versão 1.38
+
+GOV-016 — Padronização do Encerramento das Respostas Estratégicas. ❤️ Saúde do Chat removido. Novo formato obrigatório para Entregas Relevantes: Estado da Engenharia, Resultado da Auditoria, Conhecimento Capturado, Pendências Oficiais, Painel Executivo. Compatibilidade com PROJECT_BOOTSTRAP v2.42.
 
 ### Versão 1.37
 
