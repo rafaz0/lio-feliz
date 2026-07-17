@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.36
+**Versão:** 1.37
 
 **Status:** APROVADO
 
@@ -82,6 +82,8 @@ Antes de responder, verificar:
 - [ ] Existe melhoria aprovada ainda não registrada no Strategic Backlog?
 - [ ] Existe BK compatível antes da criação deste PS?
 - [ ] A tarefa atual possui Template, Protocolo ou Procedimento Oficial?
+- [ ] Existe oportunidade de melhoria identificada nesta atividade? (GOV-015)
+  * Se SIM → aplicar fluxo de 4 etapas: implementação imediata → Slice futura → BK → descarte
 
 Se SIM → revisar obrigatoriamente a seção correspondente do PROJECT_BOOTSTRAP.md antes de executar a tarefa.
 
@@ -357,7 +359,23 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 
 ---
 
+## Registro de Conhecimento da Engineering Review (GOV-015)
+
+Seção obrigatória ao final de toda Engineering Review:
+
+- [ ] Oportunidades identificadas foram listadas?
+- [ ] Cada oportunidade possui destino definido (implementação imediata / Slice futura / BK / TD / rejeitada / descartada)?
+- [ ] Melhorias incorporadas imediatamente foram registradas?
+- [ ] Melhorias programadas para próxima Slice foram documentadas?
+- [ ] Nenhuma oportunidade ficou sem classificação?
+
+---
+
 # Histórico
+
+### Versão 1.37
+
+GOV-015 — Política de Incorporação Contínua de Melhorias. Nova verificação na Pré-Resposta para oportunidades de melhoria. Nova seção "Registro de Conhecimento da Engineering Review" ao final do checklist. Compatibilidade com PROJECT_BOOTSTRAP v2.41.
 
 ### Versão 1.36
 

@@ -249,8 +249,8 @@ Use **@** seguido do nome do agente para invocá-los.
 
 | Papel | Ferramenta | Responsabilidade |
 |-------|-----------|-----------------|
-| **Arquiteto / Revisor / Auditor** | ChatGPT | Planejamento, definição de diretrizes, Engineering Review, auditoria de governança |
-| **Executor** | OpenCode | Implementação de código, testes, build, lint, commit, push, relatórios |
+| **Arquiteto / Revisor / Auditor / Otimizador** | ChatGPT | Planejamento, definição de diretrizes, Engineering Review, auditoria de governança, **identificação e incorporação contínua de melhorias (GOV-015)** |
+| **Executor** | OpenCode | Implementação de código, testes, build, lint, commit, push, relatórios, **execução de melhorias incorporadas no prompt (GOV-015)** |
 
 ## Agentes do OpenCode
 

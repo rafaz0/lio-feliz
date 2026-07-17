@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.40
+**Versão:** 2.41
 
 **Status:** APROVADO
 
@@ -314,6 +314,44 @@ Fora dessas situações, utilizar exclusivamente os relatórios produzidos duran
 - diminuir custo operacional das conversas
 - preservar consistência metodológica
 - manter o ChatGPT focado em estratégia e auditoria
+
+## Política de Incorporação Contínua de Melhorias (GOV-015)
+
+Nenhuma oportunidade identificada durante atividades de engenharia poderá permanecer sem destino.
+
+### Destinos Obrigatórios
+
+Toda oportunidade deverá receber exatamente um dos seguintes destinos:
+- **Implementação imediata** — incorporada na Slice atual
+- **Incorporação automática** — programada para a próxima Slice compatível
+- **Backlog (BK)** — registrada como melhoria futura
+- **Dívida Técnica (TD)** — registrada como débito técnico
+- **Decisão Rejeitada** — analisada e rejeitada com justificativa
+- **Descarte explícito** — sem valor suficiente para implementação
+
+### Fluxo Obrigatório
+
+1. **Etapa 1 — Implementação imediata?** A melhoria pode ser implementada na Slice atual sem alterar arquitetura, PI, EWO ou aumentar risco? → Incorporar imediatamente. Não criar BK.
+2. **Etapa 2 — Slice futura compatível?** Existe Slice que naturalmente modificará o mesmo componente? → Incorporar automaticamente no prompt daquela Slice. Registrar como acompanhamento metodológico. Não criar BK.
+3. **Etapa 3 — Backlog.** Criar BK.
+4. **Etapa 4 — Descarte explícito.** Sem valor suficiente.
+
+### Responsabilidades
+
+**ChatGPT:** identificar oportunidades, classificá-las, decidir destino, incorporar melhorias em prompts futuros. Passa a exercer também otimização contínua da implementação, não apenas auditoria.
+
+**OpenCode:** executar melhorias incorporadas no prompt, não removê-las sem justificativa arquitetural, registrar quais foram incorporadas, manter rastreabilidade.
+
+### Registro de Conhecimento na Engineering Review
+
+Toda Engineering Review deverá conter obrigatoriamente ao final:
+- Oportunidades identificadas
+- Destino de cada oportunidade
+- Melhorias incorporadas imediatamente
+- Melhorias programadas para próxima Slice
+- BK criados
+- TD criadas
+- Decisões descartadas
 
 ## Dashboard Executivo — Documentação
 
@@ -1393,6 +1431,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.41
+
+GOV-015 — Política de Incorporação Contínua de Melhorias institucionalizada. 6 destinos obrigatórios, fluxo em 4 etapas, Registro de Conhecimento na Engineering Review, novas responsabilidades ChatGPT/OpenCode. PROJECT_BOOTSTRAP v2.41, AI_OPERATION_CHECKLIST v1.37, AI_ENGINEERING_PROTOCOL atualizado, DEVELOPMENT_METHODOLOGY IA-038 adicionado, AGENTS.md atualizado.
 
 ## v2.40
 

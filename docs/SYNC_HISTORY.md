@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.36
+**Versão:** 1.37
 
 **Status:** APROVADO
 
@@ -1299,7 +1299,28 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#041 — GOV-015: Política de Incorporação Contínua de Melhorias
+
+**Data:** 18/07/2026
+
+**Tipo:** Governança / Metodologia
+
+**Objetivo:** Institucionalizar a política que torna obrigatório que oportunidades identificadas durante revisões recebam destino formal (implementação imediata, Slice futura, BK, TD, rejeitada ou descartada).
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.40 → v2.41: nova seção GOV-015 com destinos, fluxo, responsabilidades e Registro de Conhecimento na ER
+- `project-context/AI_OPERATION_CHECKLIST.md` — v1.36 → v1.37: verificação de oportunidades na Pré-Resposta, seção Registro de Conhecimento
+- `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção GOV-015, responsabilidades ChatGPT/OpenCode atualizadas
+- `project-context/DEVELOPMENT_METHODOLOGY.md` — v2.18 → v2.19: IA-038 adicionada
+- `AGENTS.md` — tabela de divisão de responsabilidades atualizada com GOV-015
+
+---
+
 # Histórico
+
+### Versão 1.37
+
+GOV-015 — Política de Incorporação Contínua de Melhorias institucionalizada. 6 destinos obrigatórios, fluxo em 4 etapas, Registro de Conhecimento na Engineering Review.
 
 ### Versão 1.36
 

@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.18
+**Versão:** 2.19
 
 **Status:** APROVADO
 
@@ -391,6 +391,23 @@ O ChatGPT opera com dois níveis de contexto:
 A documentação completa somente deve ser solicitada nas situações previstas: início de PI/ER/EWO, mudança significativa de arquitetura, mudança metodológica, início de novo domínio, ou perda de contexto que comprometa decisões estratégicas.
 
 Fora dessas situações, utilizar exclusivamente os relatórios de engenharia.
+
+**IA-038 — Política de Incorporação Contínua de Melhorias (GOV-015)**
+
+Nenhuma oportunidade identificada durante atividades de engenharia poderá permanecer sem destino.
+
+**Destinos obrigatórios:** implementação imediata, incorporação automática na próxima Slice compatível, Backlog (BK), Dívida Técnica (TD), Decisão Rejeitada, Descarte explícito.
+
+**Fluxo:**
+1. Pode ser implementada na Slice atual sem alterar arquitetura/PI/EWO? → Incorporar imediatamente.
+2. Existe Slice futura que modificará naturalmente o mesmo componente? → Incorporar automaticamente no prompt daquela Slice.
+3. Não se enquadra? → Criar BK.
+4. Sem valor? → Descartar explicitamente.
+
+**Registro de Conhecimento na Engineering Review:** toda ER deve listar oportunidades identificadas, destino de cada uma, melhorias incorporadas imediatamente, melhorias programadas, BKs, TDs e decisões descartadas.
+
+**ChatGPT:** identifica, classifica, decide destino, incorpora em prompts.
+**OpenCode:** executa melhorias incorporadas, registra no relatório, não remove sem justificativa.
 
 | Papel | Atribuições |
 |-------|-------------|
@@ -1069,6 +1086,10 @@ A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto 
 ---
 
 # 14. Histórico
+
+### Versão 2.19
+
+GOV-015 — Política de Incorporação Contínua de Melhorias. IA-038 adicionada em §7 definindo 6 destinos obrigatórios, fluxo de 4 etapas, Registro de Conhecimento na Engineering Review e novas responsabilidades ChatGPT/OpenCode.
 
 ### Versão 2.18
 

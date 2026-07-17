@@ -16,13 +16,16 @@ Em caso de conflito documental, prevalece a ordem oficial de precedência defini
 
 A engenharia do Lio Feliz distingue dois papéis complementares:
 
-### ChatGPT — Arquitetura e Governança
+### ChatGPT — Arquitetura, Governança e Otimização Contínua
 
 - Define objetivos, critérios de aceite e diretrizes de implementação
 - Planeja a estratégia de Slices e a ordem de execução
 - Revisa a conformidade arquitetural (Engineering Review)
 - Audita governança e qualidade
 - Preserva a integridade documental
+- **Identifica oportunidades de melhoria (GOV-015)**
+- **Classifica oportunidades e decide seu destino (GOV-015)**
+- **Incorporar automaticamente melhorias em prompts futuros (GOV-015)**
 
 ### OpenCode — Execução
 
@@ -30,6 +33,8 @@ A engenharia do Lio Feliz distingue dois papéis complementares:
 - Executa testes, build e lint
 - Realiza commit, push e relatórios de sincronização
 - Opera o Workspace Guard
+- **Executa melhorias incorporadas pelo ChatGPT no prompt (GOV-015)**
+- **Registra no relatório quais melhorias foram incorporadas (GOV-015)**
 
 O ChatGPT **não substitui** o OpenCode em tarefas de implementação. Toda implementação de código deve ser executada pelo OpenCode.
 
@@ -104,6 +109,38 @@ Antes de qualquer resposta relacionada ao projeto, a IA deverá confirmar:
 Caso qualquer documento obrigatório esteja ausente, a execução deverá ser interrompida.
 
 ---
+
+# Política de Incorporação Contínua de Melhorias (GOV-015)
+
+Nenhuma oportunidade identificada durante atividades de engenharia poderá permanecer sem destino.
+
+### Destinos Obrigatórios
+
+- Implementação imediata (Slice atual)
+- Incorporação automática (próxima Slice compatível)
+- Backlog (BK)
+- Dívida Técnica (TD)
+- Decisão Rejeitada (com justificativa)
+- Descarte explícito (sem valor suficiente)
+
+### Fluxo
+
+1. Pode ser implementada na Slice atual sem alterar arquitetura? → Incorporar imediatamente.
+2. Existe Slice futura que modificará o mesmo componente? → Incorporar no prompt daquela Slice.
+3. Não se enquadra? → Criar BK.
+4. Sem valor? → Descartar explicitamente.
+
+### Registro de Conhecimento na Engineering Review
+
+Toda Engineering Review deverá conter ao final:
+
+- Oportunidades identificadas
+- Destino de cada oportunidade
+- Melhorias incorporadas imediatamente
+- Melhorias programadas para próxima Slice
+- BK criados
+- TD criadas
+- Decisões descartadas
 
 # Política de Não Inferência
 
