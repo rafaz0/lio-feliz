@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.31
+**Versão:** 1.32
 
 **Status:** APROVADO
 
@@ -1217,11 +1217,15 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 - Testes: 197/197 passando (12 suites, regressão zero)
 - Core Foundation inalterada (GOV-006)
 
-**Próximo passo:** Revisão arquitetural da Slice 1 → Slice 2 (eventos concretos)
+**Engineering Review:** APROVADA COM AJUSTES — Parecer emitido, ajuste aplicado (PositionProps removido), build e testes validados.
 
 ---
 
 # Histórico
+
+### Versão 1.32
+
+Engineering Closure da Slice 1 (EWO-002). ER concluída: APROVADA COM AJUSTES. Código morto PositionProps removido. 197/197 testes, build aprovado. Slice 1 oficialmente CLOSED.
 
 ### Versão 1.31
 
