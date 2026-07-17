@@ -266,3 +266,28 @@ Respostas estratégicas do ChatGPT (planejamento, engenharia, ER, auditoria, est
 📈 Painel Executivo```
 
 Utilizar apenas informações objetivas e verificáveis. O ❤️ Saúde do Chat está oficialmente removido da metodologia.
+
+---
+
+# Governança Evolutiva da Metodologia (GOV-017)
+
+A metodologia evolui apenas quando há evidências objetivas de necessidade.
+
+### Origens Válidas
+
+- Engineering Review, Auditoria, Retrospectiva de Sprint
+- Problema recorrente (implementação, planejamento, sincronização)
+- Mudança estrutural de responsabilidades
+- Decisão arquitetural com impacto metodológico
+
+### Fluxo
+
+Problema observado → Evidências coletadas → Análise técnica → Proposta metodológica → Implementação da GOV → Documentação → Sincronização
+
+### Princípio da Metodologia Mínima
+
+A metodologia deve ser a menor possível. Nova regra só existe quando elimina problema recorrente ou reduz risco.
+
+### Engineering Review
+
+Durante toda ER, verificar se existe melhoria metodológica. Se sim, registrar descrição, origem, impacto e destino. Se não, registrar "Nenhuma melhoria metodológica identificada."

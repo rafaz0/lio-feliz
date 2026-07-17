@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.38
+**Versão:** 1.39
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,22 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#043 — GOV-017: Governança Evolutiva da Metodologia
+
+**Data:** 18/07/2026
+
+**Tipo:** Governança / Metodologia
+
+**Objetivo:** Institucionalizar o processo oficial de evolução da metodologia baseado em evidências.
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.42 → v2.43: seção GOV-017 com origens, fluxo, Princípio da Metodologia Mínima
+- `project-context/AI_OPERATION_CHECKLIST.md` — v1.38 → v1.39: verificação de melhoria metodológica no Registro de Conhecimento
+- `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção GOV-017
+- `project-context/DEVELOPMENT_METHODOLOGY.md` — v2.20 → v2.21: IA-040 adicionada
+
+---
+
 ## PS#042 — GOV-016: Padronização do Encerramento das Respostas Estratégicas
 
 **Data:** 18/07/2026
@@ -1333,6 +1349,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.39
+
+GOV-017 — Governança Evolutiva da Metodologia institucionalizada. Origens válidas/inválidas, Princípio da Metodologia Mínima, verificação de melhoria metodológica em ERs.
 
 ### Versão 1.38
 

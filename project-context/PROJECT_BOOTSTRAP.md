@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.42
+**Versão:** 2.43
 
 **Status:** APROVADO
 
@@ -352,6 +352,62 @@ Toda Engineering Review deverá conter obrigatoriamente ao final:
 - BK criados
 - TD criadas
 - Decisões descartadas
+
+## Governança Evolutiva da Metodologia (GOV-017)
+
+A metodologia evolui apenas quando há evidências objetivas de necessidade. Novas regras metodológicas não podem ser criadas por conveniência ou preferência.
+
+### Origens Válidas
+
+Toda nova regra metodológica deverá possuir origem verificável em:
+- Engineering Review
+- Auditoria
+- Retrospectiva de Sprint
+- Problema recorrente observado durante implementação, planejamento ou sincronização
+- Mudança estrutural de responsabilidades
+- Decisão arquitetural com impacto metodológico permanente
+
+### Origens Inválidas
+
+Não são consideradas justificativas válidas: "Pode ser interessante", "Talvez seja útil", "Achei uma boa ideia" ou qualquer outra sem evidência objetiva.
+
+### Fluxo de Evolução
+
+```
+Problema observado
+    ↓
+Evidências coletadas
+    ↓
+Análise técnica
+    ↓
+Proposta metodológica
+    ↓
+Implementação da GOV
+    ↓
+Atualização da documentação
+    ↓
+Sincronização
+    ↓
+Metodologia oficial atualizada
+```
+
+### Engineering Review
+
+Durante toda ER, o ChatGPT deverá verificar se existe melhoria metodológica identificada. Se sim, registrar descrição, origem, impacto esperado e destino (implementar imediatamente, BK, TD ou descartar). Se não, registrar "Nenhuma melhoria metodológica identificada."
+
+### Princípio da Metodologia Mínima
+
+A metodologia deve permanecer a menor possível. Uma nova regra somente pode existir quando eliminar um problema recorrente ou reduzir significativamente o risco da engenharia.
+
+### Consolidação Metodológica
+
+Ao término de grandes marcos (ex: encerramento de EWO), avaliar atividade de Consolidação Metodológica para eliminar redundâncias, reorganizar documentos e reduzir custo de manutenção, sem alterar decisões aprovadas.
+
+### Responsabilidades
+
+**ChatGPT:** identificar problemas recorrentes, avaliar necessidade real de evolução, propor novas GOV apenas com evidências, evitar crescimento desnecessário da documentação, identificar consolidação futura.
+
+**OpenCode:** implementar alterações documentais, sincronizar, registrar versões, executar GOV-011. Não criar novas políticas metodológicas por iniciativa própria.
 
 ## Dashboard Executivo — Documentação
 
@@ -1404,6 +1460,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.43
+
+GOV-017 — Governança Evolutiva da Metodologia institucionalizada. Origens válidas/inválidas, fluxo de evolução, Princípio da Metodologia Mínima, Consolidação Metodológica, verificação obrigatória em ERs. PROJECT_BOOTSTRAP v2.43, AI_OPERATION_CHECKLIST v1.39, AI_ENGINEERING_PROTOCOL atualizado, DEVELOPMENT_METHODOLOGY IA-040 adicionado.
 
 ## v2.42
 

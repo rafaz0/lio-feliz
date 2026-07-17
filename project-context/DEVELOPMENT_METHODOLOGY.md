@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.20
+**Versão:** 2.21
 
 **Status:** APROVADO
 
@@ -416,6 +416,20 @@ O ❤️ **Saúde do Chat** está oficialmente removido da metodologia. Nenhum d
 Respostas estratégicas do ChatGPT (planejamento, engenharia, ER, auditoria, estratégia, governança, análise arquitetural) devem encerrar com o formato GOV-016: Estado da Engenharia, Resultado da Auditoria, Conhecimento Capturado, Pendências Oficiais, Painel Executivo.
 
 Utilizar apenas informações objetivas e verificáveis. Não repetir informações já apresentadas. Facilitar retomada em novos chats.
+
+**IA-040 — Governança Evolutiva da Metodologia (GOV-017)**
+
+A metodologia evolui apenas quando há evidências objetivas de necessidade. Origens válidas: Engineering Review, auditoria, retrospectiva, problemas recorrentes, mudança de responsabilidades, decisão arquitetural. Origens inválidas: "Pode ser interessante", "Talvez seja útil", "Achei uma boa ideia".
+
+Fluxo: Problema observado → Evidências → Análise → Proposta → GOV → Documentação → Sincronização.
+
+**Princípio da Metodologia Mínima:** a metodologia deve ser a menor possível. Nova regra só existe quando elimina problema recorrente ou reduz risco.
+
+**Engineering Review:** verificar se existe melhoria metodológica. Se sim, registrar descrição, origem, impacto e destino. Se não, registrar "Nenhuma melhoria metodológica identificada."
+
+**ChatGPT:** identificar problemas recorrentes, avaliar necessidade real, propor GOV apenas com evidências, evitar crescimento desnecessário, identificar consolidação futura.
+
+**OpenCode:** implementar alterações documentais, sincronizar, registrar versões, executar GOV-011. Não criar políticas por iniciativa própria.
 
 | Papel | Atribuições |
 |-------|-------------|
@@ -1073,6 +1087,10 @@ A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto 
 ---
 
 # 14. Histórico
+
+### Versão 2.21
+
+GOV-017 — Governança Evolutiva da Metodologia. IA-040 adicionada em §7. Princípio da Metodologia Mínima, origens válidas/inválidas, verificação de melhoria metodológica em ERs.
 
 ### Versão 2.20
 

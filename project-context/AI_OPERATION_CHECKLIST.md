@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.38
+**Versão:** 1.39
 
 **Status:** APROVADO
 
@@ -369,10 +369,17 @@ Seção obrigatória ao final de toda Engineering Review:
 - [ ] Melhorias incorporadas imediatamente foram registradas?
 - [ ] Melhorias programadas para próxima Slice foram documentadas?
 - [ ] Nenhuma oportunidade ficou sem classificação?
+- [ ] Existe melhoria metodológica identificada? (GOV-017)
+  * Se SIM → registrar descrição, origem da evidência, impacto esperado e destino
+  * Se NÃO → registrar "Nenhuma melhoria metodológica identificada."
 
 ---
 
 # Histórico
+
+### Versão 1.39
+
+GOV-017 — Governança Evolutiva da Metodologia. Nova verificação de melhoria metodológica no Registro de Conhecimento da Engineering Review. Compatibilidade com PROJECT_BOOTSTRAP v2.43.
 
 ### Versão 1.38
 
