@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.38
+**Versão:** 2.39
 
 **Status:** APROVADO
 
@@ -109,7 +109,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-A próxima etapa oficial da engenharia é a implementação do domínio patrimonial via **EWO-002** (Aprovada), iniciando pela Slice 1 — Fundação do Domínio Patrimonial.
+A próxima etapa oficial da engenharia é a implementação do domínio patrimonial via **EWO-002** (Aprovada). Próxima Slice: **Slice 3** — Eventos de Rendimento: Dividend e JCP.
 
 ## Engineering Outlook
 
@@ -862,7 +862,7 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 | Objetivo | Definir a arquitetura do domínio patrimonial: Aggregate Root Portfolio, Financial Events, Projections, Bounded Contexts, Invariantes |
 | Entregável esperado | Especificação completa da arquitetura patrimonial (12 DAs, 13 Invariantes, 4 Bounded Contexts) |
 | Resultado | Arquitetura do domínio patrimonial consolidada |
-| Próximo passo | **EWO-002** aprovada. Próxima etapa: **Slice 1** — Fundação do Domínio Patrimonial. |
+| Próximo passo | **EWO-002** — Slice 1 (CLOSED), Slice 2 (CLOSED). Próxima etapa: **Slice 3** — Dividend e JCP. |
 
 > **Resumo Operacional Canônico:** PI-004 aprovada define Portfolio como Aggregate Root principal, Financial Events como mecanismo de evolução patrimonial, Projections como visões derivadas. Personal Finance Domain e Decision Support como módulos complementares. ER-004 validou aderência ao Core Foundation e estimou 8-11 slices para EWO-002.
 
@@ -1360,6 +1360,27 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 
 **Total: 10 Slices, 175 testes, zero regressões.**
 
+---
+
+# EWO-002 — Detalhamento
+
+**Título:** Implementação do Domínio Patrimonial
+**Status:** ✅ Em execução
+
+| Slice | Componentes | Testes | Commit | Status |
+|---|---|---|---|---|
+| Slice 1 — Fundação | FinancialEvent (abstração base), Position | 22 | `2b18059` | ✅ CLOSED |
+| Slice 2 — Operações | BuyEvent, SellEvent | 24 | `8763e65` | ✅ CLOSED |
+| Slice 3 — Rendimentos | Dividend, JCP | — | — | ⏳ Pendente |
+| Slice 4 — Corporativos/Ajuste | Bonus, Split, Grouping, Amortization, Adjustment | — | — | ⏳ Pendente |
+| Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | — | — | ⏳ Pendente |
+| Slice 6 — Projeções | PortfolioProjector | — | — | ⏳ Pendente |
+| Slice 7 — Analíticas | Asset Allocation, Performance | — | — | ⏳ Pendente |
+| Slice 8 — Consolidada | Portfolio History, Wealth Projection | — | — | ⏳ Pendente |
+| Slice 9 — Consolidação | Todas DAs + Invariantes | — | — | ⏳ Pendente |
+
+**Progresso: 2/9 Slices concluídas. 46 testes. Zero regressões.**
+
 ## Contrato de Execução
 
 Ao carregar este documento a IA assume automaticamente que:
@@ -1372,6 +1393,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.39
+
+Engineering Closure da Slice 2 (EWO-002). ER APROVADA. BuyEvent e SellEvent implementados e testados (24 testes). 221/221 testes passando, zero regressões. Próximo passo atualizado para Slice 3. EWO-002 detalhamento adicionado com tabela de progresso (2/9 Slices concluídas). PROJECT_BOOTSTRAP v2.39, SYNC_HISTORY v1.35.
 
 ## v2.38
 

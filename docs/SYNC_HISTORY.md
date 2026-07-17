@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.34
+**Versão:** 1.35
 
 **Status:** APROVADO
 
@@ -1254,7 +1254,32 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#039 — Engineering Closure da Slice 2 (EWO-002)
+
+**Data:** 18/07/2026
+
+**Tipo:** Engineering Closure
+
+**Objetivo:** Registrar oficialmente o encerramento da Slice 2 — Eventos de Operação (Buy e Sell).
+
+**Componentes validados:**
+- BuyEvent — 12 testes
+- SellEvent — 12 testes
+
+**Resultados:** 221/221 testes passando (14/14 arquivos). ER APROVADA. Build aprovado. Zero regressões.
+
+**Observação de Engenharia:** A utilização de `string` para identificação do ativo em Financial Events constitui decisão local de implementação compatível com a PI-004 e EWO-002. A ER confirmou aderência arquitetural.
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.38 → v2.39: EWO-002 detalhamento com tabela de progresso (2/9); próximo passo atualizado para Slice 3
+
+---
+
 # Histórico
+
+### Versão 1.35
+
+Engineering Closure da Slice 2 (EWO-002). ER APROVADA. BuyEvent e SellEvent implementados (24 testes). 221/221 testes, build aprovado, zero regressões. Slice 2 oficialmente CLOSED.
 
 ### Versão 1.34
 
