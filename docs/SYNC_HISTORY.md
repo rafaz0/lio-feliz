@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.29
+**Versão:** 1.31
 
 **Status:** APROVADO
 
@@ -1195,7 +1195,39 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#036 — Slice 1: Fundação do Domínio Patrimonial
+
+**Data:** 18/07/2026
+
+**Tipo:** Implementação de Domínio
+
+**Objetivo:** Implementar a Slice 1 (Fundação) do EWO-002 — FinancialEvent base + Position Value Object
+
+**Arquivos criados:**
+- `src/core/domain/portfolio/financial-event.ts` — abstração base FinancialEvent + enum FinancialEventType (9 subtipos)
+- `src/core/domain/portfolio/position.ts` — Value Object Position (Ticker, Quantity, avgCost, totalCost)
+- `src/core/domain/portfolio/index.ts` — re-exports do módulo portfolio
+- `src/core/tests/portfolio/financial-event.test.ts` — 9 testes
+- `src/core/tests/portfolio/position.test.ts` — 13 testes
+
+**Arquivos modificados:** Nenhum
+
+**Resultados:**
+- Build: aprovado (vite build, 3645 modules)
+- Testes: 197/197 passando (12 suites, regressão zero)
+- Core Foundation inalterada (GOV-006)
+
+**Próximo passo:** Revisão arquitetural da Slice 1 → Slice 2 (eventos concretos)
+
+---
+
 # Histórico
+
+### Versão 1.31
+
+Slice 1 (Fundação) do EWO-002 implementada. FinancialEvent abstração base + enum FinancialEventType (9 tipos). Position Value Object. Testes: 197/197 passando. Build aprovado.
+
+### Versão 1.30
 
 ### Versão 1.30
 
