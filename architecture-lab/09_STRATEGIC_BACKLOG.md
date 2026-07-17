@@ -2,13 +2,13 @@
 
 **Documento:** 09_STRATEGIC_BACKLOG.md
 
-**Versão:** 0.13
+**Versão:** 0.14
 
 **Maturidade:** N0 — Ideia
 
 **Status:** Em Descoberta
 
-**Última atualização:** 13/07/2026
+**Última atualização:** 18/07/2026
 
 ---
 
@@ -102,13 +102,14 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 
 | Campo | Valor |
 |-------|-------|
-| Estado | Proposto |
+| Estado | Concluído |
 | Descrição | Centralizar os conceitos arquiteturais utilizados pelas PIs em um glossário compartilhado |
 | Motivação | Evitar dispersão de definições entre múltiplos documentos |
 | Benefícios | Consistência entre PIs, facilidade de consulta |
 | Prioridade | Baixa |
 | Bloqueios | Nenhum |
-| Critério de revisão | Após estabilização do Engineering N1. |
+| Implementação | Conceitos consolidados nas próprias PIs (PI-001 a PI-004) e no 19_GLOSSARY.md. Não requer documento separado. |
+| Data | 18/07/2026 |
 
 ---
 
@@ -116,13 +117,14 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 
 | Campo | Valor |
 |-------|-------|
-| Estado | Proposto |
+| Estado | Concluído |
 | Descrição | Padronização de referências normativas entre documentos |
 | Motivação | Referências atualmente sem padrão formal |
 | Benefícios | Rastreabilidade e consistência documental |
 | Prioridade | Baixa |
 | Bloqueios | Nenhum |
-| Critério de revisão | Após estabilização do Engineering N1. |
+| Implementação | Referências padronizadas via Ordem de Precedência no Bootstrap e citações diretas nas PIs. |
+| Data | 18/07/2026 |
 
 ---
 
@@ -130,13 +132,14 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 
 | Campo | Valor |
 |-------|-------|
-| Estado | Proposto |
+| Estado | Concluído |
 | Descrição | Avaliar padronização da numeração de PAs, IAs e demais identificadores arquiteturais |
 | Motivação | Possível conflito de numeração entre PIs |
 | Benefícios | Padronização e rastreabilidade dos identificadores |
 | Prioridade | Baixa |
 | Bloqueios | Nenhum |
-| Critério de revisão | Após estabilização do Engineering N1. |
+| Implementação | Identificadores padronizados: PI-XXX vX.X, ER-XXX, EWO-XXX, GOV-XXX, BK-XXX, IA-XXX, OP-XXX, DA-XXX, I-XXX. Conflitos resolvidos. |
+| Data | 18/07/2026 |
 
 ---
 
@@ -199,6 +202,10 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 ---
 
 # Histórico
+
+## v0.14
+
+BK-010 (GOV-003 Glossário), BK-011 (GOV-004 Referências Normativas), BK-012 (GOV-005 Identificadores) marcados como Concluídos. Implementação via consolidação nas PIs, Bootstrap e Glossary — não exigiram documentos separados.
 
 ## v0.12
 

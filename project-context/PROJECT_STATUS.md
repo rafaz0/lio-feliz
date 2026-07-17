@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.42
+**Versão:** 1.43
 
 **Status:** APROVADO
 
@@ -199,6 +199,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.43
+
+Sprint Documental GOV-010 — Consolidação Final da Governança. AI_CONTEXT.md atualizado (Objetivo: EWO-002). PROJECT_BOOTSTRAP limpo: removidos resumos históricos PI-001/002/003, Technical Roadmap movido para backlog, Ordem de Precedência corrigida (Bootstrap #1), Engineering Outlook atualizado (PI-004✅, ER-004✅, EWO-002 próxima). AI_OPERATION_CHECKLIST verificado (sem redundâncias). PROJECT_STATUS v1.43. DOCUMENTATION_INDEX limpo. STRATEGIC_BACKLOG: BK-010/011/012 fechados. ER-C001-C002-001.md criada. DEVELOPMENT_METHODOLOGY: Engineering Audit formalizada, seção 13 removida. Governança consolidada — engenharia apta para EWO-002.
 
 ### Versão 1.42
 

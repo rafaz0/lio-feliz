@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.15
+**Versão:** 2.16
 
 **Status:** APROVADO
 
@@ -12,7 +12,7 @@
 
 **Responsáveis:** Rafael Santos + IA
 
-**Última atualização:** 15/07/2026
+**Última atualização:** 18/07/2026
 
 ---
 
@@ -1023,25 +1023,36 @@ A Auditoria da Sprint deve observar as categorias oficiais definidas no OP-012 (
 
 ---
 
-# 13. Evoluções Planejadas
+# 13. Engineering Audit (Prática Recomendada)
 
-### DOMAIN_CONCEPTS.md
+Após a conclusão de marcos importantes da engenharia (PIs relevantes, ERs relevantes, grandes EWOs ou conjuntos significativos de implementação), **poderá** ser executada uma Engineering Audit.
 
-Será criado após aprovação do `02_TRANSACTIONS.md` v1.0.
+A Engineering Audit possui as seguintes características:
 
-**Objetivo:** Centralizar todas as definições oficiais do domínio.
+- **Natureza exclusivamente analítica** — não altera código, não altera arquitetura, não altera documentação diretamente
+- **Produz apenas um relatório técnico** — serve para identificar inconsistências, redundâncias, riscos e oportunidades de melhoria antes da próxima fase da engenharia
+- **É recomendada, porém opcional** — sua execução depende da complexidade da etapa concluída
+- **Não constitui um novo tipo obrigatório de documento** do projeto
 
-### EVOLUTION_ROADMAP.md
-
-Será criado após estabilização do domínio principal.
-
-**Objetivo:** Registrar decisões futuras aprovadas.
+A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto a ER valida aderência à PI, a Audit olha para o estado geral da engenharia (documentação, governança, arquitetura, metodologia) visando preparar o terreno para a próxima fase.
 
 ---
 
 # 14. Histórico
 
-### Versão 2.6
+### Versão 2.16
+
+Sprint Documental GOV-010 — Consolidação final da governança pós-Engineering Audit 001.
+- Seção "Engineering Audit" adicionada como prática recomendada (§13).
+- Seção "Evoluções Planejadas" (§13 anterior) removida — itens obsoletos (DOMAIN_CONCEPTS.md, EVOLUTION_ROADMAP.md não fazem mais sentido no roadmap atual).
+- AI_CONTEXT.md objetivo atualizado para EWO-002.
+- PROJECT_BOOTSTRAP: removidos resumos históricos PI-001/002/003; Technical Roadmap movido para Strategic Backlog; Precedência corrigida (Bootstrap #1); ER-004 marcada ✅; Engineering Outlook atualizada (próxima: EWO-002).
+- DOCUMENTATION_INDEX v1.37: removidos 9 documentos inexistentes (07_PROJECT_CONTEXT, 08_FEATURES, 09_ROADMAP, 10_CHANGELOG, 11_AI_INSTRUCTIONS, 13_DECISIONS, 14_DESIGN_PRINCIPLES, 15_PRODUCT_PHILOSOPHY, 09_STRATEGIC_BACKLOG caminho errado).
+- 09_STRATEGIC_BACKLOG v0.14: BK-010/011/012 marcados Concluídos (implementados via consolidação em PIs, Bootstrap, Glossary).
+- ER-C001-C002-001.md criada (stub do relatório de auditoria da Core Foundation).
+- Engenharia oficialmente apta para iniciar EWO-002.
+
+### Versão 2.15
 
 OP-015 (Política de Consolidação Documental) adicionado. Custo operacional da documentação reconhecido como requisito arquitetural. Princípios de minimização documental formalizados.
 

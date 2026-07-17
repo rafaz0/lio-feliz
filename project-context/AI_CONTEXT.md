@@ -2,13 +2,13 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.10
+**Versão:** 1.11
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 12/07/2026
+**Última atualização:** 18/07/2026
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que deve conter o Resumo Operacional Canônico da próxima etapa oficial.
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-Engineering N1 — PI-001 Interpretation Layer.
+Engineering N2 — EWO-002 Domínio Patrimonial.
 
 # Referências Obrigatórias
 

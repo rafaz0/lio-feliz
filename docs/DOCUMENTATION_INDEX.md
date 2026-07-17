@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.36
+**Versão da Documentação:** 1.37
 
 **Status:** APROVADO
 
@@ -107,53 +107,6 @@ Arquivos previstos:
 ---
 
 # 4. Documentação Complementar
-
-🟡 07_PROJECT_CONTEXT.md
-
-Histórico do projeto.
-
----
-
-🟡 08_FEATURES.md
-
-Lista completa das funcionalidades.
-
----
-
-🟡 09_ROADMAP.md
-
-Planejamento futuro.
-
----
-
-🟡 10_CHANGELOG.md
-
-Registro oficial de alterações.
-
----
-
-🟡 11_AI_INSTRUCTIONS.md
-
-Instruções específicas para Inteligências Artificiais.
----
-
-🟡 13_DECISIONS.md
-
-Registro das decisões arquiteturais e estratégicas.
-
----
-
-🟡 14_DESIGN_PRINCIPLES.md
-
-Princípios de design e experiência do usuário.
-
----
-
-🟡 15_PRODUCT_PHILOSOPHY.md
-
-Princípios filosóficos do produto.
-
----
 
 ✅ 16_PRODUCT_BACKLOG.md
 
@@ -364,6 +317,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.37
+
+- Sprint Documental GOV-010: Consolidação final da governança. AI_CONTEXT atualizado (Objetivo: EWO-002). PROJECT_BOOTSTRAP limpo (removidos resumos PI-001/002/003 históricos, Technical Roadmap movido, Precedência corrigida para Bootstrap #1). ER-004 marcada ✅ em Próximos Documentos. DOCUMENTATION_INDEX limpo (removidos 9 docs inexistentes). 09_STRATEGIC_BACKLOG BK-010/011/012 fechados. AI_OPERATION_CHECKLIST verificado sem redundâncias. DEVELOPMENT_METHODOLOGY: seção Engineering Audit adicionada, seção 13 obsoleta removida. ER-C001-C002-001.md criada. Engenharia apta para EWO-002.
 
 ## Versão 1.36
 

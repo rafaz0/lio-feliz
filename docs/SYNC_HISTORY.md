@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.28
+**Versão:** 1.29
 
 **Status:** APROVADO
 
@@ -1160,7 +1160,46 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#035
+
+**Data:** 18/07/2026
+
+**Objetivo:** Sprint Documental GOV-010 — Consolidação Final da Governança Pós-Engineering Audit 001
+
+**Arquivos criados:**
+- `architecture-lab/ER-C001-C002-001.md` (stub do relatório de auditoria da Core Foundation)
+
+**Arquivos modificados:**
+- `project-context/AI_CONTEXT.md` — Objetivo Atual atualizado para EWO-002
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.34 → v2.35: removidos resumos históricos PI-001/002/003, Technical Roadmap movido para Strategic Backlog, Precedência corrigida (Bootstrap #1), ER-004 ✅, Engineering Outlook atualizada (próxima: EWO-002)
+- `project-context/PROJECT_STATUS.md` — v1.42 → v1.43
+- `docs/DOCUMENTATION_INDEX.md` — v1.36 → v1.37: removidos 9 docs inexistentes, corrigido caminho 09_STRATEGIC_BACKLOG
+- `architecture-lab/09_STRATEGIC_BACKLOG.md` — v0.13 → v0.14: BK-010/011/012 marcados Concluídos
+- `project-context/DEVELOPMENT_METHODOLOGY.md` — v2.15 → v2.16: seção Engineering Audit adicionada, seção Evoluções Planejadas removida
+
+**Melhorias de Governança Incorporadas (Engineering Audit 001):**
+- AI_CONTEXT objetivo corrigido (PI-001 → EWO-002)
+- PROJECT_BOOTSTRAP limpo: histórico de PIs movido para PROJECT_STATUS, Technical Roadmap → Strategic Backlog, Ordem de Precedência corrigida
+- DOCUMENTATION_INDEX: 9 documentos inexistentes removidos
+- STRATEGIC_BACKLOG: 3 BKs fechados (GOV-003, GOV-004, GOV-005 implementados via consolidação)
+- DEVELOPMENT_METHODOLOGY: prática de Engineering Audit formalizada como recomendada/opcional; seção obsoleta removida
+- ER-C001-C002-001.md criada (referenciada mas inexistente)
+
+**Decisões Arquiteturais Permanentes Promovidas (SYNC-001):**
+- Personal Finance Domain — domínio complementar opcional (DA-007, I-011, I-012)
+- Decision Support — camada consultiva superior (DA-006, I-013)
+
+**Pendências remanescentes:**
+- EWO-002 — Implementação do Domínio Patrimonial (próxima etapa oficial)
+- Backlog Estratégico ativo: BK-005 a BK-008
+
+---
+
 # Histórico
+
+### Versão 1.29
+
+PS#035 — Sprint Documental GOV-010. Consolidação final da governança pós-Engineering Audit 001. AI_CONTEXT objetivo EWO-002. Bootstrap limpo (histórico PIs, Technical Roadmap, Precedência #1, ER-004✅). DOCUMENTATION_INDEX limpo (9 docs inexistentes removidos). STRATEGIC_BACKLOG BK-010/011/012 fechados. DEVELOPMENT_METHODOLOGY: Engineering Audit formalizada, seção obsoleta removida. ER-C001-C002-001 criada. Engenharia apta para EWO-002.
 
 ### Versão 1.28
 

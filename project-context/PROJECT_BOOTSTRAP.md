@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.34
+**Versão:** 2.35
 
 **Status:** APROVADO
 
@@ -121,25 +121,27 @@ A próxima etapa oficial da engenharia é a **ER-004** — Engineering Review da
 - EWO-001 concluído — Core Foundation + Modelo Canônico (10 Slices, 175 testes)
 - Core API congelada (7 componentes estáveis)
 - **PI-004 concluída** — Arquitetura do Domínio Patrimonial consolidada
-- O projeto está oficialmente na **fase de evolução do domínio de investimentos**
+- **ER-004 aprovada** — Gap analysis validada, aderência ao Core Foundation confirmada
+- O projeto está oficialmente na **fase de implementação do domínio patrimonial**
 
 ### Próxima Frente de Engenharia
 
-A próxima etapa oficial é a **ER-004** — Engineering Review da PI-004, para interpretação, validação e refinamento arquitetural. Após a ER, será elaborada a **EWO-002** para implementação do domínio patrimonial (Portfolio, Financial Events, Projections).
+A próxima etapa oficial é a **EWO-002** — Implementação do Domínio Patrimonial (Portfolio, Financial Events, Projections, WealthProjection). ER-004 já aprovada; 8-11 slices estimadas.
 
 ### Documentação Prevista
 
 | Documento | Finalidade | Status |
 |-----------|------------|--------|
 | PI-004 | Arquitetura do Domínio Patrimonial | ✅ Concluído |
-| ER-004 | Engineering Review da PI-004 | Previsto |
-| EWO-002 | Implementação do Domínio Patrimonial | Previsto (após ER-004) |
+| ER-004 | Engineering Review da PI-004 | ✅ Aprovada |
+| EWO-002 | Implementação do Domínio Patrimonial | **Próxima etapa oficial** |
 
 ### Observações Relevantes
 
 - Engineering N1 consolidado (PI-001, PI-002, PI-003 aprovados)
 - PI-004 aprovada — 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013)
 - Personal Finance Domain e Decision Support definidos como módulos complementares
+- ER-004 aprovada — 8-11 slices para EWO-002
 - EWO-001 concluído — detalhes na seção abaixo
 - Backlog estratégico com 4 BKs ativos (BK-005 a BK-008)
 
@@ -727,8 +729,8 @@ Antes de gerar o encerramento da resposta:
 ## Ordem de Precedência
 
 ```
-1. DOCUMENTACAO_COMPLETA.md    Fonte Canônica
-2. PROJECT_BOOTSTRAP.md         Runtime Operacional
+1. PROJECT_BOOTSTRAP.md         Runtime Operacional (memória permanente)
+2. DOCUMENTACAO_COMPLETA.md     Fonte Canônica Consolidada
 3. AI_CONTEXT.md                Estado Operacional
 ```
 
@@ -736,52 +738,31 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 ## Próximo Passo Operacional
 
-### PI-001 v1.0 — Interpretation Layer (Approved)
+### PI-004 v1.0 — Modelo Patrimonial do Lio Feliz (Approved)
 
 | Campo | Valor |
 |-------|-------|
-| Identificador | PI-001 |
+| Identificador | PI-004 |
 | Versão | v1.0 (Approved) |
 | Status | Approved |
-| Documento | `architecture-lab/PI-001.md` |
-| Objetivo | Projetar a primeira especificação de engenharia responsável por interpretar as intenções do usuário e transformá-las em operações internas do sistema, estabelecendo a ponte entre a interação do usuário e os componentes centrais da arquitetura |
-| Motivação | Iniciar oficialmente a fase de Engineering através da criação do primeiro artefato canônico de implementação, preservando a rastreabilidade entre Arquitetura, Engineering e Código |
-| Entregável esperado | Documento canônico PI-001 contendo toda a especificação necessária para implementação da camada de interpretação |
-| Estrutura | 26 seções: Objetivo, Motivação, Problema, Responsabilidade, Escopo, Fora do Escopo, Critérios de Conclusão, Princípios (5), Fluxo Geral, Contrato de Entrada, Contrato de Saída, Garantias, Invariantes (6), Interfaces, Dependências, Regras Operacionais (6), Tratamento de Falhas, Casos Limite (7), Restrições (5), Critérios de Aceite (7), Impacto, Extensibilidade, Diretrizes (6), Riscos, Critérios de Aprovação, Histórico |
-| Resultado esperado | Especificação completa, consistente e aprovada, servindo como base oficial para a implementação da camada de interpretação |
-| Próximo passo | Concluído. Engineering N1 consolidado. |
- 
-> **Resumo Operacional Canônico:** Este resumo deve conter informações suficientes para que uma nova IA consiga iniciar corretamente a etapa sem consultar outros documentos.
+| Documento | `architecture-lab/PI-004.md` |
+| Objetivo | Definir a arquitetura do domínio patrimonial: Aggregate Root Portfolio, Financial Events, Projections, Bounded Contexts, Invariantes |
+| Entregável esperado | Especificação completa da arquitetura patrimonial (12 DAs, 13 Invariantes, 4 Bounded Contexts) |
+| Resultado | Arquitetura do domínio patrimonial consolidada |
+| Próximo passo | ER-004 concluída (Approved). Próxima etapa: **EWO-002** — Implementação do Domínio Patrimonial (Portfolio, Financial Events, Projections, WealthProjection). |
 
-### PI-003 v1.0 — Canonical Operations & Event Flow Architecture (Approved)
+> **Resumo Operacional Canônico:** PI-004 aprovada define Portfolio como Aggregate Root principal, Financial Events como mecanismo de evolução patrimonial, Projections como visões derivadas. Personal Finance Domain e Decision Support como módulos complementares. ER-004 validou aderência ao Core Foundation e estimou 8-11 slices para EWO-002.
+
+### ER-004 v1.0 — Engineering Review da PI-004 (Approved)
 
 | Campo | Valor |
 |-------|-------|
-| Identificador | PI-003 |
+| Identificador | ER-004 |
 | Versão | v1.0 (Approved) |
 | Status | Approved |
-| Documento | `architecture-lab/PI-003.md` |
-| Objetivo | Estabelecer a arquitetura operacional canônica do sistema, definindo como operações financeiras são processadas, transformadas em eventos e utilizadas para derivar o Modelo Canônico (PI-002) |
-| Motivação | Completar a Trindade Arquitetural do Engineering N1: interpretação (PI-001) + representação (PI-002) + comportamento operacional (PI-003) |
-| Entregável esperado | Especificação completa do modelo operacional, fluxo de eventos, cadeia causal Operação → Evento → Transição → Estado |
-| Estrutura | 24 seções: Objetivo, Escopo, Posicionamento, Fundação Conceitual, Princípios (3), Modelo Operacional, Objetivos, Ciclo de Vida, Fluxo de Eventos, Modelo de Eventos, Transições, Rejeições, Idempotência, Responsabilidades (6), Contratos, Invariantes (8), Compatibilidade, Fronteiras, Critérios, Riscos, Evolução, Referências, Conclusão, Histórico |
-| Resultado esperado | Trindade Arquitetural do Engineering N1 consolidada |
-| Próximo passo | Planejar EWO-001 — Implementação do núcleo arquitetural. |
-
-### PI-002 v1.0 — Canonical Investment Model (Approved)
-
-| Campo | Valor |
-|-------|-------|
-| Identificador | PI-002 |
-| Versão | v1.0 (Approved) |
-| Status | Approved |
-| Documento | `architecture-lab/PI-002.md` |
-| Objetivo | Definir o modelo canônico de representação dos investimentos do sistema, estabelecendo uma estrutura única, extensível e independente da origem dos dados |
-| Motivação | Consolidar a linguagem semântica do domínio financeiro antes de iniciar a implementação |
-| Entregável esperado | Especificação completa da ontologia, contratos, identidades e invariantes do domínio |
-| Estrutura | 25 seções: Objetivo, Posicionamento, Responsabilidades, Excluídas, Canonical Source of Truth, Considerações, Ontologia (2-12), Identidade, Identificadores, Contratos, Invariantes (8), Princípios (4), Temporalidade, Evolução, Compatibilidade, Critérios, Riscos, Future Work, Histórico |
-| Resultado esperado | Especificação completa, consistente e aprovada, servindo como base semântica oficial do domínio |
-| Próximo passo | Concluído. PI-003 v1.0 Approved — Engineering N1 consolidado. |
+| Documento | `architecture-lab/ER-004.md` |
+| PI Referenciada | PI-004 v1.0 (Approved) |
+| Resultado | Gap analysis completa, aderência ao Core Foundation validada, 8-11 slices estimadas. Aprovada para EWO-002. |
 
 ## Baseline Arquitetural Atual
 
@@ -837,7 +818,7 @@ Carteira Oficial
 
 ### Próxima EWO
 
-- EWO-001 — Implementação do Núcleo Arquitetural
+- EWO-002 — Implementação do Domínio Patrimonial
 
 ### Checklist para futuras Engineering Work Orders
 
@@ -1219,36 +1200,17 @@ Todo clone adicional é considerado secundário. Jamais iniciar engenharia em ou
 
 Melhorias futuras identificadas durante a Engineering Review (ER-C001-C002-001). **Não constituem dívida técnica atual e não bloqueiam nenhuma Sprint.**
 
-| Item | Descrição | Prazo |
-|---|---|---|
-| UUID_V7_REGEX compartilhado | Extrair regex duplicado dos 4 identificadores para módulo compartilhado | Médio prazo |
-| UUIDv7 para DomainEvent.eventId | Substituir geração atual (`Date.now()` + `Math.random()`) por UUIDv7 | Médio prazo |
-| deepFreeze para VOs compostos | Implementar congelamento profundo se VOs aninhados surgirem | Longo prazo |
-| Classe base `UuidV7Id` | Abstração entre EntityId e identificadores concretos para reduzir duplicação | Longo prazo |
-
 ---
 
 # Próximos Documentos Previstos (GOV-006)
 
 Os documentos abaixo estão previstos para criação futura. **Ainda não existem** — deverão ser criados apenas quando a evolução do projeto exigir.
 
-### PI-004 — Modelo Patrimonial do Lio Feliz
-
-**Finalidade:** Definir a arquitetura do domínio patrimonial, incluindo princípios, linguagem ubíqua, bounded contexts, Aggregate Root Portfolio, invariantes, modelo de evolução patrimonial e projeções.
-
-**Status:** ✅ **Concluído** — `architecture-lab/PI-004.md` v1.0 (Approved)
-
-### ER-004 — Engineering Review da PI-004
-
-**Finalidade:** Interpretar, validar e refinar a arquitetura definida pela PI-004 antes da elaboração da EWO-002.
-
-**Status:** Previsto (próxima etapa oficial)
-
 ### EWO-002 — Implementação do Domínio Patrimonial
 
 **Finalidade:** Materializar a arquitetura aprovada pela PI-004 em Slices de implementação para o domínio patrimonial (Portfolio, Financial Events, Projections).
 
-**Status:** Previsto (após ER-004)
+**Status:** Previsto (próxima etapa oficial — **EWO-002**)
 
 ### GOV-007 — Lições da Próxima Wave
 
@@ -1297,6 +1259,19 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.35
+
+Sprint Documental GOV-010 — Consolidação final da governança pós-Engineering Audit 001.
+- AI_CONTEXT.md: Objetivo Atual atualizado para EWO-002.
+- PROJECT_BOOTSTRAP limpo: removidos resumos históricos PI-001/002/003 da seção "Próximo Passo Operacional"; Technical Roadmap movido para Strategic Backlog; Ordem de Precedência corrigida (Bootstrap #1); ER-004 marcada ✅ em Próximos Documentos Previstos; Engineering Outlook atualizada (PI-004✅, ER-004✅, EWO-002 próxima).
+- DOCUMENTATION_INDEX v1.37: removidos 9 documentos inexistentes (07_PROJECT_CONTEXT, 08_FEATURES, 09_ROADMAP, 10_CHANGELOG, 11_AI_INSTRUCTIONS, 13_DECISIONS, 14_DESIGN_PRINCIPLES, 15_PRODUCT_PHILOSOPHY, 09_STRATEGIC_BACKLOG caminho incorreto).
+- 09_STRATEGIC_BACKLOG v0.14: BK-010 (GOV-003), BK-011 (GOV-004), BK-012 (GOV-005) marcados Concluídos.
+- ER-C001-C002-001.md criada (stub do relatório de auditoria da Core Foundation).
+- DEVELOPMENT_METHODOLOGY v2.16: seção Engineering Audit adicionada (§13), seção 13 obsoleta (Evoluções Planejadas) removida.
+- AI_OPERATION_CHECKLIST verificada — sem redundâncias com Bootstrap.
+- Governança consolidada — engenharia oficialmente apta para EWO-002.
+Bootstrap v2.35. AI_OPERATION_CHECKLIST v1.33. PROJECT_STATUS v1.43. DOCUMENTATION_INDEX v1.37.
 
 ## v2.34
 
