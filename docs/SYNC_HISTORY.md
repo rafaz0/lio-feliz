@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.33
+**Versão:** 1.34
 
 **Status:** APROVADO
 
@@ -1238,7 +1238,27 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#038 — GOV-013: Política de Reconstrução de Contexto Estratégico
+
+**Data:** 18/07/2026
+
+**Tipo:** Governança / Metodologia
+
+**Objetivo:** Institucionalizar a política oficial de reconstrução de contexto do ChatGPT.
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.37 → v2.38: nova seção "Política de Reconstrução de Contexto Estratégico" com dois níveis de contexto e situações de gatilho
+- `project-context/AI_OPERATION_CHECKLIST.md` — v1.35 → v1.36: nova seção "Verificação de Contexto" na Pré-Resposta
+- `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção "Política de Reconstrução de Contexto"
+- `project-context/DEVELOPMENT_METHODOLOGY.md` — v2.17 → v2.18: IA-037 adicionada
+
+---
+
 # Histórico
+
+### Versão 1.34
+
+GOV-013 — Política de Reconstrução de Contexto Estratégico institucionalizada.
 
 ### Versão 1.33
 

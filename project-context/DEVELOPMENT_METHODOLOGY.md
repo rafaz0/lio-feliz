@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.17
+**Versão:** 2.18
 
 **Status:** APROVADO
 
@@ -372,6 +372,25 @@ Nenhuma decisão estratégica poderá permanecer exclusivamente na memória das 
 **IA-036 — Divisão de Responsabilidades ChatGPT/OpenCode**
 
 A engenharia do Lio Feliz opera com dois papéis complementares:
+
+| Papel | Atribuições |
+|-------|-------------|
+| **ChatGPT** (Arquiteto/Planejador/Auditor/Revisor) | Define objetivos, critérios de aceite e diretrizes. Planeja Slices. Realiza Engineering Review. Audita governança. Preserva documentação permanente. Não implementa código diretamente. |
+| **OpenCode** (Agente Executor) | Implementa código das Slices. Executa testes, build e lint. Realiza commit, push e relatórios de sincronização. Executa o Workspace Guard. |
+
+O ChatGPT não produz planos detalhados de implementação quando o OpenCode possui contexto suficiente para fazê-lo. Toda implementação obrigatoriamente passa por: Planejamento (ChatGPT) → Implementação (OpenCode) → Engineering Review (ChatGPT) → Auditoria (ChatGPT) → Engineering Closure (ChatGPT).
+
+**IA-037 — Política de Reconstrução de Contexto Estratégico (GOV-013)**
+
+O ChatGPT opera com dois níveis de contexto:
+
+**Contexto Estratégico:** utilizado para planejamento de PI/ER/EWO, revisão arquitetural, auditorias, mudanças metodológicas, definição de estratégia, início de novo domínio. Deve ser reconstruído apenas quando necessário, preferencialmente via `DOCUMENTACAO_COMPLETA.md`.
+
+**Contexto Operacional:** utilizado durante a implementação cotidiana das Slices. O ChatGPT trabalha exclusivamente com relatórios do OpenCode (sync reports, ERs, closures). Não deve solicitar documentação completa neste modo.
+
+A documentação completa somente deve ser solicitada nas situações previstas: início de PI/ER/EWO, mudança significativa de arquitetura, mudança metodológica, início de novo domínio, ou perda de contexto que comprometa decisões estratégicas.
+
+Fora dessas situações, utilizar exclusivamente os relatórios de engenharia.
 
 | Papel | Atribuições |
 |-------|-------------|
@@ -1050,6 +1069,10 @@ A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto 
 ---
 
 # 14. Histórico
+
+### Versão 2.18
+
+GOV-013 — Política de Reconstrução de Contexto Estratégico. IA-037 adicionada em §7 definindo dois níveis de contexto (Estratégico e Operacional) e situações que justificam solicitar documentação completa.
 
 ### Versão 2.17
 

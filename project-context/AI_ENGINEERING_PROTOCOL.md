@@ -64,6 +64,32 @@ Documentos inferiores nunca possuem autoridade para alterar documentos superiore
 
 ---
 
+# Política de Reconstrução de Contexto (GOV-013)
+
+O ChatGPT opera com dois níveis de contexto que determinam quando a documentação completa do projeto deve ser solicitada.
+
+### Contexto Estratégico
+
+Utilizado para: planejamento de PI/ER/EWO, revisão arquitetural, auditorias, mudanças metodológicas, definição de estratégia, início de novo domínio.
+
+Reconstruído **apenas quando necessário**, preferencialmente via `DOCUMENTACAO_COMPLETA.md`.
+
+### Contexto Operacional
+
+Utilizado durante a implementação cotidiana das Slices. O ChatGPT trabalha exclusivamente com relatórios do OpenCode, ERs, closures e relatórios de sincronização.
+
+**Não deve solicitar documentação completa do projeto nesse modo.**
+
+### Quando solicitar documentação consolidada
+
+- início de nova PI, ER ou EWO
+- mudança significativa de arquitetura
+- mudança importante de metodologia
+- início de novo domínio
+- perda de contexto que comprometa decisões estratégicas
+
+Fora dessas situações, utilizar exclusivamente os relatórios de engenharia.
+
 # Protocolo Pré-Resposta
 
 Antes de qualquer resposta relacionada ao projeto, a IA deverá confirmar:
@@ -72,7 +98,8 @@ Antes de qualquer resposta relacionada ao projeto, a IA deverá confirmar:
 * se existe PI correspondente;
 * se existe Engineering Review aprovada;
 * se existe EWO correspondente;
-* se todos os documentos necessários estão disponíveis.
+* se todos os documentos necessários estão disponíveis;
+* qual nível de contexto é necessário (GOV-013).
 
 Caso qualquer documento obrigatório esteja ausente, a execução deverá ser interrompida.
 

@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.35
+**Versão:** 1.36
 
 **Status:** APROVADO
 
@@ -61,6 +61,14 @@ Antes de responder, verificar:
 
 - [ ] O working directory corresponde ao caminho canônico `H:\Lio Feliz\`? (GOV-008)
 - [ ] A implementação respeita integralmente os limites da PI/ER/EWO vigente?
+
+### Verificação de Contexto (GOV-013)
+
+- [ ] A atividade atual exige Contexto Estratégico (PI/ER/EWO/arquitetura/auditoria/mudança metodológica)?
+  * Se SIM → solicitar documentação consolidada (`DOCUMENTACAO_COMPLETA.md`)
+  * Se NÃO → utilizar apenas relatórios operacionais (sync reports, ERs, closures)
+- [ ] Existe relatório recente do OpenCode suficiente para o contexto atual?
+- [ ] A requisição de documentação completa é justificada por uma das situações previstas na GOV-013?
 
 ### Comum a ambos:
 
@@ -350,6 +358,10 @@ Executar obrigatoriamente após rebase, merge com conflitos ou resolução manua
 ---
 
 # Histórico
+
+### Versão 1.36
+
+GOV-013 — Política de Reconstrução de Contexto Estratégico. Nova seção "Verificação de Contexto" na Pré-Resposta com questões para determinar se Contexto Estratégico ou Operacional é necessário. Compatibilidade com PROJECT_BOOTSTRAP v2.38.
 
 ### Versão 1.35
 

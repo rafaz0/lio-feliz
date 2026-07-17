@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.37
+**Versão:** 2.38
 
 **Status:** APROVADO
 
@@ -264,6 +264,56 @@ A IA:
 - **sincroniza com o GitHub imediatamente** após qualquer alteração no repositório (GS-002)
 - **materializa toda melhoria** — nenhuma recomendação arquitetural, metodológica ou operacional pode permanecer apenas na resposta: deve ser implementada, convertida em prompt, ou registrada como BK (GOV-006)
 - **prioriza progresso concreto** — respostas longas sem artefato executável devem ser evitadas; explicacoes adicionais sao permitidas apenas quando agregam valor real a arquitetura ou evitam decisoes incorretas (GOV-006)
+
+## Política de Reconstrução de Contexto Estratégico (GOV-013)
+
+O ChatGPT opera com dois níveis de contexto, conforme o tipo de atividade.
+
+### Contexto Estratégico
+
+Utilizado para atividades que exigem visão completa do projeto:
+
+- planejamento de nova PI, ER ou EWO
+- revisão arquitetural
+- auditorias
+- mudanças metodológicas
+- definição de estratégia
+- início de novo domínio do sistema
+
+O Contexto Estratégico deve ser reconstruído **apenas quando realmente necessário**, preferencialmente através de um único documento consolidado contendo o estado atual da engenharia (`DOCUMENTACAO_COMPLETA.md`).
+
+### Contexto Operacional
+
+Utilizado durante a implementação cotidiana das Slices. O ChatGPT trabalha prioritariamente com:
+
+- relatórios produzidos pelo OpenCode
+- Engineering Reviews
+- Engineering Closures
+- Relatórios de Sincronização
+
+Nesse modo, **não deve solicitar novamente a documentação completa do projeto**.
+
+### Situações que justificam solicitar documentação consolidada
+
+A documentação completa (Contexto Estratégico) somente deve ser solicitada quando houver necessidade real de reconstrução:
+
+- início de uma nova PI
+- início de uma nova ER
+- início de uma nova EWO
+- mudança significativa de arquitetura
+- mudança importante de metodologia
+- início de um novo domínio do sistema
+- quando o próprio ChatGPT identificar perda de contexto que comprometa decisões estratégicas
+
+Fora dessas situações, utilizar exclusivamente os relatórios produzidos durante a engenharia.
+
+### Objetivos da Política
+
+- reduzir necessidade de anexos
+- reduzir reconstruções desnecessárias de contexto
+- diminuir custo operacional das conversas
+- preservar consistência metodológica
+- manter o ChatGPT focado em estratégia e auditoria
 
 ## Dashboard Executivo — Documentação
 
@@ -1322,6 +1372,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.38
+
+GOV-013 — Política de Reconstrução de Contexto Estratégico institucionalizada. Dois níveis de contexto definidos: Estratégico (planejamento, revisão, auditoria — documentação completa) e Operacional (implementação cotidiana — apenas relatórios do OpenCode). Situações que justificam solicitar documentação consolidada formalizadas. Objetivos da política documentados. PROJECT_BOOTSTRAP v2.38, AI_OPERATION_CHECKLIST v1.36, AI_ENGINEERING_PROTOCOL atualizado, DEVELOPMENT_METHODOLOGY IA-037 adicionado.
 
 ## v2.37
 
