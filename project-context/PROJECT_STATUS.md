@@ -182,7 +182,7 @@ ADR-008: Backlog Governance
 
 ## Próximos Passos
 
-Engineering Review da PI-004 (ER-004). Após aprovação, elaboração da EWO-002 para implementação do domínio patrimonial (Portfolio, Financial Events, Projections).
+EWO-002 v1.1 aprovada — Domínio Patrimonial dividido em 9 Slices. Engineering Gate aprovado. Próxima etapa: Slice 1 (Fundação do Domínio Patrimonial).
 
 ---
 

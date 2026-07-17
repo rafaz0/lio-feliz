@@ -109,7 +109,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-A próxima etapa oficial da engenharia é a **ER-004** — Engineering Review da PI-004 (Modelo Patrimonial). Após a ER, será elaborada a **EWO-002** para implementação do domínio patrimonial.
+A próxima etapa oficial da engenharia é a implementação do domínio patrimonial via **EWO-002** (Aprovada), iniciando pela Slice 1 — Fundação do Domínio Patrimonial.
 
 ## Engineering Outlook
 
@@ -134,7 +134,7 @@ A próxima etapa oficial é a **EWO-002** — Implementação do Domínio Patrim
 |-----------|------------|--------|
 | PI-004 | Arquitetura do Domínio Patrimonial | ✅ Concluído |
 | ER-004 | Engineering Review da PI-004 | ✅ Aprovada |
-| EWO-002 | Implementação do Domínio Patrimonial | **Próxima etapa oficial** |
+| EWO-002 | Implementação do Domínio Patrimonial | ✅ Aprovada |
 
 ### Observações Relevantes
 
@@ -749,7 +749,7 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 | Objetivo | Definir a arquitetura do domínio patrimonial: Aggregate Root Portfolio, Financial Events, Projections, Bounded Contexts, Invariantes |
 | Entregável esperado | Especificação completa da arquitetura patrimonial (12 DAs, 13 Invariantes, 4 Bounded Contexts) |
 | Resultado | Arquitetura do domínio patrimonial consolidada |
-| Próximo passo | ER-004 concluída (Approved). Próxima etapa: **EWO-002** — Implementação do Domínio Patrimonial (Portfolio, Financial Events, Projections, WealthProjection). |
+| Próximo passo | **EWO-002** aprovada. Próxima etapa: **Slice 1** — Fundação do Domínio Patrimonial. |
 
 > **Resumo Operacional Canônico:** PI-004 aprovada define Portfolio como Aggregate Root principal, Financial Events como mecanismo de evolução patrimonial, Projections como visões derivadas. Personal Finance Domain e Decision Support como módulos complementares. ER-004 validou aderência ao Core Foundation e estimou 8-11 slices para EWO-002.
 
@@ -1210,7 +1210,7 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 
 **Finalidade:** Materializar a arquitetura aprovada pela PI-004 em Slices de implementação para o domínio patrimonial (Portfolio, Financial Events, Projections).
 
-**Status:** Previsto (próxima etapa oficial — **EWO-002**)
+**Status:** ✅ Aprovado (v1.1) — 9 Slices definidas, Engineering Gate aprovado, pronta para execução.
 
 ### GOV-007 — Lições da Próxima Wave
 

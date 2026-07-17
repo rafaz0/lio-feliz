@@ -240,6 +240,24 @@ stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us |
 
 ---
 
+# Como Usar os Agentes Customizados
+
+O OpenCode agora possui agentes especializados para cada fase do desenvolvimento.
+Use **@** seguido do nome do agente para invocá-los.
+
+| Comando | Função | Quando usar |
+|---------|--------|-------------|
+| `@architect ...` | Criar/revisar PIs e arquitetura | Antes de começar uma nova implementação |
+| `@reviewer ...` | Revisar código e gerar ERs | Após implementação concluída |
+| `@planner ...` | Criar EWOs e planejar sprints | Quando uma PI estiver aprovada |
+| `@auditor ...` | Auditar governança e qualidade | Periodicamente ou antes de commits |
+| `@ai-context ...` | Carregar contexto completo do projeto | No início da sessão |
+| `@prompt-generator ...` | Criar prompts estruturados | Quando precisar preparar instruções |
+
+**Alternar entre Build e Plan:** Use **Tab** para trocar entre o agente Build (executa código) e Plan (apenas planeja, sem modificar arquivos).
+
+**Dica:** Tenha uma sessão para planejamento e outra para execução. Use `/new` para criar nova sessão e `/sessions` para alternar.
+
 # Contexto para o Próximo Agente
 
 ## Para acessar o projeto
