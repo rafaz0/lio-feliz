@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.46
+**Versão:** 2.47
 
 **Status:** APROVADO
 
@@ -1512,11 +1512,11 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 | Slice 4 — Corporativos/Ajuste | Bonus, Split, Grouping, Amortization, Adjustment | 59 | `16b5714` | ✅ CLOSED |
 | Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | 13 | `9364605` | ✅ CLOSED |
 | Slice 6 — Projeções | PortfolioProjector | 19 | `d7a72c3` | ✅ CLOSED |
-| Slice 7 — Analíticas | Asset Allocation, Performance | — | — | ⏳ Pendente |
+| Slice 7 — Analíticas | Asset Allocation, Performance | 10 | `37668de` | ✅ CLOSED |
 | Slice 8 — Consolidada | Portfolio History, Wealth Projection | — | — | ⏳ Pendente |
 | Slice 9 — Consolidação | Todas DAs + Invariantes | — | — | ⏳ Pendente |
 
-**Progresso: 6/9 Slices concluídas. 335 testes. Zero regressões.**
+**Progresso: 7/9 Slices concluídas. 345 testes. Zero regressões.**
 
 ## Contrato de Execução
 
@@ -1530,6 +1530,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.47
+
+Engineering Closure da Slice 7 (EWO-002). Asset Allocation e Performance implementados — projeções analíticas derivadas de Positions. ER APROVADA. Slice 7 oficialmente CLOSED. KC-005 registrado. Slices 1-7 concluídas (7/9). 345 testes, zero regressões. Próxima Slice: 8 — Portfolio History, Wealth Projection.
 
 ## v2.46
 

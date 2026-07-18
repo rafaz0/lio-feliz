@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.43
+**Versão:** 1.44
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,24 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#047 — Engineering Closure Slice 7 (EWO-002)
+
+**Data:** 18/07/2026
+
+**Tipo:** Engineering Closure
+
+**Objetivo:** Formalizar o encerramento da Slice 7 — Asset Allocation, Performance.
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.46 → v2.47: Slice 7 CLOSED, progresso 7/9
+- `project-context/PROJECT_STATUS.md` — v1.45 → v1.46: Slice 7 CLOSED
+- `docs/SYNC_HISTORY.md` — v1.43 → v1.44: PS#047 registrado
+
+**Registro de Conhecimento (GOV-015):**
+- KC-005 — Projeções Analíticas são Derivações de Projeções
+
+---
+
 ## PS#046 — Engineering Closure Slice 6 (EWO-002)
 
 **Data:** 18/07/2026
@@ -1423,6 +1441,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.44
+
+Engineering Closure Slice 7 — Asset Allocation, Performance. KC-005 registrado. Slice 7 oficialmente CLOSED. PS#047 registrado.
 
 ### Versão 1.43
 
