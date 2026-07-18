@@ -1,6 +1,7 @@
 export { FinancialEvent, FinancialEventType } from "./financial-event";
 export { Position } from "./position";
 export { Portfolio } from "./portfolio";
+export { PortfolioProjector } from "./portfolio-projector";
 export { BuyEvent } from "./buy-event";
 export { SellEvent } from "./sell-event";
 export { DividendEvent } from "./dividend-event";
