@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.45
+**Versão:** 1.46
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,35 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#049 — Slice 9: Consolidação Final da EWO-002
+
+**Data:** 18/07/2026
+
+**Tipo:** Consolidação
+
+**Objetivo:** Concluir oficialmente a EWO-002 — validação integral do domínio, cobertura arquitetural, emissão de relatório final.
+
+**Arquivos criados:**
+- `src/core/tests/portfolio/consolidation.test.ts` — 9 testes de ciclo completo + invariantes
+- `architecture-lab/EWO-002-COVERAGE.md` — Relatório de Cobertura Arquitetural
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.48 → v2.49: Slice 9 CLOSED, 9/9, EWO-002 CONCLUÍDA
+- `project-context/PROJECT_STATUS.md` — v1.47 → v1.48: EWO-002 CONCLUÍDA
+- `docs/SYNC_HISTORY.md` — v1.45 → v1.46: PS#049 registrado
+
+**Registro de Conhecimento (GOV-015):**
+- Nenhum novo KC ou KB produzido. Conhecimentos KC-001 a KC-005 e KB-006 permanecem válidos.
+
+**Resultados:**
+- 362/362 testes passando (28/28 arquivos)
+- 12/12 DAs materializadas
+- 11/13 Invariantes validadas (I-012 e I-013 parcial — Personal Finance e Decision Support fora do escopo)
+- Core Foundation inalterada (GOV-006)
+- EWO-002 oficialmente CONCLUÍDA
+
+---
+
 ## PS#048 — Slice 8: Portfolio History, Wealth Projection
 
 **Data:** 18/07/2026
@@ -1474,6 +1503,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.46
+
+Slice 9 — Consolidação Final. EWO-002 CONCLUÍDA. 362 testes, zero regressões. 12/12 DAs, 11/13 Invariantes. PS#049 registrado.
 
 ### Versão 1.45
 

@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.47
+**Versão:** 1.48
 
 **Status:** APROVADO
 
@@ -182,7 +182,7 @@ ADR-008: Backlog Governance
 
 ## Próximos Passos
 
-EWO-002 — Slices 1-8 concluídas (8/9). 353 testes. Slice 8 (Portfolio History, Wealth Projection) CLOSED. Próxima etapa: Slice 9 — Consolidação Final (Todas DAs + Invariantes).
+EWO-002 CONCLUÍDA — 9/9 Slices. 362 testes. Domínio Patrimonial implementado. Próxima etapa: Integração com camadas superiores (Application Layer + Infraestrutura).
 
 ---
 
@@ -199,6 +199,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.48
+
+EWO-002 CONCLUÍDA. Slice 9 — Consolidação Final implementada. Relatório de Cobertura Arquitetural emitido (EWO-002-COVERAGE.md). 12/12 DAs materializadas. 11/13 Invariantes validadas. 362 testes, zero regressões. Domínio Patrimonial completo e validado.
 
 ### Versão 1.47
 
