@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.42
+**Versão:** 1.43
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,26 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#046 — Engineering Closure Slice 6 (EWO-002)
+
+**Data:** 18/07/2026
+
+**Tipo:** Engineering Closure
+
+**Objetivo:** Formalizar o encerramento da Slice 6 — PortfolioProjector.
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.45 → v2.46: Slice 6 CLOSED, progresso 6/9
+- `project-context/PROJECT_STATUS.md` — v1.44 → v1.45: Slice 6 CLOSED
+- `docs/SYNC_HISTORY.md` — v1.42 → v1.43: PS#046 registrado
+
+**Registro de Conhecimento (GOV-015):**
+- KC-002 — Projector como State Machine sobre Event Stream
+- KC-003 — avgCost é sempre derivado
+- KC-004 — Estados Deriváveis não devem ser Persistidos
+
+---
+
 ## PS#045 — Engineering Closure Slice 5 (EWO-002)
 
 **Data:** 18/07/2026
@@ -1403,6 +1423,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.43
+
+Engineering Closure Slice 6 — PortfolioProjector. KC-002, KC-003, KC-004 registrados. Slice 6 oficialmente CLOSED. PS#046 registrado.
 
 ### Versão 1.42
 

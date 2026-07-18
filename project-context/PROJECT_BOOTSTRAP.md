@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.45
+**Versão:** 2.46
 
 **Status:** APROVADO
 
@@ -1511,12 +1511,12 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 | Slice 3 — Rendimentos | DividendEvent, JcpEvent | 24 | `c62444d` | ✅ CLOSED |
 | Slice 4 — Corporativos/Ajuste | Bonus, Split, Grouping, Amortization, Adjustment | 59 | `16b5714` | ✅ CLOSED |
 | Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | 13 | `9364605` | ✅ CLOSED |
-| Slice 6 — Projeções | PortfolioProjector | — | — | ⏳ Pendente |
+| Slice 6 — Projeções | PortfolioProjector | 19 | `d7a72c3` | ✅ CLOSED |
 | Slice 7 — Analíticas | Asset Allocation, Performance | — | — | ⏳ Pendente |
 | Slice 8 — Consolidada | Portfolio History, Wealth Projection | — | — | ⏳ Pendente |
 | Slice 9 — Consolidação | Todas DAs + Invariantes | — | — | ⏳ Pendente |
 
-**Progresso: 5/9 Slices concluídas. 316 testes. Zero regressões.**
+**Progresso: 6/9 Slices concluídas. 335 testes. Zero regressões.**
 
 ## Contrato de Execução
 
@@ -1530,6 +1530,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.46
+
+Engineering Closure da Slice 6 (EWO-002). PortfolioProjector implementado — projeção determinística de FinancialEvents para Positions. ER APROVADA. Slice 6 oficialmente CLOSED. KC-002, KC-003, KC-004 registrados. Slices 1-6 concluídas (6/9). 335 testes, zero regressões. Próxima Slice: 7 — Asset Allocation, Performance.
 
 ## v2.45
 
