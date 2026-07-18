@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.37
+**Versão da Documentação:** 1.38
 
 **Status:** APROVADO
 
@@ -144,15 +144,21 @@ Repositório oficial de melhorias estratégicas aprovadas para implementação f
 
 ---
 
+📄 EWO-002-COVERAGE.md (architecture-lab)
+
+Relatório de Cobertura Arquitetural da EWO-002. v1.0 (APROVADO). 12/12 DAs materializadas, 11/13 Invariantes validadas, 9/9 Slices.
+
+---
+
 📄 PI-004.md (architecture-lab)
 
-Engineering Specification oficial do Modelo Patrimonial do Lio Feliz. v1.0 (Approved). 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013). Define Portfolio como Aggregate Root, Financial Events como mecanismo de evolução, Projections como visões derivadas. Personal Finance Domain e Decision Support como módulos complementares.
+Engineering Specification oficial do Modelo Patrimonial do Lio Feliz. v1.0 (Approved). 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013). Define Portfolio como Aggregate Root, Financial Events como mecanismo de evolução, Projections como visões derivadas. Personal Finance Domain e Decision Support como módulos complementares. **✅ Concluído — implementado via EWO-002.**
 
 ---
 
 📄 ER-004.md (architecture-lab)
 
-Engineering Review da PI-004. v1.0 (Approved). Gap analysis completo, validação de aderência ao Core Foundation, 8-11 slices estimadas para EWO-002. Aprovada para materialização via EWO-002.
+Engineering Review da PI-004. v1.0 (Approved). Gap analysis completo, validação de aderência ao Core Foundation, 8-11 slices estimadas para EWO-002. Aprovada para materialização via EWO-002. **✅ Concluído — EWO-002 implementada e encerrada.**
 
 ---
 
@@ -317,6 +323,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.38
+
+- EWO-002 Engineering Closure concluído. EWO-002-COVERAGE.md adicionado ao índice. PI-004, ER-004, EWO-002 marcados como ✅ Concluídos. Domínio Patrimonial finalizado.
 
 ## Versão 1.37
 

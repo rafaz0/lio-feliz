@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.48
+**Versão:** 1.49
 
 **Status:** APROVADO
 
@@ -125,6 +125,7 @@ ADR-008: Backlog Governance
 
 | Data | Evento |
 |------|--------|
+| 18/07/2026 | **EWO-002 CONCLUÍDA** — Engineering Closure final. 9/9 Slices. 362 testes. 12/12 DAs materializadas. 11/13 Invariantes validadas. Conhecimento consolidado (KC-001 a KC-005, KB-006). Domínio Patrimonial completo e validado. PS#050 registrado. |
 | 18/07/2026 | **PI-004 aprovada** — Arquitetura do Domínio Patrimonial consolidada. 12 DAs (DA-001 a DA-012), 13 Invariantes (I-001 a I-013). Próxima etapa: ER-004. |
 | 12/07/2026 | PS#030B — Refinamento dos Protocolos Operacionais concluído |
 | 12/07/2026 | IA-015 fortalecido, IA-025/IA-026 criados, PG-019/OP-002/OP-003 atualizados |
@@ -182,7 +183,7 @@ ADR-008: Backlog Governance
 
 ## Próximos Passos
 
-EWO-002 CONCLUÍDA — 9/9 Slices. 362 testes. Domínio Patrimonial implementado. Próxima etapa: Integração com camadas superiores (Application Layer + Infraestrutura).
+EWO-002 CONCLUÍDA — Engineering Closure emitido. 9/9 Slices. 362 testes. 12/12 DAs. 11/13 Invariantes. Domínio Patrimonial implementado. Próxima etapa: Application Layer.
 
 ---
 
@@ -199,6 +200,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.49
+
+**Engineering Closure da EWO-002** — Implementação do Domínio Patrimonial oficialmente CONCLUÍDA. 9/9 Slices. 362 testes, zero regressões. 12/12 DAs materializadas. 11/13 Invariantes validadas. Conhecimento consolidado: KC-001 a KC-005 (Knowledge Captures), KB-006 (Otimização Incremental TD). Consolidação Metodológica (GOV-017) avaliada — nenhuma mudança necessária. Próxima etapa: Application Layer.
 
 ### Versão 1.48
 

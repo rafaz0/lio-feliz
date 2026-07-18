@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.49
+**Versão:** 2.50
 
 **Status:** APROVADO
 
@@ -60,15 +60,15 @@ Execução
 
 ## Marco Atual
 
-C-001 + C-002 — Core Foundation e Núcleo do Domínio (Concluídos)
+EWO-002 — Domínio Patrimonial (Concluído — 9 Slices, 362 testes)
 
 ## PI Atual
 
-Core API Frozen — Componentes da Core Foundation estabilizados. Nenhuma PI nova em execução.
+Core API Frozen — Componentes da Core Foundation estabilizados.
 
 ## PS Atual
 
-Nenhum PS ativo no momento.
+PS#050 — Engineering Closure EWO-002 (ativo)
 
 ## Dashboard Executivo
 
@@ -77,20 +77,20 @@ Nenhum PS ativo no momento.
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: —
-Marco: C-001 + C-002 (Core Foundation + Núcleo do Domínio)
+PS Atual: PS#050
+Marco: EWO-002 (Domínio Patrimonial)
 
 🏛 Governanca    [█████████░░]  ~90%
 🏗 Arquitetura   [████████░░]   ~80%
-⚙ Engineering   [████████░░]   ~80%
-💻 Codigo        [█████░░░░░]   ~50%
+⚙ Engineering   [█████████░]   ~90%
+💻 Codigo        [██████░░░░]   ~60%
 ```
 
 > Fórmulas dos percentuais em `PROJECT_PROGRESS_PANEL.md`.
 
 ## Objetivos Ativos
 
-Evolução do domínio de investimentos. Próxima fase: modelagem financeira (Portfolio, Position, Operation).
+EWO-002 encerrada. Próxima fase: Application Layer — integração do domínio patrimonial com camadas superiores.
 
 ## DEC Ativas
 
@@ -100,8 +100,6 @@ Nenhuma.
 
 | BK | Descrição | Prioridade | Estado |
 |----|-----------|------------|--------|
-| BK | Descrição | Prioridade | Estado |
-|----|-----------|------------|--------|
 | BK-005 | PROJECT_MANIFEST.md | Baixa | Proposto |
 | BK-006 | Licensing & Feature Access Layer | Média | Proposto |
 | BK-007 | Comercialização | Média | Proposto |
@@ -109,7 +107,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-A próxima etapa oficial da engenharia é a implementação do domínio patrimonial via **EWO-002** (Aprovada). Próxima Slice: **Slice 3** — Eventos de Rendimento: Dividend e JCP.
+EWO-002 CONCLUÍDA. A próxima etapa oficial é o planejamento da Application Layer — integração do domínio patrimonial com repositórios, serviços, queries e interface com o usuário.
 
 ## Engineering Outlook
 
@@ -122,11 +120,11 @@ A próxima etapa oficial da engenharia é a implementação do domínio patrimon
 - Core API congelada (7 componentes estáveis)
 - **PI-004 concluída** — Arquitetura do Domínio Patrimonial consolidada
 - **ER-004 aprovada** — Gap analysis validada, aderência ao Core Foundation confirmada
-- O projeto está oficialmente na **fase de implementação do domínio patrimonial**
+- **EWO-002 CONCLUÍDA** — Domínio Patrimonial implementado (9 Slices, 362 testes, 12/12 DAs, 11/13 Invariantes)
 
 ### Próxima Frente de Engenharia
 
-A próxima etapa oficial é a **EWO-002** — Implementação do Domínio Patrimonial (Portfolio, Financial Events, Projections, WealthProjection). ER-004 já aprovada; 8-11 slices estimadas.
+A próxima etapa oficial é o planejamento da **Application Layer** — integração do domínio patrimonial com repositórios, serviços, queries e interface com o usuário.
 
 ### Documentação Prevista
 
@@ -134,15 +132,17 @@ A próxima etapa oficial é a **EWO-002** — Implementação do Domínio Patrim
 |-----------|------------|--------|
 | PI-004 | Arquitetura do Domínio Patrimonial | ✅ Concluído |
 | ER-004 | Engineering Review da PI-004 | ✅ Aprovada |
-| EWO-002 | Implementação do Domínio Patrimonial | ✅ Aprovada |
+| EWO-002 | Implementação do Domínio Patrimonial | ✅ Concluída |
+| EWO-002-COVERAGE | Relatório de Cobertura Arquitetural | ✅ Concluído |
 
 ### Observações Relevantes
 
 - Engineering N1 consolidado (PI-001, PI-002, PI-003 aprovados)
 - PI-004 aprovada — 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013)
 - Personal Finance Domain e Decision Support definidos como módulos complementares
-- ER-004 aprovada — 8-11 slices para EWO-002
+- **EWO-002 CONCLUÍDA** — 9 Slices, 362 testes, 12/12 DAs materializadas, 11/13 Invariantes validadas
 - EWO-001 concluído — detalhes na seção abaixo
+- Conhecimento consolidado da EWO-002: KC-001 a KC-005 (registrados nas Engineering Reviews), KB-006 (registrado)
 - Backlog estratégico com 4 BKs ativos (BK-005 a BK-008)
 
 ---
@@ -1502,7 +1502,7 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 # EWO-002 — Detalhamento
 
 **Título:** Implementação do Domínio Patrimonial
-**Status:** ✅ Em execução
+**Status:** ✅ Concluída
 
 | Slice | Componentes | Testes | Commit | Status |
 |---|---|---|---|---|
@@ -1518,6 +1518,32 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 
 **Progresso: 9/9 Slices concluídas. 362 testes. Zero regressões. ✅ EWO-002 CONCLUÍDA**
 
+## Conhecimento Consolidado — EWO-002
+
+### Knowledge Captures (KC)
+
+| Código | Título | Origem | Destino |
+|--------|--------|--------|---------|
+| KC-001 | Aggregate Root como Guardião Exclusivo das Invariantes | Slice 5 ER | Incorporado permanentemente na arquitetura |
+| KC-002 | Projector como State Machine sobre Event Stream | Slice 6 ER | Incorporado permanentemente na arquitetura |
+| KC-003 | avgCost é sempre derivado | Slice 6 ER | Incorporado permanentemente na arquitetura |
+| KC-004 | Estados Deriváveis não devem ser Persistidos | Slice 6 ER | Incorporado permanentemente na arquitetura |
+| KC-005 | Projeções Analíticas são Derivações de Projeções | Slice 7 ER | Incorporado permanentemente na arquitetura |
+
+### Knowledge Backlog (KB)
+
+| Código | Título | Tipo | Destino |
+|--------|--------|------|---------|
+| KB-006 | PortfolioHistoryCalculator — Otimização Incremental (O(n²)) | TD (Evolução Planejada) | KNOWLEDGE_BACKLOG.md |
+
+### Technical Debt (TD)
+
+| Código | Descrição | Prioridade | Destino |
+|--------|-----------|------------|---------|
+| KB-006 | PortfolioHistoryCalculator O(n²) — injetar Projector mantendo estado incremental | Baixa | KNOWLEDGE_BACKLOG.md |
+
+Nenhum novo conhecimento adicional foi identificado durante o Engineering Closure. Todos os KCs e KBs já possuem destinos oficiais.
+
 ## Contrato de Execução
 
 Ao carregar este documento a IA assume automaticamente que:
@@ -1530,6 +1556,11 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.50
+
+**Engineering Closure da EWO-002 — Implementação do Domínio Patrimonial.**
+EWO-002 oficialmente CONCLUÍDA. 9/9 Slices. 362 testes. 12/12 DAs materializadas. 11/13 Invariantes validadas. Conhecimento consolidado (KC-001 a KC-005, KB-006). Core Foundation inalterada. Domínio Patrimonial completo e validado — apto para integração com Application Layer. GOV-017: Consolidação Metodológica avaliada — nenhuma redundância ou simplificação identificada.
 
 ## v2.49
 

@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.11
+**Versão:** 1.12
 
 **Status:** APROVADO
 
@@ -10,7 +10,7 @@
 
 **Última atualização:** 18/07/2026
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que deve conter o Resumo Operacional Canônico da próxima etapa oficial.
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-002 CONCLUÍDA. Próxima etapa: Application Layer.
 
 ---
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-Engineering N2 — EWO-002 Domínio Patrimonial.
+Engineering N2 — EWO-002 CONCLUÍDA. Próxima etapa: Application Layer.
 
 # Referências Obrigatórias
 
@@ -44,6 +44,10 @@ Engineering N2 — EWO-002 Domínio Patrimonial.
 ---
 
 # Histórico
+
+### Versão 1.12
+
+EWO-002 CONCLUÍDA. Objetivo atualizado para Application Layer como próxima etapa.
 
 ### Versão 1.10
 

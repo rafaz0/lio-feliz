@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.46
+**Versão:** 1.47
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,48 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#050 — Engineering Closure EWO-002 (Encerramento Oficial)
+
+**Data:** 18/07/2026
+
+**Tipo:** Engineering Closure
+
+**Objetivo:** Encerrar oficialmente a EWO-002 — Implementação do Domínio Patrimonial.
+
+**Arquivos criados:**
+- `architecture-lab/EWO-002-COVERAGE.md` — Relatório de Cobertura Arquitetural (v1.0)
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.49 → v2.50: EWO-002 CONCLUÍDA, roadmap atualizado, conhecimento consolidado
+- `project-context/PROJECT_STATUS.md` — v1.48 → v1.49: Engineering Closure registrado
+- `docs/DOCUMENTATION_INDEX.md` — v1.37 → v1.38: EWO-002-COVERAGE.md adicionado, PI-004/ER-004/EWO-002 marcados Concluídos
+- `docs/SYNC_HISTORY.md` — v1.46 → v1.47: PS#050 registrado
+
+**Conhecimento Consolidado (GOV-015):**
+- KC-001 — Aggregate Root como Guardião Exclusivo das Invariantes
+- KC-002 — Projector como State Machine sobre Event Stream
+- KC-003 — avgCost é sempre derivado
+- KC-004 — Estados Deriváveis não devem ser Persistidos
+- KC-005 — Projeções Analíticas são Derivações de Projeções
+- KB-006 — PortfolioHistoryCalculator O(n²) (TD) — KNOWLEDGE_BACKLOG.md
+
+Todos os conhecimentos já possuíam destinos oficiais. Nenhum novo KC ou KB foi gerado.
+
+**Consolidação Metodológica (GOV-017):**
+Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível de simplificação foi identificada. A metodologia atual permanece adequada.
+
+**Resultados finais:**
+- 9/9 Slices concluídas
+- 362/362 testes passando (28/28 arquivos)
+- 12/12 DAs materializadas
+- 11/13 Invariantes validadas (I-012 e I-013 parcial — Personal Finance e Decision Support fora de escopo)
+- Core Foundation inalterada (GOV-006)
+- 9 commits produzidos durante a EWO-002
+- Taxa de aprovação ER: 100% (9/9 Engineering Reviews aprovadas)
+- **EWO-002 oficialmente CLOSED**
+
+---
+
 ## PS#049 — Slice 9: Consolidação Final da EWO-002
 
 **Data:** 18/07/2026
@@ -1503,6 +1545,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.47
+
+Engineering Closure da EWO-002 — PS#050. EWO-002 oficialmente CLOSED. 9/9 Slices, 362 testes, 12/12 DAs, 11/13 Invariantes. Conhecimento consolidado. Consolidação Metodológica (GOV-017) sem alterações.
 
 ### Versão 1.46
 
