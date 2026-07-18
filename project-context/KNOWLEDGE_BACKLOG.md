@@ -209,7 +209,37 @@ Proposta inicial:
 
 ---
 
+## KB-006
+
+**Código:** KB-006
+
+**Título:** PortfolioHistoryCalculator — Otimização Incremental
+
+**Categoria:** KB-T3 — Evolução Planejada
+
+**Status:** Planejado
+
+**Origem:** Slice 8 — Implementação
+
+**Documento Relacionado:** `src/core/domain/portfolio/portfolio-history.ts`
+
+**Descrição:** O `PortfolioHistoryCalculator.calculate()` reconstrói o Projector do zero para cada snapshot, resultando em complexidade O(n²) no número de eventos. Para portfólios com centenas de eventos, a abordagem é funcional, porém ineficiente.
+
+Solução proposta: permitir que o Projector seja injetado ou mantido incrementalmente entre snapshots, reutilizando o estado projetado do passo anterior em vez de reprojetar todo o histórico a cada evento.
+
+**Motivação:** Evitar degradação de performance em portfólios com grande volume histórico de eventos.
+
+**Histórico:** Registrado durante a Slice 8 (EWO-002).
+
+**Observações:** A implementação atual é correta e suficiente para volumes esperados (centenas de eventos). A otimização deve ser considerada se o volume de eventos crescer significativamente.
+
+---
+
 # Histórico
+
+## Versão 1.3
+
+- Adicionado KB-006 (PortfolioHistoryCalculator — Otimização Incremental).
 
 ## Versão 1.2
 

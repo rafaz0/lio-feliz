@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.47
+**Versão:** 2.48
 
 **Status:** APROVADO
 
@@ -1513,10 +1513,10 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 | Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | 13 | `9364605` | ✅ CLOSED |
 | Slice 6 — Projeções | PortfolioProjector | 19 | `d7a72c3` | ✅ CLOSED |
 | Slice 7 — Analíticas | Asset Allocation, Performance | 10 | `37668de` | ✅ CLOSED |
-| Slice 8 — Consolidada | Portfolio History, Wealth Projection | — | — | ⏳ Pendente |
+| Slice 8 — Consolidada | Portfolio History, Wealth Projection | 8 | `515dddd` | ✅ CLOSED |
 | Slice 9 — Consolidação | Todas DAs + Invariantes | — | — | ⏳ Pendente |
 
-**Progresso: 7/9 Slices concluídas. 345 testes. Zero regressões.**
+**Progresso: 8/9 Slices concluídas. 353 testes. Zero regressões.**
 
 ## Contrato de Execução
 
@@ -1530,6 +1530,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.48
+
+Slice 8 (EWO-002) implementada e CLOSED. PortfolioHistoryCalculator + WealthProjectionCalculator implementados — 8 novos testes. KB-006 (Otimização Incremental do History) registrado. Slices 1-8 concluídas (8/9). 353 testes, zero regressões. Próxima Slice: 9 — Consolidação Final (Todas DAs + Invariantes).
 
 ## v2.47
 

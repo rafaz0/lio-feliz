@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.46
+**Versão:** 1.47
 
 **Status:** APROVADO
 
@@ -182,7 +182,7 @@ ADR-008: Backlog Governance
 
 ## Próximos Passos
 
-EWO-002 — Slices 1-7 concluídas (7/9). 345 testes. Slice 7 (Asset Allocation, Performance) CLOSED. Próxima etapa: Slice 8 — Portfolio History, Wealth Projection.
+EWO-002 — Slices 1-8 concluídas (8/9). 353 testes. Slice 8 (Portfolio History, Wealth Projection) CLOSED. Próxima etapa: Slice 9 — Consolidação Final (Todas DAs + Invariantes).
 
 ---
 
@@ -199,6 +199,10 @@ PS#033 (Prompt 3) — Regeneração Global concluída. Ordem de Precedência Doc
 ### Versão 1.8
 
 PS#032 (Prompt 2) — IA-030 criada. Strategic Backlog (09_STRATEGIC_BACKLOG.md). Fonte Canônica formalizada. AI_CONTEXT.md simplificado (v1.6). AI_OPERATION_CHECKLIST.md v1.3. DEVELOPMENT_METHODOLOGY.md v1.7.
+
+### Versão 1.47
+
+Slice 8 implementada — Portfolio History, Wealth Projection. PortfolioHistoryCalculator (8 snapshots) + WealthProjectionCalculator (event summary, allocation). KB-006 registrado (Otimização Incremental — TD). 353 testes, zero regressões. Slices 1-8 concluídas (8/9). Próxima etapa: Slice 9 — Consolidação Final.
 
 ### Versão 1.46
 

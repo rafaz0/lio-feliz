@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.44
+**Versão:** 1.45
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,39 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#048 — Slice 8: Portfolio History, Wealth Projection
+
+**Data:** 18/07/2026
+
+**Tipo:** Implementação
+
+**Objetivo:** Implementar a Slice 8 (EWO-002) — Portfolio History e Wealth Projection como calculadoras analíticas consolidadas.
+
+**Arquivos criados:**
+- `src/core/domain/portfolio/portfolio-history.ts` — PortfolioHistoryCalculator, PortfolioHistory, PortfolioSnapshot
+- `src/core/domain/portfolio/wealth-projection.ts` — WealthProjectionCalculator, WealthProjection
+- `src/core/tests/portfolio/portfolio-history.test.ts` — 5 testes
+- `src/core/tests/portfolio/wealth-projection.test.ts` — 3 testes
+
+**Arquivos modificados:**
+- `src/core/domain/portfolio/index.ts` — exports adicionados
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.47 → v2.48: Slice 8 CLOSED, progresso 8/9
+- `project-context/PROJECT_STATUS.md` — v1.46 → v1.47: Slice 8 CLOSED
+- `project-context/KNOWLEDGE_BACKLOG.md` — v1.2 → v1.3: KB-006 registrado
+- `docs/SYNC_HISTORY.md` — v1.44 → v1.45: PS#048 registrado
+
+**Registro de Conhecimento (GOV-015):**
+- KB-006 (TD) — PortfolioHistoryCalculator O(n²) — Otimização Incremental adiada. Solução: injetar Projector mantendo estado incremental entre snapshots.
+
+**Resultados:**
+- 353/353 testes passando (27/27 arquivos)
+- Build aprovado
+- Zero regressões
+- Core Foundation inalterada (GOV-006)
+- Nenhum componente da Slice 9 antecipado
+
+---
+
 ## PS#047 — Engineering Closure Slice 7 (EWO-002)
 
 **Data:** 18/07/2026
@@ -1441,6 +1474,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.45
+
+Slice 8 implementada — Portfolio History, Wealth Projection. KB-006 registrado (TD). Slice 8 CLOSED. 353 testes, zero regressões. PS#048 registrado.
 
 ### Versão 1.44
 
