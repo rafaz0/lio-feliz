@@ -1,4 +1,5 @@
 export interface ImportarCarteiraCommand {
+  readonly type: "ImportarCarteiraCommand";
   readonly usuarioId: string;
   readonly origem: string;
   readonly arquivo?: string;

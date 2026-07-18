@@ -1,4 +1,5 @@
 export interface RegistrarOperacaoCommand {
+  readonly type: "RegistrarOperacaoCommand";
   readonly portfolioId: string;
   readonly tipo: string;
   readonly ativoId: string;

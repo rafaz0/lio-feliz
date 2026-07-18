@@ -1,4 +1,5 @@
 export interface ConfigurarEstrategiaCommand {
+  readonly type: "ConfigurarEstrategiaCommand";
   readonly usuarioId: string;
   readonly percentuais: Record<string, number>;
   readonly moeda: string;

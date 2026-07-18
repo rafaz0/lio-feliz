@@ -145,6 +145,7 @@ describe("Commands", () => {
   describe("RegistrarOperacaoCommand", () => {
     it("accepts a valid command structure", () => {
       const cmd: import("@/application/commands/registrar-operacao").RegistrarOperacaoCommand = {
+        type: "RegistrarOperacaoCommand",
         portfolioId: FIXTURA_PORTFOLIO,
         tipo: "BUY",
         ativoId: FIXTURA_ATIVO,
@@ -159,6 +160,7 @@ describe("Commands", () => {
 
     it("accepts optional observacao", () => {
       const cmd: import("@/application/commands/registrar-operacao").RegistrarOperacaoCommand = {
+        type: "RegistrarOperacaoCommand",
         portfolioId: FIXTURA_PORTFOLIO,
         tipo: "SELL",
         ativoId: FIXTURA_ATIVO,
@@ -174,6 +176,7 @@ describe("Commands", () => {
   describe("ImportarCarteiraCommand", () => {
     it("accepts file-based import", () => {
       const cmd: import("@/application/commands/importar-carteira").ImportarCarteiraCommand = {
+        type: "ImportarCarteiraCommand",
         usuarioId: FIXTURA_USUARIO,
         origem: "csv",
         arquivo: "carteira.csv",
@@ -184,6 +187,7 @@ describe("Commands", () => {
 
     it("accepts conexao-based import", () => {
       const cmd: import("@/application/commands/importar-carteira").ImportarCarteiraCommand = {
+        type: "ImportarCarteiraCommand",
         usuarioId: FIXTURA_USUARIO,
         origem: "b3",
         conexao: { apiKey: "abc123" },
@@ -197,6 +201,7 @@ describe("Commands", () => {
   describe("SincronizarDadosCommand", () => {
     it("accepts a valid command", () => {
       const cmd: import("@/application/commands/sincronizar-dados").SincronizarDadosCommand = {
+        type: "SincronizarDadosCommand",
         usuarioId: FIXTURA_USUARIO,
         fonte: "b3",
       };
@@ -208,6 +213,7 @@ describe("Commands", () => {
     it("accepts configuration with metas", () => {
       const cmd: import("@/application/commands/configurar-estrategia").ConfigurarEstrategiaCommand =
         {
+          type: "ConfigurarEstrategiaCommand",
           usuarioId: FIXTURA_USUARIO,
           percentuais: { acoes: 60, renda_fixa: 30, fiis: 10 },
           moeda: "BRL",
@@ -223,6 +229,7 @@ describe("Commands", () => {
     it("accepts ativar action", () => {
       const cmd: import("@/application/commands/gerenciar-assinatura").GerenciarAssinaturaCommand =
         {
+          type: "GerenciarAssinaturaCommand",
           usuarioId: FIXTURA_USUARIO,
           acao: "ativar",
           plano: "premium",
@@ -234,6 +241,7 @@ describe("Commands", () => {
     it("accepts cancelar action without plano", () => {
       const cmd: import("@/application/commands/gerenciar-assinatura").GerenciarAssinaturaCommand =
         {
+          type: "GerenciarAssinaturaCommand",
           usuarioId: FIXTURA_USUARIO,
           acao: "cancelar",
         };
@@ -246,6 +254,7 @@ describe("Queries", () => {
   describe("ObterPatrimonioQuery", () => {
     it("accepts a valid query", () => {
       const q: import("@/application/queries/obter-patrimonio").ObterPatrimonioQuery = {
+        type: "ObterPatrimonioQuery",
         portfolioId: FIXTURA_PORTFOLIO,
       };
       expect(q.portfolioId).toBe(FIXTURA_PORTFOLIO);
@@ -255,6 +264,7 @@ describe("Queries", () => {
   describe("ConsultarPosicaoQuery", () => {
     it("accepts portfolioId and ativoId", () => {
       const q: import("@/application/queries/consultar-posicao").ConsultarPosicaoQuery = {
+        type: "ConsultarPosicaoQuery",
         portfolioId: FIXTURA_PORTFOLIO,
         ativoId: FIXTURA_ATIVO,
       };
@@ -267,6 +277,7 @@ describe("Queries", () => {
     it("accepts periodo filter", () => {
       const q: import("@/application/queries/obter-historico-patrimonial").ObterHistoricoPatrimonialQuery =
         {
+          type: "ObterHistoricoPatrimonialQuery",
           portfolioId: FIXTURA_PORTFOLIO,
           periodo: { inicio: new Date("2025-01-01"), fim: new Date("2025-12-31") },
         };
@@ -277,6 +288,7 @@ describe("Queries", () => {
   describe("ObterProventosQuery", () => {
     it("accepts optional filters", () => {
       const q: import("@/application/queries/obter-proventos").ObterProventosQuery = {
+        type: "ObterProventosQuery",
         portfolioId: FIXTURA_PORTFOLIO,
         ano: 2025,
         ticker: "PETR4",
@@ -290,6 +302,7 @@ describe("Queries", () => {
     it("accepts portfolioId", () => {
       const q: import("@/application/queries/calcular-rebalanceamento").CalcularRebalanceamentoQuery =
         {
+          type: "CalcularRebalanceamentoQuery",
           portfolioId: FIXTURA_PORTFOLIO,
         };
       expect(q.portfolioId).toBe(FIXTURA_PORTFOLIO);
@@ -299,6 +312,7 @@ describe("Queries", () => {
   describe("GerarRelatorioFiscalQuery", () => {
     it("accepts ano filter", () => {
       const q: import("@/application/queries/gerar-relatorio-fiscal").GerarRelatorioFiscalQuery = {
+        type: "GerarRelatorioFiscalQuery",
         portfolioId: FIXTURA_PORTFOLIO,
         ano: 2025,
       };
@@ -309,6 +323,7 @@ describe("Queries", () => {
   describe("ExportarDadosQuery", () => {
     it("accepts formato", () => {
       const q: import("@/application/queries/exportar-dados").ExportarDadosQuery = {
+        type: "ExportarDadosQuery",
         portfolioId: FIXTURA_PORTFOLIO,
         formato: "json",
       };
@@ -338,7 +353,7 @@ describe("Ports (type-level)", () => {
 
   it("IDispatcher generic type compiles", () => {
     const dispatcher: import("@/application/dispatcher").IDispatcher = {
-      Dispatch: async () => ({
+      DispatchCommand: async () => ({
         operacaoId: "abc",
         tipo: "BUY",
         ativoId: "xyz",
@@ -347,10 +362,14 @@ describe("Ports (type-level)", () => {
         data: new Date(),
         status: "CONFIRMED",
       }),
-      Register: () => {},
+      DispatchQuery: async () => ({ patrimonioTotal: 0, moeda: "BRL" }),
+      RegisterCommand: () => {},
+      RegisterQuery: () => {},
     };
-    expect(typeof dispatcher.Dispatch).toBe("function");
-    expect(typeof dispatcher.Register).toBe("function");
+    expect(typeof dispatcher.DispatchCommand).toBe("function");
+    expect(typeof dispatcher.DispatchQuery).toBe("function");
+    expect(typeof dispatcher.RegisterCommand).toBe("function");
+    expect(typeof dispatcher.RegisterQuery).toBe("function");
   });
 });
 
