@@ -1,0 +1,9 @@
+export type { ObterPatrimonioQuery } from "./obter-patrimonio";
+export type { ConsultarPosicaoQuery } from "./consultar-posicao";
+export type { ObterHistoricoPatrimonialQuery } from "./obter-historico-patrimonial";
+export type { ObterProventosQuery } from "./obter-proventos";
+export type { ConsultarRentabilidadeQuery } from "./consultar-rentabilidade";
+export type { CalcularRebalanceamentoQuery } from "./calcular-rebalanceamento";
+export type { GerarRelatorioFiscalQuery } from "./gerar-relatorio-fiscal";
+export type { ExportarDadosQuery } from "./exportar-dados";
+export type { ConsultarProgressoMetasQuery } from "./consultar-progresso-metas";
