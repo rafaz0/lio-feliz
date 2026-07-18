@@ -19,6 +19,8 @@ export type * from "./dtos";
 export { RegistrarOperacaoService } from "./services/registrar-operacao-service";
 export { ImportarCarteiraService } from "./services/importar-carteira-service";
 export { SincronizarDadosService } from "./services/sincronizar-dados-service";
+export { ConfigurarEstrategiaService } from "./services/configurar-estrategia-service";
+export { GerenciarAssinaturaService } from "./services/gerenciar-assinatura-service";
 export { ConsultarPatrimonioService } from "./services/consultar-patrimonio-service";
 export { ConsultarPosicaoService } from "./services/consultar-posicao-service";
 export { AcompanharProventosService } from "./services/acompanhar-proventos-service";

@@ -13,4 +13,5 @@ export type { RentabilidadeDto } from "./rentabilidade";
 export type { ProgressoMetasDto, MetaProgressoDto } from "./metas";
 export type { AssinaturaAtualizadaDto } from "./assinatura";
 export type { DadosExportadosDto } from "./exportacao";
+export type { EstrategiaConfiguradaDto } from "./estrategia";
 export type { SincronizacaoRealizadaDto, SincronizacaoErroDto } from "./sincronizacao";
