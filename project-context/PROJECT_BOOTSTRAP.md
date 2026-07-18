@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.51
+**Versão:** 2.52
 
 **Status:** APROVADO
 
@@ -109,7 +109,8 @@ Nenhuma.
 
 EWO-002 CONCLUÍDA. A próxima etapa oficial é o planejamento da **Application Layer (EWO-003)** — integração do domínio patrimonial com repositórios, serviços, queries e interface com o usuário.
 
-**GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.**
+**GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
+**GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto. A PI-005 deverá referenciar este documento como entrada funcional.****
 
 ## Engineering Outlook
 
@@ -1585,6 +1586,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.52
+
+**GOV-021 — Criação da Especificação Funcional Oficial.** `21_FUNCTIONAL_SPECIFICATION.md` criado como fonte canônica do comportamento esperado do produto. 34 FRs, 14 UCs, 15 NFRs. Servirá como entrada da PI-005 (Application Layer). `DOCUMENTATION_INDEX.md` v1.40, `00_START_HERE.md` atualizado.
 
 ## v2.51
 

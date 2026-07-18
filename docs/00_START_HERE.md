@@ -56,10 +56,12 @@ Antes de analisar qualquer linha de código, leia obrigatoriamente os documentos
 10. 17_TRACEABILITY_MATRIX.md
 11. 18_ARCHITECTURAL_DECISIONS/
 12. 19_GLOSSARY.md
-13. 07_TECHNICAL_ANNEXES/
-14. PROJECT_BOOTSTRAP.md
-15. AI_CONTEXT.md
-16. AI_OPERATION_CHECKLIST.md
+13. 20_PROJECT_MAP.md
+14. 21_FUNCTIONAL_SPECIFICATION.md
+15. 07_TECHNICAL_ANNEXES/
+16. PROJECT_BOOTSTRAP.md
+17. AI_CONTEXT.md
+18. AI_OPERATION_CHECKLIST.md
 
 > A numeração completa e o status de cada documento estão definidos em [`DOCUMENTATION_INDEX.md`](./DOCUMENTATION_INDEX.md), que é a fonte de verdade oficial da estrutura da documentação.
 

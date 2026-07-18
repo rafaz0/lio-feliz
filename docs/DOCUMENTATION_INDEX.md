@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.39
+**Versão da Documentação:** 1.40
 
 **Status:** APROVADO
 
@@ -129,6 +129,18 @@ Vocabulário oficial do projeto. Define cada conceito relevante com uma única d
 ✅ 20_PROJECT_MAP.md
 
 Visão macro oficial do projeto. Conecta todos os documentos. Serve como porta de entrada para o projeto. Institucionalizado via GOV-020.
+
+---
+
+✅ 21_FUNCTIONAL_SPECIFICATION.md
+
+Especificação funcional oficial do produto. Consolida objetivos, público-alvo, escopo, MVP, fluxos, casos de uso, requisitos funcionais e não funcionais. Institucionalizado via GOV-021.
+
+---
+
+✅ 19_GLOSSARY.md
+
+Vocabulário oficial do projeto. Define cada conceito relevante com uma única definição oficial.
 
 ---
 
@@ -329,6 +341,14 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.40
+
+- GOV-021 — 21_FUNCTIONAL_SPECIFICATION.md adicionado. Especificação funcional oficial criada (34 FRs, 14 UCs, 15 NFRs).
+
+## Versão 1.39
+
+- GOV-020 — 20_PROJECT_MAP.md adicionado. Project Map oficial institucionalizado como visão macro do projeto.
 
 ## Versão 1.38
 

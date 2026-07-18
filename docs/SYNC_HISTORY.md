@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.48
+**Versão:** 1.49
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,40 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#052 — GOV-021: Especificação Funcional Oficial
+
+**Data:** 18/07/2026
+
+**Tipo:** Governança / Documentação
+
+**Objetivo:** Criar e institucionalizar a `21_FUNCTIONAL_SPECIFICATION.md` como especificação funcional oficial do produto, consolidando todo o conhecimento funcional existente.
+
+**Arquivos criados:**
+- `docs/21_FUNCTIONAL_SPECIFICATION.md` — v1.0: 14 seções, 34 FRs, 14 UCs, 15 NFRs, 21 FEATs mapeadas
+
+**Arquivos modificados:**
+- `docs/00_START_HERE.md` — ordem de leitura atualizada (21_FUNCTIONAL_SPECIFICATION.md adicionado)
+- `docs/DOCUMENTATION_INDEX.md` — v1.39 → v1.40: 21_FUNCTIONAL_SPECIFICATION.md adicionado
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.51 → v2.52: GOV-021 registrado
+- `docs/SYNC_HISTORY.md` — v1.48 → v1.49: PS#052 registrado
+
+**Governança:**
+- **GOV-021** — Especificação Funcional institucionalizada como documento permanente
+- A PI-005 (Application Layer) deverá referenciar este documento como entrada funcional
+
+**Documentos consultados durante a consolidação:**
+- 00_START_HERE.md, 01_VISION.md, 03_PRODUCT_REQUIREMENTS.md, 16_PRODUCT_BACKLOG.md, 17_TRACEABILITY_MATRIX.md, 20_PROJECT_MAP.md, PROJECT_BOOTSTRAP.md, PROJECT_STATUS.md
+
+**Conflitos encontrados:** Nenhum. Todos os documentos consultados estavam consistentes entre si.
+
+**Informações ausentes identificadas (não criadas, apenas registradas):**
+- Fluxos de usuário e casos de uso não existiam previamente — foram consolidados a partir das descrições funcionais existentes
+- Requisitos não funcionais não possuíam documento dedicado — foram consolidados a partir de princípios arquiteturais e regras de negócio
+
+**GOV-015 (Registro de Conhecimento):** Nenhum novo KC ou KB gerado. A consolidação não identificou lacunas de conhecimento além das já registradas na GOV-019.
+
+---
+
 ## PS#051 — GOV-020: Project Map Oficial
 
 **Data:** 18/07/2026
@@ -1573,6 +1607,10 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 ---
 
 # Histórico
+
+### Versão 1.49
+
+GOV-021 — Especificação Funcional oficial criada. 34 FRs, 14 UCs, 15 NFRs. PS#052 registrado.
 
 ### Versão 1.48
 
