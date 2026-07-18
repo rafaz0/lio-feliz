@@ -45,25 +45,21 @@ O sistema apenas organiza informações, realiza cálculos, automatiza processos
 Antes de analisar qualquer linha de código, leia obrigatoriamente os documentos abaixo nesta ordem:
 
 1. 00_START_HERE.md
-2. 01_VISION.md
-3. 02_PROJECT_RULES.md
-4. 03_PRODUCT_REQUIREMENTS.md
-5. 04_DATA_MODEL.md
-6. 05_SYSTEM_ARCHITECTURE.md
-7. 06_BUSINESS_RULES/
-8. 07_PROJECT_CONTEXT.md
-9. 08_FEATURES.md
-10. 09_ROADMAP.md
-11. 10_CHANGELOG.md
-12. 11_AI_INSTRUCTIONS.md
-13. 13_DECISIONS.md
-14. 14_DESIGN_PRINCIPLES.md
-15. 15_PRODUCT_PHILOSOPHY.md
-16. 16_PRODUCT_BACKLOG.md
-17. 17_TRACEABILITY_MATRIX.md
-18. 18_ARCHITECTURAL_DECISIONS/
-19. 19_GLOSSARY.md
-20. 07_TECHNICAL_ANNEXES/
+2. 20_PROJECT_MAP.md
+3. 01_VISION.md
+4. 02_PROJECT_RULES.md
+5. 03_PRODUCT_REQUIREMENTS.md
+6. 04_DATA_MODEL.md
+7. 05_SYSTEM_ARCHITECTURE.md
+8. 06_BUSINESS_RULES/
+9. 16_PRODUCT_BACKLOG.md
+10. 17_TRACEABILITY_MATRIX.md
+11. 18_ARCHITECTURAL_DECISIONS/
+12. 19_GLOSSARY.md
+13. 07_TECHNICAL_ANNEXES/
+14. PROJECT_BOOTSTRAP.md
+15. AI_CONTEXT.md
+16. AI_OPERATION_CHECKLIST.md
 
 > A numeração completa e o status de cada documento estão definidos em [`DOCUMENTATION_INDEX.md`](./DOCUMENTATION_INDEX.md), que é a fonte de verdade oficial da estrutura da documentação.
 

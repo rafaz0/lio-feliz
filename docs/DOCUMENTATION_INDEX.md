@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.38
+**Versão da Documentação:** 1.39
 
 **Status:** APROVADO
 
@@ -123,6 +123,12 @@ Metodologia + matriz oficial de rastreabilidade: conecta features a Business Rul
 ✅ 19_GLOSSARY.md
 
 Vocabulário oficial do projeto. Define cada conceito relevante com uma única definição oficial.
+
+---
+
+✅ 20_PROJECT_MAP.md
+
+Visão macro oficial do projeto. Conecta todos os documentos. Serve como porta de entrada para o projeto. Institucionalizado via GOV-020.
 
 ---
 

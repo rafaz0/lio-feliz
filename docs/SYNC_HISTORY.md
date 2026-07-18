@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.47
+**Versão:** 1.48
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,34 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#051 — GOV-020: Project Map Oficial
+
+**Data:** 18/07/2026
+
+**Tipo:** Governança / Documentação
+
+**Objetivo:** Criar e institucionalizar o `20_PROJECT_MAP.md` como documento oficial de visão macro do projeto.
+
+**Arquivos criados:**
+- `docs/20_PROJECT_MAP.md` — v1.0: Project Map oficial com 10 seções
+
+**Arquivos modificados:**
+- `docs/00_START_HERE.md` — ordem de leitura atualizada (documentos órfãos removidos, Project Map adicionado)
+- `docs/DOCUMENTATION_INDEX.md` — v1.38 → v1.39: 20_PROJECT_MAP.md adicionado
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.50 → v2.51: GOV-020 e IA-042 registrados
+- `docs/SYNC_HISTORY.md` — v1.47 → v1.48: PS#051 registrado
+
+**Governança:**
+- **GOV-020** — Project Map institucionalizado como documento permanente da engenharia
+- **IA-042** — IA deve consultar 20_PROJECT_MAP.md como primeiro documento de visão geral
+
+**Resultados:**
+- Visão macro do projeto consolidada em um único documento
+- Ordem de leitura do 00_START_HERE.md corrigida (documentos inexistentes removidos)
+- Sem impacto em arquitetura, código ou metodologia existente
+
+---
+
 ## PS#050 — Engineering Closure EWO-002 (Encerramento Oficial)
 
 **Data:** 18/07/2026
@@ -1545,6 +1573,10 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 ---
 
 # Histórico
+
+### Versão 1.48
+
+GOV-020 — Project Map oficial criado. IA-042 institucionalizado. PS#051 registrado.
 
 ### Versão 1.47
 

@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.50
+**Versão:** 2.51
 
 **Status:** APROVADO
 
@@ -107,7 +107,9 @@ Nenhuma.
 
 ## Próxima Etapa
 
-EWO-002 CONCLUÍDA. A próxima etapa oficial é o planejamento da Application Layer — integração do domínio patrimonial com repositórios, serviços, queries e interface com o usuário.
+EWO-002 CONCLUÍDA. A próxima etapa oficial é o planejamento da **Application Layer (EWO-003)** — integração do domínio patrimonial com repositórios, serviços, queries e interface com o usuário.
+
+**GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.**
 
 ## Engineering Outlook
 
@@ -476,6 +478,33 @@ Fora dessas situações, o fluxo continua automaticamente.
 **ChatGPT:** ao finalizar uma Engineering Review, emitir parecer, registrar conhecimento capturado, identificar melhorias para o próximo prompt e produzir imediatamente o Planejamento da próxima etapa. Não perguntar "Deseja prosseguir?".
 
 **OpenCode:** ao concluir implementação, executar testes, validar build e emitir Relatório de Implementação. Não perguntar "Deseja Engineering Review?". Após ER aprovada, executar Engineering Closure, sincronizar Git e emitir Relatório de Closure. Não perguntar "Deseja prosseguir para a próxima Slice?".
+
+---
+
+## Project Map (GOV-020)
+
+O `20_PROJECT_MAP.md` é o documento oficial de visão macro do projeto.
+
+### Finalidade
+
+Conectar visualmente todos os documentos do projeto, fornecendo uma visão executiva da estrutura, roadmap, estado atual, fluxos e dependências.
+
+### O que não é
+
+- Não substitui `DOCUMENTATION_INDEX.md` (índice mestre)
+- Não substitui `PROJECT_BOOTSTRAP.md` (runtime operacional)
+- Não contém regras, protocolos ou decisões arquiteturais
+
+### IA-042 — Project Map como Visão Macro
+
+Toda IA que iniciar uma nova sessão no projeto Lio Feliz deverá:
+
+1. Consultar `20_PROJECT_MAP.md` como primeiro documento de visão geral.
+2. Validar se o roadmap apresentado no Project Map reflete o estado atual do projeto.
+3. Utilizar a Navegação Rápida (seção 10) para localizar o documento necessário.
+4. Reportar qualquer divergência entre o Project Map e o estado real.
+
+O Project Map é atualizado sempre que uma EWO é concluída ou o roadmap da engenharia sofre alteração significativa.
 
 ---
 
@@ -1556,6 +1585,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.51
+
+**GOV-020 — Criação do Project Map Oficial.** `20_PROJECT_MAP.md` criado como visão macro do projeto. IA-042 institucionalizado. `00_START_HERE.md` atualizado com nova ordem de leitura (documentos órfãos removidos, Project Map adicionado). `DOCUMENTATION_INDEX.md` v1.39 atualizado.
 
 ## v2.50
 

@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.40
+**Versão:** 1.41
 
 **Status:** APROVADO
 
@@ -72,6 +72,7 @@ Antes de responder, verificar:
 
 ### Comum a ambos:
 
+- [ ] Já consultei o `20_PROJECT_MAP.md` para visão macro do projeto? (IA-042)
 - [ ] Estou no modo correto?
 - [ ] Existe DEC ativa?
 - [ ] Existe evidência objetiva para alterar a direção?
