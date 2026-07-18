@@ -30,3 +30,14 @@ export { CalcularRebalanceamentoService } from "./services/calcular-rebalanceame
 export { GerarRelatorioFiscalService } from "./services/gerar-relatorio-fiscal-service";
 export { ExportarDadosService } from "./services/exportar-dados-service";
 export { ConsultarProgressoMetasService } from "./services/consultar-progresso-metas-service";
+export type { IDomainEventHandler } from "./handlers/domain-event-handler";
+export { DomainEventHandlerRegistry } from "./handlers/handler-registry";
+export { FinancialEventRegisteredHandler } from "./handlers/financial-event-registered-handler";
+export {
+  ImportacaoConcluidaHandler,
+  EVENT_NAME_IMPORTACAO_CONCLUIDA,
+} from "./handlers/importacao-concluida-handler";
+export {
+  AssinaturaAlteradaHandler,
+  EVENT_NAME_ASSINATURA_ALTERADA,
+} from "./handlers/assinatura-alterada-handler";
