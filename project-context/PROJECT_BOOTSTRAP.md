@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.44
+**Versão:** 2.45
 
 **Status:** APROVADO
 
@@ -1508,15 +1508,15 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 |---|---|---|---|---|
 | Slice 1 — Fundação | FinancialEvent (abstração base), Position | 22 | `2b18059` | ✅ CLOSED |
 | Slice 2 — Operações | BuyEvent, SellEvent | 24 | `8763e65` | ✅ CLOSED |
-| Slice 3 — Rendimentos | DividendEvent, JcpEvent | 24 | *(pending)* | ✅ Implementado |
-| Slice 4 — Corporativos/Ajuste | Bonus, Split, Grouping, Amortization, Adjustment | — | — | ⏳ Pendente |
-| Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | — | — | ⏳ Pendente |
+| Slice 3 — Rendimentos | DividendEvent, JcpEvent | 24 | `c62444d` | ✅ CLOSED |
+| Slice 4 — Corporativos/Ajuste | Bonus, Split, Grouping, Amortization, Adjustment | 59 | `16b5714` | ✅ CLOSED |
+| Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | 13 | `9364605` | ✅ CLOSED |
 | Slice 6 — Projeções | PortfolioProjector | — | — | ⏳ Pendente |
 | Slice 7 — Analíticas | Asset Allocation, Performance | — | — | ⏳ Pendente |
 | Slice 8 — Consolidada | Portfolio History, Wealth Projection | — | — | ⏳ Pendente |
 | Slice 9 — Consolidação | Todas DAs + Invariantes | — | — | ⏳ Pendente |
 
-**Progresso: 3/9 Slices concluídas. 70 testes. Zero regressões.**
+**Progresso: 5/9 Slices concluídas. 316 testes. Zero regressões.**
 
 ## Contrato de Execução
 
@@ -1530,6 +1530,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.45
+
+Engineering Closure da Slice 5 (EWO-002). Portfolio Aggregate Root implementado com invariantes I-001 e I-006. ER APROVADA. Slice 5 oficialmente CLOSED. KC-001 registrado. Slices 1-5 concluídas (5/9). 316 testes, zero regressões. Próxima Slice: 6 — PortfolioProjector.
 
 ## v2.44
 

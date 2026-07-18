@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.41
+**Versão:** 1.42
 
 **Status:** APROVADO
 
@@ -1316,6 +1316,28 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 
 ---
 
+## PS#045 — Engineering Closure Slice 5 (EWO-002)
+
+**Data:** 18/07/2026
+
+**Tipo:** Engineering Closure
+
+**Objetivo:** Formalizar o encerramento da Slice 5 — Portfolio Aggregate Root.
+
+**Arquivos modificados:**
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.44 → v2.45: Slice 5 CLOSED, progresso 5/9, KC-001 registrado
+- `project-context/PROJECT_STATUS.md` — v1.43 → v1.44: Slice 5 CLOSED
+- `docs/SYNC_HISTORY.md` — v1.41 → v1.42: PS#045 registrado
+
+**Registro de Conhecimento (GOV-015):**
+- KC-001 — Aggregate Root como Guardião Exclusivo das Invariantes
+- Financial Events representam exclusivamente fatos históricos
+- Aggregate Root concentra todas as invariantes do domínio
+- Projectors não implementam regras de negócio
+- Services futuros apenas coordenam Aggregates
+
+---
+
 ## PS#044 — GOV-018: Pipeline Contínuo de Engenharia
 
 **Data:** 18/07/2026
@@ -1381,6 +1403,10 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ---
 
 # Histórico
+
+### Versão 1.42
+
+Engineering Closure Slice 5 — Portfolio Aggregate Root. KC-001 registrado. Slice 5 oficialmente CLOSED. PS#045 registrado.
 
 ### Versão 1.41
 
