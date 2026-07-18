@@ -1,4 +1,5 @@
-import type { Portfolio, PortfolioId } from "@/core/domain";
+import type { Portfolio } from "@/core/domain/portfolio";
+import type { PortfolioId } from "@/core/domain";
 
 export interface IPortfolioRepository {
   ObterPorId(portfolioId: PortfolioId): Promise<Portfolio | null>;

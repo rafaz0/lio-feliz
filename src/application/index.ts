@@ -16,3 +16,6 @@ export type * from "./ports";
 export type * from "./commands";
 export type * from "./queries";
 export type * from "./dtos";
+export { RegistrarOperacaoService } from "./services/registrar-operacao-service";
+export { ImportarCarteiraService } from "./services/importar-carteira-service";
+export { SincronizarDadosService } from "./services/sincronizar-dados-service";

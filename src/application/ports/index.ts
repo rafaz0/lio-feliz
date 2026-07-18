@@ -22,3 +22,4 @@ export type {
 export type { IUnitOfWork } from "./unit-of-work";
 export type { IDomainEventPublisher } from "./domain-event-publisher";
 export type { INotificationPort } from "./notification-port";
+export type { IImportInterpreterPort } from "./import-interpreter";
