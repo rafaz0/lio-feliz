@@ -4,7 +4,7 @@
 
 **Documento:** KNOWLEDGE_BACKLOG.md
 
-**Versão:** 1.2
+**Versão:** 1.3
 
 **Status:** APROVADO
 

@@ -1513,7 +1513,7 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 | Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | 13 | `9364605` | ✅ CLOSED |
 | Slice 6 — Projeções | PortfolioProjector | 19 | `d7a72c3` | ✅ CLOSED |
 | Slice 7 — Analíticas | Asset Allocation, Performance | 10 | `37668de` | ✅ CLOSED |
-| Slice 8 — Consolidada | Portfolio History, Wealth Projection | 8 | `515dddd` | ✅ CLOSED |
+| Slice 8 — Consolidada | Portfolio History, Wealth Projection | 8 | `d31f56f` | ✅ CLOSED |
 | Slice 9 — Consolidação | Todas DAs + Invariantes | — | — | ⏳ Pendente |
 
 **Progresso: 8/9 Slices concluídas. 353 testes. Zero regressões.**
