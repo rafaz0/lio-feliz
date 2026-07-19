@@ -312,4 +312,49 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
       "HistoryPage não deve importar domínio nem infraestrutura",
     ).toBe(false);
   });
+
+  it("RebalancingPage usa useRebalancingQuery e não instancia Application Services", () => {
+    const rebalancingPage = files.find((f) =>
+      f.getFilePath().endsWith("features/rebalancing/components/RebalancingPage.tsx"),
+    );
+    expect(rebalancingPage, "RebalancingPage deve existir").toBeDefined();
+    const text = rebalancingPage!.getFullText();
+    expect(
+      text.includes("useRebalancingQuery"),
+      "RebalancingPage deve consumir useRebalancingQuery",
+    ).toBe(true);
+    expect(
+      text.match(
+        /new (CalcularRebalanceamentoService|ConsultarPatrimonioService|ConsultarPosicaoService)/,
+      ),
+      "RebalancingPage não deve instanciar Application Services",
+    ).toBeNull();
+  });
+
+  it("feature rebalancing não importa src/infrastructure nem src/integrations/supabase", () => {
+    const rebalancingFiles = files.filter((f) => f.getFilePath().includes("features/rebalancing/"));
+    expect(rebalancingFiles.length).toBeGreaterThan(0);
+    for (const file of rebalancingFiles) {
+      const imports = getImports(file);
+      const violations = imports.filter(
+        (i) => i.startsWith("@/infrastructure") || i.startsWith("@/integrations/supabase"),
+      );
+      expect(
+        violations,
+        `${file.getFilePath()} não deve importar infraestrutura nem supabase`,
+      ).toEqual([]);
+    }
+  });
+
+  it("RebalancingPage não contém regras de negócio da Application Layer", () => {
+    const page = files.find((f) =>
+      f.getFilePath().endsWith("features/rebalancing/components/RebalancingPage.tsx"),
+    );
+    expect(page, "RebalancingPage deve existir").toBeDefined();
+    const text = page!.getFullText();
+    expect(
+      text.includes("@/core/domain") || text.includes("@/infrastructure"),
+      "RebalancingPage não deve importar domínio nem infraestrutura",
+    ).toBe(false);
+  });
 });

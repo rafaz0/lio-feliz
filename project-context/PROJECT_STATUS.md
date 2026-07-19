@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.66
+**Versão:** 1.67
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-7 CLOSED (Slice 7 aguarda auditoria ChatGPT) |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-8 CLOSED (Slice 8 aguarda auditoria ChatGPT) |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 | PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.67
+
+**EWO-005 Slice 8 — Rebalanceamento CLOSED.** Feature `rebalancing` materializada na Presentation Layer: `RebalancingPage`, `AllocationChart` (pie/recharts), `AllocationComparison`, `SuggestedContribution`, `RebalancingTable`, `RebalancingFilters`, `RebalancingLoading`, `RebalancingEmpty`, `RebalancingError`. ViewModels `AllocationViewModel`/`AllocationDiffViewModel`/`SuggestedContributionViewModel`/`RebalancingFiltersViewModel` com mappers puros (`toRebalancingViewModel`, `toAllocationViewModels`, `filterRebalancingDiffs`, `formatBRL`). Hook `useRebalancingQuery` (TanStack Query + `useDispatcher` → `CalcularRebalanceamentoQuery`). Composition Root: `presentation-dispatcher.ts` registra `CalcularRebalanceamentoQuery` via `CalcularRebalanceamentoService` (já existente na Application Layer, consome `IProjectionRepository` + `IConfigurationRepository`); `__root.tsx` injeta `SupabaseConfigurationRepository` (NOVO na Slice 8). Tipos compartilhados `application-layer.ts` estendidos com `AlocacaoDto`/`DiferencaAlocacaoDto`/`SugestaoAporteDto`. Rota `/portfolio/:portfolioId/rebalancing`. 23 testes novos (20 feature + 3 architecture R-10 estendido para rebalancing). 806 testes totais, zero regressões. Build verde (exit 0). ESLint: 0 erros nos arquivos da Slice. Typecheck: 0 erros nos arquivos da Slice (débito técnico pré-existente em rotas legadas e camadas Core/Application permanece fora de escopo). Aguarda auditoria ChatGPT antes da Slice 9.
 
 ### Versão 1.66
 

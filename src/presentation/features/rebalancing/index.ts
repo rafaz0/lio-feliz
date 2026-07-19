@@ -1,1 +1,12 @@
-// Estrutura de feature reservada para implementa��o nas Slices subsequentes da EWO-005.
+export { RebalancingPage } from "./components/RebalancingPage";
+export { AllocationChart } from "./components/AllocationChart";
+export { AllocationComparison } from "./components/AllocationComparison";
+export { SuggestedContribution } from "./components/SuggestedContribution";
+export { RebalancingTable } from "./components/RebalancingTable";
+export { RebalancingFilters } from "./components/RebalancingFilters";
+export { RebalancingLoading } from "./components/RebalancingLoading";
+export { RebalancingEmpty } from "./components/RebalancingEmpty";
+export { RebalancingError } from "./components/RebalancingError";
+export { useRebalancingQuery } from "./hooks/use-rebalancing-query";
+export { REBALANCING_QUERY_KEYS } from "./queries";
+export * from "./types/rebalancing.view-model";

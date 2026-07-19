@@ -18,6 +18,7 @@ import { SupabaseAuthService } from "@/integrations/supabase/auth-service";
 import { createPresentationDispatcher } from "@/integrations/dispatcher/presentation-dispatcher";
 import { SupabaseProjectionRepository } from "@/infrastructure/repositories/supabase-projection-repository";
 import { SupabasePortfolioRepository } from "@/infrastructure/repositories/supabase-portfolio-repository";
+import { SupabaseConfigurationRepository } from "@/infrastructure/repositories/supabase-configuration-repository";
 import { InProcessEventPublisher } from "@/infrastructure/publishers/in-process-event-publisher";
 
 function NotFoundComponent() {
@@ -139,6 +140,7 @@ function RootComponent() {
   const dispatcher = createPresentationDispatcher({
     projectionRepository: new SupabaseProjectionRepository(supabase),
     portfolioRepository: new SupabasePortfolioRepository(supabase),
+    configurationRepository: new SupabaseConfigurationRepository(supabase),
     eventPublisher: new InProcessEventPublisher(),
   });
 

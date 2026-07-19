@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.50
+**Versão da Documentação:** 1.51
 
 **Status:** APROVADO
 
@@ -405,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.51
+
+- **EWO-005 Slice 8 — Rebalanceamento CLOSED.** Feature `rebalancing` da Presentation Layer materializada: RebalancingPage, AllocationChart (recharts), AllocationComparison, SuggestedContribution, RebalancingTable, RebalancingFilters, RebalancingLoading, RebalancingEmpty, RebalancingError; hook `useRebalancingQuery` (→ `CalcularRebalanceamentoQuery`); `presentation-dispatcher.ts` registra `CalcularRebalanceamentoQuery` via `CalcularRebalanceamentoService` (consome `IProjectionRepository` + `IConfigurationRepository`); `__root.tsx` injeta `SupabaseConfigurationRepository`; rota `/portfolio/:portfolioId/rebalancing`. 23 testes novos (20 feature + 3 architecture R-10), 806 totais, zero regressões. Build verde (exit 0). PROJECT_STATUS v1.67.
 
 ## Versão 1.50
 
