@@ -216,6 +216,12 @@ Engineering Work Order oficial da Implementação da Infrastructure Layer. Concl
 
 ---
 
+📄 PI-007.md (architecture-lab)
+
+Engineering Specification oficial da Presentation Layer do Lio Feliz. v1.2 (DRAFT). Define arquitetura da camada de apresentação: Feature-First structure, TanStack Start + Tailwind + shadcn/ui, comunicação exclusiva via Dispatcher (Commands/Queries/DTOs), gerenciamento de estado (TanStack Query + React Context), 13 features funcionais mapeadas aos 14 UCs e 34 FRs. Refinamentos R-06 a R-13 incorporados: Fonte Oficial da Verdade, Composition Components, Convenção de Hooks, Estratégia TanStack Start, Architecture Tests, Performance Guidelines, Error Handling, Loading Strategy. **🟡 DRAFT — aguarda ER-007 e EWO-005.**
+
+---
+
 📄 PI-003.md (architecture-lab)
 
 Engineering Specification oficial da Canonical Operations & Event Flow Architecture. v1.0 (Approved). Consolida a Trindade Arquitetural do Engineering N1.
@@ -377,6 +383,14 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.43
+
+- PI-007 atualizada para v1.2 (Draft). Refinamentos R-06 a R-13 incorporados: Fonte Oficial da Verdade, Composition Components, Convenção de Hooks, Estratégia TanStack Start oficial, Architecture Tests, Performance Guidelines, Error Handling Strategy, Loading Strategy. PI-007 pronta para ER-007.
+
+## Versão 1.42
+
+- PI-007 (Draft) — Presentation Layer adicionada ao índice. Arquitetura da camada de apresentação: Feature-First, TanStack Start + Tailwind + shadcn/ui, Dispatcher-only communication, 13 features, 14 UCs, 34 FRs. Aguarda ER-007 e EWO-005.
 
 ## Versão 1.41
 

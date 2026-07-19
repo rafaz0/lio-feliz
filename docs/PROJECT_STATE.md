@@ -6,7 +6,7 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.27
+**Versão:** 1.28
 
 **Status:** APROVADO
 
@@ -172,6 +172,7 @@
 | 18/07/2026 | ER-006 aprovada — Engineering Review da PI-006. Bootstrap v2.50.                                                                     |
 | 19/07/2026 | **EWO-004 concluída** — Infrastructure Layer. 7 Slices, 630 testes, zero regressões. Bootstrap v2.55.                               |
 | 19/07/2026 | GOV-M01–M06 — Ciclo de Sincronização Documental Pós-EWO-004. Inconsistências corrigidas em 4 documentos.                           |
+| 19/07/2026 | **PI-007 (Draft)** — Presentation Layer criada. Feature-First, TanStack Start + Tailwind + shadcn/ui, 13 features, 14 UCs, 34 FRs. Aguarda ER-007 e EWO-005. |
 
 ---
 

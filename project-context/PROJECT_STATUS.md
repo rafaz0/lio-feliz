@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.53
+**Versão:** 1.55
 
 **Status:** APROVADO
 
@@ -84,6 +84,21 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | 04_MILESTONES.md          | N0 — Ideia         |
 | 05_RESEARCH_LOG.md        | Ativo              |
 | 06_IDEAS_BACKLOG.md       | Ativo              |
+| PI-001.md                 | ✅ Completed (v1.0) |
+| PI-002.md                 | ✅ Completed (v1.0) |
+| PI-003.md                 | ✅ Completed (v1.0) |
+| PI-004.md                 | ✅ Completed (v1.0) |
+| ER-004.md                 | ✅ Approved (v1.0) |
+| EWO-002.md                | ✅ Completed (v1.1) |
+| EWO-002-COVERAGE.md       | ✅ Completed (v1.0) |
+| PI-005.md                 | ✅ Completed (v1.0) |
+| ER-005.md                 | ✅ Approved (v1.0) |
+| EWO-003.md                | ✅ Completed (v1.0) |
+| PI-006.md                 | ✅ Completed (v1.1) |
+| ER-006.md                 | ✅ Approved (v1.0) |
+| EWO-004.md                | ✅ Completed (v1.0) |
+| PI-007.md                 | 🟡 Draft (v1.2)    |
+| PI-007.md                 | 🟡 Draft (v1.0)    |
 
 ---
 
@@ -132,6 +147,11 @@ ADR-008: Backlog Governance
 
 | Data       | Evento                                                                                                                                                                                                                                                                                                                                                               |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 19/07/2026 | **PI-007 v1.2 (Draft) — Refinamentos R-06 a R-13 incorporados.** Fonte Oficial da Verdade, Composition Components, Convenção de Hooks, Estratégia TanStack Start oficial, Architecture Tests, Performance Guidelines, Error Handling Strategy, Loading Strategy. PI-007 pronta para ER-007 → EWO-005.                                                                                                           |
+| 19/07/2026 | **PI-007 (Draft) criada** — Presentation Layer: Feature-First, TanStack Start + Tailwind + shadcn/ui, Dispatcher-only communication, TanStack Query + React Context state, 13 features, 14 UCs, 34 FRs. Aguarda ER-007 e EWO-005.                                                                                                                                      |
+| 19/07/2026 | **GOV-M01–M06 — Sincronização Documental Pós-EWO-004.** 4 documentos corrigidos (20_PROJECT_MAP, DOCUMENTATION_INDEX, PROJECT_STATE, SYNC_HISTORY). 151 inserções, 9 deleções. Commit: `d45327a`.                                                                                                                                                                         |
+| 19/07/2026 | **PROJECT_BOOTSTRAP v2.56** — Nova seção permanente "Estado Arquitetural Atual": 4 camadas-base (Core, Domain, Application, Infrastructure) 100% implementadas e congeladas. Baseline estável. Próxima fase: desenvolvimento funcional / Presentation Layer. Commit: `0a39c8e`.                                                                                  |
+| 19/07/2026 | **EWO-004 CONCLUÍDA** — Engineering Closure final. 7/7 Slices. 630 testes. 10 Ports implementados como adaptadores concretos. Infrastructure Layer completa. Commit: `481e370`.                                                                                                                                                                                         |
 | 18/07/2026 | **GOV-M06 — Baseline Lock.** Baseline Congelada após Gate de Entrada. PI, ER, EWO congelados durante EWO ativa. Fluxo oficial atualizado. Commits: `ef681dc`.                                                                                                                                                                                                         |
 | 18/07/2026 | **GOV-M01 a GOV-M05 — Sprint Metodológica.** Fluxo operacional oficial. Git sync obrigatório. Melhoria contínua. Template de pendências. Política de classificação. Commits: `8c624bf`.                                                                                                                                                                                |
 | 18/07/2026 | **EWO-003 CONCLUÍDA** — Engineering Closure final. 8/8 Slices. 528 testes. 14 Application Services. 9 Ports. 15 DTOs. 6 Application Errors. 3 Domain Event Handlers. Application Layer completa. Commit: `fc852cf`.                                                                                                                                                   |
