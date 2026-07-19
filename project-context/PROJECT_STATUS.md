@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.63
+**Versão:** 1.64
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-4 CLOSED |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-5 CLOSED (Slice 5 aguarda auditoria ChatGPT) |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 | PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.64
+
+**EWO-005 Slice 5 — Operations CLOSED.** Feature `operations` materializada na Presentation Layer: `OperationPage`, `OperationForm` (RHF + zod), `OperationHistory`, `OperationTable`, `OperationFilters`, `OperationLoading`, `OperationEmpty`, `OperationError`. ViewModels `OperationViewModel`/`OperationFiltersViewModel` com mappers puros (`toOperationViewModel`, `filterOperations`, `tipoToLabel`). Hook `useRegisterOperationMutation` (TanStack Query `useMutation` + `useDispatcher` → `RegistrarOperacaoCommand`) e `useOperations` (estado client-side acumulado das mutations). Composition Root: `presentation-dispatcher.ts` refatorado para objeto de dependências e registra `RegistrarOperacaoCommand` quando `portfolioRepository` + `eventPublisher` injetados; `__root.tsx` injeta `SupabasePortfolioRepository` + `InProcessEventPublisher`. Rota `/portfolio/:portfolioId/operations`. 20 testes novos (17 feature + 3 architecture R-10 estendido para operations). 737 testes totais, zero regressões. Build verde (exit 0). ESLint: 0 erros nos arquivos da Slice (débito técnico pré-existente de typecheck em rotas legadas `index.tsx`, `ativo.$ticker.tsx`, `carteira.operacoes.tsx` e camadas Core/Application permanece fora de escopo da EWO-005). Aguarda auditoria ChatGPT antes da Slice 6.
 
 ### Versão 1.63
 

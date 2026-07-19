@@ -42,6 +42,7 @@ import { Route as AuthenticatedCarteiraLancamentosRouteImport } from './routes/_
 import { Route as AuthenticatedCarteiraIrpfRouteImport } from './routes/_authenticated/carteira.irpf'
 import { Route as AuthenticatedCarteiraCoberturaRouteImport } from './routes/_authenticated/carteira.cobertura'
 import { Route as AuthenticatedCarteiraAnaliseRouteImport } from './routes/_authenticated/carteira.analise'
+import { Route as AuthenticatedPortfolioPortfolioIdOperationsRouteImport } from './routes/_authenticated/portfolio.$portfolioId.operations'
 
 const SetoresRoute = SetoresRouteImport.update({
   id: '/setores',
@@ -219,6 +220,12 @@ const AuthenticatedCarteiraAnaliseRoute =
     path: '/analise',
     getParentRoute: () => AuthenticatedCarteiraRoute,
   } as any)
+const AuthenticatedPortfolioPortfolioIdOperationsRoute =
+  AuthenticatedPortfolioPortfolioIdOperationsRouteImport.update({
+    id: '/operations',
+    path: '/operations',
+    getParentRoute: () => AuthenticatedPortfolioPortfolioIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -250,9 +257,10 @@ export interface FileRoutesByFullPath {
   '/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
   '/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
-  '/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRoute
+  '/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
   '/carteira/': typeof AuthenticatedCarteiraIndexRoute
   '/irpf/': typeof AuthenticatedIrpfIndexRoute
+  '/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -283,9 +291,10 @@ export interface FileRoutesByTo {
   '/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
   '/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
-  '/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRoute
+  '/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
   '/carteira': typeof AuthenticatedCarteiraIndexRoute
   '/irpf': typeof AuthenticatedIrpfIndexRoute
+  '/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -319,9 +328,10 @@ export interface FileRoutesById {
   '/_authenticated/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/_authenticated/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
   '/_authenticated/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
-  '/_authenticated/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRoute
+  '/_authenticated/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
   '/_authenticated/carteira/': typeof AuthenticatedCarteiraIndexRoute
   '/_authenticated/irpf/': typeof AuthenticatedIrpfIndexRoute
+  '/_authenticated/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -358,6 +368,7 @@ export interface FileRouteTypes {
     | '/portfolio/$portfolioId'
     | '/carteira/'
     | '/irpf/'
+    | '/portfolio/$portfolioId/operations'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -391,6 +402,7 @@ export interface FileRouteTypes {
     | '/portfolio/$portfolioId'
     | '/carteira'
     | '/irpf'
+    | '/portfolio/$portfolioId/operations'
   id:
     | '__root__'
     | '/'
@@ -426,6 +438,7 @@ export interface FileRouteTypes {
     | '/_authenticated/portfolio/$portfolioId'
     | '/_authenticated/carteira/'
     | '/_authenticated/irpf/'
+    | '/_authenticated/portfolio/$portfolioId/operations'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -681,6 +694,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCarteiraAnaliseRouteImport
       parentRoute: typeof AuthenticatedCarteiraRoute
     }
+    '/_authenticated/portfolio/$portfolioId/operations': {
+      id: '/_authenticated/portfolio/$portfolioId/operations'
+      path: '/operations'
+      fullPath: '/portfolio/$portfolioId/operations'
+      preLoaderRoute: typeof AuthenticatedPortfolioPortfolioIdOperationsRouteImport
+      parentRoute: typeof AuthenticatedPortfolioPortfolioIdRoute
+    }
   }
 }
 
@@ -716,12 +736,27 @@ const AuthenticatedCarteiraRouteWithChildren =
     AuthenticatedCarteiraRouteChildren,
   )
 
+interface AuthenticatedPortfolioPortfolioIdRouteChildren {
+  AuthenticatedPortfolioPortfolioIdOperationsRoute: typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
+}
+
+const AuthenticatedPortfolioPortfolioIdRouteChildren: AuthenticatedPortfolioPortfolioIdRouteChildren =
+  {
+    AuthenticatedPortfolioPortfolioIdOperationsRoute:
+      AuthenticatedPortfolioPortfolioIdOperationsRoute,
+  }
+
+const AuthenticatedPortfolioPortfolioIdRouteWithChildren =
+  AuthenticatedPortfolioPortfolioIdRoute._addFileChildren(
+    AuthenticatedPortfolioPortfolioIdRouteChildren,
+  )
+
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCarteiraRoute: typeof AuthenticatedCarteiraRouteWithChildren
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedMetasRoute: typeof AuthenticatedMetasRoute
   AuthenticatedProvisionadorRoute: typeof AuthenticatedProvisionadorRoute
-  AuthenticatedPortfolioPortfolioIdRoute: typeof AuthenticatedPortfolioPortfolioIdRoute
+  AuthenticatedPortfolioPortfolioIdRoute: typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
   AuthenticatedIrpfIndexRoute: typeof AuthenticatedIrpfIndexRoute
 }
 
@@ -731,7 +766,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedMetasRoute: AuthenticatedMetasRoute,
   AuthenticatedProvisionadorRoute: AuthenticatedProvisionadorRoute,
   AuthenticatedPortfolioPortfolioIdRoute:
-    AuthenticatedPortfolioPortfolioIdRoute,
+    AuthenticatedPortfolioPortfolioIdRouteWithChildren,
   AuthenticatedIrpfIndexRoute: AuthenticatedIrpfIndexRoute,
 }
 

@@ -17,6 +17,8 @@ import { Providers } from "@/presentation/app/root";
 import { SupabaseAuthService } from "@/integrations/supabase/auth-service";
 import { createPresentationDispatcher } from "@/integrations/dispatcher/presentation-dispatcher";
 import { SupabaseProjectionRepository } from "@/infrastructure/repositories/supabase-projection-repository";
+import { SupabasePortfolioRepository } from "@/infrastructure/repositories/supabase-portfolio-repository";
+import { InProcessEventPublisher } from "@/infrastructure/publishers/in-process-event-publisher";
 
 function NotFoundComponent() {
   return (
@@ -134,7 +136,11 @@ function RootComponent() {
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
 
-  const dispatcher = createPresentationDispatcher(new SupabaseProjectionRepository(supabase));
+  const dispatcher = createPresentationDispatcher({
+    projectionRepository: new SupabaseProjectionRepository(supabase),
+    portfolioRepository: new SupabasePortfolioRepository(supabase),
+    eventPublisher: new InProcessEventPublisher(),
+  });
 
   return (
     <Providers

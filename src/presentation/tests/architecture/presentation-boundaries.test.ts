@@ -141,9 +141,10 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
     );
     expect(portfolioPage, "PortfolioPage deve existir").toBeDefined();
     const text = portfolioPage!.getFullText();
-    expect(text.includes("usePortfolioQuery"), "PortfolioPage deve consumir usePortfolioQuery").toBe(
-      true,
-    );
+    expect(
+      text.includes("usePortfolioQuery"),
+      "PortfolioPage deve consumir usePortfolioQuery",
+    ).toBe(true);
     expect(
       text.match(
         /new (ConsultarPatrimonioService|ConsultarPosicaoService|ObterHistoricoPatrimonialService)/,
@@ -172,5 +173,53 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
       f.getFilePath().includes("presentation/integrations/dispatcher"),
     );
     expect(violating, "o dispatcher adapter não deve estar dentro de src/presentation").toEqual([]);
+  });
+
+  it("OperationPage compõe OperationForm/OperationHistory e não instancia Application Services", () => {
+    const operationPage = files.find((f) =>
+      f.getFilePath().endsWith("features/operations/components/OperationPage.tsx"),
+    );
+    expect(operationPage, "OperationPage deve existir").toBeDefined();
+    const text = operationPage!.getFullText();
+    expect(
+      text.includes("<OperationForm") && text.includes("<OperationHistory"),
+      "OperationPage deve compor OperationForm e OperationHistory",
+    ).toBe(true);
+    expect(
+      text.match(
+        /new (RegistrarOperacaoService|ConsultarPatrimonioService|ConsultarPosicaoService)/,
+      ),
+      "OperationPage não deve instanciar Application Services",
+    ).toBeNull();
+  });
+
+  it("feature operations não importa src/infrastructure nem src/integrations/supabase", () => {
+    const operationsFiles = files.filter((f) => f.getFilePath().includes("features/operations/"));
+    expect(operationsFiles.length).toBeGreaterThan(0);
+    for (const file of operationsFiles) {
+      const imports = getImports(file);
+      const violations = imports.filter(
+        (i) => i.startsWith("@/infrastructure") || i.startsWith("@/integrations/supabase"),
+      );
+      expect(
+        violations,
+        `${file.getFilePath()} não deve importar infraestrutura nem supabase`,
+      ).toEqual([]);
+    }
+  });
+
+  it("OperationForm valida via zod e não contém regra de negócio da Application Layer", () => {
+    const form = files.find((f) =>
+      f.getFilePath().endsWith("features/operations/components/OperationForm.tsx"),
+    );
+    expect(form, "OperationForm deve existir").toBeDefined();
+    const text = form!.getFullText();
+    expect(text.includes("zodResolver"), "OperationForm deve usar zod para validação de UI").toBe(
+      true,
+    );
+    expect(
+      text.includes("@/core/domain") || text.includes("@/infrastructure"),
+      "OperationForm não deve importar domínio nem infraestrutura",
+    ).toBe(false);
   });
 });

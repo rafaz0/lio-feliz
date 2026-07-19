@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.47
+**Versão da Documentação:** 1.48
 
 **Status:** APROVADO
 
@@ -405,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.48
+
+- **EWO-005 Slice 5 — Operations CLOSED.** Feature `operations` da Presentation Layer materializada: OperationPage, OperationForm (RHF+zod), OperationHistory, OperationTable, OperationFilters, OperationLoading, OperationEmpty, OperationError; hooks (useRegisterOperationMutation → `RegistrarOperacaoCommand`, useOperations estado client-side); ViewModels; `presentation-dispatcher.ts` registra `RegistrarOperacaoCommand` quando `portfolioRepository`+`eventPublisher` injetados; `__root.tsx` injeta `SupabasePortfolioRepository`+`InProcessEventPublisher`; rota `/portfolio/:portfolioId/operations`. 20 testes novos (17 feature + 3 architecture R-10), 737 totais, zero regressões. Build verde (exit 0). PROJECT_STATUS v1.64.
 
 ## Versão 1.47
 
