@@ -133,6 +133,27 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 - [ ] Oportunidades Futuras
 - [ ] Registro em SYNC_HISTORY
 
+### GOV-M02 — Sincronização Git Obrigatória
+
+Checklist obrigatório no relatório final de toda atividade:
+
+- [ ] branch informada
+- [ ] HEAD registrado
+- [ ] hash do commit informado
+- [ ] push realizado com sucesso
+- [ ] origin sincronizada
+- [ ] Working Tree limpa
+
+Caso qualquer item não seja atendido, marcar como "Encerramento Operacional Pendente".
+
+### GOV-M04 — Pendências Metodológicas no Relatório
+
+- [ ] Todas as pendências do prompt foram listadas com status
+- [ ] Nenhuma pendência desapareceu sem registro
+- [ ] Para cada pendência: Implementada / Adiada / Rejeitada
+- [ ] Documentos alterados foram listados (quando aplicável)
+- [ ] Justificativa registrada para pendências não implementadas
+
 ## Qualidade dos Prompts para o Agente Executor (SYNC-001)
 
 O Agente Executor não possui acesso às conversas do ChatGPT. Ele executa exclusivamente o que está descrito no prompt recebido.

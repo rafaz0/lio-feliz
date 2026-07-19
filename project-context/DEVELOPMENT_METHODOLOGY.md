@@ -781,6 +781,74 @@ Propostas de novos documentos devem ser avaliadas contra estes princípios antes
 
 ---
 
+## GOV-M01 — Fluxo Operacional Oficial
+
+Ver `PROJECT_BOOTSTRAP.md` — seção "Divisão de Responsabilidades ChatGPT / OpenCode (GOV-M01)".
+
+Fluxo oficial: **OpenCode → Relatório → Auditoria ChatGPT → Novo Prompt**.
+
+OpenCode é responsável por: elaboração de PI, ER, EWO, implementação, execução de testes, sincronização Git, emissão do relatório operacional.
+
+ChatGPT é responsável por: auditoria técnica, validação arquitetural, validação metodológica, aprovação para a próxima etapa.
+
+---
+
+## GOV-M02 — Sincronização Git Obrigatória
+
+Nenhuma atividade poderá ser considerada concluída sem:
+
+- git add
+- git commit
+- git push
+
+O relatório final deve conter obrigatoriamente: branch, HEAD, hash do commit, confirmação explícita do push, confirmação de sincronização com origin, Working Tree limpa.
+
+Caso qualquer um desses itens não seja atendido, o relatório deve marcar a atividade como "Encerramento Operacional Pendente".
+
+Ver checklist completo em `AI_OPERATION_CHECKLIST.md` (seção GOV-M02).
+
+---
+
+## GOV-M03 — Melhoria Contínua em Auditorias
+
+Toda melhoria identificada durante auditorias deverá ser:
+
+- avaliada;
+- implementada quando compatível;
+- registrada oficialmente.
+
+Caso não possa ser implementada: registrar justificativa, registrar motivo técnico, manter como pendência ativa.
+
+Ver detalhes em `PROJECT_BOOTSTRAP.md` (seção GOV-M03 / GOV-015).
+
+---
+
+## GOV-M04 — Template de Pendências Metodológicas
+
+Todo relatório do OpenCode deve conter a seção "Pendências Metodológicas" informando para cada pendência do prompt:
+
+- status (Implementada / Adiada / Rejeitada);
+- documentos alterados;
+- justificativa (se não implementada).
+
+Nenhuma pendência pode desaparecer sem registro.
+
+---
+
+## GOV-M05 — Política para Pendências Metodológicas
+
+Pendências metodológicas nunca poderão ser classificadas como "opcionais".
+
+Toda pendência receberá exatamente um destes estados:
+
+- **Implementada** — resolvida e sincronizada;
+- **Adiada** — com justificativa técnica e pendência mantida como ativa;
+- **Rejeitada** — com fundamentação técnica explícita.
+
+Nenhuma pendência pode ser omitida ou ignorada.
+
+---
+
 # 10. Fluxo de Engenharia (PI → EWO → ER)
 
 ### 10.1 Engineering Specification (PI)

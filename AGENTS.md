@@ -258,27 +258,34 @@ stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us |
 O OpenCode possui agentes especializados para cada fase do desenvolvimento.
 Use **@** seguido do nome do agente para invocá-los.
 
-## Divisão de Responsabilidades
+## Divisão de Responsabilidades (GOV-M01)
 
-| Papel                                          | Ferramenta | Responsabilidade                                                                                                                                                                              |
-| ---------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Arquiteto / Revisor / Auditor / Otimizador** | ChatGPT    | Planejamento, definição de diretrizes, Engineering Review, auditoria de governança, **identificação e incorporação contínua de melhorias (GOV-015)**, planejamento da próxima etapa (GOV-018) |
-| **Executor**                                   | OpenCode   | Implementação de código, testes, build, lint, commit, push, relatórios, **execução de melhorias incorporadas no prompt (GOV-015)**, Engineering Closure (GOV-018)                             |
+| Papel                                          | Ferramenta | Responsabilidade                                                                                                                                                                                                                                                                                         |
+| ---------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Arquiteto / Revisor / Auditor / Otimizador** | ChatGPT    | Auditoria técnica, validação arquitetural, validação metodológica, aprovação para a próxima etapa, **identificação e incorporação contínua de melhorias (GOV-M03/GOV-015)**, planejamento da próxima etapa (GOV-018)                                                                                      |
+| **Executor**                                   | OpenCode   | Elaboração de PI, ER, EWO, implementação de código, testes, build, lint, commit, push, relatórios, **execução de melhorias incorporadas no prompt (GOV-M03/GOV-015)**, Engineering Closure (GOV-018), emissão do relatório operacional com Pendências Metodológicas (GOV-M04), Sincronização Git (GOV-M02) |
 
-## Pipeline Contínuo (GOV-018)
+## Pipeline Contínuo (GOV-M01 / GOV-018)
 
-O fluxo entre ChatGPT e OpenCode é automático, sem confirmações intermediárias:
+O fluxo oficial entre ChatGPT e OpenCode:
 
 ```
-Planejamento (ChatGPT)
-    → Implementação + Relatório (OpenCode)
-    → Engineering Review (ChatGPT)
-    → Engineering Closure + Relatório (OpenCode)
-    → Planejamento próxima Slice (ChatGPT)
-    → ...
+OpenCode
+    ↓
+Relatório (branch, HEAD, hash, push, Working Tree limpa)
+    ↓
+Auditoria ChatGPT (validação técnica, arquitetural, metodológica)
+    ↓
+Aprovação para próxima etapa
+    ↓
+Novo Prompt (ChatGPT → OpenCode)
 ```
 
 Interrupção apenas para: bloqueador técnico, dúvida arquitetural, documentação insuficiente, violação de PI/EWO/Core Foundation ou conflito metodológico.
+
+## Sincronização Git Obrigatória (GOV-M02)
+
+Nenhuma atividade pode ser considerada concluída sem git add, git commit, git push. Relatório final deve conter: branch, HEAD, hash do commit, confirmação do push, origin sincronizada, Working Tree limpa.
 
 ---
 
