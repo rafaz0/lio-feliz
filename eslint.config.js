@@ -36,5 +36,29 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    files: ["src/presentation/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "server-only",
+              message:
+                "TanStack Start does not use the Next.js `server-only` package. Rename the module to `*.server.ts` or mark it with `@tanstack/react-start/server-only`.",
+            },
+          ],
+          patterns: [
+            {
+              group: ["@/core/domain*", "@/infrastructure*", "@/integrations/supabase*"],
+              message:
+                "A Presentation Layer (src/presentation) NÃO pode importar diretamente domínio, infraestrutura ou o cliente Supabase. Acesse a Application Layer exclusivamente via IDispatcher (useDispatcher).",
+            },
+          ],
+        },
+      ],
+    },
+  },
   eslintPluginPrettier,
 );

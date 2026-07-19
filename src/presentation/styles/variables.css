@@ -1,0 +1,6 @@
+@import "../../../styles.css";
+
+:root {
+  --presentation-gap: 1rem;
+  --presentation-radius: var(--radius);
+}

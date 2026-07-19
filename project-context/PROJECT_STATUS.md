@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.58
+**Versão:** 1.59
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Aprovada (v1.0) |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slice 1 Foundation CLOSED |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 
 ---
@@ -149,6 +149,7 @@ ADR-008: Backlog Governance
 
 | Data       | Evento                                                                                                                                                                                                                                                                                                                                                               |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 19/07/2026 | **EWO-005 Slice 1 — Foundation CLOSED.** Infraestrutura da Presentation Layer materializada: estrutura de diretórios Feature-First completa (`src/presentation/`), 5 Providers (Query, Dispatcher, Theme, Auth, Tooltip), Dispatcher Context + `useDispatcher`, QueryClient configurado, AppLayout/AuthLayout, ThemeProvider (dark/light), shared (components/hooks/utils/types/constants), `Providers` composition root. Architecture Guard: ESLint `no-restricted-imports` bloqueando `@/core/domain`, `@/infrastructure`, `@/integrations/supabase` na presentation; Architecture Tests R-10 (6 testes ts-morph). 15 testes novos, 645 totais, zero regressões. Build verde. |
 | 19/07/2026 | **EWO-005 v1.0 (Aprovada) — Engineering Work Order da Presentation Layer.** Plano de execução incremental com 13 Slices (Foundation, Autenticação, Dashboard, Carteira, Movimentações, Proventos, Histórico/Rentabilidade, Rebalanceamento, IR, Configurações, Sincronização, Relatórios, Engineering Closure). Baseado em PI-007 v1.2 Approved e ER-007 v1.0 Approved. Inclui plano de testes (unitário, componente, integração, arquitetura, end-to-end), 7 riscos mapeados com mitigações, e procedimento de rollback reversível. Arquivo: `architecture-lab/EWO-005.md`. Aguarda ChatGPT auditoria antes de iniciar Slice 1. |
 | 19/07/2026 | **EWO_EXECUTION_STANDARD v1.0 — Padrão de Execução de EWOs consolidado.** Baseado na experiência das EWO-002, EWO-003 e EWO-004, define princípios (incremental,Slice pequena,testável), fluxo oficial (PI→ER→EWO→Slice→Auditoria→Engineering Closure→GOV-M01-M06), estrutura de EWO, definição de Slice, critérios de entrada/saída, relatório oficial, auditoria da slice, engineering closure, sincronização documental. Documento operacional permanente. |
 | 19/07/2026 | **ER-007 v1.0 — PI-007 APROVADA para EWO-005.** 15 critérios auditados, 4 NCs documentais baixas (O1–O4), 0 NCs arquiteturais, 0 NCs metodológicas. Veredito: APPROVED. PI-007 v1.2 promovida a APPROVED. Recomendações: 4 Obrigatórias, 6 Recomendadas, 3 Opcionais. Todas com destino explícito. Commit: `a5e2915`.                                                                                                           |

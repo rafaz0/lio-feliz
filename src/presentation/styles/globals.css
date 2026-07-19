@@ -1,0 +1,7 @@
+@import "./variables.css";
+
+@layer base {
+  .presentation-surface {
+    background-color: var(--color-surface);
+  }
+}
