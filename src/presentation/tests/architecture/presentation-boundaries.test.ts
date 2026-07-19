@@ -357,4 +357,46 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
       "RebalancingPage não deve importar domínio nem infraestrutura",
     ).toBe(false);
   });
+
+  it("TaxPage usa useTaxReportQuery e não instancia Application Services", () => {
+    const taxPage = files.find((f) =>
+      f.getFilePath().endsWith("features/tax/components/TaxPage.tsx"),
+    );
+    expect(taxPage, "TaxPage deve existir").toBeDefined();
+    const text = taxPage!.getFullText();
+    expect(text.includes("useTaxReportQuery"), "TaxPage deve consumir useTaxReportQuery").toBe(
+      true,
+    );
+    expect(
+      text.match(
+        /new (GerarRelatorioFiscalService|ConsultarPatrimonioService|ConsultarPosicaoService)/,
+      ),
+      "TaxPage não deve instanciar Application Services",
+    ).toBeNull();
+  });
+
+  it("feature tax não importa src/infrastructure nem src/integrations/supabase", () => {
+    const taxFiles = files.filter((f) => f.getFilePath().includes("features/tax/"));
+    expect(taxFiles.length).toBeGreaterThan(0);
+    for (const file of taxFiles) {
+      const imports = getImports(file);
+      const violations = imports.filter(
+        (i) => i.startsWith("@/infrastructure") || i.startsWith("@/integrations/supabase"),
+      );
+      expect(
+        violations,
+        `${file.getFilePath()} não deve importar infraestrutura nem supabase`,
+      ).toEqual([]);
+    }
+  });
+
+  it("TaxPage não contém regras de negócio da Application Layer", () => {
+    const page = files.find((f) => f.getFilePath().endsWith("features/tax/components/TaxPage.tsx"));
+    expect(page, "TaxPage deve existir").toBeDefined();
+    const text = page!.getFullText();
+    expect(
+      text.includes("@/core/domain") || text.includes("@/infrastructure"),
+      "TaxPage não deve importar domínio nem infraestrutura",
+    ).toBe(false);
+  });
 });

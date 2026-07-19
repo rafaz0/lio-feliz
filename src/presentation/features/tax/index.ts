@@ -1,1 +1,13 @@
-// Estrutura de feature reservada para implementa��o nas Slices subsequentes da EWO-005.
+export { TaxPage } from "./components/TaxPage";
+export { TaxSummary } from "./components/TaxSummary";
+export { TaxReportCard } from "./components/TaxReportCard";
+export { TaxYearSelector } from "./components/TaxYearSelector";
+export { TaxFilters } from "./components/TaxFilters";
+export { TaxTable } from "./components/TaxTable";
+export { TaxExportPanel } from "./components/TaxExportPanel";
+export { TaxLoading } from "./components/TaxLoading";
+export { TaxEmpty } from "./components/TaxEmpty";
+export { TaxError } from "./components/TaxError";
+export { useTaxReportQuery } from "./hooks/use-tax-report-query";
+export { TAX_QUERY_KEYS } from "./queries";
+export * from "./types/tax.view-model";

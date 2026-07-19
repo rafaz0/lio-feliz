@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.51
+**Versão da Documentação:** 1.52
 
 **Status:** APROVADO
 
@@ -405,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.52
+
+- **EWO-005 Slice 9 — Gestão Fiscal (IR) CLOSED.** Feature `tax` da Presentation Layer materializada: TaxPage, TaxSummary, TaxReportCard, TaxYearSelector, TaxFilters, TaxTable, TaxExportPanel, TaxLoading, TaxEmpty, TaxError; hook `useTaxReportQuery` (→ `GerarRelatorioFiscalQuery`); `presentation-dispatcher.ts` registra `GerarRelatorioFiscalQuery` via `GerarRelatorioFiscalService` (consome `IProjectionRepository`); rota `/portfolio/:portfolioId/tax`. 24 testes novos (21 feature + 3 architecture R-10), 830 totais, zero regressões. Build verde (exit 0). PROJECT_STATUS v1.68.
 
 ## Versão 1.51
 

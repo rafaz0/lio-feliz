@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.67
+**Versão:** 1.68
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-8 CLOSED (Slice 8 aguarda auditoria ChatGPT) |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-9 CLOSED (Slice 9 aguarda auditoria ChatGPT) |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 | PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.68
+
+**EWO-005 Slice 9 — Gestão Fiscal (IR) CLOSED.** Feature `tax` materializada na Presentation Layer: `TaxPage`, `TaxSummary`, `TaxReportCard`, `TaxYearSelector`, `TaxFilters`, `TaxTable`, `TaxExportPanel`, `TaxLoading`, `TaxEmpty`, `TaxError`. ViewModels `TaxSummaryViewModel`/`TaxReportViewModel`/`TaxEntryViewModel`/`TaxFiltersViewModel` com mappers puros (`toTaxReportViewModel`, `toTaxSummaryViewModel`, `toTaxEntryViewModel`, `filterTaxEntries`, `formatBRL`). Hook `useTaxReportQuery` (TanStack Query + `useDispatcher` → `GerarRelatorioFiscalQuery`). Composition Root: `presentation-dispatcher.ts` registra `GerarRelatorioFiscalQuery` via `GerarRelatorioFiscalService` (já existente na Application Layer, consome `IProjectionRepository`). Rota `/portfolio/:portfolioId/tax`. 24 testes novos (21 feature + 3 architecture R-10 estendido para tax). 830 testes totais, zero regressões. Build verde (exit 0). ESLint: 0 erros nos arquivos da Slice. Typecheck: 0 erros nos arquivos da Slice (débito técnico pré-existente em rotas legadas e camadas Core/Application permanece fora de escopo). Aguarda auditoria ChatGPT antes da Slice 10.
 
 ### Versão 1.67
 

@@ -13,12 +13,14 @@ import { RegistrarOperacaoService } from "@/application/services/registrar-opera
 import { AcompanharProventosService } from "@/application/services/acompanhar-proventos-service";
 import { ConsultarRentabilidadeService } from "@/application/services/consultar-rentabilidade-service";
 import { CalcularRebalanceamentoService } from "@/application/services/calcular-rebalanceamento-service";
+import { GerarRelatorioFiscalService } from "@/application/services/gerar-relatorio-fiscal-service";
 import type { ObterPatrimonioQuery } from "@/application/queries/obter-patrimonio";
 import type { ObterHistoricoPatrimonialQuery } from "@/application/queries/obter-historico-patrimonial";
 import type { ConsultarPosicaoQuery } from "@/application/queries/consultar-posicao";
 import type { ObterProventosQuery } from "@/application/queries/obter-proventos";
 import type { ConsultarRentabilidadeQuery } from "@/application/queries/consultar-rentabilidade";
 import type { CalcularRebalanceamentoQuery } from "@/application/queries/calcular-rebalanceamento";
+import type { GerarRelatorioFiscalQuery } from "@/application/queries/gerar-relatorio-fiscal";
 import type { RegistrarOperacaoCommand } from "@/application/commands/registrar-operacao";
 
 interface PresentationDispatcherDeps {
@@ -67,12 +69,17 @@ export function createPresentationDispatcher({
     ),
   );
 
+  dispatcher.RegisterQuery("GerarRelatorioFiscalQuery", (query) =>
+    new GerarRelatorioFiscalService(projectionRepository).Execute(
+      query as GerarRelatorioFiscalQuery,
+    ),
+  );
+
   if (configurationRepository) {
     dispatcher.RegisterQuery("CalcularRebalanceamentoQuery", (query) =>
-      new CalcularRebalanceamentoService(
-        projectionRepository,
-        configurationRepository,
-      ).Execute(query as CalcularRebalanceamentoQuery),
+      new CalcularRebalanceamentoService(projectionRepository, configurationRepository).Execute(
+        query as CalcularRebalanceamentoQuery,
+      ),
     );
   }
 
