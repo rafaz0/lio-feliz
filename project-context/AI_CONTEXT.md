@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.14
+**Versão:** 1.15
 
 **Status:** APROVADO
 
@@ -44,6 +44,10 @@ Engineering N2 — EWO-003 CONCLUÍDA. Próxima etapa: Infrastructure Layer (EWO
 ---
 
 # Histórico
+
+### Versão 1.15
+
+GOV-M06 — Baseline Lock. Baseline Congelada após Gate de Entrada. PI, ER, EWO congelados durante EWO ativa. Fluxo oficial atualizado. Projeto apto para EWO-004.
 
 ### Versão 1.14
 

@@ -270,7 +270,17 @@ Use **@** seguido do nome do agente para invocá-los.
 O fluxo oficial entre ChatGPT e OpenCode:
 
 ```
-OpenCode
+PI
+    ↓
+ER
+    ↓
+EWO
+    ↓
+Gate de Entrada (auditoria de conformidade)
+    ↓
+Baseline Lock (GOV-M06) — PI, ER, EWO congelados
+    ↓
+OpenCode (implementação)
     ↓
 Relatório (branch, HEAD, hash, push, Working Tree limpa)
     ↓

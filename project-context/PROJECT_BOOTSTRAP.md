@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.53
+**Versão:** 2.54
 
 **Status:** APROVADO
 
@@ -458,6 +458,42 @@ Toda pendência metodológica receberá exatamente um destes estados:
 - **Rejeitada** — analisada e rejeitada, com fundamentação técnica explícita registrada no relatório.
 
 Nenhuma pendência metodológica pode ser omitida ou ignorada.
+
+---
+
+### Baseline Lock (GOV-M06)
+
+Após a conclusão do **Gate de Entrada** de uma EWO, considera-se criada uma **Baseline Congelada** para aquela fase de implementação.
+
+A baseline compreende: PI, ER e EWO correspondentes. A partir desse momento, esses documentos tornam-se referência oficial da implementação e entram em regime de congelamento.
+
+#### Regras
+
+Durante uma EWO ativa:
+
+- PI permanece congelada — nenhuma alteração arquitetural permitida.
+- ER permanece congelada — nenhuma alteração de conteúdo permitida.
+- EWO permanece congelada — nenhuma alteração de escopo permitida.
+
+São permitidas apenas:
+
+- correções ortográficas;
+- correções de formatação;
+- ajustes de referências cruzadas;
+- atualização de status;
+- registro de versões;
+- registro do encerramento da EWO.
+
+#### Alterações Arquiteturais
+
+Caso seja descoberta uma necessidade arquitetural durante a implementação:
+
+1. Interromper a alteração direta dos documentos congelados.
+2. Registrar a necessidade como NC ou oportunidade no sprint report.
+3. Realizar nova avaliação arquitetural (PI revisada ou nova PI).
+4. Produzir revisão documental apropriada antes da implementação da mudança.
+
+A arquitetura aprovada nunca deve ser modificada silenciosamente.
 
 ---
 
@@ -1356,6 +1392,10 @@ Engineering Review (ER) — Valida a arquitetura (quando aplicável)
         ↓
 Engineering Wave (EWO) — Materializa a arquitetura em Slices
         ↓
+Gate de Entrada — Auditoria de conformidade (GOV-M01)
+        ↓
+Baseline Lock (GOV-M06) — PI, ER, EWO congelados
+        ↓
 Implementação das Slices
         ↓
 Validação (Build + Lint + Testes)
@@ -1363,6 +1403,10 @@ Validação (Build + Lint + Testes)
 Commit + Push
         ↓
 Sprint Report
+        ↓
+Engineering Closure — Slice concluída
+        ↓
+Gate de Encerramento — Auditoria final
         ↓
 Governança (GOV) — Se houver evolução metodológica
         ↓
@@ -1689,6 +1733,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.54
+
+**GOV-M06 — Baseline Lock.** Baseline Congelada após Gate de Entrada (PI, ER, EWO). Regras de congelamento documentadas. Fluxo oficial atualizado com Gate de Entrada, Baseline Lock, Engineering Closure e Gate de Encerramento.
 
 ## v2.53
 

@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.51
+**Versão:** 1.52
 
 **Status:** APROVADO
 
@@ -132,6 +132,7 @@ ADR-008: Backlog Governance
 
 | Data       | Evento                                                                                                                                                                                                                                                                                                                                                               |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 18/07/2026 | **GOV-M06 — Baseline Lock.** Baseline Congelada após Gate de Entrada. PI, ER, EWO congelados durante EWO ativa. Fluxo oficial atualizado. Commits: `ef681dc`.                                                                                                                                                                                                         |
 | 18/07/2026 | **GOV-M01 a GOV-M05 — Sprint Metodológica.** Fluxo operacional oficial. Git sync obrigatório. Melhoria contínua. Template de pendências. Política de classificação. Commits: `8c624bf`.                                                                                                                                                                                |
 | 18/07/2026 | **EWO-003 CONCLUÍDA** — Engineering Closure final. 8/8 Slices. 528 testes. 14 Application Services. 9 Ports. 15 DTOs. 6 Application Errors. 3 Domain Event Handlers. Application Layer completa. Commit: `fc852cf`.                                                                                                                                                   |
 | 18/07/2026 | **PI-005 COMPLETED** — Application Layer do Lio Feliz. Ciclo de vida: Approved → Implementation → Completed.                                                                                                                                                                                          |

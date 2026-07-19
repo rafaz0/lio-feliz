@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.42
+**Versão:** 1.43
 
 **Status:** APROVADO
 
@@ -152,6 +152,17 @@ Caso qualquer item não seja atendido, marcar como "Encerramento Operacional Pen
 - [ ] Nenhuma pendência desapareceu sem registro
 - [ ] Para cada pendência: Implementada / Adiada / Rejeitada
 - [ ] Documentos alterados foram listados (quando aplicável)
+
+### GOV-M06 — Baseline Lock
+
+- [ ] O Gate de Entrada foi concluído antes da implementação?
+- [ ] PI, ER e EWO estão em regime de congelamento?
+- [ ] Durante a EWO ativa, alguma alteração arquitetural foi feita diretamente nos documentos congelados?
+  - Se SIM → interromper: a alteração deve passar por nova avaliação arquitetural
+- [ ] Alterações planejadas se limitam a: ortografia, formatação, referências cruzadas, status, versões, encerramento?
+- [ ] Se houve necessidade arquitetural descoberta: foi registrada como NC/oportunidade e encaminhada para avaliação?
+- [ ] A arquitetura aprovada foi modificada silenciosamente?
+  - Se SIM → NC grave: reverter alteração e reportar
 - [ ] Justificativa registrada para pendências não implementadas
 
 ## Qualidade dos Prompts para o Agente Executor (SYNC-001)
@@ -407,6 +418,10 @@ Seção obrigatória ao final de toda Engineering Review:
 ---
 
 # Histórico
+
+### Versão 1.43
+
+GOV-M06 — Baseline Lock. Checklist de verificação de congelamento de PI, ER e EWO durante EWO ativa. Compatibilidade com PROJECT_BOOTSTRAP v2.54.
 
 ### Versão 1.42
 

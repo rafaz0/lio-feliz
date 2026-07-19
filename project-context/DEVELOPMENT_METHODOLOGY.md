@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.23
+**Versão:** 2.24
 
 **Status:** APROVADO
 
@@ -849,6 +849,76 @@ Nenhuma pendência pode ser omitida ou ignorada.
 
 ---
 
+## GOV-M06 — Baseline Lock
+
+### Objetivo
+
+Após a conclusão do Gate de Entrada de uma EWO, considera-se criada uma **Baseline Congelada** para aquela fase de implementação.
+
+Essa baseline compreende:
+
+- PI correspondente;
+- ER correspondente;
+- EWO correspondente.
+
+A partir desse momento, esses documentos tornam-se referência oficial da implementação.
+
+### Regras
+
+Durante uma EWO ativa:
+
+- PI permanece congelada.
+- ER permanece congelada.
+- EWO permanece congelada.
+
+Não devem ocorrer alterações de conteúdo arquitetural durante a implementação.
+
+São permitidas apenas:
+
+- correções ortográficas;
+- correções de formatação;
+- ajustes de referências cruzadas;
+- atualização de status;
+- registro de versões;
+- registro do encerramento da EWO.
+
+### Alterações Arquiteturais
+
+Caso seja descoberta uma necessidade arquitetural durante a implementação:
+
+- interromper a alteração direta dos documentos congelados;
+- registrar a necessidade como NC ou oportunidade;
+- realizar nova avaliação arquitetural;
+- produzir revisão documental apropriada antes da implementação da mudança.
+
+A arquitetura aprovada nunca deve ser modificada silenciosamente.
+
+### Fluxo Oficial Atualizado
+
+```
+PI
+↓
+ER
+↓
+EWO
+↓
+Gate de Entrada
+↓
+Baseline Lock
+↓
+Implementação
+↓
+Engineering Closure
+↓
+Gate de Encerramento
+↓
+Próxima EWO
+```
+
+Ver detalhes em `PROJECT_BOOTSTRAP.md` (seção GOV-M06).
+
+---
+
 # 10. Fluxo de Engenharia (PI → EWO → ER)
 
 ### 10.1 Engineering Specification (PI)
@@ -1208,6 +1278,10 @@ A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto 
 ---
 
 # 14. Histórico
+
+### Versão 2.24
+
+GOV-M06 — Baseline Lock. Baseline Congelada após Gate de Entrada. PI, ER, EWO congelados durante EWO ativa. Fluxo oficial atualizado.
 
 ### Versão 2.23
 
