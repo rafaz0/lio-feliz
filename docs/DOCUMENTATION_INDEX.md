@@ -294,6 +294,12 @@ Identidade oficial do workspace. Sua existência é validada pelo Workspace Guar
 
 ---
 
+📄 `project-context/EWO_EXECUTION_STANDARD.md`
+
+Padrão oficial de execução de Engineering Work Orders. Consolida a experiência de EWO-002 (Domínio Patrimonial — 9 Slices, 362 testes), EWO-003 (Application Layer — 8 Slices, 528 testes) e EWO-004 (Infrastructure Layer — 7 Slices, 630 testes). Define: princípios, fluxo oficial, estrutura de EWO, definição de Slice, critérios de entrada/saída, relatório de Slice, auditoria, Engineering Closure, sincronização documental e lições aprendidas.
+
+---
+
 # 5. Decisões Arquiteturais
 
 ✅ 18_ARCHITECTURAL_DECISIONS/
