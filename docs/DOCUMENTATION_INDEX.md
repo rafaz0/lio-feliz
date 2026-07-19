@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.48
+**Versão da Documentação:** 1.49
 
 **Status:** APROVADO
 
@@ -405,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.49
+
+- **EWO-005 Slice 6 — Proventos CLOSED.** Feature `dividends` da Presentation Layer materializada: DividendsPage, DividendsSummary, DividendsTable, DividendCard, DividendFilters, DividendDetails, DividendsLoading, DividendsEmpty, DividendsError; hook `useDividendsQuery` (TanStack Query + `useDispatcher` → `ObterProventosQuery`); `presentation-dispatcher.ts` registra `ObterProventosQuery` via `AcompanharProventosService`; rota `/portfolio/:portfolioId/dividends`. 24 testes novos (21 feature + 3 architecture R-10), 761 totais, zero regressões. Build verde (exit 0). PROJECT_STATUS v1.65.
 
 ## Versão 1.48
 

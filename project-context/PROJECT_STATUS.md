@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.64
+**Versão:** 1.65
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-5 CLOSED (Slice 5 aguarda auditoria ChatGPT) |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-6 CLOSED (Slice 6 aguarda auditoria ChatGPT) |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 | PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.65
+
+**EWO-005 Slice 6 — Proventos CLOSED.** Feature `dividends` materializada na Presentation Layer: `DividendsPage`, `DividendsSummary`, `DividendsTable`, `DividendCard`, `DividendFilters`, `DividendDetails`, `DividendsLoading`, `DividendsEmpty`, `DividendsError`. ViewModels `DividendViewModel`/`DividendsSummaryViewModel`/`DividendFiltersViewModel` com mappers puros (`toDividendViewModel`, `toDividendViewModels`, `toDividendsSummaryViewModel`, `filterDividends`, `tipoToLabel`). Hook `useDividendsQuery` (TanStack Query + `useDispatcher` → `ObterProventosQuery`). Composition Root: `presentation-dispatcher.ts` registra `ObterProventosQuery` via `AcompanharProventosService` (já existente na Application Layer, consumindo `IProjectionRepository`). Rota `/portfolio/:portfolioId/dividends`. 24 testes novos (21 feature + 3 architecture R-10 estendido para dividends). 761 testes totais, zero regressões. Build verde (exit 0). ESLint: 0 erros nos arquivos da Slice. Typecheck: 0 erros nos arquivos da Slice (débito técnico pré-existente em rotas legadas e camadas Core/Application permanece fora de escopo). Aguarda auditoria ChatGPT antes da Slice 7.
 
 ### Versão 1.64
 

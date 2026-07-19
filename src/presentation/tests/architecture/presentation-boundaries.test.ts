@@ -222,4 +222,49 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
       "OperationForm não deve importar domínio nem infraestrutura",
     ).toBe(false);
   });
+
+  it("DividendsPage usa useDividendsQuery e não instancia Application Services", () => {
+    const dividendsPage = files.find((f) =>
+      f.getFilePath().endsWith("features/dividends/components/DividendsPage.tsx"),
+    );
+    expect(dividendsPage, "DividendsPage deve existir").toBeDefined();
+    const text = dividendsPage!.getFullText();
+    expect(
+      text.includes("useDividendsQuery"),
+      "DividendsPage deve consumir useDividendsQuery",
+    ).toBe(true);
+    expect(
+      text.match(
+        /new (AcompanharProventosService|ConsultarPatrimonioService|ConsultarPosicaoService)/,
+      ),
+      "DividendsPage não deve instanciar Application Services",
+    ).toBeNull();
+  });
+
+  it("feature dividends não importa src/infrastructure nem src/integrations/supabase", () => {
+    const dividendsFiles = files.filter((f) => f.getFilePath().includes("features/dividends/"));
+    expect(dividendsFiles.length).toBeGreaterThan(0);
+    for (const file of dividendsFiles) {
+      const imports = getImports(file);
+      const violations = imports.filter(
+        (i) => i.startsWith("@/infrastructure") || i.startsWith("@/integrations/supabase"),
+      );
+      expect(
+        violations,
+        `${file.getFilePath()} não deve importar infraestrutura nem supabase`,
+      ).toEqual([]);
+    }
+  });
+
+  it("DividendsPage não contém regras de negócio da Application Layer", () => {
+    const page = files.find((f) =>
+      f.getFilePath().endsWith("features/dividends/components/DividendsPage.tsx"),
+    );
+    expect(page, "DividendsPage deve existir").toBeDefined();
+    const text = page!.getFullText();
+    expect(
+      text.includes("@/core/domain") || text.includes("@/infrastructure"),
+      "DividendsPage não deve importar domínio nem infraestrutura",
+    ).toBe(false);
+  });
 });

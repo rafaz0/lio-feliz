@@ -1,13 +1,19 @@
 import { DispatcherImpl } from "@/application/dispatcher-impl";
 import type { IDispatcher } from "@/application/dispatcher";
-import type { IProjectionRepository, IPortfolioRepository, IDomainEventPublisher } from "@/application/ports";
+import type {
+  IProjectionRepository,
+  IPortfolioRepository,
+  IDomainEventPublisher,
+} from "@/application/ports";
 import { ConsultarPatrimonioService } from "@/application/services/consultar-patrimonio-service";
 import { ObterHistoricoPatrimonialService } from "@/application/services/obter-historico-patrimonial-service";
 import { ConsultarPosicaoService } from "@/application/services/consultar-posicao-service";
 import { RegistrarOperacaoService } from "@/application/services/registrar-operacao-service";
+import { AcompanharProventosService } from "@/application/services/acompanhar-proventos-service";
 import type { ObterPatrimonioQuery } from "@/application/queries/obter-patrimonio";
 import type { ObterHistoricoPatrimonialQuery } from "@/application/queries/obter-historico-patrimonial";
 import type { ConsultarPosicaoQuery } from "@/application/queries/consultar-posicao";
+import type { ObterProventosQuery } from "@/application/queries/obter-proventos";
 import type { RegistrarOperacaoCommand } from "@/application/commands/registrar-operacao";
 
 interface PresentationDispatcherDeps {
@@ -42,6 +48,10 @@ export function createPresentationDispatcher({
 
   dispatcher.RegisterQuery("ConsultarPosicaoQuery", (query) =>
     new ConsultarPosicaoService(projectionRepository).Execute(query as ConsultarPosicaoQuery),
+  );
+
+  dispatcher.RegisterQuery("ObterProventosQuery", (query) =>
+    new AcompanharProventosService(projectionRepository).Execute(query as ObterProventosQuery),
   );
 
   if (portfolioRepository && eventPublisher) {
