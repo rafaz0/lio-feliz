@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.55
+**Versão:** 2.56
 
 **Status:** APROVADO
 
@@ -70,7 +70,7 @@ PI-006 — Infrastructure Layer (COMPLETED). PI-005 — Application Layer (COMPL
 
 ## PS Atual
 
-PS#052 — Engineering Closure EWO-004 (ativo)
+PS#052 — Engineering Closure EWO-004 (concluído)
 
 ## Dashboard Executivo
 
@@ -82,10 +82,10 @@ Modo: Execução
 PS Atual: PS#052
 Marco: EWO-004 (Infrastructure Layer)
 
-🏛 Governanca    [█████████░░]  ~90%
-🏗 Arquitetura   [██████████]   ~95%
-⚙ Engineering   [██████████]   ~98%
-💻 Codigo        [██████████]   ~95%
+🏛 Governanca    [██████████]  100%
+🏗 Arquitetura   [██████████]  100%
+⚙ Engineering   [██████████]  100%
+💻 Codigo        [██████████]  100%
 ```
 
 > Fórmulas dos percentuais em `PROJECT_PROGRESS_PANEL.md`.
@@ -109,7 +109,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-EWO-003 CONCLUÍDA. A próxima etapa oficial é o planejamento da **Infrastructure Layer (EWO-004)** — implementação concreta dos Ports definidos na Application Layer com persistência (Supabase/PostgreSQL), provedores de dados externos (B3, Coingecko, Yahoo Finance) e adaptadores de API.
+EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: **Presentation Layer** ou nova EWO conforme roadmap estratégico.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -162,6 +162,54 @@ EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: Pr
 - EWO-004 concluído — 7 Slices, 630 testes, 10 Ports implementados, Infrastructure Layer completa
 - Conhecimento consolidado: KC-001 a KC-008 (registrados nas Engineering Reviews), KB-006, KB-008
 - Backlog estratégico com 4 BKs ativos (BK-005 a BK-008)
+
+---
+
+# Estado Arquitetural Atual
+
+## Arquitetura Base
+
+### ✅ Core Foundation
+**Status:** Implementada e congelada.
+
+### ✅ Domain Layer
+**Status:** Implementada e congelada.
+
+### ✅ Application Layer
+**Status:** Implementada e congelada.
+
+### ✅ Infrastructure Layer
+**Status:** Implementada e congelada.
+
+---
+
+## Estado Geral
+
+**Arquitetura Base:** 100% implementada.
+
+**Baseline:** Estável.
+
+**Nenhuma alteração arquitetural pendente.**
+
+---
+
+## Próxima Fase
+
+O projeto entra agora na fase de desenvolvimento funcional.
+
+As próximas PI/ER/EWO deverão priorizar funcionalidades de negócio, Presentation Layer, integrações produtivas e experiência do usuário.
+
+---
+
+## Regra Permanente
+
+As quatro camadas-base são consideradas arquitetura consolidada.
+
+Qualquer alteração arquitetural deverá seguir integralmente o fluxo oficial de engenharia:
+
+PI → ER → EWO → Baseline Lock.
+
+Nenhuma modificação direta é permitida.
 
 ---
 
@@ -1757,6 +1805,11 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.56
+
+**Consolidação Pós-EWO-004 — Estado Arquitetural Atual.**
+Nova seção permanente "Estado Arquitetural Atual" adicionada em PARTE A, resumindo as quatro camadas-base (Core Foundation, Domain, Application, Infrastructure) como 100% implementadas e congeladas. Baseline estável. Próxima fase: desenvolvimento funcional / Presentation Layer. Nenhuma regra metodológica alterada.
 
 ## v2.55
 
