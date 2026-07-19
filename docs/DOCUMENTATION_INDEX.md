@@ -214,6 +214,10 @@ Engineering Review da PI-006. v1.0 (Approved). Gap analysis completo, validaçã
 
 Engineering Work Order oficial da Implementação da Infrastructure Layer. Concluído — 7 Slices, 630 testes, 10+ Ports → 14+ Adapters, infraestrutura integrada, zero regressões.
 
+📄 EWO-005.md (architecture-lab)
+
+Engineering Work Order oficial da Implementação da Presentation Layer. Plano de execução incremental por Slices (Foundation, Autenticação, Dashboard, Portfolio, Operações, Importação, Performance, Rebalanceamento, IR, Configurações, Integração Geral, Engineering Closure). Baseado na PI-007 v1.2 Approved e ER-007 v1.0 Approved. **🟡 Aprovada — aguarda implementação das Slices.**
+
 ---
 
 📄 PI-007.md (architecture-lab)
