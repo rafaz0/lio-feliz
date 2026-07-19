@@ -2,13 +2,13 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.54
+**Versão:** 2.55
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 18/07/2026
+**Última atualização:** 19/07/2026
 
 ---
 
@@ -62,15 +62,15 @@ Execução
 
 ## Marco Atual
 
-EWO-003 — Application Layer (Concluído — 8 Slices, 528 testes)
+EWO-004 — Infrastructure Layer (Concluído — 7 Slices, 630 testes)
 
 ## PI Atual
 
-PI-005 — Application Layer (COMPLETED). PI-004 — Domínio Patrimonial (COMPLETED). Core API Frozen (7 componentes estáveis).
+PI-006 — Infrastructure Layer (COMPLETED). PI-005 — Application Layer (COMPLETED). PI-004 — Domínio Patrimonial (COMPLETED). Core API Frozen (7 componentes estáveis).
 
 ## PS Atual
 
-PS#051 — Engineering Closure EWO-003 (ativo)
+PS#052 — Engineering Closure EWO-004 (ativo)
 
 ## Dashboard Executivo
 
@@ -79,20 +79,20 @@ PS#051 — Engineering Closure EWO-003 (ativo)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#051
-Marco: EWO-003 (Application Layer)
+PS Atual: PS#052
+Marco: EWO-004 (Infrastructure Layer)
 
 🏛 Governanca    [█████████░░]  ~90%
-🏗 Arquitetura   [████████░░░]  ~85%
-⚙ Engineering   [██████████]   ~95%
-💻 Codigo        [████████░░]   ~80%
+🏗 Arquitetura   [██████████]   ~95%
+⚙ Engineering   [██████████]   ~98%
+💻 Codigo        [██████████]   ~95%
 ```
 
 > Fórmulas dos percentuais em `PROJECT_PROGRESS_PANEL.md`.
 
 ## Objetivos Ativos
 
-EWO-003 CONCLUÍDA. Próxima fase: Infrastructure Layer — implementação concreta dos Ports, persistência, APIs e integrações externas.
+EWO-004 CONCLUÍDA. Infrastructure Layer completa — 10 Ports implementados como adaptadores concretos. Próxima fase: Presentation Layer ou nova EWO.
 
 ## DEC Ativas
 
@@ -129,10 +129,11 @@ EWO-003 CONCLUÍDA. A próxima etapa oficial é o planejamento da **Infrastructu
 - **ER-005 aprovada** — Engineering Review da PI-005
 - **EWO-002 CONCLUÍDA** — Domínio Patrimonial implementado (9 Slices, 362 testes, 12/12 DAs, 11/13 Invariantes)
 - **EWO-003 CONCLUÍDA** — Application Layer implementada (8 Slices, 528 testes, 14 Services, 9 Ports, 15 DTOs)
+- **EWO-004 CONCLUÍDA** — Infrastructure Layer implementada (7 Slices, 630 testes, 10 Ports → 14+ Adapters)
 
 ### Próxima Frente de Engenharia
 
-A próxima etapa oficial é o planejamento da **Infrastructure Layer (EWO-004)** — implementação concreta dos Ports de repositório, gateways de dados externos e adaptadores de API.
+EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: Presentation Layer ou nova EWO conforme roadmap estratégico.
 
 ### Documentação Prevista
 
@@ -145,6 +146,9 @@ A próxima etapa oficial é o planejamento da **Infrastructure Layer (EWO-004)**
 | PI-005           | Application Layer                    | ✅ Concluída |
 | ER-005           | Engineering Review da PI-005         | ✅ Aprovada  |
 | EWO-003          | Implementação da Application Layer   | ✅ Concluída |
+| PI-006           | Infrastructure Layer                 | ✅ Concluída |
+| ER-006           | Engineering Review da PI-006         | ✅ Aprovada  |
+| EWO-004          | Implementação da Infrastructure Layer| ✅ Concluída |
 
 ### Observações Relevantes
 
@@ -155,6 +159,7 @@ A próxima etapa oficial é o planejamento da **Infrastructure Layer (EWO-004)**
 - **EWO-002 CONCLUÍDA** — 9 Slices, 362 testes, 12/12 DAs materializadas, 11/13 Invariantes validadas
 - **EWO-003 CONCLUÍDA** — 8 Slices, 528 testes, Application Layer completa
 - EWO-001 concluído — detalhes na seção abaixo
+- EWO-004 concluído — 7 Slices, 630 testes, 10 Ports implementados, Infrastructure Layer completa
 - Conhecimento consolidado: KC-001 a KC-008 (registrados nas Engineering Reviews), KB-006, KB-008
 - Backlog estratégico com 4 BKs ativos (BK-005 a BK-008)
 
@@ -1647,6 +1652,25 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 
 ---
 
+# EWO-004 — Detalhamento
+
+**Título:** Implementação da Infrastructure Layer
+**Status:** ✅ Concluída
+
+| Slice | Componentes | Testes | Status |
+|-------|------------|--------|--------|
+| S1 — Fakes + Estrutura | 10 Fakes, `src/infrastructure/` directories | — | ✅ CLOSED |
+| S2 — Repositories CRUD | SupabasePortfolioRepository, SupabaseAssetRepository, SupabaseConfigurationRepository | 15 | ✅ CLOSED |
+| S3 — Subscription + Projection | SupabaseSubscriptionRepository, SupabaseProjectionRepository | 13 | ✅ CLOSED |
+| S4 — UoW + Events | SupabaseUnitOfWork, InProcessEventPublisher | 22 | ✅ CLOSED |
+| S5 — Data Gateways | YahooFinanceGateway, CoingeckoGateway, ExchangeRateGateway, B3CsvGateway, DataGatewayFactory | 26 | ✅ CLOSED |
+| S6 — Notifications + Interpreter | InAppNotificationAdapter, EmailNotificationAdapter, ImportInterpreter | 17 | ✅ CLOSED |
+| S7 — Migration + Integration | Infrastructure integration tests | 9 | ✅ CLOSED |
+
+**Total: 7/7 Slices concluídas. 630 testes. Zero regressões. ✅ EWO-004 CONCLUÍDA**
+
+---
+
 # EWO-001 — Detalhamento
 
 **Título:** Implementação do Núcleo Arquitetural (Core Foundation + Modelo Canônico)
@@ -1733,6 +1757,11 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.55
+
+**EWO-004 CONCLUÍDA — Implementação da Infrastructure Layer.**
+7/7 Slices concluídas. 630 testes (66 arquivos). 10 Ports implementados como adaptadores concretos: 5 Supabase Repositories, 4 Data Gateways + Factory, Unit of Work, Event Publisher, 2 Notification Adapters, Import Interpreter, 10 Fakes. 9 testes de integração adicionados (S7). Zero regressões. Baseline preservado. Core Foundation e Application Layer inalteradas. Infrastructure Layer completa e validada.
 
 ## v2.54
 

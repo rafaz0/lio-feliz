@@ -2,13 +2,13 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.15
+**Versão:** 1.16
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 18/07/2026
+**Última atualização:** 19/07/2026
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-003 CONCLUÍDA. Próxima etapa: Infrastructure Layer (EWO-004).
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-Engineering N2 — EWO-003 CONCLUÍDA. Próxima etapa: Infrastructure Layer (EWO-004).
+Engineering N2 — EWO-004 CONCLUÍDA (Infrastructure Layer). Próxima etapa: Presentation Layer ou nova EWO.
 
 # Referências Obrigatórias
 
