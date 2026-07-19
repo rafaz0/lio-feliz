@@ -60,6 +60,31 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
     }
   });
 
+  it("nenhum arquivo da presentation instancia o adapter Supabase (AuthService deve ser injetado)", () => {
+    for (const file of files) {
+      const text = file.getFullText();
+      const violations = text.includes("new SupabaseAuthService");
+      expect(
+        violations,
+        `${file.getFilePath()} não deve instanciar SupabaseAuthService diretamente`,
+      ).toBe(false);
+    }
+  });
+
+  it("AuthProvider depende apenas da interface AuthService (port), não do Supabase", () => {
+    const authProvider = files.find((f) => f.getFilePath().endsWith("providers/AuthProvider.tsx"));
+    expect(authProvider, "AuthProvider deve existir").toBeDefined();
+    const text = authProvider!.getFullText();
+    expect(
+      text.includes("@/integrations/supabase"),
+      "AuthProvider não deve importar supabase",
+    ).toBe(false);
+    expect(
+      text.includes("AuthService"),
+      "AuthProvider deve referenciar a interface AuthService",
+    ).toBe(true);
+  });
+
   it("todos os imports proibidos estão ausentes (verificação agregada)", () => {
     const allViolations: string[] = [];
     for (const file of files) {

@@ -1,5 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
+import { AuthenticatedRoute } from "@/presentation/features/auth";
 
 function isLocalDev(): boolean {
   if (typeof window === "undefined") return false;
@@ -12,8 +13,16 @@ export const Route = createFileRoute("/_authenticated")({
   beforeLoad: async () => {
     if (isLocalDev()) return { user: { id: "dev-user-0000", email: "dev@localhost" } };
     const { data, error } = await supabase.auth.getUser();
-    if (error || !data.user) throw redirect({ to: "/auth" });
+    if (error || !data.user) throw redirect({ to: "/login" });
     return { user: data.user };
   },
-  component: () => <Outlet />,
+  component: AuthenticatedLayout,
 });
+
+function AuthenticatedLayout() {
+  return (
+    <AuthenticatedRoute>
+      <Outlet />
+    </AuthenticatedRoute>
+  );
+}

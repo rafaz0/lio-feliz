@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
@@ -13,7 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { Providers } from "@/presentation/app/root";
+import { SupabaseAuthService } from "@/integrations/supabase/auth-service";
 
 function NotFoundComponent() {
   return (
@@ -132,11 +133,13 @@ function RootComponent() {
   }, [router, queryClient]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider delayDuration={300}>
-        <Outlet />
-        <Toaster theme="dark" position="top-right" />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <Providers
+      queryClient={queryClient}
+      authService={new SupabaseAuthService()}
+      defaultTheme="dark"
+    >
+      <Outlet />
+      <Toaster theme="dark" position="top-right" />
+    </Providers>
   );
 }

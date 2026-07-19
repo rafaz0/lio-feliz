@@ -26,6 +26,9 @@ import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
 import { Route as AuthenticatedProvisionadorRouteImport } from './routes/_authenticated/provisionador'
 import { Route as AuthenticatedMetasRouteImport } from './routes/_authenticated/metas'
 import { Route as AuthenticatedCarteiraRouteImport } from './routes/_authenticated/carteira'
+import { Route as _authRegisterRouteImport } from './routes/__auth/register'
+import { Route as _authLoginRouteImport } from './routes/__auth/login'
+import { Route as _authForgotPasswordRouteImport } from './routes/__auth/forgot-password'
 import { Route as AuthenticatedIrpfIndexRouteImport } from './routes/_authenticated/irpf.index'
 import { Route as AuthenticatedCarteiraIndexRouteImport } from './routes/_authenticated/carteira.index'
 import { Route as AuthenticatedCarteiraRentabilidadeRouteImport } from './routes/_authenticated/carteira.rentabilidade'
@@ -123,6 +126,21 @@ const AuthenticatedCarteiraRoute = AuthenticatedCarteiraRouteImport.update({
   path: '/carteira',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const _authRegisterRoute = _authRegisterRouteImport.update({
+  id: '/__auth/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const _authLoginRoute = _authLoginRouteImport.update({
+  id: '/__auth/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const _authForgotPasswordRoute = _authForgotPasswordRouteImport.update({
+  id: '/__auth/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedIrpfIndexRoute = AuthenticatedIrpfIndexRouteImport.update({
   id: '/irpf/',
   path: '/irpf/',
@@ -200,6 +218,9 @@ export interface FileRoutesByFullPath {
   '/noticias': typeof NoticiasRoute
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
+  '/forgot-password': typeof _authForgotPasswordRoute
+  '/login': typeof _authLoginRoute
+  '/register': typeof _authRegisterRoute
   '/carteira': typeof AuthenticatedCarteiraRouteWithChildren
   '/metas': typeof AuthenticatedMetasRoute
   '/provisionador': typeof AuthenticatedProvisionadorRoute
@@ -229,6 +250,9 @@ export interface FileRoutesByTo {
   '/noticias': typeof NoticiasRoute
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
+  '/forgot-password': typeof _authForgotPasswordRoute
+  '/login': typeof _authLoginRoute
+  '/register': typeof _authRegisterRoute
   '/metas': typeof AuthenticatedMetasRoute
   '/provisionador': typeof AuthenticatedProvisionadorRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
@@ -259,6 +283,9 @@ export interface FileRoutesById {
   '/noticias': typeof NoticiasRoute
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
+  '/__auth/forgot-password': typeof _authForgotPasswordRoute
+  '/__auth/login': typeof _authLoginRoute
+  '/__auth/register': typeof _authRegisterRoute
   '/_authenticated/carteira': typeof AuthenticatedCarteiraRouteWithChildren
   '/_authenticated/metas': typeof AuthenticatedMetasRoute
   '/_authenticated/provisionador': typeof AuthenticatedProvisionadorRoute
@@ -290,6 +317,9 @@ export interface FileRouteTypes {
     | '/noticias'
     | '/rankings'
     | '/setores'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
     | '/carteira'
     | '/metas'
     | '/provisionador'
@@ -319,6 +349,9 @@ export interface FileRouteTypes {
     | '/noticias'
     | '/rankings'
     | '/setores'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
     | '/metas'
     | '/provisionador'
     | '/ativo/$ticker'
@@ -348,6 +381,9 @@ export interface FileRouteTypes {
     | '/noticias'
     | '/rankings'
     | '/setores'
+    | '/__auth/forgot-password'
+    | '/__auth/login'
+    | '/__auth/register'
     | '/_authenticated/carteira'
     | '/_authenticated/metas'
     | '/_authenticated/provisionador'
@@ -379,6 +415,9 @@ export interface RootRouteChildren {
   NoticiasRoute: typeof NoticiasRoute
   RankingsRoute: typeof RankingsRoute
   SetoresRoute: typeof SetoresRoute
+  _authForgotPasswordRoute: typeof _authForgotPasswordRoute
+  _authLoginRoute: typeof _authLoginRoute
+  _authRegisterRoute: typeof _authRegisterRoute
   AtivoTickerRoute: typeof AtivoTickerRoute
   FiiTickerRoute: typeof FiiTickerRoute
   WatchlistIndexRoute: typeof WatchlistIndexRoute
@@ -504,6 +543,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/carteira'
       preLoaderRoute: typeof AuthenticatedCarteiraRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/__auth/register': {
+      id: '/__auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof _authRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/__auth/login': {
+      id: '/__auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof _authLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/__auth/forgot-password': {
+      id: '/__auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof _authForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/irpf/': {
       id: '/_authenticated/irpf/'
@@ -646,6 +706,9 @@ const rootRouteChildren: RootRouteChildren = {
   NoticiasRoute: NoticiasRoute,
   RankingsRoute: RankingsRoute,
   SetoresRoute: SetoresRoute,
+  _authForgotPasswordRoute: _authForgotPasswordRoute,
+  _authLoginRoute: _authLoginRoute,
+  _authRegisterRoute: _authRegisterRoute,
   AtivoTickerRoute: AtivoTickerRoute,
   FiiTickerRoute: FiiTickerRoute,
   WatchlistIndexRoute: WatchlistIndexRoute,

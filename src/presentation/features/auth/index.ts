@@ -1,1 +1,12 @@
-// Estrutura de feature reservada para implementa��o nas Slices subsequentes da EWO-005.
+export { LoginForm } from "./components/LoginForm";
+export { RegisterForm } from "./components/RegisterForm";
+export { ForgotPasswordForm } from "./components/ForgotPasswordForm";
+export { UserMenu } from "./components/UserMenu";
+export { SessionStatus } from "./components/SessionStatus";
+export { AuthLoading } from "./components/AuthLoading";
+export { AuthenticatedRoute, GuestRoute } from "./components/RouteGuards";
+export { useAuth } from "./hooks/use-auth";
+export { useLoginMutation } from "./hooks/use-login-mutation";
+export { useLogoutMutation } from "./hooks/use-logout-mutation";
+export { useCurrentUserQuery } from "./hooks/use-current-user-query";
+export type { LoginViewModel, UserViewModel, SessionViewModel } from "./types/auth.view-model";
