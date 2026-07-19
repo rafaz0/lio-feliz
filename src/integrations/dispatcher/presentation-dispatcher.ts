@@ -3,8 +3,10 @@ import type { IDispatcher } from "@/application/dispatcher";
 import type { IProjectionRepository } from "@/application/ports";
 import { ConsultarPatrimonioService } from "@/application/services/consultar-patrimonio-service";
 import { ObterHistoricoPatrimonialService } from "@/application/services/obter-historico-patrimonial-service";
+import { ConsultarPosicaoService } from "@/application/services/consultar-posicao-service";
 import type { ObterPatrimonioQuery } from "@/application/queries/obter-patrimonio";
 import type { ObterHistoricoPatrimonialQuery } from "@/application/queries/obter-historico-patrimonial";
+import type { ConsultarPosicaoQuery } from "@/application/queries/consultar-posicao";
 
 /**
  * Monta um IDispatcher com os handlers de consulta necessários à Presentation Layer.
@@ -26,6 +28,10 @@ export function createPresentationDispatcher(
     new ObterHistoricoPatrimonialService(projectionRepository).Execute(
       query as ObterHistoricoPatrimonialQuery,
     ),
+  );
+
+  dispatcher.RegisterQuery("ConsultarPosicaoQuery", (query) =>
+    new ConsultarPosicaoService(projectionRepository).Execute(query as ConsultarPosicaoQuery),
   );
 
   return dispatcher;

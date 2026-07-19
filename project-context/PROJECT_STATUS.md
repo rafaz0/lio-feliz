@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.62
+**Versão:** 1.63
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-3 CLOSED |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-4 CLOSED |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 | PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.63
+
+**EWO-005 Slice 4 — Portfolio CLOSED.** Feature `portfolio` materializada na Presentation Layer: `PortfolioPage`, `PortfolioSummary`, `PortfolioTable`, `PortfolioCard`, `PortfolioFilters`, `AssetDetailsPanel`, `PositionRow`, `AllocationBadge`, `PortfolioLoading`, `PortfolioError`, `EmptyPortfolio`. ViewModels `PortfolioSummaryViewModel`/`AssetViewModel`/`PositionViewModel`/`AllocationViewModel` (mappers puros). Hooks `usePortfolioQuery`, `usePortfolioSummaryQuery`, `useAssetDetailsQuery` (TanStack Query + `useDispatcher` → `ObterPatrimonioQuery`/`ConsultarPosicaoQuery`). Filtros/ordenação/paginação client-side. Dispatcher adapter estendido com `ConsultarPosicaoQuery` (fora da presentation). Rota `/portfolio/:portfolioId`. 25 testes novos (unit/component/integration + architecture R-10 estendido). 717 testes totais, zero regressões. Build verde. ESLint: 0 erros nos arquivos da Slice (erros pré-existentes em `src/application/tests`, `src/core` e rotas legadas permanecem fora de escopo).
 
 ### Versão 1.62
 

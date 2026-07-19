@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.46
+**Versão da Documentação:** 1.47
 
 **Status:** APROVADO
 
@@ -216,7 +216,7 @@ Engineering Work Order oficial da Implementação da Infrastructure Layer. Concl
 
 📄 EWO-005.md (architecture-lab)
 
-Engineering Work Order oficial da Implementação da Presentation Layer. Plano de execução incremental por Slices (Foundation, Autenticação, Dashboard, Portfolio, Operações, Importação, Performance, Rebalanceamento, IR, Configurações, Integração Geral, Engineering Closure). Baseado na PI-007 v1.2 Approved e ER-007 v1.0 Approved. **🟢 Em execução — Slices 1-3 (Foundation, Autenticação, Dashboard) CLOSED.**
+Engineering Work Order oficial da Implementação da Presentation Layer. Plano de execução incremental por Slices (Foundation, Autenticação, Dashboard, Portfolio, Operações, Importação, Performance, Rebalanceamento, IR, Configurações, Integração Geral, Engineering Closure). Baseado na PI-007 v1.2 Approved e ER-007 v1.0 Approved. **🟢 Em execução — Slices 1-4 (Foundation, Autenticação, Dashboard, Portfolio) CLOSED.**
 
 ---
 
@@ -405,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.47
+
+- **EWO-005 Slice 4 — Portfolio CLOSED.** Feature `portfolio` da Presentation Layer materializada: PortfolioPage, PortfolioSummary, PortfolioTable, PortfolioCard, PortfolioFilters, AssetDetailsPanel, PositionRow, AllocationBadge, PortfolioLoading, PortfolioError, EmptyPortfolio; hooks (usePortfolioQuery/usePortfolioSummaryQuery/useAssetDetailsQuery); ViewModels; dispatcher adapter estendido com `ConsultarPosicaoQuery`; rota `/portfolio/:portfolioId`. 25 testes novos, 717 totais, zero regressões. Build verde. PROJECT_STATUS v1.63.
 
 ## Versão 1.46
 

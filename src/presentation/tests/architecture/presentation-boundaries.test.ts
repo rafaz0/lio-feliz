@@ -134,4 +134,43 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
     );
     expect(violating, "o dispatcher adapter não deve estar dentro de src/presentation").toEqual([]);
   });
+
+  it("PortfolioPage consome os hooks da feature (useDispatcher) e não instancia Application Services", () => {
+    const portfolioPage = files.find((f) =>
+      f.getFilePath().endsWith("features/portfolio/components/PortfolioPage.tsx"),
+    );
+    expect(portfolioPage, "PortfolioPage deve existir").toBeDefined();
+    const text = portfolioPage!.getFullText();
+    expect(text.includes("usePortfolioQuery"), "PortfolioPage deve consumir usePortfolioQuery").toBe(
+      true,
+    );
+    expect(
+      text.match(
+        /new (ConsultarPatrimonioService|ConsultarPosicaoService|ObterHistoricoPatrimonialService)/,
+      ),
+      "PortfolioPage não deve instanciar Application Services",
+    ).toBeNull();
+  });
+
+  it("feature portfolio não importa src/infrastructure nem src/integrations/supabase", () => {
+    const portfolioFiles = files.filter((f) => f.getFilePath().includes("features/portfolio/"));
+    expect(portfolioFiles.length).toBeGreaterThan(0);
+    for (const file of portfolioFiles) {
+      const imports = getImports(file);
+      const violations = imports.filter(
+        (i) => i.startsWith("@/infrastructure") || i.startsWith("@/integrations/supabase"),
+      );
+      expect(
+        violations,
+        `${file.getFilePath()} não deve importar infraestrutura nem supabase`,
+      ).toEqual([]);
+    }
+  });
+
+  it("dispatcher adapter registra ConsultarPosicaoQuery (fora da presentation)", () => {
+    const violating = files.filter((f) =>
+      f.getFilePath().includes("presentation/integrations/dispatcher"),
+    );
+    expect(violating, "o dispatcher adapter não deve estar dentro de src/presentation").toEqual([]);
+  });
 });
