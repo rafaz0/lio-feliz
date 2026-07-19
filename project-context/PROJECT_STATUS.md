@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.65
+**Versão:** 1.66
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-6 CLOSED (Slice 6 aguarda auditoria ChatGPT) |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-7 CLOSED (Slice 7 aguarda auditoria ChatGPT) |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 | PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.66
+
+**EWO-005 Slice 7 — Histórico e Rentabilidade CLOSED.** Feature `history` materializada na Presentation Layer: `HistoryPage`, `PerformanceSummary`, `PerformanceChart` (recharts/AreaChart), `BenchmarkComparison`, `HistoryTable`, `HistoryFilters`, `HistoryLoading`, `HistoryEmpty`, `HistoryError`. ViewModels `PerformanceSummaryViewModel`/`PerformancePointViewModel`/`BenchmarkViewModel`/`HistoryFiltersViewModel` com mappers puros (`toPerformanceSummaryViewModel`, `toPerformancePoints`, `toBenchmarkViewModel`, `filterHistoryPoints`). Hooks `useHistoricoQuery` (→ `ObterHistoricoPatrimonialQuery`) e `useRentabilidadeQuery` (→ `ConsultarRentabilidadeQuery`). Composition Root: `presentation-dispatcher.ts` registra `ConsultarRentabilidadeQuery` via `ConsultarRentabilidadeService` (já existente na Application Layer, consome `IProjectionRepository`). Rota `/portfolio/:portfolioId/history`. 22 testes novos (19 feature + 3 architecture R-10 estendido para history). 783 testes totais, zero regressões. Build verde (exit 0). ESLint: 0 erros nos arquivos da Slice. Typecheck: 0 erros nos arquivos da Slice (débito técnico pré-existente em rotas legadas e camadas Core/Application permanece fora de escopo). Aguarda auditoria ChatGPT antes da Slice 8.
 
 ### Versão 1.65
 

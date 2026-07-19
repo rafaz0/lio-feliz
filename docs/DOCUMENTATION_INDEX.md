@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.49
+**Versão da Documentação:** 1.50
 
 **Status:** APROVADO
 
@@ -405,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.50
+
+- **EWO-005 Slice 7 — Histórico e Rentabilidade CLOSED.** Feature `history` da Presentation Layer materializada: HistoryPage, PerformanceSummary, PerformanceChart (recharts), BenchmarkComparison, HistoryTable, HistoryFilters, HistoryLoading, HistoryEmpty, HistoryError; hooks `useHistoricoQuery` (→ `ObterHistoricoPatrimonialQuery`) e `useRentabilidadeQuery` (→ `ConsultarRentabilidadeQuery`); `presentation-dispatcher.ts` registra `ConsultarRentabilidadeQuery` via `ConsultarRentabilidadeService`; rota `/portfolio/:portfolioId/history`. 22 testes novos (19 feature + 3 architecture R-10), 783 totais, zero regressões. Build verde (exit 0). PROJECT_STATUS v1.66.
 
 ## Versão 1.49
 

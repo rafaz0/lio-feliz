@@ -43,6 +43,7 @@ import { Route as AuthenticatedCarteiraIrpfRouteImport } from './routes/_authent
 import { Route as AuthenticatedCarteiraCoberturaRouteImport } from './routes/_authenticated/carteira.cobertura'
 import { Route as AuthenticatedCarteiraAnaliseRouteImport } from './routes/_authenticated/carteira.analise'
 import { Route as AuthenticatedPortfolioPortfolioIdOperationsRouteImport } from './routes/_authenticated/portfolio.$portfolioId.operations'
+import { Route as AuthenticatedPortfolioPortfolioIdHistoryRouteImport } from './routes/_authenticated/portfolio.$portfolioId.history'
 import { Route as AuthenticatedPortfolioPortfolioIdDividendsRouteImport } from './routes/_authenticated/portfolio.$portfolioId.dividends'
 
 const SetoresRoute = SetoresRouteImport.update({
@@ -227,6 +228,12 @@ const AuthenticatedPortfolioPortfolioIdOperationsRoute =
     path: '/operations',
     getParentRoute: () => AuthenticatedPortfolioPortfolioIdRoute,
   } as any)
+const AuthenticatedPortfolioPortfolioIdHistoryRoute =
+  AuthenticatedPortfolioPortfolioIdHistoryRouteImport.update({
+    id: '/history',
+    path: '/history',
+    getParentRoute: () => AuthenticatedPortfolioPortfolioIdRoute,
+  } as any)
 const AuthenticatedPortfolioPortfolioIdDividendsRoute =
   AuthenticatedPortfolioPortfolioIdDividendsRouteImport.update({
     id: '/dividends',
@@ -268,6 +275,7 @@ export interface FileRoutesByFullPath {
   '/carteira/': typeof AuthenticatedCarteiraIndexRoute
   '/irpf/': typeof AuthenticatedIrpfIndexRoute
   '/portfolio/$portfolioId/dividends': typeof AuthenticatedPortfolioPortfolioIdDividendsRoute
+  '/portfolio/$portfolioId/history': typeof AuthenticatedPortfolioPortfolioIdHistoryRoute
   '/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
 }
 export interface FileRoutesByTo {
@@ -303,6 +311,7 @@ export interface FileRoutesByTo {
   '/carteira': typeof AuthenticatedCarteiraIndexRoute
   '/irpf': typeof AuthenticatedIrpfIndexRoute
   '/portfolio/$portfolioId/dividends': typeof AuthenticatedPortfolioPortfolioIdDividendsRoute
+  '/portfolio/$portfolioId/history': typeof AuthenticatedPortfolioPortfolioIdHistoryRoute
   '/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
 }
 export interface FileRoutesById {
@@ -341,6 +350,7 @@ export interface FileRoutesById {
   '/_authenticated/carteira/': typeof AuthenticatedCarteiraIndexRoute
   '/_authenticated/irpf/': typeof AuthenticatedIrpfIndexRoute
   '/_authenticated/portfolio/$portfolioId/dividends': typeof AuthenticatedPortfolioPortfolioIdDividendsRoute
+  '/_authenticated/portfolio/$portfolioId/history': typeof AuthenticatedPortfolioPortfolioIdHistoryRoute
   '/_authenticated/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
 }
 export interface FileRouteTypes {
@@ -379,6 +389,7 @@ export interface FileRouteTypes {
     | '/carteira/'
     | '/irpf/'
     | '/portfolio/$portfolioId/dividends'
+    | '/portfolio/$portfolioId/history'
     | '/portfolio/$portfolioId/operations'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -414,6 +425,7 @@ export interface FileRouteTypes {
     | '/carteira'
     | '/irpf'
     | '/portfolio/$portfolioId/dividends'
+    | '/portfolio/$portfolioId/history'
     | '/portfolio/$portfolioId/operations'
   id:
     | '__root__'
@@ -451,6 +463,7 @@ export interface FileRouteTypes {
     | '/_authenticated/carteira/'
     | '/_authenticated/irpf/'
     | '/_authenticated/portfolio/$portfolioId/dividends'
+    | '/_authenticated/portfolio/$portfolioId/history'
     | '/_authenticated/portfolio/$portfolioId/operations'
   fileRoutesById: FileRoutesById
 }
@@ -714,6 +727,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortfolioPortfolioIdOperationsRouteImport
       parentRoute: typeof AuthenticatedPortfolioPortfolioIdRoute
     }
+    '/_authenticated/portfolio/$portfolioId/history': {
+      id: '/_authenticated/portfolio/$portfolioId/history'
+      path: '/history'
+      fullPath: '/portfolio/$portfolioId/history'
+      preLoaderRoute: typeof AuthenticatedPortfolioPortfolioIdHistoryRouteImport
+      parentRoute: typeof AuthenticatedPortfolioPortfolioIdRoute
+    }
     '/_authenticated/portfolio/$portfolioId/dividends': {
       id: '/_authenticated/portfolio/$portfolioId/dividends'
       path: '/dividends'
@@ -758,6 +778,7 @@ const AuthenticatedCarteiraRouteWithChildren =
 
 interface AuthenticatedPortfolioPortfolioIdRouteChildren {
   AuthenticatedPortfolioPortfolioIdDividendsRoute: typeof AuthenticatedPortfolioPortfolioIdDividendsRoute
+  AuthenticatedPortfolioPortfolioIdHistoryRoute: typeof AuthenticatedPortfolioPortfolioIdHistoryRoute
   AuthenticatedPortfolioPortfolioIdOperationsRoute: typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
 }
 
@@ -765,6 +786,8 @@ const AuthenticatedPortfolioPortfolioIdRouteChildren: AuthenticatedPortfolioPort
   {
     AuthenticatedPortfolioPortfolioIdDividendsRoute:
       AuthenticatedPortfolioPortfolioIdDividendsRoute,
+    AuthenticatedPortfolioPortfolioIdHistoryRoute:
+      AuthenticatedPortfolioPortfolioIdHistoryRoute,
     AuthenticatedPortfolioPortfolioIdOperationsRoute:
       AuthenticatedPortfolioPortfolioIdOperationsRoute,
   }

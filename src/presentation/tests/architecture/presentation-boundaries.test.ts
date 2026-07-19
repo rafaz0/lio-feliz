@@ -267,4 +267,49 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
       "DividendsPage não deve importar domínio nem infraestrutura",
     ).toBe(false);
   });
+
+  it("HistoryPage usa hooks de histórico e não instancia Application Services", () => {
+    const historyPage = files.find((f) =>
+      f.getFilePath().endsWith("features/history/components/HistoryPage.tsx"),
+    );
+    expect(historyPage, "HistoryPage deve existir").toBeDefined();
+    const text = historyPage!.getFullText();
+    expect(
+      text.includes("useHistoricoQuery") && text.includes("useRentabilidadeQuery"),
+      "HistoryPage deve consumir useHistoricoQuery e useRentabilidadeQuery",
+    ).toBe(true);
+    expect(
+      text.match(
+        /new (ConsultarRentabilidadeService|ObterHistoricoPatrimonialService|AcompanharProventosService)/,
+      ),
+      "HistoryPage não deve instanciar Application Services",
+    ).toBeNull();
+  });
+
+  it("feature history não importa src/infrastructure nem src/integrations/supabase", () => {
+    const historyFiles = files.filter((f) => f.getFilePath().includes("features/history/"));
+    expect(historyFiles.length).toBeGreaterThan(0);
+    for (const file of historyFiles) {
+      const imports = getImports(file);
+      const violations = imports.filter(
+        (i) => i.startsWith("@/infrastructure") || i.startsWith("@/integrations/supabase"),
+      );
+      expect(
+        violations,
+        `${file.getFilePath()} não deve importar infraestrutura nem supabase`,
+      ).toEqual([]);
+    }
+  });
+
+  it("HistoryPage não contém regras de negócio da Application Layer", () => {
+    const page = files.find((f) =>
+      f.getFilePath().endsWith("features/history/components/HistoryPage.tsx"),
+    );
+    expect(page, "HistoryPage deve existir").toBeDefined();
+    const text = page!.getFullText();
+    expect(
+      text.includes("@/core/domain") || text.includes("@/infrastructure"),
+      "HistoryPage não deve importar domínio nem infraestrutura",
+    ).toBe(false);
+  });
 });
