@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.56
+**Versão da Documentação:** 1.57
 
 **Status:** APROVADO
 
@@ -408,6 +408,8 @@ Este arquivo representa a estrutura oficial da documentação.
 
 ## Versão 1.56
 
+- **EWO-005 Slice 12 — Relatórios / Exportação CLOSED.** Feature `reports` da Presentation Layer materializada: `ReportsPage`, `ReportsList`, `ReportCard`, `ReportFilters`, `ExportPanel`, `ExportProgress`, `ReportsLoading`, `ReportsEmpty`, `ReportsError`; hooks `useReportsQuery` (catálogo estático via TanStack Query) e `useExportReportMutation` (TanStack Query `useMutation` + `useDispatcher` → `ExportarDadosQuery`); ViewModels `ReportViewModel`/`ExportResultViewModel` com mappers puros (`toReportViewModel`, `toReportViewModels`, `toExportResultViewModel`); query keys em `reports-query-keys.ts`. Composition Root (`presentation-dispatcher.ts`): registrado `ExportarDadosQuery` (via `ExportarDadosService`, consome `IProjectionRepository`). Rota `/portfolio/:portfolioId/reports`. 17 testes novos (14 feature + 3 architecture R-10 estendido para reports), 260 totais, zero regressões. Build/ESLint/TypeCheck verdes nos arquivos da Slice. Aguarda auditoria ChatGPT antes do Engineering Closure (Slice 13). PROJECT_STATUS v1.73.
+
 - **EWO-005 Slice 11 — Sincronização CLOSED.** Feature `sync` da Presentation Layer materializada: `SyncPage`, `SyncForm`, `SyncButton`, `SyncResultCard`, `SyncLoading`, `SyncError`, `SyncEmpty`; hook `useSyncMutation` (→ `SincronizarDadosCommand`); ViewModels com mappers puros. Composition Root registra `SincronizarDadosCommand` (bloco `portfolioRepository && eventPublisher && dataGateway && importInterpreter`). Nova infra: `DataGatewayRouter` (adapter `IDataGateway` roteável) + injeção de `DataGatewayRouter`/`ImportInterpreter` no `__root.tsx`. Rota `/sync`. 16 testes novos (13 feature + 3 architecture R-10), 240 totais, zero regressões. Build/ESLint/TypeCheck verdes nos arquivos da Slice. Aguarda auditoria ChatGPT antes da Slice 12. PROJECT_STATUS v1.72.
 
 ## Versão 1.55
@@ -489,6 +491,8 @@ Este arquivo representa a estrutura oficial da documentação.
 ## Versão 1.36
 
 - PI-004 aprovada e integrada ao índice oficial. ER-004 criada (Approved). Documentação do domínio patrimonial consolidada. Próxima etapa: EWO-002.
+
+- **ER-005 — Engineering Review da EWO-005. v1.0 (Approved). Engenharia de Encerramento da Presentation Layer. Valida que todas as 12 slices foram concluídas, todos os gates obrigatórios foram aprovados (Build, ESLint, TypeCheck, Vitest, Architecture Tests R-10), arquitetura permaneceu íntegra e a baseline foi congelada. Documenta oficialmente o fim da EWO-005 e o congelamento da Presentation Layer.**
 
 ## Versão 1.35
 

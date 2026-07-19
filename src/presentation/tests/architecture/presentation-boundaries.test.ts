@@ -480,4 +480,46 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
       "SyncPage não deve importar domínio nem infraestrutura",
     ).toBe(false);
   });
+
+  it("ReportsPage usa useReportsQuery e useExportReportMutation e não instancia Application Services", () => {
+    const reportsPage = files.find((f) =>
+      f.getFilePath().endsWith("features/reports/components/ReportsPage.tsx"),
+    );
+    expect(reportsPage, "ReportsPage deve existir").toBeDefined();
+    const text = reportsPage!.getFullText();
+    expect(text.includes("useReportsQuery"), "ReportsPage deve consumir useReportsQuery").toBe(true);
+    expect(
+      text.match(
+        /new (ExportarDadosService|ConsultarPatrimonioService|ConsultarPosicaoService)/,
+      ),
+      "ReportsPage não deve instanciar Application Services",
+    ).toBeNull();
+  });
+
+  it("feature reports não importa src/infrastructure nem src/integrations/supabase", () => {
+    const reportsFiles = files.filter((f) => f.getFilePath().includes("features/reports/"));
+    expect(reportsFiles.length).toBeGreaterThan(0);
+    for (const file of reportsFiles) {
+      const imports = getImports(file);
+      const violations = imports.filter(
+        (i) => i.startsWith("@/infrastructure") || i.startsWith("@/integrations/supabase"),
+      );
+      expect(
+        violations,
+        `${file.getFilePath()} não deve importar infraestrutura nem supabase`,
+      ).toEqual([]);
+    }
+  });
+
+  it("ReportsPage não contém regras de negócio da Application Layer", () => {
+    const page = files.find((f) =>
+      f.getFilePath().endsWith("features/reports/components/ReportsPage.tsx"),
+    );
+    expect(page, "ReportsPage deve existir").toBeDefined();
+    const text = page!.getFullText();
+    expect(
+      text.includes("@/core/domain") || text.includes("@/infrastructure"),
+      "ReportsPage não deve importar domínio nem infraestrutura",
+    ).toBe(false);
+  });
 });

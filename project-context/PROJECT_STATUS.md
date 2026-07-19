@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.72
+**Versão:** 1.73
 
 **Status:** APROVADO
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.73
+
+**EWO-005 Slice 12 — Relatórios / Exportação CLOSED.** Feature `reports` da Presentation Layer materializada: `ReportsPage`, `ReportsList`, `ReportCard`, `ReportFilters`, `ExportPanel`, `ExportProgress`, `ReportsLoading`, `ReportsEmpty`, `ReportsError`; hooks `useReportsQuery` (catálogo estático via TanStack Query) e `useExportReportMutation` (TanStack Query `useMutation` + `useDispatcher` → `ExportarDadosQuery`); ViewModels `ReportViewModel`/`ExportResultViewModel` com mappers puros (`toReportViewModel`, `toReportViewModels`, `toExportResultViewModel`); query keys em `reports-query-keys.ts`. Composition Root (`presentation-dispatcher.ts`): registrado `ExportarDadosQuery` (via `ExportarDadosService`, consome `IProjectionRepository`). Rota `/portfolio/:portfolioId/reports`. 17 testes novos (14 feature + 3 architecture R-10 estendido para reports), 260 totais, zero regressões. Build verde (exit 0, inclui regeneração de `routeTree.gen.ts`). ESLint: 0 erros nos arquivos da Slice. TypeCheck: 0 erros nos arquivos da Slice. **Aguarda auditoria ChatGPT antes do Engineering Closure (Slice 13).** DOCUMENTATION_INDEX v1.57.
 
 ### Versão 1.72
 

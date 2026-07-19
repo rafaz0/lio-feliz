@@ -19,6 +19,7 @@ import { GerarRelatorioFiscalService } from "@/application/services/gerar-relato
 import { ObterConfiguracoesService } from "@/application/services/obter-configuracoes-service";
 import { ConfigurarEstrategiaService } from "@/application/services/configurar-estrategia-service";
 import { SincronizarDadosService } from "@/application/services/sincronizar-dados-service";
+import { ExportarDadosService } from "@/application/services/exportar-dados-service";
 import type { ObterPatrimonioQuery } from "@/application/queries/obter-patrimonio";
 import type { ObterHistoricoPatrimonialQuery } from "@/application/queries/obter-historico-patrimonial";
 import type { ConsultarPosicaoQuery } from "@/application/queries/consultar-posicao";
@@ -27,6 +28,7 @@ import type { ConsultarRentabilidadeQuery } from "@/application/queries/consulta
 import type { CalcularRebalanceamentoQuery } from "@/application/queries/calcular-rebalanceamento";
 import type { GerarRelatorioFiscalQuery } from "@/application/queries/gerar-relatorio-fiscal";
 import type { ObterConfiguracoesQuery } from "@/application/queries/obter-configuracoes";
+import type { ExportarDadosQuery } from "@/application/queries/exportar-dados";
 import type { ConfigurarEstrategiaCommand } from "@/application/commands/configurar-estrategia";
 import type { RegistrarOperacaoCommand } from "@/application/commands/registrar-operacao";
 import type { SincronizarDadosCommand } from "@/application/commands/sincronizar-dados";
@@ -85,6 +87,10 @@ export function createPresentationDispatcher({
     new GerarRelatorioFiscalService(projectionRepository).Execute(
       query as GerarRelatorioFiscalQuery,
     ),
+  );
+
+  dispatcher.RegisterQuery("ExportarDadosQuery", (query) =>
+    new ExportarDadosService(projectionRepository).Execute(query as ExportarDadosQuery),
   );
 
   if (configurationRepository) {

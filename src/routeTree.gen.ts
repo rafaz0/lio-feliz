@@ -45,6 +45,7 @@ import { Route as AuthenticatedCarteiraIrpfRouteImport } from './routes/_authent
 import { Route as AuthenticatedCarteiraCoberturaRouteImport } from './routes/_authenticated/carteira.cobertura'
 import { Route as AuthenticatedCarteiraAnaliseRouteImport } from './routes/_authenticated/carteira.analise'
 import { Route as AuthenticatedPortfolioPortfolioIdTaxRouteImport } from './routes/_authenticated/portfolio.$portfolioId.tax'
+import { Route as AuthenticatedPortfolioPortfolioIdReportsRouteImport } from './routes/_authenticated/portfolio.$portfolioId.reports'
 import { Route as AuthenticatedPortfolioPortfolioIdRebalancingRouteImport } from './routes/_authenticated/portfolio.$portfolioId.rebalancing'
 import { Route as AuthenticatedPortfolioPortfolioIdOperationsRouteImport } from './routes/_authenticated/portfolio.$portfolioId.operations'
 import { Route as AuthenticatedPortfolioPortfolioIdHistoryRouteImport } from './routes/_authenticated/portfolio.$portfolioId.history'
@@ -242,6 +243,12 @@ const AuthenticatedPortfolioPortfolioIdTaxRoute =
     path: '/tax',
     getParentRoute: () => AuthenticatedPortfolioPortfolioIdRoute,
   } as any)
+const AuthenticatedPortfolioPortfolioIdReportsRoute =
+  AuthenticatedPortfolioPortfolioIdReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedPortfolioPortfolioIdRoute,
+  } as any)
 const AuthenticatedPortfolioPortfolioIdRebalancingRoute =
   AuthenticatedPortfolioPortfolioIdRebalancingRouteImport.update({
     id: '/rebalancing',
@@ -306,6 +313,7 @@ export interface FileRoutesByFullPath {
   '/portfolio/$portfolioId/history': typeof AuthenticatedPortfolioPortfolioIdHistoryRoute
   '/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
   '/portfolio/$portfolioId/rebalancing': typeof AuthenticatedPortfolioPortfolioIdRebalancingRoute
+  '/portfolio/$portfolioId/reports': typeof AuthenticatedPortfolioPortfolioIdReportsRoute
   '/portfolio/$portfolioId/tax': typeof AuthenticatedPortfolioPortfolioIdTaxRoute
 }
 export interface FileRoutesByTo {
@@ -346,6 +354,7 @@ export interface FileRoutesByTo {
   '/portfolio/$portfolioId/history': typeof AuthenticatedPortfolioPortfolioIdHistoryRoute
   '/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
   '/portfolio/$portfolioId/rebalancing': typeof AuthenticatedPortfolioPortfolioIdRebalancingRoute
+  '/portfolio/$portfolioId/reports': typeof AuthenticatedPortfolioPortfolioIdReportsRoute
   '/portfolio/$portfolioId/tax': typeof AuthenticatedPortfolioPortfolioIdTaxRoute
 }
 export interface FileRoutesById {
@@ -389,6 +398,7 @@ export interface FileRoutesById {
   '/_authenticated/portfolio/$portfolioId/history': typeof AuthenticatedPortfolioPortfolioIdHistoryRoute
   '/_authenticated/portfolio/$portfolioId/operations': typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
   '/_authenticated/portfolio/$portfolioId/rebalancing': typeof AuthenticatedPortfolioPortfolioIdRebalancingRoute
+  '/_authenticated/portfolio/$portfolioId/reports': typeof AuthenticatedPortfolioPortfolioIdReportsRoute
   '/_authenticated/portfolio/$portfolioId/tax': typeof AuthenticatedPortfolioPortfolioIdTaxRoute
 }
 export interface FileRouteTypes {
@@ -432,6 +442,7 @@ export interface FileRouteTypes {
     | '/portfolio/$portfolioId/history'
     | '/portfolio/$portfolioId/operations'
     | '/portfolio/$portfolioId/rebalancing'
+    | '/portfolio/$portfolioId/reports'
     | '/portfolio/$portfolioId/tax'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -472,6 +483,7 @@ export interface FileRouteTypes {
     | '/portfolio/$portfolioId/history'
     | '/portfolio/$portfolioId/operations'
     | '/portfolio/$portfolioId/rebalancing'
+    | '/portfolio/$portfolioId/reports'
     | '/portfolio/$portfolioId/tax'
   id:
     | '__root__'
@@ -514,6 +526,7 @@ export interface FileRouteTypes {
     | '/_authenticated/portfolio/$portfolioId/history'
     | '/_authenticated/portfolio/$portfolioId/operations'
     | '/_authenticated/portfolio/$portfolioId/rebalancing'
+    | '/_authenticated/portfolio/$portfolioId/reports'
     | '/_authenticated/portfolio/$portfolioId/tax'
   fileRoutesById: FileRoutesById
 }
@@ -791,6 +804,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortfolioPortfolioIdTaxRouteImport
       parentRoute: typeof AuthenticatedPortfolioPortfolioIdRoute
     }
+    '/_authenticated/portfolio/$portfolioId/reports': {
+      id: '/_authenticated/portfolio/$portfolioId/reports'
+      path: '/reports'
+      fullPath: '/portfolio/$portfolioId/reports'
+      preLoaderRoute: typeof AuthenticatedPortfolioPortfolioIdReportsRouteImport
+      parentRoute: typeof AuthenticatedPortfolioPortfolioIdRoute
+    }
     '/_authenticated/portfolio/$portfolioId/rebalancing': {
       id: '/_authenticated/portfolio/$portfolioId/rebalancing'
       path: '/rebalancing'
@@ -859,6 +879,7 @@ interface AuthenticatedPortfolioPortfolioIdRouteChildren {
   AuthenticatedPortfolioPortfolioIdHistoryRoute: typeof AuthenticatedPortfolioPortfolioIdHistoryRoute
   AuthenticatedPortfolioPortfolioIdOperationsRoute: typeof AuthenticatedPortfolioPortfolioIdOperationsRoute
   AuthenticatedPortfolioPortfolioIdRebalancingRoute: typeof AuthenticatedPortfolioPortfolioIdRebalancingRoute
+  AuthenticatedPortfolioPortfolioIdReportsRoute: typeof AuthenticatedPortfolioPortfolioIdReportsRoute
   AuthenticatedPortfolioPortfolioIdTaxRoute: typeof AuthenticatedPortfolioPortfolioIdTaxRoute
 }
 
@@ -872,6 +893,8 @@ const AuthenticatedPortfolioPortfolioIdRouteChildren: AuthenticatedPortfolioPort
       AuthenticatedPortfolioPortfolioIdOperationsRoute,
     AuthenticatedPortfolioPortfolioIdRebalancingRoute:
       AuthenticatedPortfolioPortfolioIdRebalancingRoute,
+    AuthenticatedPortfolioPortfolioIdReportsRoute:
+      AuthenticatedPortfolioPortfolioIdReportsRoute,
     AuthenticatedPortfolioPortfolioIdTaxRoute:
       AuthenticatedPortfolioPortfolioIdTaxRoute,
   }

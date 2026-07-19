@@ -1,1 +1,13 @@
-// Estrutura de feature reservada para implementa��o nas Slices subsequentes da EWO-005.
+export { ReportsPage } from "./components/ReportsPage";
+export { ReportsList } from "./components/ReportsList";
+export { ReportCard } from "./components/ReportCard";
+export { ReportFilters } from "./components/ReportFilters";
+export { ExportPanel } from "./components/ExportPanel";
+export { ReportsLoading } from "./components/ReportsLoading";
+export { ReportsEmpty } from "./components/ReportsEmpty";
+export { ReportsError } from "./components/ReportsError";
+export { ExportProgress } from "./components/ExportProgress";
+export { useReportsQuery } from "./hooks/use-reports-query";
+export { useExportReportMutation } from "./hooks/use-export-report-mutation";
+export * from "./types/reports.view-model";
+export * from "./queries/reports-query-keys";
