@@ -1,1 +1,14 @@
-// Estrutura de feature reservada para implementa��o nas Slices subsequentes da EWO-005.
+export { SettingsPage } from "./components/SettingsPage";
+export { UserPreferencesCard } from "./components/UserPreferencesCard";
+export { StrategySettings } from "./components/StrategySettings";
+export { GoalsSettings } from "./components/GoalsSettings";
+export { NotificationSettings } from "./components/NotificationSettings";
+export { ThemeSettings } from "./components/ThemeSettings";
+export { AccountSettings } from "./components/AccountSettings";
+export { SettingsLoading } from "./components/SettingsLoading";
+export { SettingsEmpty } from "./components/SettingsEmpty";
+export { SettingsError } from "./components/SettingsError";
+export { useSettingsQuery } from "./hooks/use-settings-query";
+export { useUpdateSettingsMutation } from "./hooks/use-update-settings-mutation";
+export { SETTINGS_QUERY_KEYS } from "./queries";
+export * from "./types/settings.view-model";

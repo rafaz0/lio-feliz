@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.68
+**Versão:** 1.69
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-9 CLOSED (Slice 9 aguarda auditoria ChatGPT) |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-10 CLOSED (Slice 10 aguarda auditoria ChatGPT) |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 | PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.69
+
+**EWO-005 Slice 10 — Configurações CLOSED.** Feature `settings` materializada na Presentation Layer: `SettingsPage`, `UserPreferencesCard`, `StrategySettings`, `GoalsSettings`, `NotificationSettings`, `ThemeSettings`, `AccountSettings`, `SettingsLoading`, `SettingsEmpty`, `SettingsError`. ViewModels `SettingsViewModel`/`StrategySettingsViewModel`/`GoalsSettingsViewModel`/`NotificationSettingsViewModel` com mappers puros (`toSettingsViewModel`, `toStrategyViewModel`, `toGoalsViewModel`). Hooks `useSettingsQuery` (TanStack Query + `useDispatcher` → `ObterConfiguracoesQuery`) e `useUpdateSettingsMutation` (TanStack Query `useMutation` + `useDispatcher` → `ConfigurarEstrategiaCommand`). **Novos contratos Application Layer** (fora da presentation): `ObterConfiguracoesQuery` + `ConfiguracoesDto` + `ObterConfiguracoesService` (consome `IConfigurationRepository`); reuso de `ConfigurarEstrategiaCommand`/`ConfigurarEstrategiaService`. Composition Root: `presentation-dispatcher.ts` registra `ObterConfiguracoesQuery` e `ConfigurarEstrategiaCommand` no bloco `configurationRepository`. Rota `/settings`. 22 testes novos (19 feature + 3 architecture R-10 estendido para settings). 852 testes totais, zero regressões. Build verde (exit 0). ESLint: 0 erros nos arquivos da Slice. Typecheck: 0 erros nos arquivos da Slice (débito técnico pré-existente em rotas legadas e camadas Core/Application permanece fora de escopo). Aguarda auditoria ChatGPT antes da Slice 11.
 
 ### Versão 1.68
 

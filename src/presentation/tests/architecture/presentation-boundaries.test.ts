@@ -48,6 +48,7 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
       "ConsultarRentabilidadeService",
       "CalcularRebalanceamentoService",
       "GerarRelatorioFiscalService",
+      "ObterConfiguracoesService",
       "ExportarDadosService",
       "ConsultarProgressoMetasService",
     ];
@@ -397,6 +398,51 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
     expect(
       text.includes("@/core/domain") || text.includes("@/infrastructure"),
       "TaxPage não deve importar domínio nem infraestrutura",
+    ).toBe(false);
+  });
+
+  it("SettingsPage usa hooks de configuração e não instancia Application Services", () => {
+    const settingsPage = files.find((f) =>
+      f.getFilePath().endsWith("features/settings/components/SettingsPage.tsx"),
+    );
+    expect(settingsPage, "SettingsPage deve existir").toBeDefined();
+    const text = settingsPage!.getFullText();
+    expect(
+      text.includes("useSettingsQuery") && text.includes("useUpdateSettingsMutation"),
+      "SettingsPage deve consumir useSettingsQuery e useUpdateSettingsMutation",
+    ).toBe(true);
+    expect(
+      text.match(
+        /new (ObterConfiguracoesService|ConfigurarEstrategiaService|ConsultarPatrimonioService)/,
+      ),
+      "SettingsPage não deve instanciar Application Services",
+    ).toBeNull();
+  });
+
+  it("feature settings não importa src/infrastructure nem src/integrations/supabase", () => {
+    const settingsFiles = files.filter((f) => f.getFilePath().includes("features/settings/"));
+    expect(settingsFiles.length).toBeGreaterThan(0);
+    for (const file of settingsFiles) {
+      const imports = getImports(file);
+      const violations = imports.filter(
+        (i) => i.startsWith("@/infrastructure") || i.startsWith("@/integrations/supabase"),
+      );
+      expect(
+        violations,
+        `${file.getFilePath()} não deve importar infraestrutura nem supabase`,
+      ).toEqual([]);
+    }
+  });
+
+  it("SettingsPage não contém regras de negócio da Application Layer", () => {
+    const page = files.find((f) =>
+      f.getFilePath().endsWith("features/settings/components/SettingsPage.tsx"),
+    );
+    expect(page, "SettingsPage deve existir").toBeDefined();
+    const text = page!.getFullText();
+    expect(
+      text.includes("@/core/domain") || text.includes("@/infrastructure"),
+      "SettingsPage não deve importar domínio nem infraestrutura",
     ).toBe(false);
   });
 });

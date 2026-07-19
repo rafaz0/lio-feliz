@@ -23,6 +23,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WatchlistIndexRouteImport } from './routes/watchlist.index'
 import { Route as FiiTickerRouteImport } from './routes/fii.$ticker'
 import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedProvisionadorRouteImport } from './routes/_authenticated/provisionador'
 import { Route as AuthenticatedMetasRouteImport } from './routes/_authenticated/metas'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
@@ -116,6 +117,11 @@ const AtivoTickerRoute = AtivoTickerRouteImport.update({
   id: '/ativo/$ticker',
   path: '/ativo/$ticker',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedProvisionadorRoute =
   AuthenticatedProvisionadorRouteImport.update({
@@ -273,6 +279,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/metas': typeof AuthenticatedMetasRoute
   '/provisionador': typeof AuthenticatedProvisionadorRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist/': typeof WatchlistIndexRoute
@@ -311,6 +318,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/metas': typeof AuthenticatedMetasRoute
   '/provisionador': typeof AuthenticatedProvisionadorRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist': typeof WatchlistIndexRoute
@@ -352,6 +360,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/metas': typeof AuthenticatedMetasRoute
   '/_authenticated/provisionador': typeof AuthenticatedProvisionadorRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist/': typeof WatchlistIndexRoute
@@ -393,6 +402,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/metas'
     | '/provisionador'
+    | '/settings'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist/'
@@ -431,6 +441,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/metas'
     | '/provisionador'
+    | '/settings'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist'
@@ -471,6 +482,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/metas'
     | '/_authenticated/provisionador'
+    | '/_authenticated/settings'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist/'
@@ -612,6 +624,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/ativo/$ticker'
       preLoaderRoute: typeof AtivoTickerRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/provisionador': {
       id: '/_authenticated/provisionador'
@@ -848,6 +867,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedMetasRoute: typeof AuthenticatedMetasRoute
   AuthenticatedProvisionadorRoute: typeof AuthenticatedProvisionadorRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedPortfolioPortfolioIdRoute: typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
   AuthenticatedIrpfIndexRoute: typeof AuthenticatedIrpfIndexRoute
 }
@@ -857,6 +877,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedMetasRoute: AuthenticatedMetasRoute,
   AuthenticatedProvisionadorRoute: AuthenticatedProvisionadorRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedPortfolioPortfolioIdRoute:
     AuthenticatedPortfolioPortfolioIdRouteWithChildren,
   AuthenticatedIrpfIndexRoute: AuthenticatedIrpfIndexRoute,

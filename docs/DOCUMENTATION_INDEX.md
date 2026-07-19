@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.52
+**Versão da Documentação:** 1.53
 
 **Status:** APROVADO
 
@@ -405,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.53
+
+- **EWO-005 Slice 10 — Configurações CLOSED.** Feature `settings` da Presentation Layer materializada: SettingsPage, UserPreferencesCard, StrategySettings, GoalsSettings, NotificationSettings, ThemeSettings, AccountSettings, Loading/Empty/Error; hooks `useSettingsQuery` (→ `ObterConfiguracoesQuery`) e `useUpdateSettingsMutation` (→ `ConfigurarEstrategiaCommand`); novos contratos Application `ObterConfiguracoesQuery`/`ConfiguracoesDto`/`ObterConfiguracoesService` + reuso de `ConfigurarEstrategiaCommand`; `presentation-dispatcher.ts` registra ambos no bloco `configurationRepository`; rota `/settings`. 22 testes novos (19 feature + 3 architecture R-10), 852 totais, zero regressões. Build verde (exit 0). PROJECT_STATUS v1.69.
 
 ## Versão 1.52
 

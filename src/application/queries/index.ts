@@ -7,3 +7,4 @@ export type { CalcularRebalanceamentoQuery } from "./calcular-rebalanceamento";
 export type { GerarRelatorioFiscalQuery } from "./gerar-relatorio-fiscal";
 export type { ExportarDadosQuery } from "./exportar-dados";
 export type { ConsultarProgressoMetasQuery } from "./consultar-progresso-metas";
+export type { ObterConfiguracoesQuery } from "./obter-configuracoes";

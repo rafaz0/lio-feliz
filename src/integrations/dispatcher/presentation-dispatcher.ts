@@ -14,6 +14,8 @@ import { AcompanharProventosService } from "@/application/services/acompanhar-pr
 import { ConsultarRentabilidadeService } from "@/application/services/consultar-rentabilidade-service";
 import { CalcularRebalanceamentoService } from "@/application/services/calcular-rebalanceamento-service";
 import { GerarRelatorioFiscalService } from "@/application/services/gerar-relatorio-fiscal-service";
+import { ObterConfiguracoesService } from "@/application/services/obter-configuracoes-service";
+import { ConfigurarEstrategiaService } from "@/application/services/configurar-estrategia-service";
 import type { ObterPatrimonioQuery } from "@/application/queries/obter-patrimonio";
 import type { ObterHistoricoPatrimonialQuery } from "@/application/queries/obter-historico-patrimonial";
 import type { ConsultarPosicaoQuery } from "@/application/queries/consultar-posicao";
@@ -21,6 +23,8 @@ import type { ObterProventosQuery } from "@/application/queries/obter-proventos"
 import type { ConsultarRentabilidadeQuery } from "@/application/queries/consultar-rentabilidade";
 import type { CalcularRebalanceamentoQuery } from "@/application/queries/calcular-rebalanceamento";
 import type { GerarRelatorioFiscalQuery } from "@/application/queries/gerar-relatorio-fiscal";
+import type { ObterConfiguracoesQuery } from "@/application/queries/obter-configuracoes";
+import type { ConfigurarEstrategiaCommand } from "@/application/commands/configurar-estrategia";
 import type { RegistrarOperacaoCommand } from "@/application/commands/registrar-operacao";
 
 interface PresentationDispatcherDeps {
@@ -79,6 +83,18 @@ export function createPresentationDispatcher({
     dispatcher.RegisterQuery("CalcularRebalanceamentoQuery", (query) =>
       new CalcularRebalanceamentoService(projectionRepository, configurationRepository).Execute(
         query as CalcularRebalanceamentoQuery,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterConfiguracoesQuery", (query) =>
+      new ObterConfiguracoesService(configurationRepository).Execute(
+        query as ObterConfiguracoesQuery,
+      ),
+    );
+
+    dispatcher.RegisterCommand("ConfigurarEstrategiaCommand", (command) =>
+      new ConfigurarEstrategiaService(configurationRepository).Execute(
+        command as ConfigurarEstrategiaCommand,
       ),
     );
   }
