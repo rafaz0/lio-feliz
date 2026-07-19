@@ -218,7 +218,13 @@ Engineering Work Order oficial da Implementação da Infrastructure Layer. Concl
 
 📄 PI-007.md (architecture-lab)
 
-Engineering Specification oficial da Presentation Layer do Lio Feliz. v1.2 (DRAFT). Define arquitetura da camada de apresentação: Feature-First structure, TanStack Start + Tailwind + shadcn/ui, comunicação exclusiva via Dispatcher (Commands/Queries/DTOs), gerenciamento de estado (TanStack Query + React Context), 13 features funcionais mapeadas aos 14 UCs e 34 FRs. Refinamentos R-06 a R-13 incorporados: Fonte Oficial da Verdade, Composition Components, Convenção de Hooks, Estratégia TanStack Start, Architecture Tests, Performance Guidelines, Error Handling, Loading Strategy. **🟡 DRAFT — aguarda ER-007 e EWO-005.**
+Engineering Specification oficial da Presentation Layer do Lio Feliz. v1.2 (Approved). Define arquitetura da camada de apresentação: Feature-First structure, TanStack Start + Tailwind + shadcn/ui, comunicação exclusiva via Dispatcher (Commands/Queries/DTOs), gerenciamento de estado (TanStack Query + React Context), 13 features funcionais mapeadas aos 14 UCs e 34 FRs. Refinamentos R-06 a R-13 incorporados: Fonte Oficial da Verdade, Composition Components, Convenção de Hooks, Estratégia TanStack Start, Architecture Tests, Performance Guidelines, Error Handling, Loading Strategy. **✅ Approved — ER-007 concluída, pronta para EWO-005.**
+
+---
+
+📄 ER-007.md (architecture-lab)
+
+Engineering Review da PI-007 v1.2. v1.0 (Approved). Auditoria completa dos 15 critérios obrigatórios: consistência arquitetural (Clean Architecture, Dependency Rule, Dispatcher Pattern), compatibilidade com 4 camadas-base congeladas, organização Feature-First, gerenciamento de estado (Server/Client/Form/Auth), comunicação exclusiva via Dispatcher (5 Commands, 9 Queries, 13+ DTOs, 5 Errors, IDispatcher), estratégia TanStack Start (SSR, Client Components, Server Functions, Hydration, Streaming), testabilidade (Unit/Component/Integration/E2E + Architecture Tests), performance (lazy loading, code splitting, virtualização, prefetch, Suspense), UX (Loading/Error/Empty states, Toast/Banner/Modal/Retry/Error Boundary), acessibilidade (WCAG 2.1 AA), governança (GOV-M01-M06, Baseline Lock), riscos (0 críticos, 0 altos, 5 médios, 2 baixos), prontidão para implementação confirmada. **Veredito: APPROVED — PI-007 autorizada para EWO-005.**
 
 ---
 
@@ -383,6 +389,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.44
+
+- ER-007 (Approved) — Engineering Review da PI-007 v1.2. Auditoria completa dos 15 critérios: Clean Architecture, Dependency Rule, Dispatcher Pattern, Feature-First, gerenciamento de estado, comunicação via Dispatcher, estratégia TanStack Start, testabilidade (incl. Architecture Tests), performance, UX, acessibilidade (WCAG 2.1 AA), governança (GOV-M01-M06, Baseline Lock), riscos (0 críticos, 0 altos). Veredito: **APPROVED — PI-007 autorizada para EWO-005**. PI-007 promovida a Approved.
 
 ## Versão 1.43
 

@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.55
+**Versão:** 1.56
 
 **Status:** APROVADO
 
@@ -97,8 +97,8 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | PI-006.md                 | ✅ Completed (v1.1) |
 | ER-006.md                 | ✅ Approved (v1.0) |
 | EWO-004.md                | ✅ Completed (v1.0) |
-| PI-007.md                 | 🟡 Draft (v1.2)    |
-| PI-007.md                 | 🟡 Draft (v1.0)    |
+| PI-007.md                 | ✅ Approved (v1.2) |
+| ER-007.md                 | ✅ Approved (v1.0) |
 
 ---
 
@@ -147,6 +147,7 @@ ADR-008: Backlog Governance
 
 | Data       | Evento                                                                                                                                                                                                                                                                                                                                                               |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 19/07/2026 | **ER-007 v1.0 — PI-007 APROVADA para EWO-005.** 15 critérios auditados, 4 NCs documentais baixas (O1–O4), 0 NCs arquiteturais, 0 NCs metodológicas. Veredito: APPROVED. PI-007 v1.2 promovida a APPROVED. Recomendações: 4 Obrigatórias, 6 Recomendadas, 3 Opcionais. Todas com destino explícito. Commit: `a5e2915`.                                                                                                           |
 | 19/07/2026 | **PI-007 v1.2 (Draft) — Refinamentos R-06 a R-13 incorporados.** Fonte Oficial da Verdade, Composition Components, Convenção de Hooks, Estratégia TanStack Start oficial, Architecture Tests, Performance Guidelines, Error Handling Strategy, Loading Strategy. PI-007 pronta para ER-007 → EWO-005.                                                                                                           |
 | 19/07/2026 | **PI-007 (Draft) criada** — Presentation Layer: Feature-First, TanStack Start + Tailwind + shadcn/ui, Dispatcher-only communication, TanStack Query + React Context state, 13 features, 14 UCs, 34 FRs. Aguarda ER-007 e EWO-005.                                                                                                                                      |
 | 19/07/2026 | **GOV-M01–M06 — Sincronização Documental Pós-EWO-004.** 4 documentos corrigidos (20_PROJECT_MAP, DOCUMENTATION_INDEX, PROJECT_STATE, SYNC_HISTORY). 151 inserções, 9 deleções. Commit: `d45327a`.                                                                                                                                                                         |
