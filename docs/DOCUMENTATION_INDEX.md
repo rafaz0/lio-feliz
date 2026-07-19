@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.40
+**Versão da Documentação:** 1.45
 
 **Status:** APROVADO
 
-**Última atualização:** 18/07/2026
+**Última atualização:** 19/07/2026
 
 ---
 
@@ -304,6 +304,12 @@ Padrão oficial de execução de Engineering Work Orders. Consolida a experiênc
 
 ---
 
+📄 `project-context/PRESENTATION_SLICE_TEMPLATE.md`
+
+Template Oficial de execução de Slice da Presentation Layer. v1.0 (Oficial). Define o procedimento operacional para materializar cada Slice da EWO-005: entrada (PI/ER/EWO aprovadas, baseline lock, working tree limpa), identificação da Slice, regras obrigatórias (Clean Architecture, componentes, hooks, estado, error handling, loading, acessibilidade), Architecture Guard, testes (cobertura >90%), critérios de saída e relatório obrigatório. Não cria arquitetura nem altera decisões aprovadas. Complementa o EWO_EXECUTION_STANDARD no escopo da EWO-005.
+
+---
+
 # 5. Decisões Arquiteturais
 
 ✅ 18_ARCHITECTURAL_DECISIONS/
@@ -399,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.45
+
+- `project-context/PRESENTATION_SLICE_TEMPLATE.md` (v1.0, Oficial) adicionado ao índice. Template operacional para execução de Slices da Presentation Layer (EWO-005). Complementa o EWO_EXECUTION_STANDARD no escopo da EWO-005.
 
 ## Versão 1.44
 

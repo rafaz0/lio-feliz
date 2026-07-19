@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.60
+**Versão:** 1.61
 
 **Status:** APROVADO
 
@@ -66,7 +66,7 @@ ADR-001 a ADR-008 + 00_INDEX
 
 ### Project Context
 
-README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT_METHODOLOGY** ✅ (v1.6), AI_CONTEXT ✅ (v1.4), AI_OPERATION_CHECKLIST ✅ (v1.2), PS_TEMPLATE ✅
+README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT_METHODOLOGY** ✅ (v1.6), AI_CONTEXT ✅ (v1.4), AI_OPERATION_CHECKLIST ✅ (v1.2), PS_TEMPLATE ✅, PRESENTATION_SLICE_TEMPLATE ✅ (v1.0)
 
 ---
 
@@ -101,6 +101,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | ER-007.md                 | ✅ Approved (v1.0) |
 | EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-2 CLOSED |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
+| PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
 ---
 
@@ -228,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.61
+
+Template Oficial `project-context/PRESENTATION_SLICE_TEMPLATE.md` (v1.0, Oficial) criado e indexado. Define o procedimento operacional para execução de cada Slice da EWO-005 (Presentation Layer): entrada, identificação, regras obrigatórias (Clean Architecture, componentes, hooks, estado, error handling, loading, acessibilidade), Architecture Guard, testes (>90%), critérios de saída e relatório obrigatório. Não cria arquitetura nem altera decisões aprovadas. Complementa o EWO_EXECUTION_STANDARD.md no escopo da EWO-005. DOCUMENTATION_INDEX atualizado para v1.45.
 
 ### Versão 1.10
 
