@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.50
+**Versão:** 1.51
 
 **Status:** APROVADO
 
@@ -132,8 +132,9 @@ ADR-008: Backlog Governance
 
 | Data       | Evento                                                                                                                                                                                                                                                                                                                                                               |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 18/07/2026 | **GOV-M01 a GOV-M05 — Sprint Metodológica.** Fluxo operacional oficial. Git sync obrigatório. Melhoria contínua. Template de pendências. Política de classificação. Commits: `8c624bf`.                                                                                                                                                                                |
 | 18/07/2026 | **EWO-003 CONCLUÍDA** — Engineering Closure final. 8/8 Slices. 528 testes. 14 Application Services. 9 Ports. 15 DTOs. 6 Application Errors. 3 Domain Event Handlers. Application Layer completa. Commit: `fc852cf`.                                                                                                                                                   |
-| 18/07/2026 | **PI-005 COMPLETED** — Application Layer do Lio Feliz. Ciclo de vida: Approved → Implementation → Completed.                                                                                                                                                                                                                                                          |
+| 18/07/2026 | **PI-005 COMPLETED** — Application Layer do Lio Feliz. Ciclo de vida: Approved → Implementation → Completed.                                                                                                                                                                                          |
 | 18/07/2026 | **ER-005 aprovada** — Engineering Review da PI-005. 14 dimensões auditadas, 3 NCs corrigidas, veredito: APROVADA.                                                                                                                                                                                                                                                    |
 | 18/07/2026 | **EWO-002 CONCLUÍDA** — Engineering Closure final. 9/9 Slices. 362 testes. 12/12 DAs materializadas. 11/13 Invariantes validadas. Conhecimento consolidado (KC-001 a KC-005, KB-006). Domínio Patrimonial completo e validado. PS#050 registrado.                                                                                                                    |
 | 18/07/2026 | **PI-004 aprovada** — Arquitetura do Domínio Patrimonial consolidada. 12 DAs (DA-001 a DA-012), 13 Invariantes (I-001 a I-013). Próxima etapa: ER-004.                                                                                                                                                                                                               |

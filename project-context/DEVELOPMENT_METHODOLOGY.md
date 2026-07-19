@@ -4,7 +4,7 @@
 
 **Documento:** DEVELOPMENT_METHODOLOGY.md
 
-**Versão:** 2.22
+**Versão:** 2.23
 
 **Status:** APROVADO
 
@@ -1208,6 +1208,10 @@ A Engineering Audit complementa (não substitui) a Engineering Review. Enquanto 
 ---
 
 # 14. Histórico
+
+### Versão 2.23
+
+GOV-M01 a GOV-M05 — Sprint Metodológica. M01: Fluxo Oficial (OpenCode → Relatório → Auditoria ChatGPT → Novo Prompt). M02: Git Sync Obrigatório. M03: Melhoria Contínua em ERs. M04: Template de Pendências Metodológicas. M05: Sem classificações "opcionais".
 
 ### Versão 2.22
 

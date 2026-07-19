@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.52
+**Versão:** 2.53
 
 **Status:** APROVADO
 
@@ -1689,6 +1689,10 @@ Ao carregar este documento a IA assume automaticamente que:
 ---
 
 # Histórico
+
+## v2.53
+
+**GOV-M01 a GOV-M05 — Sprint Metodológica.** Fluxo operacional oficial formalizado (OpenCode → Relatório → Auditoria ChatGPT → Novo Prompt). Git sync obrigatório. Melhoria contínua em auditorias. Template de pendências metodológicas. Política de classificação de pendências (sem opcionais).
 
 ## v2.52
 

@@ -4,7 +4,7 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.41
+**Versão:** 1.42
 
 **Status:** APROVADO
 
@@ -407,6 +407,10 @@ Seção obrigatória ao final de toda Engineering Review:
 ---
 
 # Histórico
+
+### Versão 1.42
+
+GOV-M01 a GOV-M05. GOV-M02 — Sincronização Git Obrigatória (checklist de sync no relatório final). GOV-M04 — Pendências Metodológicas no relatório (status obrigatório para cada pendência). Compatibilidade com PROJECT_BOOTSTRAP v2.53.
 
 ### Versão 1.40
 

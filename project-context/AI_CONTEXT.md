@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.13
+**Versão:** 1.14
 
 **Status:** APROVADO
 
@@ -44,6 +44,10 @@ Engineering N2 — EWO-003 CONCLUÍDA. Próxima etapa: Infrastructure Layer (EWO
 ---
 
 # Histórico
+
+### Versão 1.14
+
+GOV-M01 a GOV-M05 implementados. Fluxo operacional formalizado. Git sync obrigatório. Template de pendências metodológicas. Projeto apto para EWO-004.
 
 ### Versão 1.13
 
