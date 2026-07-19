@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.69
+**Versão:** 1.71
 
 **Status:** APROVADO
 
@@ -229,6 +229,14 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.71
+
+**CORREÇÕES PÓS-AUDITORIA EWO-005 (A1-A4) — CONCLUÍDAS.** Atividade avaliativa de correção (não inicia Slice 11). A1 (obrigatória): removida a duplicação de `RegisterQuery("ConsultarRentabilidadeQuery")` em `presentation-dispatcher.ts` — permanece apenas 1 registro oficial (linha 70), zero alteração funcional. A2: `OperationForm.tsx:8` realinhado para importar `OperacaoRegistradaDto` via `shared/types/application-layer.ts` (padrão centralizado). A4: eliminado teste arquitetural redundante em `presentation-boundaries.test.ts` (bloco "dispatcher adapter registra ConsultarPosicaoQuery"). A3: mantida como backlog técnico (code-splitting), sem alteração funcional. Validações: build verde (exit 0); ESLint 0 erros nos 3 arquivos; `npx vitest run src/presentation` → **43 arquivos, 221 testes, 100% passando** (1 a menos por remoção de duplicata, cobertura preservada); typecheck via `tsc -p tsconfig.json --noEmit` sem novos erros nos arquivos alterados (débito pré-existente em rotas legadas permanece fora de escopo). Dependency Rule preservada (0 violações). **Recomendação obrigatória A1 atendida — Slice 11 liberada.** DOCUMENTATION_INDEX v1.55.
+
+### Versão 1.70
+
+**AUDITORIA_INTERMEDIARIA_EWO-005 (Slices 1-10) — CONCLUÍDA.** Auditoria avaliativa das Slices 1-10 da EWO-005 (9 features: auth, dashboard, portfolio, operations, dividends, history, rebalancing, tax, settings). Veredito: **🟡 APPROVED WITH RECOMMENDATIONS**. Evidências: 0 violações da Dependency Rule (grep + 32 architecture tests R-10 verdes); 0 instanciações de Application Service na presentation; Composition Root fora de `src/presentation`; hooks padronizados `use<Recurso>Query`/`use<Acao><Recurso>Mutation`; acessibilidade WCAG 2.1 AA presente (role/aria/aria-live). Execução de testes: `npx vitest run src/presentation` → **43 arquivos, 222 testes, 100% passando**. 4 achados classificados: A1 (duplicação de `RegisterQuery("ConsultarRentabilidadeQuery")` em `presentation-dispatcher.ts` linhas 70-74 e 102-106 — MÉDIA, fora da presentation); A2 (import de `OperacaoRegistradaDto` direto em `OperationForm.tsx:8` em vez de `application-layer.ts` — BAIXA); A3 (code-splitting ausente nas rotas com recharts — BAIXA/MÉDIA); A4 (teste arquitetural redundante em `presentation-boundaries.test.ts` 172-177 — INFO). **Slice 11 (Sincronização / Engineering Closure) AUTORIZADA**, condicionada à correção de A1 (R1) como parte do cleanup de encerramento. Relatório em `docs/AUDITORIA_INTERMEDIARIA_EWO-005.md`. DOCUMENTATION_INDEX v1.54.
 
 ### Versão 1.69
 

@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.53
+**Versão da Documentação:** 1.55
 
 **Status:** APROVADO
 
@@ -405,6 +405,14 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.55
+
+- **Correções Pós-Auditoria EWO-005 (A1-A4) CONCLUÍDAS.** Atividade avaliativa de correção dos achados da Auditoria Intermediária. A1 (obrigatória): duplicação de `RegisterQuery("ConsultarRentabilidadeQuery")` removida em `presentation-dispatcher.ts` (1 registro oficial). A2: `OperationForm.tsx` realinhado para `application-layer.ts`. A4: teste arquitetural redundante eliminado (221 testes, cobertura preservada). A3: backlog técnico (code-splitting). Build/ESLint/Testes/TypeCheck verdes nos arquivos alterados. Slice 11 liberada. PROJECT_STATUS v1.71.
+
+## Versão 1.54
+
+- **AUDITORIA_INTERMEDIARIA_EWO-005.md** adicionado ao índice. Auditoria avaliativa das Slices 1-10 da EWO-005 (9 features da Presentation Layer). Veredito: **🟡 APPROVED WITH RECOMMENDATIONS**. 222 testes da presentation verdes (32 architecture tests R-10). 4 achados (A1 duplicação de handler no Composition Root — MÉDIA; A2 import de DTO fora do padrão — BAIXA; A3 code-splitting ausente — BAIXA/MÉDIA; A4 teste redundante — INFO). Slice 11 (Sincronização) autorizada, condicionada à correção de A1. PROJECT_STATUS v1.70.
 
 ## Versão 1.53
 

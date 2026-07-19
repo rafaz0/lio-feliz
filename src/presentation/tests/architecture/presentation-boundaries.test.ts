@@ -169,13 +169,6 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
     }
   });
 
-  it("dispatcher adapter registra ConsultarPosicaoQuery (fora da presentation)", () => {
-    const violating = files.filter((f) =>
-      f.getFilePath().includes("presentation/integrations/dispatcher"),
-    );
-    expect(violating, "o dispatcher adapter não deve estar dentro de src/presentation").toEqual([]);
-  });
-
   it("OperationPage compõe OperationForm/OperationHistory e não instancia Application Services", () => {
     const operationPage = files.find((f) =>
       f.getFilePath().endsWith("features/operations/components/OperationPage.tsx"),

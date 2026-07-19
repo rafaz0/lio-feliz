@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRegisterOperationMutation } from "../hooks/use-register-operation-mutation";
-import type { OperacaoRegistradaDto } from "@/application/dtos/operacao";
+import type { OperacaoRegistradaDto } from "@/presentation/shared/types/application-layer";
 import { tipoToLabel } from "../types/operations.view-model";
 
 const schema = z.object({

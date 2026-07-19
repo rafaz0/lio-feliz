@@ -99,12 +99,6 @@ export function createPresentationDispatcher({
     );
   }
 
-  dispatcher.RegisterQuery("ConsultarRentabilidadeQuery", (query) =>
-    new ConsultarRentabilidadeService(projectionRepository).Execute(
-      query as ConsultarRentabilidadeQuery,
-    ),
-  );
-
   if (portfolioRepository && eventPublisher) {
     dispatcher.RegisterCommand("RegistrarOperacaoCommand", (command) =>
       new RegistrarOperacaoService(portfolioRepository, eventPublisher).Execute(
