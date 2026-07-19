@@ -1,0 +1,11 @@
+export { FakePortfolioRepository } from "./fake-portfolio-repository";
+export { FakeAssetRepository } from "./fake-asset-repository";
+export { FakeConfigurationRepository } from "./fake-configuration-repository";
+export { FakeSubscriptionRepository } from "./fake-subscription-repository";
+export { FakeProjectionRepository } from "./fake-projection-repository";
+export { FakeDataGateway } from "./fake-data-gateway";
+export { FakeUnitOfWork } from "./fake-unit-of-work";
+export { FakeDomainEventPublisher } from "./fake-domain-event-publisher";
+export { FakeNotificationPort } from "./fake-notification-port";
+export { FakeImportInterpreter } from "./fake-import-interpreter";
+export type { NotificacaoRegistrada } from "./fake-notification-port";
