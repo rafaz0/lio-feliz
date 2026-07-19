@@ -6,11 +6,11 @@
 
 **Documento:** PROJECT_STATE.md
 
-**Versão:** 1.26
+**Versão:** 1.27
 
 **Status:** APROVADO
 
-**Última atualização:** 13/07/2026
+**Última atualização:** 19/07/2026
 
 ---
 
@@ -154,13 +154,30 @@
 | 13/07/2026 | PI-002 v0.1 (Draft) — Canonical Investment Model materializada. GOV-001 a GOV-005. Bootstrap v2.14.                                                                                            |
 | 15/07/2026 | C-001 + C-002 concluídos. 10 Slices, 175 testes, zero regressões.                                                                                                                              |
 | 15/07/2026 | ER-C001-C002-001 aprovada. Core Foundation classificada como Excelente.                                                                                                                        |
-| 15/07/2026 | GOV-006 — Core API Frozen. Technical Roadmap. Projeto entra em evolução do domínio de investimentos. Bootstrap v2.24.                                                                          |
+| 15/07/2026 | GOV-006 — Core API Frozen. Technical Roadmap. Projeto entra em evolução do domínio de investimentos. Bootstrap v2.24.          |
+| 15/07/2026 | PI-004 aprovada — Modelo Patrimonial. 12 DAs, 13 Invariantes. Bootstrap v2.25.                                                      |
+| 15/07/2026 | ER-004 aprovada — Engineering Review da PI-004. Bootstrap v2.26.                                                                     |
+| 15/07/2026 | GOV-007 — Fluxo Oficial da Engenharia + Mapa de Dependências Documentais. Bootstrap v2.26.                                           |
+| 16/07/2026 | **EWO-002 concluída** — Domínio Patrimonial. 9 Slices, 362 testes, 12/12 DAs. Bootstrap v2.27.                                       |
+| 16/07/2026 | GOV-008 — EWO Slices Dinâmica Generalizada. Bootstrap v2.28.                                                                         |
+| 16/07/2026 | GOV-009 — Sincronização Operacional Obrigatória. Bootstrap v2.29.                                                                    |
+| 16/07/2026 | GOV-010 — Consolidação Final da Governança. ER-004 marcada concluída. Bootstrap v2.30.                                               |
+| 16/07/2026 | GOV-011 — Workspace Guard + Scripts de Inicialização. Bootstrap v2.31.                                                               |
+| 16/07/2026 | PI-005 aprovada — Application Layer. 14 Serviços, 9 Portas. Bootstrap v2.32.                                                         |
+| 16/07/2026 | ER-005 aprovada — Engineering Review da PI-005. Bootstrap v2.33.                                                                     |
+| 17/07/2026 | **EWO-003 concluída** — Application Layer. 8 Slices, 528 testes, zero regressões. Bootstrap v2.45.                                   |
+| 17/07/2026 | GOV-020 — 20_PROJECT_MAP.md institucionalizado.                                                                                      |
+| 18/07/2026 | GOV-021 — 21_FUNCTIONAL_SPECIFICATION.md institucionalizado (34 FRs, 14 UCs, 15 NFRs).                                               |
+| 18/07/2026 | PI-006 aprovada — Infrastructure Layer. 10+ Portas, 14+ Adapters, Cross-Cutting. Bootstrap v2.49.                                    |
+| 18/07/2026 | ER-006 aprovada — Engineering Review da PI-006. Bootstrap v2.50.                                                                     |
+| 19/07/2026 | **EWO-004 concluída** — Infrastructure Layer. 7 Slices, 630 testes, zero regressões. Bootstrap v2.55.                               |
+| 19/07/2026 | GOV-M01–M06 — Ciclo de Sincronização Documental Pós-EWO-004. Inconsistências corrigidas em 4 documentos.                           |
 
 ---
 
 # Inconsistências Conhecidas
 
-Nenhuma inconsistência conhecida no momento.
+Nenhuma inconsistência conhecida no momento. Inconsistências identificadas no ciclo GOV-M01–M06 foram corrigidas (20_PROJECT_MAP.md, DOCUMENTATION_INDEX.md, PROJECT_STATE.md, SYNC_HISTORY.md).
 
 ---
 

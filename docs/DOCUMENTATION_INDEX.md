@@ -180,6 +180,42 @@ Engineering Review da PI-004. v1.0 (Approved). Gap analysis completo, validaçã
 
 ---
 
+📄 PI-005.md (architecture-lab)
+
+Engineering Specification oficial da Application Layer do Lio Feliz. v1.0 (Approved). 14 Serviços de Aplicação, 9 Portas de saída. Define Service Layer, Use Cases, Ports & Adapters. **✅ Concluído — implementado via EWO-003.**
+
+---
+
+📄 ER-005.md (architecture-lab)
+
+Engineering Review da PI-005. v1.0 (Approved). Gap analysis completo, validação de aderência ao Domínio Patrimonial. **✅ Concluído — EWO-003 implementada e encerrada.**
+
+---
+
+📄 EWO-003.md (architecture-lab)
+
+Engineering Work Order oficial da Implementação da Application Layer. Concluído — 8 Slices, 528 testes, 14 Services, 9 Ports, zero regressões.
+
+---
+
+📄 PI-006.md (architecture-lab)
+
+Engineering Specification oficial da Infrastructure Layer do Lio Feliz. v1.0 (Approved). 10+ Portas de infraestrutura (Repository, UnitOfWork, DataGateway, Notification, EventPublisher, Subscription, Permission, Authorization, TransactionManager, ImportInterpreter), 14+ Adapters (Supabase, Postgres, Redis, HTTP, WebSocket), Cross-Cutting (Logging, Retry, Configuration, ErrorMapping). **✅ Concluído — implementado via EWO-004.**
+
+---
+
+📄 ER-006.md (architecture-lab)
+
+Engineering Review da PI-006. v1.0 (Approved). Gap analysis completo, validação de aderência à Application Layer. **✅ Concluído — EWO-004 implementada e encerrada.**
+
+---
+
+📄 EWO-004.md (architecture-lab)
+
+Engineering Work Order oficial da Implementação da Infrastructure Layer. Concluído — 7 Slices, 630 testes, 10+ Ports → 14+ Adapters, infraestrutura integrada, zero regressões.
+
+---
+
 📄 PI-003.md (architecture-lab)
 
 Engineering Specification oficial da Canonical Operations & Event Flow Architecture. v1.0 (Approved). Consolida a Trindade Arquitetural do Engineering N1.
@@ -341,6 +377,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.41
+
+- EWO-004 Engineering Closure concluído. PI-006, ER-006, EWO-004 adicionados ao índice. Infrastructure Layer finalizada (7 Slices, 630 testes). PI-005, ER-005, EWO-003 adicionados retroativamente. Application Layer registrada (8 Slices, 528 testes).
 
 ## Versão 1.40
 

@@ -4,7 +4,7 @@
 
 **Documento:** SYNC_HISTORY.md
 
-**Versão:** 1.49
+**Versão:** 1.50
 
 **Status:** APROVADO
 
@@ -1462,6 +1462,87 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 
 ---
 
+## PS#050-EWO3 — EWO-003: Application Layer (Consolidado)
+
+**Data:** 17/07/2026
+
+**Tipo:** Implementação (retroactive — sync package não gerado durante a execução)
+
+**Objetivo:** Implementar a Application Layer do Lio Feliz conforme PI-005 e ER-005. 14 Serviços de Aplicação, 9 Portas de saída.
+
+**Arquivos criados (resumo):**
+
+- `src/core/application/services/` — 14 services (PortfolioQueryService, TransactionQueryService, MarketDataQueryService, CorporateActionService, ImportService, ExportService, GoalService, GoalProjectionService, RebalancingService, TaxService, ReportGenerationService, PortfolioAnalyticsService, InsightService, AlertService)
+- `src/core/application/ports/` — 9 ports (out/): PortfolioRepository, TransactionRepository, MarketDataProvider, CorporateActionRepository, NotificationService, ImportInterpreter, ExportSerializer, GoalRepository, TaxRepository
+- `src/core/tests/application/` — 528 testes
+
+**Arquivos modificados (resumo):**
+
+- `src/core/domain/` — exports atualizados para suportar Application Layer
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.32 → v2.45: EWO-003 slices 1-8 concluídas
+- `project-context/PROJECT_STATUS.md` — v1.49 → v1.51: EWO-003 concluída
+- `project-context/AI_CONTEXT.md` — v1.15 → v1.16: Application Layer registrada
+
+**Governança:**
+
+- **PI-005** — Engineering Specification da Application Layer (14 Serviços, 9 Portas)
+- **ER-005** — Engineering Review aprovada. Nenhuma divergência.
+- **GOV-013** a **GOV-019** — Melhorias de governança aplicadas durante a execução
+
+**Resultados finais:**
+
+- 8/8 Slices concluídas
+- 528/528 testes passando
+- 14/14 Services implementados
+- 9/9 Ports definidos
+- Core Foundation inalterada (GOV-006)
+- Domínio Patrimonial inalterado (GOV-006)
+- **EWO-003 oficialmente CLOSED**
+
+---
+
+## PS#053 — EWO-004: Infrastructure Layer (Consolidado)
+
+**Data:** 19/07/2026
+
+**Tipo:** Implementação (retroactive — sync package não gerado durante a execução)
+
+**Objetivo:** Implementar a Infrastructure Layer do Lio Feliz conforme PI-006 e ER-006. 10+ Portas de infraestrutura, 14+ Adapters, Cross-Cutting.
+
+**Arquivos criados (resumo):**
+
+- `src/infrastructure/ports/` — 10+ portas: Repository, UnitOfWork, DataGateway, Notification, EventPublisher, Subscription, Permission, Authorization, TransactionManager, ImportInterpreter
+- `src/infrastructure/adapters/` — 14+ adapters: Supabase, Postgres, Redis, HTTP, WebSocket
+- `src/infrastructure/cross-cutting/` — Logging, Retry, Configuration, ErrorMapping
+- `src/infrastructure/tests/` — 630 testes (unitários + integração)
+
+**Arquivos modificados (resumo):**
+
+- `project-context/PROJECT_STATUS.md` — v1.51 → v1.53: EWO-004 slices 1-7 concluídas
+- `project-context/PROJECT_BOOTSTRAP.md` — v2.45 → v2.55: EWO-004 slices 1-7 concluídas
+- `project-context/AI_CONTEXT.md` — v1.15 → v1.16: Infrastructure Layer registrada
+- `docs/PROJECT_STATE.md` — v1.26 → v1.27: EWO-004 registrado
+- `docs/DOCUMENTATION_INDEX.md` — v1.40 → v1.41: PI-006, ER-006, EWO-004 adicionados
+
+**Governança:**
+
+- **PI-006** — Engineering Specification da Infrastructure Layer (10+ Portas, 14+ Adapters)
+- **ER-006** — Engineering Review aprovada. Nenhuma divergência.
+- **GOV-M01 a GOV-M06** — Ciclo de Sincronização Documental Pós-EWO-004
+
+**Resultados finais:**
+
+- 7/7 Slices concluídas
+- 630/630 testes passando (66/66 arquivos de teste)
+- 10+ Ports → 14+ Adapters implementados
+- Infrastructure Integration Test Suite (9 testes)
+- Core Foundation inalterada (GOV-006)
+- Domínio Patrimonial inalterado (GOV-006)
+- Application Layer inalterada (GOV-006)
+- **EWO-004 oficialmente CLOSED**
+
+---
+
 ## PS#049 — Slice 9: Consolidação Final da EWO-002
 
 **Data:** 18/07/2026
@@ -1666,6 +1747,10 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 ---
 
 # Histórico
+
+### Versão 1.50
+
+EWO-004 — Infrastructure Layer consolidada. 7 Slices, 630 testes, 10+ Ports → 14+ Adapters. Zero regressões. PI-006/ER-006 aprovados. GOV-M01–M06 — Sincronização Documental Pós-EWO-004. DOCUMENTATION_INDEX atualizado (v1.40→v1.41). PROJECT_STATE atualizado (v1.26→v1.27). SYNC_HISTORY v1.49→v1.50.
 
 ### Versão 1.49
 

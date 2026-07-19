@@ -135,10 +135,10 @@ EWO-002 — Domínio Patrimonial
     Status: ✅ DONE (9 slices, 362 testes, 12/12 DAs)
 
 EWO-003 — Application Layer
-    Status: ⏳ TODO (próxima etapa)
+    Status: ✅ DONE (8 slices, 528 testes, 14 Services, 9 Ports)
 
 EWO-004 — Infrastructure
-    Status: 🔲 PLANNED
+    Status: ✅ DONE (7 slices, 630 testes, 10 Ports -> 14+ Adapters)
 
 EWO-005 — Frontend
     Status: 🔲 PLANNED
@@ -162,10 +162,10 @@ Domínio (código do domínio patrimonial)
     ██████████ 100%
 
 Application Layer (serviços, orquestração)
-    ░░░░░░░░░░   0%
+    ██████████ 100%
 
 Infrastructure (repositórios, APIs, banco)
-    ░░░░░░░░░░   0%
+    ██████████ 100%
 
 Frontend (UI, dashboards, UX)
     ░░░░░░░░░░   0%
