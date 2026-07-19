@@ -20,6 +20,8 @@ import { SupabaseProjectionRepository } from "@/infrastructure/repositories/supa
 import { SupabasePortfolioRepository } from "@/infrastructure/repositories/supabase-portfolio-repository";
 import { SupabaseConfigurationRepository } from "@/infrastructure/repositories/supabase-configuration-repository";
 import { InProcessEventPublisher } from "@/infrastructure/publishers/in-process-event-publisher";
+import { DataGatewayRouter } from "@/infrastructure/gateways/data-gateway-router";
+import { ImportInterpreter } from "@/infrastructure/interpreters/import-interpreter";
 
 function NotFoundComponent() {
   return (
@@ -142,6 +144,8 @@ function RootComponent() {
     portfolioRepository: new SupabasePortfolioRepository(supabase),
     configurationRepository: new SupabaseConfigurationRepository(supabase),
     eventPublisher: new InProcessEventPublisher(),
+    dataGateway: new DataGatewayRouter(),
+    importInterpreter: new ImportInterpreter(),
   });
 
   return (

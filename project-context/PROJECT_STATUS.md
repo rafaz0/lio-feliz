@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.71
+**Versão:** 1.72
 
 **Status:** APROVADO
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.72
+
+**EWO-005 Slice 11 — Sincronização CLOSED.** Feature `sync` da Presentation Layer materializada: `SyncPage`, `SyncForm`, `SyncButton`, `SyncResultCard`, `SyncLoading`, `SyncError`, `SyncEmpty`; hook `useSyncMutation` (TanStack Query `useMutation` + `useDispatcher` → `SincronizarDadosCommand`); ViewModels `SyncResultViewModel`/`SyncErrorViewModel` com mappers puros (`toSyncResultViewModel`, `toSyncErrorViewModel`, `fonteToLabel`); query keys em `sync-query-keys.ts`. Composition Root (`presentation-dispatcher.ts`): adicionadas deps `dataGateway`/`importInterpreter`; registrado `SincronizarDadosCommand` no bloco `portfolioRepository && eventPublisher && dataGateway && importInterpreter` via `SincronizarDadosService`. Nova infra (fora da presentation): `DataGatewayRouter` (adapter `IDataGateway` que roteia pela `DataGatewayFactory`) em `src/infrastructure/gateways`; `__root.tsx` injeta `new DataGatewayRouter()` + `new ImportInterpreter()`. Rota `/sync`. 16 testes novos (13 feature + 3 architecture R-10 estendido para sync), 240 totais, zero regressões. Build verde (exit 0, inclui regeneração de `routeTree.gen.ts`). ESLint: 0 erros nos arquivos da Slice. TypeCheck: 0 erros nos arquivos da Slice (débito pré-existente em rotas legadas/Core/Application permanece fora de escopo). **Aguarda auditoria ChatGPT antes da Slice 12.** DOCUMENTATION_INDEX v1.56.
 
 ### Versão 1.71
 

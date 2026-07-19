@@ -1,1 +1,3 @@
-// Estrutura de feature reservada para implementa��o nas Slices subsequentes da EWO-005.
+export { SyncPage } from "./components/SyncPage";
+export { useSyncMutation } from "./hooks/use-sync-mutation";
+export * from "./types/sync.view-model";

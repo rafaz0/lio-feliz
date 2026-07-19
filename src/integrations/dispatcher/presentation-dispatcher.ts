@@ -5,6 +5,8 @@ import type {
   IPortfolioRepository,
   IConfigurationRepository,
   IDomainEventPublisher,
+  IDataGateway,
+  IImportInterpreterPort,
 } from "@/application/ports";
 import { ConsultarPatrimonioService } from "@/application/services/consultar-patrimonio-service";
 import { ObterHistoricoPatrimonialService } from "@/application/services/obter-historico-patrimonial-service";
@@ -16,6 +18,7 @@ import { CalcularRebalanceamentoService } from "@/application/services/calcular-
 import { GerarRelatorioFiscalService } from "@/application/services/gerar-relatorio-fiscal-service";
 import { ObterConfiguracoesService } from "@/application/services/obter-configuracoes-service";
 import { ConfigurarEstrategiaService } from "@/application/services/configurar-estrategia-service";
+import { SincronizarDadosService } from "@/application/services/sincronizar-dados-service";
 import type { ObterPatrimonioQuery } from "@/application/queries/obter-patrimonio";
 import type { ObterHistoricoPatrimonialQuery } from "@/application/queries/obter-historico-patrimonial";
 import type { ConsultarPosicaoQuery } from "@/application/queries/consultar-posicao";
@@ -26,12 +29,15 @@ import type { GerarRelatorioFiscalQuery } from "@/application/queries/gerar-rela
 import type { ObterConfiguracoesQuery } from "@/application/queries/obter-configuracoes";
 import type { ConfigurarEstrategiaCommand } from "@/application/commands/configurar-estrategia";
 import type { RegistrarOperacaoCommand } from "@/application/commands/registrar-operacao";
+import type { SincronizarDadosCommand } from "@/application/commands/sincronizar-dados";
 
 interface PresentationDispatcherDeps {
   projectionRepository: IProjectionRepository;
   portfolioRepository?: IPortfolioRepository;
   configurationRepository?: IConfigurationRepository;
   eventPublisher?: IDomainEventPublisher;
+  dataGateway?: IDataGateway;
+  importInterpreter?: IImportInterpreterPort;
 }
 
 /**
@@ -46,6 +52,8 @@ export function createPresentationDispatcher({
   portfolioRepository,
   configurationRepository,
   eventPublisher,
+  dataGateway,
+  importInterpreter,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
 
@@ -104,6 +112,17 @@ export function createPresentationDispatcher({
       new RegistrarOperacaoService(portfolioRepository, eventPublisher).Execute(
         command as RegistrarOperacaoCommand,
       ),
+    );
+  }
+
+  if (portfolioRepository && eventPublisher && dataGateway && importInterpreter) {
+    dispatcher.RegisterCommand("SincronizarDadosCommand", (command) =>
+      new SincronizarDadosService(
+        portfolioRepository,
+        dataGateway,
+        importInterpreter,
+        eventPublisher,
+      ).Execute(command as SincronizarDadosCommand),
     );
   }
 

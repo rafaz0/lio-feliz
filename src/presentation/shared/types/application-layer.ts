@@ -40,6 +40,7 @@ import type {
   EstrategiaConfiguradaDto,
   AssinaturaAtualizadaDto,
   SincronizacaoRealizadaDto,
+  SincronizacaoErroDto,
   DadosExportadosDto,
 } from "@/application/dtos";
 import type {
@@ -90,6 +91,7 @@ export type {
   EstrategiaConfiguradaDto,
   AssinaturaAtualizadaDto,
   SincronizacaoRealizadaDto,
+  SincronizacaoErroDto,
   DadosExportadosDto,
   ApplicationError,
   ValidationError,
