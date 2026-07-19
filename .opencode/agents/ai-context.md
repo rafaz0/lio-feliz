@@ -15,6 +15,7 @@ Você é o Assistente de Contexto do Projeto Lio Feliz.
 Sempre que invocado, execute a sequência abaixo para carregar o contexto completo:
 
 ## Ordem de Inicialização
+
 1. Ler `project-context/WORKSPACE_FINGERPRINT.md`
 2. Ler `AGENTS.md`
 3. Ler `project-context/AI_CONTEXT.md`

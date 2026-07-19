@@ -20,29 +20,29 @@ O Pacote de Sincronização #010 foi concluído com 4 prompts, consolidando as b
 
 ## Arquivos Criados
 
-| Arquivo | Descrição |
-|---------|-----------|
-| `project-context/AI_CONTEXT.md` | Documento derivado de integração OpenCode ↔ ChatGPT (v1.0→v1.2) |
-| `project-context/KNOWLEDGE_BACKLOG.md` | Registro oficial de conhecimento não promovido (PS#009 → Prompts A-D) |
-| `docs/06_BUSINESS_RULES/03_TRANSACTION_INTERPRETATION.md` | Working Draft N3 de interpretação patrimonial (PS#008) |
-| `REPORT_PS010.md` | Este relatório |
+| Arquivo                                                   | Descrição                                                             |
+| --------------------------------------------------------- | --------------------------------------------------------------------- |
+| `project-context/AI_CONTEXT.md`                           | Documento derivado de integração OpenCode ↔ ChatGPT (v1.0→v1.2)       |
+| `project-context/KNOWLEDGE_BACKLOG.md`                    | Registro oficial de conhecimento não promovido (PS#009 → Prompts A-D) |
+| `docs/06_BUSINESS_RULES/03_TRANSACTION_INTERPRETATION.md` | Working Draft N3 de interpretação patrimonial (PS#008)                |
+| `REPORT_PS010.md`                                         | Este relatório                                                        |
 
 ---
 
 ## Arquivos Modificados
 
-| Arquivo | Versão Final | Alterações |
-|---------|-------------|------------|
-| `project-context/DEVELOPMENT_METHODOLOGY.md` | 1.7 | Nova seção §13 AI_CONTEXT, IA-015, IA-016, Baseline atualizada, Fluxo de Inicialização |
-| `project-context/WORKFLOW.md` | 1.3 | Fluxo oficial com etapas de inicialização (AI_CONTEXT → Baseline → Protocolo de Pré-Resposta) |
-| `project-context/PROJECT_STATUS.md` | 2.0 | Fonte Canônica registrada, migração documentada |
-| `project-context/README.md` | 1.8 | AI_CONTEXT reclassificado, migração documentada |
-| `docs/DOCUMENTATION_INDEX.md` | 2.0 | Entrada PS#010 registrada |
-| `docs/PROJECT_STATE.md` | 1.4 | Timelines atualizadas |
-| `AGENTS.md` | 1.0 | Caminho do projeto atualizado para H:\Lio Feliz |
-| `.runvite.bat` | 1.0 | Caminho do projeto atualizado para H:\Lio Feliz |
-| `DOCUMENTACAO_COMPLETA.md` | Regenerada | 35 arquivos consolidados a partir da nova Fonte Canônica |
-| `project-context/AI_CONTEXT.md` | 1.2 | Regenerado com conteúdo final do PS#010 |
+| Arquivo                                      | Versão Final | Alterações                                                                                    |
+| -------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------- |
+| `project-context/DEVELOPMENT_METHODOLOGY.md` | 1.7          | Nova seção §13 AI_CONTEXT, IA-015, IA-016, Baseline atualizada, Fluxo de Inicialização        |
+| `project-context/WORKFLOW.md`                | 1.3          | Fluxo oficial com etapas de inicialização (AI_CONTEXT → Baseline → Protocolo de Pré-Resposta) |
+| `project-context/PROJECT_STATUS.md`          | 2.0          | Fonte Canônica registrada, migração documentada                                               |
+| `project-context/README.md`                  | 1.8          | AI_CONTEXT reclassificado, migração documentada                                               |
+| `docs/DOCUMENTATION_INDEX.md`                | 2.0          | Entrada PS#010 registrada                                                                     |
+| `docs/PROJECT_STATE.md`                      | 1.4          | Timelines atualizadas                                                                         |
+| `AGENTS.md`                                  | 1.0          | Caminho do projeto atualizado para H:\Lio Feliz                                               |
+| `.runvite.bat`                               | 1.0          | Caminho do projeto atualizado para H:\Lio Feliz                                               |
+| `DOCUMENTACAO_COMPLETA.md`                   | Regenerada   | 35 arquivos consolidados a partir da nova Fonte Canônica                                      |
+| `project-context/AI_CONTEXT.md`              | 1.2          | Regenerado com conteúdo final do PS#010                                                       |
 
 ---
 
@@ -61,15 +61,15 @@ O Pacote de Sincronização #010 foi concluído com 4 prompts, consolidando as b
 
 ## Alterações de Infraestrutura
 
-| Item | Antes | Depois |
-|------|-------|--------|
-| Fonte Canônica | `C:\Users\...\Temp\opencode\lio-feliz` | `H:\Lio Feliz` |
-| AGENTS.md | Referenciava tmp | Referencia H:\Lio Feliz |
-| .runvite.bat | `DEV_SERVER__PROJECT_PATH=tmp` | `DEV_SERVER__PROJECT_PATH=H:\Lio Feliz` |
-| Git remote | `origin/main` (tmp) | `origin/main` (H:\) |
-| Estruturas removidas | `H:\Lio Feliz - Backup` | Removido |
-| Estruturas removidas | `H:\Lio Feliz - Contexto` | Removido |
-| Estruturas removidas | `C:\Users\...\Temp\opencode\lio-feliz` | Removido |
+| Item                 | Antes                                  | Depois                                  |
+| -------------------- | -------------------------------------- | --------------------------------------- |
+| Fonte Canônica       | `C:\Users\...\Temp\opencode\lio-feliz` | `H:\Lio Feliz`                          |
+| AGENTS.md            | Referenciava tmp                       | Referencia H:\Lio Feliz                 |
+| .runvite.bat         | `DEV_SERVER__PROJECT_PATH=tmp`         | `DEV_SERVER__PROJECT_PATH=H:\Lio Feliz` |
+| Git remote           | `origin/main` (tmp)                    | `origin/main` (H:\)                     |
+| Estruturas removidas | `H:\Lio Feliz - Backup`                | Removido                                |
+| Estruturas removidas | `H:\Lio Feliz - Contexto`              | Removido                                |
+| Estruturas removidas | `C:\Users\...\Temp\opencode\lio-feliz` | Removido                                |
 
 ---
 
@@ -124,14 +124,14 @@ Nenhuma nova sugestão arquitetural neste PS.
 
 ## Estado Final da Fonte Canônica
 
-| Aspecto | Valor |
-|---------|-------|
-| **Localização oficial** | `H:\Lio Feliz` |
-| **Localização do AI_CONTEXT** | `H:\Lio Feliz\project-context\AI_CONTEXT.md` |
-| **Estruturas antigas removidas** | Backup, Contexto, tmp — todas removidas |
-| **Geração automática do AI_CONTEXT** | Configurada — ao final de cada PS |
-| **Consistência da documentação** | OK — nenhuma inconsistência detectada |
-| **Git** | OK — remote configurado, branch main, uncommitted changes preserved |
+| Aspecto                              | Valor                                                               |
+| ------------------------------------ | ------------------------------------------------------------------- |
+| **Localização oficial**              | `H:\Lio Feliz`                                                      |
+| **Localização do AI_CONTEXT**        | `H:\Lio Feliz\project-context\AI_CONTEXT.md`                        |
+| **Estruturas antigas removidas**     | Backup, Contexto, tmp — todas removidas                             |
+| **Geração automática do AI_CONTEXT** | Configurada — ao final de cada PS                                   |
+| **Consistência da documentação**     | OK — nenhuma inconsistência detectada                               |
+| **Git**                              | OK — remote configurado, branch main, uncommitted changes preserved |
 
 ---
 

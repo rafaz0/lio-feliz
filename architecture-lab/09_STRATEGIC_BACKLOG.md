@@ -28,118 +28,118 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 
 ## BK-005 — PROJECT_MANIFEST.md
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Proposto |
-| Descrição | Inventário técnico do projeto contendo documentos, dependências, versões e relações |
-| Motivação | Centralizar informações de inventário atualmente dispersas |
-| Benefícios | Visibilidade completa da estrutura técnica do projeto |
-| Prioridade | Baixa |
-| Bloqueios | Nenhum |
-| Critério de revisão | Após estabilização do Engineering N1. Não implementar neste PS. |
+| Campo               | Valor                                                                               |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| Estado              | Proposto                                                                            |
+| Descrição           | Inventário técnico do projeto contendo documentos, dependências, versões e relações |
+| Motivação           | Centralizar informações de inventário atualmente dispersas                          |
+| Benefícios          | Visibilidade completa da estrutura técnica do projeto                               |
+| Prioridade          | Baixa                                                                               |
+| Bloqueios           | Nenhum                                                                              |
+| Critério de revisão | Após estabilização do Engineering N1. Não implementar neste PS.                     |
 
 ---
 
 ## BK-006 — Licensing & Feature Access Layer
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Proposto |
-| Descrição | Camada de licenciamento e controle de acesso a funcionalidades planos, assinatura, licenciamento e controle de funcionalidades |
-| Motivação | Formalizar evolução futura da arquitetura para suportar comercialização |
-| Benefícios | Arquitetura preparada para modelo de negócio sem reestruturação |
-| Prioridade | Média |
-| Bloqueios | Nenhum |
-| Critério de revisão | Após estabilização do Engineering N1 e definição do modelo de negócio. |
+| Campo               | Valor                                                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Estado              | Proposto                                                                                                                       |
+| Descrição           | Camada de licenciamento e controle de acesso a funcionalidades planos, assinatura, licenciamento e controle de funcionalidades |
+| Motivação           | Formalizar evolução futura da arquitetura para suportar comercialização                                                        |
+| Benefícios          | Arquitetura preparada para modelo de negócio sem reestruturação                                                                |
+| Prioridade          | Média                                                                                                                          |
+| Bloqueios           | Nenhum                                                                                                                         |
+| Critério de revisão | Após estabilização do Engineering N1 e definição do modelo de negócio.                                                         |
 
 ---
 
 ## BK-007 — Comercialização
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Proposto |
-| Descrição | Suporte a planos, assinatura, licenciamento e controle de funcionalidades para comercialização do sistema |
-| Motivação | Registrar oficialmente a preparação arquitetural para modelo de negócio |
-| Benefícios | Arquitetura preparada para comercialização sem reestruturação |
-| Prioridade | Média |
-| Bloqueios | Nenhum |
-| Critério de revisão | Após definição do modelo de negócio e estabilização do Engineering N1. |
+| Campo               | Valor                                                                                                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------- |
+| Estado              | Proposto                                                                                                  |
+| Descrição           | Suporte a planos, assinatura, licenciamento e controle de funcionalidades para comercialização do sistema |
+| Motivação           | Registrar oficialmente a preparação arquitetural para modelo de negócio                                   |
+| Benefícios          | Arquitetura preparada para comercialização sem reestruturação                                             |
+| Prioridade          | Média                                                                                                     |
+| Bloqueios           | Nenhum                                                                                                    |
+| Critério de revisão | Após definição do modelo de negócio e estabilização do Engineering N1.                                    |
 
 ---
 
 ## BK-008 — GOV-001: Idioma Oficial da Documentação
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Formalizar português brasileiro como idioma oficial das especificações. Permitir inglês apenas para nomes próprios e terminologia oficialmente adotada. |
-| Motivação | Padronização linguística da documentação |
-| Benefícios | Consistência terminológica, eliminação de ambiguidades |
-| Prioridade | Média |
-| Bloqueios | Nenhum |
-| Implementação | OP-013 adicionado ao DEVELOPMENT_METHODOLOGY.md. Bootstrap sincronizado. |
-| Data | 13/07/2026 |
+| Campo         | Valor                                                                                                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Estado        | Concluído                                                                                                                                               |
+| Descrição     | Formalizar português brasileiro como idioma oficial das especificações. Permitir inglês apenas para nomes próprios e terminologia oficialmente adotada. |
+| Motivação     | Padronização linguística da documentação                                                                                                                |
+| Benefícios    | Consistência terminológica, eliminação de ambiguidades                                                                                                  |
+| Prioridade    | Média                                                                                                                                                   |
+| Bloqueios     | Nenhum                                                                                                                                                  |
+| Implementação | OP-013 adicionado ao DEVELOPMENT_METHODOLOGY.md. Bootstrap sincronizado.                                                                                |
+| Data          | 13/07/2026                                                                                                                                              |
 
 ---
 
 ## BK-009 — GOV-002: Fluxo Oficial de Elaboração de PIs
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Formalizar o fluxo: Concepção Arquitetural → Engineering Review Conceitual → Redação da PI → Engineering Review Documental → Approved. |
-| Motivação | Falta de registro formal do fluxo de criação de PIs |
-| Benefícios | Clareza sobre o processo de maturação das PIs |
-| Prioridade | Média |
-| Bloqueios | Nenhum |
-| Implementação | OP-014 adicionado ao DEVELOPMENT_METHODOLOGY.md. §10.1 referenciado. |
-| Data | 13/07/2026 |
+| Campo         | Valor                                                                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Estado        | Concluído                                                                                                                              |
+| Descrição     | Formalizar o fluxo: Concepção Arquitetural → Engineering Review Conceitual → Redação da PI → Engineering Review Documental → Approved. |
+| Motivação     | Falta de registro formal do fluxo de criação de PIs                                                                                    |
+| Benefícios    | Clareza sobre o processo de maturação das PIs                                                                                          |
+| Prioridade    | Média                                                                                                                                  |
+| Bloqueios     | Nenhum                                                                                                                                 |
+| Implementação | OP-014 adicionado ao DEVELOPMENT_METHODOLOGY.md. §10.1 referenciado.                                                                   |
+| Data          | 13/07/2026                                                                                                                             |
 
 ---
 
 ## BK-010 — GOV-003: Glossário Arquitetural Compartilhado
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Centralizar os conceitos arquiteturais utilizados pelas PIs em um glossário compartilhado |
-| Motivação | Evitar dispersão de definições entre múltiplos documentos |
-| Benefícios | Consistência entre PIs, facilidade de consulta |
-| Prioridade | Baixa |
-| Bloqueios | Nenhum |
+| Campo         | Valor                                                                                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------- |
+| Estado        | Concluído                                                                                                     |
+| Descrição     | Centralizar os conceitos arquiteturais utilizados pelas PIs em um glossário compartilhado                     |
+| Motivação     | Evitar dispersão de definições entre múltiplos documentos                                                     |
+| Benefícios    | Consistência entre PIs, facilidade de consulta                                                                |
+| Prioridade    | Baixa                                                                                                         |
+| Bloqueios     | Nenhum                                                                                                        |
 | Implementação | Conceitos consolidados nas próprias PIs (PI-001 a PI-004) e no 19_GLOSSARY.md. Não requer documento separado. |
-| Data | 18/07/2026 |
+| Data          | 18/07/2026                                                                                                    |
 
 ---
 
 ## BK-011 — GOV-004: Referências Normativas
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Padronização de referências normativas entre documentos |
-| Motivação | Referências atualmente sem padrão formal |
-| Benefícios | Rastreabilidade e consistência documental |
-| Prioridade | Baixa |
-| Bloqueios | Nenhum |
+| Campo         | Valor                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------ |
+| Estado        | Concluído                                                                                  |
+| Descrição     | Padronização de referências normativas entre documentos                                    |
+| Motivação     | Referências atualmente sem padrão formal                                                   |
+| Benefícios    | Rastreabilidade e consistência documental                                                  |
+| Prioridade    | Baixa                                                                                      |
+| Bloqueios     | Nenhum                                                                                     |
 | Implementação | Referências padronizadas via Ordem de Precedência no Bootstrap e citações diretas nas PIs. |
-| Data | 18/07/2026 |
+| Data          | 18/07/2026                                                                                 |
 
 ---
 
 ## BK-012 — GOV-005: Política de Identificadores Arquiteturais
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Avaliar padronização da numeração de PAs, IAs e demais identificadores arquiteturais |
-| Motivação | Possível conflito de numeração entre PIs |
-| Benefícios | Padronização e rastreabilidade dos identificadores |
-| Prioridade | Baixa |
-| Bloqueios | Nenhum |
+| Campo         | Valor                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Estado        | Concluído                                                                                                                         |
+| Descrição     | Avaliar padronização da numeração de PAs, IAs e demais identificadores arquiteturais                                              |
+| Motivação     | Possível conflito de numeração entre PIs                                                                                          |
+| Benefícios    | Padronização e rastreabilidade dos identificadores                                                                                |
+| Prioridade    | Baixa                                                                                                                             |
+| Bloqueios     | Nenhum                                                                                                                            |
 | Implementação | Identificadores padronizados: PI-XXX vX.X, ER-XXX, EWO-XXX, GOV-XXX, BK-XXX, IA-XXX, OP-XXX, DA-XXX, I-XXX. Conflitos resolvidos. |
-| Data | 18/07/2026 |
+| Data          | 18/07/2026                                                                                                                        |
 
 ---
 
@@ -147,57 +147,57 @@ Proposto → Validado → Registrado → Planejado → Em Implementação → Co
 
 ## BK-001 — Simplificar AI_CONTEXT
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Reduzir AI_CONTEXT a Estado Operacional, Objetivos, Estado da Execução, Protocolos e Referências |
-| Motivação | Documento estava excessivamente grande com duplicações desnecessárias |
-| Benefícios | Menor consumo de contexto, manutenção simplificada |
-| Prioridade | Baixa |
-| Bloqueios | Nenhum |
-| Critério de revisão | Implementado no PS#032 |
+| Campo               | Valor                                                                                            |
+| ------------------- | ------------------------------------------------------------------------------------------------ |
+| Estado              | Concluído                                                                                        |
+| Descrição           | Reduzir AI_CONTEXT a Estado Operacional, Objetivos, Estado da Execução, Protocolos e Referências |
+| Motivação           | Documento estava excessivamente grande com duplicações desnecessárias                            |
+| Benefícios          | Menor consumo de contexto, manutenção simplificada                                               |
+| Prioridade          | Baixa                                                                                            |
+| Bloqueios           | Nenhum                                                                                           |
+| Critério de revisão | Implementado no PS#032                                                                           |
 
 ---
 
 ## BK-002 — Auditoria de Referências
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Executar auditoria completa das referências: último PS, versões, referências cruzadas, documentos oficiais, sincronização geral |
-| Motivação | Garantir consistência documental após múltiplas emendas e PS |
-| Benefícios | Documentação consistente e confiável |
-| Prioridade | Baixa |
-| Bloqueios | Nenhum |
-| Critério de revisão | Implementado no PS#032 |
+| Campo               | Valor                                                                                                                           |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Estado              | Concluído                                                                                                                       |
+| Descrição           | Executar auditoria completa das referências: último PS, versões, referências cruzadas, documentos oficiais, sincronização geral |
+| Motivação           | Garantir consistência documental após múltiplas emendas e PS                                                                    |
+| Benefícios          | Documentação consistente e confiável                                                                                            |
+| Prioridade          | Baixa                                                                                                                           |
+| Bloqueios           | Nenhum                                                                                                                          |
+| Critério de revisão | Implementado no PS#032                                                                                                          |
 
 ---
 
 ## BK-003 — Criação do Strategic Backlog
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Criar 09_STRATEGIC_BACKLOG.md como repositório oficial de melhorias estratégicas aprovadas |
-| Motivação | Formalizar o repositório de melhorias que não podiam mais depender apenas da memória do chat |
-| Benefícios | Rastreabilidade completa das melhorias estratégicas |
-| Prioridade | Baixa |
-| Bloqueios | Nenhum |
-| Critério de revisão | Implementado no PS#032 |
+| Campo               | Valor                                                                                        |
+| ------------------- | -------------------------------------------------------------------------------------------- |
+| Estado              | Concluído                                                                                    |
+| Descrição           | Criar 09_STRATEGIC_BACKLOG.md como repositório oficial de melhorias estratégicas aprovadas   |
+| Motivação           | Formalizar o repositório de melhorias que não podiam mais depender apenas da memória do chat |
+| Benefícios          | Rastreabilidade completa das melhorias estratégicas                                          |
+| Prioridade          | Baixa                                                                                        |
+| Bloqueios           | Nenhum                                                                                       |
+| Critério de revisão | Implementado no PS#032                                                                       |
 
 ---
 
 ## BK-004 — Registro Oficial do PROJECT_BOOTSTRAP
 
-| Campo | Valor |
-|-------|-------|
-| Estado | Concluído |
-| Descrição | Registrar PROJECT_BOOTSTRAP.md como documento oficial de inicialização rápida |
-| Motivação | Formalizar a nova camada documental em todas as referências oficiais |
-| Benefícios | Consistência documental e rastreabilidade |
-| Prioridade | Baixa |
-| Bloqueios | Nenhum |
-| Critério de revisão | Implementado no PS#032 |
+| Campo               | Valor                                                                         |
+| ------------------- | ----------------------------------------------------------------------------- |
+| Estado              | Concluído                                                                     |
+| Descrição           | Registrar PROJECT_BOOTSTRAP.md como documento oficial de inicialização rápida |
+| Motivação           | Formalizar a nova camada documental em todas as referências oficiais          |
+| Benefícios          | Consistência documental e rastreabilidade                                     |
+| Prioridade          | Baixa                                                                         |
+| Bloqueios           | Nenhum                                                                        |
+| Critério de revisão | Implementado no PS#032                                                        |
 
 ---
 

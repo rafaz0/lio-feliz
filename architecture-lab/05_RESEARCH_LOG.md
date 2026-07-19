@@ -16,7 +16,7 @@ Nenhum conteúdo deste documento representa decisão oficial.
 
 ## Ideias
 
-*(nenhuma registrada)*
+_(nenhuma registrada)_
 
 ---
 
@@ -40,10 +40,10 @@ O Portfolio Ledger deve ser o único registro permanente. Toda análise é deriv
 
 ## Experimentos
 
-*(nenhum registrado)*
+_(nenhum registrado)_
 
 ---
 
 ## Conclusões
 
-*(nenhuma registrada)*
+_(nenhuma registrada)_

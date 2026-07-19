@@ -64,17 +64,15 @@ describe("GerenciarAssinaturaService", () => {
       const repo: ISubscriptionRepository = {
         ObterPlanoAtivo: vi.fn().mockResolvedValue(null),
         Salvar: salvar,
-        ListarPlanosDisponiveis: vi
-          .fn()
-          .mockResolvedValue([
-            {
-              planoId: "premium",
-              nome: "Premium",
-              descricao: "Premium",
-              precoMensal: 29.9,
-              recursos: ["basico", "avancado"],
-            },
-          ]),
+        ListarPlanosDisponiveis: vi.fn().mockResolvedValue([
+          {
+            planoId: "premium",
+            nome: "Premium",
+            descricao: "Premium",
+            precoMensal: 29.9,
+            recursos: ["basico", "avancado"],
+          },
+        ]),
       };
       const notification: INotificationPort = {
         Notificar: notificar,
@@ -126,17 +124,15 @@ describe("GerenciarAssinaturaService", () => {
       const repo: ISubscriptionRepository = {
         ObterPlanoAtivo: vi.fn().mockResolvedValue(null),
         Salvar: vi.fn(),
-        ListarPlanosDisponiveis: vi
-          .fn()
-          .mockResolvedValue([
-            {
-              planoId: "premium",
-              nome: "Premium",
-              descricao: "Premium",
-              precoMensal: 29.9,
-              recursos: [],
-            },
-          ]),
+        ListarPlanosDisponiveis: vi.fn().mockResolvedValue([
+          {
+            planoId: "premium",
+            nome: "Premium",
+            descricao: "Premium",
+            precoMensal: 29.9,
+            recursos: [],
+          },
+        ]),
       };
       const service = createService(repo);
       const command = createCommand({ acao: "cancelar", plano: undefined });
@@ -184,17 +180,15 @@ describe("GerenciarAssinaturaService", () => {
       const repo: ISubscriptionRepository = {
         ObterPlanoAtivo: vi.fn().mockResolvedValue(null),
         Salvar: vi.fn(),
-        ListarPlanosDisponiveis: vi
-          .fn()
-          .mockResolvedValue([
-            {
-              planoId: "premium",
-              nome: "Premium",
-              descricao: "Premium",
-              precoMensal: 29.9,
-              recursos: [],
-            },
-          ]),
+        ListarPlanosDisponiveis: vi.fn().mockResolvedValue([
+          {
+            planoId: "premium",
+            nome: "Premium",
+            descricao: "Premium",
+            precoMensal: 29.9,
+            recursos: [],
+          },
+        ]),
       };
       const notification: INotificationPort = {
         Notificar: notificar,

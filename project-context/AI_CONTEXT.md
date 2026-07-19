@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.12
+**Versão:** 1.13
 
 **Status:** APROVADO
 
@@ -10,7 +10,7 @@
 
 **Última atualização:** 18/07/2026
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-002 CONCLUÍDA. Próxima etapa: Application Layer.
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-003 CONCLUÍDA. Próxima etapa: Infrastructure Layer (EWO-004).
 
 ---
 
@@ -28,22 +28,26 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-Engineering N2 — EWO-002 CONCLUÍDA. Próxima etapa: Application Layer.
+Engineering N2 — EWO-003 CONCLUÍDA. Próxima etapa: Infrastructure Layer (EWO-004).
 
 # Referências Obrigatórias
 
-| Documento | Propósito |
-|-----------|-----------|
-| `PROJECT_BOOTSTRAP.md` | Runtime Operacional (regras, templates, rituais, fluxos) |
-| `DEVELOPMENT_METHODOLOGY.md` | Metodologia oficial — fonte de verdade dos protocolos |
-| `AI_OPERATION_CHECKLIST.md` | Checklist executável obrigatório |
-| `DOCUMENTACAO_COMPLETA.md` | Consolidação completa para consulta |
-| `09_STRATEGIC_BACKLOG.md` | Repositório de melhorias estratégicas |
-| `PS_TEMPLATE.md` | Template oficial de Pacotes de Sincronização |
+| Documento                    | Propósito                                                |
+| ---------------------------- | -------------------------------------------------------- |
+| `PROJECT_BOOTSTRAP.md`       | Runtime Operacional (regras, templates, rituais, fluxos) |
+| `DEVELOPMENT_METHODOLOGY.md` | Metodologia oficial — fonte de verdade dos protocolos    |
+| `AI_OPERATION_CHECKLIST.md`  | Checklist executável obrigatório                         |
+| `DOCUMENTACAO_COMPLETA.md`   | Consolidação completa para consulta                      |
+| `09_STRATEGIC_BACKLOG.md`    | Repositório de melhorias estratégicas                    |
+| `PS_TEMPLATE.md`             | Template oficial de Pacotes de Sincronização             |
 
 ---
 
 # Histórico
+
+### Versão 1.13
+
+EWO-003 CONCLUÍDA. Objetivo atualizado para Infrastructure Layer como próxima etapa.
 
 ### Versão 1.12
 

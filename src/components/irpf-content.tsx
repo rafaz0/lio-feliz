@@ -7,12 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { formatBRL } from "@/lib/format";
-import {
-  calcMonthSummaries,
-  calcTotals,
-  classifyDayTrade,
-  exportToCsv,
-} from "@/lib/tax/rules";
+import { calcMonthSummaries, calcTotals, classifyDayTrade, exportToCsv } from "@/lib/tax/rules";
 import type { MonthSummary } from "@/lib/tax/rules";
 
 export function IrpfContent() {
@@ -44,8 +39,12 @@ export function IrpfContent() {
   }
 
   const buySellOps = ops.filter((o) => o.side === "buy" || o.side === "sell") as {
-    ticker: string; asset_type?: AssetType; traded_at: string;
-    side: "buy" | "sell"; quantity: number; price: number;
+    ticker: string;
+    asset_type?: AssetType;
+    traded_at: string;
+    side: "buy" | "sell";
+    quantity: number;
+    price: number;
   }[];
   const summaries = calcMonthSummaries(buySellOps);
   const totals = calcTotals(summaries);
@@ -119,23 +118,33 @@ export function IrpfContent() {
             .reverse()
             .map((year) => {
               const yearSum = summaries.filter((s) => s.month.startsWith(year));
-              const yearGain = yearSum.filter((s) => s.netGain > 0).reduce((a, b) => a + b.netGain, 0);
-              const yearLoss = yearSum.filter((s) => s.netGain < 0).reduce((a, b) => a + b.netGain, 0);
+              const yearGain = yearSum
+                .filter((s) => s.netGain > 0)
+                .reduce((a, b) => a + b.netGain, 0);
+              const yearLoss = yearSum
+                .filter((s) => s.netGain < 0)
+                .reduce((a, b) => a + b.netGain, 0);
               const yearTax = yearSum.reduce((s, i) => s + i.taxDue, 0);
               return (
-                <div key={year} className="flex items-center justify-between rounded-md bg-surface p-3 text-sm">
+                <div
+                  key={year}
+                  className="flex items-center justify-between rounded-md bg-surface p-3 text-sm"
+                >
                   <span className="font-semibold">{year}</span>
                   <div className="flex items-center gap-4">
                     <span className="text-muted-foreground">
-                      Ganho: <span className="text-positive font-medium">{formatBRL(yearGain)}</span>
+                      Ganho:{" "}
+                      <span className="text-positive font-medium">{formatBRL(yearGain)}</span>
                     </span>
                     {yearLoss < 0 && (
                       <span className="text-muted-foreground">
-                        Prejuízo: <span className="text-negative font-medium">{formatBRL(yearLoss)}</span>
+                        Prejuízo:{" "}
+                        <span className="text-negative font-medium">{formatBRL(yearLoss)}</span>
                       </span>
                     )}
                     <span className="text-muted-foreground">
-                      IR devido: <span className="text-amber-600 font-medium">{formatBRL(yearTax)}</span>
+                      IR devido:{" "}
+                      <span className="text-amber-600 font-medium">{formatBRL(yearTax)}</span>
                     </span>
                   </div>
                 </div>
@@ -154,8 +163,8 @@ export function IrpfContent() {
             <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-chart-1" />
             <span>
               <strong>Bens e Direitos:</strong> Informe cada ativo pelo seu valor de aquisição
-              (custo total de compra) na data-base de 31/12. Códigos na ficha de Bens e Direitos:
-              31 (Ações), 32 (FIIs), 33 (BDRs/ETFs), 99 (Cripto), 78 (Renda Fixa).
+              (custo total de compra) na data-base de 31/12. Códigos na ficha de Bens e Direitos: 31
+              (Ações), 32 (FIIs), 33 (BDRs/ETFs), 99 (Cripto), 78 (Renda Fixa).
             </span>
           </li>
           <li className="flex items-start gap-2">
@@ -234,7 +243,12 @@ export function IrpfContent() {
                         {classifyDayTrade(
                           ops.filter(
                             (o) => o.traded_at.startsWith(s.month) && o.ticker === s.ticker,
-                          ) as { traded_at: string; side: "buy" | "sell"; quantity: number; price: number }[],
+                          ) as {
+                            traded_at: string;
+                            side: "buy" | "sell";
+                            quantity: number;
+                            price: number;
+                          }[],
                         ).length > 0 && (
                           <span className="ml-1 rounded bg-purple-100 px-1 py-0.5 text-[10px] text-purple-800 dark:bg-purple-900 dark:text-purple-200">
                             DT

@@ -31,17 +31,15 @@ export class AssetAllocationReport {
 
 export class AssetAllocationCalculator {
   calculate(positions: Position[]): AssetAllocationReport {
-    const totalInvested = positions.reduce(
-      (sum, p) => sum + p.getTotalCost().getValue(),
-      0,
-    );
+    const totalInvested = positions.reduce((sum, p) => sum + p.getTotalCost().getValue(), 0);
 
     const items = positions
       .filter((p) => p.getTotalCost().getValue() > 0 || p.getQuantity().getValue() > 0)
       .map((p) => {
-        const allocation = totalInvested > 0
-          ? Math.round((p.getTotalCost().getValue() / totalInvested) * 10000) / 100
-          : 0;
+        const allocation =
+          totalInvested > 0
+            ? Math.round((p.getTotalCost().getValue() / totalInvested) * 10000) / 100
+            : 0;
         return new AssetAllocationItem(
           p.getTicker(),
           p.getQuantity(),

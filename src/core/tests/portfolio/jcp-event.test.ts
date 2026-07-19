@@ -39,7 +39,7 @@ describe("JcpEvent", () => {
 
     it("is unique across instances", () => {
       const a = new JcpEvent("p1", "c1", "PETR4", 100, 0.85);
-      const b = new JcpEvent("p1", "c2", "VALE3", 50, 1.20);
+      const b = new JcpEvent("p1", "c2", "VALE3", 50, 1.2);
       expect(a.eventId).not.toBe(b.eventId);
     });
   });

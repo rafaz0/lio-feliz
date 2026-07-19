@@ -28,14 +28,14 @@ O painel não substitui a documentação oficial. Não substitui o PROJECT_STATU
 
 # 2. Critérios de Maturidade
 
-| Nível | Percentual | Descrição |
-|-------|-----------|-----------|
-| N0 | 20% | Ideia — conceito identificado, sem registro formal |
-| N1 | 40% | Working Draft — documento criado, em evolução ativa |
-| N2 | 60% | Consistente — conceitos estabilizados, estrutura consolidada |
-| N3 | 80% | Integrado — documento coerente com os demais do domínio |
-| N4 | 90% | Validado — revisado e aprovado pela equipe |
-| N5 | 100% | Oficial — promovido a documentação oficial (v1.0+) |
+| Nível | Percentual | Descrição                                                    |
+| ----- | ---------- | ------------------------------------------------------------ |
+| N0    | 20%        | Ideia — conceito identificado, sem registro formal           |
+| N1    | 40%        | Working Draft — documento criado, em evolução ativa          |
+| N2    | 60%        | Consistente — conceitos estabilizados, estrutura consolidada |
+| N3    | 80%        | Integrado — documento coerente com os demais do domínio      |
+| N4    | 90%        | Validado — revisado e aprovado pela equipe                   |
+| N5    | 100%       | Oficial — promovido a documentação oficial (v1.0+)           |
 
 Os percentuais representam maturidade documental. Não representam esforço, prazo ou quantidade de trabalho restante.
 
@@ -53,14 +53,14 @@ Os percentuais representam maturidade documental. Não representam esforço, pra
 
 # 4. Domínio Principal
 
-| Documento | Nível | % | Status |
-|-----------|-------|---|--------|
-| 01_DOMAIN_FOUNDATIONS | N5 | 100% | 🟢 |
-| 02_TRANSACTIONS | N5 | 100% | 🟢 |
-| 03_TRANSACTION_INTERPRETATION | N4 | 90% | 🟢 |
-| TRACE_TRANSACTION | N2 | 60% | 🟢 |
-| 04_PORTFOLIO_LEDGER | N2 | 60% | 🟢 |
-| 05_PORTFOLIO_ENGINE | N1 | 40% | 🟢 |
+| Documento                     | Nível | %    | Status |
+| ----------------------------- | ----- | ---- | ------ |
+| 01_DOMAIN_FOUNDATIONS         | N5    | 100% | 🟢     |
+| 02_TRANSACTIONS               | N5    | 100% | 🟢     |
+| 03_TRANSACTION_INTERPRETATION | N4    | 90%  | 🟢     |
+| TRACE_TRANSACTION             | N2    | 60%  | 🟢     |
+| 04_PORTFOLIO_LEDGER           | N2    | 60%  | 🟢     |
+| 05_PORTFOLIO_ENGINE           | N1    | 40%  | 🟢     |
 
 ## Progresso Global do Domínio Principal
 
@@ -70,21 +70,21 @@ Os percentuais representam maturidade documental. Não representam esforço, pra
 
 # 5. Business Rules
 
-| Documento | Status |
-|-----------|--------|
-| BR-01 — Portfolio | 🟢 Concluída |
-| BR-02 — Transactions | 🟢 Concluída |
-| BR-03 — Market Data | 🟢 Concluída |
+| Documento                 | Status       |
+| ------------------------- | ------------ |
+| BR-01 — Portfolio         | 🟢 Concluída |
+| BR-02 — Transactions      | 🟢 Concluída |
+| BR-03 — Market Data       | 🟢 Concluída |
 | BR-04 — Corporate Actions | 🟢 Concluída |
-| BR-05 — Proventos | 🟢 Concluída |
-| BR-06 | 🔴 Pendente |
-| BR-07 | 🔴 Pendente |
-| BR-08 | 🔴 Pendente |
-| BR-09 | 🔴 Pendente |
-| BR-10 | 🔴 Pendente |
-| BR-11 | 🔴 Pendente |
-| BR-12 | 🔴 Pendente |
-| BR-13 | 🔴 Pendente |
+| BR-05 — Proventos         | 🟢 Concluída |
+| BR-06                     | 🔴 Pendente  |
+| BR-07                     | 🔴 Pendente  |
+| BR-08                     | 🔴 Pendente  |
+| BR-09                     | 🔴 Pendente  |
+| BR-10                     | 🔴 Pendente  |
+| BR-11                     | 🔴 Pendente  |
+| BR-12                     | 🔴 Pendente  |
+| BR-13                     | 🔴 Pendente  |
 
 ## Progresso Global das Business Rules
 
@@ -96,14 +96,14 @@ Os percentuais representam maturidade documental. Não representam esforço, pra
 
 ## Início Seguro da Implementação
 
-| Requisito | Status |
-|-----------|--------|
-| 🟢 01_DOMAIN_FOUNDATIONS ≥ N5 | 🟢 ATINGIDO |
-| 🟢 02_TRANSACTIONS ≥ N5 | 🟢 ATINGIDO |
+| Requisito                             | Status      |
+| ------------------------------------- | ----------- |
+| 🟢 01_DOMAIN_FOUNDATIONS ≥ N5         | 🟢 ATINGIDO |
+| 🟢 02_TRANSACTIONS ≥ N5               | 🟢 ATINGIDO |
 | 🟢 03_TRANSACTION_INTERPRETATION ≥ N4 | 🟢 ATINGIDO |
-| 🟢 TRACE_TRANSACTION ≥ N2 | 🟢 ATINGIDO |
-| 🟢 04_PORTFOLIO_LEDGER ≥ N2 | 🟢 ATINGIDO |
-| 🟢 05_PORTFOLIO_ENGINE ≥ N1 | 🟢 ATINGIDO |
+| 🟢 TRACE_TRANSACTION ≥ N2             | 🟢 ATINGIDO |
+| 🟢 04_PORTFOLIO_LEDGER ≥ N2           | 🟢 ATINGIDO |
+| 🟢 05_PORTFOLIO_ENGINE ≥ N1           | 🟢 ATINGIDO |
 
 **Status geral:** 🟢 ATINGIDO
 
@@ -131,13 +131,13 @@ O painel deverá ser atualizado sempre que:
 
 # 9. Indicadores Pós-Auditoria
 
-| Indicador | Estado |
-|-----------|--------|
-| Arquitetura | 🟢 |
-| Documentação | 🟢 |
-| Código Existente | 🟢 |
-| Reaproveitamento | 🟢 85% |
-| Reescrita Necessária | 🟢 0% |
+| Indicador            | Estado |
+| -------------------- | ------ |
+| Arquitetura          | 🟢     |
+| Documentação         | 🟢     |
+| Código Existente     | 🟢     |
+| Reaproveitamento     | 🟢 85% |
+| Reescrita Necessária | 🟢 0%  |
 
 **Estratégia:** Convergência Arquitetural + Refatoração Incremental (DEC-069B)
 

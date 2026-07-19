@@ -44,32 +44,34 @@ export class PerformanceReport {
 
 export class PerformanceCalculator {
   calculate(positions: Position[]): PerformanceReport {
-    const totalInvested = positions.reduce(
-      (sum, p) => sum + p.getTotalCost().getValue(),
-      0,
-    );
+    const totalInvested = positions.reduce((sum, p) => sum + p.getTotalCost().getValue(), 0);
 
-    const totalQuantity = positions.reduce(
-      (sum, p) => sum + p.getQuantity().getValue(),
-      0,
-    );
+    const totalQuantity = positions.reduce((sum, p) => sum + p.getQuantity().getValue(), 0);
 
-    const weightedAvgCost = totalQuantity > 0
-      ? Math.round((totalInvested / totalQuantity) * 100) / 100
-      : 0;
+    const weightedAvgCost =
+      totalQuantity > 0 ? Math.round((totalInvested / totalQuantity) * 100) / 100 : 0;
 
     const assets = positions
       .filter((p) => p.getTotalCost().getValue() > 0 || p.getQuantity().getValue() > 0)
       .map((p) => {
-        const weight = totalInvested > 0
-          ? Math.round((p.getTotalCost().getValue() / totalInvested) * 10000) / 100
-          : 0;
-        return new AssetPerformance(p.getTicker(), p.getTotalCost(), Money.create(totalInvested), weight);
+        const weight =
+          totalInvested > 0
+            ? Math.round((p.getTotalCost().getValue() / totalInvested) * 10000) / 100
+            : 0;
+        return new AssetPerformance(
+          p.getTicker(),
+          p.getTotalCost(),
+          Money.create(totalInvested),
+          weight,
+        );
       });
 
-    const concentrationIndex = assets.length > 0
-      ? Math.round(assets.reduce((sum, a) => sum + (a.weight / 100) * (a.weight / 100), 0) * 10000) / 10000
-      : 0;
+    const concentrationIndex =
+      assets.length > 0
+        ? Math.round(
+            assets.reduce((sum, a) => sum + (a.weight / 100) * (a.weight / 100), 0) * 10000,
+          ) / 10000
+        : 0;
 
     return new PerformanceReport(
       Money.create(totalInvested),

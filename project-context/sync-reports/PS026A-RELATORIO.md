@@ -43,17 +43,17 @@ Ciclo de vida para recomendações com identificadores PGR-001, PGR-002...
 
 ## 4. Arquivos Modificados
 
-| Arquivo | Versão Anterior | Versão Nova |
-|---------|----------------|-------------|
-| DEVELOPMENT_METHODOLOGY.md | v1.11 | v1.12 |
-| AI_CONTEXT.md | v2.0 | v2.1 |
-| PROJECT_STATUS.md | v3.5 | v3.6 |
-| README.md | v1.23 | v1.24 |
-| PROJECT_STATE.md | v1.19 | v1.20 |
-| DOCUMENTATION_INDEX.md | v3.3 | v3.4 |
-| PROJECT_PROGRESS_PANEL.md | v1.0 | v1.1 |
-| DOCUMENTACAO_COMPLETA.md | — | Regenerado |
-| SYNC_HISTORY.md | — | Atualizado |
+| Arquivo                    | Versão Anterior | Versão Nova |
+| -------------------------- | --------------- | ----------- |
+| DEVELOPMENT_METHODOLOGY.md | v1.11           | v1.12       |
+| AI_CONTEXT.md              | v2.0            | v2.1        |
+| PROJECT_STATUS.md          | v3.5            | v3.6        |
+| README.md                  | v1.23           | v1.24       |
+| PROJECT_STATE.md           | v1.19           | v1.20       |
+| DOCUMENTATION_INDEX.md     | v3.3            | v3.4        |
+| PROJECT_PROGRESS_PANEL.md  | v1.0            | v1.1        |
+| DOCUMENTACAO_COMPLETA.md   | —               | Regenerado  |
+| SYNC_HISTORY.md            | —               | Atualizado  |
 
 ---
 
@@ -84,4 +84,4 @@ Evolução de Working Draft (04_PORTFOLIO_LEDGER N1 → N2 ou 05_PORTFOLIO_ENGIN
 
 ---
 
-*PS#026A encerrado.*
+_PS#026A encerrado._

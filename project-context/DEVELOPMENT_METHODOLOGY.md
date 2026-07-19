@@ -373,10 +373,10 @@ Nenhuma decisão estratégica poderá permanecer exclusivamente na memória das 
 
 A engenharia do Lio Feliz opera com dois papéis complementares:
 
-| Papel | Atribuições |
-|-------|-------------|
+| Papel                                              | Atribuições                                                                                                                                                                             |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **ChatGPT** (Arquiteto/Planejador/Auditor/Revisor) | Define objetivos, critérios de aceite e diretrizes. Planeja Slices. Realiza Engineering Review. Audita governança. Preserva documentação permanente. Não implementa código diretamente. |
-| **OpenCode** (Agente Executor) | Implementa código das Slices. Executa testes, build e lint. Realiza commit, push e relatórios de sincronização. Executa o Workspace Guard. |
+| **OpenCode** (Agente Executor)                     | Implementa código das Slices. Executa testes, build e lint. Realiza commit, push e relatórios de sincronização. Executa o Workspace Guard.                                              |
 
 O ChatGPT não produz planos detalhados de implementação quando o OpenCode possui contexto suficiente para fazê-lo. Toda implementação obrigatoriamente passa por: Planejamento (ChatGPT) → Implementação (OpenCode) → Engineering Review (ChatGPT) → Auditoria (ChatGPT) → Engineering Closure (ChatGPT).
 
@@ -399,6 +399,7 @@ Nenhuma oportunidade identificada durante atividades de engenharia poderá perma
 **Destinos obrigatórios:** implementação imediata, incorporação automática na próxima Slice compatível, Backlog (BK), Dívida Técnica (TD), Decisão Rejeitada, Descarte explícito.
 
 **Fluxo:**
+
 1. Pode ser implementada na Slice atual sem alterar arquitetura/PI/EWO? → Incorporar imediatamente.
 2. Existe Slice futura que modificará naturalmente o mesmo componente? → Incorporar automaticamente no prompt daquela Slice.
 3. Não se enquadra? → Criar BK.
@@ -431,10 +432,10 @@ Fluxo: Problema observado → Evidências → Análise → Proposta → GOV → 
 
 **OpenCode:** implementar alterações documentais, sincronizar, registrar versões, executar GOV-011. Não criar políticas por iniciativa própria.
 
-| Papel | Atribuições |
-|-------|-------------|
+| Papel                                              | Atribuições                                                                                                                                                                             |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **ChatGPT** (Arquiteto/Planejador/Auditor/Revisor) | Define objetivos, critérios de aceite e diretrizes. Planeja Slices. Realiza Engineering Review. Audita governança. Preserva documentação permanente. Não implementa código diretamente. |
-| **OpenCode** (Agente Executor) | Implementa código das Slices. Executa testes, build e lint. Realiza commit, push e relatórios de sincronização. Executa o Workspace Guard. |
+| **OpenCode** (Agente Executor)                     | Implementa código das Slices. Executa testes, build e lint. Realiza commit, push e relatórios de sincronização. Executa o Workspace Guard.                                              |
 
 O ChatGPT não produz planos detalhados de implementação quando o OpenCode possui contexto suficiente para fazê-lo. Toda implementação obrigatoriamente passa por: Planejamento (ChatGPT) → Implementação (OpenCode) → Engineering Review (ChatGPT) → Auditoria (ChatGPT) → Engineering Closure (ChatGPT).
 
@@ -948,13 +949,13 @@ Qualquer condição não atendida → interromper a implementação.
 
 ### 10.7 Compatibilidade com Protocolos Existentes
 
-| Protocolo | Compatibilidade |
-|-----------|----------------|
-| OP-002 | ER substitui auditoria de engenharia; ritual mantido |
-| OP-010 | Novo protocolo deve atualizar AI_OPERATION_CHECKLIST.md |
-| OP-012 | EWO não substitui BK; são complementares |
-| IA-026 | EWO dispara Autoverificação antes da geração |
-| IA-032 | Gatilho de Prompt inclui verificação de PI na EWO |
+| Protocolo | Compatibilidade                                         |
+| --------- | ------------------------------------------------------- |
+| OP-002    | ER substitui auditoria de engenharia; ritual mantido    |
+| OP-010    | Novo protocolo deve atualizar AI_OPERATION_CHECKLIST.md |
+| OP-012    | EWO não substitui BK; são complementares                |
+| IA-026    | EWO dispara Autoverificação antes da geração            |
+| IA-032    | Gatilho de Prompt inclui verificação de PI na EWO       |
 
 Nenhuma duplicação de regras existentes. Referências cruzadas utilizadas quando apropriado.
 
@@ -1167,6 +1168,7 @@ GOV-012 — Divisão de Responsabilidades ChatGPT/OpenCode. IA-036 adicionada em
 ### Versão 2.16
 
 Sprint Documental GOV-010 — Consolidação final da governança pós-Engineering Audit 001.
+
 - Seção "Engineering Audit" adicionada como prática recomendada (§13).
 - Seção "Evoluções Planejadas" (§13 anterior) removida — itens obsoletos (DOMAIN_CONCEPTS.md, EVOLUTION_ROADMAP.md não fazem mais sentido no roadmap atual).
 - AI_CONTEXT.md objetivo atualizado para EWO-002.

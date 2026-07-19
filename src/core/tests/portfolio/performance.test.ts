@@ -1,15 +1,9 @@
 import { describe, it, expect } from "vitest";
-import {
-  PerformanceCalculator,
-  BuyEvent,
-  PortfolioProjector,
-} from "@/core/domain/portfolio";
+import { PerformanceCalculator, BuyEvent, PortfolioProjector } from "@/core/domain/portfolio";
 
 function project(...buys: { assetId: string; quantity: number; price: number }[]) {
   const projector = new PortfolioProjector();
-  const events = buys.map(
-    (b, i) => new BuyEvent("p1", `c${i}`, b.assetId, b.quantity, b.price),
-  );
+  const events = buys.map((b, i) => new BuyEvent("p1", `c${i}`, b.assetId, b.quantity, b.price));
   return projector.project(events);
 }
 

@@ -172,11 +172,11 @@ Projeto ativo, Objetivo atual, Modo da sessão, PS vigente, DEC ativas, Baseline
 
 Melhorias aprovadas que aguardam implementação. Itens ativos:
 
-| BK | Descrição | Prioridade |
-|----|-----------|------------|
-| BK-001 | Simplificar AI_CONTEXT (Concluído) | Baixa |
-| BK-002 | Auditoria de referências (Concluído) | Baixa |
-| BK-005 | PROJECT_MANIFEST.md (Proposto) | Baixa |
+| BK     | Descrição                            | Prioridade |
+| ------ | ------------------------------------ | ---------- |
+| BK-001 | Simplificar AI_CONTEXT (Concluído)   | Baixa      |
+| BK-002 | Auditoria de referências (Concluído) | Baixa      |
+| BK-005 | PROJECT_MANIFEST.md (Proposto)       | Baixa      |
 
 ---
 

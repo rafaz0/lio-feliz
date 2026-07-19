@@ -220,6 +220,7 @@ Limites arquiteturais do Portfolio Engine.
 ## 14.1 Deve Pertencer
 
 Responsabilidades obrigatórias do Engine:
+
 - Derivar estado patrimonial a partir dos fatos do Ledger
 - Consolidar posições patrimoniais
 - Disponibilizar visão instantânea da situação patrimonial
@@ -228,6 +229,7 @@ Responsabilidades obrigatórias do Engine:
 ## 14.2 Pode Pertencer
 
 Capacidades auxiliares que podem estar presentes:
+
 - Indicadores de consistência patrimonial
 - Métricas de cobertura entre fatos e estado consolidado
 - Inferências patrimoniais não destrutivas
@@ -235,6 +237,7 @@ Capacidades auxiliares que podem estar presentes:
 ## 14.3 Não Pertence
 
 Responsabilidades exclusivas de outros componentes:
+
 - Criação ou alteração de fatos patrimoniais (Ledger)
 - Interpretação de transações (Transaction Interpretation)
 - Rastreabilidade causal (Trace Transaction)

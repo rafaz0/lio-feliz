@@ -45,16 +45,16 @@ ADR-008_BACKLOG_GOVERNANCE.md
 
 # ADRs Aprovados
 
-| ADR | Título | Status |
-|-----|--------|--------|
+| ADR     | Título                             | Status      |
+| ------- | ---------------------------------- | ----------- |
 | ADR-001 | Documentação como Fonte de Verdade | ✅ Aprovado |
-| ADR-002 | Single Source of Truth | ✅ Aprovado |
-| ADR-003 | Módulos Opcionais | ✅ Aprovado |
-| ADR-004 | User First | ✅ Aprovado |
-| ADR-005 | Mínimo de Ações do Usuário | ✅ Aprovado |
-| ADR-006 | Produto Comercial | ✅ Aprovado |
-| ADR-007 | Automação em Primeiro Lugar | ✅ Aprovado |
-| ADR-008 | Governança do Backlog | ✅ Aprovado |
+| ADR-002 | Single Source of Truth             | ✅ Aprovado |
+| ADR-003 | Módulos Opcionais                  | ✅ Aprovado |
+| ADR-004 | User First                         | ✅ Aprovado |
+| ADR-005 | Mínimo de Ações do Usuário         | ✅ Aprovado |
+| ADR-006 | Produto Comercial                  | ✅ Aprovado |
+| ADR-007 | Automação em Primeiro Lugar        | ✅ Aprovado |
+| ADR-008 | Governança do Backlog              | ✅ Aprovado |
 
 ---
 

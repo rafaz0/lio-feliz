@@ -11,7 +11,8 @@ export interface Quote {
   updatedAt: string;
 }
 
-const CRYPTO_RE = /^(BTC|ETH|SOL|ADA|DOT|AVAX|MATIC|LINK|XRP|DOGE|USDT|USDC|BNB|TRX|ATOM|FIL|NEAR|APT|SUI|ARB|OP)[-]/;
+const CRYPTO_RE =
+  /^(BTC|ETH|SOL|ADA|DOT|AVAX|MATIC|LINK|XRP|DOGE|USDT|USDC|BNB|TRX|ATOM|FIL|NEAR|APT|SUI|ARB|OP)[-]/;
 
 const input = z.object({
   tickers: z.array(z.string().trim().min(1).max(15)).min(1).max(50),

@@ -23,7 +23,7 @@
 ---
 
 > **Observação:** Este documento representa um Working Draft em estágio avançado (N4).
-> 
+>
 > Seu conteúdo encontra-se validado e coerente com os demais documentos do domínio.
 
 ---

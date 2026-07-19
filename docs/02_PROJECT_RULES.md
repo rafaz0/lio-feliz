@@ -54,15 +54,15 @@ Antes de escrever qualquer código, sempre seguir esta ordem:
 
 # Regras Obrigatórias
 
-| Regra | Obrigatório |
-|---------|:----------:|
-| Reutilizar componentes existentes | ✅ |
-| Reutilizar Hooks existentes | ✅ |
-| Reutilizar Services existentes | ✅ |
-| Reutilizar Utilitários existentes | ✅ |
-| Atualizar documentação quando necessário | ✅ |
-| Explicar alterações importantes | ✅ |
-| Verificar impacto em outras funcionalidades | ✅ |
+| Regra                                       | Obrigatório |
+| ------------------------------------------- | :---------: |
+| Reutilizar componentes existentes           |     ✅      |
+| Reutilizar Hooks existentes                 |     ✅      |
+| Reutilizar Services existentes              |     ✅      |
+| Reutilizar Utilitários existentes           |     ✅      |
+| Atualizar documentação quando necessário    |     ✅      |
+| Explicar alterações importantes             |     ✅      |
+| Verificar impacto em outras funcionalidades |     ✅      |
 
 ---
 

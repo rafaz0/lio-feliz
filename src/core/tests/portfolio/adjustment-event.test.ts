@@ -5,7 +5,14 @@ import { FinancialEventType } from "@/core/domain/portfolio";
 describe("AdjustmentEvent", () => {
   describe("creation", () => {
     it("creates an adjustment event with given properties", () => {
-      const event = new AdjustmentEvent("portfolio-1", "corr-1", "PETR4", 100, 500, "correcao de custo");
+      const event = new AdjustmentEvent(
+        "portfolio-1",
+        "corr-1",
+        "PETR4",
+        100,
+        500,
+        "correcao de custo",
+      );
       expect(event.aggregateId).toBe("portfolio-1");
       expect(event.correlationId).toBe("corr-1");
       expect(event.assetId).toBe("PETR4");

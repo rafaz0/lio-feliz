@@ -103,24 +103,24 @@ Cada transição exige validação formal antes de prosseguir.
 
 O Implementation Plan se integra com os demais documentos do domínio Engineering:
 
-| Documento | Relação |
-|-----------|---------|
-| `02_ENGINEERING_ROADMAP.md` | Define as fases que os planos implementam |
-| `04_MILESTONES.md` | Define os marcos que os planos devem atingir |
-| `05_DEPENDENCY_MANAGEMENT.md` | Controla dependências entre planos |
-| `06_READINESS_CRITERIA.md` | Define critérios de prontidão |
-| `07_COMPLETION_CRITERIA.md` | Define critérios de conclusão |
-| `08_RISK_MANAGEMENT.md` | Gerencia riscos dos planos |
+| Documento                     | Relação                                      |
+| ----------------------------- | -------------------------------------------- |
+| `02_ENGINEERING_ROADMAP.md`   | Define as fases que os planos implementam    |
+| `04_MILESTONES.md`            | Define os marcos que os planos devem atingir |
+| `05_DEPENDENCY_MANAGEMENT.md` | Controla dependências entre planos           |
+| `06_READINESS_CRITERIA.md`    | Define critérios de prontidão                |
+| `07_COMPLETION_CRITERIA.md`   | Define critérios de conclusão                |
+| `08_RISK_MANAGEMENT.md`       | Gerencia riscos dos planos                   |
 
 ---
 
 # 7. Estado Atual
 
-| Aspecto | Valor |
-|---------|-------|
-| Marco Atual | Convergência Arquitetural |
-| Sprint Atual | PS#030 |
-| Situação | Preparação da estrutura dos futuros Implementation Plans |
+| Aspecto      | Valor                                                    |
+| ------------ | -------------------------------------------------------- |
+| Marco Atual  | Convergência Arquitetural                                |
+| Sprint Atual | PS#030                                                   |
+| Situação     | Preparação da estrutura dos futuros Implementation Plans |
 
 Nenhum Implementation Plan foi iniciado. O primeiro plano será definido quando a Fase 1 (Foundation) do Engineering Roadmap for detalhada.
 

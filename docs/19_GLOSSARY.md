@@ -73,7 +73,7 @@ Cada definição segue o formato:
 
 # 5. Conceitos Financeiros
 
---------------------------------------------------
+---
 
 **Ativo**
 
@@ -87,7 +87,7 @@ Observações: Cada ativo possui um ticker único que o identifica no sistema.
 
 Referências: `04_DATA_MODEL.md`
 
---------------------------------------------------
+---
 
 **Carteira**
 
@@ -101,7 +101,7 @@ Observações: A carteira é o núcleo do sistema Lio Feliz. Todos os módulos (
 
 Referências: `04_DATA_MODEL.md`, `06_BUSINESS_RULES/01_PORTFOLIO.md`
 
---------------------------------------------------
+---
 
 **Operação**
 
@@ -115,7 +115,7 @@ Observações: Cada operação possui side, quantity, price, date e ticker. Oper
 
 Referências: `04_DATA_MODEL.md`, `06_BUSINESS_RULES/01_PORTFOLIO.md`
 
---------------------------------------------------
+---
 
 **Evento**
 
@@ -127,7 +127,7 @@ Objetivo: Classificar e organizar toda ocorrência financeira que impacta a cart
 
 Observações: Eventos podem ser automáticos (sincronizados via APIs) ou manuais (registrados pelo usuário).
 
---------------------------------------------------
+---
 
 **Provento**
 
@@ -141,7 +141,7 @@ Observações: Proventos reduzem o custo total da posição (método de custo m�
 
 Referências: `06_BUSINESS_RULES/05_PROVENTOS.md`
 
---------------------------------------------------
+---
 
 **Evento Corporativo**
 
@@ -155,7 +155,7 @@ Observações: Dividendos e JCP não são eventos corporativos — pertencem ao 
 
 Referências: `06_BUSINESS_RULES/04_CORPORATE_ACTIONS.md`, `07_TECHNICAL_ANNEXES/02_CORPORATE_ACTION_ENGINE.md`
 
---------------------------------------------------
+---
 
 **Patrimônio**
 
@@ -167,7 +167,7 @@ Objetivo: Acompanhar a evolução financeira do investidor ao longo do tempo.
 
 Observações: O patrimônio considera cotações atualizadas dos ativos. O valor investido (total de compras menos vendas) é um conceito distinto.
 
---------------------------------------------------
+---
 
 **Estratégia**
 
@@ -181,7 +181,7 @@ Observações: A Estratégia do usuário é soberana. O sistema jamais deverá i
 
 Referências: `15_PRODUCT_PHILOSOPHY.md`
 
---------------------------------------------------
+---
 
 **Receita**
 
@@ -191,7 +191,7 @@ Definição: Entrada financeira recebida pelo investidor, incluindo dividendos, 
 
 Objetivo: Registrar todas as fontes de entrada financeira para composição da Vida Financeira.
 
---------------------------------------------------
+---
 
 **Despesa**
 
@@ -201,7 +201,7 @@ Definição: Saída financeira realizada pelo investidor, incluindo gastos pesso
 
 Objetivo: Registrar todas as saídas financeiras para composição da Vida Financeira.
 
---------------------------------------------------
+---
 
 **Vida Financeira**
 
@@ -215,11 +215,11 @@ Observações: Módulo opcional e desacoplado da carteira de investimentos. Pode
 
 Referências: `16_PRODUCT_BACKLOG.md` — FEAT-006, FEAT-007
 
---------------------------------------------------
+---
 
 # 6. Conceitos do Sistema
 
---------------------------------------------------
+---
 
 **Portfolio Ledger**
 
@@ -233,7 +233,7 @@ Observações: O conceito de Ledger é fundamental para auditoria, conformidade 
 
 Referências: `04_DATA_MODEL.md`
 
---------------------------------------------------
+---
 
 **Portfolio Engine**
 
@@ -245,7 +245,7 @@ Objetivo: Centralizar toda a lógica de consolidação patrimonial.
 
 Referências: `07_TECHNICAL_ANNEXES/03_PORTFOLIO_CONSOLIDATION_ENGINE.md`
 
---------------------------------------------------
+---
 
 **Snapshot**
 
@@ -257,7 +257,7 @@ Objetivo: Permitir reconstrução histórica da carteira e comparação entre pe
 
 Observações: Snapshots são gerados periodicamente ou sob demanda para alimentar gráficos de evolução patrimonial.
 
---------------------------------------------------
+---
 
 **Fonte da Verdade**
 
@@ -271,7 +271,7 @@ Observações: A documentação oficial na pasta `docs/` é a Fonte da Verdade d
 
 Referências: `02_PROJECT_RULES.md`
 
---------------------------------------------------
+---
 
 **Dashboard**
 
@@ -283,7 +283,7 @@ Objetivo: Centralizar as informações mais relevantes para o investidor em uma 
 
 Referências: `03_PRODUCT_REQUIREMENTS.md`
 
---------------------------------------------------
+---
 
 **Tax Engine**
 
@@ -297,7 +297,7 @@ Observações: A Tax Engine considera as regras da Receita Federal do Brasil par
 
 Referências: `07_TECHNICAL_ANNEXES/01_PRICE_AVERAGE_ALGORITHMS.md`
 
---------------------------------------------------
+---
 
 **Dividend Engine**
 
@@ -311,7 +311,7 @@ Observações: Conceito atual. Futuramente será substituído pela Proventos Eng
 
 Referências: `16_PRODUCT_BACKLOG.md` — FEAT-012
 
---------------------------------------------------
+---
 
 **Proventos Engine**
 
@@ -325,7 +325,7 @@ Observações: Conceito futuro (aprovado, não implementado). A implementação 
 
 Referências: `16_PRODUCT_BACKLOG.md` — FEAT-012
 
---------------------------------------------------
+---
 
 **Notification Engine**
 
@@ -339,7 +339,7 @@ Observações: As notificações devem ser relevantes, evitando poluição infor
 
 Referências: `16_PRODUCT_BACKLOG.md` — FEAT-008
 
---------------------------------------------------
+---
 
 **Strategy Engine**
 
@@ -351,7 +351,7 @@ Objetivo: Permitir que o usuário gerencie sua estratégia de forma organizada.
 
 Observações: O sistema não recomenda estratégias — apenas auxilia o usuário a executar a sua própria.
 
---------------------------------------------------
+---
 
 **Integração**
 
@@ -365,11 +365,11 @@ Observações: Integrações são modulares e independentes. Cada integração p
 
 Referências: `06_BUSINESS_RULES/11_IMPORT_EXPORT.md`, `06_BUSINESS_RULES/12_INTEGRATIONS.md`
 
---------------------------------------------------
+---
 
 # 7. Conceitos da Documentação
 
---------------------------------------------------
+---
 
 **Business Rule**
 
@@ -383,7 +383,7 @@ Observações: Business Rules estão organizadas em `06_BUSINESS_RULES/`. São a
 
 Referências: `06_BUSINESS_RULES/00_INDEX.md`
 
---------------------------------------------------
+---
 
 **Use Case**
 
@@ -397,7 +397,7 @@ Observações: Use Cases estão vinculados a FEATs através da Traceability Matr
 
 Referências: `17_TRACEABILITY_MATRIX.md`
 
---------------------------------------------------
+---
 
 **Technical Annex**
 
@@ -411,7 +411,7 @@ Observações: Technical Annexes estão organizados em `07_TECHNICAL_ANNEXES/`. 
 
 Referências: `07_TECHNICAL_ANNEXES/00_INDEX.md`
 
---------------------------------------------------
+---
 
 **ADR (Architecture Decision Record)**
 
@@ -425,7 +425,7 @@ Observações: ADRs estão organizados em `18_ARCHITECTURAL_DECISIONS/`. São im
 
 Referências: `18_ARCHITECTURAL_DECISIONS/00_INDEX.md`
 
---------------------------------------------------
+---
 
 **Traceability Matrix**
 
@@ -439,7 +439,7 @@ Observações: A Traceability Matrix não contém regras de negócio nem detalhe
 
 Referências: `17_TRACEABILITY_MATRIX.md`
 
---------------------------------------------------
+---
 
 **Feature (FEAT)**
 
@@ -453,7 +453,7 @@ Observações: Nenhuma funcionalidade pode ser implementada sem estar registrada
 
 Referências: `16_PRODUCT_BACKLOG.md`
 
---------------------------------------------------
+---
 
 **Product Backlog**
 
@@ -467,7 +467,7 @@ Observações: O backlog é um documento vivo. Novas funcionalidades aprovadas d
 
 Referências: `16_PRODUCT_BACKLOG.md`
 
---------------------------------------------------
+---
 
 **Documentação Oficial**
 
@@ -481,7 +481,7 @@ Observações: A Documentação Oficial possui prioridade igual ao código. Nenh
 
 Referências: `DOCUMENTATION_INDEX.md`
 
---------------------------------------------------
+---
 
 **Documentação Consolidada**
 
@@ -493,7 +493,7 @@ Objetivo: Facilitar consultas rápidas e buscas na documentação completa.
 
 Observações: A Documentação Consolidada é uma cópia derivada. A única fonte oficial permanece sendo a pasta `docs/` do repositório.
 
---------------------------------------------------
+---
 
 **Ordem de Leitura**
 
@@ -507,7 +507,7 @@ Observações: Nem todo documento oficial precisa estar na ordem de leitura — 
 
 Referências: `00_START_HERE.md`
 
---------------------------------------------------
+---
 
 **Estrutura Oficial da Documentação**
 
@@ -521,11 +521,11 @@ Observações: O `DOCUMENTATION_INDEX.md` é a fonte de verdade da estrutura. Qu
 
 Referências: `DOCUMENTATION_INDEX.md`
 
---------------------------------------------------
+---
 
 # 8. Conceitos da Metodologia
 
---------------------------------------------------
+---
 
 **Auditoria**
 
@@ -539,7 +539,7 @@ Observações: Auditorias seguem um fluxo oficial: Arquitetura → Execução �
 
 Referências: `16_PRODUCT_BACKLOG.md` — FEAT-015
 
---------------------------------------------------
+---
 
 **Consolidação**
 
@@ -553,7 +553,7 @@ Observações: Uma Consolidação pode incluir criação, revisão, correção e
 
 Referências: `PROJECT_STATE.md`
 
---------------------------------------------------
+---
 
 **Sprint de Estabilização**
 
@@ -567,7 +567,7 @@ Observações: A Sprint de Estabilização segue o fluxo: auditoria → relatór
 
 Referências: `PROJECT_STATE.md`
 
---------------------------------------------------
+---
 
 **Baseline**
 
@@ -581,7 +581,7 @@ Observações: Conceito futuro (aprovado, não implementado). Registrado como FE
 
 Referências: `16_PRODUCT_BACKLOG.md` — FEAT-016
 
---------------------------------------------------
+---
 
 **Governança Documental**
 
@@ -595,7 +595,7 @@ Observações: Conceito em estudo. Registrado como FEAT-013 no Product Backlog.
 
 Referências: `16_PRODUCT_BACKLOG.md` — FEAT-013
 
---------------------------------------------------
+---
 
 **Governança do Projeto**
 
@@ -609,11 +609,11 @@ Observações: Conceito em estudo. Registrado como FEAT-017 no Product Backlog. 
 
 Referências: `16_PRODUCT_BACKLOG.md` — FEAT-017
 
---------------------------------------------------
+---
 
 # 9. Conceitos Gerais
 
---------------------------------------------------
+---
 
 **Fonte Canônica**
 
@@ -627,7 +627,7 @@ Observações: A Fonte Canônica é um conceito arquitetural fundamental. A docu
 
 Referências: `02_PROJECT_RULES.md`
 
---------------------------------------------------
+---
 
 **Imutabilidade**
 
@@ -639,7 +639,7 @@ Objetivo: Garantir rastreabilidade, auditoria e conformidade fiscal.
 
 Observações: Registros imutáveis podem ser corrigidos apenas através de novos registros (compensação), nunca por alteração do registro original.
 
---------------------------------------------------
+---
 
 **Registro Cronológico**
 
@@ -649,7 +649,7 @@ Definição: Princípio de que eventos e operações devem ser registrados em or
 
 Objetivo: Permitir reconstrução histórica precisa e cálculos corretos de rentabilidade.
 
---------------------------------------------------
+---
 
 **Versionamento**
 
@@ -661,7 +661,7 @@ Objetivo: Permitir identificação de versões, comparação entre estados e ras
 
 Observações: O versionamento da documentação segue o padrão semântico (major.minor). Cada alteração relevante incrementa a versão.
 
---------------------------------------------------
+---
 
 **Compatibilidade Retroativa**
 
@@ -673,7 +673,7 @@ Objetivo: Proteger o investimento do usuário em dados e configurações existen
 
 Observações: Alterações que afetam cálculos financeiros devem preservar a consistência dos resultados históricos.
 
---------------------------------------------------
+---
 
 # 10. Decisões de Projeto
 

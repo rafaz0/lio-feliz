@@ -14,8 +14,8 @@ As ideias registradas neste backlog **não fazem parte** do Product Backlog ofic
 
 ---
 
-| ID | Título | Descrição | Status | Prioridade | Documento Relacionado | Observações |
-|----|--------|-----------|--------|------------|----------------------|-------------|
-| — | — | — | — | — | — | — |
+| ID  | Título | Descrição | Status | Prioridade | Documento Relacionado | Observações |
+| --- | ------ | --------- | ------ | ---------- | --------------------- | ----------- |
+| —   | —      | —         | —      | —          | —                     | —           |
 
-*(Nenhuma ideia registrada até o momento)*
+_(Nenhuma ideia registrada até o momento)_

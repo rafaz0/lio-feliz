@@ -6,7 +6,16 @@ import { inferAssetType } from "./portfolio";
 import { fetchYahooDividends, fetchBRAPIDividends, fetchBRAPIStockDividends } from "./yahoo.server";
 
 const assetTypeSchema = z.enum([
-  "stock", "fii", "bdr", "etf", "fixed_income", "crypto", "etf_internacional", "stock_us", "reit", "other",
+  "stock",
+  "fii",
+  "bdr",
+  "etf",
+  "fixed_income",
+  "crypto",
+  "etf_internacional",
+  "stock_us",
+  "reit",
+  "other",
 ]);
 
 const operationInput = z.object({
@@ -39,7 +48,9 @@ export const listOperations = createServerFn({ method: "GET" })
 
     const { data, error } = await context.supabase
       .from("portfolio_operations")
-      .select("id, ticker, asset_type, currency, side, quantity, price, fee, irrf, other_costs, metadata, traded_at, source, notes, created_at")
+      .select(
+        "id, ticker, asset_type, currency, side, quantity, price, fee, irrf, other_costs, metadata, traded_at, source, notes, created_at",
+      )
       .order("traded_at", { ascending: false })
       .order("created_at", { ascending: false });
     if (error) throw new Error(error.message);
@@ -131,12 +142,16 @@ export const deleteOperation = createServerFn({ method: "POST" })
 export const syncPendingDividends = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const ops = process.env.DEV_MODE === "true"
-      ? [...DEV_STORE]
-      : await (async () => {
-          const { data } = await context.supabase.from("portfolio_operations").select("*").order("traded_at");
-          return (data ?? []) as Operation[];
-        })();
+    const ops =
+      process.env.DEV_MODE === "true"
+        ? [...DEV_STORE]
+        : await (async () => {
+            const { data } = await context.supabase
+              .from("portfolio_operations")
+              .select("*")
+              .order("traded_at");
+            return (data ?? []) as Operation[];
+          })();
 
     const tickers = new Set<string>();
     for (const op of ops) {
@@ -147,10 +162,18 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
 
     for (const ticker of tickers) {
       const asset_type = inferAssetType(ticker);
-      const currency = (asset_type === "stock_us" || asset_type === "etf_internacional" || asset_type === "reit" || asset_type === "crypto") ? "USD" : "BRL";
+      const currency =
+        asset_type === "stock_us" ||
+        asset_type === "etf_internacional" ||
+        asset_type === "reit" ||
+        asset_type === "crypto"
+          ? "USD"
+          : "BRL";
 
       // Get all buy/sell/bonus operations for this ticker (for position calculation)
-      const opsForTicker = ops.filter((o) => o.ticker === ticker && (o.side === "buy" || o.side === "sell" || o.side === "bonus"));
+      const opsForTicker = ops.filter(
+        (o) => o.ticker === ticker && (o.side === "buy" || o.side === "sell" || o.side === "bonus"),
+      );
 
       let currentQty = 0;
       for (const op of opsForTicker) {
@@ -169,8 +192,14 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
 
       // --- Dividends ---
       // Brazilian stocks: try BRAPI first (more accurate), fall back to Yahoo
-      const isBR = asset_type === "stock" || asset_type === "fii" || asset_type === "bdr" || asset_type === "etf";
-      const divs = isBR ? (await fetchBRAPIDividends(ticker)) ?? (await fetchYahooDividends(ticker)) : await fetchYahooDividends(ticker);
+      const isBR =
+        asset_type === "stock" ||
+        asset_type === "fii" ||
+        asset_type === "bdr" ||
+        asset_type === "etf";
+      const divs = isBR
+        ? ((await fetchBRAPIDividends(ticker)) ?? (await fetchYahooDividends(ticker)))
+        : await fetchYahooDividends(ticker);
 
       if (divs) {
         for (const div of divs) {
@@ -188,26 +217,46 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
           const divRec = {
             quantity: sharesAtDiv,
             price: div.amount,
-            metadata: { tipo_provento: ("label" in div ? div.label : "dividendo"), auto_sync: true } as Operation["metadata"],
+            metadata: {
+              tipo_provento: "label" in div ? div.label : "dividendo",
+              auto_sync: true,
+            } as Operation["metadata"],
           };
 
           if (process.env.DEV_MODE === "true") {
             DEV_STORE.unshift({
-              id: crypto.randomUUID(), ticker, asset_type, currency,
-              side: "dividend", fee: 0, irrf: 0, other_costs: 0,
-              traded_at: div.paidAt, source: "sync", notes: null,
+              id: crypto.randomUUID(),
+              ticker,
+              asset_type,
+              currency,
+              side: "dividend",
+              fee: 0,
+              irrf: 0,
+              other_costs: 0,
+              traded_at: div.paidAt,
+              source: "sync",
+              notes: null,
               created_at: new Date().toISOString(),
               ...divRec,
             });
           } else {
             await context.supabase.from("portfolio_operations").insert({
-              user_id: context.userId, ticker, asset_type, currency,
-              side: "dividend", fee: 0, irrf: 0, other_costs: 0,
-              traded_at: div.paidAt, source: "sync",
+              user_id: context.userId,
+              ticker,
+              asset_type,
+              currency,
+              side: "dividend",
+              fee: 0,
+              irrf: 0,
+              other_costs: 0,
+              traded_at: div.paidAt,
+              source: "sync",
               ...divRec,
             });
           }
-          created.push(`dividendo:${ticker} ${div.paidAt} (R$${(sharesAtDiv * div.amount).toFixed(2)}, R$${div.amount.toFixed(4)}/cota)`);
+          created.push(
+            `dividendo:${ticker} ${div.paidAt} (R$${(sharesAtDiv * div.amount).toFixed(2)}, R$${div.amount.toFixed(4)}/cota)`,
+          );
         }
       }
 
@@ -225,7 +274,7 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
               // Split: adjust buy/sell quantities retroactively
               // e.g. factor=1.5 means each 1 share becomes 1.5 shares
               // We create a bonus operation to reflect the increase
-              const factor = sd.label === "reverse_split" ? sd.factor : (sd.factor - 1);
+              const factor = sd.label === "reverse_split" ? sd.factor : sd.factor - 1;
 
               if (factor > 0) {
                 // Calculate shares held at split date
@@ -233,36 +282,61 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
                 for (const op of opsForTicker) {
                   if (op.traded_at > sd.paidAt) continue;
                   if (op.side === "buy") sharesAtSplit += op.quantity;
-                  else if (op.side === "sell") sharesAtSplit = Math.max(0, sharesAtSplit - op.quantity);
+                  else if (op.side === "sell")
+                    sharesAtSplit = Math.max(0, sharesAtSplit - op.quantity);
                   else if (op.side === "bonus") sharesAtSplit += op.quantity;
                 }
                 if (sharesAtSplit <= 0) continue;
 
-                const bonusShares = sd.label === "reverse_split"
-                  ? Math.round(sharesAtSplit * factor) - sharesAtSplit // reverse: shares decrease
-                  : Math.round(sharesAtSplit * factor);
+                const bonusShares =
+                  sd.label === "reverse_split"
+                    ? Math.round(sharesAtSplit * factor) - sharesAtSplit // reverse: shares decrease
+                    : Math.round(sharesAtSplit * factor);
 
                 // Only create if resulting qty is >= 0 and different
                 if (bonusShares > 0 && bonusShares !== sharesAtSplit) {
                   if (process.env.DEV_MODE === "true") {
                     DEV_STORE.unshift({
-                      id: crypto.randomUUID(), ticker, asset_type, currency,
-                      side: "bonus", quantity: bonusShares - sharesAtSplit, price: 0,
-                      fee: 0, irrf: 0, other_costs: 0,
-                      metadata: { tipo: sd.label, factor: sd.factor, auto_sync: true } as Operation["metadata"],
-                      traded_at: sd.paidAt, source: "sync", notes: null,
+                      id: crypto.randomUUID(),
+                      ticker,
+                      asset_type,
+                      currency,
+                      side: "bonus",
+                      quantity: bonusShares - sharesAtSplit,
+                      price: 0,
+                      fee: 0,
+                      irrf: 0,
+                      other_costs: 0,
+                      metadata: {
+                        tipo: sd.label,
+                        factor: sd.factor,
+                        auto_sync: true,
+                      } as Operation["metadata"],
+                      traded_at: sd.paidAt,
+                      source: "sync",
+                      notes: null,
                       created_at: new Date().toISOString(),
                     });
                   } else {
                     await context.supabase.from("portfolio_operations").insert({
-                      user_id: context.userId, ticker, asset_type, currency,
-                      side: "bonus", quantity: bonusShares - sharesAtSplit, price: 0,
-                      fee: 0, irrf: 0, other_costs: 0,
+                      user_id: context.userId,
+                      ticker,
+                      asset_type,
+                      currency,
+                      side: "bonus",
+                      quantity: bonusShares - sharesAtSplit,
+                      price: 0,
+                      fee: 0,
+                      irrf: 0,
+                      other_costs: 0,
                       metadata: { tipo: sd.label, factor: sd.factor, auto_sync: true },
-                      traded_at: sd.paidAt, source: "sync",
+                      traded_at: sd.paidAt,
+                      source: "sync",
                     });
                   }
-                  created.push(`bonus:${ticker} ${sd.paidAt} (${sd.label}, +${bonusShares - sharesAtSplit} cotas)`);
+                  created.push(
+                    `bonus:${ticker} ${sd.paidAt} (${sd.label}, +${bonusShares - sharesAtSplit} cotas)`,
+                  );
                 }
               }
             } else if (sd.label === "bonus") {
@@ -272,7 +346,8 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
                 for (const op of opsForTicker) {
                   if (op.traded_at > sd.paidAt) continue;
                   if (op.side === "buy") sharesAtBonus += op.quantity;
-                  else if (op.side === "sell") sharesAtBonus = Math.max(0, sharesAtBonus - op.quantity);
+                  else if (op.side === "sell")
+                    sharesAtBonus = Math.max(0, sharesAtBonus - op.quantity);
                   else if (op.side === "bonus") sharesAtBonus += op.quantity;
                 }
                 if (sharesAtBonus <= 0) continue;
@@ -281,23 +356,46 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
                 if (increase > 0) {
                   if (process.env.DEV_MODE === "true") {
                     DEV_STORE.unshift({
-                      id: crypto.randomUUID(), ticker, asset_type, currency,
-                      side: "bonus", quantity: increase, price: 0,
-                      fee: 0, irrf: 0, other_costs: 0,
-                      metadata: { tipo: "bonificacao", fator: sd.factor, auto_sync: true } as Operation["metadata"],
-                      traded_at: sd.paidAt, source: "sync", notes: null,
+                      id: crypto.randomUUID(),
+                      ticker,
+                      asset_type,
+                      currency,
+                      side: "bonus",
+                      quantity: increase,
+                      price: 0,
+                      fee: 0,
+                      irrf: 0,
+                      other_costs: 0,
+                      metadata: {
+                        tipo: "bonificacao",
+                        fator: sd.factor,
+                        auto_sync: true,
+                      } as Operation["metadata"],
+                      traded_at: sd.paidAt,
+                      source: "sync",
+                      notes: null,
                       created_at: new Date().toISOString(),
                     });
                   } else {
                     await context.supabase.from("portfolio_operations").insert({
-                      user_id: context.userId, ticker, asset_type, currency,
-                      side: "bonus", quantity: increase, price: 0,
-                      fee: 0, irrf: 0, other_costs: 0,
+                      user_id: context.userId,
+                      ticker,
+                      asset_type,
+                      currency,
+                      side: "bonus",
+                      quantity: increase,
+                      price: 0,
+                      fee: 0,
+                      irrf: 0,
+                      other_costs: 0,
                       metadata: { tipo: "bonificacao", fator: sd.factor, auto_sync: true },
-                      traded_at: sd.paidAt, source: "sync",
+                      traded_at: sd.paidAt,
+                      source: "sync",
                     });
                   }
-                  created.push(`bonus:${ticker} ${sd.paidAt} (bonificação ${sd.factor}x, +${increase} cotas)`);
+                  created.push(
+                    `bonus:${ticker} ${sd.paidAt} (bonificação ${sd.factor}x, +${increase} cotas)`,
+                  );
                 }
               }
             }

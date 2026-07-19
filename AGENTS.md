@@ -56,6 +56,7 @@ npm run build  # produção
 ```
 
 Type checking (PowerShell):
+
 ```powershell
 powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"
 ```
@@ -72,6 +73,7 @@ powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"
 ## Estrutura do Projeto
 
 ### Rotas Autenticadas (requer login via Supabase)
+
 - `/carteira` — visão geral da carteira (gráfico evolução, posições, alocação, proventos)
 - `/carteira/lancamentos` — histórico de operações + botão sincronizar proventos
 - `/carteira/rentabilidade` — rentabilidade vs benchmarks (IBOV, IDIV, IFIX)
@@ -84,6 +86,7 @@ powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"
 - `/irpf` — helper IRPF com exportação CSV
 
 ### Rotas Públicas
+
 - `/` — página inicial com busca de 500+ ativos
 - `/ativo/$ticker` — detalhe do ativo (fundamentos Yahoo + BRAPI)
 - `/fii/$ticker` — detalhe do FII
@@ -97,32 +100,34 @@ powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"
 - `/carteiras-recomendadas` — 5 carteiras pré-definidas
 
 ### Libs Core
-| Arquivo | Descrição |
-|---------|-----------|
-| `src/lib/portfolio/models.ts` | Tipos (`AssetType`, `Operation`, `OperationSide`, `Position`, `PortfolioSummary`, `PortfolioHistoryPoint`) |
-| `src/lib/portfolio/asset-types.ts` | `inferAssetType` e listas de tickers conhecidos |
-| `src/lib/portfolio/consolidator.ts` | `calcPositions`, `consolidatePortfolio` |
-| `src/lib/portfolio/history.ts` | `buildPortfolioHistory` |
-| `src/lib/portfolio/index.ts` | Barrel — re-exporta tudo para `@/lib/portfolio` |
-| `src/lib/portfolio.ts` | Barrel — re-exporta de `./portfolio/` (compatibilidade com imports existentes) |
-| `src/lib/tax/rules.ts` | `TAX_RULES`, `calcMonthSummaries`, `calcGainPerTicker`, `classifyDayTrade`, `exportToCsv` e demais funções de apuração IRPF |
-| `src/lib/tax/index.ts` | Barrel do módulo fiscal |
-| `src/lib/operations.functions.ts` | Server functions: `listOperations`, `createOperation`, `deleteOperation`, `syncPendingDividends` |
-| `src/lib/yahoo.server.ts` | Yahoo Finance + BRAPI: cotações, dividendos, stockDividends (splits/bonus), fundamentos, cache |
-| `src/lib/data-functions.ts` | Server functions combinadas: `getAssetData`, `getAssetList`, `getRealProjections` |
-| `src/lib/quotes.functions.ts` | Server function BRAPI para cotações em tempo real |
-| `src/lib/exchange.server.ts` | Câmbio USD-BRL via AwesomeAPI |
-| `src/lib/coingecko.server.ts` | Cotações cripto via CoinGecko |
-| `src/lib/format.ts` | `formatBRL`, `formatDate`, `formatQty` |
-| `src/lib/mock-data.ts` | Mock de 20 ações (fallback) |
-| `src/lib/fii-mock-data.ts` | Mock de 20 FIIs |
+
+| Arquivo                             | Descrição                                                                                                                   |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `src/lib/portfolio/models.ts`       | Tipos (`AssetType`, `Operation`, `OperationSide`, `Position`, `PortfolioSummary`, `PortfolioHistoryPoint`)                  |
+| `src/lib/portfolio/asset-types.ts`  | `inferAssetType` e listas de tickers conhecidos                                                                             |
+| `src/lib/portfolio/consolidator.ts` | `calcPositions`, `consolidatePortfolio`                                                                                     |
+| `src/lib/portfolio/history.ts`      | `buildPortfolioHistory`                                                                                                     |
+| `src/lib/portfolio/index.ts`        | Barrel — re-exporta tudo para `@/lib/portfolio`                                                                             |
+| `src/lib/portfolio.ts`              | Barrel — re-exporta de `./portfolio/` (compatibilidade com imports existentes)                                              |
+| `src/lib/tax/rules.ts`              | `TAX_RULES`, `calcMonthSummaries`, `calcGainPerTicker`, `classifyDayTrade`, `exportToCsv` e demais funções de apuração IRPF |
+| `src/lib/tax/index.ts`              | Barrel do módulo fiscal                                                                                                     |
+| `src/lib/operations.functions.ts`   | Server functions: `listOperations`, `createOperation`, `deleteOperation`, `syncPendingDividends`                            |
+| `src/lib/yahoo.server.ts`           | Yahoo Finance + BRAPI: cotações, dividendos, stockDividends (splits/bonus), fundamentos, cache                              |
+| `src/lib/data-functions.ts`         | Server functions combinadas: `getAssetData`, `getAssetList`, `getRealProjections`                                           |
+| `src/lib/quotes.functions.ts`       | Server function BRAPI para cotações em tempo real                                                                           |
+| `src/lib/exchange.server.ts`        | Câmbio USD-BRL via AwesomeAPI                                                                                               |
+| `src/lib/coingecko.server.ts`       | Cotações cripto via CoinGecko                                                                                               |
+| `src/lib/format.ts`                 | `formatBRL`, `formatDate`, `formatQty`                                                                                      |
+| `src/lib/mock-data.ts`              | Mock de 20 ações (fallback)                                                                                                 |
+| `src/lib/fii-mock-data.ts`          | Mock de 20 FIIs                                                                                                             |
 
 ### Componentes Chave
-| Componente | Descrição |
-|-----------|-----------|
+
+| Componente                                | Descrição                                                                      |
+| ----------------------------------------- | ------------------------------------------------------------------------------ |
 | `src/components/add-operation-dialog.tsx` | Diálogo de lançamento com layout por tipo de ativo + abas Provento/Bonificação |
-| `src/components/operations-content.tsx` | Tabela de histórico de operações + botão Sincronizar + auto-sync |
-| `src/components/irpf-content.tsx` | Cálculo IRPF mensal |
+| `src/components/operations-content.tsx`   | Tabela de histórico de operações + botão Sincronizar + auto-sync               |
+| `src/components/irpf-content.tsx`         | Cálculo IRPF mensal                                                            |
 
 ## Data Flow: Carteira
 
@@ -138,6 +143,7 @@ powershell -ExecutionPolicy Bypass -Command "& 'node_modules\.bin\tsc' --noEmit"
 ## Dividendos: Formato de Armazenamento
 
 Operações de dividendo armazenam:
+
 - `quantity` = número de cotas na data do dividendo
 - `price` = valor por cota (ex: 0.35)
 - Total recebido = `quantity * price`
@@ -147,6 +153,7 @@ Operações de dividendo armazenam:
 ## Sincronização Automática
 
 `syncPendingDividends` (server function, POST):
+
 1. Para cada ticker com posição aberta:
 2. **BR stocks:** tenta `fetchBRAPIDividends` (dados mensais precisos, distingue DIVIDENDO vs JCP) → fallback `fetchYahooDividends`
 3. **US/International stocks:** `fetchYahooDividends`
@@ -159,11 +166,13 @@ Operações de dividendo armazenam:
    - Reverse split/Grupamento: não cria (complexo)
 
 ## AssetType completo
+
 ```
 stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us | reit | other
 ```
 
 ## inferAssetType lógica
+
 1. Known sets (KNOWN_STOCK_US, KNOWN_REITS, KNOWN_ETF_INTL, KNOWN_ETF_BR, KNOWN_BDR, KNOWN_BR_STOCKS)
 2. FII: `/^\w+11$/` (exceto se já for ETF/BDR conhecido)
 3. BR stock: `/^[A-Z0-9]{4,6}\d$/`
@@ -184,6 +193,7 @@ stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us |
 **Problema:** O usuário quer que a aba Lançamentos mostre **apenas** compras e vendas. Dividendos e bonificações estão poluindo a visualização. A sincronização automática (auto-sync) também não deveria estar nesta aba — ou pelo menos o botão "Sincronizar proventos" deveria ficar na aba de Proventos.
 
 **Solução sugerida:**
+
 - Filtrar `ops` no `operations-content.tsx` para mostrar apenas `side === "buy" || side === "sell"`
 - Mostrar dividendos/bonus em lista separada (ou na aba Proventos)
 - Mover o botão Sync e o auto-sync `useEffect` para a aba de Proventos (`carteira.proventos.tsx` ou `proventos-content.tsx`)
@@ -195,6 +205,7 @@ stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us |
 **Problema:** A página de proventos não exibe os dividendos registrados nas operações.
 
 **Solução sugerida:**
+
 - Verificar se `proventos-content.tsx` está usando as operações reais (filtradas por `side === "dividend"`)
 - Ou criar um novo componente que liste os dividendos agrupados por ticker
 - Os dividendos syncados via BRAPI/Yahoo devem aparecer aqui
@@ -206,6 +217,7 @@ stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us |
 **Problema:** O `useEffect` de auto-sync dispara a mutation `syncMut.mutate()` que faz uma chamada POST ao servidor. Se o servidor não responder ou demorar, fica carregando para sempre.
 
 **Solução sugerida:**
+
 - Adicionar timeout na server function (já tem `AbortSignal.timeout(10000)` nas chamadas BRAPI)
 - Adicionar `retry: false` ou `retry: 1` na mutation
 - Melhor: mover sync para a aba de proventos e remover auto-sync da aba de lançamentos
@@ -217,6 +229,7 @@ stock | fii | bdr | etf | fixed_income | crypto | etf_internacional | stock_us |
 **Problema:** O usuário quer que os gráficos mostrem **patrimônio acumulado** (linha sempre subindo, refletindo aportes + valorização), não apenas a valorização. Atualmente o gráfico mostra `value` (patrimônio total) que já é o valor acumulado. Talvez o problema seja que o gráfico usa `Area` com fill e o usuário quer visualmente uma "linha ascendente" mais limpa.
 
 **Solução sugerida:**
+
 - Verificar se `buildPortfolioHistory` está gerando dados corretos de `value` (patrimônio total) e `invested` (total investido)
 - O `value` já inclui aportes + valorização, deveria ser uma linha ascendente naturalmente
 - Talvez o problema seja que o investido (`invested`) está maior que o valor de mercado (`value`), fazendo a linha descer
@@ -247,10 +260,10 @@ Use **@** seguido do nome do agente para invocá-los.
 
 ## Divisão de Responsabilidades
 
-| Papel | Ferramenta | Responsabilidade |
-|-------|-----------|-----------------|
-| **Arquiteto / Revisor / Auditor / Otimizador** | ChatGPT | Planejamento, definição de diretrizes, Engineering Review, auditoria de governança, **identificação e incorporação contínua de melhorias (GOV-015)**, planejamento da próxima etapa (GOV-018) |
-| **Executor** | OpenCode | Implementação de código, testes, build, lint, commit, push, relatórios, **execução de melhorias incorporadas no prompt (GOV-015)**, Engineering Closure (GOV-018) |
+| Papel                                          | Ferramenta | Responsabilidade                                                                                                                                                                              |
+| ---------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Arquiteto / Revisor / Auditor / Otimizador** | ChatGPT    | Planejamento, definição de diretrizes, Engineering Review, auditoria de governança, **identificação e incorporação contínua de melhorias (GOV-015)**, planejamento da próxima etapa (GOV-018) |
+| **Executor**                                   | OpenCode   | Implementação de código, testes, build, lint, commit, push, relatórios, **execução de melhorias incorporadas no prompt (GOV-015)**, Engineering Closure (GOV-018)                             |
 
 ## Pipeline Contínuo (GOV-018)
 
@@ -271,14 +284,14 @@ Interrupção apenas para: bloqueador técnico, dúvida arquitetural, documenta�
 
 ## Agentes do OpenCode
 
-| Comando | Função | Quando usar |
-|---------|--------|-------------|
-| `@architect ...` | Criar/revisar PIs e arquitetura | Antes de começar uma nova implementação |
-| `@reviewer ...` | Revisar código e gerar ERs | Após implementação concluída |
-| `@planner ...` | Criar EWOs e planejar sprints | Quando uma PI estiver aprovada |
-| `@auditor ...` | Auditar governança e qualidade | Periodicamente ou antes de commits |
-| `@ai-context ...` | Carregar contexto completo do projeto | No início da sessão |
-| `@prompt-generator ...` | Criar prompts estruturados | Quando precisar preparar instruções |
+| Comando                 | Função                                | Quando usar                             |
+| ----------------------- | ------------------------------------- | --------------------------------------- |
+| `@architect ...`        | Criar/revisar PIs e arquitetura       | Antes de começar uma nova implementação |
+| `@reviewer ...`         | Revisar código e gerar ERs            | Após implementação concluída            |
+| `@planner ...`          | Criar EWOs e planejar sprints         | Quando uma PI estiver aprovada          |
+| `@auditor ...`          | Auditar governança e qualidade        | Periodicamente ou antes de commits      |
+| `@ai-context ...`       | Carregar contexto completo do projeto | No início da sessão                     |
+| `@prompt-generator ...` | Criar prompts estruturados            | Quando precisar preparar instruções     |
 
 **Alternar entre Build e Plan:** Use **Tab** para trocar entre o agente Build (executa código) e Plan (apenas planeja, sem modificar arquivos).
 
@@ -321,12 +334,12 @@ Branch `main` em `rafaz0/lio-feliz`, commit `8f7f5e5`:
 
 ## Tipos de operação suportados
 
-| side | Descrição | quantity | price | Efeito no portfolio |
-|------|-----------|----------|-------|---------------------|
-| buy | Compra | cotas compradas | preço por cota | +qty, +custo |
-| sell | Venda | cotas vendidas | preço por cota | -qty, -custo (proporcional) |
-| dividend | Dividendo/JCP | cotas na data | valor por cota | -custo (total = qty * price) |
-| bonus | Bonificação/Split | cotas bônus | 0 | +qty, sem custo |
+| side     | Descrição         | quantity        | price          | Efeito no portfolio          |
+| -------- | ----------------- | --------------- | -------------- | ---------------------------- |
+| buy      | Compra            | cotas compradas | preço por cota | +qty, +custo                 |
+| sell     | Venda             | cotas vendidas  | preço por cota | -qty, -custo (proporcional)  |
+| dividend | Dividendo/JCP     | cotas na data   | valor por cota | -custo (total = qty * price) |
+| bonus    | Bonificação/Split | cotas bônus     | 0              | +qty, sem custo              |
 
 ## Contas do usuário (se precisar logar)
 

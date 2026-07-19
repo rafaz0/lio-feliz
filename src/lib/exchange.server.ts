@@ -9,10 +9,9 @@ export async function getUsdBrlRate(): Promise<number> {
     return cachedRate.rate;
   }
   try {
-    const res = await fetch(
-      "https://economia.awesomeapi.com.br/json/last/USD-BRL",
-      { headers: { "User-Agent": "Mozilla/5.0" } },
-    );
+    const res = await fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL", {
+      headers: { "User-Agent": "Mozilla/5.0" },
+    });
     if (res.ok) {
       const json = (await res.json()) as { USDBRL?: { bid: string } };
       if (json.USDBRL) {

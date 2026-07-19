@@ -16,9 +16,9 @@ Documento em construção. Nenhum conteúdo aqui representa decisão oficial. Te
 
 ## Termos em Amadurecimento
 
-| Termo | Definição Preliminar | Status |
-|-------|---------------------|--------|
-| Ledger | Registro imutável de fatos | Exploração |
-| Fato | Ocorrência atômica registrada | Exploração |
+| Termo        | Definição Preliminar                          | Status     |
+| ------------ | --------------------------------------------- | ---------- |
+| Ledger       | Registro imutável de fatos                    | Exploração |
+| Fato         | Ocorrência atômica registrada                 | Exploração |
 | Reconstrução | Processo de derivar estado a partir do Ledger | Exploração |
-| Snapshot | Estado derivado em um ponto no tempo | Exploração |
+| Snapshot     | Estado derivado em um ponto no tempo          | Exploração |

@@ -52,13 +52,13 @@ Cada informação no sistema deve possuir uma única fonte oficial.
 
 Exemplos:
 
-| Informação | Fonte Oficial |
-|------------|---------------|
-| Movimentações | Lançamentos do usuário ou sincronização aprovada |
-| Eventos Corporativos | Integrações externas ou cadastro controlado |
-| Posições | Calculadas a partir das movimentações |
-| Patrimônio | Calculado a partir das posições e cotações |
-| Preço médio | Calculado exclusivamente pelas movimentações válidas |
+| Informação           | Fonte Oficial                                        |
+| -------------------- | ---------------------------------------------------- |
+| Movimentações        | Lançamentos do usuário ou sincronização aprovada     |
+| Eventos Corporativos | Integrações externas ou cadastro controlado          |
+| Posições             | Calculadas a partir das movimentações                |
+| Patrimônio           | Calculado a partir das posições e cotações           |
+| Preço médio          | Calculado exclusivamente pelas movimentações válidas |
 
 Nenhum dado derivado pode ser editado manualmente.
 
@@ -89,6 +89,6 @@ Negativas:
 
 ## Histórico
 
-| Data | Versão | Descrição |
-|------|--------|-----------|
-| 09/07/2026 | 1.0 | Criação do ADR. |
+| Data       | Versão | Descrição       |
+| ---------- | ------ | --------------- |
+| 09/07/2026 | 1.0    | Criação do ADR. |

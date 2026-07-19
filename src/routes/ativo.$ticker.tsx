@@ -29,11 +29,7 @@ import {
 import { useWatchlist } from "@/lib/watchlist";
 import { getQuotes } from "@/lib/quotes.functions";
 import { calcAll } from "@/lib/technical-indicators";
-import {
-  Tooltip as UiTooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip as UiTooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatDate } from "@/lib/format";
 import { grahamRating, bazinPriceTeto, avgAnnualYield } from "@/lib/valuation";
@@ -663,173 +659,161 @@ function AssetPage() {
               </div>
             ))}
           </div>
+        </section>
+
+        {annualDividends.length > 1 && (
+          <section className="mt-4">
+            <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Proventos anuais
+            </h2>
+            <div className="overflow-hidden rounded-md border border-border bg-card">
+              <table className="w-full text-xs">
+                <thead className="bg-surface-2 text-[10px] uppercase text-muted-foreground">
+                  <tr>
+                    <th className="px-3 py-2 text-left font-medium">Ano</th>
+                    <th className="px-3 py-2 text-right font-medium">Total / ação</th>
+                    <th className="px-3 py-2 text-right font-medium">Preço fim do ano</th>
+                    <th className="px-3 py-2 text-right font-medium">Yield ano</th>
+                    <th className="px-3 py-2 text-right font-medium">vs ano anterior</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {annualDividends.map((y, idx) => {
+                    const prev = idx > 0 ? annualDividends[idx - 1].totalPerShare : null;
+                    const delta = prev && prev > 0 ? ((y.totalPerShare - prev) / prev) * 100 : null;
+                    return (
+                      <tr key={y.year} className="border-t border-border text-xs">
+                        <td className="px-3 py-1.5 font-medium tabular">{y.year}</td>
+                        <td className="tabular px-3 py-1.5 text-right">
+                          {formatBRL(y.totalPerShare)}
+                        </td>
+                        <td className="tabular px-3 py-1.5 text-right text-muted-foreground">
+                          {y.priceAtYearEnd !== null ? formatBRL(y.priceAtYearEnd) : "—"}
+                        </td>
+                        <td className="tabular px-3 py-1.5 text-right">
+                          {y.yieldPct !== null ? `${y.yieldPct.toFixed(2)}%` : "—"}
+                        </td>
+                        <td
+                          className={
+                            "tabular px-3 py-1.5 text-right " +
+                            (delta !== null && delta >= 0 ? "text-positive" : "text-negative")
+                          }
+                        >
+                          {delta !== null ? (delta >= 0 ? "+" : "") + delta.toFixed(1) + "%" : "—"}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </section>
+        )}
 
-          {annualDividends.length > 1 && (
-            <section className="mt-4">
-              <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                Proventos anuais
-              </h2>
-              <div className="overflow-hidden rounded-md border border-border bg-card">
-                <table className="w-full text-xs">
-                  <thead className="bg-surface-2 text-[10px] uppercase text-muted-foreground">
-                    <tr>
-                      <th className="px-3 py-2 text-left font-medium">Ano</th>
-                      <th className="px-3 py-2 text-right font-medium">Total / ação</th>
-                      <th className="px-3 py-2 text-right font-medium">Preço fim do ano</th>
-                      <th className="px-3 py-2 text-right font-medium">Yield ano</th>
-                      <th className="px-3 py-2 text-right font-medium">vs ano anterior</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {annualDividends.map((y, idx) => {
-                      const prev = idx > 0 ? annualDividends[idx - 1].totalPerShare : null;
-                      const delta =
-                        prev && prev > 0 ? ((y.totalPerShare - prev) / prev) * 100 : null;
-                      return (
-                        <tr key={y.year} className="border-t border-border text-xs">
-                          <td className="px-3 py-1.5 font-medium tabular">{y.year}</td>
-                          <td className="tabular px-3 py-1.5 text-right">
-                            {formatBRL(y.totalPerShare)}
-                          </td>
-                          <td className="tabular px-3 py-1.5 text-right text-muted-foreground">
-                            {y.priceAtYearEnd !== null ? formatBRL(y.priceAtYearEnd) : "—"}
-                          </td>
-                          <td className="tabular px-3 py-1.5 text-right">
-                            {y.yieldPct !== null ? `${y.yieldPct.toFixed(2)}%` : "—"}
-                          </td>
-                          <td
-                            className={
-                              "tabular px-3 py-1.5 text-right " +
-                              (delta !== null && delta >= 0 ? "text-positive" : "text-negative")
-                            }
-                          >
-                            {delta !== null
-                              ? (delta >= 0 ? "+" : "") + delta.toFixed(1) + "%"
-                              : "—"}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </section>
-          )}
-
-          {riskMetrics && (
-            <section className="mt-4">
-              <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                Métricas de risco
-              </h2>
-              <div className="grid grid-cols-3 gap-2 sm:grid-cols-3 lg:grid-cols-3">
-                <div className="rounded-md border border-border bg-card p-3">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                      Volatilidade
-                    </span>
-                    <UiTooltip>
-                      <TooltipTrigger asChild>
-                        <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
-                          <HelpCircle className="size-3" />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent
-                        side="top"
-                        className="max-w-[240px] space-y-1.5 p-3 text-left"
-                      >
-                        <p className="text-xs font-medium text-foreground">Volatilidade Anual</p>
-                        <p className="text-[10px] leading-tight text-foreground/80">
-                          Desvio padrão anualizado dos retornos diários. Mede o risco do ativo.
-                        </p>
-                        <p className="text-[10px] leading-tight text-positive">
-                          Abaixo de 20%: baixa volatilidade. Entre 20-35%: moderada.
-                        </p>
-                        <p className="text-[10px] leading-tight text-negative">
-                          Acima de 35%: alta volatilidade (risco elevado).
-                        </p>
-                      </TooltipContent>
-                    </UiTooltip>
-                  </div>
-                  <div className="mt-1 text-xs font-medium text-muted-foreground">Anual</div>
-                  <div className="tabular mt-1.5 text-lg font-semibold">
-                    {riskMetrics.volatility.toFixed(1)}%
-                  </div>
+        {riskMetrics && (
+          <section className="mt-4">
+            <h2 className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Métricas de risco
+            </h2>
+            <div className="grid grid-cols-3 gap-2 sm:grid-cols-3 lg:grid-cols-3">
+              <div className="rounded-md border border-border bg-card p-3">
+                <div className="flex items-center gap-1">
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                    Volatilidade
+                  </span>
+                  <UiTooltip>
+                    <TooltipTrigger asChild>
+                      <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
+                        <HelpCircle className="size-3" />
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-[240px] space-y-1.5 p-3 text-left">
+                      <p className="text-xs font-medium text-foreground">Volatilidade Anual</p>
+                      <p className="text-[10px] leading-tight text-foreground/80">
+                        Desvio padrão anualizado dos retornos diários. Mede o risco do ativo.
+                      </p>
+                      <p className="text-[10px] leading-tight text-positive">
+                        Abaixo de 20%: baixa volatilidade. Entre 20-35%: moderada.
+                      </p>
+                      <p className="text-[10px] leading-tight text-negative">
+                        Acima de 35%: alta volatilidade (risco elevado).
+                      </p>
+                    </TooltipContent>
+                  </UiTooltip>
                 </div>
-                <div className="rounded-md border border-border bg-card p-3">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                      Drawdown Máx
-                    </span>
-                    <UiTooltip>
-                      <TooltipTrigger asChild>
-                        <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
-                          <HelpCircle className="size-3" />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent
-                        side="top"
-                        className="max-w-[240px] space-y-1.5 p-3 text-left"
-                      >
-                        <p className="text-xs font-medium text-foreground">Drawdown Máximo</p>
-                        <p className="text-[10px] leading-tight text-foreground/80">
-                          Maior queda do pico ao vale no período analisado. Mede o pior cenário.
-                        </p>
-                        <p className="text-[10px] leading-tight text-positive">
-                          Até -15%: baixo risco de queda. Entre -15% e -30%: moderado.
-                        </p>
-                        <p className="text-[10px] leading-tight text-negative">
-                          Acima de -30%: alto risco de perda significativa.
-                        </p>
-                      </TooltipContent>
-                    </UiTooltip>
-                  </div>
-                  <div className="mt-1 text-xs font-medium text-muted-foreground">Histórico</div>
-                  <div className="tabular mt-1.5 text-lg font-semibold text-negative">
-                    {riskMetrics.maxDrawdown.toFixed(1)}%
-                  </div>
-                </div>
-                <div className="rounded-md border border-border bg-card p-3">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                      Índice Sharpe
-                    </span>
-                    <UiTooltip>
-                      <TooltipTrigger asChild>
-                        <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
-                          <HelpCircle className="size-3" />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent
-                        side="top"
-                        className="max-w-[240px] space-y-1.5 p-3 text-left"
-                      >
-                        <p className="text-xs font-medium text-foreground">Índice Sharpe</p>
-                        <p className="text-[10px] leading-tight text-foreground/80">
-                          (Retorno anual - CDI) ÷ Volatilidade. Mede retorno ajustado ao risco.
-                        </p>
-                        <p className="text-[10px] leading-tight text-positive">
-                          Acima de 1: excelente. Entre 0.5 e 1: bom.
-                        </p>
-                        <p className="text-[10px] leading-tight text-negative">
-                          Abaixo de 0.5: retorno insuficiente para o risco. Negativo: perde do CDI.
-                        </p>
-                      </TooltipContent>
-                    </UiTooltip>
-                  </div>
-                  <div className="mt-1 text-xs font-medium text-muted-foreground">Ajustado</div>
-                  <div
-                    className={
-                      "tabular mt-1.5 text-lg font-semibold " +
-                      (riskMetrics.sharpe >= 0.5 ? "text-positive" : "text-negative")
-                    }
-                  >
-                    {riskMetrics.sharpe.toFixed(2)}
-                  </div>
+                <div className="mt-1 text-xs font-medium text-muted-foreground">Anual</div>
+                <div className="tabular mt-1.5 text-lg font-semibold">
+                  {riskMetrics.volatility.toFixed(1)}%
                 </div>
               </div>
-            </section>
-          )}
+              <div className="rounded-md border border-border bg-card p-3">
+                <div className="flex items-center gap-1">
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                    Drawdown Máx
+                  </span>
+                  <UiTooltip>
+                    <TooltipTrigger asChild>
+                      <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
+                        <HelpCircle className="size-3" />
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-[240px] space-y-1.5 p-3 text-left">
+                      <p className="text-xs font-medium text-foreground">Drawdown Máximo</p>
+                      <p className="text-[10px] leading-tight text-foreground/80">
+                        Maior queda do pico ao vale no período analisado. Mede o pior cenário.
+                      </p>
+                      <p className="text-[10px] leading-tight text-positive">
+                        Até -15%: baixo risco de queda. Entre -15% e -30%: moderado.
+                      </p>
+                      <p className="text-[10px] leading-tight text-negative">
+                        Acima de -30%: alto risco de perda significativa.
+                      </p>
+                    </TooltipContent>
+                  </UiTooltip>
+                </div>
+                <div className="mt-1 text-xs font-medium text-muted-foreground">Histórico</div>
+                <div className="tabular mt-1.5 text-lg font-semibold text-negative">
+                  {riskMetrics.maxDrawdown.toFixed(1)}%
+                </div>
+              </div>
+              <div className="rounded-md border border-border bg-card p-3">
+                <div className="flex items-center gap-1">
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                    Índice Sharpe
+                  </span>
+                  <UiTooltip>
+                    <TooltipTrigger asChild>
+                      <span className="inline-flex cursor-help text-muted-foreground/50 transition hover:text-muted-foreground">
+                        <HelpCircle className="size-3" />
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-[240px] space-y-1.5 p-3 text-left">
+                      <p className="text-xs font-medium text-foreground">Índice Sharpe</p>
+                      <p className="text-[10px] leading-tight text-foreground/80">
+                        (Retorno anual - CDI) ÷ Volatilidade. Mede retorno ajustado ao risco.
+                      </p>
+                      <p className="text-[10px] leading-tight text-positive">
+                        Acima de 1: excelente. Entre 0.5 e 1: bom.
+                      </p>
+                      <p className="text-[10px] leading-tight text-negative">
+                        Abaixo de 0.5: retorno insuficiente para o risco. Negativo: perde do CDI.
+                      </p>
+                    </TooltipContent>
+                  </UiTooltip>
+                </div>
+                <div className="mt-1 text-xs font-medium text-muted-foreground">Ajustado</div>
+                <div
+                  className={
+                    "tabular mt-1.5 text-lg font-semibold " +
+                    (riskMetrics.sharpe >= 0.5 ? "text-positive" : "text-negative")
+                  }
+                >
+                  {riskMetrics.sharpe.toFixed(2)}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Chart + dividends */}
         <section className="mt-8 grid gap-6 lg:grid-cols-[2fr_1fr]">
@@ -1249,15 +1233,15 @@ function AssetPage() {
               </thead>
               <tbody>
                 {asset.dividends.map((d: (typeof asset.dividends)[number], i: number) => (
-                    <tr key={i} className="border-t border-border">
-                      <td className="px-4 py-2 text-muted-foreground">{formatDate(d.paidAt)}</td>
-                      <td className="px-4 py-2">{d.type}</td>
-                      <td className="tabular px-4 py-2 text-right">{formatBRL(d.amount)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  <tr key={i} className="border-t border-border">
+                    <td className="px-4 py-2 text-muted-foreground">{formatDate(d.paidAt)}</td>
+                    <td className="px-4 py-2">{d.type}</td>
+                    <td className="tabular px-4 py-2 text-right">{formatBRL(d.amount)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section className="mt-8 rounded-lg border border-border bg-card p-6">

@@ -94,7 +94,13 @@ function DevLoginButton() {
   const isLocal = host === "localhost" || host === "127.0.0.1";
   if (!isLocal) return null;
   return (
-    <Button type="button" variant="outline" className="w-full gap-2" onClick={onClick} disabled={pending}>
+    <Button
+      type="button"
+      variant="outline"
+      className="w-full gap-2"
+      onClick={onClick}
+      disabled={pending}
+    >
       Modo Desenvolvedor (local)
     </Button>
   );

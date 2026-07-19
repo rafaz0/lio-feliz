@@ -120,12 +120,12 @@ O Ciclo de Vida do plano (conforme `03_IMPLEMENTATION_PLAN.md`) transita de Plan
 
 # 8. Estado Atual
 
-| Aspecto | Valor |
-|---------|-------|
-| Marco Atual | Convergência Arquitetural |
-| Sprint Atual | PS#030 |
-| Objetivo Atual | Estruturar os critérios oficiais de prontidão |
-| Critérios Definidos | 5 critérios mínimos |
+| Aspecto             | Valor                                         |
+| ------------------- | --------------------------------------------- |
+| Marco Atual         | Convergência Arquitetural                     |
+| Sprint Atual        | PS#030                                        |
+| Objetivo Atual      | Estruturar os critérios oficiais de prontidão |
+| Critérios Definidos | 5 critérios mínimos                           |
 
 Nenhum Implementation Plan foi submetido à verificação de prontidão até o momento.
 

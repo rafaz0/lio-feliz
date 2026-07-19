@@ -33,21 +33,19 @@ describe("GerarRelatorioFiscalService", () => {
       const repo: IProjectionRepository = {
         ObterPatrimonio: vi.fn(),
         ObterPosicao: vi.fn(),
-        ObterPosicoes: vi
-          .fn()
-          .mockResolvedValue([
-            {
-              portfolioId: FIXTURA_PORTFOLIO,
-              assetId: "a1",
-              ticker: "PETR4",
-              nome: "Petrobras",
-              classe: "stock",
-              quantidade: 100,
-              precoMedio: 35,
-              valorTotal: 4000,
-              rentabilidade: { valorizacao: 0, rentabilidadeTotal: 0, rentabilidadePeriodo: 0 },
-            },
-          ]),
+        ObterPosicoes: vi.fn().mockResolvedValue([
+          {
+            portfolioId: FIXTURA_PORTFOLIO,
+            assetId: "a1",
+            ticker: "PETR4",
+            nome: "Petrobras",
+            classe: "stock",
+            quantidade: 100,
+            precoMedio: 35,
+            valorTotal: 4000,
+            rentabilidade: { valorizacao: 0, rentabilidadeTotal: 0, rentabilidadePeriodo: 0 },
+          },
+        ]),
         ObterHistorico: vi.fn(),
         ObterProventos: vi.fn().mockResolvedValue([
           {

@@ -6,16 +6,15 @@ function brl(value: number, currency: Currency, rates: Record<string, number>): 
   return currency === "USD" ? value * (rates["USD"] ?? 1) : value;
 }
 
-export function calcPositions(
-  ops: Operation[],
-): Map<string, { qty: number; totalCost: number }> {
+export function calcPositions(ops: Operation[]): Map<string, { qty: number; totalCost: number }> {
   const byTicker = new Map<string, { qty: number; totalCost: number }>();
 
   for (const op of ops) {
     const cur = byTicker.get(op.ticker) ?? { qty: 0, totalCost: 0 };
     if (op.side === "buy") {
       cur.qty += op.quantity;
-      cur.totalCost += op.quantity * op.price + (op.fee ?? 0) + (op.irrf ?? 0) + (op.other_costs ?? 0);
+      cur.totalCost +=
+        op.quantity * op.price + (op.fee ?? 0) + (op.irrf ?? 0) + (op.other_costs ?? 0);
     } else if (op.side === "sell") {
       const avg = cur.qty > 0 ? cur.totalCost / cur.qty : 0;
       const sellQty = Math.min(op.quantity, cur.qty);
@@ -57,9 +56,8 @@ export function consolidatePortfolio(
     const asset = ASSETS_BY_TICKER[ticker];
     const avgPrice = qty > 0 ? totalCost / qty : 0;
     const overridePrice = priceOverrides?.[ticker];
-    const currentPrice = typeof overridePrice === "number"
-      ? overridePrice
-      : (asset?.price ?? avgPrice);
+    const currentPrice =
+      typeof overridePrice === "number" ? overridePrice : (asset?.price ?? avgPrice);
     const currentValue = qty * currentPrice;
     const invested = qty * avgPrice;
     const pnl = currentValue - invested;
@@ -113,5 +111,13 @@ export function consolidatePortfolio(
     .map(([type, value]) => ({ type, value, pct: totalValue > 0 ? (value / totalValue) * 100 : 0 }))
     .sort((a, b) => b.value - a.value);
 
-  return { totalValue, totalInvested, totalPnl, totalPnlPct, positions, sectorAllocation, typeAllocation };
+  return {
+    totalValue,
+    totalInvested,
+    totalPnl,
+    totalPnlPct,
+    positions,
+    sectorAllocation,
+    typeAllocation,
+  };
 }

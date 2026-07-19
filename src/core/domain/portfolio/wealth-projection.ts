@@ -36,10 +36,7 @@ export class WealthProjectionCalculator {
     performance: PerformanceReport,
     events: FinancialEvent[],
   ): WealthProjection {
-    const totalInvested = positions.reduce(
-      (sum, p) => sum + p.getTotalCost().getValue(),
-      0,
-    );
+    const totalInvested = positions.reduce((sum, p) => sum + p.getTotalCost().getValue(), 0);
 
     const eventCounts = new Map<FinancialEventType, number>();
     for (const ev of events) {

@@ -386,18 +386,18 @@ Engineering N1 — PI-001 Interpretation Layer.
 
 Validado com AI_CONTEXT + PROJECT_BOOTSTRAP apenas:
 
-| Critério | Resultado |
-|----------|-----------|
-| Compreender completamente o projeto | ✅ |
-| Restaurar Estado Operacional automaticamente | ✅ |
-| Entrar imediatamente em modo Execução | ✅ |
-| Aplicar Dashboard Executivo | ✅ |
-| Utilizar todos os templates oficiais | ✅ |
-| Aplicar Ritual Obrigatório de Encerramento | ✅ |
-| Seguir todas as regras operacionais | ✅ |
-| Manter padrão visual oficial | ✅ |
-| Iniciar próxima etapa corretamente | ✅ |
-| Compreender próxima etapa pelo resumo | ✅ |
+| Critério                                     | Resultado |
+| -------------------------------------------- | --------- |
+| Compreender completamente o projeto          | ✅        |
+| Restaurar Estado Operacional automaticamente | ✅        |
+| Entrar imediatamente em modo Execução        | ✅        |
+| Aplicar Dashboard Executivo                  | ✅        |
+| Utilizar todos os templates oficiais         | ✅        |
+| Aplicar Ritual Obrigatório de Encerramento   | ✅        |
+| Seguir todas as regras operacionais          | ✅        |
+| Manter padrão visual oficial                 | ✅        |
+| Iniciar próxima etapa corretamente           | ✅        |
+| Compreender próxima etapa pelo resumo        | ✅        |
 
 ### Adições ao Bootstrap (Prompt 2)
 
@@ -627,13 +627,13 @@ Realizar Revisão Arquitetural da PI-001 v0.1 (Draft → Review → Approved).
 
 ### Decisões Classificadas
 
-| Decisão | Categoria | Fonte Canônica |
-|---------|-----------|----------------|
-| A) Princípio da Universalidade | Princípio Arquitetural | 00_CONSTITUTION.md §6 |
-| B) Licensing & Feature Access Layer | Strategic Backlog | 09_STRATEGIC_BACKLOG.md BK-006 |
+| Decisão                                         | Categoria              | Fonte Canônica                         |
+| ----------------------------------------------- | ---------------------- | -------------------------------------- |
+| A) Princípio da Universalidade                  | Princípio Arquitetural | 00_CONSTITUTION.md §6                  |
+| B) Licensing & Feature Access Layer             | Strategic Backlog      | 09_STRATEGIC_BACKLOG.md BK-006         |
 | C) Suporte Universal a Instrumentos Financeiros | Princípio Arquitetural | 00_CONSTITUTION.md §6 (Universalidade) |
-| D) Multi-Mercado | Princípio Arquitetural | 00_CONSTITUTION.md §6 |
-| E) Comercialização | Strategic Backlog | 09_STRATEGIC_BACKLOG.md BK-007 |
+| D) Multi-Mercado                                | Princípio Arquitetural | 00_CONSTITUTION.md §6                  |
+| E) Comercialização                              | Strategic Backlog      | 09_STRATEGIC_BACKLOG.md BK-007         |
 
 ### Documentos Atualizados
 
@@ -713,14 +713,14 @@ Realizar Revisão Arquitetural da PI-001 v0.1 (Draft → Review → Approved).
 
 ### Conformidade
 
-| Critério | Resultado |
-|----------|-----------|
-| Consistência Interna | ✅ Aprovada |
-| Consistência Arquitetural | ✅ Aprovada |
-| Consistência Metodológica | ✅ Aprovada |
-| Consistência Documental | ✅ Aprovada |
-| Qualidade Arquitetural | ✅ Aprovada |
-| Dependências para PI-002 | ✅ Suficiente |
+| Critério                  | Resultado     |
+| ------------------------- | ------------- |
+| Consistência Interna      | ✅ Aprovada   |
+| Consistência Arquitetural | ✅ Aprovada   |
+| Consistência Metodológica | ✅ Aprovada   |
+| Consistência Documental   | ✅ Aprovada   |
+| Qualidade Arquitetural    | ✅ Aprovada   |
+| Dependências para PI-002  | ✅ Suficiente |
 
 ### Próxima Etapa Recomendada
 
@@ -816,11 +816,11 @@ Engineering Review da PI-002 v0.1 concluída. PI-002 promovida a v1.0 Approved. 
 
 ### Conformidade
 
-| Critério | Resultado |
-|----------|-----------|
-| Consistência Interna | ✅ Aprovada |
-| Consistência Externa | ✅ Aprovada |
-| Consistência Semântica | ✅ Aprovada |
+| Critério                  | Resultado   |
+| ------------------------- | ----------- |
+| Consistência Interna      | ✅ Aprovada |
+| Consistência Externa      | ✅ Aprovada |
+| Consistência Semântica    | ✅ Aprovada |
 | Consistência Metodológica | ✅ Aprovada |
 
 ### Próxima Etapa Recomendada
@@ -875,10 +875,10 @@ Materializar PI-003 v0.1 (Draft) — Canonical Operations & Event Flow Architect
 
 ### Itens Implementados
 
-| ID | Item | Status |
-|----|------|--------|
-| GOV-001 | Idioma Oficial da Documentação (OP-013) | ✅ Concluído |
-| GOV-002 | Fluxo de Elaboração de PIs (OP-014) | ✅ Concluído |
+| ID      | Item                                                                   | Status       |
+| ------- | ---------------------------------------------------------------------- | ------------ |
+| GOV-001 | Idioma Oficial da Documentação (OP-013)                                | ✅ Concluído |
+| GOV-002 | Fluxo de Elaboração de PIs (OP-014)                                    | ✅ Concluído |
 | PAD-001 | Formato padronizado de Decisões Arquiteturais Capturadas em relatórios | ✅ Concluído |
 
 ### GOV-001 — Idioma Oficial
@@ -929,16 +929,16 @@ Materializar PI-003 v0.1 (Draft) — Canonical Operations & Event Flow Architect
 
 ### Conformidade
 
-| Critério | Resultado |
-|----------|-----------|
-| Consistência Interna | ✅ Aprovada |
-| Consistência Externa | ✅ Aprovada |
-| Consistência Semântica | ✅ Aprovada |
-| Consistência Metodológica | ✅ Aprovada |
-| Compatibilidade com PI-001 | ✅ Aprovada |
-| Compatibilidade com PI-002 | ✅ Aprovada |
-| Compatibilidade com Bootstrap | ✅ Aprovada |
-| Risco de Regressão | Baixo — PI-003 complementa sem sobrepor PIs existentes |
+| Critério                      | Resultado                                              |
+| ----------------------------- | ------------------------------------------------------ |
+| Consistência Interna          | ✅ Aprovada                                            |
+| Consistência Externa          | ✅ Aprovada                                            |
+| Consistência Semântica        | ✅ Aprovada                                            |
+| Consistência Metodológica     | ✅ Aprovada                                            |
+| Compatibilidade com PI-001    | ✅ Aprovada                                            |
+| Compatibilidade com PI-002    | ✅ Aprovada                                            |
+| Compatibilidade com Bootstrap | ✅ Aprovada                                            |
+| Risco de Regressão            | Baixo — PI-003 complementa sem sobrepor PIs existentes |
 
 ### Documentos Criados
 
@@ -968,10 +968,10 @@ Planejar EWO-001 — Implementação do núcleo arquitetural.
 
 ### Itens Implementados
 
-| ID | Item | Status |
-|----|------|--------|
-| OP-015 | Política de Consolidação Documental | ✅ Adicionado |
-| BOOT-001 | Bootstrap Rápido no início do Bootstrap | ✅ Adicionado |
+| ID       | Item                                     | Status        |
+| -------- | ---------------------------------------- | ------------- |
+| OP-015   | Política de Consolidação Documental      | ✅ Adicionado |
+| BOOT-001 | Bootstrap Rápido no início do Bootstrap  | ✅ Adicionado |
 | BOOT-002 | Baseline Arquitetural Atual no Bootstrap | ✅ Adicionado |
 
 ### OP-015 — Política de Consolidação Documental
@@ -1012,21 +1012,25 @@ Planejar EWO-001 — Implementação do Núcleo Arquitetural.
 ### Alterações Realizadas
 
 **Alteração 1 — Runtime Operacional**
+
 - Header do PROJECT_BOOTSTRAP expandido: documento passa a ser explicitamente a memória operacional permanente da engenharia (não apenas snapshot)
 - Escopo de continuidade documentado: 7 itens que uma nova IA deve compreender apenas com Bootstrap + Checklist
 - Bootstrap Rápido reformulado: Runtime é composto exclusivamente por Bootstrap + Checklist
 
 **Alteração 2 — Engineering Outlook**
+
 - Nova seção Engineering Outlook consolidada em PARTE A do Bootstrap (seção permanente e orientativa)
 - Contém: estado atual, próxima frente, documentação prevista, observações relevantes
 - EWO-001 detalhamento (tabela de Slices) preservado em seção própria ao final
 
 **Alteração 3 — Promoção de Conhecimento Permanente**
+
 - Nova regra operacional: toda decisão permanente deve ser promovida ao Bootstrap e ao Checklist
 - Documentos históricos (PROJECT_STATUS, SYNC_HISTORY) não substituem essa atualização
 - Regra de verificação em 3 perguntas para validar a promoção
 
 **Alteração 4 — Qualidade dos Prompts para o Agente Executor**
+
 - Nova seção no AI_OPERATION_CHECKLIST: "Qualidade dos Prompts para o Agente Executor"
 - Regra: todo prompt deve ser autossuficiente (sem contexto implícito)
 - Checklist de 8 itens para validar autossuficiência
@@ -1054,21 +1058,25 @@ Nenhuma decisão arquitetural foi alterada. Nenhuma PI, EWO ou código modificad
 ### Alterações Realizadas
 
 **Alteração 1 — Sincronização Obrigatória**
+
 - Nova seção "Sincronização Operacional (GOV-009)" no PROJECT_BOOTSTRAP.md
 - Regra: toda implementação (código ou documentação) deve encerrar com ciclo completo de sincronização
 - Ciclo completo de 8 etapas: validações → git add → git commit → git push → confirmação remota → working tree limpa → HEAD registrado → relatório
 - Exceção: instrução explícita do usuário para interromper
 
 **Alteração 2 — Consistência do Estado da Sincronização**
+
 - Bloco Obrigatório nos Relatórios expandido: HEAD adicionado, regra de consistência documentada
 - Exemplos de estados válidos e inválidos no Bootstrap
 - AI_OPERATION_CHECKLIST: GS-002 expandido com regra de consistência
 
 **Alteração 3 — Lembrete Obrigatório ao Agente Executor**
+
 - Template "Prompt OpenCode" renomeado para "Prompt OpenCode (Agente Executor)"
 - Bloco "Lembrete Operacional Obrigatório (GOV-009)" adicionado ao final do template
 
 **Alteração 4 — Template Oficial**
+
 - Template Prompt OpenCode no Bootstrap atualizado permanentemente com o lembrete
 - PS_TEMPLATE.md não modificado (é template de PS, não de prompt operacional)
 
@@ -1099,12 +1107,14 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 ### Alterações Realizadas
 
 **Alteração 1 — PASSO 0 (Workspace Validation)**
+
 - PASSO 0 generalizado para "Agente Executor", desacoplado de ferramenta específica (OpenCode)
 - ChatGPT explicitamente excluído da responsabilidade de validação de workspace
 - PROJECT_BOOTSTRAP.md: Fluxo de Inicialização, GOV-008, GOV-010, GOV-011 atualizados
 - AI_OPERATION_CHECKLIST.md: PASSO 0 e Pré-Resposta atualizados com nota para ChatGPT
 
 **Alteração 2 — Precisão do Fluxo Documental**
+
 - Fluxo Oficial da Engenharia refinado: PROJECT_BOOTSTRAP → PI (arquitetura) → ER → EWO (materialização) → Slices → ...
 - PI estabelecida como fonte **exclusiva** de definição arquitetural
 - EWO explicitada como mero materializador de arquitetura já aprovada
@@ -1136,9 +1146,11 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Sprint Documental — Integração Oficial da PI-004 (Modelo Patrimonial)
 
 **Arquivos criados:**
+
 - `architecture-lab/ER-004.md`
 
 **Arquivos modificados:**
+
 - `architecture-lab/PI-004.md` (já existia, validado e confirmado v1.0 Approved)
 - `project-context/PROJECT_BOOTSTRAP.md` (v2.33 → v2.34)
 - `project-context/PROJECT_STATUS.md` (v1.41 → v1.42)
@@ -1146,14 +1158,17 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 - `docs/SYNC_HISTORY.md` (atualizado)
 
 **Decisões Arquiteturais Registradas (Promovidas para Memória Permanente - SYNC-001):**
+
 - **Personal Finance Domain** — Domínio complementar opcional (contas bancárias, caixa, receitas, despesas, patrimônio não investido). Não integra núcleo obrigatório. Não altera Investment Domain. Alimenta apenas Wealth Projection. Implementação futura sem impacto arquitetural (DA-007, I-011, I-012).
 - **Decision Support** — Camada consultiva superior (rebalanceamento, próxima compra, análises, indicadores, IR, alertas). Natureza exclusivamente analítica. Nunca modifica domínio diretamente. Consome projeções do Investment Domain (DA-006, I-013).
 
 **Regras de Governança Atualizadas:**
+
 - PROJECT_BOOTSTRAP: Engineering Outlook atualizado (PI-004 ✅, ER-004 prevista, EWO-002 após ER-004). Decisões permanentes promovidas.
 - AI_OPERATION_CHECKLIST: Verificado — nenhuma nova regra operacional necessária além das já existentes.
 
 **Pendências remanescentes:**
+
 - ER-004 — Engineering Review da PI-004 (próxima etapa oficial)
 - EWO-002 — Implementação do Domínio Patrimonial (após ER-004)
 - Backlog Estratégico ativo: BK-005 a BK-008
@@ -1167,9 +1182,11 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Sprint Documental GOV-010 — Consolidação Final da Governança Pós-Engineering Audit 001
 
 **Arquivos criados:**
+
 - `architecture-lab/ER-C001-C002-001.md` (stub do relatório de auditoria da Core Foundation)
 
 **Arquivos modificados:**
+
 - `project-context/AI_CONTEXT.md` — Objetivo Atual atualizado para EWO-002
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.34 → v2.35: removidos resumos históricos PI-001/002/003, Technical Roadmap movido para Strategic Backlog, Precedência corrigida (Bootstrap #1), ER-004 ✅, Engineering Outlook atualizada (próxima: EWO-002)
 - `project-context/PROJECT_STATUS.md` — v1.42 → v1.43
@@ -1178,6 +1195,7 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 - `project-context/DEVELOPMENT_METHODOLOGY.md` — v2.15 → v2.16: seção Engineering Audit adicionada, seção Evoluções Planejadas removida
 
 **Melhorias de Governança Incorporadas (Engineering Audit 001):**
+
 - AI_CONTEXT objetivo corrigido (PI-001 → EWO-002)
 - PROJECT_BOOTSTRAP limpo: histórico de PIs movido para PROJECT_STATUS, Technical Roadmap → Strategic Backlog, Ordem de Precedência corrigida
 - DOCUMENTATION_INDEX: 9 documentos inexistentes removidos
@@ -1186,10 +1204,12 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 - ER-C001-C002-001.md criada (referenciada mas inexistente)
 
 **Decisões Arquiteturais Permanentes Promovidas (SYNC-001):**
+
 - Personal Finance Domain — domínio complementar opcional (DA-007, I-011, I-012)
 - Decision Support — camada consultiva superior (DA-006, I-013)
 
 **Pendências remanescentes:**
+
 - EWO-002 — Implementação do Domínio Patrimonial (próxima etapa oficial)
 - Backlog Estratégico ativo: BK-005 a BK-008
 
@@ -1204,6 +1224,7 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Implementar a Slice 1 (Fundação) do EWO-002 — FinancialEvent base + Position Value Object
 
 **Arquivos criados:**
+
 - `src/core/domain/portfolio/financial-event.ts` — abstração base FinancialEvent + enum FinancialEventType (9 subtipos)
 - `src/core/domain/portfolio/position.ts` — Value Object Position (Ticker, Quantity, avgCost, totalCost)
 - `src/core/domain/portfolio/index.ts` — re-exports do módulo portfolio
@@ -1213,6 +1234,7 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Arquivos modificados:** Nenhum
 
 **Resultados:**
+
 - Build: aprovado (vite build, 3645 modules)
 - Testes: 197/197 passando (12 suites, regressão zero)
 - Core Foundation inalterada (GOV-006)
@@ -1230,6 +1252,7 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Institucionalizar a nova divisão de responsabilidades entre ChatGPT (Arquiteto/Planejador/Auditor/Revisor) e OpenCode (Agente Executor).
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.36 → v2.37: nova seção "Divisão de Responsabilidades ChatGPT/OpenCode" com papéis, responsabilidades e fluxo integrado
 - `project-context/AI_OPERATION_CHECKLIST.md` — v1.34 → v1.35: pré-resposta reorganizada por papel, seção de divisão de responsabilidades adicionada
 - `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção "Papéis na Engenharia" definindo ChatGPT e OpenCode
@@ -1247,6 +1270,7 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Institucionalizar a política oficial de reconstrução de contexto do ChatGPT.
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.37 → v2.38: nova seção "Política de Reconstrução de Contexto Estratégico" com dois níveis de contexto e situações de gatilho
 - `project-context/AI_OPERATION_CHECKLIST.md` — v1.35 → v1.36: nova seção "Verificação de Contexto" na Pré-Resposta
 - `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção "Política de Reconstrução de Contexto"
@@ -1263,6 +1287,7 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Registrar oficialmente o encerramento da Slice 2 — Eventos de Operação (Buy e Sell).
 
 **Componentes validados:**
+
 - BuyEvent — 12 testes
 - SellEvent — 12 testes
 
@@ -1271,6 +1296,7 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Observação de Engenharia:** A utilização de `string` para identificação do ativo em Financial Events constitui decisão local de implementação compatível com a PI-004 e EWO-002. A ER confirmou aderência arquitetural.
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.38 → v2.39: EWO-002 detalhamento com tabela de progresso (2/9); próximo passo atualizado para Slice 3
 
 ---
@@ -1284,12 +1310,14 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Materializar os eventos de rendimento (Dividend e JCP) como subtipos de Financial Event.
 
 **Componentes implementados:**
+
 - DividendEvent — 12 testes
 - JcpEvent — 12 testes
 
 **Resultados:** 245/245 testes passando (16/16 arquivos). Build aprovado. Zero regressões.
 
 **Arquivos criados/modificados:**
+
 - `src/core/domain/portfolio/dividend-event.ts`
 - `src/core/domain/portfolio/jcp-event.ts`
 - `src/core/domain/portfolio/index.ts` — exports adicionados
@@ -1308,6 +1336,7 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Institucionalizar a política que torna obrigatório que oportunidades identificadas durante revisões recebam destino formal (implementação imediata, Slice futura, BK, TD, rejeitada ou descartada).
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.40 → v2.41: nova seção GOV-015 com destinos, fluxo, responsabilidades e Registro de Conhecimento na ER
 - `project-context/AI_OPERATION_CHECKLIST.md` — v1.36 → v1.37: verificação de oportunidades na Pré-Resposta, seção Registro de Conhecimento
 - `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção GOV-015, responsabilidades ChatGPT/OpenCode atualizadas
@@ -1325,24 +1354,29 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Criar e institucionalizar a `21_FUNCTIONAL_SPECIFICATION.md` como especificação funcional oficial do produto, consolidando todo o conhecimento funcional existente.
 
 **Arquivos criados:**
+
 - `docs/21_FUNCTIONAL_SPECIFICATION.md` — v1.0: 14 seções, 34 FRs, 14 UCs, 15 NFRs, 21 FEATs mapeadas
 
 **Arquivos modificados:**
+
 - `docs/00_START_HERE.md` — ordem de leitura atualizada (21_FUNCTIONAL_SPECIFICATION.md adicionado)
 - `docs/DOCUMENTATION_INDEX.md` — v1.39 → v1.40: 21_FUNCTIONAL_SPECIFICATION.md adicionado
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.51 → v2.52: GOV-021 registrado
 - `docs/SYNC_HISTORY.md` — v1.48 → v1.49: PS#052 registrado
 
 **Governança:**
+
 - **GOV-021** — Especificação Funcional institucionalizada como documento permanente
 - A PI-005 (Application Layer) deverá referenciar este documento como entrada funcional
 
 **Documentos consultados durante a consolidação:**
+
 - 00_START_HERE.md, 01_VISION.md, 03_PRODUCT_REQUIREMENTS.md, 16_PRODUCT_BACKLOG.md, 17_TRACEABILITY_MATRIX.md, 20_PROJECT_MAP.md, PROJECT_BOOTSTRAP.md, PROJECT_STATUS.md
 
 **Conflitos encontrados:** Nenhum. Todos os documentos consultados estavam consistentes entre si.
 
 **Informações ausentes identificadas (não criadas, apenas registradas):**
+
 - Fluxos de usuário e casos de uso não existiam previamente — foram consolidados a partir das descrições funcionais existentes
 - Requisitos não funcionais não possuíam documento dedicado — foram consolidados a partir de princípios arquiteturais e regras de negócio
 
@@ -1359,19 +1393,23 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Criar e institucionalizar o `20_PROJECT_MAP.md` como documento oficial de visão macro do projeto.
 
 **Arquivos criados:**
+
 - `docs/20_PROJECT_MAP.md` — v1.0: Project Map oficial com 10 seções
 
 **Arquivos modificados:**
+
 - `docs/00_START_HERE.md` — ordem de leitura atualizada (documentos órfãos removidos, Project Map adicionado)
 - `docs/DOCUMENTATION_INDEX.md` — v1.38 → v1.39: 20_PROJECT_MAP.md adicionado
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.50 → v2.51: GOV-020 e IA-042 registrados
 - `docs/SYNC_HISTORY.md` — v1.47 → v1.48: PS#051 registrado
 
 **Governança:**
+
 - **GOV-020** — Project Map institucionalizado como documento permanente da engenharia
 - **IA-042** — IA deve consultar 20_PROJECT_MAP.md como primeiro documento de visão geral
 
 **Resultados:**
+
 - Visão macro do projeto consolidada em um único documento
 - Ordem de leitura do 00_START_HERE.md corrigida (documentos inexistentes removidos)
 - Sem impacto em arquitetura, código ou metodologia existente
@@ -1387,15 +1425,18 @@ Nenhuma PI, EWO, código ou fluxo metodológico foi alterado. Nenhuma regressão
 **Objetivo:** Encerrar oficialmente a EWO-002 — Implementação do Domínio Patrimonial.
 
 **Arquivos criados:**
+
 - `architecture-lab/EWO-002-COVERAGE.md` — Relatório de Cobertura Arquitetural (v1.0)
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.49 → v2.50: EWO-002 CONCLUÍDA, roadmap atualizado, conhecimento consolidado
 - `project-context/PROJECT_STATUS.md` — v1.48 → v1.49: Engineering Closure registrado
 - `docs/DOCUMENTATION_INDEX.md` — v1.37 → v1.38: EWO-002-COVERAGE.md adicionado, PI-004/ER-004/EWO-002 marcados Concluídos
 - `docs/SYNC_HISTORY.md` — v1.46 → v1.47: PS#050 registrado
 
 **Conhecimento Consolidado (GOV-015):**
+
 - KC-001 — Aggregate Root como Guardião Exclusivo das Invariantes
 - KC-002 — Projector como State Machine sobre Event Stream
 - KC-003 — avgCost é sempre derivado
@@ -1409,6 +1450,7 @@ Todos os conhecimentos já possuíam destinos oficiais. Nenhum novo KC ou KB foi
 Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível de simplificação foi identificada. A metodologia atual permanece adequada.
 
 **Resultados finais:**
+
 - 9/9 Slices concluídas
 - 362/362 testes passando (28/28 arquivos)
 - 12/12 DAs materializadas
@@ -1429,18 +1471,22 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 **Objetivo:** Concluir oficialmente a EWO-002 — validação integral do domínio, cobertura arquitetural, emissão de relatório final.
 
 **Arquivos criados:**
+
 - `src/core/tests/portfolio/consolidation.test.ts` — 9 testes de ciclo completo + invariantes
 - `architecture-lab/EWO-002-COVERAGE.md` — Relatório de Cobertura Arquitetural
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.48 → v2.49: Slice 9 CLOSED, 9/9, EWO-002 CONCLUÍDA
 - `project-context/PROJECT_STATUS.md` — v1.47 → v1.48: EWO-002 CONCLUÍDA
 - `docs/SYNC_HISTORY.md` — v1.45 → v1.46: PS#049 registrado
 
 **Registro de Conhecimento (GOV-015):**
+
 - Nenhum novo KC ou KB produzido. Conhecimentos KC-001 a KC-005 e KB-006 permanecem válidos.
 
 **Resultados:**
+
 - 362/362 testes passando (28/28 arquivos)
 - 12/12 DAs materializadas
 - 11/13 Invariantes validadas (I-012 e I-013 parcial — Personal Finance e Decision Support fora do escopo)
@@ -1458,12 +1504,14 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 **Objetivo:** Implementar a Slice 8 (EWO-002) — Portfolio History e Wealth Projection como calculadoras analíticas consolidadas.
 
 **Arquivos criados:**
+
 - `src/core/domain/portfolio/portfolio-history.ts` — PortfolioHistoryCalculator, PortfolioHistory, PortfolioSnapshot
 - `src/core/domain/portfolio/wealth-projection.ts` — WealthProjectionCalculator, WealthProjection
 - `src/core/tests/portfolio/portfolio-history.test.ts` — 5 testes
 - `src/core/tests/portfolio/wealth-projection.test.ts` — 3 testes
 
 **Arquivos modificados:**
+
 - `src/core/domain/portfolio/index.ts` — exports adicionados
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.47 → v2.48: Slice 8 CLOSED, progresso 8/9
 - `project-context/PROJECT_STATUS.md` — v1.46 → v1.47: Slice 8 CLOSED
@@ -1471,9 +1519,11 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 - `docs/SYNC_HISTORY.md` — v1.44 → v1.45: PS#048 registrado
 
 **Registro de Conhecimento (GOV-015):**
+
 - KB-006 (TD) — PortfolioHistoryCalculator O(n²) — Otimização Incremental adiada. Solução: injetar Projector mantendo estado incremental entre snapshots.
 
 **Resultados:**
+
 - 353/353 testes passando (27/27 arquivos)
 - Build aprovado
 - Zero regressões
@@ -1491,11 +1541,13 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 **Objetivo:** Formalizar o encerramento da Slice 7 — Asset Allocation, Performance.
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.46 → v2.47: Slice 7 CLOSED, progresso 7/9
 - `project-context/PROJECT_STATUS.md` — v1.45 → v1.46: Slice 7 CLOSED
 - `docs/SYNC_HISTORY.md` — v1.43 → v1.44: PS#047 registrado
 
 **Registro de Conhecimento (GOV-015):**
+
 - KC-005 — Projeções Analíticas são Derivações de Projeções
 
 ---
@@ -1509,11 +1561,13 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 **Objetivo:** Formalizar o encerramento da Slice 6 — PortfolioProjector.
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.45 → v2.46: Slice 6 CLOSED, progresso 6/9
 - `project-context/PROJECT_STATUS.md` — v1.44 → v1.45: Slice 6 CLOSED
 - `docs/SYNC_HISTORY.md` — v1.42 → v1.43: PS#046 registrado
 
 **Registro de Conhecimento (GOV-015):**
+
 - KC-002 — Projector como State Machine sobre Event Stream
 - KC-003 — avgCost é sempre derivado
 - KC-004 — Estados Deriváveis não devem ser Persistidos
@@ -1529,11 +1583,13 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 **Objetivo:** Formalizar o encerramento da Slice 5 — Portfolio Aggregate Root.
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.44 → v2.45: Slice 5 CLOSED, progresso 5/9, KC-001 registrado
 - `project-context/PROJECT_STATUS.md` — v1.43 → v1.44: Slice 5 CLOSED
 - `docs/SYNC_HISTORY.md` — v1.41 → v1.42: PS#045 registrado
 
 **Registro de Conhecimento (GOV-015):**
+
 - KC-001 — Aggregate Root como Guardião Exclusivo das Invariantes
 - Financial Events representam exclusivamente fatos históricos
 - Aggregate Root concentra todas as invariantes do domínio
@@ -1551,6 +1607,7 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 **Objetivo:** Eliminar interrupções desnecessárias entre etapas da engenharia institucionalizando o fluxo automático do pipeline.
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.43 → v2.44: nova seção GOV-018 com pipeline, exceções e responsabilidades
 - `project-context/AI_OPERATION_CHECKLIST.md` — v1.39 → v1.40: nova seção de verificação do pipeline
 - `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção GOV-018
@@ -1583,6 +1640,7 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 **Objetivo:** Institutionalizar o processo oficial de evolução da metodologia baseado em evidências.
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.42 → v2.43: seção GOV-017 com origens, fluxo, Princípio da Metodologia Mínima
 - `project-context/AI_OPERATION_CHECKLIST.md` — v1.38 → v1.39: verificação de melhoria metodológica no Registro de Conhecimento
 - `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção GOV-017
@@ -1599,6 +1657,7 @@ Avaliação concluída. Nenhuma regra redundante, pouco utilizada ou passível d
 **Objetivo:** Remover ❤️ Saúde do Chat da metodologia e institucionalizar o novo Ritual de Encerramento Estratégico.
 
 **Arquivos modificados:**
+
 - `project-context/PROJECT_BOOTSTRAP.md` — v2.41 → v2.42: ❤️ Saúde do Chat removido, novo Ritual GOV-016
 - `project-context/AI_OPERATION_CHECKLIST.md` — v1.37 → v1.38: ❤️ Saúde do Chat removido, novo formato Entrega Relevante
 - `project-context/AI_ENGINEERING_PROTOCOL.md` — nova seção GOV-016

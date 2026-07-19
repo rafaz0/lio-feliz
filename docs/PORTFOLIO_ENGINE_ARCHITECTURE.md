@@ -145,6 +145,7 @@ O Engine responde: **"Como estamos agora?"**
 Ele transforma múltiplos Fatos Patrimoniais em uma visão consolidada e coerente do patrimônio.
 
 O Engine não responde:
+
 - "O que aconteceu?" → Ledger
 - "Como chegamos aqui?" → Trace
 - "O que significa?" → Transaction Interpretation

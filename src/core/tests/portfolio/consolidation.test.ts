@@ -56,7 +56,10 @@ describe("EWO-002 Consolidation — Full Lifecycle", () => {
     expect(history.snapshots).toHaveLength(8);
 
     const wealth = new WealthProjectionCalculator().calculate(
-      positions, allocation, performance, portfolio.financialEvents,
+      positions,
+      allocation,
+      performance,
+      portfolio.financialEvents,
     );
     expect(wealth.assetCount).toBe(3);
     expect(wealth.eventSummary.length).toBeGreaterThanOrEqual(4);
@@ -73,12 +76,8 @@ describe("EWO-002 Consolidation — Full Lifecycle", () => {
   });
 
   it("I-004: portfolios are independent", () => {
-    const p1Pos = new PortfolioProjector().project([
-      new BuyEvent("p1", "c1", "PETR4", 100, 25),
-    ]);
-    const p2Pos = new PortfolioProjector().project([
-      new BuyEvent("p2", "c2", "VALE3", 50, 60),
-    ]);
+    const p1Pos = new PortfolioProjector().project([new BuyEvent("p1", "c1", "PETR4", 100, 25)]);
+    const p2Pos = new PortfolioProjector().project([new BuyEvent("p2", "c2", "VALE3", 50, 60)]);
     expect(p1Pos[0].getTicker().getValue()).toBe("PETR4");
     expect(p2Pos[0].getTicker().getValue()).toBe("VALE3");
   });

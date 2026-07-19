@@ -16,33 +16,33 @@
 
 ## 2. Documento Evoluído
 
-| Documento | Versão Anterior | Versão Nova | Salto |
-|-----------|----------------|-------------|-------|
-| 04_PORTFOLIO_LEDGER.md | v0.20 (N1) | v0.30 (N2) | 40% → 60% |
+| Documento              | Versão Anterior | Versão Nova | Salto     |
+| ---------------------- | --------------- | ----------- | --------- |
+| 04_PORTFOLIO_LEDGER.md | v0.20 (N1)      | v0.30 (N2)  | 40% → 60% |
 
 ---
 
 ## 3. Novas Seções Adicionadas
 
-| Seção | Título | Conteúdo |
-|-------|--------|----------|
-| §14 | Ciclo de Vida Patrimonial | Criação, Persistência, Correção, Consulta, Reconstrução |
-| §15 | Tipos de Fatos Patrimoniais | Primário, Derivado, Correção, Consolidação |
-| §16 | Escopo Patrimonial | Deve/Pode/Não Pertence ao Ledger |
-| §17 | Integridade da Cadeia Patrimonial | Relação Histórica, Causal, Dependência, Continuidade |
-| §18 | Relações Arquiteturais Avançadas | Transaction Interpretation, Trace Transaction, Portfolio Engine |
+| Seção | Título                            | Conteúdo                                                        |
+| ----- | --------------------------------- | --------------------------------------------------------------- |
+| §14   | Ciclo de Vida Patrimonial         | Criação, Persistência, Correção, Consulta, Reconstrução         |
+| §15   | Tipos de Fatos Patrimoniais       | Primário, Derivado, Correção, Consolidação                      |
+| §16   | Escopo Patrimonial                | Deve/Pode/Não Pertence ao Ledger                                |
+| §17   | Integridade da Cadeia Patrimonial | Relação Histórica, Causal, Dependência, Continuidade            |
+| §18   | Relações Arquiteturais Avançadas  | Transaction Interpretation, Trace Transaction, Portfolio Engine |
 
 ---
 
 ## 4. Novos Invariantes
 
-| Invariante | Descrição |
-|-----------|-----------|
-| INV-L011 | Persistência Patrimonial — fatos devem permanecer preservados |
-| INV-L012 | Integridade Histórica — história patrimonial não pode ser corrompida |
-| INV-L013 | Continuidade Patrimonial — cadeia patrimonial deve permanecer navegável |
-| INV-L014 | Delimitação de Responsabilidade — Ledger não assume escopo externo |
-| INV-L015 | Reconstruibilidade Integral — estados passados devem ser reconstruíveis |
+| Invariante | Descrição                                                               |
+| ---------- | ----------------------------------------------------------------------- |
+| INV-L011   | Persistência Patrimonial — fatos devem permanecer preservados           |
+| INV-L012   | Integridade Histórica — história patrimonial não pode ser corrompida    |
+| INV-L013   | Continuidade Patrimonial — cadeia patrimonial deve permanecer navegável |
+| INV-L014   | Delimitação de Responsabilidade — Ledger não assume escopo externo      |
+| INV-L015   | Reconstruibilidade Integral — estados passados devem ser reconstruíveis |
 
 ---
 
@@ -57,17 +57,17 @@
 
 ## 6. Arquivos Modificados
 
-| Arquivo | Versão Anterior | Versão Nova |
-|---------|----------------|-------------|
-| docs/04_PORTFOLIO_LEDGER.md | v0.20 N1 | v0.30 N2 |
-| docs/PROJECT_PROGRESS_PANEL.md | v1.1 | v1.2 |
-| docs/DOCUMENTATION_INDEX.md | v3.4 | v3.5 |
-| project-context/PROJECT_STATUS.md | v3.6 | v3.7 |
-| project-context/README.md | v1.24 | v1.25 |
-| docs/PROJECT_STATE.md | v1.20 | v1.21 |
-| project-context/AI_CONTEXT.md | v2.1 | v2.2 |
-| project-context/SYNC_HISTORY.md | — | Atualizado |
-| DOCUMENTACAO_COMPLETA.md | — | Regenerado |
+| Arquivo                           | Versão Anterior | Versão Nova |
+| --------------------------------- | --------------- | ----------- |
+| docs/04_PORTFOLIO_LEDGER.md       | v0.20 N1        | v0.30 N2    |
+| docs/PROJECT_PROGRESS_PANEL.md    | v1.1            | v1.2        |
+| docs/DOCUMENTATION_INDEX.md       | v3.4            | v3.5        |
+| project-context/PROJECT_STATUS.md | v3.6            | v3.7        |
+| project-context/README.md         | v1.24           | v1.25       |
+| docs/PROJECT_STATE.md             | v1.20           | v1.21       |
+| project-context/AI_CONTEXT.md     | v2.1            | v2.2        |
+| project-context/SYNC_HISTORY.md   | —               | Atualizado  |
+| DOCUMENTACAO_COMPLETA.md          | —               | Regenerado  |
 
 ---
 
@@ -84,4 +84,4 @@ Evolução de 05_PORTFOLIO_ENGINE.md (N0 → N1).
 
 ---
 
-*PS#026 encerrado.*
+_PS#026 encerrado._

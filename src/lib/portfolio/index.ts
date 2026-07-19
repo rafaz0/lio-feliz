@@ -1,6 +1,11 @@
 export type {
-  AssetType, Currency, OperationSide, Operation,
-  Position, PortfolioSummary, PortfolioHistoryPoint,
+  AssetType,
+  Currency,
+  OperationSide,
+  Operation,
+  Position,
+  PortfolioSummary,
+  PortfolioHistoryPoint,
 } from "./models";
 
 export { inferAssetType } from "./asset-types";

@@ -34,17 +34,17 @@ Cada linha representa uma funcionalidade.
 
 Campos mínimos:
 
-| Campo | Descrição |
-|--------|-----------|
-| ID | Identificador permanente da funcionalidade |
-| Nome | Nome oficial |
-| Prioridade | P1, P2, P3 ou P4 |
-| Business Rules | Documento correspondente |
-| Use Cases | Documento correspondente |
-| Technical Annex | Documento correspondente |
-| ADR | Decisão arquitetural relacionada |
-| Status da Documentação | Situação da documentação |
-| Status do Desenvolvimento | Situação da implementação |
+| Campo                     | Descrição                                  |
+| ------------------------- | ------------------------------------------ |
+| ID                        | Identificador permanente da funcionalidade |
+| Nome                      | Nome oficial                               |
+| Prioridade                | P1, P2, P3 ou P4                           |
+| Business Rules            | Documento correspondente                   |
+| Use Cases                 | Documento correspondente                   |
+| Technical Annex           | Documento correspondente                   |
+| ADR                       | Decisão arquitetural relacionada           |
+| Status da Documentação    | Situação da documentação                   |
+| Status do Desenvolvimento | Situação da implementação                  |
 
 ---
 
@@ -141,151 +141,151 @@ Novas funcionalidades deverão ser adicionadas seguindo a metodologia definida n
 
 ## FEAT-001
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Sistema de Assinaturas |
-| Prioridade | P1 |
-| Business Rules | — |
-| Use Cases | — |
-| Technical Annex | — |
-| ADR | ADR-006 |
-| Status da Documentação | 📝 Em documentação |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor                  |
+| ------------------------- | ---------------------- |
+| Nome                      | Sistema de Assinaturas |
+| Prioridade                | P1                     |
+| Business Rules            | —                      |
+| Use Cases                 | —                      |
+| Technical Annex           | —                      |
+| ADR                       | ADR-006                |
+| Status da Documentação    | 📝 Em documentação     |
+| Status do Desenvolvimento | ⏳ Não iniciada        |
 
 ---
 
 ## FEAT-002
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Plano Gratuito |
-| Prioridade | P1 |
-| Business Rules | — |
-| Use Cases | — |
-| Technical Annex | — |
-| ADR | ADR-006 |
-| Status da Documentação | 📝 Em documentação |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor              |
+| ------------------------- | ------------------ |
+| Nome                      | Plano Gratuito     |
+| Prioridade                | P1                 |
+| Business Rules            | —                  |
+| Use Cases                 | —                  |
+| Technical Annex           | —                  |
+| ADR                       | ADR-006            |
+| Status da Documentação    | 📝 Em documentação |
+| Status do Desenvolvimento | ⏳ Não iniciada    |
 
 ---
 
 ## FEAT-003
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Plano Premium |
-| Prioridade | P1 |
-| Business Rules | — |
-| Use Cases | — |
-| Technical Annex | — |
-| ADR | ADR-006 |
-| Status da Documentação | 📝 Em documentação |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor              |
+| ------------------------- | ------------------ |
+| Nome                      | Plano Premium      |
+| Prioridade                | P1                 |
+| Business Rules            | —                  |
+| Use Cases                 | —                  |
+| Technical Annex           | —                  |
+| ADR                       | ADR-006            |
+| Status da Documentação    | 📝 Em documentação |
+| Status do Desenvolvimento | ⏳ Não iniciada    |
 
 ---
 
 ## FEAT-004
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Subscription Engine |
-| Prioridade | P2 |
-| Business Rules | — |
-| Use Cases | — |
-| Technical Annex | — |
-| ADR | ADR-006 |
-| Status da Documentação | 💡 Ideia |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor               |
+| ------------------------- | ------------------- |
+| Nome                      | Subscription Engine |
+| Prioridade                | P2                  |
+| Business Rules            | —                   |
+| Use Cases                 | —                   |
+| Technical Annex           | —                   |
+| ADR                       | ADR-006             |
+| Status da Documentação    | 💡 Ideia            |
+| Status do Desenvolvimento | ⏳ Não iniciada     |
 
 ---
 
 ## FEAT-005
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Integração Oficial com B3 |
-| Prioridade | P2 |
-| Business Rules | `06_BUSINESS_RULES/11_IMPORT_EXPORT.md` (🔴) |
-| Use Cases | — |
-| Technical Annex | — |
-| ADR | — |
-| Status da Documentação | 💡 Ideia |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor                                        |
+| ------------------------- | -------------------------------------------- |
+| Nome                      | Integração Oficial com B3                    |
+| Prioridade                | P2                                           |
+| Business Rules            | `06_BUSINESS_RULES/11_IMPORT_EXPORT.md` (🔴) |
+| Use Cases                 | —                                            |
+| Technical Annex           | —                                            |
+| ADR                       | —                                            |
+| Status da Documentação    | 💡 Ideia                                     |
+| Status do Desenvolvimento | ⏳ Não iniciada                              |
 
 ---
 
 ## FEAT-006
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Vida Financeira |
-| Prioridade | P2 |
-| Business Rules | `06_BUSINESS_RULES/12_INTEGRATIONS.md` (🔴) |
-| Use Cases | — |
-| Technical Annex | — |
-| ADR | ADR-003 |
-| Status da Documentação | 📝 Em documentação |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor                                       |
+| ------------------------- | ------------------------------------------- |
+| Nome                      | Vida Financeira                             |
+| Prioridade                | P2                                          |
+| Business Rules            | `06_BUSINESS_RULES/12_INTEGRATIONS.md` (🔴) |
+| Use Cases                 | —                                           |
+| Technical Annex           | —                                           |
+| ADR                       | ADR-003                                     |
+| Status da Documentação    | 📝 Em documentação                          |
+| Status do Desenvolvimento | ⏳ Não iniciada                             |
 
 ---
 
 ## FEAT-007
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Integração Carteira ↔ Vida Financeira |
-| Prioridade | P2 |
-| Business Rules | `06_BUSINESS_RULES/01_PORTFOLIO.md` ✅ |
-| Use Cases | — |
-| Technical Annex | — |
-| ADR | ADR-003 |
-| Status da Documentação | 📝 Em documentação |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor                                  |
+| ------------------------- | -------------------------------------- |
+| Nome                      | Integração Carteira ↔ Vida Financeira  |
+| Prioridade                | P2                                     |
+| Business Rules            | `06_BUSINESS_RULES/01_PORTFOLIO.md` ✅ |
+| Use Cases                 | —                                      |
+| Technical Annex           | —                                      |
+| ADR                       | ADR-003                                |
+| Status da Documentação    | 📝 Em documentação                     |
+| Status do Desenvolvimento | ⏳ Não iniciada                        |
 
 ---
 
 ## FEAT-008
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Notificações Inteligentes |
-| Prioridade | P2 |
-| Business Rules | — |
-| Use Cases | — |
-| Technical Annex | `07_TECHNICAL_ANNEXES/04_INSIGHT_ENGINE.md` ✅ |
-| ADR | — |
-| Status da Documentação | 📝 Em documentação |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor                                          |
+| ------------------------- | ---------------------------------------------- |
+| Nome                      | Notificações Inteligentes                      |
+| Prioridade                | P2                                             |
+| Business Rules            | —                                              |
+| Use Cases                 | —                                              |
+| Technical Annex           | `07_TECHNICAL_ANNEXES/04_INSIGHT_ENGINE.md` ✅ |
+| ADR                       | —                                              |
+| Status da Documentação    | 📝 Em documentação                             |
+| Status do Desenvolvimento | ⏳ Não iniciada                                |
 
 ---
 
 ## FEAT-009
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Atualizações Automáticas |
-| Prioridade | P1 |
-| Business Rules | `06_BUSINESS_RULES/03_MARKET_DATA.md` ✅ |
-| Use Cases | UC-001, UC-002, UC-003 |
-| Technical Annex | `07_TECHNICAL_ANNEXES/02_CORPORATE_ACTION_ENGINE.md` ✅, `07_TECHNICAL_ANNEXES/05_ENGINE_ORCHESTRATOR.md` ✅ |
-| ADR | ADR-005, ADR-007 |
-| Status da Documentação | ✅ Documentada |
-| Status do Desenvolvimento | 🏗 Em desenvolvimento |
+| Campo                     | Valor                                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Nome                      | Atualizações Automáticas                                                                                     |
+| Prioridade                | P1                                                                                                           |
+| Business Rules            | `06_BUSINESS_RULES/03_MARKET_DATA.md` ✅                                                                     |
+| Use Cases                 | UC-001, UC-002, UC-003                                                                                       |
+| Technical Annex           | `07_TECHNICAL_ANNEXES/02_CORPORATE_ACTION_ENGINE.md` ✅, `07_TECHNICAL_ANNEXES/05_ENGINE_ORCHESTRATOR.md` ✅ |
+| ADR                       | ADR-005, ADR-007                                                                                             |
+| Status da Documentação    | ✅ Documentada                                                                                               |
+| Status do Desenvolvimento | 🏗 Em desenvolvimento                                                                                         |
 
 ---
 
 ## FEAT-010
 
-| Campo | Valor |
-|-------|-------|
-| Nome | Feature Flags por Plano |
-| Prioridade | P2 |
-| Business Rules | — |
-| Use Cases | — |
-| Technical Annex | — |
-| ADR | ADR-006 |
-| Status da Documentação | 💡 Ideia |
-| Status do Desenvolvimento | ⏳ Não iniciada |
+| Campo                     | Valor                   |
+| ------------------------- | ----------------------- |
+| Nome                      | Feature Flags por Plano |
+| Prioridade                | P2                      |
+| Business Rules            | —                       |
+| Use Cases                 | —                       |
+| Technical Annex           | —                       |
+| ADR                       | ADR-006                 |
+| Status da Documentação    | 💡 Ideia                |
+| Status do Desenvolvimento | ⏳ Não iniciada         |
 
 ---
 

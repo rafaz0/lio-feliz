@@ -15,9 +15,12 @@ export interface MonthSummary {
   cumNet: number;
 }
 
-export const TAX_RULES: Record<AssetType, { rate: number; exemption: number; dayTradeRate: number }> = {
+export const TAX_RULES: Record<
+  AssetType,
+  { rate: number; exemption: number; dayTradeRate: number }
+> = {
   stock: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
-  fii: { rate: 0.20, exemption: 0, dayTradeRate: 0.15 },
+  fii: { rate: 0.2, exemption: 0, dayTradeRate: 0.15 },
   bdr: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
   etf: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
   etf_internacional: { rate: 0.15, exemption: 20_000, dayTradeRate: 0.15 },
@@ -29,9 +32,16 @@ export const TAX_RULES: Record<AssetType, { rate: number; exemption: number; day
 };
 
 export const TYPE_LABELS: Record<string, string> = {
-  stock: "Ação", fii: "FII", bdr: "BDR", etf: "ETF",
-  etf_internacional: "ETF Internacional", stock_us: "Stock EUA", reit: "REIT EUA",
-  fixed_income: "Renda Fixa", crypto: "Cripto", other: "Outro",
+  stock: "Ação",
+  fii: "FII",
+  bdr: "BDR",
+  etf: "ETF",
+  etf_internacional: "ETF Internacional",
+  stock_us: "Stock EUA",
+  reit: "REIT EUA",
+  fixed_income: "Renda Fixa",
+  crypto: "Cripto",
+  other: "Outro",
 };
 
 export function classifyDayTrade(

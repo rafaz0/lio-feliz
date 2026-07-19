@@ -5,40 +5,40 @@ import { FinancialEventType } from "@/core/domain/portfolio";
 describe("BonusEvent", () => {
   describe("creation", () => {
     it("creates a bonus event with given properties", () => {
-      const event = new BonusEvent("portfolio-1", "corr-1", "PETR4", 100, 0.10);
+      const event = new BonusEvent("portfolio-1", "corr-1", "PETR4", 100, 0.1);
       expect(event.aggregateId).toBe("portfolio-1");
       expect(event.correlationId).toBe("corr-1");
       expect(event.assetId).toBe("PETR4");
       expect(event.sharesHeld).toBe(100);
-      expect(event.bonusRatio).toBe(0.10);
+      expect(event.bonusRatio).toBe(0.1);
     });
 
     it("sets type to BONUS", () => {
-      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.10);
+      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.1);
       expect(event.type).toBe(FinancialEventType.BONUS);
     });
 
     it("computes bonusShares as sharesHeld * bonusRatio", () => {
-      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.10);
+      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.1);
       expect(event.bonusShares).toBe(10);
     });
 
     it("propagates type to eventName", () => {
-      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.10);
+      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.1);
       expect(event.eventName).toBe(FinancialEventType.BONUS);
     });
   });
 
   describe("eventId", () => {
     it("is generated automatically", () => {
-      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.10);
+      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.1);
       expect(event.eventId).toBeDefined();
       expect(typeof event.eventId).toBe("string");
       expect(event.eventId.length).toBeGreaterThan(0);
     });
 
     it("is unique across instances", () => {
-      const a = new BonusEvent("p1", "c1", "PETR4", 100, 0.10);
+      const a = new BonusEvent("p1", "c1", "PETR4", 100, 0.1);
       const b = new BonusEvent("p1", "c2", "VALE3", 50, 0.05);
       expect(a.eventId).not.toBe(b.eventId);
     });
@@ -47,7 +47,7 @@ describe("BonusEvent", () => {
   describe("occurredOn", () => {
     it("is set automatically to current timestamp", () => {
       const before = new Date(Date.now() - 100);
-      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.10);
+      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.1);
       const after = new Date(Date.now() + 100);
       expect(event.occurredOn.getTime()).toBeGreaterThanOrEqual(before.getTime());
       expect(event.occurredOn.getTime()).toBeLessThanOrEqual(after.getTime());
@@ -56,14 +56,14 @@ describe("BonusEvent", () => {
 
   describe("immutability", () => {
     it("freezes the instance", () => {
-      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.10);
+      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.1);
       expect(() => {
         (event as { aggregateId: string }).aggregateId = "changed";
       }).toThrow();
     });
 
     it("prevents adding new properties", () => {
-      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.10);
+      const event = new BonusEvent("p1", "c1", "PETR4", 100, 0.1);
       expect(() => {
         (event as unknown as Record<string, unknown>).extra = true;
       }).toThrow();
@@ -72,7 +72,7 @@ describe("BonusEvent", () => {
 
   describe("edge cases", () => {
     it("handles zero shares held", () => {
-      const event = new BonusEvent("p1", "c1", "PETR4", 0, 0.10);
+      const event = new BonusEvent("p1", "c1", "PETR4", 0, 0.1);
       expect(event.sharesHeld).toBe(0);
       expect(event.bonusShares).toBe(0);
     });

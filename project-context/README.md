@@ -20,34 +20,34 @@ Esta pasta contém documentos de apoio ao desenvolvimento do projeto Lio Feliz, 
 
 ## Relação com outras pastas
 
-| Pasta | Propósito |
-|-------|-----------|
-| `docs/` | Documentação oficial do sistema. Fonte da verdade. |
-| `architecture-lab/` | Descoberta e amadurecimento arquitetural. Hipóteses e pesquisas. |
-| `project-context/` | Apoio ao desenvolvimento. Contexto para novas conversas. **Não é documentação oficial.** |
+| Pasta               | Propósito                                                                                |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| `docs/`             | Documentação oficial do sistema. Fonte da verdade.                                       |
+| `architecture-lab/` | Descoberta e amadurecimento arquitetural. Hipóteses e pesquisas.                         |
+| `project-context/`  | Apoio ao desenvolvimento. Contexto para novas conversas. **Não é documentação oficial.** |
 
 ## Estrutura
 
-| Arquivo | Finalidade |
-|---------|-----------|
-| `PROJECT_CONTEXT.md` | Resumo para iniciar novas conversas com ChatGPT. |
-| `PROJECT_STATUS.md` | Estado completo do projeto. |
-| `WORKFLOW.md` | Metodologia oficial de trabalho (fluxo operacional). |
-| `DEVELOPMENT_METHODOLOGY.md` | Metodologia de desenvolvimento (regras IA, Ciclos de Maturidade). |
-| `KNOWLEDGE_BACKLOG.md` | Registro de conhecimento não promovido (hipóteses, insights, evoluções). |
-| `AI_CONTEXT.md` | Documento oficial de inicialização de conversas com IA (regenerado após cada PS). |
-| `SYNC_HISTORY.md` | Histórico consolidado de todos os Pacotes de Sincronização. |
-| Metodologia | Fluxo Oficial: Ideia → Classificação → Fila → Prompt → OpenCode → Documentação → Baseline. |
+| Arquivo                      | Finalidade                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------------ |
+| `PROJECT_CONTEXT.md`         | Resumo para iniciar novas conversas com ChatGPT.                                           |
+| `PROJECT_STATUS.md`          | Estado completo do projeto.                                                                |
+| `WORKFLOW.md`                | Metodologia oficial de trabalho (fluxo operacional).                                       |
+| `DEVELOPMENT_METHODOLOGY.md` | Metodologia de desenvolvimento (regras IA, Ciclos de Maturidade).                          |
+| `KNOWLEDGE_BACKLOG.md`       | Registro de conhecimento não promovido (hipóteses, insights, evoluções).                   |
+| `AI_CONTEXT.md`              | Documento oficial de inicialização de conversas com IA (regenerado após cada PS).          |
+| `SYNC_HISTORY.md`            | Histórico consolidado de todos os Pacotes de Sincronização.                                |
+| Metodologia                  | Fluxo Oficial: Ideia → Classificação → Fila → Prompt → OpenCode → Documentação → Baseline. |
 
 ## Fluxo de Inicialização
 
 O projeto utiliza um fluxo obrigatório de inicialização de conversas:
 
-| Etapa | Documento | Descrição |
-|-------|-----------|-----------|
-| 1 | `AGENTS.md` | Ponto de entrada automático (injetado pelo OpenCode). Contém direcionamento para o AI_CONTEXT. |
-| 2 | `AI_CONTEXT.md` | Documento oficial de reconstrução de contexto. Deve ser lido integralmente antes de qualquer resposta técnica. |
-| 3 | `DEVELOPMENT_METHODOLOGY.md` | Define as regras oficiais do processo (IA-001 a IA-017). A Baseline da Conversa e o Protocolo de Pré-Resposta são executados após a leitura do AI_CONTEXT. |
+| Etapa | Documento                    | Descrição                                                                                                                                                  |
+| ----- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | `AGENTS.md`                  | Ponto de entrada automático (injetado pelo OpenCode). Contém direcionamento para o AI_CONTEXT.                                                             |
+| 2     | `AI_CONTEXT.md`              | Documento oficial de reconstrução de contexto. Deve ser lido integralmente antes de qualquer resposta técnica.                                             |
+| 3     | `DEVELOPMENT_METHODOLOGY.md` | Define as regras oficiais do processo (IA-001 a IA-017). A Baseline da Conversa e o Protocolo de Pré-Resposta são executados após a leitura do AI_CONTEXT. |
 
 ---
 

@@ -123,19 +123,31 @@ export function OperationsContent() {
                     <td className="px-4 py-2.5">
                       <span
                         className={
-                          "rounded px-2 py-0.5 text-xs font-medium " + (
-                            o.side === "buy" ? "bg-positive/15 text-positive" :
-                            o.side === "sell" ? "bg-negative/15 text-negative" :
-                            o.side === "dividend" ? "bg-chart-3/15 text-chart-3" :
-                            "bg-chart-5/15 text-chart-5"
-                          )
+                          "rounded px-2 py-0.5 text-xs font-medium " +
+                          (o.side === "buy"
+                            ? "bg-positive/15 text-positive"
+                            : o.side === "sell"
+                              ? "bg-negative/15 text-negative"
+                              : o.side === "dividend"
+                                ? "bg-chart-3/15 text-chart-3"
+                                : "bg-chart-5/15 text-chart-5")
                         }
                       >
-                        {o.side === "buy" ? "Compra" : o.side === "sell" ? "Venda" : o.side === "dividend" ? (o.metadata?.tipo_provento === "jcp" ? "JCP" : "Dividendo") : "Bonificação"}
+                        {o.side === "buy"
+                          ? "Compra"
+                          : o.side === "sell"
+                            ? "Venda"
+                            : o.side === "dividend"
+                              ? o.metadata?.tipo_provento === "jcp"
+                                ? "JCP"
+                                : "Dividendo"
+                              : "Bonificação"}
                       </span>
                     </td>
                     <td className="tabular px-4 py-2.5 text-right">{formatQty(o.quantity)}</td>
-                    <td className="tabular px-4 py-2.5 text-right">{o.side === "bonus" ? "—" : formatBRL(o.price)}</td>
+                    <td className="tabular px-4 py-2.5 text-right">
+                      {o.side === "bonus" ? "—" : formatBRL(o.price)}
+                    </td>
                     <td className="tabular px-4 py-2.5 text-right font-medium">
                       {o.side === "bonus" ? "—" : formatBRL(o.quantity * o.price)}
                     </td>

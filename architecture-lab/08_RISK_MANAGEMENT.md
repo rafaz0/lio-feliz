@@ -122,12 +122,12 @@ A conclusão de um Milestone deve considerar se os riscos associados foram adequ
 
 # 8. Estado Atual
 
-| Aspecto | Valor |
-|---------|-------|
-| Marco Atual | Convergência Arquitetural |
-| Sprint Atual | PS#030 |
-| Objetivo Atual | Estruturar a gestão oficial de riscos da implementação |
-| Riscos Registrados | Nenhum |
+| Aspecto            | Valor                                                  |
+| ------------------ | ------------------------------------------------------ |
+| Marco Atual        | Convergência Arquitetural                              |
+| Sprint Atual       | PS#030                                                 |
+| Objetivo Atual     | Estruturar a gestão oficial de riscos da implementação |
+| Riscos Registrados | Nenhum                                                 |
 
 Nenhum risco formal foi registrado até o momento. Os primeiros riscos serão identificados durante o detalhamento dos Implementation Plans da Fase 1 (Foundation).
 

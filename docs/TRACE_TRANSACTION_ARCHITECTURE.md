@@ -183,13 +183,13 @@ Sua responsabilidade é preservar a rastreabilidade do significado econômico ao
 
 # 9. Relação com Outros Documentos
 
-| Documento | Responsabilidade |
-|-----------|-----------------|
-| `02_TRANSACTIONS.md` | O que aconteceu |
-| `03_TRANSACTION_INTERPRETATION.md` | O que significa |
+| Documento                           | Responsabilidade             |
+| ----------------------------------- | ---------------------------- |
+| `02_TRANSACTIONS.md`                | O que aconteceu              |
+| `03_TRANSACTION_INTERPRETATION.md`  | O que significa              |
 | `TRACE_TRANSACTION_ARCHITECTURE.md` | Como preservar o significado |
-| `04_PORTFOLIO_LEDGER.md` | Como registrar |
-| `05_PORTFOLIO_ENGINE.md` | Como processar |
+| `04_PORTFOLIO_LEDGER.md`            | Como registrar               |
+| `05_PORTFOLIO_ENGINE.md`            | Como processar               |
 
 ---
 

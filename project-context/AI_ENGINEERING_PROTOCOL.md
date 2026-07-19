@@ -99,12 +99,12 @@ Fora dessas situações, utilizar exclusivamente os relatórios de engenharia.
 
 Antes de qualquer resposta relacionada ao projeto, a IA deverá confirmar:
 
-* qual documento está sendo executado;
-* se existe PI correspondente;
-* se existe Engineering Review aprovada;
-* se existe EWO correspondente;
-* se todos os documentos necessários estão disponíveis;
-* qual nível de contexto é necessário (GOV-013).
+- qual documento está sendo executado;
+- se existe PI correspondente;
+- se existe Engineering Review aprovada;
+- se existe EWO correspondente;
+- se todos os documentos necessários estão disponíveis;
+- qual nível de contexto é necessário (GOV-013).
 
 Caso qualquer documento obrigatório esteja ausente, a execução deverá ser interrompida.
 
@@ -148,19 +148,19 @@ A IA não poderá criar ou assumir informações não documentadas.
 
 São exemplos de inferência proibida:
 
-* criação de Aggregate Roots;
-* criação de Entities;
-* criação de Value Objects;
-* criação de Domain Services;
-* criação de Domain Events;
-* criação de invariantes;
-* criação de contratos públicos;
-* criação de APIs;
-* criação de estruturas de diretórios;
-* escolha de nomes de arquivos;
-* escolha de identificadores (UUID, ULID, etc.);
-* escolha de padrões de implementação;
-* criação de métodos públicos.
+- criação de Aggregate Roots;
+- criação de Entities;
+- criação de Value Objects;
+- criação de Domain Services;
+- criação de Domain Events;
+- criação de invariantes;
+- criação de contratos públicos;
+- criação de APIs;
+- criação de estruturas de diretórios;
+- escolha de nomes de arquivos;
+- escolha de identificadores (UUID, ULID, etc.);
+- escolha de padrões de implementação;
+- criação de métodos públicos.
 
 Caso algum desses elementos não esteja definido na documentação oficial, a IA deverá interromper a execução e solicitar esclarecimento.
 
@@ -172,12 +172,12 @@ Toda implementação deverá possuir origem documental explícita.
 
 Sempre que um componente for criado, deverá ser possível responder:
 
-* Em qual PI ele foi definido?
-* Em qual seção da PI ele aparece?
-* Em qual ER sua arquitetura foi validada?
-* Em qual Slice sua implementação foi planejada?
-* Em qual arquivo será implementado?
-* Quais testes o validam?
+- Em qual PI ele foi definido?
+- Em qual seção da PI ele aparece?
+- Em qual ER sua arquitetura foi validada?
+- Em qual Slice sua implementação foi planejada?
+- Em qual arquivo será implementado?
+- Quais testes o validam?
 
 Se qualquer resposta estiver ausente, a implementação deverá ser interrompida.
 
@@ -187,13 +187,13 @@ Se qualquer resposta estiver ausente, a implementação deverá ser interrompida
 
 Antes da implementação de qualquer Slice, a IA deverá validar obrigatoriamente:
 
-* Todos os componentes da PI estão presentes na EWO?
-* Existe matriz de rastreabilidade completa?
-* Existe componente sem Slice?
-* Existe Slice sem componentes?
-* Existe decisão arquitetural criada pela EWO?
-* Existem dependências circulares?
-* Existem componentes duplicados?
+- Todos os componentes da PI estão presentes na EWO?
+- Existe matriz de rastreabilidade completa?
+- Existe componente sem Slice?
+- Existe Slice sem componentes?
+- Existe decisão arquitetural criada pela EWO?
+- Existem dependências circulares?
+- Existem componentes duplicados?
 
 Caso qualquer resposta seja positiva, a EWO deverá retornar para revisão.
 
@@ -203,13 +203,13 @@ Caso qualquer resposta seja positiva, a EWO deverá retornar para revisão.
 
 Uma EWO somente poderá ser considerada pronta quando atender simultaneamente aos seguintes critérios:
 
-* nenhuma decisão arquitetural nova;
-* todas as dependências identificadas;
-* todos os componentes vinculados a uma Slice;
-* rastreabilidade completa;
-* critérios de aceite definidos;
-* estratégia de testes definida;
-* estratégia de revisão definida.
+- nenhuma decisão arquitetural nova;
+- todas as dependências identificadas;
+- todos os componentes vinculados a uma Slice;
+- rastreabilidade completa;
+- critérios de aceite definidos;
+- estratégia de testes definida;
+- estratégia de revisão definida.
 
 ---
 
@@ -217,12 +217,12 @@ Uma EWO somente poderá ser considerada pronta quando atender simultaneamente ao
 
 Nenhuma Slice poderá ser encerrada sem:
 
-* Build aprovado;
-* Lint aprovado;
-* Testes aprovados;
-* Evidências produzidas;
-* Relatório emitido;
-* Atualização do inventário arquitetural.
+- Build aprovado;
+- Lint aprovado;
+- Testes aprovados;
+- Evidências produzidas;
+- Relatório emitido;
+- Atualização do inventário arquitetural.
 
 ---
 
@@ -230,12 +230,12 @@ Nenhuma Slice poderá ser encerrada sem:
 
 A IA deverá interromper imediatamente a execução quando identificar:
 
-* documentação insuficiente;
-* conflito entre documentos;
-* arquitetura ambígua;
-* ausência de rastreabilidade;
-* necessidade de criar arquitetura;
-* necessidade de reinterpretar decisões aprovadas.
+- documentação insuficiente;
+- conflito entre documentos;
+- arquitetura ambígua;
+- ausência de rastreabilidade;
+- necessidade de criar arquitetura;
+- necessidade de reinterpretar decisões aprovadas.
 
 Nessas situações, a IA deverá solicitar revisão, jamais produzir uma solução por inferência.
 
@@ -259,7 +259,7 @@ PI → Engineering Review → EWO → Implementação.
 
 Respostas estratégicas do ChatGPT (planejamento, engenharia, ER, auditoria, estratégia, governança, análise arquitetural) devem encerrar com:
 
-```📊 Estado da Engenharia
+````📊 Estado da Engenharia
 📐 Resultado da Auditoria
 💡 Conhecimento Capturado
 📋 Pendências Oficiais
@@ -298,15 +298,17 @@ Durante toda ER, verificar se existe melhoria metodológica. Se sim, registrar d
 
 O fluxo entre ChatGPT e OpenCode segue automaticamente o pipeline abaixo, sem confirmações intermediárias.
 
-```
-ChatGPT                                 OpenCode
-───────                                 ───────
-Planejamento                            Implementação
-                                        Relatório de Implementação
-                                        Engineering Closure
-                                        Relatório de Closure
+````
+
+ChatGPT OpenCode
+─────── ───────
+Planejamento Implementação
+Relatório de Implementação
+Engineering Closure
+Relatório de Closure
 Engineering Review
 Planejamento da próxima Slice
+
 ```
 
 ### Comportamento
@@ -333,3 +335,4 @@ Ao finalizar uma Engineering Review: emitir parecer, registrar conhecimento capt
 Ao concluir implementação: executar testes, validar build e emitir Relatório de Implementação. Não perguntar "Deseja Engineering Review?".
 
 Após ER aprovada: executar Engineering Closure, sincronizar Git e emitir Relatório de Closure. Não perguntar "Deseja prosseguir para a próxima Slice?". A próxima etapa pertence ao ChatGPT.
+```

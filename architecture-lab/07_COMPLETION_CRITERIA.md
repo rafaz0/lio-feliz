@@ -120,12 +120,12 @@ A transição entre Milestones depende da verificação dos critérios de conclu
 
 # 8. Estado Atual
 
-| Aspecto | Valor |
-|---------|-------|
-| Marco Atual | Convergência Arquitetural |
-| Sprint Atual | PS#030 |
-| Objetivo Atual | Estruturar os critérios oficiais de conclusão |
-| Critérios Definidos | 5 critérios mínimos |
+| Aspecto             | Valor                                         |
+| ------------------- | --------------------------------------------- |
+| Marco Atual         | Convergência Arquitetural                     |
+| Sprint Atual        | PS#030                                        |
+| Objetivo Atual      | Estruturar os critérios oficiais de conclusão |
+| Critérios Definidos | 5 critérios mínimos                           |
 
 Nenhum Implementation Plan foi submetido à validação de conclusão até o momento.
 

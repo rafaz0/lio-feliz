@@ -26,12 +26,12 @@ Seu objetivo é preservar descobertas, hipóteses, evoluções metodológicas e 
 
 # 2. Classificação Oficial
 
-| Categoria | Código | Descrição |
-|-----------|--------|-----------|
-| Decisão | KB-T1 | Conhecimento aprovado. Deve ser incorporado imediatamente à documentação oficial. |
-| Hipótese | KB-T2 | Conhecimento promissor, porém ainda em validação. Deve permanecer registrado até sua aprovação ou descarte. |
-| Evolução Planejada | KB-T3 | Melhoria considerada válida, mas cuja implementação foi adiada. Permanece registrada para futura avaliação. |
-| Insight | KB-T4 | Percepção relevante ainda sem maturidade suficiente. Permanece registrada para evitar perda de conhecimento. |
+| Categoria          | Código | Descrição                                                                                                    |
+| ------------------ | ------ | ------------------------------------------------------------------------------------------------------------ |
+| Decisão            | KB-T1  | Conhecimento aprovado. Deve ser incorporado imediatamente à documentação oficial.                            |
+| Hipótese           | KB-T2  | Conhecimento promissor, porém ainda em validação. Deve permanecer registrado até sua aprovação ou descarte.  |
+| Evolução Planejada | KB-T3  | Melhoria considerada válida, mas cuja implementação foi adiada. Permanece registrada para futura avaliação.  |
+| Insight            | KB-T4  | Percepção relevante ainda sem maturidade suficiente. Permanece registrada para evitar perda de conhecimento. |
 
 ---
 
@@ -39,13 +39,13 @@ Seu objetivo é preservar descobertas, hipóteses, evoluções metodológicas e 
 
 Os registros do Knowledge Backlog deverão possuir, independentemente da Categoria, um Status oficial.
 
-| Status | Descrição |
-|--------|-----------|
-| Planejado | Conhecimento identificado, aguardando início da avaliação. |
-| Em Avaliação | Conhecimento em análise para validação ou descarte. |
-| Validado | Conhecimento confirmado, aguardando promoção ou implementação. |
-| Promovido | Conhecimento incorporado à documentação oficial. |
-| Arquivado | Conhecimento avaliado e descartado ou substituído. |
+| Status       | Descrição                                                      |
+| ------------ | -------------------------------------------------------------- |
+| Planejado    | Conhecimento identificado, aguardando início da avaliação.     |
+| Em Avaliação | Conhecimento em análise para validação ou descarte.            |
+| Validado     | Conhecimento confirmado, aguardando promoção ou implementação. |
+| Promovido    | Conhecimento incorporado à documentação oficial.               |
+| Arquivado    | Conhecimento avaliado e descartado ou substituído.             |
 
 Categoria e Status possuem responsabilidades distintas:
 

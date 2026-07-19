@@ -18,25 +18,25 @@ O PS#011 fortaleceu definitivamente o processo de inicialização das conversas 
 
 ## Arquivos Criados
 
-| Arquivo | Descrição |
-|---------|-----------|
+| Arquivo           | Descrição      |
+| ----------------- | -------------- |
 | `REPORT_PS011.md` | Este relatório |
 
 ---
 
 ## Arquivos Modificados
 
-| Arquivo | Versão Final | Alterações |
-|---------|-------------|------------|
-| `AGENTS.md` | — | Nova seção "Inicialização Obrigatória do Projeto" com direcionamento explícito ao AI_CONTEXT |
-| `project-context/AI_CONTEXT.md` | 1.3 | Nova seção "Utilização" como §1; seções renumeradas (2 → 11); PS#011 registrado |
-| `project-context/DEVELOPMENT_METHODOLOGY.md` | 1.8 | IA-015 fortalecida: localizar AI_CONTEXT é primeira ação, indisponibilidade é bloqueante |
-| `project-context/WORKFLOW.md` | 1.4 | Fluxo dividido em Inicialização (6 etapas + barreira) e Trabalho; nenhuma etapa ignorável |
-| `project-context/README.md` | 1.9 | Adicionada seção "Fluxo de Inicialização" com tabela explicativa |
-| `project-context/PROJECT_STATUS.md` | 2.1 | PS#011 registrado |
-| `docs/DOCUMENTATION_INDEX.md` | 2.1 | PS#011 registrado |
-| `docs/PROJECT_STATE.md` | 1.5 | Timeline PS#011 adicionada |
-| `DOCUMENTACAO_COMPLETA.md` | Regenerada | 35 arquivos, 9.813 linhas |
+| Arquivo                                      | Versão Final | Alterações                                                                                   |
+| -------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------- |
+| `AGENTS.md`                                  | —            | Nova seção "Inicialização Obrigatória do Projeto" com direcionamento explícito ao AI_CONTEXT |
+| `project-context/AI_CONTEXT.md`              | 1.3          | Nova seção "Utilização" como §1; seções renumeradas (2 → 11); PS#011 registrado              |
+| `project-context/DEVELOPMENT_METHODOLOGY.md` | 1.8          | IA-015 fortalecida: localizar AI_CONTEXT é primeira ação, indisponibilidade é bloqueante     |
+| `project-context/WORKFLOW.md`                | 1.4          | Fluxo dividido em Inicialização (6 etapas + barreira) e Trabalho; nenhuma etapa ignorável    |
+| `project-context/README.md`                  | 1.9          | Adicionada seção "Fluxo de Inicialização" com tabela explicativa                             |
+| `project-context/PROJECT_STATUS.md`          | 2.1          | PS#011 registrado                                                                            |
+| `docs/DOCUMENTATION_INDEX.md`                | 2.1          | PS#011 registrado                                                                            |
+| `docs/PROJECT_STATE.md`                      | 1.5          | Timeline PS#011 adicionada                                                                   |
+| `DOCUMENTACAO_COMPLETA.md`                   | Regenerada   | 35 arquivos, 9.813 linhas                                                                    |
 
 ---
 

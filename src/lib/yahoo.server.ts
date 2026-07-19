@@ -1,6 +1,7 @@
 const YAHOO_BASE = "https://query1.finance.yahoo.com";
 
-const CRYPTO_RE = /^(BTC|ETH|SOL|ADA|DOT|AVAX|MATIC|LINK|XRP|DOGE|USDT|USDC|BNB|TRX|ATOM|FIL|NEAR|APT|SUI|ARB|OP)[-]/;
+const CRYPTO_RE =
+  /^(BTC|ETH|SOL|ADA|DOT|AVAX|MATIC|LINK|XRP|DOGE|USDT|USDC|BNB|TRX|ATOM|FIL|NEAR|APT|SUI|ARB|OP)[-]/;
 const INTERNATIONAL_RE = /^[A-Z]{1,4}\d{0,2}$/;
 
 export function toYahooSymbol(ticker: string): string {
@@ -419,9 +420,12 @@ export async function fetchBRAPIDividends(
 ): Promise<{ paidAt: string; amount: number; label: string }[] | null> {
   try {
     const url = `${BRAPI_BASE}/quote/${encodeURIComponent(ticker)}?dividends=true&range=5y`;
-    const res = await fetch(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(10000) });
+    const res = await fetch(url, {
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(10000),
+    });
     if (!res.ok) return null;
-    const json = await res.json() as {
+    const json = (await res.json()) as {
       results?: Array<{
         dividendsData?: {
           cashDividends?: Array<{
@@ -452,9 +456,12 @@ export async function fetchBRAPIStockDividends(
 ): Promise<{ paidAt: string; factor: number; label: string }[] | null> {
   try {
     const url = `${BRAPI_BASE}/quote/${encodeURIComponent(ticker)}?dividends=true&range=5y`;
-    const res = await fetch(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(10000) });
+    const res = await fetch(url, {
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(10000),
+    });
     if (!res.ok) return null;
-    const json = await res.json() as {
+    const json = (await res.json()) as {
       results?: Array<{
         dividendsData?: {
           stockDividends?: Array<{
@@ -472,7 +479,12 @@ export async function fetchBRAPIStockDividends(
       .map((d) => ({
         paidAt: d.lastDatePrior.slice(0, 10),
         factor: d.factor,
-        label: d.label === "DESDOBRAMENTO" ? "split" : d.label === "GRUPAMENTO" ? "reverse_split" : "bonus",
+        label:
+          d.label === "DESDOBRAMENTO"
+            ? "split"
+            : d.label === "GRUPAMENTO"
+              ? "reverse_split"
+              : "bonus",
       }))
       .filter((d) => d.paidAt.length === 10);
   } catch {
@@ -494,7 +506,9 @@ export async function fetchYahooQuotes(
         );
         if (!res.ok) return;
         const json = (await res.json()) as {
-          chart?: { result?: Array<{ meta?: { regularMarketPrice?: number; chartPreviousClose?: number } }> };
+          chart?: {
+            result?: Array<{ meta?: { regularMarketPrice?: number; chartPreviousClose?: number } }>;
+          };
         };
         const meta = json?.chart?.result?.[0]?.meta;
         if (meta && typeof meta.regularMarketPrice === "number") {

@@ -139,12 +139,12 @@ Os Implementation Plans são detalhados em `03_IMPLEMENTATION_PLAN.md`.
 
 # 8. Estado Atual
 
-| Aspecto | Valor |
-|---------|-------|
-| Marco Atual | Convergência Arquitetural |
-| Sprint Atual | PS#030 |
+| Aspecto        | Valor                             |
+| -------------- | --------------------------------- |
+| Marco Atual    | Convergência Arquitetural         |
+| Sprint Atual   | PS#030                            |
 | Objetivo Atual | Preparação do domínio Engineering |
-| Fase Ativa | Foundation (Em Planejamento) |
+| Fase Ativa     | Foundation (Em Planejamento)      |
 
 ---
 

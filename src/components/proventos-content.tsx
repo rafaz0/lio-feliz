@@ -67,11 +67,16 @@ export function ProventosContent() {
     try {
       const raw = window.localStorage.getItem(EXPENSE_KEY);
       if (raw) setDespesas(Number(raw) || 0);
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   }, []);
   useEffect(() => {
-    try { window.localStorage.setItem(EXPENSE_KEY, String(despesas || 0)); }
-    catch { /* ignore */ }
+    try {
+      window.localStorage.setItem(EXPENSE_KEY, String(despesas || 0));
+    } catch {
+      /* ignore */
+    }
   }, [despesas]);
 
   const now = useMemo(() => new Date(), []);
@@ -82,9 +87,10 @@ export function ProventosContent() {
   }, [now, cutoffDays]);
 
   const upcoming = useMemo(
-    () => projections
-      .filter((p) => new Date(p.paymentDate) <= cutoff && new Date(p.paymentDate) >= now)
-      .sort((a, b) => a.paymentDate.localeCompare(b.paymentDate)),
+    () =>
+      projections
+        .filter((p) => new Date(p.paymentDate) <= cutoff && new Date(p.paymentDate) >= now)
+        .sort((a, b) => a.paymentDate.localeCompare(b.paymentDate)),
     [projections, cutoff, now],
   );
 
@@ -125,7 +131,11 @@ export function ProventosContent() {
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([month, amount]) => {
         cumulative += amount;
-        return { month, amount: Math.round(amount * 100) / 100, cumulative: Math.round(cumulative * 100) / 100 };
+        return {
+          month,
+          amount: Math.round(amount * 100) / 100,
+          cumulative: Math.round(cumulative * 100) / 100,
+        };
       });
   }, [projections, cutoffDays, now]);
 
@@ -142,12 +152,19 @@ export function ProventosContent() {
 
   // Historical dividends from known assets
   const historico = useMemo(() => {
-    const items: { ticker: string; name: string; paidAt: string; amount: number; type: string }[] = [];
+    const items: { ticker: string; name: string; paidAt: string; amount: number; type: string }[] =
+      [];
     for (const t of tickers) {
       const asset = ASSETS_BY_TICKER[t];
       if (asset?.dividends) {
         for (const d of asset.dividends) {
-          items.push({ ticker: t, name: asset.name, paidAt: d.paidAt, amount: d.amount, type: d.type });
+          items.push({
+            ticker: t,
+            name: asset.name,
+            paidAt: d.paidAt,
+            amount: d.amount,
+            type: d.type,
+          });
         }
       }
     }
@@ -159,7 +176,9 @@ export function ProventosContent() {
       <div className="space-y-4">
         <Skeleton className="h-8 w-56" />
         <div className="grid gap-3 sm:grid-cols-4">
-          {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-24" />)}
+          {[...Array(4)].map((_, i) => (
+            <Skeleton key={i} className="h-24" />
+          ))}
         </div>
         <Skeleton className="h-64 w-full" />
       </div>
@@ -246,7 +265,9 @@ export function ProventosContent() {
               </div>
               <div className="flex items-center gap-1">
                 <span className="text-muted-foreground">Cobertura:</span>
-                <span className={`tabular font-bold ${coveragePct !== null && coveragePct >= 100 ? "text-positive" : "text-negative"}`}>
+                <span
+                  className={`tabular font-bold ${coveragePct !== null && coveragePct >= 100 ? "text-positive" : "text-negative"}`}
+                >
                   {coveragePct?.toFixed(1)}%
                 </span>
               </div>
@@ -277,16 +298,57 @@ export function ProventosContent() {
                     <stop offset="100%" stopColor="var(--color-positive)" stopOpacity={0.3} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
-                <XAxis dataKey="month" tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} stroke="var(--color-border)" />
-                <YAxis yAxisId="left" tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} tickFormatter={(v: number) => formatBRLCompact(v)} width={70} stroke="var(--color-border)" />
-                <YAxis yAxisId="right" orientation="right" tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} tickFormatter={(v: number) => formatBRLCompact(v)} width={70} stroke="var(--color-border)" />
-                <Tooltip
-                  contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
-                  formatter={(v: number, name: string) => [formatBRL(v), name === "cumulative" ? "Acumulado" : "Proventos"]}
+                <CartesianGrid
+                  stroke="var(--color-border)"
+                  strokeDasharray="3 3"
+                  vertical={false}
                 />
-                <Bar yAxisId="left" dataKey="amount" fill="url(#provBarFill)" radius={[3, 3, 0, 0]} />
-                <Line yAxisId="right" type="monotone" dataKey="cumulative" stroke="var(--color-chart-1)" strokeWidth={2} dot={false} />
+                <XAxis
+                  dataKey="month"
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  stroke="var(--color-border)"
+                />
+                <YAxis
+                  yAxisId="left"
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  tickFormatter={(v: number) => formatBRLCompact(v)}
+                  width={70}
+                  stroke="var(--color-border)"
+                />
+                <YAxis
+                  yAxisId="right"
+                  orientation="right"
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                  tickFormatter={(v: number) => formatBRLCompact(v)}
+                  width={70}
+                  stroke="var(--color-border)"
+                />
+                <Tooltip
+                  contentStyle={{
+                    background: "var(--color-popover)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: 6,
+                    fontSize: 12,
+                  }}
+                  formatter={(v: number, name: string) => [
+                    formatBRL(v),
+                    name === "cumulative" ? "Acumulado" : "Proventos",
+                  ]}
+                />
+                <Bar
+                  yAxisId="left"
+                  dataKey="amount"
+                  fill="url(#provBarFill)"
+                  radius={[3, 3, 0, 0]}
+                />
+                <Line
+                  yAxisId="right"
+                  type="monotone"
+                  dataKey="cumulative"
+                  stroke="var(--color-chart-1)"
+                  strokeWidth={2}
+                  dot={false}
+                />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
@@ -307,17 +369,26 @@ export function ProventosContent() {
                 <div className="flex items-center justify-between gap-3 text-sm">
                   <div className="flex items-center gap-3 flex-1 truncate">
                     <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-dashed border-border text-[10px] font-medium text-muted-foreground">
-                      {new Date(p.paymentDate).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" })}
+                      {new Date(p.paymentDate).toLocaleDateString("pt-BR", {
+                        day: "2-digit",
+                        month: "2-digit",
+                      })}
                     </div>
                     <div className="flex-1 truncate">
-                      <Link to="/ativo/$ticker" params={{ ticker: p.ticker }} className="font-semibold hover:text-primary">
+                      <Link
+                        to="/ativo/$ticker"
+                        params={{ ticker: p.ticker }}
+                        className="font-semibold hover:text-primary"
+                      >
                         {p.ticker}
                       </Link>
                       <div className="truncate text-xs text-muted-foreground">{p.name}</div>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <div className="tabular font-medium text-positive">{formatBRLCompact(p.amount)}</div>
+                    <div className="tabular font-medium text-positive">
+                      {formatBRLCompact(p.amount)}
+                    </div>
                     <div className="flex items-center gap-2 text-[10px] text-muted-foreground tabular">
                       {p.type === "fii" ? "FII" : "Ação"}
                       {" · "}
@@ -355,9 +426,15 @@ export function ProventosContent() {
                     <div className="font-semibold">{t.ticker}</div>
                     <div className="truncate text-xs text-muted-foreground">{t.name}</div>
                   </td>
-                  <td className="tabular px-2 py-1.5 text-right text-muted-foreground">{t.count}</td>
-                  <td className="tabular px-2 py-1.5 text-right font-medium text-positive">{formatBRLCompact(t.total)}</td>
-                  <td className="tabular px-2 py-1.5 text-right text-muted-foreground">{formatBRLCompact(t.total / t.count)}</td>
+                  <td className="tabular px-2 py-1.5 text-right text-muted-foreground">
+                    {t.count}
+                  </td>
+                  <td className="tabular px-2 py-1.5 text-right font-medium text-positive">
+                    {formatBRLCompact(t.total)}
+                  </td>
+                  <td className="tabular px-2 py-1.5 text-right text-muted-foreground">
+                    {formatBRLCompact(t.total / t.count)}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -391,7 +468,9 @@ export function ProventosContent() {
                     {new Date(h.paidAt).toLocaleDateString("pt-BR")}
                   </td>
                   <td className="tabular px-2 py-1.5 text-right text-muted-foreground">{h.type}</td>
-                  <td className="tabular px-2 py-1.5 text-right font-medium text-positive">{formatBRL(h.amount)}</td>
+                  <td className="tabular px-2 py-1.5 text-right font-medium text-positive">
+                    {formatBRL(h.amount)}
+                  </td>
                 </tr>
               ))}
             </tbody>

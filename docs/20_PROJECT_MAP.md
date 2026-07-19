@@ -280,23 +280,23 @@ Versão 1.0 (plataforma estável completa)
 
 # 10. Navegação Rápida
 
-| Documento | Objetivo | Quando consultar |
-|-----------|----------|-----------------|
-| `00_START_HERE.md` | Regras fundamentais, fluxo de trabalho | Primeira leitura, dúvidas sobre processo |
-| `01_VISION.md` | Propósito, pilares, público-alvo | Alinhamento estratégico |
-| `02_PROJECT_RULES.md` | Regras de desenvolvimento | Antes de implementar |
-| `03_PRODUCT_REQUIREMENTS.md` | Módulos, escopo, funcionalidades | Entender o que o sistema faz |
-| `04_DATA_MODEL.md` | Modelo conceitual do domínio | Entender entidades e relações |
-| `05_SYSTEM_ARCHITECTURE.md` | Arquitetura do sistema | Entender como o sistema é organizado |
-| `16_PRODUCT_BACKLOG.md` | Todas as features aprovadas | Priorização e planejamento |
-| `17_TRACEABILITY_MATRIX.md` | Mapa de rastreabilidade | Conectar features a regras e anexos |
-| `19_GLOSSARY.md` | Vocabulário oficial | Dúvidas sobre terminologia |
-| `20_PROJECT_MAP.md` | Visão macro do projeto | Orientação geral, primeiro contato |
-| `PROJECT_BOOTSTRAP.md` | Runtime operacional | Iniciar sessão, continuar engenharia |
-| `PI-001` a `PI-004` | Especificações arquiteturais | Decisões de arquitetura |
-| `EWO-001`, `EWO-002` | Planos executivos | Entender o que foi implementado |
-| `DOCUMENTATION_INDEX.md` | Índice mestre da documentação | Localizar qualquer documento |
-| `SYNC_HISTORY.md` | Histórico de sincronizações | Verificar atividades recentes |
+| Documento                    | Objetivo                               | Quando consultar                         |
+| ---------------------------- | -------------------------------------- | ---------------------------------------- |
+| `00_START_HERE.md`           | Regras fundamentais, fluxo de trabalho | Primeira leitura, dúvidas sobre processo |
+| `01_VISION.md`               | Propósito, pilares, público-alvo       | Alinhamento estratégico                  |
+| `02_PROJECT_RULES.md`        | Regras de desenvolvimento              | Antes de implementar                     |
+| `03_PRODUCT_REQUIREMENTS.md` | Módulos, escopo, funcionalidades       | Entender o que o sistema faz             |
+| `04_DATA_MODEL.md`           | Modelo conceitual do domínio           | Entender entidades e relações            |
+| `05_SYSTEM_ARCHITECTURE.md`  | Arquitetura do sistema                 | Entender como o sistema é organizado     |
+| `16_PRODUCT_BACKLOG.md`      | Todas as features aprovadas            | Priorização e planejamento               |
+| `17_TRACEABILITY_MATRIX.md`  | Mapa de rastreabilidade                | Conectar features a regras e anexos      |
+| `19_GLOSSARY.md`             | Vocabulário oficial                    | Dúvidas sobre terminologia               |
+| `20_PROJECT_MAP.md`          | Visão macro do projeto                 | Orientação geral, primeiro contato       |
+| `PROJECT_BOOTSTRAP.md`       | Runtime operacional                    | Iniciar sessão, continuar engenharia     |
+| `PI-001` a `PI-004`          | Especificações arquiteturais           | Decisões de arquitetura                  |
+| `EWO-001`, `EWO-002`         | Planos executivos                      | Entender o que foi implementado          |
+| `DOCUMENTATION_INDEX.md`     | Índice mestre da documentação          | Localizar qualquer documento             |
+| `SYNC_HISTORY.md`            | Histórico de sincronizações            | Verificar atividades recentes            |
 
 ---
 

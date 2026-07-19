@@ -120,9 +120,10 @@ export class PortfolioProjector {
       const ticker = Ticker.create(assetId);
       const quantity = Quantity.create(s.quantity);
       const totalCost = Money.create(s.totalCost);
-      const avgCost = s.quantity > 0
-        ? Money.create(Math.round((s.totalCost / s.quantity) * 100) / 100)
-        : Money.create(0);
+      const avgCost =
+        s.quantity > 0
+          ? Money.create(Math.round((s.totalCost / s.quantity) * 100) / 100)
+          : Money.create(0);
       positions.push(Position.create(ticker, quantity, avgCost, totalCost));
     }
 

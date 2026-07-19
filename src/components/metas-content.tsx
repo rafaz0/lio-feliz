@@ -1,6 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Target, TrendingUp, Plus, ExternalLink, Edit3, Wallet, PiggyBank, ChartPie } from "lucide-react";
+import {
+  Target,
+  TrendingUp,
+  Plus,
+  ExternalLink,
+  Edit3,
+  Wallet,
+  PiggyBank,
+  ChartPie,
+} from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Button } from "@/components/ui/button";
@@ -54,14 +63,24 @@ function EditableTarget({
               if (e.key === "Escape") setEditing(false);
             }}
           />
-          <Button size="sm" onClick={handleSave}>Ok</Button>
-          <Button size="sm" variant="ghost" onClick={() => setEditing(false)}>X</Button>
+          <Button size="sm" onClick={handleSave}>
+            Ok
+          </Button>
+          <Button size="sm" variant="ghost" onClick={() => setEditing(false)}>
+            X
+          </Button>
         </div>
       ) : (
         <div className="mt-1 flex items-center gap-2">
           <span className="text-2xl font-bold">{value > 0 ? formatBRL(value) : "—"}</span>
           {suffix && <span className="text-xs text-muted-foreground">{suffix}</span>}
-          <button onClick={() => { setInput(String(value || "")); setEditing(true); }} className="text-muted-foreground hover:text-foreground transition">
+          <button
+            onClick={() => {
+              setInput(String(value || ""));
+              setEditing(true);
+            }}
+            className="text-muted-foreground hover:text-foreground transition"
+          >
             <Edit3 className="size-3.5" />
           </button>
         </div>
@@ -79,7 +98,10 @@ function ProgressBar({ value, max, label }: { value: number; max: number; label:
         <span className="font-semibold">{pct.toFixed(0)}%</span>
       </div>
       <div className="h-3 w-full overflow-hidden rounded-full bg-secondary">
-        <div className="h-full rounded-full bg-chart-2 transition-all duration-500" style={{ width: `${pct}%` }} />
+        <div
+          className="h-full rounded-full bg-chart-2 transition-all duration-500"
+          style={{ width: `${pct}%` }}
+        />
       </div>
     </div>
   );
@@ -92,8 +114,16 @@ export function MetasContent() {
   const fetchProj = useServerFn(getRealProjections);
   const fetchQuotes = useServerFn(getQuotes);
 
-  const { data: ops } = useQuery({ queryKey: ["operations"], queryFn: () => fetchOps(), enabled: !!user });
-  const { data: quotesRes } = useQuery({ queryKey: ["quotes", "goals"], queryFn: () => fetchQuotes({ data: { tickers: [] } }), enabled: false });
+  const { data: ops } = useQuery({
+    queryKey: ["operations"],
+    queryFn: () => fetchOps(),
+    enabled: !!user,
+  });
+  const { data: quotesRes } = useQuery({
+    queryKey: ["quotes", "goals"],
+    queryFn: () => fetchQuotes({ data: { tickers: [] } }),
+    enabled: false,
+  });
 
   const portfolio = useMemo(() => {
     if (!ops) return null;
@@ -162,15 +192,21 @@ export function MetasContent() {
       {/* Current status */}
       <section className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-lg border border-border bg-card p-5">
-          <h2 className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">Renda passiva</h2>
+          <h2 className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Renda passiva
+          </h2>
           {monthlyAvgDividend > 0 && (
             <div className="mb-3 flex items-center justify-between">
               <span className="text-sm text-muted-foreground">Projetado:</span>
-              <span className="tabular font-semibold text-positive">{formatBRL(monthlyAvgDividend)}/mês</span>
+              <span className="tabular font-semibold text-positive">
+                {formatBRL(monthlyAvgDividend)}/mês
+              </span>
             </div>
           )}
           <div className="space-y-3">
-            {divTarget > 0 && <ProgressBar value={monthlyAvgDividend} max={divTarget} label="Meta mensal" />}
+            {divTarget > 0 && (
+              <ProgressBar value={monthlyAvgDividend} max={divTarget} label="Meta mensal" />
+            )}
           </div>
           {divTarget > 0 && monthlyAvgDividend > 0 && monthlyAvgDividend < divTarget && (
             <p className="mt-3 text-xs text-muted-foreground">
@@ -178,12 +214,16 @@ export function MetasContent() {
             </p>
           )}
           {divTarget > 0 && monthlyAvgDividend >= divTarget && (
-            <p className="mt-3 text-xs font-semibold text-positive">Meta de renda passiva atingida!</p>
+            <p className="mt-3 text-xs font-semibold text-positive">
+              Meta de renda passiva atingida!
+            </p>
           )}
         </div>
 
         <div className="rounded-lg border border-border bg-card p-5">
-          <h2 className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">Patrimônio</h2>
+          <h2 className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Patrimônio
+          </h2>
           <div className="mb-3 space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">Atual:</span>
@@ -195,12 +235,16 @@ export function MetasContent() {
             </div>
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">Lucro:</span>
-              <span className={`tabular font-semibold ${portfolio && portfolio.totalPnl >= 0 ? "text-positive" : "text-negative"}`}>
+              <span
+                className={`tabular font-semibold ${portfolio && portfolio.totalPnl >= 0 ? "text-positive" : "text-negative"}`}
+              >
                 {portfolio ? formatBRL(portfolio.totalPnl) : "—"}
               </span>
             </div>
           </div>
-          {patTarget > 0 && <ProgressBar value={totalPatrimony} max={patTarget} label="Meta de patrimônio" />}
+          {patTarget > 0 && (
+            <ProgressBar value={totalPatrimony} max={patTarget} label="Meta de patrimônio" />
+          )}
         </div>
       </section>
 
@@ -211,8 +255,8 @@ export function MetasContent() {
             <TrendingUp className="size-4 text-chart-2" /> Quanto investir a mais?
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Para fechar o gap de <strong>{formatBRL(divTarget - monthlyAvgDividend)}/mês</strong> em dividendos,
-            considerando um DY médio de 6% ao ano:
+            Para fechar o gap de <strong>{formatBRL(divTarget - monthlyAvgDividend)}/mês</strong> em
+            dividendos, considerando um DY médio de 6% ao ano:
           </p>
           <p className="mt-2 text-lg font-bold text-primary">
             ~{formatBRL((divTarget - monthlyAvgDividend) / 0.005)} em novos investimentos
@@ -225,7 +269,11 @@ export function MetasContent() {
 
       {!user && (
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-200">
-          Faça <Link to="/auth" className="font-semibold underline">login</Link> para conectar sua carteira.
+          Faça{" "}
+          <Link to="/auth" className="font-semibold underline">
+            login
+          </Link>{" "}
+          para conectar sua carteira.
         </div>
       )}
 
@@ -234,14 +282,19 @@ export function MetasContent() {
           <Plus className="mx-auto size-6 text-muted-foreground" />
           <p className="mt-2 text-sm text-muted-foreground">
             Nenhum ativo na carteira.{" "}
-            <Link to="/" className="text-primary hover:underline">Adicione operações</Link> para ver projeções.
+            <Link to="/" className="text-primary hover:underline">
+              Adicione operações
+            </Link>{" "}
+            para ver projeções.
           </p>
         </div>
       )}
 
       {isLoading && (
         <div className="space-y-3">
-          {[...Array(3)].map((_, i) => <Skeleton key={i} className="h-16" />)}
+          {[...Array(3)].map((_, i) => (
+            <Skeleton key={i} className="h-16" />
+          ))}
         </div>
       )}
 
@@ -268,16 +321,25 @@ export function MetasContent() {
                   <div key={ticker} className="rounded-lg border border-border bg-card p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Link to="/ativo/$ticker" params={{ ticker }} className="flex items-center gap-1 font-semibold hover:text-primary">
+                        <Link
+                          to="/ativo/$ticker"
+                          params={{ ticker }}
+                          className="flex items-center gap-1 font-semibold hover:text-primary"
+                        >
                           {ticker} <ExternalLink className="size-3" />
                         </Link>
                         <span className="text-xs text-muted-foreground">{data.name}</span>
                       </div>
-                      <span className="tabular font-semibold text-positive">{formatBRL(monthly)}/mês</span>
+                      <span className="tabular font-semibold text-positive">
+                        {formatBRL(monthly)}/mês
+                      </span>
                     </div>
                     {divTarget > 0 && (
                       <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-                        <div className="h-full rounded-full bg-chart-2" style={{ width: `${Math.min(100, pct)}%` }} />
+                        <div
+                          className="h-full rounded-full bg-chart-2"
+                          style={{ width: `${Math.min(100, pct)}%` }}
+                        />
                       </div>
                     )}
                   </div>

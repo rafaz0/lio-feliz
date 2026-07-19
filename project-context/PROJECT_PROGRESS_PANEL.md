@@ -25,6 +25,7 @@
 **Total previsto:** 100%
 
 **Itens considerados:**
+
 - Metodologia documentada e aprovada
 - Protocolos operacionais formalizados
 - Fluxos de governança estabelecidos
@@ -39,6 +40,7 @@
 **Total previsto:** 100%
 
 **Itens considerados:**
+
 - Architecture Decision Records (ADRs) aprovados
 - Architecture Lab documentos estabilizados
 - Modelo conceitual definido
@@ -53,6 +55,7 @@
 **Total previsto:** 100%
 
 **Itens considerados:**
+
 - Engineering Roadmap definido
 - Implementation Plan detalhado
 - Milestones estabelecidos
@@ -67,6 +70,7 @@
 **Total previsto:** 100%
 
 **Itens considerados:**
+
 - Módulos implementados
 - Testes aprovados
 - Integrações concluídas

@@ -265,7 +265,10 @@ export const getAssetData = createServerFn({ method: "GET" })
           const cg = (await cgRes.json()) as {
             id: string;
             name?: string;
-            market_data?: { current_price?: { usd?: number; brl?: number }; price_change_percentage_24h?: number };
+            market_data?: {
+              current_price?: { usd?: number; brl?: number };
+              price_change_percentage_24h?: number;
+            };
             description?: { en?: string };
             categories?: string[];
           };
@@ -470,9 +473,7 @@ const EXTRA_SUGGESTIONS: TickerSuggestion[] = [
 
 const YAHOO_SEARCH_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
 
-async function searchYahooFinance(
-  query: string,
-): Promise<TickerSuggestion[]> {
+async function searchYahooFinance(query: string): Promise<TickerSuggestion[]> {
   try {
     const url = `https://query1.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(query)}&quotesCount=6&newsCount=0`;
     const res = await fetch(url, { headers: { "User-Agent": YAHOO_SEARCH_UA } });
@@ -527,9 +528,18 @@ export const searchTickers = createServerFn({ method: "GET" })
       list = [...brList, ...EXTRA_SUGGESTIONS];
       setCache(`ticker-suggestions-${TICKER_CACHE_VERSION}`, list);
     }
-    const items = list.length > 0
-      ? list
-      : [...ASSETS.map((a) => ({ ticker: a.ticker, name: a.name, price: a.price, changePct: a.changeDayPct })), ...EXTRA_SUGGESTIONS];
+    const items =
+      list.length > 0
+        ? list
+        : [
+            ...ASSETS.map((a) => ({
+              ticker: a.ticker,
+              name: a.name,
+              price: a.price,
+              changePct: a.changeDayPct,
+            })),
+            ...EXTRA_SUGGESTIONS,
+          ];
     if (!data.q) return items.slice(0, 6);
     const term = data.q.trim().toUpperCase();
 

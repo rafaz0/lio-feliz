@@ -42,21 +42,19 @@ describe("ExportarDadosService", () => {
           evolucaoMensal: 2.5,
         }),
         ObterPosicao: vi.fn(),
-        ObterPosicoes: vi
-          .fn()
-          .mockResolvedValue([
-            {
-              portfolioId: FIXTURA_PORTFOLIO,
-              assetId: "a1",
-              ticker: "PETR4",
-              nome: "Petrobras",
-              classe: "stock",
-              quantidade: 100,
-              precoMedio: 35,
-              valorTotal: 4000,
-              rentabilidade: { valorizacao: 500, rentabilidadeTotal: 10, rentabilidadePeriodo: 2 },
-            },
-          ]),
+        ObterPosicoes: vi.fn().mockResolvedValue([
+          {
+            portfolioId: FIXTURA_PORTFOLIO,
+            assetId: "a1",
+            ticker: "PETR4",
+            nome: "Petrobras",
+            classe: "stock",
+            quantidade: 100,
+            precoMedio: 35,
+            valorTotal: 4000,
+            rentabilidade: { valorizacao: 500, rentabilidadeTotal: 10, rentabilidadePeriodo: 2 },
+          },
+        ]),
         ObterHistorico: vi.fn(),
         ObterProventos: vi.fn(),
       };
@@ -78,21 +76,19 @@ describe("ExportarDadosService", () => {
       const repo: IProjectionRepository = {
         ObterPatrimonio: vi.fn().mockResolvedValue(null),
         ObterPosicao: vi.fn(),
-        ObterPosicoes: vi
-          .fn()
-          .mockResolvedValue([
-            {
-              portfolioId: FIXTURA_PORTFOLIO,
-              assetId: "a1",
-              ticker: "PETR4",
-              nome: "Petrobras",
-              classe: "stock",
-              quantidade: 100,
-              precoMedio: 35,
-              valorTotal: 4000,
-              rentabilidade: { valorizacao: 500, rentabilidadeTotal: 10, rentabilidadePeriodo: 2 },
-            },
-          ]),
+        ObterPosicoes: vi.fn().mockResolvedValue([
+          {
+            portfolioId: FIXTURA_PORTFOLIO,
+            assetId: "a1",
+            ticker: "PETR4",
+            nome: "Petrobras",
+            classe: "stock",
+            quantidade: 100,
+            precoMedio: 35,
+            valorTotal: 4000,
+            rentabilidade: { valorizacao: 500, rentabilidadeTotal: 10, rentabilidadePeriodo: 2 },
+          },
+        ]),
         ObterHistorico: vi.fn(),
         ObterProventos: vi.fn(),
       };

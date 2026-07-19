@@ -32,12 +32,12 @@ describe("PortfolioProjector", () => {
 
   describe("BuyEvent", () => {
     it("creates a position with correct quantity and cost", () => {
-      const event = new BuyEvent("p1", "c1", "PETR4", 100, 25.50);
+      const event = new BuyEvent("p1", "c1", "PETR4", 100, 25.5);
       const positions = projection([event]);
       const pos = findPosition(positions, "PETR4")!;
       expect(pos.getQuantity().getValue()).toBe(100);
       expect(pos.getTotalCost().getValue()).toBe(2550);
-      expect(pos.getAvgCost().getValue()).toBe(25.50);
+      expect(pos.getAvgCost().getValue()).toBe(25.5);
     });
 
     it("accumulates multiple buys of the same asset", () => {
@@ -96,19 +96,19 @@ describe("PortfolioProjector", () => {
   describe("JcpEvent", () => {
     it("reduces totalCost by totalAmount like dividend", () => {
       const buy = new BuyEvent("p1", "c1", "PETR4", 100, 20);
-      const jcp = new JcpEvent("p1", "c2", "PETR4", 100, 1.50);
+      const jcp = new JcpEvent("p1", "c2", "PETR4", 100, 1.5);
       const positions = projection([buy, jcp]);
       const pos = findPosition(positions, "PETR4")!;
       expect(pos.getQuantity().getValue()).toBe(100);
       expect(pos.getTotalCost().getValue()).toBe(1850);
-      expect(pos.getAvgCost().getValue()).toBe(18.50);
+      expect(pos.getAvgCost().getValue()).toBe(18.5);
     });
   });
 
   describe("BonusEvent", () => {
     it("increases quantity by bonus shares", () => {
       const buy = new BuyEvent("p1", "c1", "PETR4", 100, 20);
-      const bonus = new BonusEvent("p1", "c2", "PETR4", 100, 0.10);
+      const bonus = new BonusEvent("p1", "c2", "PETR4", 100, 0.1);
       const positions = projection([buy, bonus]);
       const pos = findPosition(positions, "PETR4")!;
       expect(pos.getQuantity().getValue()).toBe(110);
@@ -174,7 +174,7 @@ describe("PortfolioProjector", () => {
   describe("multi-event sequence", () => {
     it("reconstructs full portfolio state", () => {
       const events = [
-        new BuyEvent("p1", "c1", "PETR4", 100, 25.50),
+        new BuyEvent("p1", "c1", "PETR4", 100, 25.5),
         new BuyEvent("p1", "c2", "VALE3", 200, 60),
         new DividendEvent("p1", "c3", "PETR4", 100, 2),
         new BuyEvent("p1", "c4", "PETR4", 50, 30),
@@ -227,7 +227,7 @@ describe("PortfolioProjector", () => {
       const events = [
         new BuyEvent("p1", "c1", "TEST4", 1000, 10),
         new SplitEvent("p1", "c2", "TEST4", 1000, 2000),
-        new BonusEvent("p1", "c3", "TEST4", 2000, 0.50),
+        new BonusEvent("p1", "c3", "TEST4", 2000, 0.5),
         new GroupingEvent("p1", "c4", "TEST4", 3000, 1000),
         new AmortizationEvent("p1", "c5", "TEST4", 1000, 3),
         new AdjustmentEvent("p1", "c6", "TEST4", 1000, 200, "correcao"),

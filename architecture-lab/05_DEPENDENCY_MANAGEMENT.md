@@ -127,12 +127,12 @@ A transição entre Milestones deve considerar o estado do grafo de dependência
 
 # 8. Estado Atual
 
-| Aspecto | Valor |
-|---------|-------|
-| Marco Atual | Convergência Arquitetural |
-| Sprint Atual | PS#030 |
-| Objetivo Atual | Estruturar a gestão oficial das dependências da implementação |
-| Dependências Registradas | Nenhuma |
+| Aspecto                  | Valor                                                         |
+| ------------------------ | ------------------------------------------------------------- |
+| Marco Atual              | Convergência Arquitetural                                     |
+| Sprint Atual             | PS#030                                                        |
+| Objetivo Atual           | Estruturar a gestão oficial das dependências da implementação |
+| Dependências Registradas | Nenhuma                                                       |
 
 Nenhuma dependência formal foi registrada até o momento. As primeiras dependências serão registradas quando os Implementation Plans da Fase 1 (Foundation) forem detalhados.
 

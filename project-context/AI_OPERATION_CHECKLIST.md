@@ -65,8 +65,8 @@ Antes de responder, verificar:
 ### Verificação de Contexto (GOV-013)
 
 - [ ] A atividade atual exige Contexto Estratégico (PI/ER/EWO/arquitetura/auditoria/mudança metodológica)?
-  * Se SIM → solicitar documentação consolidada (`DOCUMENTACAO_COMPLETA.md`)
-  * Se NÃO → utilizar apenas relatórios operacionais (sync reports, ERs, closures)
+  - Se SIM → solicitar documentação consolidada (`DOCUMENTACAO_COMPLETA.md`)
+  - Se NÃO → utilizar apenas relatórios operacionais (sync reports, ERs, closures)
 - [ ] Existe relatório recente do OpenCode suficiente para o contexto atual?
 - [ ] A requisição de documentação completa é justificada por uma das situações previstas na GOV-013?
 
@@ -84,7 +84,7 @@ Antes de responder, verificar:
 - [ ] Existe BK compatível antes da criação deste PS?
 - [ ] A tarefa atual possui Template, Protocolo ou Procedimento Oficial?
 - [ ] Existe oportunidade de melhoria identificada nesta atividade? (GOV-015)
-  * Se SIM → aplicar fluxo de 4 etapas: implementação imediata → Slice futura → BK → descarte
+  - Se SIM → aplicar fluxo de 4 etapas: implementação imediata → Slice futura → BK → descarte
 
 Se SIM → revisar obrigatoriamente a seção correspondente do PROJECT_BOOTSTRAP.md antes de executar a tarefa.
 
@@ -371,17 +371,17 @@ Seção obrigatória ao final de toda Engineering Review:
 - [ ] Melhorias programadas para próxima Slice foram documentadas?
 - [ ] Nenhuma oportunidade ficou sem classificação?
 - [ ] Existe melhoria metodológica identificada? (GOV-017)
-  * Se SIM → registrar descrição, origem da evidência, impacto esperado e destino
-  * Se NÃO → registrar "Nenhuma melhoria metodológica identificada."
+  - Se SIM → registrar descrição, origem da evidência, impacto esperado e destino
+  - Se NÃO → registrar "Nenhuma melhoria metodológica identificada."
 
 ## Pipeline Contínuo de Engenharia (GOV-018)
 
 - [ ] A próxima etapa está definida pelo pipeline? (GOV-018)
-  * Se SIM → executar sem solicitar confirmação
-  * Se NÃO → verificar se existe bloqueador; se não houver, prosseguir
+  - Se SIM → executar sem solicitar confirmação
+  - Se NÃO → verificar se existe bloqueador; se não houver, prosseguir
 - [ ] Existe bloqueador que justifique interrupção do pipeline?
-  * Bloqueadores válidos: técnico, arquitetural, documentação, PI, EWO, Core Foundation, metodologia
-  * Se NÃO houver bloqueador → continuar automaticamente
+  - Bloqueadores válidos: técnico, arquitetural, documentação, PI, EWO, Core Foundation, metodologia
+  - Se NÃO houver bloqueador → continuar automaticamente
 
 ---
 

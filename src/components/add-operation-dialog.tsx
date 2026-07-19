@@ -156,11 +156,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -199,9 +195,20 @@ const ASSET_TYPE_LABELS: Record<AssetType, string> = {
 };
 
 const EMISSORES = [
-  "Banco do Brasil", "Bradesco", "Itaú", "Santander", "Caixa",
-  "BTG Pactual", "Safra", "Inter", "C6 Bank", "Nubank",
-  "XP Investimentos", "Banrisul", "Daycoval", "ABC Brasil",
+  "Banco do Brasil",
+  "Bradesco",
+  "Itaú",
+  "Santander",
+  "Caixa",
+  "BTG Pactual",
+  "Safra",
+  "Inter",
+  "C6 Bank",
+  "Nubank",
+  "XP Investimentos",
+  "Banrisul",
+  "Daycoval",
+  "ABC Brasil",
   "Outro",
 ];
 
@@ -279,9 +286,7 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
     const examples = EXAMPLES[assetType] ?? [];
     if (!ticker.trim()) return examples;
     const term = ticker.trim().toUpperCase();
-    return examples.filter(
-      (a) => a.ticker.startsWith(term) || a.name.toUpperCase().includes(term),
-    );
+    return examples.filter((a) => a.ticker.startsWith(term) || a.name.toUpperCase().includes(term));
   }, [ticker, assetType]);
 
   const qc = useQueryClient();
@@ -428,7 +433,10 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
             <button
               key={m}
               type="button"
-              onClick={() => { setMode(m); resetForm(false); }}
+              onClick={() => {
+                setMode(m);
+                resetForm(false);
+              }}
               className={
                 "flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors " +
                 (mode === m
@@ -497,7 +505,9 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                     </SelectTrigger>
                     <SelectContent>
                       {EMISSORES.map((e) => (
-                        <SelectItem key={e} value={e}>{e}</SelectItem>
+                        <SelectItem key={e} value={e}>
+                          {e}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -510,7 +520,9 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                     </SelectTrigger>
                     <SelectContent>
                       {TIPOS_RF.map((t) => (
-                        <SelectItem key={t} value={t}>{t}</SelectItem>
+                        <SelectItem key={t} value={t}>
+                          {t}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -525,13 +537,17 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                     </SelectTrigger>
                     <SelectContent>
                       {INDEXADORES.map((i) => (
-                        <SelectItem key={i} value={i}>{i}</SelectItem>
+                        <SelectItem key={i} value={i}>
+                          {i}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="taxa">Taxa do {indexador === "Prefixado" ? "título" : indexador}</Label>
+                  <Label htmlFor="taxa">
+                    Taxa do {indexador === "Prefixado" ? "título" : indexador}
+                  </Label>
                   <div className="relative">
                     <Input
                       id="taxa"
@@ -544,7 +560,9 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                       autoComplete="off"
                       className="pr-7"
                     />
-                    <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">%</span>
+                    <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
+                      %
+                    </span>
                   </div>
                 </div>
               </div>
@@ -557,7 +575,9 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                     </SelectTrigger>
                     <SelectContent>
                       {FORMAS.map((f) => (
-                        <SelectItem key={f} value={f}>{f}</SelectItem>
+                        <SelectItem key={f} value={f}>
+                          {f}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -593,7 +613,9 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                   checked={liquidezDiaria}
                   onCheckedChange={(v) => setLiquidezDiaria(v as boolean)}
                 />
-                <Label htmlFor="liquidez" className="text-sm font-normal">Liquidez diária</Label>
+                <Label htmlFor="liquidez" className="text-sm font-normal">
+                  Liquidez diária
+                </Label>
               </div>
             </>
           ) : (
@@ -621,7 +643,10 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                   {isDividend && (
                     <div className="grid gap-2">
                       <Label>Tipo de provento</Label>
-                      <Select value={dividendType} onValueChange={(v) => setDividendType(v as "dividendo" | "jcp")}>
+                      <Select
+                        value={dividendType}
+                        onValueChange={(v) => setDividendType(v as "dividendo" | "jcp")}
+                      >
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
@@ -663,7 +688,6 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                           <span className="font-semibold">{a.ticker}</span>
                           <span className="truncate text-xs text-muted-foreground">{a.name}</span>
                         </span>
-
                       </button>
                     ))}
                   </div>
@@ -671,7 +695,13 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="grid gap-2">
-                  <Label htmlFor="qty">{isDividend ? "Quantidade de cotas" : isBonus ? "Quantidade recebida" : "Quantidade"}</Label>
+                  <Label htmlFor="qty">
+                    {isDividend
+                      ? "Quantidade de cotas"
+                      : isBonus
+                        ? "Quantidade recebida"
+                        : "Quantidade"}
+                  </Label>
                   <Input
                     id="qty"
                     type="number"
@@ -685,7 +715,11 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="price">
-                    {isDividend ? "Valor por cota" : isBonus ? " " : `Preço (${currency === "USD" ? "US$" : "R$"})`}
+                    {isDividend
+                      ? "Valor por cota"
+                      : isBonus
+                        ? " "
+                        : `Preço (${currency === "USD" ? "US$" : "R$"})`}
                   </Label>
                   <Input
                     id="price"
@@ -706,7 +740,9 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
 
           {!isBonus && !isRf && (
             <div className="grid gap-2">
-              <Label htmlFor="otherCosts">Outros custos <span className="text-xs text-muted-foreground">(Opcional)</span></Label>
+              <Label htmlFor="otherCosts">
+                Outros custos <span className="text-xs text-muted-foreground">(Opcional)</span>
+              </Label>
               <Input
                 id="otherCosts"
                 type="number"
@@ -729,27 +765,44 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
 
           {total > 0 && (
             <div className="rounded-md border bg-muted/30 px-3 py-2.5 text-right text-sm">
-              <span className="text-xs text-muted-foreground">{isDividend ? "Total do provento" : isBonus ? " " : "Valor total"}</span>
+              <span className="text-xs text-muted-foreground">
+                {isDividend ? "Total do provento" : isBonus ? " " : "Valor total"}
+              </span>
               <div className="text-lg font-bold tabular-nums">
                 {currency === "USD" ? "US$" : "R$"}
-                {totalCosts.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                {totalCosts.toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </div>
             </div>
           )}
 
           {isUsd && (
             <div className="flex items-center gap-1.5 rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-xs text-blue-700 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-300">
-              <span className="inline-flex size-3.5 shrink-0 items-center justify-center rounded-full bg-blue-200 text-[10px] font-bold leading-none text-blue-700 dark:bg-blue-700 dark:text-blue-200">i</span>
-              <span>Ativo em dólar — convertido usando a cotação do dia no cálculo patrimonial.</span>
+              <span className="inline-flex size-3.5 shrink-0 items-center justify-center rounded-full bg-blue-200 text-[10px] font-bold leading-none text-blue-700 dark:bg-blue-700 dark:text-blue-200">
+                i
+              </span>
+              <span>
+                Ativo em dólar — convertido usando a cotação do dia no cálculo patrimonial.
+              </span>
             </div>
           )}
 
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="button" variant="ghost">Cancelar</Button>
+              <Button type="button" variant="ghost">
+                Cancelar
+              </Button>
             </DialogClose>
             <Button type="submit" disabled={mut.isPending}>
-              {mut.isPending ? "Salvando…" : isDividend ? "Registrar Provento" : isBonus ? "Registrar Bonificação" : "Adicionar Lançamento"}
+              {mut.isPending
+                ? "Salvando…"
+                : isDividend
+                  ? "Registrar Provento"
+                  : isBonus
+                    ? "Registrar Bonificação"
+                    : "Adicionar Lançamento"}
             </Button>
           </DialogFooter>
         </form>

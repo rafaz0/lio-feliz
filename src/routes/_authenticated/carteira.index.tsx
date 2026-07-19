@@ -615,64 +615,76 @@ function PortfolioOverview() {
                   {portfolio.positions.map((p) => {
                     const isRf = p.asset_type === "fixed_income";
                     return (
-                    <tr key={p.ticker} className="border-t border-border hover:bg-surface">
-                      <td className="px-4 py-2.5">
-                        <div className="flex items-baseline gap-1.5">
-                          <Link
-                            to="/ativo/$ticker"
-                            params={{ ticker: p.ticker }}
-                            className="font-semibold hover:text-primary"
-                          >
-                            {p.ticker}
-                          </Link>
-                          {p.currency !== "BRL" && (
-                            <span className="rounded bg-muted px-1 py-0.5 text-[10px] font-medium uppercase text-muted-foreground">
-                              {p.currency}
-                            </span>
-                          )}
-                          {isRf && (
-                            <span className="rounded bg-chart-3/10 px-1 py-0.5 text-[10px] font-medium text-chart-3">
-                              RF
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {p.currency !== "BRL"
-                            ? `${p.sector} · ${formatBRL(p.brlValue)}`
-                            : isRf
-                              ? `Renda Fixa · ${formatBRL(p.invested)}`
-                              : p.sector}
-                        </div>
-                      </td>
-                      <td className="tabular px-4 py-2.5 text-right">
-                        {isRf ? "—" : formatQty(p.quantity)}
-                      </td>
-                      <td className="tabular px-4 py-2.5 text-right">
-                        {isRf ? "—" : p.currency !== "BRL" ? `$${p.avgPrice.toFixed(2)}` : formatBRL(p.avgPrice)}
-                      </td>
-                      <td className="tabular px-4 py-2.5 text-right">
-                        {isRf ? "—" : p.currency !== "BRL" ? `$${p.currentPrice.toFixed(2)}` : formatBRL(p.currentPrice)}
-                      </td>
-                      <td className="tabular px-4 py-2.5 text-right font-medium">
-                        {formatBRL(p.currentValue)}
-                        {p.currency !== "BRL" && (
-                          <div className="text-[11px] text-muted-foreground">
-                            ${(p.brlValue / (exchangeRates?.USD ?? 1)).toFixed(2)}
+                      <tr key={p.ticker} className="border-t border-border hover:bg-surface">
+                        <td className="px-4 py-2.5">
+                          <div className="flex items-baseline gap-1.5">
+                            <Link
+                              to="/ativo/$ticker"
+                              params={{ ticker: p.ticker }}
+                              className="font-semibold hover:text-primary"
+                            >
+                              {p.ticker}
+                            </Link>
+                            {p.currency !== "BRL" && (
+                              <span className="rounded bg-muted px-1 py-0.5 text-[10px] font-medium uppercase text-muted-foreground">
+                                {p.currency}
+                              </span>
+                            )}
+                            {isRf && (
+                              <span className="rounded bg-chart-3/10 px-1 py-0.5 text-[10px] font-medium text-chart-3">
+                                RF
+                              </span>
+                            )}
                           </div>
-                        )}
-                      </td>
-                      <td className="tabular px-4 py-2.5 text-right">
-                        <span className={p.pnl >= 0 ? "text-positive" : "text-negative"}>
-                          {formatBRL(p.pnl)}
-                        </span>
-                      </td>
-                      <td className="px-4 py-2.5 text-right">
-                        {isRf ? <span className="text-muted-foreground">—</span> : <DeltaPct value={p.pnlPct} />}
-                      </td>
-                      <td className="tabular px-4 py-2.5 text-right text-muted-foreground">
-                        {p.weight.toFixed(1)}%
-                      </td>
-                    </tr>
+                          <div className="text-xs text-muted-foreground">
+                            {p.currency !== "BRL"
+                              ? `${p.sector} · ${formatBRL(p.brlValue)}`
+                              : isRf
+                                ? `Renda Fixa · ${formatBRL(p.invested)}`
+                                : p.sector}
+                          </div>
+                        </td>
+                        <td className="tabular px-4 py-2.5 text-right">
+                          {isRf ? "—" : formatQty(p.quantity)}
+                        </td>
+                        <td className="tabular px-4 py-2.5 text-right">
+                          {isRf
+                            ? "—"
+                            : p.currency !== "BRL"
+                              ? `$${p.avgPrice.toFixed(2)}`
+                              : formatBRL(p.avgPrice)}
+                        </td>
+                        <td className="tabular px-4 py-2.5 text-right">
+                          {isRf
+                            ? "—"
+                            : p.currency !== "BRL"
+                              ? `$${p.currentPrice.toFixed(2)}`
+                              : formatBRL(p.currentPrice)}
+                        </td>
+                        <td className="tabular px-4 py-2.5 text-right font-medium">
+                          {formatBRL(p.currentValue)}
+                          {p.currency !== "BRL" && (
+                            <div className="text-[11px] text-muted-foreground">
+                              ${(p.brlValue / (exchangeRates?.USD ?? 1)).toFixed(2)}
+                            </div>
+                          )}
+                        </td>
+                        <td className="tabular px-4 py-2.5 text-right">
+                          <span className={p.pnl >= 0 ? "text-positive" : "text-negative"}>
+                            {formatBRL(p.pnl)}
+                          </span>
+                        </td>
+                        <td className="px-4 py-2.5 text-right">
+                          {isRf ? (
+                            <span className="text-muted-foreground">—</span>
+                          ) : (
+                            <DeltaPct value={p.pnlPct} />
+                          )}
+                        </td>
+                        <td className="tabular px-4 py-2.5 text-right text-muted-foreground">
+                          {p.weight.toFixed(1)}%
+                        </td>
+                      </tr>
                     );
                   })}
                 </tbody>
@@ -783,7 +795,8 @@ function PortfolioOverview() {
             </div>
             <p className="flex items-start gap-2 text-xs text-muted-foreground">
               <Info className="mt-0.5 size-3.5 shrink-0" />
-              Cotações: BRAPI (B3) · CoinGecko (cripto) · Yahoo Finance (internacional). Valores em BRL convertidos pela cotação do dia.
+              Cotações: BRAPI (B3) · CoinGecko (cripto) · Yahoo Finance (internacional). Valores em
+              BRL convertidos pela cotação do dia.
             </p>
           </div>
         </div>

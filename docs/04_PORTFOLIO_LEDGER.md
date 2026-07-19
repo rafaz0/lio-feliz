@@ -49,6 +49,7 @@ Sem um Ledger formal, os fatos patrimoniais seriam registrados de forma ad hoc, 
 Alteração patrimonial reconhecida pelo domínio após a interpretação econômica de uma operação.
 
 Exemplos conceituais:
+
 - aumento de posição;
 - redução de posição;
 - geração de renda;
@@ -74,6 +75,7 @@ A Posição é derivada dos Fatos Patrimoniais, não definida por eles.
 ### Integridade Patrimonial
 
 Garantia de que todo Fato Patrimonial registrado:
+
 - possui origem rastreável;
 - é consistente com a interpretação que o gerou;
 - não pode ser alterado sem preservar a cadeia causal.
@@ -330,6 +332,7 @@ Limites arquiteturais do Ledger: o que pertence, o que pode pertencer e o que n�
 ## 16.1 Deve Pertencer ao Ledger
 
 Elementos obrigatoriamente patrimoniais:
+
 - Fatos patrimoniais resultantes de interpretações econômicas
 - Registros de alterações patrimoniais individuais
 - Vínculos de rastreabilidade patrimonial entre fatos
@@ -338,6 +341,7 @@ Elementos obrigatoriamente patrimoniais:
 ## 16.2 Pode Pertencer ao Ledger
 
 Elementos auxiliares ou complementares que podem estar presentes sem comprometer a identidade do Ledger:
+
 - Metadados temporais dos registros
 - Identificadores conceituais de navegação
 - Informações de contexto patrimonial não essenciais
@@ -345,6 +349,7 @@ Elementos auxiliares ou complementares que podem estar presentes sem comprometer
 ## 16.3 Não Pertence ao Ledger
 
 Elementos sem responsabilidade patrimonial:
+
 - Cálculos, projeções ou simulações
 - Regras de negócio ou validações
 - Relatórios, dashboards ou indicadores

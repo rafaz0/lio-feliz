@@ -91,6 +91,6 @@ Negativas:
 
 ## Histórico
 
-| Data | Versão | Descrição |
-|------|--------|-----------|
-| 09/07/2026 | 1.0 | Criação do ADR. |
+| Data       | Versão | Descrição       |
+| ---------- | ------ | --------------- |
+| 09/07/2026 | 1.0    | Criação do ADR. |

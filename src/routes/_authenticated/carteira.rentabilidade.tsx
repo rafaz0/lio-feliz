@@ -2,12 +2,7 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import {
-  BarChart3,
-  LineChart as LineChartIcon,
-  Shield,
-  TrendingUp,
-} from "lucide-react";
+import { BarChart3, LineChart as LineChartIcon, Shield, TrendingUp } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -515,8 +510,18 @@ function RentabilidadePage() {
                   labelFormatter={(l: string) => {
                     const [y, m] = l.split("-");
                     const months = [
-                      "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
-                      "Jul", "Ago", "Set", "Out", "Nov", "Dez",
+                      "Jan",
+                      "Fev",
+                      "Mar",
+                      "Abr",
+                      "Mai",
+                      "Jun",
+                      "Jul",
+                      "Ago",
+                      "Set",
+                      "Out",
+                      "Nov",
+                      "Dez",
                     ];
                     return `${months[Number(m) - 1]}/${y}`;
                   }}

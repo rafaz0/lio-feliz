@@ -13,7 +13,9 @@ let cached: Goals | null = null;
 function getStored(): Goals {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    const parsed: Goals = raw ? JSON.parse(raw) : { monthlyDividendTarget: 0, patrimonyTarget: 0, monthlySavingsTarget: 0 };
+    const parsed: Goals = raw
+      ? JSON.parse(raw)
+      : { monthlyDividendTarget: 0, patrimonyTarget: 0, monthlySavingsTarget: 0 };
     if (!cached || JSON.stringify(cached) !== JSON.stringify(parsed)) {
       cached = parsed;
     }

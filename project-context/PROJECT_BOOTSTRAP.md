@@ -19,13 +19,14 @@
 >
 > Ao carregar apenas `PROJECT_BOOTSTRAP.md` e `AI_OPERATION_CHECKLIST.md`,
 > uma nova IA deve conseguir compreender corretamente:
-> * o estado atual da engenharia;
-> * o fluxo metodológico vigente;
-> * as decisões permanentes;
-> * as responsabilidades dos agentes;
-> * o próximo objetivo macro da engenharia;
-> * as pendências estratégicas;
-> * o comportamento esperado durante toda a execução do projeto.
+>
+> - o estado atual da engenharia;
+> - o fluxo metodológico vigente;
+> - as decisões permanentes;
+> - as responsabilidades dos agentes;
+> - o próximo objetivo macro da engenharia;
+> - as pendências estratégicas;
+> - o comportamento esperado durante toda a execução do projeto.
 >
 > Nenhum documento histórico (PROJECT_STATUS, SYNC_HISTORY, GOVs passados)
 > deve ser necessário para restaurar informações operacionais permanentes.
@@ -42,6 +43,7 @@ O Runtime Operacional do projeto é composto exclusivamente por:
 Estes dois documentos são **autossuficientes** para restaurar o estado operacional completo.
 
 Documentos complementares devem ser consultados apenas quando necessário:
+
 - **DEVELOPMENT_METHODOLOGY** — Regras metodológicas detalhadas
 - **PIs (PI-001, PI-002, PI-003)** — Detalhamento arquitetural
 - **PROJECT_STATUS / SYNC_HISTORY** — Histórico cronológico (não contêm decisões permanentes)
@@ -60,15 +62,15 @@ Execução
 
 ## Marco Atual
 
-EWO-002 — Domínio Patrimonial (Concluído — 9 Slices, 362 testes)
+EWO-003 — Application Layer (Concluído — 8 Slices, 528 testes)
 
 ## PI Atual
 
-Core API Frozen — Componentes da Core Foundation estabilizados.
+PI-005 — Application Layer (COMPLETED). PI-004 — Domínio Patrimonial (COMPLETED). Core API Frozen (7 componentes estáveis).
 
 ## PS Atual
 
-PS#050 — Engineering Closure EWO-002 (ativo)
+PS#051 — Engineering Closure EWO-003 (ativo)
 
 ## Dashboard Executivo
 
@@ -77,20 +79,20 @@ PS#050 — Engineering Closure EWO-002 (ativo)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#050
-Marco: EWO-002 (Domínio Patrimonial)
+PS Atual: PS#051
+Marco: EWO-003 (Application Layer)
 
 🏛 Governanca    [█████████░░]  ~90%
-🏗 Arquitetura   [████████░░]   ~80%
-⚙ Engineering   [█████████░]   ~90%
-💻 Codigo        [██████░░░░]   ~60%
+🏗 Arquitetura   [████████░░░]  ~85%
+⚙ Engineering   [██████████]   ~95%
+💻 Codigo        [████████░░]   ~80%
 ```
 
 > Fórmulas dos percentuais em `PROJECT_PROGRESS_PANEL.md`.
 
 ## Objetivos Ativos
 
-EWO-002 encerrada. Próxima fase: Application Layer — integração do domínio patrimonial com camadas superiores.
+EWO-003 CONCLUÍDA. Próxima fase: Infrastructure Layer — implementação concreta dos Ports, persistência, APIs e integrações externas.
 
 ## DEC Ativas
 
@@ -98,19 +100,19 @@ Nenhuma.
 
 ## Backlog Atual
 
-| BK | Descrição | Prioridade | Estado |
-|----|-----------|------------|--------|
-| BK-005 | PROJECT_MANIFEST.md | Baixa | Proposto |
-| BK-006 | Licensing & Feature Access Layer | Média | Proposto |
-| BK-007 | Comercialização | Média | Proposto |
-| BK-008 | Substituição do mecanismo finalize() do DomainEvent | Baixa | Observação |
+| BK     | Descrição                                           | Prioridade | Estado     |
+| ------ | --------------------------------------------------- | ---------- | ---------- |
+| BK-005 | PROJECT_MANIFEST.md                                 | Baixa      | Proposto   |
+| BK-006 | Licensing & Feature Access Layer                    | Média      | Proposto   |
+| BK-007 | Comercialização                                     | Média      | Proposto   |
+| BK-008 | Substituição do mecanismo finalize() do DomainEvent | Baixa      | Observação |
 
 ## Próxima Etapa
 
-EWO-002 CONCLUÍDA. A próxima etapa oficial é o planejamento da **Application Layer (EWO-003)** — integração do domínio patrimonial com repositórios, serviços, queries e interface com o usuário.
+EWO-003 CONCLUÍDA. A próxima etapa oficial é o planejamento da **Infrastructure Layer (EWO-004)** — implementação concreta dos Ports definidos na Application Layer com persistência (Supabase/PostgreSQL), provedores de dados externos (B3, Coingecko, Yahoo Finance) e adaptadores de API.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
-**GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto. A PI-005 deverá referenciar este documento como entrada funcional.****
+**GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
 
 ## Engineering Outlook
 
@@ -122,30 +124,38 @@ EWO-002 CONCLUÍDA. A próxima etapa oficial é o planejamento da **Application 
 - EWO-001 concluído — Core Foundation + Modelo Canônico (10 Slices, 175 testes)
 - Core API congelada (7 componentes estáveis)
 - **PI-004 concluída** — Arquitetura do Domínio Patrimonial consolidada
+- **PI-005 concluída** — Application Layer consolidada
 - **ER-004 aprovada** — Gap analysis validada, aderência ao Core Foundation confirmada
+- **ER-005 aprovada** — Engineering Review da PI-005
 - **EWO-002 CONCLUÍDA** — Domínio Patrimonial implementado (9 Slices, 362 testes, 12/12 DAs, 11/13 Invariantes)
+- **EWO-003 CONCLUÍDA** — Application Layer implementada (8 Slices, 528 testes, 14 Services, 9 Ports, 15 DTOs)
 
 ### Próxima Frente de Engenharia
 
-A próxima etapa oficial é o planejamento da **Application Layer** — integração do domínio patrimonial com repositórios, serviços, queries e interface com o usuário.
+A próxima etapa oficial é o planejamento da **Infrastructure Layer (EWO-004)** — implementação concreta dos Ports de repositório, gateways de dados externos e adaptadores de API.
 
 ### Documentação Prevista
 
-| Documento | Finalidade | Status |
-|-----------|------------|--------|
-| PI-004 | Arquitetura do Domínio Patrimonial | ✅ Concluído |
-| ER-004 | Engineering Review da PI-004 | ✅ Aprovada |
-| EWO-002 | Implementação do Domínio Patrimonial | ✅ Concluída |
-| EWO-002-COVERAGE | Relatório de Cobertura Arquitetural | ✅ Concluído |
+| Documento        | Finalidade                           | Status       |
+| ---------------- | ------------------------------------ | ------------ |
+| PI-004           | Arquitetura do Domínio Patrimonial   | ✅ Concluído |
+| ER-004           | Engineering Review da PI-004         | ✅ Aprovada  |
+| EWO-002          | Implementação do Domínio Patrimonial | ✅ Concluída |
+| EWO-002-COVERAGE | Relatório de Cobertura Arquitetural  | ✅ Concluído |
+| PI-005           | Application Layer                    | ✅ Concluída |
+| ER-005           | Engineering Review da PI-005         | ✅ Aprovada  |
+| EWO-003          | Implementação da Application Layer   | ✅ Concluída |
 
 ### Observações Relevantes
 
 - Engineering N1 consolidado (PI-001, PI-002, PI-003 aprovados)
-- PI-004 aprovada — 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013)
+- PI-004 concluída — 12 Decisões Arquiteturais (DA-001 a DA-012), 13 Invariantes (I-001 a I-013)
+- PI-005 concluída — Application Layer com CQRS, 14 Services, 9 Ports, 15 DTOs, 3 Handlers
 - Personal Finance Domain e Decision Support definidos como módulos complementares
 - **EWO-002 CONCLUÍDA** — 9 Slices, 362 testes, 12/12 DAs materializadas, 11/13 Invariantes validadas
+- **EWO-003 CONCLUÍDA** — 8 Slices, 528 testes, Application Layer completa
 - EWO-001 concluído — detalhes na seção abaixo
-- Conhecimento consolidado da EWO-002: KC-001 a KC-005 (registrados nas Engineering Reviews), KB-006 (registrado)
+- Conhecimento consolidado: KC-001 a KC-008 (registrados nas Engineering Reviews), KB-006, KB-008
 - Backlog estratégico com 4 BKs ativos (BK-005 a BK-008)
 
 ---
@@ -222,9 +232,9 @@ Este passo pertence exclusivamente ao **Agente Executor** (OpenCode). Conforme d
 
 Ao receber o PROJECT_BOOTSTRAP.md e o AI_OPERATION_CHECKLIST.md, o ChatGPT deve assumir que o PASSO 0 já foi executado quando houver evidência operacional suficiente, por exemplo:
 
-* o usuário informar que o bootstrap foi realizado;
-* for apresentado o relatório do Workspace Guard;
-* a conversa for continuação de uma sessão iniciada pelo OpenCode.
+- o usuário informar que o bootstrap foi realizado;
+- for apresentado o relatório do Workspace Guard;
+- a conversa for continuação de uma sessão iniciada pelo OpenCode.
 
 Na ausência dessa evidência, o ChatGPT apenas registra que a validação do workspace permanece sob responsabilidade do Agente Executor, sem bloquear a restauração do contexto arquitetural.
 
@@ -257,6 +267,7 @@ Na ausência dessa evidência, o ChatGPT apenas registra que a validação do wo
 ## Regras de Comportamento
 
 A IA:
+
 - **executa** — não replaneja decisões consolidadas
 - **não propõe alternativas** para decisões já aprovadas
 - **não reinicia** discussões encerradas
@@ -325,6 +336,7 @@ Nenhuma oportunidade identificada durante atividades de engenharia poderá perma
 ### Destinos Obrigatórios
 
 Toda oportunidade deverá receber exatamente um dos seguintes destinos:
+
 - **Implementação imediata** — incorporada na Slice atual
 - **Incorporação automática** — programada para a próxima Slice compatível
 - **Backlog (BK)** — registrada como melhoria futura
@@ -348,6 +360,7 @@ Toda oportunidade deverá receber exatamente um dos seguintes destinos:
 ### Registro de Conhecimento na Engineering Review
 
 Toda Engineering Review deverá conter obrigatoriamente ao final:
+
 - Oportunidades identificadas
 - Destino de cada oportunidade
 - Melhorias incorporadas imediatamente
@@ -363,6 +376,7 @@ A metodologia evolui apenas quando há evidências objetivas de necessidade. Nov
 ### Origens Válidas
 
 Toda nova regra metodológica deverá possuir origem verificável em:
+
 - Engineering Review
 - Auditoria
 - Retrospectiva de Sprint
@@ -599,6 +613,7 @@ Estrutura: resposta direta + Ritual de Encerramento (quando aplicável).
 Usar quando for necessário executar alterações via OpenCode ou qualquer Agente Executor.
 
 Estrutura:
+
 1. Objetivo
 2. Implementação
 3. Atualizações Obrigatórias
@@ -700,6 +715,7 @@ Toda implementação, seja de código ou documentação, deve encerrar obrigator
 Os estados abaixo são mutuamente dependentes e nunca podem ser apresentados de forma inconsistente.
 
 **Exemplo incorreto:**
+
 ```
 • Commit: pendente
 • Push: pendente
@@ -707,6 +723,7 @@ Os estados abaixo são mutuamente dependentes e nunca podem ser apresentados de 
 ```
 
 **Exemplo correto (antes da sincronização):**
+
 ```
 • Commit: pendente
 • Push: pendente
@@ -715,6 +732,7 @@ Os estados abaixo são mutuamente dependentes e nunca podem ser apresentados de 
 ```
 
 **Exemplo correto (após a sincronização):**
+
 ```
 • Commit: confirmado
 • Push: confirmado
@@ -926,6 +944,7 @@ Toda decisão que altere permanentemente a forma como futuras IAs deverão opera
 Documentos históricos (PROJECT_STATUS, SYNC_HISTORY, GOVs passados) **não substituem** essa atualização. O Bootstrap é a memória operacional permanente; os demais documentos são apenas registros cronológicos.
 
 **Regra:** Ao final de toda implementação que introduza uma regra, protocolo, convenção, responsabilidade ou comportamento operacional novo, verificar:
+
 1. A decisão está refletida no PROJECT_BOOTSTRAP.md?
 2. Se aplicável, está refletida no AI_OPERATION_CHECKLIST.md?
 3. Um novo chat iniciado apenas com esses dois documentos restauraria corretamente a decisão?
@@ -1018,31 +1037,57 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 ## Próximo Passo Operacional
 
-### PI-004 v1.0 — Modelo Patrimonial do Lio Feliz (Approved)
+### PI-004 v1.0 — Modelo Patrimonial do Lio Feliz (Completed)
 
-| Campo | Valor |
-|-------|-------|
-| Identificador | PI-004 |
-| Versão | v1.0 (Approved) |
-| Status | Approved |
-| Documento | `architecture-lab/PI-004.md` |
-| Objetivo | Definir a arquitetura do domínio patrimonial: Aggregate Root Portfolio, Financial Events, Projections, Bounded Contexts, Invariantes |
-| Entregável esperado | Especificação completa da arquitetura patrimonial (12 DAs, 13 Invariantes, 4 Bounded Contexts) |
-| Resultado | Arquitetura do domínio patrimonial consolidada |
-| Próximo passo | **EWO-002** — Slice 1 (CLOSED), Slice 2 (CLOSED), Slice 3 (IMPLEMENTADO). Próxima etapa: **Engineering Review da Slice 3**. |
+| Campo               | Valor                                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Identificador       | PI-004                                                                                                                               |
+| Versão              | v1.0 (Approved)                                                                                                                      |
+| Status              | COMPLETED                                                                                                                            |
+| Documento           | `architecture-lab/PI-004.md`                                                                                                         |
+| Objetivo            | Definir a arquitetura do domínio patrimonial: Aggregate Root Portfolio, Financial Events, Projections, Bounded Contexts, Invariantes |
+| Entregável esperado | Especificação completa da arquitetura patrimonial (12 DAs, 13 Invariantes, 4 Bounded Contexts)                                       |
+| Resultado           | Domínio Patrimonial implementado via EWO-002 (9 Slices, 362 testes, 12/12 DAs, 11/13 Invariantes)                                   |
+| Próximo passo       | **EWO-003** — Application Layer                                                                                                      |
 
-> **Resumo Operacional Canônico:** PI-004 aprovada define Portfolio como Aggregate Root principal, Financial Events como mecanismo de evolução patrimonial, Projections como visões derivadas. Personal Finance Domain e Decision Support como módulos complementares. ER-004 validou aderência ao Core Foundation e estimou 8-11 slices para EWO-002.
+> **Resumo Operacional Canônico:** PI-004 define Portfolio como Aggregate Root principal, Financial Events como mecanismo de evolução patrimonial, Projections como visões derivadas. Implementado via EWO-002 (9 Slices). PI-005 usa esse domínio como base para a Application Layer.
 
 ### ER-004 v1.0 — Engineering Review da PI-004 (Approved)
 
-| Campo | Valor |
-|-------|-------|
-| Identificador | ER-004 |
-| Versão | v1.0 (Approved) |
-| Status | Approved |
-| Documento | `architecture-lab/ER-004.md` |
-| PI Referenciada | PI-004 v1.0 (Approved) |
-| Resultado | Gap analysis completa, aderência ao Core Foundation validada, 8-11 slices estimadas. Aprovada para EWO-002. |
+| Campo           | Valor                                                                                                       |
+| --------------- | ----------------------------------------------------------------------------------------------------------- |
+| Identificador   | ER-004                                                                                                      |
+| Versão          | v1.0 (Approved)                                                                                             |
+| Status          | Approved                                                                                                    |
+| Documento       | `architecture-lab/ER-004.md`                                                                                |
+| PI Referenciada | PI-004 v1.0 (Approved)                                                                                      |
+| Resultado       | Gap analysis completa, aderência ao Core Foundation validada, 8-11 slices estimadas. Aprovada para EWO-002. |
+
+### PI-005 v1.0 — Application Layer do Lio Feliz (Completed)
+
+| Campo               | Valor                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identificador       | PI-005                                                                                                                                      |
+| Versão              | v1.0 (Approved)                                                                                                                             |
+| Status              | COMPLETED                                                                                                                                   |
+| Documento           | `architecture-lab/PI-005.md`                                                                                                                |
+| Objetivo            | Definir a arquitetura da Application Layer: CQRS, Ports, DTOs, Services, Dispatcher, Handlers, Application Errors, Unit of Work            |
+| Entregável esperado | 5 Commands, 9 Queries, 14 Services, 9 Ports, 15 DTOs, 1 Dispatcher, 3 Handlers, 6 Application Errors, 1 Validator                          |
+| Resultado           | Application Layer implementada via EWO-003 (8 Slices, 528 testes, 14 Services, 9 Ports, 15 DTOs, 3 Handlers)                               |
+| Próximo passo       | **EWO-004** — Infrastructure Layer (implementação concreta dos Ports)                                                                       |
+
+> **Resumo Operacional Canônico:** PI-005 define a Application Layer como uma camada fina de orquestração CQRS. 5 Commands e 9 Queries são processados por um Dispatcher com Unit of Work (Commands transacionais, Queries sem transação). 14 Services implementam casos de uso. 9 Ports definem contratos com Infrastructure. 15 DTOs transportam dados sem expor entidades do domínio. 3 Domain Event Handlers reagem a eventos. ER-005 aprovou a PI-005 com 3 não conformidades corrigidas. EWO-003 implementou em 8 Slices com 528 testes.
+
+### ER-005 v1.0 — Engineering Review da PI-005 (Approved)
+
+| Campo           | Valor                                                                                                                       |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Identificador   | ER-005                                                                                                                      |
+| Versão          | v1.0 (Approved)                                                                                                             |
+| Status          | Approved                                                                                                                    |
+| Documento       | `architecture-lab/ER-005.md`                                                                                                |
+| PI Referenciada | PI-005 v1.0 (Approved)                                                                                                      |
+| Resultado       | 14 dimensões auditadas, 3 não conformidades corrigidas, compatibilidade com PI-001 a PI-004 validada. Aprovada para EWO-003. |
 
 ## Baseline Arquitetural Atual
 
@@ -1066,11 +1111,11 @@ PI-003 — Canonical Operations & Event Flow Architecture
 
 ### Resumo Executivo
 
-| PI | Papel | Descrição |
-|----|-------|-----------|
-| PI-001 | Como interpretar | Transforma informações externas em Operações Canônicas |
+| PI     | Papel                      | Descrição                                                                  |
+| ------ | -------------------------- | -------------------------------------------------------------------------- |
+| PI-001 | Como interpretar           | Transforma informações externas em Operações Canônicas                     |
 | PI-002 | O que representa o domínio | Define a ontologia, identidade, contratos e invariantes do Modelo Canônico |
-| PI-003 | Como o domínio evolui | Estabelece a cadeia causal Operação → Evento → Transição → Estado |
+| PI-003 | Como o domínio evolui      | Estabelece a cadeia causal Operação → Evento → Transição → Estado          |
 
 ### Fluxo Arquitetural Geral
 
@@ -1095,10 +1140,12 @@ Carteira Oficial
 - PI-001 — Interpretation Layer
 - PI-002 — Canonical Investment Model
 - PI-003 — Canonical Operations & Event Flow Architecture
+- PI-004 — Modelo Patrimonial (COMPLETED)
+- PI-005 — Application Layer (COMPLETED)
 
 ### Próxima EWO
 
-- EWO-002 — Implementação do Domínio Patrimonial
+- EWO-004 — Infrastructure Layer
 
 ### Checklist para futuras Engineering Work Orders
 
@@ -1157,15 +1204,15 @@ O fluxo metodológico PI → EWO → Implementação → ER permanece inalterado
 
 A partir de 15/07/2026, os seguintes componentes da Core Foundation passam a ser considerados **infraestrutura consolidada e estável**:
 
-| Componente | Status | Arquivo |
-|---|---|---|
-| Result | 🧊 Congelado | `src/core/domain/result.ts` |
-| DomainError | 🧊 Congelado | `src/core/domain/errors.ts` |
-| ValueObject | 🧊 Congelado | `src/core/domain/value-object.ts` |
-| EntityId | 🧊 Congelado | `src/core/domain/entity-id.ts` |
-| Entity | 🧊 Congelado | `src/core/domain/entity.ts` |
+| Componente    | Status       | Arquivo                             |
+| ------------- | ------------ | ----------------------------------- |
+| Result        | 🧊 Congelado | `src/core/domain/result.ts`         |
+| DomainError   | 🧊 Congelado | `src/core/domain/errors.ts`         |
+| ValueObject   | 🧊 Congelado | `src/core/domain/value-object.ts`   |
+| EntityId      | 🧊 Congelado | `src/core/domain/entity-id.ts`      |
+| Entity        | 🧊 Congelado | `src/core/domain/entity.ts`         |
 | AggregateRoot | 🧊 Congelado | `src/core/domain/aggregate-root.ts` |
-| DomainEvent | 🧊 Congelado | `src/core/domain/domain-event.ts` |
+| DomainEvent   | 🧊 Congelado | `src/core/domain/domain-event.ts`   |
 
 ## Regras do Congelamento
 
@@ -1273,28 +1320,28 @@ Este é o fluxo oficial do projeto. Nenhuma implementação pode ignorá-lo.
 
 # Mapa de Dependências Documentais (GOV-007)
 
-| Documento | Finalidade | Pode gerar |
-|---|---|---|
-| PI | **Define** arquitetura — fonte canônica de engenharia | ER, EWO |
-| ER | **Valida** arquitetura — não altera, apenas analisa | PI revisada, GOV, BK |
-| EWO | **Materializa** arquitetura em Slices — não define arquitetura | Slices |
-| Slice | **Implementa** código | Sprint Report |
-| Sprint Report | **Registra** evidências de execução | PROJECT_STATUS |
-| GOV | **Evolui** metodologia | Bootstrap, Checklist |
-| PROJECT_STATUS | **Preserva** histórico oficial | Nunca gera implementação |
+| Documento      | Finalidade                                                     | Pode gerar               |
+| -------------- | -------------------------------------------------------------- | ------------------------ |
+| PI             | **Define** arquitetura — fonte canônica de engenharia          | ER, EWO                  |
+| ER             | **Valida** arquitetura — não altera, apenas analisa            | PI revisada, GOV, BK     |
+| EWO            | **Materializa** arquitetura em Slices — não define arquitetura | Slices                   |
+| Slice          | **Implementa** código                                          | Sprint Report            |
+| Sprint Report  | **Registra** evidências de execução                            | PROJECT_STATUS           |
+| GOV            | **Evolui** metodologia                                         | Bootstrap, Checklist     |
+| PROJECT_STATUS | **Preserva** histórico oficial                                 | Nunca gera implementação |
 
 ## Papel de cada documento
 
-| Documento | Papel |
-|---|---|
-| PI | Define arquitetura. Fonte canônica de engenharia. Nenhum outro documento pode criar ou modificar arquitetura. |
-| ER | Valida arquitetura executada. Não altera. Apenas analisa. |
-| EWO | Planeja e organiza a implementação. Não cria arquitetura. Materializa decisões já aprovadas em PIs. |
-| GOV | Evolui metodologia. Registra lições e convenções. |
-| Sprint Report | Registra execução da slice. Evidência de conclusão. |
-| PROJECT_STATUS | Preserva histórico permanente. |
-| PROJECT_BOOTSTRAP | Coordena toda a operação. Runtime oficial. |
-| AI_OPERATION_CHECKLIST | Controla execução operacional. Checklist obrigatório. |
+| Documento              | Papel                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------- |
+| PI                     | Define arquitetura. Fonte canônica de engenharia. Nenhum outro documento pode criar ou modificar arquitetura. |
+| ER                     | Valida arquitetura executada. Não altera. Apenas analisa.                                                     |
+| EWO                    | Planeja e organiza a implementação. Não cria arquitetura. Materializa decisões já aprovadas em PIs.           |
+| GOV                    | Evolui metodologia. Registra lições e convenções.                                                             |
+| Sprint Report          | Registra execução da slice. Evidência de conclusão.                                                           |
+| PROJECT_STATUS         | Preserva histórico permanente.                                                                                |
+| PROJECT_BOOTSTRAP      | Coordena toda a operação. Runtime oficial.                                                                    |
+| AI_OPERATION_CHECKLIST | Controla execução operacional. Checklist obrigatório.                                                         |
 
 ## Regra de Precedência Documental
 
@@ -1330,12 +1377,12 @@ A verificação de workspace é uma **responsabilidade do Agente Executor** (Ope
 
 ## Causa Raiz
 
-| Fator | Detalhe |
-|-------|---------|
-| Working directory padrão | A sessão foi iniciada em `C:\`, sem vinculação a um workspace específico |
+| Fator                    | Detalhe                                                                                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Working directory padrão | A sessão foi iniciada em `C:\`, sem vinculação a um workspace específico                                               |
 | AGENTS.md não consultado | A instrução explícita "Sempre verifique o working directory antes de iniciar" não foi executada antes da implementação |
-| Ausência de bloqueio | Nenhum mecanismo automático impede a IA de operar em diretório não canônico |
-| Clone residual | `C:\lio-feliz` existia como clone residual, mas não era o diretório oficial |
+| Ausência de bloqueio     | Nenhum mecanismo automático impede a IA de operar em diretório não canônico                                            |
+| Clone residual           | `C:\lio-feliz` existia como clone residual, mas não era o diretório oficial                                            |
 
 ## Medidas Preventivas
 
@@ -1347,6 +1394,7 @@ A verificação de workspace é uma **responsabilidade do Agente Executor** (Ope
 ## Regra de Comportamento (Agente Executor)
 
 Se o working directory atual não corresponder ao caminho canônico `H:\Lio Feliz\`:
+
 1. Interromper imediatamente qualquer inferência operacional.
 2. Reportar a divergência ao usuário com o caminho correto.
 3. Aguardar instruções antes de prosseguir.
@@ -1382,11 +1430,11 @@ O Agente Executor **deve** ser iniciado exclusivamente pelos scripts oficiais lo
 
 ## Scripts Oficiais
 
-| Script | Finalidade |
-|--------|-----------|
+| Script                      | Finalidade                                                                                                                                    |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `tools/workspace-check.ps1` | Workspace Guard — valida diretório, git, remote, HEAD, branch e working tree. Exit Code 0 = OK, 1 = erro. Reutilizável por outras automações. |
-| `tools/start-opencode.ps1` | Inicialização completa: valida workspace e abre o OpenCode. |
-| `tools/start-opencode.bat` | Equivalente CMD para ambientes sem PowerShell. |
+| `tools/start-opencode.ps1`  | Inicialização completa: valida workspace e abre o OpenCode.                                                                                   |
+| `tools/start-opencode.bat`  | Equivalente CMD para ambientes sem PowerShell.                                                                                                |
 
 ## Fluxo Obrigatório de Inicialização
 
@@ -1416,16 +1464,16 @@ O Passo 0 é inomitível para o Agente Executor. Se o Workspace Guard falhar, ne
 
 O `workspace-check.ps1` foi endurecido para atuar como **guardião bloqueante**. As seguintes verificações são obrigatórias:
 
-| # | Verificação | Critério |
-|---|-------------|----------|
-| 1 | Diretório oficial | `H:\Lio Feliz` deve existir |
-| 2 | Git toplevel | `git rev-parse --show-toplevel` deve corresponder exatamente |
-| 3 | Remote | `origin` deve ser `git@github.com:rafaz0/lio-feliz.git` |
-| 4 | HEAD | `git rev-parse HEAD` deve existir |
-| 5 | Branch | Deve ser `main` |
-| 6 | Working Tree | Verificada (limpa/suja — informativo, não bloqueante) |
-| 7 | Documentos obrigatórios | AGENTS.md, PROJECT_BOOTSTRAP.md, AI_OPERATION_CHECKLIST.md, WORKSPACE_FINGERPRINT.md |
-| 8 | Clone duplicado | Verifica existência de `C:\lio-feliz` (alerta) |
+| #   | Verificação             | Critério                                                                             |
+| --- | ----------------------- | ------------------------------------------------------------------------------------ |
+| 1   | Diretório oficial       | `H:\Lio Feliz` deve existir                                                          |
+| 2   | Git toplevel            | `git rev-parse --show-toplevel` deve corresponder exatamente                         |
+| 3   | Remote                  | `origin` deve ser `git@github.com:rafaz0/lio-feliz.git`                              |
+| 4   | HEAD                    | `git rev-parse HEAD` deve existir                                                    |
+| 5   | Branch                  | Deve ser `main`                                                                      |
+| 6   | Working Tree            | Verificada (limpa/suja — informativo, não bloqueante)                                |
+| 7   | Documentos obrigatórios | AGENTS.md, PROJECT_BOOTSTRAP.md, AI_OPERATION_CHECKLIST.md, WORKSPACE_FINGERPRINT.md |
+| 8   | Clone duplicado         | Verifica existência de `C:\lio-feliz` (alerta)                                       |
 
 **Se qualquer item obrigatório falhar:** o Workspace Guard imprime erro em vermelho, explica o motivo e retorna Exit Code 1. O script `start-opencode.ps1` (e `.bat`) bloqueia a abertura do OpenCode.
 
@@ -1468,11 +1516,11 @@ Todo clone adicional é considerado secundário. Jamais iniciar engenharia em ou
 
 ## Scripts Atualizados
 
-| Script | Descrição |
-|--------|-----------|
+| Script                      | Descrição                                                                   |
+| --------------------------- | --------------------------------------------------------------------------- |
 | `tools/workspace-check.ps1` | Workspace Guard — guardião bloqueante com fingerprint, clone check e banner |
-| `tools/start-opencode.ps1` | Inicialização oficial — delega ao Workspace Guard, bloqueia se falhar |
-| `tools/start-opencode.bat` | Equivalente CMD — delega ao Workspace Guard via PowerShell |
+| `tools/start-opencode.ps1`  | Inicialização oficial — delega ao Workspace Guard, bloqueia se falhar       |
+| `tools/start-opencode.bat`  | Equivalente CMD — delega ao Workspace Guard via PowerShell                  |
 
 ---
 
@@ -1505,25 +1553,25 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 **Título:** Implementação do Núcleo Arquitetural (Core Foundation + Modelo Canônico)
 **Status:** ✅ Concluído
 
-| Fase | Status |
-|---|---|
-| C-001 — Core Foundation (5 Slices) | ✅ Concluído |
-| C-002 — Modelo Canônico (3 Slices) | ✅ Concluído |
-| ER-C001-C002-001 | ✅ Aprovada |
-| GOV-006 — Consolidação | ✅ Implementado |
+| Fase                               | Status          |
+| ---------------------------------- | --------------- |
+| C-001 — Core Foundation (5 Slices) | ✅ Concluído    |
+| C-002 — Modelo Canônico (3 Slices) | ✅ Concluído    |
+| ER-C001-C002-001                   | ✅ Aprovada     |
+| GOV-006 — Consolidação             | ✅ Implementado |
 
-| Slice | Componentes | Testes | Commit |
-|---|---|---|---|
-| C-001 Slice 01 | Result + DomainError | 30 | `a0fdfcb` |
-| C-001 Slice 02 | ValueObject | 17 | `4ca45f2` |
-| C-001 Slice 03 | Entity + EntityId | 16 | `1fbadf2` |
-| C-001 Slice 04 | AggregateRoot | 11 | `2e09435` |
-| C-001 Slice 05 | DomainEvent | 9 | `3051a37` |
-| C-002 Slice 01A | Ticker | 17 | `5f2f1ab` |
-| C-002 Slice 01B | Quantity | 15 | `0c3ede8` |
-| C-002 Slice 01C | Money | 23 | `aaa9df3` |
-| C-002 Slice 02 | AssetId, PortfolioId, OperationId, InstitutionId | 24 | `d320399` |
-| C-002 Slice 03 | Asset | 13 | `05b7259` |
+| Slice           | Componentes                                      | Testes | Commit    |
+| --------------- | ------------------------------------------------ | ------ | --------- |
+| C-001 Slice 01  | Result + DomainError                             | 30     | `a0fdfcb` |
+| C-001 Slice 02  | ValueObject                                      | 17     | `4ca45f2` |
+| C-001 Slice 03  | Entity + EntityId                                | 16     | `1fbadf2` |
+| C-001 Slice 04  | AggregateRoot                                    | 11     | `2e09435` |
+| C-001 Slice 05  | DomainEvent                                      | 9      | `3051a37` |
+| C-002 Slice 01A | Ticker                                           | 17     | `5f2f1ab` |
+| C-002 Slice 01B | Quantity                                         | 15     | `0c3ede8` |
+| C-002 Slice 01C | Money                                            | 23     | `aaa9df3` |
+| C-002 Slice 02  | AssetId, PortfolioId, OperationId, InstitutionId | 24     | `d320399` |
+| C-002 Slice 03  | Asset                                            | 13     | `05b7259` |
 
 **Total: 10 Slices, 175 testes, zero regressões.**
 
@@ -1534,17 +1582,17 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 **Título:** Implementação do Domínio Patrimonial
 **Status:** ✅ Concluída
 
-| Slice | Componentes | Testes | Commit | Status |
-|---|---|---|---|---|
-| Slice 1 — Fundação | FinancialEvent (abstração base), Position | 22 | `2b18059` | ✅ CLOSED |
-| Slice 2 — Operações | BuyEvent, SellEvent | 24 | `8763e65` | ✅ CLOSED |
-| Slice 3 — Rendimentos | DividendEvent, JcpEvent | 24 | `c62444d` | ✅ CLOSED |
-| Slice 4 — Corporativos/Ajuste | Bonus, Split, Grouping, Amortization, Adjustment | 59 | `16b5714` | ✅ CLOSED |
-| Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root | 13 | `9364605` | ✅ CLOSED |
-| Slice 6 — Projeções | PortfolioProjector | 19 | `d7a72c3` | ✅ CLOSED |
-| Slice 7 — Analíticas | Asset Allocation, Performance | 10 | `37668de` | ✅ CLOSED |
-| Slice 8 — Consolidada | Portfolio History, Wealth Projection | 8 | `d31f56f` | ✅ CLOSED |
-| Slice 9 — Consolidação | Todas DAs + Invariantes | 9 | `fb686ca` | ✅ CLOSED |
+| Slice                            | Componentes                                      | Testes | Commit    | Status    |
+| -------------------------------- | ------------------------------------------------ | ------ | --------- | --------- |
+| Slice 1 — Fundação               | FinancialEvent (abstração base), Position        | 22     | `2b18059` | ✅ CLOSED |
+| Slice 2 — Operações              | BuyEvent, SellEvent                              | 24     | `8763e65` | ✅ CLOSED |
+| Slice 3 — Rendimentos            | DividendEvent, JcpEvent                          | 24     | `c62444d` | ✅ CLOSED |
+| Slice 4 — Corporativos/Ajuste    | Bonus, Split, Grouping, Amortization, Adjustment | 59     | `16b5714` | ✅ CLOSED |
+| Slice 5 — Portfolio + Invariants | Portfolio Aggregate Root                         | 13     | `9364605` | ✅ CLOSED |
+| Slice 6 — Projeções              | PortfolioProjector                               | 19     | `d7a72c3` | ✅ CLOSED |
+| Slice 7 — Analíticas             | Asset Allocation, Performance                    | 10     | `37668de` | ✅ CLOSED |
+| Slice 8 — Consolidada            | Portfolio History, Wealth Projection             | 8      | `d31f56f` | ✅ CLOSED |
+| Slice 9 — Consolidação           | Todas DAs + Invariantes                          | 9      | `fb686ca` | ✅ CLOSED |
 
 **Progresso: 9/9 Slices concluídas. 362 testes. Zero regressões. ✅ EWO-002 CONCLUÍDA**
 
@@ -1552,25 +1600,25 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 
 ### Knowledge Captures (KC)
 
-| Código | Título | Origem | Destino |
-|--------|--------|--------|---------|
+| Código | Título                                                 | Origem     | Destino                                    |
+| ------ | ------------------------------------------------------ | ---------- | ------------------------------------------ |
 | KC-001 | Aggregate Root como Guardião Exclusivo das Invariantes | Slice 5 ER | Incorporado permanentemente na arquitetura |
-| KC-002 | Projector como State Machine sobre Event Stream | Slice 6 ER | Incorporado permanentemente na arquitetura |
-| KC-003 | avgCost é sempre derivado | Slice 6 ER | Incorporado permanentemente na arquitetura |
-| KC-004 | Estados Deriváveis não devem ser Persistidos | Slice 6 ER | Incorporado permanentemente na arquitetura |
-| KC-005 | Projeções Analíticas são Derivações de Projeções | Slice 7 ER | Incorporado permanentemente na arquitetura |
+| KC-002 | Projector como State Machine sobre Event Stream        | Slice 6 ER | Incorporado permanentemente na arquitetura |
+| KC-003 | avgCost é sempre derivado                              | Slice 6 ER | Incorporado permanentemente na arquitetura |
+| KC-004 | Estados Deriváveis não devem ser Persistidos           | Slice 6 ER | Incorporado permanentemente na arquitetura |
+| KC-005 | Projeções Analíticas são Derivações de Projeções       | Slice 7 ER | Incorporado permanentemente na arquitetura |
 
 ### Knowledge Backlog (KB)
 
-| Código | Título | Tipo | Destino |
-|--------|--------|------|---------|
+| Código | Título                                                      | Tipo                    | Destino              |
+| ------ | ----------------------------------------------------------- | ----------------------- | -------------------- |
 | KB-006 | PortfolioHistoryCalculator — Otimização Incremental (O(n²)) | TD (Evolução Planejada) | KNOWLEDGE_BACKLOG.md |
 
 ### Technical Debt (TD)
 
-| Código | Descrição | Prioridade | Destino |
-|--------|-----------|------------|---------|
-| KB-006 | PortfolioHistoryCalculator O(n²) — injetar Projector mantendo estado incremental | Baixa | KNOWLEDGE_BACKLOG.md |
+| Código | Descrição                                                                        | Prioridade | Destino              |
+| ------ | -------------------------------------------------------------------------------- | ---------- | -------------------- |
+| KB-006 | PortfolioHistoryCalculator O(n²) — injetar Projector mantendo estado incremental | Baixa      | KNOWLEDGE_BACKLOG.md |
 
 Nenhum novo conhecimento adicional foi identificado durante o Engineering Closure. Todos os KCs e KBs já possuem destinos oficiais.
 
@@ -1659,6 +1707,7 @@ Política de Sincronização Obrigatória institucionalizada. Regra expandida: a
 ## v2.35
 
 Sprint Documental GOV-010 — Consolidação final da governança pós-Engineering Audit 001.
+
 - AI_CONTEXT.md: Objetivo Atual atualizado para EWO-002.
 - PROJECT_BOOTSTRAP limpo: removidos resumos históricos PI-001/002/003 da seção "Próximo Passo Operacional"; Technical Roadmap movido para Strategic Backlog; Ordem de Precedência corrigida (Bootstrap #1); ER-004 marcada ✅ em Próximos Documentos Previstos; Engineering Outlook atualizada (PI-004✅, ER-004✅, EWO-002 próxima).
 - DOCUMENTATION_INDEX v1.37: removidos 9 documentos inexistentes (07_PROJECT_CONTEXT, 08_FEATURES, 09_ROADMAP, 10_CHANGELOG, 11_AI_INSTRUCTIONS, 13_DECISIONS, 14_DESIGN_PRINCIPLES, 15_PRODUCT_PHILOSOPHY, 09_STRATEGIC_BACKLOG caminho incorreto).
@@ -1667,7 +1716,7 @@ Sprint Documental GOV-010 — Consolidação final da governança pós-Engineeri
 - DEVELOPMENT_METHODOLOGY v2.16: seção Engineering Audit adicionada (§13), seção 13 obsoleta (Evoluções Planejadas) removida.
 - AI_OPERATION_CHECKLIST verificada — sem redundâncias com Bootstrap.
 - Governança consolidada — engenharia oficialmente apta para EWO-002.
-Bootstrap v2.35. AI_OPERATION_CHECKLIST v1.33. PROJECT_STATUS v1.43. DOCUMENTATION_INDEX v1.37.
+  Bootstrap v2.35. AI_OPERATION_CHECKLIST v1.33. PROJECT_STATUS v1.43. DOCUMENTATION_INDEX v1.37.
 
 ## v2.34
 

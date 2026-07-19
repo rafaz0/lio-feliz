@@ -73,6 +73,7 @@ O usuário utiliza o sistema para:
 ## O sistema faz
 
 ### Gestão de Carteira
+
 - Cadastro e acompanhamento de ativos (ações, FIIs, ETFs, BDRs, renda fixa, internacionais)
 - Cálculo de preço médio por ativo
 - Cálculo de patrimônio total e por classe
@@ -80,12 +81,14 @@ O usuário utiliza o sistema para:
 - Alocação por ativo, classe, país e moeda
 
 ### Movimentações Financeiras
+
 - Registro de compra e venda de ativos
 - Registro de dividendos e JCP
 - Registro de eventos corporativos: bonificações, desdobramentos (split), grupamentos, amortizações
 - Registro de ajustes históricos
 
 ### Dashboard
+
 - Resumo da situação patrimonial
 - Patrimônio total e evolução
 - Rendimento mensal
@@ -93,37 +96,44 @@ O usuário utiliza o sistema para:
 - Próximos eventos relevantes
 
 ### Proventos
+
 - Cálculo e acompanhamento de dividendos e JCP
 - Histórico de proventos recebidos
 
 ### Rebalanceamento
+
 - Situação atual da carteira vs. alocação desejada
 - Sugestão de próximos aportes para rebalanceamento
 - Baseado exclusivamente nas configurações do usuário
 
 ### Gestão Fiscal
+
 - Posição em 31/12 para declaração de IR
 - Dividendos, JCP e ganho de capital organizados por ano
 - Compensação de prejuízos
 - Relatórios para declaração anual
 
 ### Relatórios
+
 - Patrimônio, rentabilidade, proventos
 - Histórico e evolução patrimonial
 - Relatórios fiscais
 
 ### Integrações
+
 - Importação de dados da B3
 - Importação via CSV
 - APIs externas como fonte de dados (não como regra de negócio)
 
 ### Configurações
+
 - Moeda principal
 - Estratégia e metas
 - Percentuais desejados por classe de ativo
 - Preferências de importação e fiscais
 
 ### Assinaturas e Planos
+
 - Plano gratuito (funcionalidades limitadas)
 - Plano Premium (recursos avançados mediante assinatura)
 - Sistema de feature flags por plano
@@ -148,13 +158,13 @@ O MVP corresponde ao horizonte **MLP (Minimum Loveable Product)** do backlog ofi
 
 ## Funcionalidades MLP
 
-| Feature | Descrição |
-|---------|-----------|
-| FEAT-001 | Sistema de Assinaturas — planos gratuito e Premium |
-| FEAT-002 | Plano Gratuito — acesso limitado para novos usuários |
-| FEAT-003 | Plano Premium — todos os recursos avançados |
-| FEAT-004 | Subscription Engine — autenticação, planos, permissões |
-| FEAT-009 | Atualizações Automáticas — sincronização automática de dados |
+| Feature  | Descrição                                                       |
+| -------- | --------------------------------------------------------------- |
+| FEAT-001 | Sistema de Assinaturas — planos gratuito e Premium              |
+| FEAT-002 | Plano Gratuito — acesso limitado para novos usuários            |
+| FEAT-003 | Plano Premium — todos os recursos avançados                     |
+| FEAT-004 | Subscription Engine — autenticação, planos, permissões          |
+| FEAT-009 | Atualizações Automáticas — sincronização automática de dados    |
 | FEAT-014 | Template Oficial de Prompts — padronização de interações com IA |
 | FEAT-015 | Fluxo Oficial de Auditoria — formalização do ciclo de auditoria |
 
@@ -162,27 +172,27 @@ O MVP corresponde ao horizonte **MLP (Minimum Loveable Product)** do backlog ofi
 
 ## Funcionalidades Pós-MLP / Evolução
 
-| Feature | Descrição |
-|---------|-----------|
-| FEAT-005 | Integração Oficial com B3 |
+| Feature  | Descrição                                         |
+| -------- | ------------------------------------------------- |
+| FEAT-005 | Integração Oficial com B3                         |
 | FEAT-006 | Vida Financeira — controle de receitas e despesas |
-| FEAT-007 | Integração Carteira ↔ Vida Financeira |
-| FEAT-008 | Notificações Inteligentes |
-| FEAT-010 | Feature Flags por Plano |
-| FEAT-011 | ADR-009 — Arquitetura da Documentação |
-| FEAT-012 | Proventos Engine |
-| FEAT-016 | Sistema de Baselines da Documentação |
-| FEAT-018 | Linha do Tempo Patrimonial |
-| FEAT-019 | Replay Patrimonial |
+| FEAT-007 | Integração Carteira ↔ Vida Financeira             |
+| FEAT-008 | Notificações Inteligentes                         |
+| FEAT-010 | Feature Flags por Plano                           |
+| FEAT-011 | ADR-009 — Arquitetura da Documentação             |
+| FEAT-012 | Proventos Engine                                  |
+| FEAT-016 | Sistema de Baselines da Documentação              |
+| FEAT-018 | Linha do Tempo Patrimonial                        |
+| FEAT-019 | Replay Patrimonial                                |
 
 ## Funcionalidades de Visão / Longo Prazo
 
-| Feature | Descrição |
-|---------|-----------|
-| FEAT-013 | Governança Documental |
-| FEAT-017 | Governança Oficial do Projeto |
-| FEAT-020 | Inteligência Histórica |
-| FEAT-021 | Insights Comportamentais |
+| Feature  | Descrição                          |
+| -------- | ---------------------------------- |
+| FEAT-013 | Governança Documental              |
+| FEAT-017 | Governança Oficial do Projeto      |
+| FEAT-020 | Inteligência Histórica             |
+| FEAT-021 | Insights Comportamentais           |
 | FEAT-022 | Automação da Governança Documental |
 
 ---
@@ -214,46 +224,53 @@ Gestão fiscal (organização anual, IR)
 # 7. Fluxos do Usuário
 
 ## Onboarding
+
 Usuário acessa o sistema pela primeira vez → escolhe plano gratuito → configura moeda principal → define objetivos e metas → acessa o dashboard vazio.
 
 ## Importação da Carteira
+
 Usuário acessa módulo de importação → envia arquivo CSV ou conecta fonte de dados (B3) → sistema interpreta os dados → registra operações → consolida posições → exibe resultado.
 
 ## Atualização Automática
+
 Sistema verifica fontes de dados configuradas → busca novas informações → interpreta operações → registra eventos → atualiza posições e projeções → notifica o usuário (se configurado).
 
 ## Análise da Carteira
+
 Usuário acessa dashboard → visualiza patrimônio total, alocação, evolução → consulta posições detalhadas por ativo → analisa proventos recebidos → verifica rentabilidade.
 
 ## Proventos
+
 Sistema identifica proventos declarados (dividendos, JCP) → registra automaticamente → atualiza posições → disponibiliza histórico → organiza informações fiscais.
 
 ## Rebalanceamento
+
 Usuário configura percentuais desejados por classe → sistema compara com alocação atual → calcula diferenças → sugere próximos aportes → usuário ajusta estratégia.
 
 ## Imposto de Renda
+
 Sistema organiza informações por ano → calcula posição em 31/12 → compila dividendos, JCP, ganho de capital → disponibiliza relatórios → usuário exporta para declaração.
 
 ---
 
 # 8. Casos de Uso
 
-| Código | Nome | Ator | Objetivo |
-|--------|------|------|----------|
-| UC-001 | Consultar patrimônio | Usuário | Visualizar resumo completo da situação patrimonial |
-| UC-002 | Importar carteira | Usuário | Importar posições e operações de fonte externa |
-| UC-003 | Registrar operação | Usuário | Registrar compra, venda ou evento manualmente |
-| UC-004 | Consultar posição | Usuário | Visualizar detalhes de um ativo na carteira |
-| UC-005 | Acompanhar proventos | Usuário | Visualizar dividendos e JCP recebidos |
-| UC-006 | Rebalancear carteira | Usuário | Verificar alocação atual vs. desejada e planejar aportes |
-| UC-007 | Gerar relatório fiscal | Usuário | Obter informações organizadas para declaração de IR |
-| UC-008 | Configurar estratégia | Usuário | Definir percentuais desejados, metas e preferências |
-| UC-009 | Visualizar histórico | Usuário | Navegar pela evolução patrimonial ao longo do tempo |
-| UC-010 | Consultar rentabilidade | Usuário | Verificar retorno dos investimentos por período |
-| UC-011 | Gerenciar assinatura | Usuário | Gerenciar plano, pagamento e recursos disponíveis |
-| UC-012 | Sincronizar dados | Sistema | Atualizar automaticamente informações de fonte externa |
-| UC-013 | Exportar dados | Usuário | Realizar backup ou exportar informações da carteira |
-| UC-014 | Acompanhar metas | Usuário | Visualizar progresso em relação a metas financeiras |
+| Código | Nome                    | Ator    | Objetivo                                                 |
+| ------ | ----------------------- | ------- | -------------------------------------------------------- |
+| UC-001 | Consultar patrimônio    | Usuário | Visualizar resumo completo da situação patrimonial       |
+| UC-002 | Importar carteira       | Usuário | Importar posições e operações de fonte externa           |
+| UC-003 | Registrar operação      | Usuário | Registrar compra, venda ou evento manualmente            |
+| UC-004 | Consultar posição       | Usuário | Visualizar detalhes de um ativo na carteira              |
+| UC-005 | Acompanhar proventos    | Usuário | Visualizar dividendos e JCP recebidos                    |
+| UC-006 | Rebalancear carteira    | Usuário | Verificar alocação atual vs. desejada e planejar aportes |
+| UC-007 | Gerar relatório fiscal  | Usuário | Obter informações organizadas para declaração de IR      |
+| UC-008 | Configurar estratégia   | Usuário | Definir percentuais desejados, metas e preferências      |
+| UC-009 | Visualizar histórico    | Usuário | Navegar pela evolução patrimonial ao longo do tempo      |
+| UC-010 | Consultar rentabilidade | Usuário | Verificar retorno dos investimentos por período          |
+| UC-011 | Gerenciar assinatura    | Usuário | Gerenciar plano, pagamento e recursos disponíveis        |
+| UC-012 | Sincronizar dados       | Sistema | Atualizar automaticamente informações de fonte externa   |
+| UC-013 | Exportar dados          | Usuário | Realizar backup ou exportar informações da carteira      |
+| UC-014 | Acompanhar metas        | Usuário | Visualizar progresso em relação a metas financeiras      |
 
 ---
 
@@ -261,104 +278,104 @@ Sistema organiza informações por ano → calcula posição em 31/12 → compil
 
 ## Módulo: Carteira
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-001 | O sistema deve permitir o cadastro de ativos na carteira do usuário | UC-003 |
-| FR-002 | O sistema deve calcular o preço médio de cada ativo com base nas operações registradas | UC-004 |
-| FR-003 | O sistema deve calcular o patrimônio total e por ativo | UC-001 |
-| FR-004 | O sistema deve calcular a alocação percentual por ativo | UC-006 |
-| FR-005 | O sistema deve manter histórico de posições ao longo do tempo | UC-009 |
-| FR-006 | O sistema deve calcular a rentabilidade por ativo e por período | UC-010 |
+| ID     | Descrição                                                                              | UC relacionado |
+| ------ | -------------------------------------------------------------------------------------- | -------------- |
+| FR-001 | O sistema deve permitir o cadastro de ativos na carteira do usuário                    | UC-003         |
+| FR-002 | O sistema deve calcular o preço médio de cada ativo com base nas operações registradas | UC-004         |
+| FR-003 | O sistema deve calcular o patrimônio total e por ativo                                 | UC-001         |
+| FR-004 | O sistema deve calcular a alocação percentual por ativo                                | UC-006         |
+| FR-005 | O sistema deve manter histórico de posições ao longo do tempo                          | UC-009         |
+| FR-006 | O sistema deve calcular a rentabilidade por ativo e por período                        | UC-010         |
 
 ## Módulo: Movimentações
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-007 | O sistema deve registrar operações de compra e venda de ativos | UC-003 |
-| FR-008 | O sistema deve registrar dividendos e JCP recebidos | UC-005 |
-| FR-009 | O sistema deve registrar eventos corporativos (bonificação, split, grupamento, amortização, ajuste) | UC-003 |
-| FR-010 | O sistema deve recalcular posições e preço médio após cada evento | UC-004 |
+| ID     | Descrição                                                                                           | UC relacionado |
+| ------ | --------------------------------------------------------------------------------------------------- | -------------- |
+| FR-007 | O sistema deve registrar operações de compra e venda de ativos                                      | UC-003         |
+| FR-008 | O sistema deve registrar dividendos e JCP recebidos                                                 | UC-005         |
+| FR-009 | O sistema deve registrar eventos corporativos (bonificação, split, grupamento, amortização, ajuste) | UC-003         |
+| FR-010 | O sistema deve recalcular posições e preço médio após cada evento                                   | UC-004         |
 
 ## Módulo: Dashboard
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-011 | O sistema deve exibir o patrimônio total do usuário | UC-001 |
-| FR-012 | O sistema deve exibir a evolução patrimonial em gráfico ou linha do tempo | UC-009 |
-| FR-013 | O sistema deve exibir o rendimento mensal | UC-001 |
-| FR-014 | O sistema deve exibir os dividendos recebidos no período | UC-005 |
+| ID     | Descrição                                                                 | UC relacionado |
+| ------ | ------------------------------------------------------------------------- | -------------- |
+| FR-011 | O sistema deve exibir o patrimônio total do usuário                       | UC-001         |
+| FR-012 | O sistema deve exibir a evolução patrimonial em gráfico ou linha do tempo | UC-009         |
+| FR-013 | O sistema deve exibir o rendimento mensal                                 | UC-001         |
+| FR-014 | O sistema deve exibir os dividendos recebidos no período                  | UC-005         |
 
 ## Módulo: Gestão Fiscal
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-015 | O sistema deve organizar informações para declaração de IR por ano | UC-007 |
-| FR-016 | O sistema deve calcular posição em 31/12 para cada ativo | UC-007 |
-| FR-017 | O sistema deve consolidar dividendos, JCP e ganho de capital por ano | UC-007 |
-| FR-018 | O sistema deve permitir compensação de prejuízos | UC-007 |
+| ID     | Descrição                                                            | UC relacionado |
+| ------ | -------------------------------------------------------------------- | -------------- |
+| FR-015 | O sistema deve organizar informações para declaração de IR por ano   | UC-007         |
+| FR-016 | O sistema deve calcular posição em 31/12 para cada ativo             | UC-007         |
+| FR-017 | O sistema deve consolidar dividendos, JCP e ganho de capital por ano | UC-007         |
+| FR-018 | O sistema deve permitir compensação de prejuízos                     | UC-007         |
 
 ## Módulo: Rebalanceamento
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-019 | O sistema deve permitir configurar percentuais desejados por classe de ativo | UC-008 |
-| FR-020 | O sistema deve comparar alocação atual com a desejada | UC-006 |
-| FR-021 | O sistema deve sugerir próximos aportes para rebalanceamento | UC-006 |
+| ID     | Descrição                                                                    | UC relacionado |
+| ------ | ---------------------------------------------------------------------------- | -------------- |
+| FR-019 | O sistema deve permitir configurar percentuais desejados por classe de ativo | UC-008         |
+| FR-020 | O sistema deve comparar alocação atual com a desejada                        | UC-006         |
+| FR-021 | O sistema deve sugerir próximos aportes para rebalanceamento                 | UC-006         |
 
 ## Módulo: Integrações
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-022 | O sistema deve importar dados de arquivos CSV | UC-002 |
-| FR-023 | O sistema deve sincronizar dados com a B3 (quando disponível) | UC-012 |
-| FR-024 | As integrações não podem executar regras financeiras | — |
+| ID     | Descrição                                                     | UC relacionado |
+| ------ | ------------------------------------------------------------- | -------------- |
+| FR-022 | O sistema deve importar dados de arquivos CSV                 | UC-002         |
+| FR-023 | O sistema deve sincronizar dados com a B3 (quando disponível) | UC-012         |
+| FR-024 | As integrações não podem executar regras financeiras          | —              |
 
 ## Módulo: Configurações
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-025 | O sistema deve permitir configurar a moeda principal | UC-008 |
-| FR-026 | O sistema deve permitir configurar metas financeiras | UC-014 |
-| FR-027 | O sistema deve permitir configurar percentuais desejados por classe | UC-008 |
+| ID     | Descrição                                                           | UC relacionado |
+| ------ | ------------------------------------------------------------------- | -------------- |
+| FR-025 | O sistema deve permitir configurar a moeda principal                | UC-008         |
+| FR-026 | O sistema deve permitir configurar metas financeiras                | UC-014         |
+| FR-027 | O sistema deve permitir configurar percentuais desejados por classe | UC-008         |
 
 ## Módulo: Relatórios
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-028 | O sistema deve gerar relatório de patrimônio | UC-001 |
-| FR-029 | O sistema deve gerar relatório de rentabilidade | UC-010 |
-| FR-030 | O sistema deve gerar relatório de proventos | UC-005 |
-| FR-031 | O sistema deve gerar relatório fiscal para IR | UC-007 |
+| ID     | Descrição                                       | UC relacionado |
+| ------ | ----------------------------------------------- | -------------- |
+| FR-028 | O sistema deve gerar relatório de patrimônio    | UC-001         |
+| FR-029 | O sistema deve gerar relatório de rentabilidade | UC-010         |
+| FR-030 | O sistema deve gerar relatório de proventos     | UC-005         |
+| FR-031 | O sistema deve gerar relatório fiscal para IR   | UC-007         |
 
 ## Módulo: Assinaturas
 
-| ID | Descrição | UC relacionado |
-|----|-----------|----------------|
-| FR-032 | O sistema deve oferecer plano gratuito com funcionalidades limitadas | UC-011 |
-| FR-033 | O sistema deve oferecer plano Premium com recursos avançados | UC-011 |
-| FR-034 | O sistema deve controlar acesso a funcionalidades por plano | UC-011 |
+| ID     | Descrição                                                            | UC relacionado |
+| ------ | -------------------------------------------------------------------- | -------------- |
+| FR-032 | O sistema deve oferecer plano gratuito com funcionalidades limitadas | UC-011         |
+| FR-033 | O sistema deve oferecer plano Premium com recursos avançados         | UC-011         |
+| FR-034 | O sistema deve controlar acesso a funcionalidades por plano          | UC-011         |
 
 ---
 
 # 10. Requisitos Não Funcionais
 
-| ID | Categoria | Descrição |
-|----|-----------|-----------|
-| NFR-001 | Desempenho | O sistema deve processar operações e recalcular posições em tempo hábil para uso interativo |
-| NFR-002 | Desempenho | O sistema deve suportar centenas de eventos por portfólio sem degradação perceptível |
-| NFR-003 | Confiabilidade | Os cálculos financeiros (preço médio, patrimônio, rentabilidade) devem ser precisos e consistentes |
-| NFR-004 | Confiabilidade | O sistema deve preservar a integridade dos dados financeiros em todas as operações |
-| NFR-005 | Segurança | Dados financeiros do usuário devem ser armazenados de forma segura |
-| NFR-006 | Segurança | O sistema deve respeitar a privacidade dos dados do usuário |
-| NFR-007 | Disponibilidade | O sistema deve estar disponível para consulta e uso regulares |
-| NFR-008 | Sincronização | A sincronização com fontes externas não pode comprometer dados existentes |
-| NFR-009 | Sincronização | O usuário deve poder usar o sistema offline (consultas) com sincronização posterior |
-| NFR-010 | Usabilidade | A interface deve ser intuitiva para investidores iniciantes e experientes |
-| NFR-011 | Usabilidade | Informações complexas devem ser apresentadas de forma clara e organizada |
-| NFR-012 | Manutenibilidade | Regras de negócio devem ser independentes de tecnologia, APIs externas e fornecedores |
-| NFR-013 | Manutenibilidade | Novas funcionalidades devem ser adicionadas sem reestruturações profundas |
-| NFR-014 | Portabilidade | O usuário deve poder exportar seus dados a qualquer momento |
-| NFR-015 | Portabilidade | Nenhuma informação importante deve ficar presa a um fornecedor específico |
+| ID      | Categoria        | Descrição                                                                                          |
+| ------- | ---------------- | -------------------------------------------------------------------------------------------------- |
+| NFR-001 | Desempenho       | O sistema deve processar operações e recalcular posições em tempo hábil para uso interativo        |
+| NFR-002 | Desempenho       | O sistema deve suportar centenas de eventos por portfólio sem degradação perceptível               |
+| NFR-003 | Confiabilidade   | Os cálculos financeiros (preço médio, patrimônio, rentabilidade) devem ser precisos e consistentes |
+| NFR-004 | Confiabilidade   | O sistema deve preservar a integridade dos dados financeiros em todas as operações                 |
+| NFR-005 | Segurança        | Dados financeiros do usuário devem ser armazenados de forma segura                                 |
+| NFR-006 | Segurança        | O sistema deve respeitar a privacidade dos dados do usuário                                        |
+| NFR-007 | Disponibilidade  | O sistema deve estar disponível para consulta e uso regulares                                      |
+| NFR-008 | Sincronização    | A sincronização com fontes externas não pode comprometer dados existentes                          |
+| NFR-009 | Sincronização    | O usuário deve poder usar o sistema offline (consultas) com sincronização posterior                |
+| NFR-010 | Usabilidade      | A interface deve ser intuitiva para investidores iniciantes e experientes                          |
+| NFR-011 | Usabilidade      | Informações complexas devem ser apresentadas de forma clara e organizada                           |
+| NFR-012 | Manutenibilidade | Regras de negócio devem ser independentes de tecnologia, APIs externas e fornecedores              |
+| NFR-013 | Manutenibilidade | Novas funcionalidades devem ser adicionadas sem reestruturações profundas                          |
+| NFR-014 | Portabilidade    | O usuário deve poder exportar seus dados a qualquer momento                                        |
+| NFR-015 | Portabilidade    | Nenhuma informação importante deve ficar presa a um fornecedor específico                          |
 
 ---
 
@@ -384,33 +401,33 @@ Sistema organiza informações por ano → calcula posição em 31/12 → compil
 
 # 12. Relação com os Módulos
 
-| Módulo | FRs | UCs | Features |
-|--------|-----|-----|----------|
-| Carteira | FR-001 a FR-006 | UC-003, UC-004, UC-009, UC-010 | FEAT-007, FEAT-012 |
-| Movimentações | FR-007 a FR-010 | UC-003, UC-005 | FEAT-012 |
-| Dashboard | FR-011 a FR-014 | UC-001, UC-005, UC-009 | — |
-| Gestão Fiscal | FR-015 a FR-018 | UC-007 | — |
-| Rebalanceamento | FR-019 a FR-021 | UC-006, UC-008 | — |
-| Integrações | FR-022 a FR-024 | UC-002, UC-012 | FEAT-005 |
-| Configurações | FR-025 a FR-027 | UC-008, UC-014 | FEAT-006, FEAT-007 |
-| Relatórios | FR-028 a FR-031 | UC-001, UC-005, UC-007, UC-010 | FEAT-018, FEAT-019 |
-| Assinaturas | FR-032 a FR-034 | UC-011 | FEAT-001, FEAT-002, FEAT-003, FEAT-004, FEAT-010 |
+| Módulo          | FRs             | UCs                            | Features                                         |
+| --------------- | --------------- | ------------------------------ | ------------------------------------------------ |
+| Carteira        | FR-001 a FR-006 | UC-003, UC-004, UC-009, UC-010 | FEAT-007, FEAT-012                               |
+| Movimentações   | FR-007 a FR-010 | UC-003, UC-005                 | FEAT-012                                         |
+| Dashboard       | FR-011 a FR-014 | UC-001, UC-005, UC-009         | —                                                |
+| Gestão Fiscal   | FR-015 a FR-018 | UC-007                         | —                                                |
+| Rebalanceamento | FR-019 a FR-021 | UC-006, UC-008                 | —                                                |
+| Integrações     | FR-022 a FR-024 | UC-002, UC-012                 | FEAT-005                                         |
+| Configurações   | FR-025 a FR-027 | UC-008, UC-014                 | FEAT-006, FEAT-007                               |
+| Relatórios      | FR-028 a FR-031 | UC-001, UC-005, UC-007, UC-010 | FEAT-018, FEAT-019                               |
+| Assinaturas     | FR-032 a FR-034 | UC-011                         | FEAT-001, FEAT-002, FEAT-003, FEAT-004, FEAT-010 |
 
 ---
 
 # 13. Relação com o Backlog
 
-| FR | Feature | Horizonte |
-|----|---------|-----------|
-| FR-001 a FR-006 | FEAT-007 (Integração Carteira ↔ Vida Financeira), FEAT-012 (Proventos Engine) | MLP / Pós-MLP |
-| FR-007 a FR-010 | FEAT-012 (Proventos Engine) | Pós-MLP |
-| FR-011 a FR-014 | — (Dashboard é módulo base) | MLP |
-| FR-015 a FR-018 | — (Gestão Fiscal é módulo base) | MLP |
-| FR-019 a FR-021 | — (Rebalanceamento é módulo base) | MLP |
-| FR-022 a FR-024 | FEAT-005 (Integração B3) | Evolução |
-| FR-025 a FR-027 | FEAT-006 (Vida Financeira), FEAT-007 | Evolução |
-| FR-028 a FR-031 | FEAT-018 (Linha do Tempo), FEAT-019 (Replay) | Evolução |
-| FR-032 a FR-034 | FEAT-001, FEAT-002, FEAT-003, FEAT-004, FEAT-010 | MLP / Evolução |
+| FR              | Feature                                                                       | Horizonte      |
+| --------------- | ----------------------------------------------------------------------------- | -------------- |
+| FR-001 a FR-006 | FEAT-007 (Integração Carteira ↔ Vida Financeira), FEAT-012 (Proventos Engine) | MLP / Pós-MLP  |
+| FR-007 a FR-010 | FEAT-012 (Proventos Engine)                                                   | Pós-MLP        |
+| FR-011 a FR-014 | — (Dashboard é módulo base)                                                   | MLP            |
+| FR-015 a FR-018 | — (Gestão Fiscal é módulo base)                                               | MLP            |
+| FR-019 a FR-021 | — (Rebalanceamento é módulo base)                                             | MLP            |
+| FR-022 a FR-024 | FEAT-005 (Integração B3)                                                      | Evolução       |
+| FR-025 a FR-027 | FEAT-006 (Vida Financeira), FEAT-007                                          | Evolução       |
+| FR-028 a FR-031 | FEAT-018 (Linha do Tempo), FEAT-019 (Replay)                                  | Evolução       |
+| FR-032 a FR-034 | FEAT-001, FEAT-002, FEAT-003, FEAT-004, FEAT-010                              | MLP / Evolução |
 
 ---
 

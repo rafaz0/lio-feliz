@@ -30,7 +30,7 @@ Como garantir que todas as IAs e desenvolvedores possuam o mesmo entendimento do
 
 Confiar exclusivamente no código para documentar decisões.
 
-Rejeitada porque o código expressa *como* algo foi implementado, não *por que* foi decidido dessa forma.
+Rejeitada porque o código expressa _como_ algo foi implementado, não _por que_ foi decidido dessa forma.
 
 ### Alternativa 2: README.md como documentação principal
 
@@ -81,6 +81,6 @@ Negativas:
 
 ## Histórico
 
-| Data | Versão | Descrição |
-|------|--------|-----------|
-| 09/07/2026 | 1.0 | Criação do ADR. |
+| Data       | Versão | Descrição       |
+| ---------- | ------ | --------------- |
+| 09/07/2026 | 1.0    | Criação do ADR. |

@@ -42,12 +42,12 @@ export function buildPortfolioHistory(
       const priceAtDate = asset
         ? (asset.history.find((h) => h.date <= date)?.close ?? asset.price)
         : null;
-      const currentPrice = typeof overridePrice === "number"
-        ? overridePrice
-        : (priceAtDate ?? avgPrice);
+      const currentPrice =
+        typeof overridePrice === "number" ? overridePrice : (priceAtDate ?? avgPrice);
       const first = sorted.find((o) => o.ticker === ticker);
       const currency: Currency = first?.currency ?? "BRL";
-      const brlValue = currency === "USD" ? currentPrice * qty * (rates["USD"] ?? 1) : currentPrice * qty;
+      const brlValue =
+        currency === "USD" ? currentPrice * qty * (rates["USD"] ?? 1) : currentPrice * qty;
       totalValue += brlValue;
       const brlInvested = currency === "USD" ? totalCost * (rates["USD"] ?? 1) : totalCost;
       investedSum += brlInvested;

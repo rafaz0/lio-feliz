@@ -59,14 +59,14 @@ Toda funcionalidade deve ser projetada considerando:
 
 Automações implementadas:
 
-| Processo | Status |
-|----------|--------|
-| Cotações | ✅ Automático via BRAPI/Yahoo |
-| Dividendos | ✅ Automático via BRAPI/Yahoo |
-| Splits/Bonificações | 🟡 Parcial |
-| Eventos Corporativos | 🔴 Pendente |
-| Rebalanceamento | 🔴 Pendente |
-| Imposto de Renda | 🔴 Pendente |
+| Processo             | Status                        |
+| -------------------- | ----------------------------- |
+| Cotações             | ✅ Automático via BRAPI/Yahoo |
+| Dividendos           | ✅ Automático via BRAPI/Yahoo |
+| Splits/Bonificações  | 🟡 Parcial                    |
+| Eventos Corporativos | 🔴 Pendente                   |
+| Rebalanceamento      | 🔴 Pendente                   |
+| Imposto de Renda     | 🔴 Pendente                   |
 
 A Engine Orchestrator (`07_TECHNICAL_ANNEXES/05_ENGINE_ORCHESTRATOR.md`) é a camada responsável por coordenar todas as automações.
 
@@ -100,6 +100,6 @@ Negativas:
 
 ## Histórico
 
-| Data | Versão | Descrição |
-|------|--------|-----------|
-| 09/07/2026 | 1.0 | Criação do ADR. |
+| Data       | Versão | Descrição       |
+| ---------- | ------ | --------------- |
+| 09/07/2026 | 1.0    | Criação do ADR. |

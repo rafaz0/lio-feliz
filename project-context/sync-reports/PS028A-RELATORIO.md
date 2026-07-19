@@ -12,33 +12,33 @@
 
 ## 1. Achado INS-169
 
-| Campo | Valor |
-|-------|-------|
-| **ID** | INS-169 |
-| **Tipo** | Inconsistência de Consolidação |
-| **Severidade** | Baixa |
-| **Descrição** | AI_CONTEXT.md continha referências desatualizadas: 04_PORTFOLIO_LEDGER (N1), 05_PORTFOLIO_ENGINE (N0), pendências já concluídas |
-| **Status** | Corrigida |
+| Campo          | Valor                                                                                                                           |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **ID**         | INS-169                                                                                                                         |
+| **Tipo**       | Inconsistência de Consolidação                                                                                                  |
+| **Severidade** | Baixa                                                                                                                           |
+| **Descrição**  | AI_CONTEXT.md continha referências desatualizadas: 04_PORTFOLIO_LEDGER (N1), 05_PORTFOLIO_ENGINE (N0), pendências já concluídas |
+| **Status**     | Corrigida                                                                                                                       |
 
 ---
 
 ## 2. Correções Executadas
 
-| Item | Antes | Depois |
-|------|-------|--------|
-| Working Drafts — Ledger | 04_PORTFOLIO_LEDGER (v0.20, N1) | 04_PORTFOLIO_LEDGER (v0.30, N2) |
-| Working Drafts — Engine | 05_PORTFOLIO_ENGINE (v0.10, N0) | 05_PORTFOLIO_ENGINE (v0.20, N1) |
-| Documento em desenvolvimento | 04_PORTFOLIO_LEDGER (N1 → N2) | Removido (linha desnecessária) |
-| Pendência Ledger | Evoluir para N2 | Removida (concluída) |
-| Pendência Engine | Evoluir para N1 | Removida (concluída) |
-| Marco de Implementação | Já estava 🟢 ATINGIDO | Mantido |
+| Item                         | Antes                           | Depois                          |
+| ---------------------------- | ------------------------------- | ------------------------------- |
+| Working Drafts — Ledger      | 04_PORTFOLIO_LEDGER (v0.20, N1) | 04_PORTFOLIO_LEDGER (v0.30, N2) |
+| Working Drafts — Engine      | 05_PORTFOLIO_ENGINE (v0.10, N0) | 05_PORTFOLIO_ENGINE (v0.20, N1) |
+| Documento em desenvolvimento | 04_PORTFOLIO_LEDGER (N1 → N2)   | Removido (linha desnecessária)  |
+| Pendência Ledger             | Evoluir para N2                 | Removida (concluída)            |
+| Pendência Engine             | Evoluir para N1                 | Removida (concluída)            |
+| Marco de Implementação       | Já estava 🟢 ATINGIDO           | Mantido                         |
 
 ---
 
 ## 3. Inclusão do PGR-009
 
-| ID | Nome | Status |
-|----|------|--------|
+| ID      | Nome                               | Status                   |
+| ------- | ---------------------------------- | ------------------------ |
 | PGR-009 | Regeneração Completa do AI_CONTEXT | Implementada via PS#028A |
 
 **Objetivo:** Garantir que documentos derivados permaneçam sincronizados com o estado real do projeto.
@@ -47,12 +47,12 @@
 
 ## 4. Arquivos Modificados
 
-| Arquivo | Versão Anterior | Versão Nova |
-|---------|----------------|-------------|
-| project-context/AI_CONTEXT.md | v2.3 | v2.4 |
-| project-context/PROJECT_STATUS.md | v3.8 | v3.9 |
-| project-context/SYNC_HISTORY.md | — | Atualizado |
-| DOCUMENTACAO_COMPLETA.md | — | Regenerado |
+| Arquivo                           | Versão Anterior | Versão Nova |
+| --------------------------------- | --------------- | ----------- |
+| project-context/AI_CONTEXT.md     | v2.3            | v2.4        |
+| project-context/PROJECT_STATUS.md | v3.8            | v3.9        |
+| project-context/SYNC_HISTORY.md   | —               | Atualizado  |
+| DOCUMENTACAO_COMPLETA.md          | —               | Regenerado  |
 
 ---
 
@@ -67,4 +67,4 @@
 
 ---
 
-*PS#028A encerrado.*
+_PS#028A encerrado._

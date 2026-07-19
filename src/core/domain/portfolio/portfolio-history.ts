@@ -50,10 +50,7 @@ export class PortfolioHistoryCalculator {
     for (let i = 0; i < events.length; i++) {
       const window = events.slice(0, i + 1);
       const positions = projector.project(window);
-      const totalInvested = positions.reduce(
-        (sum, p) => sum + p.getTotalCost().getValue(),
-        0,
-      );
+      const totalInvested = positions.reduce((sum, p) => sum + p.getTotalCost().getValue(), 0);
       const event = events[i];
 
       snapshots.push(

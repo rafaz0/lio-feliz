@@ -209,14 +209,14 @@ Este contexto acompanha a operação durante todo o fluxo, permitindo que consum
 
 # 10. Relação com os Demais Documentos
 
-| Documento | Responsabilidade |
-|-----------|-----------------|
-| `02_TRANSACTIONS.md` | Define o que aconteceu — estrutura e regras das operações patrimoniais. |
-| `03_TRANSACTION_INTERPRETATION.md` | Define o que significa — regras de interpretação econômica. |
+| Documento                           | Responsabilidade                                                                 |
+| ----------------------------------- | -------------------------------------------------------------------------------- |
+| `02_TRANSACTIONS.md`                | Define o que aconteceu — estrutura e regras das operações patrimoniais.          |
+| `03_TRANSACTION_INTERPRETATION.md`  | Define o que significa — regras de interpretação econômica.                      |
 | `TRACE_TRANSACTION_ARCHITECTURE.md` | Arquitetura conceitual fundacional do Trace Transaction (Contrato Arquitetural). |
-| `TRACE_TRANSACTION.md` (este) | Como preservar e navegar o significado — Working Draft de rastreabilidade. |
-| `04_PORTFOLIO_LEDGER.md` | Como registrar o estado patrimonial resultante. |
-| `05_PORTFOLIO_ENGINE.md` | Como processar e calcular resultados patrimoniais. |
+| `TRACE_TRANSACTION.md` (este)       | Como preservar e navegar o significado — Working Draft de rastreabilidade.       |
+| `04_PORTFOLIO_LEDGER.md`            | Como registrar o estado patrimonial resultante.                                  |
+| `05_PORTFOLIO_ENGINE.md`            | Como processar e calcular resultados patrimoniais.                               |
 
 O fluxo conceitual segue:
 
@@ -468,6 +468,7 @@ A Rastreabilidade Derivada estende a Direta quando a ligação explícita não e
 ### Deve ser rastreado
 
 Elementos obrigatórios para reconstrução patrimonial:
+
 - operações econômicas;
 - interpretações aplicadas;
 - registros patrimoniais;
@@ -477,6 +478,7 @@ Elementos obrigatórios para reconstrução patrimonial:
 ### Pode ser rastreado
 
 Elementos opcionais com valor operacional:
+
 - metadados temporais;
 - versões de regras aplicadas;
 - eventos intermediários;
@@ -485,6 +487,7 @@ Elementos opcionais com valor operacional:
 ### Não pertence ao Trace
 
 Informações que não fazem parte da responsabilidade arquitetural do componente:
+
 - regras de negócio;
 - algoritmos de interpretação;
 - estrutura do Ledger;
