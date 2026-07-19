@@ -15,6 +15,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "@/presentation/app/root";
 import { SupabaseAuthService } from "@/integrations/supabase/auth-service";
+import { createPresentationDispatcher } from "@/integrations/dispatcher/presentation-dispatcher";
+import { SupabaseProjectionRepository } from "@/infrastructure/repositories/supabase-projection-repository";
 
 function NotFoundComponent() {
   return (
@@ -132,10 +134,13 @@ function RootComponent() {
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
 
+  const dispatcher = createPresentationDispatcher(new SupabaseProjectionRepository(supabase));
+
   return (
     <Providers
       queryClient={queryClient}
       authService={new SupabaseAuthService()}
+      dispatcher={dispatcher}
       defaultTheme="dark"
     >
       <Outlet />

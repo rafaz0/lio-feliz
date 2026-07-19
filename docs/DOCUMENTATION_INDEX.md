@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.45
+**Versão da Documentação:** 1.46
 
 **Status:** APROVADO
 
@@ -216,7 +216,7 @@ Engineering Work Order oficial da Implementação da Infrastructure Layer. Concl
 
 📄 EWO-005.md (architecture-lab)
 
-Engineering Work Order oficial da Implementação da Presentation Layer. Plano de execução incremental por Slices (Foundation, Autenticação, Dashboard, Portfolio, Operações, Importação, Performance, Rebalanceamento, IR, Configurações, Integração Geral, Engineering Closure). Baseado na PI-007 v1.2 Approved e ER-007 v1.0 Approved. **🟢 Em execução — Slices 1-2 (Foundation, Autenticação) CLOSED.**
+Engineering Work Order oficial da Implementação da Presentation Layer. Plano de execução incremental por Slices (Foundation, Autenticação, Dashboard, Portfolio, Operações, Importação, Performance, Rebalanceamento, IR, Configurações, Integração Geral, Engineering Closure). Baseado na PI-007 v1.2 Approved e ER-007 v1.0 Approved. **🟢 Em execução — Slices 1-3 (Foundation, Autenticação, Dashboard) CLOSED.**
 
 ---
 
@@ -405,6 +405,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 # Histórico
+
+## Versão 1.46
+
+- **EWO-005 Slice 3 — Dashboard CLOSED.** Feature `dashboard` da Presentation Layer materializada: DashboardView, KpiCards, PatrimonioConsolidado, AlocacaoChart, EvolucaoChart, hooks (usePatrimonioQuery/useHistoricoQuery/useDashboardQuery), ViewModels, dispatcher adapter em `src/integrations` (Composition Root, fora da presentation), rota `/dashboard`. 22 testes novos, 692 totais, zero regressões. Build verde. PROJECT_STATUS v1.62.
 
 ## Versão 1.45
 

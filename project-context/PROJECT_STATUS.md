@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.61
+**Versão:** 1.62
 
 **Status:** APROVADO
 
@@ -99,7 +99,7 @@ README ✅, PROJECT_CONTEXT ✅, PROJECT_STATUS ✅, WORKFLOW ✅, **DEVELOPMENT
 | EWO-004.md                | ✅ Completed (v1.0) |
 | PI-007.md                 | ✅ Approved (v1.2) |
 | ER-007.md                 | ✅ Approved (v1.0) |
-| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-2 CLOSED |
+| EWO-005.md                | 🟡 Em execução (v1.0) — Slices 1-3 CLOSED |
 | EWO_EXECUTION_STANDARD.md | ✅ Approved (v1.0) |
 | PRESENTATION_SLICE_TEMPLATE.md | ✅ Approved (v1.0) |
 
@@ -229,6 +229,10 @@ EWO-004 CONCLUÍDA — Engineering Closure emitido. 7/7 Slices. 630 testes. 10 P
 ---
 
 ## Histórico
+
+### Versão 1.62
+
+**EWO-005 Slice 3 — Dashboard CLOSED.** Feature `dashboard` materializada na Presentation Layer: `DashboardView` (client component), `KpiCard`, `PatrimonioConsolidado`, `AlocacaoChart` (pie/recharts), `EvolucaoChart` (area/recharts), `DashboardLoading` (skeletons), `DashboardError` (retry acessível). ViewModels `DashboardViewModel`/`KpiCardViewModel`/`AlocacaoItemViewModel`/`EvolucaoPontoViewModel` (mappers puros). Hooks `usePatrimonioQuery`, `useHistoricoQuery`, `useDashboardQuery` (TanStack Query + `useDispatcher` → `ObterPatrimonioQuery`/`ObterHistoricoPatrimonialQuery`). Composition Root: `src/integrations/dispatcher/presentation-dispatcher.ts` monta `IDispatcher` com handlers de consulta (fora da presentation). Rota `/dashboard` (`src/routes/_authenticated/dashboard.tsx`) injeta dispatcher no `Providers`. 22 testes novos (unit/component/integration + architecture R-10 estendido). 692 testes totais, zero regressões. Build verde. ESLint: 0 erros nos arquivos da Slice.
 
 ### Versão 1.61
 

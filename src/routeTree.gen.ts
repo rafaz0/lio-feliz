@@ -25,6 +25,7 @@ import { Route as FiiTickerRouteImport } from './routes/fii.$ticker'
 import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
 import { Route as AuthenticatedProvisionadorRouteImport } from './routes/_authenticated/provisionador'
 import { Route as AuthenticatedMetasRouteImport } from './routes/_authenticated/metas'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCarteiraRouteImport } from './routes/_authenticated/carteira'
 import { Route as _authRegisterRouteImport } from './routes/__auth/register'
 import { Route as _authLoginRouteImport } from './routes/__auth/login'
@@ -119,6 +120,11 @@ const AuthenticatedProvisionadorRoute =
 const AuthenticatedMetasRoute = AuthenticatedMetasRouteImport.update({
   id: '/metas',
   path: '/metas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedCarteiraRoute = AuthenticatedCarteiraRouteImport.update({
@@ -222,6 +228,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof _authLoginRoute
   '/register': typeof _authRegisterRoute
   '/carteira': typeof AuthenticatedCarteiraRouteWithChildren
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/metas': typeof AuthenticatedMetasRoute
   '/provisionador': typeof AuthenticatedProvisionadorRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
@@ -253,6 +260,7 @@ export interface FileRoutesByTo {
   '/forgot-password': typeof _authForgotPasswordRoute
   '/login': typeof _authLoginRoute
   '/register': typeof _authRegisterRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/metas': typeof AuthenticatedMetasRoute
   '/provisionador': typeof AuthenticatedProvisionadorRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
@@ -287,6 +295,7 @@ export interface FileRoutesById {
   '/__auth/login': typeof _authLoginRoute
   '/__auth/register': typeof _authRegisterRoute
   '/_authenticated/carteira': typeof AuthenticatedCarteiraRouteWithChildren
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/metas': typeof AuthenticatedMetasRoute
   '/_authenticated/provisionador': typeof AuthenticatedProvisionadorRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
@@ -321,6 +330,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/carteira'
+    | '/dashboard'
     | '/metas'
     | '/provisionador'
     | '/ativo/$ticker'
@@ -352,6 +362,7 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/register'
+    | '/dashboard'
     | '/metas'
     | '/provisionador'
     | '/ativo/$ticker'
@@ -385,6 +396,7 @@ export interface FileRouteTypes {
     | '/__auth/login'
     | '/__auth/register'
     | '/_authenticated/carteira'
+    | '/_authenticated/dashboard'
     | '/_authenticated/metas'
     | '/_authenticated/provisionador'
     | '/ativo/$ticker'
@@ -537,6 +549,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMetasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/carteira': {
       id: '/_authenticated/carteira'
       path: '/carteira'
@@ -679,6 +698,7 @@ const AuthenticatedCarteiraRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCarteiraRoute: typeof AuthenticatedCarteiraRouteWithChildren
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedMetasRoute: typeof AuthenticatedMetasRoute
   AuthenticatedProvisionadorRoute: typeof AuthenticatedProvisionadorRoute
   AuthenticatedIrpfIndexRoute: typeof AuthenticatedIrpfIndexRoute
@@ -686,6 +706,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCarteiraRoute: AuthenticatedCarteiraRouteWithChildren,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedMetasRoute: AuthenticatedMetasRoute,
   AuthenticatedProvisionadorRoute: AuthenticatedProvisionadorRoute,
   AuthenticatedIrpfIndexRoute: AuthenticatedIrpfIndexRoute,
