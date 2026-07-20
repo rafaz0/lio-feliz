@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.80
+**Versão:** 1.81
 
 **Status:** APROVADO
 
@@ -15,7 +15,7 @@
 ---
 
 ## Objetivo
-Planejar as Ondas 2 e 3 da expansão do domínio (módulos 09-13) via nova Product Increment (PI-009), estabelecendo escopo, priorização e critérios para a futura ER-009 e para as futuras EWO-007/EWO-008 — mantendo as 4 camadas congeladas intactas.
+Revisar e aprovar a PI-009 (Ondas 2 & 3, módulos 09-13) via Engineering Review ER-009, registrando o parecer final e preparando a emissão das EWO-007/EWO-008 — mantendo as 4 camadas congeladas intactas.
 
 ## Detalhes Importantes
 - EWO-006 aprovada: 10 Slices planejadas para implementar Metas, Impostos e Rebalanceamento.
@@ -41,31 +41,36 @@ Planejar as Ondas 2 e 3 da expansão do domínio (módulos 09-13) via nova Produ
 - DOCUMENTATION_INDEX v1.68, PROJECT_STATUS v1.80
 
 ### Em andamento (planejamento)
-- **PI-009 (DRAFT)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). Criada; aguarda ER-009 para promoção a APPROVED.
+- **PI-009 (APPROVED v1.1)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). Aprovada por ER-009 (🟢). Aguarda resolução de O2 (NC-009-002) antes da EWO-007.
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
-1. **ER-009** — Engineering Review da PI-009 (validar e promover DRAFT → APPROVED).
+1. Resolver **O2** (NC-009-002 — integração com fluxo de operações) na PI-009 antes da EWO-007.
 2. **EWO-007** — implementar Onda 2 (Renda Fixa 09, Internacional 10).
 3. **EWO-008** — implementar Onda 3 (Import/Export 11, Integrações 12, Relatórios 13).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
-- `architecture-lab/PI-009.md`: v1.0 (Draft) — Ondas 2 & 3 (módulos 09-13), critérios p/ ER-009 e EWO-007/EWO-008
+- `architecture-lab/PI-009.md`: v1.1 (Approved) — Ondas 2 & 3 (módulos 09-13), critérios p/ ER-009 e EWO-007/EWO-008
 - `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
+- `architecture-lab/ER-009.md`: v1.0 (Approved) — Engineering Review da PI-009 (🟢 APROVADO)
 - `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
-- `docs/DOCUMENTATION_INDEX.md`: v1.68 (reflete PI-009 criada)
-- `project-context/PROJECT_STATUS.md`: v1.80 (reflete PI-009 criada)
+- `docs/DOCUMENTATION_INDEX.md`: v1.69 (reflete ER-009 + PI-009 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v1.81 (reflete ER-009)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines)
 - Git: branch `main`, origin sincronizado
 
 ---
 
 ## Histórico
+
+### Versão 1.81
+
+- **ER-009 — Engineering Review da PI-009 APROVADA** - 14 critérios + 6 dimensões solicitadas validadas; veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-009 promovida DRAFT → APPROVED (v1.1). 3 NCs: NC-009-001 (Baixa/O1), NC-009-002 (Média/O2 — bloqueante pré-EWO-007), NC-009-003 (Baixa/RER1). Próxima etapa: EWO-007 (após O2). DOCUMENTATION_INDEX v1.69.
 
 ### Versão 1.80
 

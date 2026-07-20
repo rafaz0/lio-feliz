@@ -4,28 +4,29 @@
 
 ## Current Status (as of 20/07/2026)
 
-**Overall Project Phase**: PI-009 Planning - DRAFT (Ondas 2 & 3)
+**Overall Project Phase**: PI-009 APPROVED - awaiting EWO-007 (O2 pending)
 
-**Active Development Focus**: Architecture planning for Ondas 2 & 3 via PI-009; awaiting ER-009 review
+**Active Development Focus**: Architecture approved for Ondas 2 & 3 (PI-009); resolving O2 (NC-009-002) before EWO-007
 
 **Baseline Status**:
 - Core Foundation: FROZEN
 - Application Layer: FROZEN  
 - Presentation Layer: FROZEN (EWO-005 completed)
 - Domain Expansion (Onda 1): COMPLETED (Metas, Impostos, Rebalanceamento — EWO-006, 🟢 CLOSED)
-- Domain Expansion (Ondas 2 & 3): PLANNED (PI-009 DRAFT — módulos 09-13)
+- Domain Expansion (Ondas 2 & 3): APPROVED (PI-009 v1.1 — módulos 09-13)
 
 **Current Version Numbers**:
 - PROJECT_BOOTSTRAP.md: v2.57
-- PROJECT_STATUS.md: v1.80
-- DOCUMENTATION_INDEX.md: v1.68
+- PROJECT_STATUS.md: v1.81
+- DOCUMENTATION_INDEX.md: v1.69
 - AI_OPERATION_CHECKLIST.md: Current
 - EWO_EXECUTION_STANDARD.md: Current
 
 **Active Work Streams**:
-- PI-009 created (DRAFT) — Ondas 2 & 3 (Renda Fixa 09, Internacional 10, Import/Export 11, Integrações 12, Relatórios 13)
-- Awaiting ER-009 (Engineering Review) to promote PI-009 DRAFT → APPROVED
-- No active EWOs (EWO-006 is the last completed)
+- PI-009 APPROVED (v1.1) via ER-009 (🟢 APROVADO PARA IMPLEMENTAÇÃO)
+- ER-009 completed (3 NCs: O1/O2/RER1)
+- Pending: resolve O2 (NC-009-002) before EWO-007
+- No active EWOs yet (EWO-007 is next)
 
 **Quality Gates Status** (baseline, EWO-006):
 - Build (vite): ✅ PASSING (exit 0)
@@ -38,9 +39,9 @@
 - Repositories synchronized with origin/main
 - Working Tree limpa
 
-**PI-009 Summary**:
-- Escopo: módulos 09-13 (Ondas 2 e 3 da PI-008)
+**PI-009 / ER-009 Summary**:
+- PI-009 escopo: módulos 09-13 (Ondas 2 e 3)
 - Base: estende PI-008 (PA-008/R-001..R-007 carregados)
 - Novos: PA-009-001/002/003, R-008/009/010
-- Critérios explícitos para ER-009 e EWO-007/EWO-008 (Seções 11 e 12)
-- Próxima etapa: ER-009 → EWO-007 (Onda 2) → EWO-008 (Onda 3)
+- ER-009: 14 critérios + 6 dimensões ✅; 3 NCs (NC-009-001 O1, NC-009-002 O2 bloqueante pré-EWO-007, NC-009-003 RER1)
+- Próxima etapa: EWO-007 (Onda 2) → EWO-008 (Onda 3)
