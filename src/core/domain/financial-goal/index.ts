@@ -1,0 +1,11 @@
+export { FinancialGoalId } from "./financial-goal-id";
+export { GoalCategory } from "./goal-category";
+export { GoalStatus } from "./goal-status";
+export { FinancialGoal } from "./financial-goal";
+export { GoalContribution, ContributionId, ContributionType } from "./goal-contribution";
+export { GoalProgress } from "./goal-progress";
+export { FinancialGoalService, type GoalsSummary } from "./financial-goal-service";
+export { GoalCreatedEvent } from "./goal-created-event";
+export { GoalContributedEvent } from "./goal-contributed-event";
+export { GoalCompletedEvent } from "./goal-completed-event";
+export { GoalCancelledEvent } from "./goal-cancelled-event";

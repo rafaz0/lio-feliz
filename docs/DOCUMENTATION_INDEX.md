@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.62
+**Versão da Documentação:** 1.63
 
 **Status:** APROVADO
 
@@ -56,7 +56,7 @@ Arquivos previstos:
 04_CORPORATE_ACTIONS.md ✅
 05_PROVENTOS.md ✅
 06_REBALANCEAMENTO.md 🔴
-07_METAS.md 🔴
+07_METAS.md 🟢
 08_IMPOSTOS.md 🔴
 09_RENDA_FIXA.md 🔴
 10_INTERNACIONAL.md 🔴
@@ -168,6 +168,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 ## Histórico
+
+## Versão 1.63
+
+- **EWO-006 Slice 1 — Metas: Business Rules + Core Domain CONCLUÍDA** - Documento `07_METAS.md` criado e APROVADO. Módulo `financial-goal/` implementado no Core Domain: `FinancialGoal` aggregate root, `GoalCategory`/`GoalStatus` enums, `GoalContribution` entity, `GoalProgress` value object, `FinancialGoalService`, 4 domain events. 62 testes unitários, zero regressões. DOCUMENTATION_INDEX v1.63.
 
 ## Versão 1.62
 

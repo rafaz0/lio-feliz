@@ -13,3 +13,15 @@ export { PortfolioId } from "./identifiers/portfolio-id";
 export { OperationId } from "./identifiers/operation-id";
 export { InstitutionId } from "./identifiers/institution-id";
 export { Asset } from "./entities/asset";
+export {
+  FinancialGoalId,
+  GoalCategory,
+  GoalStatus,
+  FinancialGoal,
+  GoalContribution,
+  ContributionId,
+  ContributionType,
+  GoalProgress,
+  FinancialGoalService,
+  type GoalsSummary,
+} from "./financial-goal";
