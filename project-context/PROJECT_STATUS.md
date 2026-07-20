@@ -76,6 +76,10 @@ Nenhuma decisão arquitetural alterada; apenas melhorias documentais e de govern
 
 ## Histórico
 
+### Versão 1.76
+
+- **PI-008 — Domain Expansion & Business Rules Completion (DRAFT)** - Criado novo ciclo de evolução do projeto. PI-007 finalizada como Completed (Presentation Layer congelada). PI-008 define arquitetura para completar 8 módulos de domínio pendentes (06 a 13), 5 anexos técnicos, e extensão das 4 camadas sem modificar Frozen Baselines. 6 princípios arquiteturais, 8 novos Commands/Queries/Ports, 3 ondas de priorização. Próximas etapas: ER-008, EWO-006 a EWO-008. DOCUMENTATION_INDEX v1.60.
+
 ### Versão 1.75
 
 - **Padronização Final de Idioma (Português) da Engineering Closure EWO-005** - Tradução integral para português das seções de contexto da Engineering Closure. Nenhuma alteração arquitetural, de código ou de comportamento. Conformidade com OP-013 (Português como idioma oficial). DOCUMENTATION_INDEX v1.59.

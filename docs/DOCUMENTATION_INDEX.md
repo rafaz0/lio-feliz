@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.59
+**Versão da Documentação:** 1.60
 
 **Status:** APROVADO
 
@@ -168,6 +168,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 ## Histórico
+
+## Versão 1.60
+
+- **PI-008 — Domain Expansion & Business Rules Completion (DRAFT)** - Nova Product Increment para completar 8 módulos de domínio e 5 anexos técnicos. Extensão das 4 camadas congeladas sem modificação. PI-007 finalizada como Completed. PROJECT_STATUS v1.76.
 
 ## Versão 1.59
 
