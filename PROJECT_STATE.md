@@ -4,42 +4,43 @@
 
 ## Current Status (as of 20/07/2026)
 
-**Overall Project Phase**: EWO-006 Engineering Closure - COMPLETED (🟢 CLOSED)
+**Overall Project Phase**: PI-009 Planning - DRAFT (Ondas 2 & 3)
 
-**Active Development Focus**: Maintenance and evolution of frozen layers through approved PIs/ERs
+**Active Development Focus**: Architecture planning for Ondas 2 & 3 via PI-009; awaiting ER-009 review
 
 **Baseline Status**:
 - Core Foundation: FROZEN
 - Application Layer: FROZEN  
 - Presentation Layer: FROZEN (EWO-005 completed)
-- Domain Expansion (Onda 1): COMPLETED (Metas, Impostos, Rebalanceamento — EWO-006)
+- Domain Expansion (Onda 1): COMPLETED (Metas, Impostos, Rebalanceamento — EWO-006, 🟢 CLOSED)
+- Domain Expansion (Ondas 2 & 3): PLANNED (PI-009 DRAFT — módulos 09-13)
 
 **Current Version Numbers**:
 - PROJECT_BOOTSTRAP.md: v2.57
-- PROJECT_STATUS.md: v1.79
-- DOCUMENTATION_INDEX.md: v1.67
+- PROJECT_STATUS.md: v1.80
+- DOCUMENTATION_INDEX.md: v1.68
 - AI_OPERATION_CHECKLIST.md: Current
 - EWO_EXECUTION_STANDARD.md: Current
 
 **Active Work Streams**:
-- No active EWOs (EWO-006 is the last — encerrada)
-- Ready for next PI (Product Increment) initiation (Ondas 2 e 3 da PI-008: Renda Fixa, Internacional, Import/Export, Integrações, Relatórios)
-- Documentation maintenance and governance improvements
+- PI-009 created (DRAFT) — Ondas 2 & 3 (Renda Fixa 09, Internacional 10, Import/Export 11, Integrações 12, Relatórios 13)
+- Awaiting ER-009 (Engineering Review) to promote PI-009 DRAFT → APPROVED
+- No active EWOs (EWO-006 is the last completed)
 
-**Quality Gates Status** (EWO-006):
+**Quality Gates Status** (baseline, EWO-006):
 - Build (vite): ✅ PASSING (exit 0)
-- ESLint: ✅ PASSING (arquivos EWO-006)
-- TypeCheck (tsc --noEmit): ✅ Sem novos erros EWO-006 (restam débitos herdados TD-006-001/002)
+- ESLint: ✅ PASSING
+- TypeCheck (tsc --noEmit): ⚪ Sem novos erros EWO-006 (débitos herdados TD-006-001/002)
 - Unit Tests: ✅ PASSING (1052 testes, 134 arquivos, 0 regressões)
 - Architecture Tests (R-10): ✅ PASSING (37 testes, 0 violações)
 
 **Synchronization Status**:
-- Repositories synchronized with origin/main after EWO-006 commit + push
-- Working Tree limpa pós-commit
+- Repositories synchronized with origin/main
+- Working Tree limpa
 
-**EWO-006 Summary**:
-- Slices 1-3: Metas (Core + Application + Infrastructure + Presentation)
-- Slices 4-6: Impostos (Core + Application + Infrastructure + Presentation)
-- Slices 7-9: Rebalanceamento (Core + Application + Infrastructure + Presentation)
-- Slice 10: Engineering Closure (Auditoria Final + Closure + commit + push)
-- Auditoria Final: 🟢 APROVADO PARA ENCERRAMENTO (15/15 critérios ER)
+**PI-009 Summary**:
+- Escopo: módulos 09-13 (Ondas 2 e 3 da PI-008)
+- Base: estende PI-008 (PA-008/R-001..R-007 carregados)
+- Novos: PA-009-001/002/003, R-008/009/010
+- Critérios explícitos para ER-009 e EWO-007/EWO-008 (Seções 11 e 12)
+- Próxima etapa: ER-009 → EWO-007 (Onda 2) → EWO-008 (Onda 3)

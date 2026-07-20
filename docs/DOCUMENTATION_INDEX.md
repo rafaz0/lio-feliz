@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.67
+**Versão da Documentação:** 1.68
 
 **Status:** APROVADO
 
@@ -152,6 +152,10 @@ Auditoria final avaliativa das Slices 1-10 da EWO-006 (Metas, Impostos, Rebalanc
 
 Engineering Closure oficial da EWO-006 (Slice 10): revisão arquitetural, quality gates, auditorias, pendências, lições aprendidas, encerramento oficial e sincronização Git.
 
+🔴 PI-009.md (DRAFT)
+
+Próxima Product Increment: Domain Expansion Ondas 2 & 3 (Renda Fixa 09, Internacional 10, Import/Export 11, Integrações 12, Relatórios 13). Estende a PI-008 (PA-008/R-001..R-007 carregados). Define escopo, priorização e **critérios explícitos para a futura ER-009 e para as futuras EWO-007/EWO-008**. Aguarda ER-009 (Draft → Approved).
+
 ---
 
 ## Legenda
@@ -180,6 +184,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 ## Histórico
+
+## Versão 1.68
+
+- **PI-009 — Domain Expansion Ondas 2 & 3 CRIADA (DRAFT)** - Nova Product Increment planejando os módulos 09-13 (Renda Fixa, Internacional, Import/Export, Integrações, Relatórios). Estende a PI-008 (princípios PA-008 e restrições R-001..R-007 carregados). 3 novos princípios (PA-009-001 Conversão de Moeda Isolada, PA-009-002 Import via Interpreter, PA-009-003 Relatórios Read-Only) e 3 novas restrições (R-008 Câmbio, R-009 Import Interpreter, R-010 Relatórios Read-Only). Mapeia entidades, Commands, Queries, Ports e Infra adapters por módulo. Inclui **Seções 11 e 12 com critérios explícitos para a futura ER-009 (Engineering Review) e para as futuras EWO-007/EWO-008 (Engineering Work Orders)**. DOCUMENTATION_INDEX v1.68.
 
 ## Versão 1.67
 
@@ -245,4 +253,4 @@ Este arquivo representa a estrutura oficial da documentação.
 
 Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, a Onda 1 (Domain Expansion) foi concluída.
 
-EWO-006: Slices 1-3 (Metas: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slices 4-6 (Impostos: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slices 7-9 (Rebalanceamento: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slice 10 (Engineering Closure) ✅ CONCLUÍDA — EWO-006 encerrada (🟢 CLOSED). Próximas: Ondas 2 e 3 (Renda Fixa, Internacional, Import/Export, Integrações, Relatórios) exigem novas PI + ER.
+EWO-006: Slices 1-3 (Metas: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slices 4-6 (Impostos: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slices 7-9 (Rebalanceamento: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slice 10 (Engineering Closure) ✅ CONCLUÍDA — EWO-006 encerrada (🟢 CLOSED). Ondas 2 e 3 (Renda Fixa 09, Internacional 10, Import/Export 11, Integrações 12, Relatórios 13) agora planejadas pela **PI-009 (DRAFT)**. Próxima etapa: **ER-009** (revisão da PI-009 → Approved), seguida de **EWO-007** (Onda 2) e **EWO-008** (Onda 3).
