@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.69
+**Versão da Documentação:** 1.70
 
 **Status:** APROVADO
 
@@ -152,13 +152,17 @@ Auditoria final avaliativa das Slices 1-10 da EWO-006 (Metas, Impostos, Rebalanc
 
 Engineering Closure oficial da EWO-006 (Slice 10): revisão arquitetural, quality gates, auditorias, pendências, lições aprendidas, encerramento oficial e sincronização Git.
 
-✅ PI-009.md 🟢 (APPROVED)
+✅ PI-009.md 🟢 (APPROVED v1.2)
 
-Domain Expansion Ondas 2 & 3 (Renda Fixa 09, Internacional 10, Import/Export 11, Integrações 12, Relatórios 13). Estende a PI-008 (PA-008/R-001..R-007 carregados). Define escopo, priorização e **critérios explícitos para a ER-009 e para as EWO-007/EWO-008**. Aprovada por ER-009 (🟢 APROVADO PARA IMPLEMENTAÇÃO); NC-009-002 (O2) bloqueante pré-EWO-007.
+Domain Expansion Ondas 2 & 3 (Renda Fixa 09, Internacional 10, Import/Export 11, Integrações 12, Relatórios 13). Estende a PI-008 (PA-008/R-001..R-007 carregados). **NC-009-002 (O2) RESOLVIDA** (v1.2): Renda Fixa e Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`; **RER1 resolvida** (ordem intra-onda: 09 → 10). O1 aplica-se na EWO-007.
 
 ✅ ER-009.md 🟢 (APPROVED)
 
-Engineering Review da PI-009: 14 critérios + 6 dimensões solicitadas validadas; veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. 3 NCs (NC-009-001 Baixa O1, NC-009-002 Média O2, NC-009-003 Baixa RER1).
+Engineering Review da PI-009: 14 critérios + 6 dimensões solicitadas validadas; veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. 3 NCs (NC-009-001 O1, NC-009-002 O2 resolvida, NC-009-003 RER1 resolvida).
+
+✅ EWO-007.md 🟢 (APPROVED)
+
+Engineering Work Order para a Onda 2 (Renda Fixa 09, Internacional 10). 7 Slices. O2 resolvida por reuso do fluxo canônico de operações. NC-009-001/003 incorporadas ao planejamento.
 
 ---
 
@@ -188,6 +192,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 ## Histórico
+
+## Versão 1.70
+
+- **EWO-007 CRIADA (APPROVED) + PI-009 v1.2 (O2 resolvida)** - EWO-007 (Onda 2: Renda Fixa 09, Internacional 10) materializada com 7 Slices; NC-009-002 (O2) resolvida por reuso de `RegistrarOperacaoCommand` + `inferAssetType`. PI-009 atualizada para v1.2: O2 resolvida (comandos `RegistrarRendaFixaCommand`/`RegistrarAtivoInternacionalCommand` removidos; mantidos `RegistrarCupomCommand`/`AtualizarTaxaCambioCommand`), RER1 resolvida (ordem 09→10). DOCUMENTATION_INDEX v1.70.
 
 ## Versão 1.69
 
@@ -261,4 +269,4 @@ Este arquivo representa a estrutura oficial da documentação.
 
 Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, a Onda 1 (Domain Expansion) foi concluída.
 
-EWO-006: Slices 1-3 (Metas) ✅ | Slices 4-6 (Impostos) ✅ | Slices 7-9 (Rebalanceamento) ✅ | Slice 10 (Closure) ✅ — EWO-006 encerrada (🟢 CLOSED). Ondas 2 e 3 (Renda Fixa 09, Internacional 10, Import/Export 11, Integrações 12, Relatórios 13) planejadas pela **PI-009 (🟢 APPROVED via ER-009)**. **ER-009 concluída** (🟢 APROVADO PARA IMPLEMENTAÇÃO). Próxima etapa: **EWO-007** (Onda 2 — Renda Fixa 09, Internacional 10), condicionada à resolução de O2 (NC-009-002); depois **EWO-008** (Onda 3).
+EWO-006: Slices 1-3 (Metas) ✅ | Slices 4-6 (Impostos) ✅ | Slices 7-9 (Rebalanceamento) ✅ | Slice 10 (Closure) ✅ — EWO-006 encerrada (🟢 CLOSED). Ondas 2 e 3 planejadas pela **PI-009 (🟢 APPROVED v1.2)**; **ER-009 concluída** (🟢). **O2 (NC-009-002) RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. **EWO-007 CRIADA (🟢)** para a Onda 2 (Renda Fixa 09 → Internacional 10, 7 Slices). Próxima: executar EWO-007; depois **EWO-008** (Onda 3: 11, 12, 13).

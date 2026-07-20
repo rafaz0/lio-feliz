@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.81
+**Versão:** 1.82
 
 **Status:** APROVADO
 
@@ -15,7 +15,7 @@
 ---
 
 ## Objetivo
-Revisar e aprovar a PI-009 (Ondas 2 & 3, módulos 09-13) via Engineering Review ER-009, registrando o parecer final e preparando a emissão das EWO-007/EWO-008 — mantendo as 4 camadas congeladas intactas.
+Resolver a NC-009-002 (ER-009) adotando o reuso do fluxo canônico de operações, e emitir a EWO-007 (Onda 2: Renda Fixa 09, Internacional 10) — mantendo as 4 camadas congeladas intactas.
 
 ## Detalhes Importantes
 - EWO-006 aprovada: 10 Slices planejadas para implementar Metas, Impostos e Rebalanceamento.
@@ -41,32 +41,37 @@ Revisar e aprovar a PI-009 (Ondas 2 & 3, módulos 09-13) via Engineering Review 
 - DOCUMENTATION_INDEX v1.68, PROJECT_STATUS v1.80
 
 ### Em andamento (planejamento)
-- **PI-009 (APPROVED v1.1)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). Aprovada por ER-009 (🟢). Aguarda resolução de O2 (NC-009-002) antes da EWO-007.
+- **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
+- **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Pronta para execução.
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
-1. Resolver **O2** (NC-009-002 — integração com fluxo de operações) na PI-009 antes da EWO-007.
-2. **EWO-007** — implementar Onda 2 (Renda Fixa 09, Internacional 10).
-3. **EWO-008** — implementar Onda 3 (Import/Export 11, Integrações 12, Relatórios 13).
+1. **Executar EWO-007** — Onda 2 (1º Renda Fixa 09: Slices 1-3; 2º Internacional 10: Slices 4-6; Slice 7 Closure).
+2. **EWO-008** — implementar Onda 3 (Import/Export 11, Integrações 12, Relatórios 13).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
-- `architecture-lab/PI-009.md`: v1.1 (Approved) — Ondas 2 & 3 (módulos 09-13), critérios p/ ER-009 e EWO-007/EWO-008
+- `architecture-lab/PI-009.md`: v1.2 (Approved) — Ondas 2 & 3 (módulos 09-13); O2 resolvida
 - `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
 - `architecture-lab/ER-009.md`: v1.0 (Approved) — Engineering Review da PI-009 (🟢 APROVADO)
 - `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
+- `architecture-lab/EWO-007.md`: v1.0 (Approved) — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
-- `docs/DOCUMENTATION_INDEX.md`: v1.69 (reflete ER-009 + PI-009 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v1.81 (reflete ER-009)
+- `docs/DOCUMENTATION_INDEX.md`: v1.70 (reflete EWO-007 + PI-009 v1.2)
+- `project-context/PROJECT_STATUS.md`: v1.82 (reflete EWO-007)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines)
 - Git: branch `main`, origin sincronizado
 
 ---
 
 ## Histórico
+
+### Versão 1.82
+
+- **EWO-007 CRIADA (APPROVED) + PI-009 v1.2 (O2 resolvida)** - NC-009-002 (O2) resolvida por decisão arquitetural: Renda Fixa e Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`; comandos `RegistrarRendaFixaCommand`/`RegistrarAtivoInternacionalCommand` removidos da PI-009 v1.2. RER1 resolvida (ordem 09→10). EWO-007 emitida para a Onda 2 (7 Slices). DOCUMENTATION_INDEX v1.70.
 
 ### Versão 1.81
 
