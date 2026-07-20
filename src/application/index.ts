@@ -30,6 +30,11 @@ export { CalcularRebalanceamentoService } from "./services/calcular-rebalanceame
 export { GerarRelatorioFiscalService } from "./services/gerar-relatorio-fiscal-service";
 export { ExportarDadosService } from "./services/exportar-dados-service";
 export { ConsultarProgressoMetasService } from "./services/consultar-progresso-metas-service";
+export { CriarMetaService } from "./services/criar-meta-service";
+export { AtualizarMetaService } from "./services/atualizar-meta-service";
+export { RegistrarContribuicaoService } from "./services/registrar-contribuicao-service";
+export { ObterMetasService } from "./services/obter-metas-service";
+export { ObterProgressoMetaService } from "./services/obter-progresso-meta-service";
 export type { IDomainEventHandler } from "./handlers/domain-event-handler";
 export { DomainEventHandlerRegistry } from "./handlers/handler-registry";
 export { FinancialEventRegisteredHandler } from "./handlers/financial-event-registered-handler";

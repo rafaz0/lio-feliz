@@ -8,3 +8,5 @@ export type { GerarRelatorioFiscalQuery } from "./gerar-relatorio-fiscal";
 export type { ExportarDadosQuery } from "./exportar-dados";
 export type { ConsultarProgressoMetasQuery } from "./consultar-progresso-metas";
 export type { ObterConfiguracoesQuery } from "./obter-configuracoes";
+export type { ObterMetasQuery } from "./obter-metas";
+export type { ObterProgressoMetaQuery } from "./obter-progresso-meta";

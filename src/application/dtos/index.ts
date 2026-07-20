@@ -10,7 +10,7 @@ export type {
 export type { RelatorioFiscalDto, PosicaoFiscalDto, GanhoCapitalDto } from "./relatorio-fiscal";
 export type { HistoricoPatrimonialDto, PeriodoDto, PontoHistoricoDto } from "./historico";
 export type { RentabilidadeDto } from "./rentabilidade";
-export type { ProgressoMetasDto, MetaProgressoDto } from "./metas";
+export type { ProgressoMetasDto, MetaProgressoDto, MetaListDto, MetaProgressoDetalhadoDto } from "./metas";
 export type { ConfiguracoesDto } from "./configuracoes";
 export type { AssinaturaAtualizadaDto } from "./assinatura";
 export type { DadosExportadosDto } from "./exportacao";

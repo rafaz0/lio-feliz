@@ -9,3 +9,4 @@ export { FakeDomainEventPublisher } from "./fake-domain-event-publisher";
 export { FakeNotificationPort } from "./fake-notification-port";
 export { FakeImportInterpreter } from "./fake-import-interpreter";
 export type { NotificacaoRegistrada } from "./fake-notification-port";
+export { FakeFinancialGoalRepository } from "./fake-financial-goal-repository";

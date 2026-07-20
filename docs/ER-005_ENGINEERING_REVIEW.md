@@ -11,7 +11,7 @@ Descrever que a Engineering Review valida que:
 - todas as slices foram concluídas;
 - todas passaram pelos gates obrigatórios;
 - a arquitetura permaneceu íntegra;
-- a baseline encontra-se congelada.
+- a base de referência está congelada.
 
 ---
 
@@ -26,15 +26,15 @@ Slice 4 — Portfolio
 Slice 5 — Operations
 Slice 6 — Dividends
 Slice 7 — History
-Slice 8 — Rebalancing
-Slice 9 — Tax
-Slice 10 — Settings
-Slice 11 — Synchronization
-Slice 12 — Reports
+Slice 8 — Rebalanceamento
+Slice 9 — Impostos
+Slice 10 — Configurações
+Slice 11 — Sincronização
+Slice 12 — Relatórios / Exportação
 
 Todas marcadas como:
 
-APPROVED
+APROVADO
 
 ---
 
@@ -69,7 +69,7 @@ foram executados continuamente e aprovados.
 
 Evitar números absolutos de testes.
 
-Registrar apenas que toda a suíte obrigatória encontra-se verde.
+Registrar apenas que toda a suíte obrigatória encontra-se aprovada.
 
 ---
 
@@ -83,7 +83,7 @@ Auditoria Final
 
 Status:
 
-APPROVED
+APROVADO
 
 ---
 
@@ -93,9 +93,9 @@ Registrar apenas backlog técnico fora do escopo.
 
 Exemplo:
 
-- code splitting futuro
-- limpeza de rotas legadas
-- limpeza futura de débitos históricos
+- Melhorias futuras de code splitting
+- Limpeza de rotas legadas (mantidas apenas por compatibilidade)
+- Aprimoramentos futuros de desempenho
 
 Deixar explícito que nenhuma pendência bloqueia a arquitetura.
 
@@ -125,7 +125,7 @@ Dispatcher Contracts
 PUBLIC API
 
 Breaking Changes
-ONLY VIA NEW PI + ER
+SOMENTE POR MEIO DE NOVA PI + ER
 
 ---
 
@@ -135,22 +135,41 @@ Registrar que a metodologia incremental por Slices mostrou-se adequada.
 
 Registrar que:
 
-PI
-ER
-EWO
-Slice
-Auditoria
-
-mostraram-se suficientes para controlar a evolução arquitetural.
+- A metodologia incremental por Slices foi validada como eficaz;
+- As auditorias intermediárias reduziram riscos arquiteturais;
+- O Architecture Guard mostrou-se suficiente para preservar os limites arquiteturais;
+- O padrão Dispatcher Only consolidou o desacoplamento entre camadas;
+- A abordagem Feature-First facilitou a evolução incremental e segura.
 
 ---
 
-## 9. Conclusão
+## 9. Encerramento Oficial
 
-Registrar que:
+A EWO-005 encontra-se oficialmente encerrada.
+
+A Presentation Layer passa a integrar a Frozen Baseline do Projeto Lio Feliz.
+
+Toda evolução futura deverá ocorrer por extensão desta base, respeitando:
+
+- PROJECT_BOOTSTRAP.md
+- AI_OPERATION_CHECKLIST.md  
+- EWO_EXECUTION_STANDARD.md
+- Regra de Dependency Rule
+- Arquitetura Guard (MANDATORY)
+
+Qualquer mudança quebre compatibilidade dependerá obrigatoriamente de:
+- Nova PI (Product Increment)
+- +
+- Novo ER (Engineering Review)
+- +
+- Nova aprovação arquitetural.
+
+---
+
+## 10. Conclusão
 
 A EWO-005 encontra-se oficialmente encerrada.
 
 A Presentation Layer passa a integrar a Frozen Baseline do projeto.
 
-Novas funcionalidades deverão estender esta baseline sem modificá-la diretamente.
+Novas funcionalidades deverão estender esta base sem modificá-la diretamente.

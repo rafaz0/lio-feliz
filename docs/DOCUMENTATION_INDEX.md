@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.63
+**Versão da Documentação:** 1.64
 
 **Status:** APROVADO
 
@@ -169,6 +169,10 @@ Este arquivo representa a estrutura oficial da documentação.
 
 ## Histórico
 
+## Versão 1.64
+
+- **EWO-006 Slice 2 — Metas: Application + Infrastructure CONCLUÍDA** - Application Layer: `CriarMetaCommand`, `AtualizarMetaCommand`, `RegistrarContribuicaoCommand` (commands); `ObterMetasQuery`, `ObterProgressoMetaQuery` (queries); `MetaListDto`, `MetaProgressoDetalhadoDto` (DTOs); `CriarMetaService`, `AtualizarMetaService`, `RegistrarContribuicaoService`, `ObterMetasService`, `ObterProgressoMetaService` (services); `IFinancialGoalRepository` (port). Infrastructure Layer: `SupabaseFinancialGoalRepository` (concreto) e `FakeFinancialGoalRepository` (fake para testes). 5 suites de teste de serviços + 1 suite de teste do fake repository. Build, 981 testes e lint verdes. DOCUMENTATION_INDEX v1.64.
+
 ## Versão 1.63
 
 - **EWO-006 Slice 1 — Metas: Business Rules + Core Domain CONCLUÍDA** - Documento `07_METAS.md` criado e APROVADO. Módulo `financial-goal/` implementado no Core Domain: `FinancialGoal` aggregate root, `GoalCategory`/`GoalStatus` enums, `GoalContribution` entity, `GoalProgress` value object, `FinancialGoalService`, 4 domain events. 62 testes unitários, zero regressões. DOCUMENTATION_INDEX v1.63.
@@ -215,6 +219,6 @@ Este arquivo representa a estrutura oficial da documentação.
 
 - **AUDITORIA_INTERMEDIARIA_EWO-005.md** adicionado ao índice. Auditoria avaliativa das Slices 1-10 da EWO-005 (9 features da Presentation Layer). Veredito: 🟡 APPROVED WITH RECOMMENDATIONS. 222 testes da presentation verdes (32 architecture tests R-10). 4 achados (A1 duplicação de handler no Composition Root — MÉDIA; A2 import de DTO fora do padrão — BAIXA; A3 code-splitting ausente — BAIXA/MÉDIA; A4 teste redundante — INFO). Slice 11 (Sincronização) autorizada, condicionada à correção de A1. PROJECT_STATUS v1.70.
 
-Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, o projeto encontra-se pronto para iniciar a implementação da Onda 1 (Domain Expansion — Metas, Impostos, Rebalanceamento).
+Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, a Onda 1 (Domain Expansion) está em andamento.
 
-A EWO-006 está aprovada com 10 Slices, incorporando o tratamento das 4 NCs da ER-008. A próxima etapa é iniciar a Slice 1 (Metas: Business Rules + Core Domain).
+EWO-006: Slice 1 (Metas: Core Domain) ✅ CONCLUÍDA | Slice 2 (Metas: Application + Infrastructure) ✅ CONCLUÍDA | Próxima: Slice 3 (Metas: Presentation Feature). Em paralelo, Slices 4-6 (Impostos) e 7-9 (Rebalanceamento) aguardam priorização.
