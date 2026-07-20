@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.74
+**Versão:** 1.78
 
 **Status:** APROVADO
 
@@ -15,66 +15,51 @@
 ---
 
 ## Objetivo
-Concluir a EWO-005 (Camada de Apresentação) com todas as slices 1-12 implementadas, validadas e documentadas, executar o Encerramento da Engenharia (Slice 13) e congelar a Camada de Apresentação como base estável para futuras PIs/ERs/EWOs.
+Executar a EWO-006 (Domain Expansion — Onda 1) implementando os módulos Metas, Impostos e Rebalanceamento conforme a arquitetura aprovada na PI-008, estendendo as 4 camadas congeladas sem modificá-las.
 
 ## Detalhes Importantes
-Todas as slices 1-12 estão APROVADO (Slice 1-10 aprovadas pelo ChatGPT, Slice 11 e 12 implementadas e validadas, Slice 13 Encerramento da Engenharia concluída).
-Arquitetura Guard (ESLint override `src/presentation/**`) bloqueia imports de `@/core/domain*`, `@/infrastructure*`, `@/integrations/supabase*`.
-Regra de Dependência respeitada: Camada de Apresentação nunca importa Domínio/Infraestrutura/Supabase; comunicação exclusiva via `IDispatcher`.
-Composition Root fora de `src/presentation` (em `src/integrations/dispatcher/presentation-dispatcher.ts`) com registro de todos os handlers necessários (inclui `ExportarDadosQuery` e `SincronizarDadosCommand`).
-Novos contratos de Aplicação utilizados: `ExportarDadosQuery`/`DadosExportadosDto` (Slice 12) e `SincronizarDadosCommand`/`SincronizacaoRealizadaDto` (Slice 11).
-Construção (`vite build`), ESLint (0 erros nos arquivos novos), Verificação de Tipo (`tsc -p tsconfig.json --noEmit` 0 erros nos arquivos novos) e testes (`npx vitest run src/presentation` → 260/260 passando, 48/48 testes de arquitetura R-10 passando) validados.
-Git: commit `58fc435` (Encerramento da Engenharia + Slice 12), ramo `main` sincronizado com `origin/main`, árvore de trabalho limpa.
-Documentação atualizada: `PROJECT_STATUS.md` v1.74, `DOCUMENTATION_INDEX.md` v1.58, `ER-005_ENGINEERING_REVIEW.md` criado, `PROJECT_BOOTSTRAP.md` v2.57 com seção "Frozen Baselines".
-Nenhuma decisão arquitetural alterada; apenas melhorias documentais e de governança aplicadas.
+- EWO-006 aprovada: 10 Slices planejadas para implementar Metas, Impostos e Rebalanceamento.
+- PI-008 (Approved) é a fonte arquitetural exclusiva — nenhuma decisão arquitetural é criada durante a EWO.
+- ER-008 validou 14 critérios, 4 NCs baixas documentais incorporadas ao planejamento da EWO.
+- Prioridade de implementação: 1º Metas (novo módulo), 2º Impostos (extensão), 3º Rebalanceamento (extensão).
+- Features `tax/` e `rebalancing/` existentes serão estendidas, não recriadas (NC-008-003).
+- Todas as 4 camadas congeladas (Core, Application, Infrastructure, Presentation) permanecem intactas.
+- Architecture Guard, Dependency Rule, Composition Root preservados.
+- Baseline Lock ativo: PI-008, ER-008, EWO-006 congelados durante a execução.
 
 ## Estado Atual do Trabalho
 ### Concluído
-- Slice 1 - Foundation (ENCERRADO)
-- Slice 2 - Authentication (ENCERRADO)
-- Slice 3 - Dashboard (ENCERRADO)
-- Slice 4 - Portfolio (ENCERRADO)
-- Slice 5 - Operations (ENCERRADO)
-- Slice 6 - Dividends (ENCERRADO)
-- Slice 7 - History (ENCERRADO)
-- Slice 8 - Rebalanceamento (ENCERRADO)
-- Slice 9 - Impostos (ENCERRADO)
-- Slice 10 - Configurações (ENCERRADO)
-- Slice 11 - Sincronização (ENCERRADO)
-- Slice 12 - Relatórios / Exportação (ENCERRADO)
-- Slice 13 - Encerramento da Engenharia (ENCERRADO)
-- Auditoria Intermediária EWO-005 (Slices 1-10) concluída com relatório avaliativo 🟡 APROVADO COM RECOMENDAÇÕES
-- Correções pós-auditoria A1-A4 aplicadas (duplicação de handler, padronização de import, teste redundante)
-- Construção verde, ESLint verde, Verificação de Tipo verde, todos os testes verdes, testes de arquitetura verdes
-- Documentos atualizados: PROJECT_STATUS.md, DOCUMENTATION_INDEX.md, ER-005_ENGINEERING_REVIEW.md, PROJECT_BOOTSTRAP.md
-- Commit `58fc435` e push para `origin/main` realizados
-- Árvore de trabalho limpa
+- EWO-005 encerrada: 13 Slices (Foundation, Auth, Dashboard, Portfolio, Operations, Dividends, History, Rebalanceamento, Impostos, Configurações, Sincronização, Relatórios, Engineering Closure)
+- PI-008 (Domain Expansion) — APPROVED
+- ER-008 — APPROVED (14 critérios, 4 NCs baixas)
+- EWO-006 (Domain Expansion — Onda 1) — APROVADA, 10 Slices planejadas
+- DOCUMENTATION_INDEX v1.61, PROJECT_STATUS v1.77/1.78
 
 ### Em andamento
-- (nenhum)
+- (nenhum — EWO-006 aguardando início da implementação)
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
-1. (nenhum) – EWO-005 está oficialmente encerrada; aguardar próxima PI/ER/EWO para evoluir a base congelada.
+1. Iniciar EWO-006 Slice 1 — Metas: Business Rules + Core Domain
 
 ## Arquivos Relevantes
-- `src/integrations/dispatcher/presentation-dispatcher.ts`: Componente Raiz com handlers para todas as slices (inclui `ExportarDadosQuery` e `SincronizarDadosCommand`).
-- `src/presentation/shared/types/application-layer.ts`: exporta DTOs e queries usados pelas slices (inclui `ExportarDadosDto`, `SincronizacaoRealizadaDto`).
-- `src/presentation/features/sync/` e `src/presentation/features/reports/`: features implementadas (components, hooks, viewmodels, tests).
-- `src/routes/_authenticated/portfolio.$portfolioId.reports.ts`: rota para Slice 12.
-- `src/presentation/tests/architecture/presentation-boundaries.test.ts`: testes de arquitetura R-10 atualizados (48 asserts).
-- `docs/ER-005_ENGINEERING_REVIEW.md`: documento de Encerramento da Engenharia.
-- `docs/DOCUMENTATION_INDEX.md`: v1.58 (reflete Slice 12 + Encerramento da Engenharia).
-- `project-context/PROJECT_STATUS.md`: v1.74 (reflete todas as slices + Encerramento da Engenharia).
-- `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (inclui seção "Linhas de Base Congeladas").
-- `src/routeTree.gen.ts`: regenerado (inclui rotas `/sync` e `/portfolio/:portfolioId/reports`).
-- Git: commit `58fc435`, ramo `main`, origin sincronizado.
+- `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion
+- `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
+- `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
+- `docs/DOCUMENTATION_INDEX.md`: v1.62 (reflete EWO-006)
+- `project-context/PROJECT_STATUS.md`: v1.78 (reflete EWO-006)
+- `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines)
+- Git: branch `main`, origin sincronizado
 
 ---
 
 ## Histórico
+
+### Versão 1.78
+
+- **EWO-006 — Domain Expansion Onda 1 (Metas, Impostos, Rebalanceamento) APROVADA** - Engineering Work Order criada com 10 Slices de implementação. Ordem: 1º Metas, 2º Impostos, 3º Rebalanceamento. NCs da ER-008 incorporadas (O1, O2, RER1, RER2). Features existentes de `tax/` e `rebalancing/` serão estendidas, não recriadas. Próxima etapa: iniciar Slice 1 (Metas: Business Rules + Core Domain). DOCUMENTATION_INDEX v1.62.
 
 ### Versão 1.77
 

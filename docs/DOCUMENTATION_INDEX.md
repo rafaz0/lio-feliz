@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.61
+**Versão da Documentação:** 1.62
 
 **Status:** APROVADO
 
@@ -169,6 +169,10 @@ Este arquivo representa a estrutura oficial da documentação.
 
 ## Histórico
 
+## Versão 1.62
+
+- **EWO-006 — Domain Expansion Onda 1 (Metas, Impostos, Rebalanceamento) APROVADA** - Engineering Work Order com 10 Slices. Ordem: 1º Metas, 2º Impostos, 3º Rebalanceamento. NCs ER-008 incorporadas (O1, O2, RER1, RER2). Features existentes estendidas, não recriadas. PROJECT_STATUS v1.78.
+
 ## Versão 1.61
 
 - **ER-008 — Engineering Review da PI-008 (Domain Expansion) APROVADA** - Revisão técnica completa: 14 critérios, 4 NCs baixas, veredito APROVADO. PI-008 promovida para APPROVED. PROJECT_STATUS v1.77.
@@ -207,10 +211,6 @@ Este arquivo representa a estrutura oficial da documentação.
 
 - **AUDITORIA_INTERMEDIARIA_EWO-005.md** adicionado ao índice. Auditoria avaliativa das Slices 1-10 da EWO-005 (9 features da Presentation Layer). Veredito: 🟡 APPROVED WITH RECOMMENDATIONS. 222 testes da presentation verdes (32 architecture tests R-10). 4 achados (A1 duplicação de handler no Composition Root — MÉDIA; A2 import de DTO fora do padrão — BAIXA; A3 code-splitting ausente — BAIXA/MÉDIA; A4 teste redundante — INFO). Slice 11 (Sincronização) autorizada, condicionada à correção de A1. PROJECT_STATUS v1.70.
 
-Com base no contexto atual do projeto e na conclusão da EWO-005, não existem novas atividades em andamento neste momento.
+Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, o projeto encontra-se pronto para iniciar a implementação da Onda 1 (Domain Expansion — Metas, Impostos, Rebalanceamento).
 
-A Presentation Layer foi oficialmente congelada como parte da Engineering Closure (Slice 13), todos os gates de qualidade foram aprovados, a documentação encontra-se sincronizada e a árvore de trabalho permanece limpa.
-
-O projeto encontra-se aguardando apenas uma futura Product Increment (PI), Engineering Review (ER) ou Engineering Work Order (EWO), que deverá evoluir a baseline congelada seguindo o processo oficial do projeto.
-
-Todas as atividades previstas para a EWO-005 foram concluídas com sucesso.
+A EWO-006 está aprovada com 10 Slices, incorporando o tratamento das 4 NCs da ER-008. A próxima etapa é iniciar a Slice 1 (Metas: Business Rules + Core Domain).
