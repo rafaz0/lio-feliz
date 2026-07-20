@@ -76,6 +76,10 @@ Nenhuma decisão arquitetural alterada; apenas melhorias documentais e de govern
 
 ## Histórico
 
+### Versão 1.77
+
+- **ER-008 — Engineering Review da PI-008 (Domain Expansion) APROVADA** - Revisão técnica completa da PI-008. 14 critérios auditados, 4 NCs baixas documentais identificadas (NC-008-001 a NC-008-004), 0 NCs arquiteturais. Veredito: 🟢 APROVADO PARA IMPLEMENTAÇÃO. 1 risco Alto (RA-008-002 — regras fiscais), 3 Médios, 1 Baixo. PI-008 promovida de DRAFT para APPROVED. Próxima etapa: EWO-006 (Onda 1 — Metas, Impostos, Rebalanceamento). DOCUMENTATION_INDEX v1.61.
+
 ### Versão 1.76
 
 - **PI-008 — Domain Expansion & Business Rules Completion (DRAFT)** - Criado novo ciclo de evolução do projeto. PI-007 finalizada como Completed (Presentation Layer congelada). PI-008 define arquitetura para completar 8 módulos de domínio pendentes (06 a 13), 5 anexos técnicos, e extensão das 4 camadas sem modificar Frozen Baselines. 6 princípios arquiteturais, 8 novos Commands/Queries/Ports, 3 ondas de priorização. Próximas etapas: ER-008, EWO-006 a EWO-008. DOCUMENTATION_INDEX v1.60.

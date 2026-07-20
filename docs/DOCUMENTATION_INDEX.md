@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.60
+**Versão da Documentação:** 1.61
 
 **Status:** APROVADO
 
@@ -168,6 +168,10 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 ## Histórico
+
+## Versão 1.61
+
+- **ER-008 — Engineering Review da PI-008 (Domain Expansion) APROVADA** - Revisão técnica completa: 14 critérios, 4 NCs baixas, veredito APROVADO. PI-008 promovida para APPROVED. PROJECT_STATUS v1.77.
 
 ## Versão 1.60
 
