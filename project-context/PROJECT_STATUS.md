@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.78
+**Versão:** 1.79
 
 **Status:** APROVADO
 
@@ -15,7 +15,7 @@
 ---
 
 ## Objetivo
-Executar a EWO-006 (Domain Expansion — Onda 1) implementando os módulos Metas, Impostos e Rebalanceamento conforme a arquitetura aprovada na PI-008, estendendo as 4 camadas congeladas sem modificá-las.
+Concluir a EWO-006 (Domain Expansion — Onda 1), implementando e encerrando os módulos Metas, Impostos e Rebalanceamento conforme a arquitetura aprovada na PI-008, estendendo as 4 camadas congeladas sem modificá-las.
 
 ## Detalhes Importantes
 - EWO-006 aprovada: 10 Slices planejadas para implementar Metas, Impostos e Rebalanceamento.
@@ -32,30 +32,41 @@ Executar a EWO-006 (Domain Expansion — Onda 1) implementando os módulos Metas
 - EWO-005 encerrada: 13 Slices (Foundation, Auth, Dashboard, Portfolio, Operations, Dividends, History, Rebalanceamento, Impostos, Configurações, Sincronização, Relatórios, Engineering Closure)
 - PI-008 (Domain Expansion) — APPROVED
 - ER-008 — APPROVED (14 critérios, 4 NCs baixas)
-- EWO-006 (Domain Expansion — Onda 1) — APROVADA, 10 Slices planejadas
-- DOCUMENTATION_INDEX v1.61, PROJECT_STATUS v1.77/1.78
+- EWO-006 (Domain Expansion — Onda 1) — 🟢 CLOSED (Slices 1-10 concluídas e auditadas)
+  - Slices 1-3: Metas (Core + Application + Infrastructure + Presentation)
+  - Slices 4-6: Impostos (Core + Application + Infrastructure + Presentation)
+  - Slices 7-9: Rebalanceamento (Core + Application + Infrastructure + Presentation)
+  - Slice 10: Engineering Closure (Auditoria Final + Closure + commit + push)
+- Quality gates verdes: 1052 testes (134 arquivos, 0 regressões), architecture tests R-10 (37 testes, 0 violações), `vite build` green, ESLint limpo
+- DOCUMENTATION_INDEX v1.67, PROJECT_STATUS v1.79
 
 ### Em andamento
-- (nenhum — EWO-006 aguardando início da implementação)
+- (nenhum)
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
-1. Iniciar EWO-006 Slice 1 — Metas: Business Rules + Core Domain
+1. Ondas 2 e 3 da PI-008 (Renda Fixa, Internacional, Import/Export, Integrações, Relatórios) — exigem novas PI + ER (GOV-M06).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion
 - `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
 - `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
-- `docs/DOCUMENTATION_INDEX.md`: v1.62 (reflete EWO-006)
-- `project-context/PROJECT_STATUS.md`: v1.78 (reflete EWO-006)
+- `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
+- `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
+- `docs/DOCUMENTATION_INDEX.md`: v1.67 (reflete EWO-006 encerrada)
+- `project-context/PROJECT_STATUS.md`: v1.79 (reflete EWO-006 encerrada)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines)
 - Git: branch `main`, origin sincronizado
 
 ---
 
 ## Histórico
+
+### Versão 1.79
+
+- **EWO-006 — Engineering Closure (Slice 10) CONCLUÍDA** - EWO-006 encerrada (🟢 CLOSED). Auditoria Final (`AUDITORIA_FINAL_EWO-006.md`, veredito 🟢 APROVADO PARA ENCERRAMENTO, 15/15 critérios ER) e Engineering Closure (`EWO-006_ENGINEERING_CLOSURE.md`) redigidos. Quality gates: 1052 testes (134 arquivos, 0 regressões), architecture tests R-10 (37 testes, 0 violações), `vite build` green, ESLint limpo. Pendências TD-006-001/002/003 (débitos técnicos herdados, fora de escopo). 4 camadas congeladas intactas. Próximas: Ondas 2 e 3 da PI-008 (exigem novas PI + ER). DOCUMENTATION_INDEX v1.67.
 
 ### Versão 1.78
 

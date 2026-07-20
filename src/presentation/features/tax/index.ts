@@ -9,5 +9,12 @@ export { TaxLoading } from "./components/TaxLoading";
 export { TaxEmpty } from "./components/TaxEmpty";
 export { TaxError } from "./components/TaxError";
 export { useTaxReportQuery } from "./hooks/use-tax-report-query";
+export { useTaxCalculationQuery } from "./hooks/use-tax-calculation-query";
+export { useTaxDeclarationExportMutation } from "./hooks/use-tax-declaration-export-mutation";
 export { TAX_QUERY_KEYS } from "./queries";
 export * from "./types/tax.view-model";
+
+export { TaxCalculationDetail } from "./components/TaxCalculationDetail";
+export { TaxDeductionPanel } from "./components/TaxDeductionPanel";
+export { TaxLotTable } from "./components/TaxLotTable";
+export { TaxSummaryExtended } from "./components/TaxSummaryExtended";

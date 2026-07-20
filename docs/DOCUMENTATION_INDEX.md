@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.64
+**Versão da Documentação:** 1.67
 
 **Status:** APROVADO
 
@@ -55,9 +55,9 @@ Arquivos previstos:
 03_MARKET_DATA.md ✅
 04_CORPORATE_ACTIONS.md ✅
 05_PROVENTOS.md ✅
-06_REBALANCEAMENTO.md 🔴
+06_REBALANCEAMENTO.md 🟢
 07_METAS.md 🟢
-08_IMPOSTOS.md 🔴
+08_IMPOSTOS.md 🟢
 09_RENDA_FIXA.md 🔴
 10_INTERNACIONAL.md 🔴
 11_IMPORT_EXPORT.md 🔴
@@ -134,11 +134,23 @@ Arquivos previstos:
 04_INSIGHT_ENGINE.md ✅
 05_ENGINE_ORCHESTRATOR.md ✅
 06_HEALTH_ENGINE.md ✅
-03_REBALANCEAMENTO_ALGORITMOS.md 🔴
-04_IMPOSTO_CALCULOS.md 🔴
+03_REBALANCEAMENTO_ALGORITMOS.md 🟢
+04_IMPOSTO_CALCULOS.md 🟢
 05_CORPORATE_ACTION_EXEMPLOS.md 🔴
 06_CONVERSÃO_MOEDA.md 🔴
 07_DIRETRIZES_DE_PERFORMANCE.md 🔴
+
+---
+
+## 7. Engenharia e Governança
+
+✅ AUDITORIA_FINAL_EWO-006.md 🟢
+
+Auditoria final avaliativa das Slices 1-10 da EWO-006 (Metas, Impostos, Rebalanceamento). Veredito 🟢 APROVADO PARA ENCERRAMENTO. Framework ER (15 critérios), cobertura de Slices, Decision Areas/Invariantes, dívidas técnicas (TD-006-001/002/003).
+
+✅ EWO-006_ENGINEERING_CLOSURE.md 🟢
+
+Engineering Closure oficial da EWO-006 (Slice 10): revisão arquitetural, quality gates, auditorias, pendências, lições aprendidas, encerramento oficial e sincronização Git.
 
 ---
 
@@ -168,6 +180,18 @@ Este arquivo representa a estrutura oficial da documentação.
 ---
 
 ## Histórico
+
+## Versão 1.67
+
+- **EWO-006 Slice 10 — Engineering Closure CONCLUÍDA** - Auditoria Final (`AUDITORIA_FINAL_EWO-006.md`, veredito 🟢 APROVADO PARA ENCERRAMENTO, 15/15 critérios ER) e Engineering Closure (`EWO-006_ENGINEERING_CLOSURE.md`) redigidos. Quality gates: 1052 testes (134 arquivos, 0 regressões), architecture tests R-10 (37 testes, 0 violações), `vite build` green, ESLint limpo. Pendências TD-006-001/002/003 (débitos técnicos herdados, fora de escopo). EWO-006 (Slices 1-10) encerrada. DOCUMENTATION_INDEX v1.67.
+
+## Versão 1.66
+
+- **EWO-006 Slices 7-9 — Rebalanceamento: Core + Application + Infrastructure + Presentation CONCLUÍDA** - BR doc `06_REBALANCEAMENTO.md` e Anexo Técnico `03_REBALANCEAMENTO_ALGORITMOS.md` criados e APROVADOS. Core Domain `rebalancing/`: `AllocationTarget`, `AllocationTargetCollection` (VOs), `normalisePercentages`, `RebalancingService` (domain service com cálculo de diferenças, sugestões de aporte/venda, verificação de tolerância), `rebalancing-types.ts` (enums + tipos), `errors.ts` (5 erros de domínio). Application Layer: query `CalcularRebalanceamentoQuery` estendida com `valorAporte` opcional; `CalcularRebalanceamentoService` refatorado para usar `RebalancingService` do domínio — `valorSugerido` agora calculado corretamente. Command `ExecutarRebalanceamentoCommand` + `ExecutarRebalanceamentoService` (portfólio + event publisher). DTO `RebalanceamentoExecutadoDto`. Barrels, `application-layer.ts` e `presentation-dispatcher.ts` atualizados (handler registrado). Rota `/_authenticated/portfolio/$portfolioId/rebalancing` já existente aponta para `RebalancingPage`. DOCUMENTATION_INDEX v1.66.
+
+## Versão 1.65
+
+- **EWO-006 Slice 4-6 — Impostos: Core + Application + Infrastructure + Presentation CONCLUÍDA** - BR doc `08_IMPOSTOS.md` e Anexo Técnico `04_IMPOSTO_CALCULOS.md` criados e APROVADOS. Core Domain tax/: `TaxLot` (VO), `TaxEvent`/`TaxStatement` (entities), `TaxCalculationService` (domain service), `tax-types.ts` (enums + `TAX_RATE_TABLE`), `errors.ts`. Application Layer: 2 commands (`CalcularImpostoCommand`, `ExportarDeclaracaoCommand`), 2 queries (`ObterDeclaracaoQuery`, `ObterPosicaoFiscalQuery`), DTOs (`DeclaracaoDto`, `LoteFiscalDto`, `ImpostoMensalDto`, `ConsolidadoAnualDto`), port `ITaxStatementRepository`, 4 services. Infrastructure: `InMemoryTaxStatementRepository`, `SupabaseTaxStatementRepository`. Presentation: 2 hooks (`useTaxCalculationQuery`, `useTaxDeclarationExportMutation`), 4 components (`TaxCalculationDetail`, `TaxDeductionPanel`, `TaxLotTable`, `TaxSummaryExtended`). Composition Root registrado. 14 testes novos, zero regressões. DOCUMENTATION_INDEX v1.65.
 
 ## Versão 1.64
 
@@ -219,6 +243,6 @@ Este arquivo representa a estrutura oficial da documentação.
 
 - **AUDITORIA_INTERMEDIARIA_EWO-005.md** adicionado ao índice. Auditoria avaliativa das Slices 1-10 da EWO-005 (9 features da Presentation Layer). Veredito: 🟡 APPROVED WITH RECOMMENDATIONS. 222 testes da presentation verdes (32 architecture tests R-10). 4 achados (A1 duplicação de handler no Composition Root — MÉDIA; A2 import de DTO fora do padrão — BAIXA; A3 code-splitting ausente — BAIXA/MÉDIA; A4 teste redundante — INFO). Slice 11 (Sincronização) autorizada, condicionada à correção de A1. PROJECT_STATUS v1.70.
 
-Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, a Onda 1 (Domain Expansion) está em andamento.
+Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, a Onda 1 (Domain Expansion) foi concluída.
 
-EWO-006: Slice 1 (Metas: Core Domain) ✅ CONCLUÍDA | Slice 2 (Metas: Application + Infrastructure) ✅ CONCLUÍDA | Próxima: Slice 3 (Metas: Presentation Feature). Em paralelo, Slices 4-6 (Impostos) e 7-9 (Rebalanceamento) aguardam priorização.
+EWO-006: Slices 1-3 (Metas: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slices 4-6 (Impostos: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slices 7-9 (Rebalanceamento: Core + Application + Infrastructure + Presentation) ✅ CONCLUÍDAS | Slice 10 (Engineering Closure) ✅ CONCLUÍDA — EWO-006 encerrada (🟢 CLOSED). Próximas: Ondas 2 e 3 (Renda Fixa, Internacional, Import/Export, Integrações, Relatórios) exigem novas PI + ER.

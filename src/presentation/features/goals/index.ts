@@ -1,0 +1,15 @@
+export { GoalsPage } from "./components/GoalsPage";
+export { GoalCard } from "./components/GoalCard";
+export { GoalsTable } from "./components/GoalsTable";
+export { GoalForm } from "./components/GoalForm";
+export { GoalProgress } from "./components/GoalProgress";
+export { GoalsFilters } from "./components/GoalsFilters";
+export { GoalsSummary } from "./components/GoalsSummary";
+export { GoalsLoading } from "./components/GoalsLoading";
+export { GoalsEmpty } from "./components/GoalsEmpty";
+export { GoalsError } from "./components/GoalsError";
+export { useGoalsQuery } from "./hooks/use-goals-query";
+export { useCreateGoalMutation } from "./hooks/use-create-goal-mutation";
+export { useUpdateGoalMutation } from "./hooks/use-update-goal-mutation";
+export { GOALS_QUERY_KEYS } from "./queries";
+export * from "./types/goals.view-model";

@@ -19,6 +19,7 @@ import { createPresentationDispatcher } from "@/integrations/dispatcher/presenta
 import { SupabaseProjectionRepository } from "@/infrastructure/repositories/supabase-projection-repository";
 import { SupabasePortfolioRepository } from "@/infrastructure/repositories/supabase-portfolio-repository";
 import { SupabaseConfigurationRepository } from "@/infrastructure/repositories/supabase-configuration-repository";
+import { SupabaseFinancialGoalRepository } from "@/infrastructure/repositories/supabase-financial-goal-repository";
 import { InProcessEventPublisher } from "@/infrastructure/publishers/in-process-event-publisher";
 import { DataGatewayRouter } from "@/infrastructure/gateways/data-gateway-router";
 import { ImportInterpreter } from "@/infrastructure/interpreters/import-interpreter";
@@ -146,6 +147,7 @@ function RootComponent() {
     eventPublisher: new InProcessEventPublisher(),
     dataGateway: new DataGatewayRouter(),
     importInterpreter: new ImportInterpreter(),
+    financialGoalRepository: new SupabaseFinancialGoalRepository(supabase),
   });
 
   return (

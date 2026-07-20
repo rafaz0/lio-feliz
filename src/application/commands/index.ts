@@ -6,3 +6,6 @@ export type { GerenciarAssinaturaCommand, AcaoAssinatura } from "./gerenciar-ass
 export type { CriarMetaCommand } from "./criar-meta";
 export type { AtualizarMetaCommand } from "./atualizar-meta";
 export type { RegistrarContribuicaoCommand } from "./registrar-contribuicao";
+export type { CalcularImpostoCommand } from "./calcular-imposto";
+export type { ExportarDeclaracaoCommand } from "./exportar-declaracao";
+export type { ExecutarRebalanceamentoCommand, AcaoRebalanceamentoDto } from "./executar-rebalanceamento";

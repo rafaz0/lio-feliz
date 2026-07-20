@@ -24,3 +24,4 @@ export type { IDomainEventPublisher } from "./domain-event-publisher";
 export type { INotificationPort } from "./notification-port";
 export type { IImportInterpreterPort } from "./import-interpreter";
 export type { IFinancialGoalRepository } from "./financial-goal-repository";
+export type { ITaxStatementRepository } from "./tax-statement-repository";

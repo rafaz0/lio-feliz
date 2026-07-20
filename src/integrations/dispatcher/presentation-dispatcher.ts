@@ -7,8 +7,14 @@ import type {
   IDomainEventPublisher,
   IDataGateway,
   IImportInterpreterPort,
+  IFinancialGoalRepository,
+  ITaxStatementRepository,
 } from "@/application/ports";
 import { ConsultarPatrimonioService } from "@/application/services/consultar-patrimonio-service";
+import { CalcularImpostoService } from "@/application/services/calcular-imposto-service";
+import { ExportarDeclaracaoService } from "@/application/services/exportar-declaracao-service";
+import { ObterDeclaracaoService } from "@/application/services/obter-declaracao-service";
+import { ObterPosicaoFiscalService } from "@/application/services/obter-posicao-fiscal-service";
 import { ObterHistoricoPatrimonialService } from "@/application/services/obter-historico-patrimonial-service";
 import { ConsultarPosicaoService } from "@/application/services/consultar-posicao-service";
 import { RegistrarOperacaoService } from "@/application/services/registrar-operacao-service";
@@ -20,6 +26,10 @@ import { ObterConfiguracoesService } from "@/application/services/obter-configur
 import { ConfigurarEstrategiaService } from "@/application/services/configurar-estrategia-service";
 import { SincronizarDadosService } from "@/application/services/sincronizar-dados-service";
 import { ExportarDadosService } from "@/application/services/exportar-dados-service";
+import { ExecutarRebalanceamentoService } from "@/application/services/executar-rebalanceamento-service";
+import { ObterMetasService } from "@/application/services/obter-metas-service";
+import { CriarMetaService } from "@/application/services/criar-meta-service";
+import { AtualizarMetaService } from "@/application/services/atualizar-meta-service";
 import type { ObterPatrimonioQuery } from "@/application/queries/obter-patrimonio";
 import type { ObterHistoricoPatrimonialQuery } from "@/application/queries/obter-historico-patrimonial";
 import type { ConsultarPosicaoQuery } from "@/application/queries/consultar-posicao";
@@ -32,6 +42,14 @@ import type { ExportarDadosQuery } from "@/application/queries/exportar-dados";
 import type { ConfigurarEstrategiaCommand } from "@/application/commands/configurar-estrategia";
 import type { RegistrarOperacaoCommand } from "@/application/commands/registrar-operacao";
 import type { SincronizarDadosCommand } from "@/application/commands/sincronizar-dados";
+import type { ObterMetasQuery } from "@/application/queries/obter-metas";
+import type { CriarMetaCommand } from "@/application/commands/criar-meta";
+import type { AtualizarMetaCommand } from "@/application/commands/atualizar-meta";
+import type { CalcularImpostoCommand } from "@/application/commands/calcular-imposto";
+import type { ExportarDeclaracaoCommand } from "@/application/commands/exportar-declaracao";
+import type { ExecutarRebalanceamentoCommand } from "@/application/commands/executar-rebalanceamento";
+import type { ObterDeclaracaoQuery } from "@/application/queries/obter-declaracao";
+import type { ObterPosicaoFiscalQuery } from "@/application/queries/obter-posicao-fiscal";
 
 interface PresentationDispatcherDeps {
   projectionRepository: IProjectionRepository;
@@ -40,6 +58,8 @@ interface PresentationDispatcherDeps {
   eventPublisher?: IDomainEventPublisher;
   dataGateway?: IDataGateway;
   importInterpreter?: IImportInterpreterPort;
+  financialGoalRepository?: IFinancialGoalRepository;
+  taxStatementRepository?: ITaxStatementRepository;
 }
 
 /**
@@ -56,6 +76,8 @@ export function createPresentationDispatcher({
   eventPublisher,
   dataGateway,
   importInterpreter,
+  financialGoalRepository,
+  taxStatementRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
 
@@ -119,6 +141,12 @@ export function createPresentationDispatcher({
         command as RegistrarOperacaoCommand,
       ),
     );
+
+    dispatcher.RegisterCommand("ExecutarRebalanceamentoCommand", (command) =>
+      new ExecutarRebalanceamentoService(portfolioRepository, eventPublisher).Execute(
+        command as ExecutarRebalanceamentoCommand,
+      ),
+    );
   }
 
   if (portfolioRepository && eventPublisher && dataGateway && importInterpreter) {
@@ -129,6 +157,42 @@ export function createPresentationDispatcher({
         importInterpreter,
         eventPublisher,
       ).Execute(command as SincronizarDadosCommand),
+    );
+  }
+
+  if (financialGoalRepository) {
+    dispatcher.RegisterQuery("ObterMetasQuery", (query) =>
+      new ObterMetasService(financialGoalRepository).Execute(query as ObterMetasQuery),
+    );
+
+    dispatcher.RegisterCommand("CriarMetaCommand", (command) =>
+      new CriarMetaService(financialGoalRepository).Execute(command as CriarMetaCommand),
+    );
+
+    dispatcher.RegisterCommand("AtualizarMetaCommand", (command) =>
+      new AtualizarMetaService(financialGoalRepository).Execute(command as AtualizarMetaCommand),
+    );
+  }
+
+  if (taxStatementRepository) {
+    dispatcher.RegisterCommand("CalcularImpostoCommand", (command) =>
+      new CalcularImpostoService(projectionRepository).Execute(command as CalcularImpostoCommand),
+    );
+
+    dispatcher.RegisterCommand("ExportarDeclaracaoCommand", (command) =>
+      new ExportarDeclaracaoService(projectionRepository).Execute(
+        command as ExportarDeclaracaoCommand,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterDeclaracaoQuery", (query) =>
+      new ObterDeclaracaoService(projectionRepository, taxStatementRepository).Execute(
+        query as ObterDeclaracaoQuery,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterPosicaoFiscalQuery", (query) =>
+      new ObterPosicaoFiscalService(projectionRepository).Execute(query as ObterPosicaoFiscalQuery),
     );
   }
 

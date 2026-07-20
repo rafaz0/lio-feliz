@@ -10,3 +10,5 @@ export type { ConsultarProgressoMetasQuery } from "./consultar-progresso-metas";
 export type { ObterConfiguracoesQuery } from "./obter-configuracoes";
 export type { ObterMetasQuery } from "./obter-metas";
 export type { ObterProgressoMetaQuery } from "./obter-progresso-meta";
+export type { ObterDeclaracaoQuery } from "./obter-declaracao";
+export type { ObterPosicaoFiscalQuery } from "./obter-posicao-fiscal";

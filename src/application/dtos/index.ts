@@ -15,4 +15,6 @@ export type { ConfiguracoesDto } from "./configuracoes";
 export type { AssinaturaAtualizadaDto } from "./assinatura";
 export type { DadosExportadosDto } from "./exportacao";
 export type { EstrategiaConfiguradaDto } from "./estrategia";
+export type { RebalanceamentoExecutadoDto } from "./rebalanceamento-executado";
 export type { SincronizacaoRealizadaDto, SincronizacaoErroDto } from "./sincronizacao";
+export type { DeclaracaoDto, LoteFiscalDto, ImpostoMensalDto, ConsolidadoAnualDto } from "./declaracao";

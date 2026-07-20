@@ -25,3 +25,54 @@ export {
   FinancialGoalService,
   type GoalsSummary,
 } from "./financial-goal";
+
+export {
+  TaxLot,
+  type TaxLotProps,
+  TaxEvent,
+  TaxEventId,
+  type TaxEventData,
+  TaxStatement,
+  TaxStatementId,
+  type MonthlyTaxSummary,
+  type AnnualTaxConsolidation,
+  TaxCalculationService,
+  type RawOperation,
+  type WeightedAverageCost,
+  type MonthlyCalculationResult,
+  TaxCalculationMode,
+  TaxOperationType,
+  ExportFormat,
+  DeclarationInclude,
+  TAX_RATE_TABLE,
+  type TaxRateTableEntry,
+} from "./tax";
+
+export {
+  REBALANCING_METHOD,
+  REBALANCING_STATUS,
+  REBALANCING_ACTION,
+  DEFAULT_TOLERANCE,
+  MIN_TOLERANCE,
+  MAX_TOLERANCE,
+  PERCENTAGE_PRECISION,
+  AllocationTarget,
+  AllocationTargetCollection,
+  normalisePercentages,
+  RebalancingService,
+  InvalidAllocationPercentageError,
+  AllocationTotalMustSum100Error,
+  NoAllocationTargetsError,
+  InvalidToleranceError,
+  NoPositionsForRebalancingError,
+} from "./rebalancing";
+
+export type {
+  RebalancingMethod,
+  RebalancingStatus,
+  RebalancingAction,
+  AllocationData,
+  AllocationDifferenceData,
+  SuggestedActionData,
+  RebalancingProposalData,
+} from "./rebalancing";
