@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.84
+**Versão:** 1.85
 
 **Status:** APROVADO
 
@@ -15,17 +15,15 @@
 ---
 
 ## Objetivo
-Resolver a NC-009-002 (ER-009) adotando o reuso do fluxo canônico de operações, e emitir a EWO-007 (Onda 2: Renda Fixa 09, Internacional 10) — mantendo as 4 camadas congeladas intactas.
+Documentar o encerramento oficial (parcial) da EWO-008 (Onda 3: Import/Export 11, Integrações 12, Relatórios 13), consolidando a entrega do Módulo 13, registrando as pendências dos Módulos 11 e 12, e preparando o terreno para a execução da EWO-007 (Onda 2).
 
 ## Detalhes Importantes
-- EWO-006 aprovada: 10 Slices planejadas para implementar Metas, Impostos e Rebalanceamento.
-- PI-008 (Approved) é a fonte arquitetural exclusiva — nenhuma decisão arquitetural é criada durante a EWO.
-- ER-008 validou 14 critérios, 4 NCs baixas documentais incorporadas ao planejamento da EWO.
-- Prioridade de implementação: 1º Metas (novo módulo), 2º Impostos (extensão), 3º Rebalanceamento (extensão).
-- Features `tax/` e `rebalancing/` existentes serão estendidas, não recriadas (NC-008-003).
-- Todas as 4 camadas congeladas (Core, Application, Infrastructure, Presentation) permanecem intactas.
+- EWO-008 executada parcialmente: Módulo 13 (Relatórios) completo e commitado; Módulo 11 (Import/Export) parcial (Working Tree); Módulo 12 (Integrações) não iniciado.
+- PI-009 (Approved v1.2) é a fonte arquitetural da Onda 3 — ER-009 validou 14 critérios.
+- Todas as 4 camadas congeladas (Core, Application, Infrastructure, Presentation) permanecem intactas — Módulo 13 implementado exclusivamente por extensão.
 - Architecture Guard, Dependency Rule, Composition Root preservados.
-- Baseline Lock ativo: PI-008, ER-008, EWO-006 congelados durante a execução.
+- Working Tree NÃO limpa: 19 arquivos untracked (Módulo 11 stubs + leftovers) + 2 modificações. Preservados intencionalmente para retomada futura.
+- Próxima etapa: executar EWO-007 (Onda 2: Renda Fixa 09, Internacional 10).
 
 ## Estado Atual do Trabalho
 ### Concluído
@@ -38,19 +36,19 @@ Resolver a NC-009-002 (ER-009) adotando o reuso do fluxo canônico de operaçõe
   - Slices 7-9: Rebalanceamento (Core + Application + Infrastructure + Presentation)
   - Slice 10: Engineering Closure (Auditoria Final + Closure + commit + push)
 - Quality gates verdes: 1052 testes (134 arquivos, 0 regressões), architecture tests R-10 (37 testes, 0 violações), `vite build` green, ESLint limpo
-- DOCUMENTATION_INDEX v1.72, PROJECT_STATUS v1.84
+- DOCUMENTATION_INDEX v1.73, PROJECT_STATUS v1.85
 
 ### Em andamento (planejamento)
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
-- **EWO-008 Bloco 3 (Relatórios 13) CONCLUÍDO** — BR-13, Core Domain, Application, Infrastructure, Presentation e documentação implementados.
+- **EWO-008 — Onda 3: ENCERRADA (PARCIALMENTE)** — Módulo 13 (Relatórios) completo e commitado. Módulo 11 (Import/Export) com BR doc + Core Domain stubs na Working Tree. Módulo 12 (Integrações) não iniciado. Pendências TD-008-001/002/003 registradas em `docs/EWO-008_ENGINEERING_CLOSURE.md`.
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
 1. **Executar EWO-007** — Onda 2 (1º Renda Fixa 09: Slices 1-3; 2º Internacional 10: Slices 4-6; Slice 7 Closure).
-2. **EWO-008 Blocos 1-2** — Completar (Import/Export 11, Integrações 12) se pendentes.
+2. **Nova EWO para completar Onda 3** — Implementar Módulo 12 (Integrações) do zero e completar Módulo 11 (Import/Export), partindo dos stubs existentes na Working Tree.
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -61,14 +59,19 @@ Resolver a NC-009-002 (ER-009) adotando o reuso do fluxo canônico de operaçõe
 - `architecture-lab/EWO-007.md`: v1.0 (Approved) — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
-- `docs/DOCUMENTATION_INDEX.md`: v1.70 (reflete EWO-007 + PI-009 v1.2)
-- `project-context/PROJECT_STATUS.md`: v1.82 (reflete EWO-007)
+- `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟡 — Engineering Closure da Onda 3 (encerramento parcial)
+- `docs/DOCUMENTATION_INDEX.md`: v1.73 (reflete EWO-008 Engineering Closure)
+- `project-context/PROJECT_STATUS.md`: v1.85 (reflete EWO-008 Engineering Closure)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines)
 - Git: branch `main`, origin sincronizado
 
 ---
 
 ## Histórico
+
+### Versão 1.85
+
+- **EWO-008 Engineering Closure — Onda 3 ENCERRADA (PARCIALMENTE)** - Engineering Closure documentado em `docs/EWO-008_ENGINEERING_CLOSURE.md` (v1.0 🟡). Módulo 13 (Relatórios) completo e commitado (`85d2114`). Módulo 11 (Import/Export) com BR doc + Core Domain stubs + Application/Infrastructure stubs na Working Tree (não commitados). Módulo 12 (Integrações) não iniciado. Pendências TD-008-001/002/003 registradas. Working Tree mantida suja intencionalmente para retomada futura de Módulo 11. Próximo passo: executar EWO-007 (Onda 2) e nova EWO para completar Onda 3. DOCUMENTATION_INDEX v1.73, PROJECT_STATUS v1.85.
 
 ### Versão 1.84
 
