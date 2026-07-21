@@ -9,6 +9,7 @@ import type {
   IImportInterpreterPort,
   IFinancialGoalRepository,
   ITaxStatementRepository,
+  IFixedIncomeRepository,
 } from "@/application/ports";
 import { ConsultarPatrimonioService } from "@/application/services/consultar-patrimonio-service";
 import { CalcularImpostoService } from "@/application/services/calcular-imposto-service";
@@ -49,6 +50,12 @@ import type { CalcularImpostoCommand } from "@/application/commands/calcular-imp
 import type { ExportarDeclaracaoCommand } from "@/application/commands/exportar-declaracao";
 import type { ExecutarRebalanceamentoCommand } from "@/application/commands/executar-rebalanceamento";
 import type { ObterDeclaracaoQuery } from "@/application/queries/obter-declaracao";
+import { RegistrarCupomService } from "@/application/services/registrar-cupom-service";
+import { ObterRendaFixaService } from "@/application/services/obter-renda-fixa-service";
+import { ObterCronogramaPagamentosService } from "@/application/services/obter-cronograma-pagamentos-service";
+import type { ObterRendaFixaQuery } from "@/application/queries/obter-renda-fixa";
+import type { ObterCronogramaPagamentosQuery } from "@/application/queries/obter-cronograma-pagamentos";
+import type { RegistrarCupomCommand } from "@/application/commands/registrar-cupom";
 import type { ObterPosicaoFiscalQuery } from "@/application/queries/obter-posicao-fiscal";
 
 interface PresentationDispatcherDeps {
@@ -60,6 +67,7 @@ interface PresentationDispatcherDeps {
   importInterpreter?: IImportInterpreterPort;
   financialGoalRepository?: IFinancialGoalRepository;
   taxStatementRepository?: ITaxStatementRepository;
+  fixedIncomeRepository?: IFixedIncomeRepository;
 }
 
 /**
@@ -78,6 +86,7 @@ export function createPresentationDispatcher({
   importInterpreter,
   financialGoalRepository,
   taxStatementRepository,
+  fixedIncomeRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
 
@@ -193,6 +202,22 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterQuery("ObterPosicaoFiscalQuery", (query) =>
       new ObterPosicaoFiscalService(projectionRepository).Execute(query as ObterPosicaoFiscalQuery),
+    );
+  }
+
+  if (fixedIncomeRepository) {
+    dispatcher.RegisterCommand("RegistrarCupomCommand", (command) =>
+      new RegistrarCupomService(fixedIncomeRepository).Execute(command as RegistrarCupomCommand),
+    );
+
+    dispatcher.RegisterQuery("ObterRendaFixaQuery", (query) =>
+      new ObterRendaFixaService(fixedIncomeRepository).Execute(query as ObterRendaFixaQuery),
+    );
+
+    dispatcher.RegisterQuery("ObterCronogramaPagamentosQuery", (query) =>
+      new ObterCronogramaPagamentosService(fixedIncomeRepository).Execute(
+        query as ObterCronogramaPagamentosQuery,
+      ),
     );
   }
 

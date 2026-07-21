@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.70
+**Versão da Documentação:** 1.71
 
 **Status:** APROVADO
 
@@ -57,6 +57,7 @@ Arquivos previstos:
 05_PROVENTOS.md ✅
 06_REBALANCEAMENTO.md 🟢
 07_METAS.md 🟢
+09_RENDA_FIXA.md 🟢
 08_IMPOSTOS.md 🟢
 09_RENDA_FIXA.md 🔴
 10_INTERNACIONAL.md 🔴

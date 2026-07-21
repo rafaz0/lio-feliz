@@ -1,0 +1,13 @@
+export { FixedIncomePage } from "./components/FixedIncomePage";
+export { FixedIncomeList } from "./components/FixedIncomeList";
+export { FixedIncomeForm } from "./components/FixedIncomeForm";
+export { FixedIncomeSchedule } from "./components/FixedIncomeSchedule";
+export { FixedIncomeLoading } from "./components/FixedIncomeLoading";
+export { FixedIncomeEmpty } from "./components/FixedIncomeEmpty";
+export { FixedIncomeError } from "./components/FixedIncomeError";
+export { useFixedIncomeQuery } from "./hooks/use-fixed-income-query";
+export { useCronogramaQuery } from "./hooks/use-cronograma-query";
+export { useRegistrarCupomMutation } from "./hooks/use-registrar-cupom-mutation";
+export { FIXED_INCOME_QUERY_KEYS } from "./queries";
+export * from "./types/fixed-income.view-model";
+export { FixedIncomePage as default } from "./components/FixedIncomePage";

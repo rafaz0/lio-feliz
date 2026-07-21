@@ -76,3 +76,20 @@ export type {
   SuggestedActionData,
   RebalancingProposalData,
 } from "./rebalancing";
+
+export {
+  FixedIncomeAsset,
+  Coupon,
+  AmortizationSchedule,
+  FixedIncomeType,
+  FIXED_INCOME_TYPES,
+  isFixedIncomeType,
+  FixedIncomeTypeError,
+  FixedIncomeService,
+  InvalidFixedIncomeRateError,
+  InvalidFixedIncomeNominalError,
+  InvalidFixedIncomeDatesError,
+  InvalidScheduleConservationError,
+  InvalidFixedIncomeTypeError,
+} from "./fixed-income";
+export type { FixedIncomeAssetProps, ScheduleInput } from "./fixed-income";

@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.82
+**Versão:** 1.83
 
 **Status:** APROVADO
 
@@ -38,7 +38,7 @@ Resolver a NC-009-002 (ER-009) adotando o reuso do fluxo canônico de operaçõe
   - Slices 7-9: Rebalanceamento (Core + Application + Infrastructure + Presentation)
   - Slice 10: Engineering Closure (Auditoria Final + Closure + commit + push)
 - Quality gates verdes: 1052 testes (134 arquivos, 0 regressões), architecture tests R-10 (37 testes, 0 violações), `vite build` green, ESLint limpo
-- DOCUMENTATION_INDEX v1.68, PROJECT_STATUS v1.80
+- DOCUMENTATION_INDEX v1.71, PROJECT_STATUS v1.83
 
 ### Em andamento (planejamento)
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).

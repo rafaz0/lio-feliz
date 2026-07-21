@@ -10,6 +10,7 @@ import type {
   ExportarDeclaracaoCommand,
   ExecutarRebalanceamentoCommand,
   AcaoRebalanceamentoDto,
+  RegistrarCupomCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -26,6 +27,8 @@ import type {
   ObterProgressoMetaQuery,
   ObterDeclaracaoQuery,
   ObterPosicaoFiscalQuery,
+  ObterRendaFixaQuery,
+  ObterCronogramaPagamentosQuery,
 } from "@/application/queries";
 import type {
   PatrimonioDto,
@@ -59,6 +62,9 @@ import type {
   ImpostoMensalDto,
   ConsolidadoAnualDto,
   RebalanceamentoExecutadoDto,
+  RendaFixaDto,
+  CronogramaItemDto,
+  CronogramaPagamentosDto,
 } from "@/application/dtos";
 import type {
   ApplicationError,
@@ -82,6 +88,7 @@ export type {
   ExportarDeclaracaoCommand,
   ExecutarRebalanceamentoCommand,
   AcaoRebalanceamentoDto,
+  RegistrarCupomCommand,
   ObterPatrimonioQuery,
   ConsultarPosicaoQuery,
   ObterProventosQuery,
@@ -96,6 +103,8 @@ export type {
   ObterProgressoMetaQuery,
   ObterDeclaracaoQuery,
   ObterPosicaoFiscalQuery,
+  ObterRendaFixaQuery,
+  ObterCronogramaPagamentosQuery,
   PatrimonioDto,
   AlocacaoDto,
   PosicaoDetalhadaDto,
@@ -127,6 +136,9 @@ export type {
   ImpostoMensalDto,
   ConsolidadoAnualDto,
   RebalanceamentoExecutadoDto,
+  RendaFixaDto,
+  CronogramaItemDto,
+  CronogramaPagamentosDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

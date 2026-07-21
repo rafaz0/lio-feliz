@@ -12,3 +12,5 @@ export type { ObterMetasQuery } from "./obter-metas";
 export type { ObterProgressoMetaQuery } from "./obter-progresso-meta";
 export type { ObterDeclaracaoQuery } from "./obter-declaracao";
 export type { ObterPosicaoFiscalQuery } from "./obter-posicao-fiscal";
+export type { ObterRendaFixaQuery } from "./obter-renda-fixa";
+export type { ObterCronogramaPagamentosQuery } from "./obter-cronograma-pagamentos";

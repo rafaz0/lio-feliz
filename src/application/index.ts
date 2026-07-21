@@ -46,3 +46,6 @@ export {
   AssinaturaAlteradaHandler,
   EVENT_NAME_ASSINATURA_ALTERADA,
 } from "./handlers/assinatura-alterada-handler";
+export { RegistrarCupomService } from "./services/registrar-cupom-service";
+export { ObterRendaFixaService } from "./services/obter-renda-fixa-service";
+export { ObterCronogramaPagamentosService } from "./services/obter-cronograma-pagamentos-service";

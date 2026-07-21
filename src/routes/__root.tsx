@@ -20,6 +20,7 @@ import { SupabaseProjectionRepository } from "@/infrastructure/repositories/supa
 import { SupabasePortfolioRepository } from "@/infrastructure/repositories/supabase-portfolio-repository";
 import { SupabaseConfigurationRepository } from "@/infrastructure/repositories/supabase-configuration-repository";
 import { SupabaseFinancialGoalRepository } from "@/infrastructure/repositories/supabase-financial-goal-repository";
+import { SupabaseFixedIncomeRepository } from "@/infrastructure/repositories/supabase-fixed-income-repository";
 import { InProcessEventPublisher } from "@/infrastructure/publishers/in-process-event-publisher";
 import { DataGatewayRouter } from "@/infrastructure/gateways/data-gateway-router";
 import { ImportInterpreter } from "@/infrastructure/interpreters/import-interpreter";
@@ -148,6 +149,7 @@ function RootComponent() {
     dataGateway: new DataGatewayRouter(),
     importInterpreter: new ImportInterpreter(),
     financialGoalRepository: new SupabaseFinancialGoalRepository(supabase),
+    fixedIncomeRepository: new SupabaseFixedIncomeRepository(supabase),
   });
 
   return (

@@ -25,3 +25,4 @@ export type { INotificationPort } from "./notification-port";
 export type { IImportInterpreterPort } from "./import-interpreter";
 export type { IFinancialGoalRepository } from "./financial-goal-repository";
 export type { ITaxStatementRepository } from "./tax-statement-repository";
+export type { IFixedIncomeRepository } from "./fixed-income-repository";
