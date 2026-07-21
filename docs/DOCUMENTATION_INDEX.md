@@ -169,6 +169,10 @@ Engineering Review da PI-009: 14 critérios + 6 dimensões solicitadas validadas
 
 Engineering Work Order para a Onda 2 (Renda Fixa 09, Internacional 10). 7 Slices. O2 resolvida por reuso do fluxo canônico de operações. NC-009-001/003 incorporadas ao planejamento.
 
+🔴 PI-010.md (DRAFT v1.0)
+
+Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada). Estende PI-008 (PA-008/R-001..R-007) e PI-009 (PA-009/R-008..R-010). 4 novas restrições (R-011..R-014: Backtest Determinístico, Alertas com Consentimento, Comparação Read-Only, Exportação Assíncrona Auditável). 3 novos Anexos Técnicos previstos (`07_BACKTEST_ALGORITMOS.md`, `08_ALERTAS_EVENTOS.md`, `09_EXPORTACAO_FORMATOS.md`). 6 riscos com mitigações. Seções 11 e 12 com critérios explícitos para a futura ER-010 e para as futuras EWO-009/EWO-010. **Dependência O2**: confirmar EWO-007 antes de abrir EWO-009.
+
 ---
 
 ## Legenda
@@ -195,6 +199,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.75
+
+- **PI-010 — Domain Enrichment & Investor Tooling CRIADA (DRAFT)** - Nova Product Increment planejando os módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada), organizados em **Onda 4 (Análise e Insights)** e **Onda 5 (Educação e Compliance)**. Estende PI-008 (PA-008-001..006, R-001..R-007) e PI-009 (PA-009-001..003, R-008..R-010). 4 novas restrições (R-011 Backtest Determinístico, R-012 Alertas com Consentimento, R-013 Comparação Read-Only, R-014 Exportação Assíncrona Auditável). 5 novos Ports (`IBacktestRepository`, `IAlertRepository`, `IComparisonRepository`, `IGlossaryRepository`, `IExportTemplateRepository`). 3 novos Anexos Técnicos previstos. 6 riscos com mitigações. Seções 11/12 com critérios para ER-010 e EWO-009/EWO-010. **Dependência O2 registrada**: confirmar EWO-007 antes de abrir EWO-009. DOCUMENTATION_INDEX v1.75.
 
 ## Versão 1.74
 

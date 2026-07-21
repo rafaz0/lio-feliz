@@ -4,26 +4,27 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.86
+**Versão:** 1.87
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 20/07/2026
+**Última atualização:** 21/07/2026
 
 ---
 
 ## Objetivo
-Consolidar o encerramento oficial da EWO-008 (Onda 3: Import/Export 11, Integrações 12, Relatórios 13), com todos os 3 módulos implementados, commitados e sincronizados. EWO-008 oficialmente 🟢 CLOSED.
+Registrar a criação da PI-010 (Domain Enrichment & Investor Tooling — Ondas 4 & 5) como DRAFT, planejando a expansão futura do projeto para os módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada). PI-010 estende PI-008 e PI-009 sem modificar camadas congeladas.
 
 ## Detalhes Importantes
-- EWO-008 completamente executada: Módulo 11 (Import/Export), Módulo 12 (Integrações) e Módulo 13 (Relatórios) fully implementados.
-- PI-009 (Approved v1.2) é a fonte arquitetural da Onda 3 — ER-009 validou 14 critérios.
-- Todas as 4 camadas congeladas (Core, Application, Infrastructure, Presentation) permanecem intactas — todos os módulos implementados exclusivamente por extensão.
-- Architecture Guard, Dependency Rule, Composition Root preservados.
-- Working Tree limpa pós-commit.
-- Próxima etapa: executar EWO-007 (Onda 2: Renda Fixa 09, Internacional 10).
+- PI-010 (DRAFT v1.0) criada em `architecture-lab/PI-010.md` — next step no fluxo PI → ER → EWO.
+- Próxima etapa imediata permanece **EWO-007** (Onda 2: Renda Fixa 09, Internacional 10) — pendência operacional.
+- PI-010 registra explicitamente **Dependência O2**: EWO-007 deve ser concluída antes de EWO-009, pois Alertas 15 e Comparação 16 dependem de projeções de dividendos e posições internacionais.
+- PI-010 não modifica nenhuma camada congelada: novos Ports (`IBacktestRepository`, `IAlertRepository`, `IComparisonRepository`, `IGlossaryRepository`, `IExportTemplateRepository`) são adições.
+- 4 novas restrições propostas (R-011..R-014): Backtest Determinístico, Alertas com Consentimento, Comparação Read-Only, Exportação Assíncrona Auditável.
+- 3 novos Anexos Técnicos previstos (`07_BACKTEST_ALGORITMOS.md`, `08_ALERTAS_EVENTOS.md`, `09_EXPORTACAO_FORMATOS.md`).
+- DOCUMENTATION_INDEX atualizado para v1.75 com entrada da PI-010.
 
 ## Estado Atual do Trabalho
 ### Concluído
@@ -36,7 +37,7 @@ Consolidar o encerramento oficial da EWO-008 (Onda 3: Import/Export 11, Integra�
   - Slices 7-9: Rebalanceamento (Core + Application + Infrastructure + Presentation)
   - Slice 10: Engineering Closure (Auditoria Final + Closure + commit + push)
 - Quality gates verdes: architecture tests R-10 (37 testes, 0 violações), `vite build` green
-- DOCUMENTATION_INDEX v1.74, PROJECT_STATUS v1.86
+- DOCUMENTATION_INDEX v1.75, PROJECT_STATUS v1.87
 
 ### Concluído
 - **EWO-008 — Onda 3: 🟢 CLOSED (Módulos 11, 12, 13 completos)**
@@ -49,16 +50,19 @@ Consolidar o encerramento oficial da EWO-008 (Onda 3: Import/Export 11, Integra�
 ### Em andamento (planejamento)
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
+- **PI-010 (DRAFT v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. Próxima etapa: ER-010 (Engineering Review).
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
 1. **Executar EWO-007** — Onda 2 (1º Renda Fixa 09: Slices 1-3; 2º Internacional 10: Slices 4-6; Slice 7 Closure).
+2. Após EWO-007: executar **ER-010** para promover PI-010 de DRAFT → APPROVED, então emitir EWO-009 (Onda 4) e EWO-010 (Onda 5).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
 - `architecture-lab/PI-009.md`: v1.2 (Approved) — Ondas 2 & 3 (módulos 09-13); O2 resolvida
+- `architecture-lab/PI-010.md`: v1.0 (DRAFT) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
 - `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
 - `architecture-lab/ER-009.md`: v1.0 (Approved) — Engineering Review da PI-009 (🟢 APROVADO)
 - `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
@@ -66,14 +70,18 @@ Consolidar o encerramento oficial da EWO-008 (Onda 3: Import/Export 11, Integra�
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.74 (reflete EWO-008 completo)
-- `project-context/PROJECT_STATUS.md`: v1.86 (reflete EWO-008 completo)
+- `docs/DOCUMENTATION_INDEX.md`: v1.75 (reflete PI-010 DRAFT)
+- `project-context/PROJECT_STATUS.md`: v1.87 (reflete PI-010 DRAFT)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines)
 - Git: branch `main`, origin sincronizado
 
 ---
 
 ## Histórico
+
+### Versão 1.87
+
+- **PI-010 — Domain Enrichment & Investor Tooling CRIADA (DRAFT)** - Nova Product Increment planejando os módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada), organizados em **Onda 4 (Análise e Insights)** e **Onda 5 (Educação e Compliance)**. Estende PI-008 (PA-008-001..006, R-001..R-007) e PI-009 (PA-009-001..003, R-008..R-010). 4 novas restrições propostas (R-011..R-014). 5 novos Ports. 3 novos Anexos Técnicos previstos. 6 riscos com mitigações. Seções 11/12 com critérios para ER-010 e EWO-009/EWO-010. **Dependência O2 registrada**: EWO-007 deve ser concluída antes de EWO-009. Próxima etapa do fluxo: ER-010. Operacionalmente, a próxima etapa imediata permanece EWO-007 (pendência da Onda 2). DOCUMENTATION_INDEX v1.75, PROJECT_STATUS v1.87.
 
 ### Versão 1.86
 
