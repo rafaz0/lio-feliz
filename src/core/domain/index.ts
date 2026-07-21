@@ -81,7 +81,6 @@ export {
   FixedIncomeAsset,
   Coupon,
   AmortizationSchedule,
-  FixedIncomeType,
   FIXED_INCOME_TYPES,
   isFixedIncomeType,
   FixedIncomeTypeError,
@@ -92,4 +91,21 @@ export {
   InvalidScheduleConservationError,
   InvalidFixedIncomeTypeError,
 } from "./fixed-income";
-export type { FixedIncomeAssetProps, ScheduleInput } from "./fixed-income";
+export type { FixedIncomeType, FixedIncomeAssetProps, ScheduleInput } from "./fixed-income";
+
+export {
+  ReportTemplateId,
+  ReportTemplate,
+  BUILT_IN_TEMPLATES,
+  ReportExecutionId,
+  ReportExecution,
+  ReportScheduleId,
+  ReportSchedule,
+  ReportRenderingService,
+  InvalidReportTemplateError,
+  InvalidReportFormatError,
+  InvalidReportScheduleError,
+  ReportNotFoundError,
+  ReportFileTooLargeError,
+} from "./reports";
+export type { ReportCategory, ReportExportFormat, ReportTemplateProps, ReportStatus, ReportParameters, ReportExecutionProps, ReportScheduleProps } from "./reports";

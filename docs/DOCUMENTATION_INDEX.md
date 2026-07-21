@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.71
+**Versão da Documentação:** 1.72
 
 **Status:** APROVADO
 
@@ -63,7 +63,7 @@ Arquivos previstos:
 10_INTERNACIONAL.md 🔴
 11_IMPORT_EXPORT.md 🔴
 12_INTEGRAÇÕES.md 🔴
-13_RELATÓRIOS.md 🔴
+13_RELATÓRIOS.md ✅
 
 ---
 
@@ -192,6 +192,10 @@ Este arquivo representa a estrutura oficial da documentação.
 
 ---
 
+## Versão 1.72
+
+- **EWO-008 Bloco 3 — Módulo 13 (Relatórios) CONCLUÍDO** - BR-13 criado e APROVADO (`docs/06_BUSINESS_RULES/13_RELATÓRIOS.md`). Core Domain `src/core/domain/reports/`: `ReportTemplate`, `ReportExecution`, `ReportSchedule` (entidades), `ReportRenderingService` (domain service), 5 domain errors. Application Layer: 2 commands (`GerarRelatorioCommand`, `AgendarRelatorioCommand`), 2 queries (`ObterRelatoriosDisponiveisQuery`, `ObterRelatorioExecutadoQuery`), 4 services, port `IReportRepository`, DTOs. Infrastructure: `FakeReportRepository` e `SupabaseReportRepository`. Presentation Feature `src/presentation/features/reports/`: 6 componentes (ReportPage, ReportList, ReportCard, ReportExecutionItem, ScheduleForm, ReportLoading, ReportError), 4 hooks, ViewModel com transformações, 10 testes. Composition Root e barrels atualizados. DOCUMENTATION_INDEX v1.72.
+
 ## Histórico
 
 ## Versão 1.70
@@ -270,4 +274,4 @@ Este arquivo representa a estrutura oficial da documentação.
 
 Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, a Onda 1 (Domain Expansion) foi concluída.
 
-EWO-006: Slices 1-3 (Metas) ✅ | Slices 4-6 (Impostos) ✅ | Slices 7-9 (Rebalanceamento) ✅ | Slice 10 (Closure) ✅ — EWO-006 encerrada (🟢 CLOSED). Ondas 2 e 3 planejadas pela **PI-009 (🟢 APPROVED v1.2)**; **ER-009 concluída** (🟢). **O2 (NC-009-002) RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. **EWO-007 CRIADA (🟢)** para a Onda 2 (Renda Fixa 09 → Internacional 10, 7 Slices). Próxima: executar EWO-007; depois **EWO-008** (Onda 3: 11, 12, 13).
+EWO-006: Slices 1-3 (Metas) ✅ | Slices 4-6 (Impostos) ✅ | Slices 7-9 (Rebalanceamento) ✅ | Slice 10 (Closure) ✅ — EWO-006 encerrada (🟢 CLOSED). Ondas 2 e 3 planejadas pela **PI-009 (🟢 APPROVED v1.2)**; **ER-009 concluída** (🟢). **O2 (NC-009-002) RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. **EWO-007 CRIADA (🟢)** para a Onda 2 (Renda Fixa 09 → Internacional 10, 7 Slices). **EWO-008 Bloco 3 (Relatórios 13) CONCLUÍDO**: BR-13 criado, Core Domain `reports/`, Application Layer (commands/queries/services/ports/DTOs), Infrastructure (fakes + supabase), Presentation Feature completa. Build, testes e validações aprovados.

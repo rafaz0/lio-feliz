@@ -11,3 +11,4 @@ export { FakeImportInterpreter } from "./fake-import-interpreter";
 export type { NotificacaoRegistrada } from "./fake-notification-port";
 export { FakeFinancialGoalRepository } from "./fake-financial-goal-repository";
 export { FakeFixedIncomeRepository } from "./fake-fixed-income-repository";
+export { FakeReportRepository } from "./fake-report-repository";

@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.83
+**Versão:** 1.84
 
 **Status:** APROVADO
 
@@ -38,18 +38,19 @@ Resolver a NC-009-002 (ER-009) adotando o reuso do fluxo canônico de operaçõe
   - Slices 7-9: Rebalanceamento (Core + Application + Infrastructure + Presentation)
   - Slice 10: Engineering Closure (Auditoria Final + Closure + commit + push)
 - Quality gates verdes: 1052 testes (134 arquivos, 0 regressões), architecture tests R-10 (37 testes, 0 violações), `vite build` green, ESLint limpo
-- DOCUMENTATION_INDEX v1.71, PROJECT_STATUS v1.83
+- DOCUMENTATION_INDEX v1.72, PROJECT_STATUS v1.84
 
 ### Em andamento (planejamento)
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
-- **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Pronta para execução.
+- **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
+- **EWO-008 Bloco 3 (Relatórios 13) CONCLUÍDO** — BR-13, Core Domain, Application, Infrastructure, Presentation e documentação implementados.
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
 1. **Executar EWO-007** — Onda 2 (1º Renda Fixa 09: Slices 1-3; 2º Internacional 10: Slices 4-6; Slice 7 Closure).
-2. **EWO-008** — implementar Onda 3 (Import/Export 11, Integrações 12, Relatórios 13).
+2. **EWO-008 Blocos 1-2** — Completar (Import/Export 11, Integrações 12) se pendentes.
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -68,6 +69,10 @@ Resolver a NC-009-002 (ER-009) adotando o reuso do fluxo canônico de operaçõe
 ---
 
 ## Histórico
+
+### Versão 1.84
+
+- **EWO-008 Bloco 3 — Módulo 13 (Relatórios) CONCLUÍDO** - BR-13 criado e APROVADO. Core Domain `reports/`: `ReportTemplate`, `ReportExecution`, `ReportSchedule`, `ReportRenderingService`. Application Layer: 2 commands, 2 queries, 4 services, port `IReportRepository`, DTOs. Infrastructure: `FakeReportRepository` e `SupabaseReportRepository`. Presentation Feature completa: 7 componentes, 4 hooks, ViewModel, 10 testes. Composition Root, barrels e `application-layer.ts` atualizados. DOCUMENTATION_INDEX v1.72, PROJECT_STATUS v1.84.
 
 ### Versão 1.82
 

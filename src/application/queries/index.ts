@@ -14,3 +14,5 @@ export type { ObterDeclaracaoQuery } from "./obter-declaracao";
 export type { ObterPosicaoFiscalQuery } from "./obter-posicao-fiscal";
 export type { ObterRendaFixaQuery } from "./obter-renda-fixa";
 export type { ObterCronogramaPagamentosQuery } from "./obter-cronograma-pagamentos";
+export type { ObterRelatoriosDisponiveisQuery } from "./obter-relatorios-disponiveis";
+export type { ObterRelatorioExecutadoQuery } from "./obter-relatorio-executado";

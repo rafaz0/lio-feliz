@@ -11,6 +11,8 @@ import type {
   ExecutarRebalanceamentoCommand,
   AcaoRebalanceamentoDto,
   RegistrarCupomCommand,
+  GerarRelatorioCommand,
+  AgendarRelatorioCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -29,6 +31,8 @@ import type {
   ObterPosicaoFiscalQuery,
   ObterRendaFixaQuery,
   ObterCronogramaPagamentosQuery,
+  ObterRelatoriosDisponiveisQuery,
+  ObterRelatorioExecutadoQuery,
 } from "@/application/queries";
 import type {
   PatrimonioDto,
@@ -65,6 +69,12 @@ import type {
   RendaFixaDto,
   CronogramaItemDto,
   CronogramaPagamentosDto,
+  ReportTemplateDto,
+  ReportExecutionDto,
+  ReportScheduleDto,
+  ReportTemplateListDto,
+  ReportExecutionDetailDto,
+  ReportScheduleListDto,
 } from "@/application/dtos";
 import type {
   ApplicationError,
@@ -105,6 +115,10 @@ export type {
   ObterPosicaoFiscalQuery,
   ObterRendaFixaQuery,
   ObterCronogramaPagamentosQuery,
+  ObterRelatoriosDisponiveisQuery,
+  ObterRelatorioExecutadoQuery,
+  GerarRelatorioCommand,
+  AgendarRelatorioCommand,
   PatrimonioDto,
   AlocacaoDto,
   PosicaoDetalhadaDto,
@@ -139,6 +153,12 @@ export type {
   RendaFixaDto,
   CronogramaItemDto,
   CronogramaPagamentosDto,
+  ReportTemplateDto,
+  ReportExecutionDto,
+  ReportScheduleDto,
+  ReportTemplateListDto,
+  ReportExecutionDetailDto,
+  ReportScheduleListDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

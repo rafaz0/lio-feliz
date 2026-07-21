@@ -10,6 +10,7 @@ import type {
   IFinancialGoalRepository,
   ITaxStatementRepository,
   IFixedIncomeRepository,
+  IReportRepository,
 } from "@/application/ports";
 import { ConsultarPatrimonioService } from "@/application/services/consultar-patrimonio-service";
 import { CalcularImpostoService } from "@/application/services/calcular-imposto-service";
@@ -31,6 +32,10 @@ import { ExecutarRebalanceamentoService } from "@/application/services/executar-
 import { ObterMetasService } from "@/application/services/obter-metas-service";
 import { CriarMetaService } from "@/application/services/criar-meta-service";
 import { AtualizarMetaService } from "@/application/services/atualizar-meta-service";
+import { ObterRelatoriosDisponiveisService } from "@/application/services/obter-relatorios-disponiveis-service";
+import { GerarRelatorioService } from "@/application/services/gerar-relatorio-service";
+import { AgendarRelatorioService } from "@/application/services/agendar-relatorio-service";
+import { ObterRelatorioExecutadoService } from "@/application/services/obter-relatorio-executado-service";
 import type { ObterPatrimonioQuery } from "@/application/queries/obter-patrimonio";
 import type { ObterHistoricoPatrimonialQuery } from "@/application/queries/obter-historico-patrimonial";
 import type { ConsultarPosicaoQuery } from "@/application/queries/consultar-posicao";
@@ -57,6 +62,10 @@ import type { ObterRendaFixaQuery } from "@/application/queries/obter-renda-fixa
 import type { ObterCronogramaPagamentosQuery } from "@/application/queries/obter-cronograma-pagamentos";
 import type { RegistrarCupomCommand } from "@/application/commands/registrar-cupom";
 import type { ObterPosicaoFiscalQuery } from "@/application/queries/obter-posicao-fiscal";
+import type { ObterRelatoriosDisponiveisQuery } from "@/application/queries/obter-relatorios-disponiveis";
+import type { ObterRelatorioExecutadoQuery } from "@/application/queries/obter-relatorio-executado";
+import type { GerarRelatorioCommand } from "@/application/commands/gerar-relatorio";
+import type { AgendarRelatorioCommand } from "@/application/commands/agendar-relatorio";
 
 interface PresentationDispatcherDeps {
   projectionRepository: IProjectionRepository;
@@ -68,6 +77,7 @@ interface PresentationDispatcherDeps {
   financialGoalRepository?: IFinancialGoalRepository;
   taxStatementRepository?: ITaxStatementRepository;
   fixedIncomeRepository?: IFixedIncomeRepository;
+  reportRepository?: IReportRepository;
 }
 
 /**
@@ -87,6 +97,7 @@ export function createPresentationDispatcher({
   financialGoalRepository,
   taxStatementRepository,
   fixedIncomeRepository,
+  reportRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
 
@@ -218,6 +229,28 @@ export function createPresentationDispatcher({
       new ObterCronogramaPagamentosService(fixedIncomeRepository).Execute(
         query as ObterCronogramaPagamentosQuery,
       ),
+    );
+  }
+
+  if (reportRepository) {
+    dispatcher.RegisterQuery("ObterRelatoriosDisponiveisQuery", (query) =>
+      new ObterRelatoriosDisponiveisService().Execute(query as ObterRelatoriosDisponiveisQuery),
+    );
+
+    dispatcher.RegisterQuery("ObterRelatorioExecutadoQuery", (query) =>
+      new ObterRelatorioExecutadoService(reportRepository).Execute(
+        query as ObterRelatorioExecutadoQuery,
+      ),
+    );
+
+    dispatcher.RegisterCommand("GerarRelatorioCommand", (command) =>
+      new GerarRelatorioService(reportRepository, projectionRepository).Execute(
+        command as GerarRelatorioCommand,
+      ),
+    );
+
+    dispatcher.RegisterCommand("AgendarRelatorioCommand", (command) =>
+      new AgendarRelatorioService(reportRepository).Execute(command as AgendarRelatorioCommand),
     );
   }
 

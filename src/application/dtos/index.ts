@@ -19,3 +19,4 @@ export type { RebalanceamentoExecutadoDto } from "./rebalanceamento-executado";
 export type { SincronizacaoRealizadaDto, SincronizacaoErroDto } from "./sincronizacao";
 export type { DeclaracaoDto, LoteFiscalDto, ImpostoMensalDto, ConsolidadoAnualDto } from "./declaracao";
 export type { RendaFixaDto, CronogramaItemDto, CronogramaPagamentosDto } from "./renda-fixa";
+export type { ReportTemplateDto, ReportExecutionDto, ReportScheduleDto, ReportTemplateListDto, ReportExecutionDetailDto, ReportScheduleListDto } from "./relatorio";
