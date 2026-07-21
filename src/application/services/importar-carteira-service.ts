@@ -1,5 +1,6 @@
 import type { ImportarCarteiraCommand } from "@/application/commands/importar-carteira";
-import type { ImportacaoRealizadaDto, ImportacaoErroDto } from "@/application/dtos/operacao";
+import type { ImportacaoRealizadaDto } from "@/application/dtos/importacao";
+import type { ImportacaoErroDto } from "@/application/dtos/operacao";
 import type { IApplicationService } from "@/application/application-service";
 import type { IPortfolioRepository } from "@/application/ports/portfolio-repository";
 import type { IDataGateway, DadosImportacao } from "@/application/ports/data-gateway";

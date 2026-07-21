@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useImportHistoryQuery } from "../hooks/use-import-history-query";
 import { useImportMutation } from "../hooks/use-import-mutation";
@@ -12,11 +12,43 @@ interface ImportExportPageProps {
 
 export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPageProps) {
   const [activeTab, setActiveTab] = useState<"import" | "export">("import");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const { data: historicoData, isLoading, isError, error } = useImportHistoryQuery(usuarioId);
   const importMutation = useImportMutation();
   const exportMutation = useExportMutation();
 
   const jobs = historicoData?.jobs ? toImportJobViewModels(historicoData.jobs) : [];
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    setSelectedFile(file);
+  };
+
+  const handleImportFile = async (formato: string) => {
+    if (!selectedFile) return;
+
+    try {
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+
+      await importMutation.mutateAsync({
+        usuarioId,
+        origem: formato,
+        formato,
+        arquivo: base64,
+        arquivoSize: selectedFile.size,
+        portfolioId,
+        observacoes: `Importado de ${selectedFile.name}`,
+      });
+
+      setSelectedFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } catch {}
+  };
 
   return (
     <section data-testid="import-export-page" aria-label="Importação e Exportação" className="space-y-6">
@@ -43,38 +75,53 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Importe operações de corretoras, bancos ou planilhas.
+                Selecione um arquivo CSV, Excel ou JSON para importar.
               </p>
+
+              <div className="space-y-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".csv,.xlsx,.xls,.json"
+                  onChange={handleFileSelect}
+                  className="block w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                  data-testid="file-input"
+                />
+              </div>
+
+              {selectedFile && (
+                <div className="text-sm text-muted-foreground">
+                  Arquivo selecionado: {selectedFile.name} ({(selectedFile.size / 1024).toFixed(1)} KB)
+                </div>
+              )}
+
               <div className="flex gap-2">
                 <button
-                  className="bg-primary text-primary-foreground px-4 py-2 rounded-md"
-                  onClick={() => {
-                    importMutation.mutateAsync({
-                      usuarioId,
-                      origem: "CSV",
-                      formato: "CSV",
-                      portfolioId,
-                    }).catch(() => {});
-                  }}
-                  disabled={importMutation.isPending}
+                  className="bg-primary text-primary-foreground px-4 py-2 rounded-md disabled:opacity-50"
+                  onClick={() => handleImportFile("CSV")}
+                  disabled={importMutation.isPending || !selectedFile}
+                  data-testid="import-csv-btn"
                 >
                   {importMutation.isPending ? "Importando..." : "Importar CSV"}
                 </button>
                 <button
-                  className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md"
-                  onClick={() => {
-                    importMutation.mutateAsync({
-                      usuarioId,
-                      origem: "EXCEL",
-                      formato: "EXCEL",
-                      portfolioId,
-                    }).catch(() => {});
-                  }}
-                  disabled={importMutation.isPending}
+                  className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md disabled:opacity-50"
+                  onClick={() => handleImportFile("EXCEL")}
+                  disabled={importMutation.isPending || !selectedFile}
+                  data-testid="import-excel-btn"
                 >
                   Importar Excel
                 </button>
+                <button
+                  className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md disabled:opacity-50"
+                  onClick={() => handleImportFile("JSON")}
+                  disabled={importMutation.isPending || !selectedFile}
+                  data-testid="import-json-btn"
+                >
+                  Importar JSON
+                </button>
               </div>
+
               {importMutation.data && (
                 <div className="p-3 bg-green-50 border border-green-200 rounded-md text-sm">
                   {importMutation.data.operacoesImportadas} operações importadas, {importMutation.data.operacoesRejeitadas} rejeitadas
@@ -94,7 +141,7 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
             </CardHeader>
             <CardContent>
               {isLoading && <div className="text-sm text-muted-foreground">Carregando...</div>}
-              {isError && <div className="text-sm text-red-500">Erro ao carregar histórico</div>}
+              {isError && <div className="text-sm text-red-500">Erro ao carregar histórico: {error?.message}</div>}
               {!isLoading && !isError && jobs.length === 0 && (
                 <div className="text-sm text-muted-foreground">Nenhuma importação realizada</div>
               )}
@@ -173,6 +220,19 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
                 disabled={exportMutation.isPending}
               >
                 Exportar Proventos
+              </button>
+              <button
+                className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md"
+                onClick={() => {
+                  exportMutation.mutateAsync({
+                    portfolioId,
+                    formato: "CSV",
+                    templateId: "operacoes",
+                  }).catch(() => {});
+                }}
+                disabled={exportMutation.isPending}
+              >
+                Exportar Operações
               </button>
             </div>
             {exportMutation.data && (

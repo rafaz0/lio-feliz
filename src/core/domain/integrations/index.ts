@@ -3,6 +3,7 @@ export type { IntegrationProvider, IntegrationAuthType, IntegrationStatus, Integ
 export { SyncLog, SyncLogId } from "./sync-log";
 export type { SyncStatus, SyncType } from "./sync-log";
 export { SyncOrchestrationService } from "./sync-orchestration-service";
+export { ConnectionStatus } from "./connection-status";
 export {
   InvalidIntegrationConfigError,
   IntegrationNotFoundError,

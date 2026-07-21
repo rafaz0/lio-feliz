@@ -29,7 +29,7 @@ export interface IntegracaoConfiguradaDto {
   readonly status: string;
 }
 
-export interface SincronizacaoRealizadaDto {
+export interface SyncResultDto {
   readonly syncLogId: string;
   readonly status: string;
   readonly recordsProcessed: number;

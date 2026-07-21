@@ -389,7 +389,7 @@ describe("DTOs", () => {
   });
 
   it("ImportacaoRealizadaDto with erros", () => {
-    const dto: import("@/application/dtos/operacao").ImportacaoRealizadaDto = {
+    const dto: import("@/application/dtos/importacao").ImportacaoRealizadaDto = {
       totalOperacoes: 10,
       operacoesImportadas: 8,
       operacoesRejeitadas: 2,

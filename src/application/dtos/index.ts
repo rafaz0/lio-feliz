@@ -1,6 +1,6 @@
 export type { PatrimonioDto, AlocacaoDto } from "./patrimonio";
 export type { PosicaoDetalhadaDto } from "./posicao";
-export type { OperacaoRegistradaDto, ImportacaoRealizadaDto, ImportacaoErroDto } from "./operacao";
+export type { OperacaoRegistradaDto, ImportacaoErroDto } from "./operacao";
 export type { ProventosDto, ProventoDto } from "./proventos";
 export type {
   RebalanceamentoDto,
@@ -21,4 +21,4 @@ export type { DeclaracaoDto, LoteFiscalDto, ImpostoMensalDto, ConsolidadoAnualDt
 export type { RendaFixaDto, CronogramaItemDto, CronogramaPagamentosDto } from "./renda-fixa";
 export type { ReportTemplateDto, ReportExecutionDto, ReportScheduleDto, ReportTemplateListDto, ReportExecutionDetailDto, ReportScheduleListDto } from "./relatorio";
 export type { ImportJobDto, ImportacaoRealizadaDto, ExportJobDto, HistoricoImportacaoDto, ModelosExportacaoDto } from "./importacao";
-export type { IntegrationConfigDto, SyncLogDto, IntegracaoConfiguradaDto, SincronizacaoRealizadaDto, IntegracoesListDto, SyncStatusDto } from "./integracao";
+export type { IntegrationConfigDto, SyncLogDto, IntegracaoConfiguradaDto, SyncResultDto, IntegracoesListDto, SyncStatusDto } from "./integracao";

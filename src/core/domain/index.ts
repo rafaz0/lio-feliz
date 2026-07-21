@@ -121,8 +121,12 @@ export {
   InvalidImportFormatError,
   ImportSourceError,
   ImportValidationError,
+  ImportRecordLimitError,
+  MAX_IMPORT_RECORDS,
+  isValidImportSource,
+  IMPORT_SOURCES,
 } from "./import-export";
-export type { ImportJobStatus, ImportJobMetadata, ImportFormat, ImportRecordNormalized, ValidationResult, ExportJobMetadata } from "./import-export";
+export type { ImportJobStatus, ImportJobMetadata, ImportFormat, ImportRecordNormalized, ValidationResult, ExportJobMetadata, NormalizedOperationSide, ImportError, ImportSource } from "./import-export";
 
 export {
   IntegrationConfig,
@@ -130,6 +134,7 @@ export {
   SyncLog,
   SyncLogId,
   SyncOrchestrationService,
+  ConnectionStatus,
   InvalidIntegrationConfigError,
   IntegrationNotFoundError,
   SyncInProgressError,

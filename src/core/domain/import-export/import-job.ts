@@ -1,5 +1,9 @@
 import { ValueObject } from "../value-object";
 import { EntityId } from "../entity-id";
+import type { ImportFormat } from "./import-format";
+import type { ImportSource, ImportError } from "./errors";
+import { isValidImportSource, MAX_IMPORT_RECORDS, ImportRecordLimitError, ImportSourceError, InvalidImportFormatError } from "./errors";
+import { isValidImportFormat } from "./import-format";
 
 export class ImportJobId extends EntityId {
   private constructor(value: string) {
@@ -28,8 +32,8 @@ export class ImportJob extends ValueObject<ImportJob> {
     private readonly _id: ImportJobId,
     private readonly _fileName: string,
     private readonly _fileSize: number,
-    private readonly _format: string,
-    private readonly _source: string,
+    private readonly _format: ImportFormat,
+    private readonly _source: ImportSource,
     private readonly _metadata: ImportJobMetadata,
     private _status: ImportJobStatus,
     private readonly _createdAt: Date,
@@ -37,7 +41,7 @@ export class ImportJob extends ValueObject<ImportJob> {
     private readonly _totalRecords: number,
     private _processedRecords: number = 0,
     private _errorRecords: number = 0,
-    private readonly _errors: string[] = [],
+    private readonly _errors: ImportError[] = [],
   ) {
     super();
   }
@@ -45,8 +49,8 @@ export class ImportJob extends ValueObject<ImportJob> {
   get id(): ImportJobId { return this._id; }
   get fileName(): string { return this._fileName; }
   get fileSize(): number { return this._fileSize; }
-  get format(): string { return this._format; }
-  get source(): string { return this._source; }
+  get format(): ImportFormat { return this._format; }
+  get source(): ImportSource { return this._source; }
   get metadata(): ImportJobMetadata { return this._metadata; }
   get status(): ImportJobStatus { return this._status; }
   get createdAt(): Date { return this._createdAt; }
@@ -54,22 +58,32 @@ export class ImportJob extends ValueObject<ImportJob> {
   get totalRecords(): number { return this._totalRecords; }
   get processedRecords(): number { return this._processedRecords; }
   get errorRecords(): number { return this._errorRecords; }
-  get errors(): string[] { return this._errors; }
+  get errors(): ImportError[] { return [...this._errors]; }
 
   static create(props: {
     fileName: string;
     fileSize: number;
-    format: string;
-    source: string;
+    format: ImportFormat;
+    source: ImportSource;
     metadata: ImportJobMetadata;
     totalRecords: number;
   }): ImportJob {
+    if (!isValidImportSource(props.source)) {
+      throw new ImportSourceError(`Fonte inválida: ${props.source}`);
+    }
+    if (!isValidImportFormat(props.format)) {
+      throw new InvalidImportFormatError(`Formato inválido: ${props.format}`);
+    }
+    if (props.totalRecords > MAX_IMPORT_RECORDS) {
+      throw new ImportRecordLimitError(MAX_IMPORT_RECORDS, props.totalRecords);
+    }
+
     return new ImportJob(
       ImportJobId.create(),
       props.fileName,
       props.fileSize,
-      props.format,
-      props.source,
+      props.format as ImportFormat,
+      props.source as ImportSource,
       props.metadata,
       "PENDING",
       new Date(),
@@ -87,7 +101,7 @@ export class ImportJob extends ValueObject<ImportJob> {
     this._completedAt = new Date();
   }
 
-  fail(errors: string[]): void {
+  fail(errors: ImportError[]): void {
     this._status = "FAILED";
     this._completedAt = new Date();
     this._errors.push(...errors);
@@ -101,7 +115,7 @@ export class ImportJob extends ValueObject<ImportJob> {
     }
   }
 
-  addError(error: string): void {
+  addError(error: ImportError): void {
     this._errors.push(error);
     this._errorRecords = this._errors.length;
   }
@@ -120,7 +134,7 @@ export class ImportJob extends ValueObject<ImportJob> {
       totalRecords: this._totalRecords,
       processedRecords: this._processedRecords,
       errorRecords: this._errorRecords,
-      errors: this._errors,
+      errors: [...this._errors],
     };
   }
 

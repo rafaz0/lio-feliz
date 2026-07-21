@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { ICommand } from "@/application/types";
 import type { ApplicationError } from "@/presentation/shared/types/application-layer";
-import type { SincronizacaoRealizadaDto } from "@/application/dtos/integracao";
+import type { SyncResultDto } from "@/application/dtos/integracao";
 import { INTEGRATION_QUERY_KEYS } from "../queries";
 
 interface UseSyncMutationInput {
@@ -11,11 +11,11 @@ interface UseSyncMutationInput {
 }
 
 interface UseSyncMutationResult {
-  mutateAsync: (input: UseSyncMutationInput) => Promise<SincronizacaoRealizadaDto>;
+  mutateAsync: (input: UseSyncMutationInput) => Promise<SyncResultDto>;
   isPending: boolean;
   isError: boolean;
   error: ApplicationError | null;
-  data: SincronizacaoRealizadaDto | null;
+  data: SyncResultDto | null;
 }
 
 export function useSyncMutation(): UseSyncMutationResult {
@@ -23,8 +23,8 @@ export function useSyncMutation(): UseSyncMutationResult {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async (input: UseSyncMutationInput): Promise<SincronizacaoRealizadaDto> => {
-      const result = await dispatcher.DispatchCommand<SincronizacaoRealizadaDto>({
+    mutationFn: async (input: UseSyncMutationInput): Promise<SyncResultDto> => {
+      const result = await dispatcher.DispatchCommand<SyncResultDto>({
         type: "SincronizarIntegracaoCommand",
         integrationId: input.integrationId,
       } as ICommand);
@@ -42,6 +42,6 @@ export function useSyncMutation(): UseSyncMutationResult {
     isPending: mutation.isPending,
     isError: mutation.isError,
     error: (mutation.error as ApplicationError | null) ?? null,
-    data: (mutation.data as SincronizacaoRealizadaDto | null) ?? null,
+    data: (mutation.data as SyncResultDto | null) ?? null,
   };
 }

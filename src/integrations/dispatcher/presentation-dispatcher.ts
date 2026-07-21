@@ -84,6 +84,7 @@ import type { ConfigurarIntegracaoCommand } from "@/application/commands/configu
 import type { SincronizarIntegracaoCommand } from "@/application/commands/sincronizar-integracao";
 import type { ObterIntegracoesQuery } from "@/application/queries/obter-integracoes";
 import type { ObterStatusSincronizacaoQuery } from "@/application/queries/obter-status-sincronizacao";
+import { SyncOrchestrationService } from "@/core/domain/integrations";
 
 interface PresentationDispatcherDeps {
   projectionRepository: IProjectionRepository;
@@ -122,6 +123,7 @@ export function createPresentationDispatcher({
   integrationRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
+  const syncOrchestration = new SyncOrchestrationService();
 
   dispatcher.RegisterQuery("ObterPatrimonioQuery", (query) =>
     new ConsultarPatrimonioService(projectionRepository).Execute(query as ObterPatrimonioQuery),
@@ -314,7 +316,7 @@ export function createPresentationDispatcher({
     );
 
     dispatcher.RegisterCommand("SincronizarIntegracaoCommand", (command) =>
-      new SincronizarIntegracaoService(integrationRepository).Execute(
+      new SincronizarIntegracaoService(integrationRepository, syncOrchestration).Execute(
         command as SincronizarIntegracaoCommand,
       ),
     );
@@ -324,7 +326,7 @@ export function createPresentationDispatcher({
     );
 
     dispatcher.RegisterQuery("ObterStatusSincronizacaoQuery", (query) =>
-      new ObterStatusSincronizacaoService(integrationRepository).Execute(
+      new ObterStatusSincronizacaoService(integrationRepository, syncOrchestration).Execute(
         query as ObterStatusSincronizacaoQuery,
       ),
     );

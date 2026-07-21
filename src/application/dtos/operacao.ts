@@ -1,20 +1,15 @@
-export interface ImportarDadosCommand {
-  readonly type: "ImportarDadosCommand";
-  readonly usuarioId: string;
-  readonly origem: string;
-  readonly formato: string;
-  readonly arquivo?: string;
-  readonly arquivoSize?: number;
-  readonly conexao?: Record<string, any>;
-  readonly intervalo?: { inicio: Date; fim: Date };
-  readonly portfolioId?: string;
-  readonly observacoes?: string;
+export interface OperacaoRegistradaDto {
+  readonly operacaoId: string;
+  readonly tipo: string;
+  readonly ativoId: string;
+  readonly quantidade: number;
+  readonly valor: number;
+  readonly data: Date;
+  readonly status: string;
 }
 
-export interface ImportacaoRealizadaDto {
-  readonly totalOperacoes: number;
-  readonly operacoesImportadas: number;
-  readonly operacoesRejeitadas: number;
-  readonly erros: { linha: number; tipo: string; mensagem: string }[];
-  readonly importJobId: string;
+export interface ImportacaoErroDto {
+  readonly linha: number;
+  readonly tipo: string;
+  readonly mensagem: string;
 }

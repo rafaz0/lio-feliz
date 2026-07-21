@@ -1,9 +1,11 @@
 import { ValueObject } from "../value-object";
 
+export type NormalizedOperationSide = "buy" | "sell" | "dividend" | "bonus";
+
 export interface ImportRecordNormalized {
   assetId: string;
   ticker: string;
-  operation: string;
+  operation: NormalizedOperationSide;
   quantity: number;
   unitPrice: number;
   date: Date;

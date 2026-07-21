@@ -6,7 +6,7 @@ import type { IImportInterpreterPort } from "@/application/ports/import-interpre
 import type { IDomainEventPublisher } from "@/application/ports/domain-event-publisher";
 import type { IImportHistoryRepository } from "@/application/ports/import-history-repository";
 import type { IPortfolioRepository } from "@/application/ports/portfolio-repository";
-import { ImportJob, isValidImportFormat, ImportJobId } from "@/core/domain/import-export";
+import { ImportJob, isValidImportFormat, ImportJobId, isValidImportSource } from "@/core/domain/import-export";
 import { NotFoundError, ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
@@ -44,12 +44,14 @@ export class ImportarDadosService implements IApplicationService<ImportarDadosCo
       );
     }
 
+    const format = isValidImportFormat(command.formato) ? command.formato : "CSV";
+    const source = isValidImportSource(command.origem) ? command.origem : "LOCAL";
     const importJob = ImportJob.create({
-      fileName: command.arquivo || `import_${Date.now()}.${command.formato.toLowerCase()}`,
+      fileName: command.arquivo || `import_${Date.now()}.${format.toLowerCase()}`,
       fileSize: command.arquivoSize || 0,
-      format: command.formato,
-      source: command.origem,
-      metadata: { usuarioId: command.usuarioId, fonte: command.conexao?.provedor, observacoes: command.observacoes },
+      format,
+      source,
+      metadata: { usuarioId: command.usuarioId, fonte: command.conexao?.provedor || command.origem, observacoes: command.observacoes },
       totalRecords: dadosImportacao.operacoes.length,
     });
 
@@ -68,13 +70,14 @@ export class ImportarDadosService implements IApplicationService<ImportarDadosCo
         importJob.addSuccess(1);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : "Erro ao interpretar operação";
+        const importErr = { line: i + 1, field: "operacao", message: errorMessage, code: "INTERPRET_ERROR" };
         erros.push({ linha: i + 1, tipo: "INTERPRET_ERROR", mensagem: errorMessage });
-        importJob.addError(errorMessage);
+        importJob.addError(importErr);
       }
     }
 
     if (erros.length > 0) {
-      importJob.fail(erros.map(e => e.mensagem));
+      importJob.fail(erros.map(e => ({ line: e.linha, field: "import", message: e.mensagem, code: e.tipo })));
     } else {
       importJob.complete();
     }

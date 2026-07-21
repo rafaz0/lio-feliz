@@ -1,6 +1,7 @@
 import { SyncLog } from "./sync-log";
 import type { SyncType, SyncStatus } from "./sync-log";
 import { SyncInProgressError } from "./errors";
+import { ConnectionStatus } from "./connection-status";
 
 export class SyncOrchestrationService {
   private activeSyncs: Map<string, boolean> = new Map();
@@ -17,19 +18,19 @@ export class SyncOrchestrationService {
     this.activeSyncs.delete(integrationId);
   }
 
-  calculateSyncStatus(logs: SyncLog[]): { lastSync: Date | null; status: SyncStatus; totalErrors: number } {
+  calculateSyncStatus(logs: SyncLog[]): ConnectionStatus {
     if (logs.length === 0) {
-      return { lastSync: null, status: "SUCCESS", totalErrors: 0 };
+      return ConnectionStatus.create({ lastSync: null, status: "SUCCESS", totalErrors: 0 });
     }
 
     const sorted = [...logs].sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime());
     const latest = sorted[0];
 
-    return {
+    return ConnectionStatus.create({
       lastSync: latest.completedAt ?? latest.startedAt,
       status: latest.status,
       totalErrors: sorted.reduce((sum, log) => sum + log.errors.length, 0),
-    };
+    });
   }
 
   static createLog(props: {

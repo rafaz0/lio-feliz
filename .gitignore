@@ -34,6 +34,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# Opencode local cache (gerado por travamento do LM Studio — não versionar)
+.opencode/node_modules/
+
 # Dev artifacts
 .wrangler-state/
 preview-out.txt

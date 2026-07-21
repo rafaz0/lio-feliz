@@ -1,5 +1,5 @@
 import { ValueObject } from "../value-object";
-import { ImportFormat } from "../import-export/import-format";
+import type { ImportFormat } from "./import-format";
 
 export interface ExportJobMetadata {
   usuarioId: string;

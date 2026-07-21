@@ -4,12 +4,13 @@ import type { IApplicationService } from "@/application/application-service";
 import type { IIntegrationRepository } from "@/application/ports/integration-repository";
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
-import { SyncOrchestrationService } from "@/core/domain/integrations";
+import type { SyncOrchestrationService } from "@/core/domain/integrations";
 
 export class ObterStatusSincronizacaoService implements IApplicationService<ObterStatusSincronizacaoQuery, SyncStatusDto> {
-  private readonly orchestration = new SyncOrchestrationService();
-
-  constructor(private readonly integrationRepo: IIntegrationRepository) {}
+  constructor(
+    private readonly integrationRepo: IIntegrationRepository,
+    private readonly orchestration: SyncOrchestrationService,
+  ) {}
 
   async Execute(query: ObterStatusSincronizacaoQuery): Promise<SyncStatusDto | ApplicationError> {
     const config = await this.integrationRepo.findById(query.integrationId);

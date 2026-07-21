@@ -90,6 +90,7 @@ import type {
   IntegrationConfigDto,
   SyncLogDto,
   IntegracaoConfiguradaDto,
+  SyncResultDto,
   IntegracoesListDto,
   SyncStatusDto,
 } from "@/application/dtos";

@@ -96,7 +96,7 @@ describe("ImportarCarteiraService", () => {
       const result = await service.Execute(createCommand());
 
       expect(result).not.toBeInstanceOf(ApplicationError);
-      const dto = result as import("@/application/dtos/operacao").ImportacaoRealizadaDto;
+      const dto = result as import("@/application/dtos/importacao").ImportacaoRealizadaDto;
       expect(dto.totalOperacoes).toBe(3);
       expect(dto.operacoesImportadas).toBe(3);
       expect(dto.operacoesRejeitadas).toBe(0);
@@ -175,7 +175,7 @@ describe("ImportarCarteiraService", () => {
       const result = await service.Execute(createCommand());
 
       expect(result).not.toBeInstanceOf(ApplicationError);
-      const dto = result as import("@/application/dtos/operacao").ImportacaoRealizadaDto;
+      const dto = result as import("@/application/dtos/importacao").ImportacaoRealizadaDto;
       expect(dto.totalOperacoes).toBe(2);
       expect(dto.operacoesImportadas).toBe(1);
       expect(dto.operacoesRejeitadas).toBe(1);
