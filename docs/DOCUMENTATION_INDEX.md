@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.73
+**Versão da Documentação:** 1.74
 
 **Status:** APROVADO
 
@@ -196,6 +196,10 @@ Este arquivo representa a estrutura oficial da documentação.
 
 ---
 
+## Versão 1.74
+
+- **EWO-008 — Onda 3 COMPLETA. Módulos 11, 12 e 13 CONCLUÍDOS.** Engineering Closure finalizado em `docs/EWO-008_ENGINEERING_CLOSURE.md` (v1.0 🟢). Módulo 13 (Relatórios) mantido. Módulo 11 (Import/Export): BR doc `11_IMPORT_EXPORT.md`, Core Domain (ImportJob, ExportJob, ImportMapping), Application Layer (2 commands, 2 queries, DTOs, 4 services, port `IImportHistoryRepository`), Infrastructure (FakeImportHistoryRepository, SupabaseImportHistoryRepository), Presentation Feature (ImportExportPage, hooks, viewmodel) — implementados e commitados. Módulo 12 (Integrações): BR doc `12_INTEGRACOES.md`, Core Domain (IntegrationConfig, SyncLog, SyncOrchestrationService), Application Layer (2 commands, 2 queries, DTOs, port `IIntegrationRepository`, 4 services), Infrastructure (FakeIntegrationRepository, SupabaseIntegrationRepository), Presentation Feature (IntegrationsPage, hooks, viewmodel) — implementados e commitados. Working Tree limpa. DOCUMENTATION_INDEX v1.74.
+
 ## Versão 1.73
 
 - **EWO-008 Engineering Closure — Onda 3 ENCERRADA (PARCIALMENTE)** - Engineering Closure documentado em `docs/EWO-008_ENGINEERING_CLOSURE.md` (v1.0 🟡). Módulo 13 (Relatórios) completo em produção; Módulo 11 (Import/Export) com BR doc + Core Domain stubs na Working Tree (não commitados); Módulo 12 (Integrações) não iniciado. Pendências TD-008-001/002/003 registradas. Working Tree mantida suja intencionalmente para preservar stubs de Módulo 11. DOCUMENTATION_INDEX v1.73.
@@ -282,4 +286,4 @@ Este arquivo representa a estrutura oficial da documentação.
 
 Com base no contexto atual do projeto e na aprovação da PI-008, ER-008 e EWO-006, a Onda 1 (Domain Expansion) foi concluída.
 
-EWO-006: Slices 1-3 (Metas) ✅ | Slices 4-6 (Impostos) ✅ | Slices 7-9 (Rebalanceamento) ✅ | Slice 10 (Closure) ✅ — EWO-006 encerrada (🟢 CLOSED). Ondas 2 e 3 planejadas pela **PI-009 (🟢 APPROVED v1.2)**; **ER-009 concluída** (🟢). **O2 (NC-009-002) RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. **EWO-007 CRIADA (🟢)** para a Onda 2 (Renda Fixa 09 → Internacional 10, 7 Slices). **EWO-008 Onda 3 — ENCERRADA (PARCIALMENTE)**: Módulo 13 (Relatórios) completo; Módulo 11 parcial (Working Tree); Módulo 12 não iniciado. Pendências TD-008-001/002/003 registradas no Engineering Closure.
+EWO-006: Slices 1-3 (Metas) ✅ | Slices 4-6 (Impostos) ✅ | Slices 7-9 (Rebalanceamento) ✅ | Slice 10 (Closure) ✅ — EWO-006 encerrada (🟢 CLOSED). Ondas 2 e 3 planejadas pela **PI-009 (🟢 APPROVED v1.2)**; **ER-009 concluída** (🟢). **O2 (NC-009-002) RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. **EWO-007 CRIADA (🟢)** para a Onda 2 (Renda Fixa 09 → Internacional 10, 7 Slices). **EWO-008 — Onda 3 COMPLETA**: Módulos 11 (Import/Export), 12 (Integrações) e 13 (Relatórios) implementados, commitados e sincronizados. EWO-008 oficialmente 🟢 CLOSED.

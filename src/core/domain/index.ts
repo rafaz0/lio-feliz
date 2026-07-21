@@ -109,3 +109,31 @@ export {
   ReportFileTooLargeError,
 } from "./reports";
 export type { ReportCategory, ReportExportFormat, ReportTemplateProps, ReportStatus, ReportParameters, ReportExecutionProps, ReportScheduleProps } from "./reports";
+
+export {
+  ImportJob,
+  ImportJobId,
+  ExportJob,
+  ImportMapping,
+  IMPORT_FORMATS,
+  isValidImportFormat,
+  InvalidImportOperationError,
+  InvalidImportFormatError,
+  ImportSourceError,
+  ImportValidationError,
+} from "./import-export";
+export type { ImportJobStatus, ImportJobMetadata, ImportFormat, ImportRecordNormalized, ValidationResult, ExportJobMetadata } from "./import-export";
+
+export {
+  IntegrationConfig,
+  IntegrationConfigId,
+  SyncLog,
+  SyncLogId,
+  SyncOrchestrationService,
+  InvalidIntegrationConfigError,
+  IntegrationNotFoundError,
+  SyncInProgressError,
+  ConnectionFailedError,
+  InvalidSyncScheduleError,
+} from "./integrations";
+export type { IntegrationProvider, IntegrationAuthType, IntegrationStatus, IntegrationConfigProps, SyncStatus, SyncType } from "./integrations";

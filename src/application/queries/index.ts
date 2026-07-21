@@ -16,3 +16,7 @@ export type { ObterRendaFixaQuery } from "./obter-renda-fixa";
 export type { ObterCronogramaPagamentosQuery } from "./obter-cronograma-pagamentos";
 export type { ObterRelatoriosDisponiveisQuery } from "./obter-relatorios-disponiveis";
 export type { ObterRelatorioExecutadoQuery } from "./obter-relatorio-executado";
+export type { ObterHistoricoImportacaoQuery } from "./obter-historico-importacao";
+export type { ObterModelosExportacaoQuery } from "./obter-modelos-exportacao";
+export type { ObterIntegracoesQuery } from "./obter-integracoes";
+export type { ObterStatusSincronizacaoQuery } from "./obter-status-sincronizacao";

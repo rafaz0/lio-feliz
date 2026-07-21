@@ -11,6 +11,8 @@ import type {
   ITaxStatementRepository,
   IFixedIncomeRepository,
   IReportRepository,
+  IImportHistoryRepository,
+  IIntegrationRepository,
 } from "@/application/ports";
 import { ConsultarPatrimonioService } from "@/application/services/consultar-patrimonio-service";
 import { CalcularImpostoService } from "@/application/services/calcular-imposto-service";
@@ -66,6 +68,22 @@ import type { ObterRelatoriosDisponiveisQuery } from "@/application/queries/obte
 import type { ObterRelatorioExecutadoQuery } from "@/application/queries/obter-relatorio-executado";
 import type { GerarRelatorioCommand } from "@/application/commands/gerar-relatorio";
 import type { AgendarRelatorioCommand } from "@/application/commands/agendar-relatorio";
+import { ImportarDadosService } from "@/application/services/importar-dados-service";
+import { ExportarRelatorioService } from "@/application/services/exportar-relatorio-service";
+import { ObterHistoricoImportacaoService } from "@/application/services/obter-historico-importacao-service";
+import { ObterModelosExportacaoService } from "@/application/services/obter-modelos-exportacao-service";
+import { ConfigurarIntegracaoService } from "@/application/services/configurar-integracao-service";
+import { SincronizarIntegracaoService } from "@/application/services/sincronizar-integracao-service";
+import { ObterIntegracoesService } from "@/application/services/obter-integracoes-service";
+import { ObterStatusSincronizacaoService } from "@/application/services/obter-status-sincronizacao-service";
+import type { ImportarDadosCommand } from "@/application/commands/importar-dados";
+import type { ExportarRelatorioCommand } from "@/application/commands/exportar-relatorio";
+import type { ObterHistoricoImportacaoQuery } from "@/application/queries/obter-historico-importacao";
+import type { ObterModelosExportacaoQuery } from "@/application/queries/obter-modelos-exportacao";
+import type { ConfigurarIntegracaoCommand } from "@/application/commands/configurar-integracao";
+import type { SincronizarIntegracaoCommand } from "@/application/commands/sincronizar-integracao";
+import type { ObterIntegracoesQuery } from "@/application/queries/obter-integracoes";
+import type { ObterStatusSincronizacaoQuery } from "@/application/queries/obter-status-sincronizacao";
 
 interface PresentationDispatcherDeps {
   projectionRepository: IProjectionRepository;
@@ -78,6 +96,8 @@ interface PresentationDispatcherDeps {
   taxStatementRepository?: ITaxStatementRepository;
   fixedIncomeRepository?: IFixedIncomeRepository;
   reportRepository?: IReportRepository;
+  importHistoryRepository?: IImportHistoryRepository;
+  integrationRepository?: IIntegrationRepository;
 }
 
 /**
@@ -98,6 +118,8 @@ export function createPresentationDispatcher({
   taxStatementRepository,
   fixedIncomeRepository,
   reportRepository,
+  importHistoryRepository,
+  integrationRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
 
@@ -251,6 +273,60 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterCommand("AgendarRelatorioCommand", (command) =>
       new AgendarRelatorioService(reportRepository).Execute(command as AgendarRelatorioCommand),
+    );
+  }
+
+  if (portfolioRepository && eventPublisher && dataGateway && importInterpreter && importHistoryRepository) {
+    dispatcher.RegisterCommand("ImportarDadosCommand", (command) =>
+      new ImportarDadosService(
+        portfolioRepository,
+        dataGateway,
+        importInterpreter,
+        importHistoryRepository,
+        eventPublisher,
+      ).Execute(command as ImportarDadosCommand),
+    );
+  }
+
+  if (projectionRepository) {
+    dispatcher.RegisterCommand("ExportarRelatorioCommand", (command) =>
+      new ExportarRelatorioService(projectionRepository).Execute(command as ExportarRelatorioCommand),
+    );
+
+    dispatcher.RegisterQuery("ObterModelosExportacaoQuery", (query) =>
+      new ObterModelosExportacaoService().Execute(query as ObterModelosExportacaoQuery),
+    );
+  }
+
+  if (importHistoryRepository) {
+    dispatcher.RegisterQuery("ObterHistoricoImportacaoQuery", (query) =>
+      new ObterHistoricoImportacaoService(importHistoryRepository).Execute(
+        query as ObterHistoricoImportacaoQuery,
+      ),
+    );
+  }
+
+  if (integrationRepository) {
+    dispatcher.RegisterCommand("ConfigurarIntegracaoCommand", (command) =>
+      new ConfigurarIntegracaoService(integrationRepository).Execute(
+        command as ConfigurarIntegracaoCommand,
+      ),
+    );
+
+    dispatcher.RegisterCommand("SincronizarIntegracaoCommand", (command) =>
+      new SincronizarIntegracaoService(integrationRepository).Execute(
+        command as SincronizarIntegracaoCommand,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterIntegracoesQuery", (query) =>
+      new ObterIntegracoesService(integrationRepository).Execute(query as ObterIntegracoesQuery),
+    );
+
+    dispatcher.RegisterQuery("ObterStatusSincronizacaoQuery", (query) =>
+      new ObterStatusSincronizacaoService(integrationRepository).Execute(
+        query as ObterStatusSincronizacaoQuery,
+      ),
     );
   }
 

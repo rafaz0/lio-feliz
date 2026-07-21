@@ -12,3 +12,7 @@ export type { ExecutarRebalanceamentoCommand, AcaoRebalanceamentoDto } from "./e
 export type { RegistrarCupomCommand } from "./registrar-cupom";
 export type { GerarRelatorioCommand } from "./gerar-relatorio";
 export type { AgendarRelatorioCommand } from "./agendar-relatorio";
+export type { ImportarDadosCommand } from "./importar-dados";
+export type { ExportarRelatorioCommand } from "./exportar-relatorio";
+export type { ConfigurarIntegracaoCommand } from "./configurar-integracao";
+export type { SincronizarIntegracaoCommand } from "./sincronizar-integracao";

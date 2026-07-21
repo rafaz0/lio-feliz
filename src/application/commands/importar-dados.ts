@@ -5,16 +5,8 @@ export interface ImportarDadosCommand {
   readonly formato: string;
   readonly arquivo?: string;
   readonly arquivoSize?: number;
-  readonly conexao?: Record<string, any>;
+  readonly conexao?: Record<string, string>;
   readonly intervalo?: { inicio: Date; fim: Date };
   readonly portfolioId?: string;
   readonly observacoes?: string;
-}
-
-export interface ImportacaoRealizadaDto {
-  readonly totalOperacoes: number;
-  readonly operacoesImportadas: number;
-  readonly operacoesRejeitadas: number;
-  readonly erros: { linha: number; tipo: string; mensagem: string }[];
-  readonly importJobId: string;
 }

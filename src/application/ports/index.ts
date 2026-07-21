@@ -27,3 +27,5 @@ export type { IFinancialGoalRepository } from "./financial-goal-repository";
 export type { ITaxStatementRepository } from "./tax-statement-repository";
 export type { IFixedIncomeRepository } from "./fixed-income-repository";
 export type { IReportRepository } from "./report-repository";
+export type { IImportHistoryRepository } from "./import-history-repository";
+export type { IIntegrationRepository } from "./integration-repository";

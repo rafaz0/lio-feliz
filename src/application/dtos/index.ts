@@ -20,3 +20,5 @@ export type { SincronizacaoRealizadaDto, SincronizacaoErroDto } from "./sincroni
 export type { DeclaracaoDto, LoteFiscalDto, ImpostoMensalDto, ConsolidadoAnualDto } from "./declaracao";
 export type { RendaFixaDto, CronogramaItemDto, CronogramaPagamentosDto } from "./renda-fixa";
 export type { ReportTemplateDto, ReportExecutionDto, ReportScheduleDto, ReportTemplateListDto, ReportExecutionDetailDto, ReportScheduleListDto } from "./relatorio";
+export type { ImportJobDto, ImportacaoRealizadaDto, ExportJobDto, HistoricoImportacaoDto, ModelosExportacaoDto } from "./importacao";
+export type { IntegrationConfigDto, SyncLogDto, IntegracaoConfiguradaDto, SincronizacaoRealizadaDto, IntegracoesListDto, SyncStatusDto } from "./integracao";
