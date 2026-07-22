@@ -14,6 +14,26 @@
 
 # Registro de Sincronizações
 
+## EWO-011 — Bloco A (Assinaturas 19, Perfil 20) 🟢 APROVADA
+
+**Data:** 22/07/2026
+
+### Estrutura
+
+- 7 Slices: Assinaturas 19 (S1-3), Perfil 20 (S4-6), Closure (S7)
+- NCs ER-011 tratadas: NC-011-001 a NC-011-004
+- REC-011-001: ADR-011-001 a ADR-011-003 registrados
+- REC-011-002: AuthorizationService com Plan Capabilities
+- FRs: FR-051 a FR-060
+
+### Documentos
+
+- architecture-lab/EWO-011.md v1.0
+- DOCUMENTATION_INDEX v1.91
+- PROJECT_STATUS v2.04
+
+---
+
 ## ER-011 — Engineering Review da PI-011 🟢 APPROVED
 
 **Data:** 22/07/2026

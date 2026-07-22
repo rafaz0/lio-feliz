@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.03
+**Versão:** 2.04
 
 **Status:** APROVADO
 
@@ -59,7 +59,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - **EWO-010 🟢 FECHADA** — Onda 5 concluída. 7 Slices executadas. Educação 17 e Exportação Avançada 18 implementados.
 - **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS**
 - **EWO-009 🟢 FECHADA** — Onda 4 concluída.
-- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). ER-011 aprovada com 4 NCs baixas. Próxima etapa: EWO-011 / EWO-012.
+- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). ER-011 aprovada. **EWO-011 (Bloco A) criada.**
+- **EWO-011 (APPROVED)** — Bloco A (Assinaturas 19, Perfil do Investidor 20). 7 Slices. NCs ER-011 tratadas. ADRs registrados.
 
 ### Bloqueado
 
@@ -75,7 +76,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `architecture-lab/PI-009.md`: v1.2 (Approved) — Ondas 2 & 3 (módulos 09-13); O2 resolvida
 - `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
 - `architecture-lab/PI-011.md`: v1.0 (APPROVED) — Platform Consolidation & Product Readiness (Onda 6)
-- `architecture-lab/ER-011.md`: v1.0 (APPROVED) — Engineering Review da PI-011 (🟢 APROVADO)
+- `architecture-lab/EWO-011.md`: v1.0 (APPROVED) — Bloco A (Assinaturas 19, Perfil do Investidor 20), 7 Slices
+- `architecture-lab/ER-011.md`: v1.0 (APPROVED)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
 - `architecture-lab/EWO-010.md`: v1.0 (CLOSED) — Onda 5 (Educação 17, Exportação Avançada 18), 7 Slices
@@ -87,8 +89,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
-- `docs/DOCUMENTATION_INDEX.md`: v1.90 (reflete ER-011 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v2.03 (reflete ER-011 APPROVED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.91 (reflete EWO-011 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v2.04 (reflete EWO-011 APPROVED)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -98,6 +100,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 ---
 
 ## Histórico
+
+### Versão 2.04
+
+- **EWO-011 CRIADA (APPROVED)** — Engineering Work Order para o Bloco A (Assinaturas 19, Perfil do Investidor 20). 7 Slices. NCs ER-011 tratadas: NC-011-001, NC-011-002, NC-011-003, NC-011-004. REC-011-001: ADR-011-001 a ADR-011-003. REC-011-002: AuthorizationService com Plan Capabilities. FRs renumerados: FR-051 a FR-060. AuthorizationService com capabilities centralizadas por plano. DOCUMENTATION_INDEX v1.91, PROJECT_STATUS v2.04.
 
 ### Versão 2.03
 

@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.90
+**Versão da Documentação:** 1.91
 
 **Status:** APROVADO
 
@@ -219,6 +219,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.91
+
+- **EWO-011 CRIADA (APPROVED)** — Engineering Work Order para o Bloco A (Assinaturas 19, Perfil do Investidor 20). 7 Slices. NCs ER-011 tratadas (NC-011-001 a NC-011-004). ADRs registrados (ADR-011-001 a ADR-011-003). AuthorizationService com Plan Capabilities (REC-011-002). DOCUMENTATION_INDEX v1.91.
 
 ## Versão 1.90
 
