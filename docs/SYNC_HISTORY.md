@@ -14,6 +14,25 @@
 
 # Registro de Sincronizações
 
+## PI-012 — Platform Completion & Production Readiness (DRAFT)
+
+**Data:** 22/07/2026
+
+### Estrutura
+
+- 3 Blocos: A (Completude UI), B (Production Readiness), C (Comercialização)
+- 3 EWOs previstas: EWO-013 (~10 Sl.), EWO-014 (~7 Sl.), EWO-015 (~5 Sl.)
+- 2 ADRs: ADR-012-001 (IPaymentGateway), ADR-012-002 (CheckoutOrchestrator)
+- 2 restrições: R-018 (Presentation pura), R-019 (Mock substituível)
+
+### Documentos
+
+- architecture-lab/PI-012.md v1.0 (DRAFT)
+- DOCUMENTATION_INDEX v1.99
+- PROJECT_STATUS v2.12
+
+---
+
 ## EWO-012 — Bloco B (Onboarding 21, Personalização 22) 🟢 FECHADA
 
 **Data:** 22/07/2026

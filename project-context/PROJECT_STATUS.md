@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.11
+**Versão:** 2.12
 
 **Status:** APROVADO
 
@@ -57,8 +57,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). **🟢 PI-009 MATERIALIZADA.** EWO-007 (Renda Fixa 09, Internacional 10) 🟢 FECHADA. EWO-008 (Import/Export 11, Integrações 12, Relatórios 13) 🟢 FECHADA.
 - **EWO-007 🟢 FECHADA** — Onda 2 concluída. Renda Fixa 09 e Internacional 10 implementados.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
-- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). **🟢 PI-011 TOTALMENTE MATERIALIZADA. EWO-011 (Bloco A) 🟢 FECHADA. EWO-012 (Bloco B) 🟢 FECHADA.**
-- **EWO-012 🟢 FECHADA** — Bloco B concluído. 7 Slices. Onboarding 21 e Personalização 22 implementados.
+- **PI-012 (DRAFT v1.0)** — Platform Completion & Production Readiness (Onda 7: 3 Blocos: A UI, B Engenharia, C Comercialização). Próxima etapa: ER-012.
 
 ### Bloqueado
 
@@ -75,7 +74,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
 - `architecture-lab/PI-011.md`: v1.0 (APPROVED) — Platform Consolidation & Product Readiness (Onda 6)
 - `architecture-lab/EWO-011.md`: v1.0 (CLOSED) — Bloco A (Assinaturas 19, Perfil do Investidor 20), 7 Slices
-- `architecture-lab/EWO-012.md`: v1.0 (APPROVED) — Bloco B (Onboarding 21, Personalização 22), 7 Slices
+- `architecture-lab/EWO-012.md`: v1.0 (CLOSED) — Bloco B (Onboarding 21, Personalização 22), 7 Slices
+- `architecture-lab/PI-012.md`: v1.0 (DRAFT) — Platform Completion & Production Readiness (Onda 7)
 - `architecture-lab/ER-011.md`: v1.0 (APPROVED)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
@@ -89,8 +89,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v1.98 (reflete PI-011 materializada)
-- `project-context/PROJECT_STATUS.md`: v2.11 (reflete PI-011 materializada)
+- `docs/DOCUMENTATION_INDEX.md`: v1.99 (reflete PI-012 DRAFT)
+- `project-context/PROJECT_STATUS.md`: v2.12 (reflete PI-012 DRAFT)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -100,6 +100,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.12
+
+- **PI-012 CRIADA (DRAFT)** — Platform Completion & Production Readiness. Nova Product Increment para a Onda 7. 3 Blocos: Bloco A (Completude UI — Presentation de Backtests 14, Alertas 15, Educação 17, Exportação 18), Bloco B (Production Readiness — CI/CD, E2E, Performance, Observabilidade), Bloco C (Comercialização — IPaymentGateway, billing real, checkout). 3 EWOs previstas (013, 014, 015). ADR-012-001 (IPaymentGateway), ADR-012-002 (CheckoutOrchestrator). R-018 (Presentation pura), R-019 (Mock substituível). Próxima etapa: ER-012. DOCUMENTATION_INDEX v1.99, PROJECT_STATUS v2.12.
 
 ### Versão 2.11
 

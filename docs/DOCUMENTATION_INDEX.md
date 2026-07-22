@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.98
+**Versão da Documentação:** 1.99
 
 **Status:** APROVADO
 
@@ -219,6 +219,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.99
+
+- **PI-012 CRIADA (DRAFT)** — Platform Completion & Production Readiness (Onda 7). 3 Blocos: A (Completude UI — Backtests 14, Alertas 15, Educação 17, Exportação 18 Presentation), B (Production Readiness — CI/CD, E2E, Performance, Observabilidade), C (Comercialização — Gateway pagamento, billing real, checkout). 3 EWOs previstas (013, 014, 015). ADR-012-001 (IPaymentGateway), ADR-012-002 (CheckoutOrchestrator). R-018, R-019. DOCUMENTATION_INDEX v1.99.
 
 ## Versão 1.98
 
