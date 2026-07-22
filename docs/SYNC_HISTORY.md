@@ -14,6 +14,24 @@
 
 # Registro de Sincronizações
 
+## EWO-013 — Bloco A (Backtests 14, Alertas 15, Educação 17, Exportação 18) 🟢 APROVADA
+
+**Data:** 22/07/2026
+
+### Estrutura
+
+- 13 Slices: Backtests (S1-3), Alertas (S4-6), Educação (S7-9), Exportação (S10-12), Closure (S13)
+- Presentation pura (R-018) — sem Core/App/Infra
+- FRs: FR-032 a FR-039, FR-044 a FR-050
+
+### Documentos
+
+- architecture-lab/EWO-013.md v1.0
+- DOCUMENTATION_INDEX v2.01
+- PROJECT_STATUS v2.14
+
+---
+
 ## ER-012 — Engineering Review da PI-012 🟢 APPROVED
 
 **Data:** 22/07/2026

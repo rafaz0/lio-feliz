@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.00
+**Versão da Documentação:** 2.01
 
 **Status:** APROVADO
 
@@ -201,6 +201,10 @@ Platform Completion & Production Readiness (Onda 7). 3 Blocos: A (Completude UI 
 
 Engineering Review da PI-012: 8 critérios avaliados, 3 NCs baixas (NC-012-001, NC-012-002, NC-012-003), 2 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-012 promovida DRAFT → APPROVED.
 
+🔴 EWO-013.md 🟢 (APPROVED)
+
+Engineering Work Order para o Bloco A (Completude UI): Backtests 14, Alertas 15, Educação 17, Exportação Avançada 18. 13 Slices. Presentation pura (R-018).
+
 ---
 
 ## Legenda
@@ -227,6 +231,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.01
+
+- **EWO-013 CRIADA (APPROVED)** — Engineering Work Order para o Bloco A (Completude UI): Backtests 14, Alertas 15, Educação 17, Exportação Avançada 18. 13 Slices. Presentation pura (R-018). DOCUMENTATION_INDEX v2.01.
 
 ## Versão 2.00
 

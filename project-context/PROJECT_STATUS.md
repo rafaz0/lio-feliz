@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.13
+**Versão:** 2.14
 
 **Status:** APROVADO
 
@@ -57,7 +57,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). **🟢 PI-009 MATERIALIZADA.** EWO-007 (Renda Fixa 09, Internacional 10) 🟢 FECHADA. EWO-008 (Import/Export 11, Integrações 12, Relatórios 13) 🟢 FECHADA.
 - **EWO-007 🟢 FECHADA** — Onda 2 concluída. Renda Fixa 09 e Internacional 10 implementados.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
-- **PI-012 (APPROVED v1.0)** — Platform Completion & Production Readiness (Onda 7: 3 Blocos). ER-012 aprovada com 3 NCs baixas. Próxima etapa: EWO-013.
+- **PI-012 (APPROVED v1.0)** — Platform Completion & Production Readiness (Onda 7). **EWO-013 (Bloco A) criada.**
 
 ### Bloqueado
 
@@ -76,7 +76,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `architecture-lab/EWO-011.md`: v1.0 (CLOSED) — Bloco A (Assinaturas 19, Perfil do Investidor 20), 7 Slices
 - `architecture-lab/EWO-012.md`: v1.0 (CLOSED) — Bloco B (Onboarding 21, Personalização 22), 7 Slices
 - `architecture-lab/PI-012.md`: v1.0 (APPROVED) — Platform Completion & Production Readiness (Onda 7)
-- `architecture-lab/ER-012.md`: v1.0 (APPROVED) — Engineering Review da PI-012 (🟢 APROVADO)
+- `architecture-lab/EWO-013.md`: v1.0 (APPROVED) — Bloco A (Backtests 14, Alertas 15, Educação 17, Exportação 18), 13 Slices
 - `architecture-lab/ER-011.md`: v1.0 (APPROVED)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
@@ -90,8 +90,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.00 (reflete ER-012 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v2.13 (reflete ER-012 APPROVED)
+- `docs/DOCUMENTATION_INDEX.md`: v2.01 (reflete EWO-013 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v2.14 (reflete EWO-013 APPROVED)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -101,6 +101,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.14
+
+- **EWO-013 CRIADA (APPROVED)** — Engineering Work Order para o Bloco A (Completude UI): 13 Slices. Módulos: Backtests 14 (Slices 1-3), Alertas 15 (Slices 4-6), Educação 17 (Slices 7-9), Exportação 18 (Slices 10-12), Engineering Closure (Slice 13). Presentation pura (R-018) — sem alteração de Core/App/Infra. FRs cobertos: FR-032 a FR-039, FR-044 a FR-050. KPIs GOV-P015: todos os 4 módulos de 2/4 para 4/4. DOCUMENTATION_INDEX v2.01, PROJECT_STATUS v2.14.
 
 ### Versão 2.13
 
