@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.74
+**Versão da Documentação:** 1.77
 
 **Status:** APROVADO
 
-**Última atualização:** 20/07/2026
+**Última atualização:** 21/07/2026
 
 ---
 
@@ -177,6 +177,10 @@ Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, A
 
 Engineering Review da PI-010: 10 critérios avaliados, 5 NCs baixas/médias (NC-010-001 O1, NC-010-002 O2, NC-010-003 O3, NC-010-004 O4, NC-010-005 O5), 5 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED. Próximos passos: aplicar NC-010-004 e NC-010-002, executar EWO-007, emitir EWO-009.
 
+🔴 EWO-009.md 🟢 (APPROVED)
+
+Engineering Work Order para a Onda 4 (Análise e Insights): Backtests 14, Alertas 15, Comparação Avançada 16. 10 Slices. NCs ER-010 tratadas: NC-010-001 (dependência EWO-007 — Backtests independente), NC-010-002 (view composition /comparar resolvida), NC-010-004 (AckAlertaCommand → ConfirmarAlertaCommand). Backtests 14 pode iniciar imediatamente.
+
 ---
 
 ## Legenda
@@ -203,6 +207,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.77
+
+- **EWO-009 CRIADA (APPROVED)** — Engineering Work Order para a Onda 4 (Análise e Insights): 10 Slices (Backtests 14, Alertas 15, Comparação Avançada 16). NCs ER-010 tratadas: NC-010-001 (dependência EWO-007), NC-010-002 (view composition /comparar resolvida via TanStack Router nested layout), NC-010-004 (AckAlertaCommand → ConfirmarAlertaCommand). DOCUMENTATION_INDEX v1.77.
 
 ## Versão 1.76
 

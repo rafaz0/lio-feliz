@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.89
+**Versão:** 1.90
 
 **Status:** APROVADO
 
@@ -15,14 +15,14 @@
 ---
 
 ## Objetivo
-Registrar a consolidação do fluxo operacional via GOV-P013, instituindo o PROMPT_MASTER.md como fonte canônica para Matriz de Seleção de Modelos, Prompt Operacional, Fluxo Operacional do ChatGPT e Registro Permanente de Melhorias.
+Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializando a arquitetura aprovada na PI-010 para os módulos Backtests (14), Alertas (15) e Comparação Avançada (16) em 10 Slices verticais.
 
 ## Detalhes Importantes
-- **GOV-P013 implementada** — Consolidação Final do Fluxo Operacional, registrada em PROJECT_BOOTSTRAP.md.
-- **PROMPT_MASTER.md criado** — Fonte canônica para seleção de modelos, cabeçalho de prompt e fluxo do ChatGPT.
-- **AI_ENGINEERING_PROTOCOL.md** atualizado — Referência cruzada para PROMPT_MASTER.md na seção de Papéis.
-- **AI_OPERATION_CHECKLIST.md** atualizado — Cabeçalho `Modelo recomendado: <modelo>` adicionado ao checklist de prompt.
-- Nenhuma implementação técnica, alteração arquitetural ou modificação de camada congelada foi realizada.
+- **EWO-009 criada e APROVADA** — 10 Slices: 1-3 (Backtests 14), 4-6 (Alertas 15), 7-9 (Comparação Avançada 16), 10 (Engineering Closure).
+- Backtests 14 (Slices 1-3) **não depende de EWO-007** — pode iniciar imediatamente.
+- Alertas 15 e Comparação 16 dependem de posições e dividendos internacionais (EWO-007, módulo 10).
+- NCs ER-010 resolvidas: NC-010-002 (view composition /comparar via TanStack Router nested layout), NC-010-004 (AckAlertaCommand → ConfirmarAlertaCommand).
+- DOCUMENTATION_INDEX v1.77, PROJECT_STATUS v1.90.
 
 ## Estado Atual do Trabalho
 ### Concluído
@@ -40,6 +40,7 @@ Registrar a consolidação do fluxo operacional via GOV-P013, instituindo o PROM
 ### Concluído
 - **ER-010 🟢 APROVADA** — Engineering Review da PI-010: 10 critérios, 5 NCs baixas/médias. Veredito APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED.
 - **GOV-P013 implementada** — Consolidação Final do Fluxo Operacional. PROMPT_MASTER.md criado. AI_ENGINEERING_PROTOCOL.md e AI_OPERATION_CHECKLIST.md atualizados.
+- **EWO-009 criada (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. NCs ER-010 resolvidas.
 - **EWO-008 — Onda 3: 🟢 CLOSED (Módulos 11, 12, 13 completos)**
   - **Módulo 11 (Import/Export):** BR doc, Core Domain (ImportJob, ExportJob, ImportMapping, ImportJobId), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (ImportExportPage, hooks, viewmodel)
   - **Módulo 12 (Integrações):** BR doc, Core Domain (IntegrationConfig, SyncLog, SyncOrchestrationService), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (IntegrationsPage, hooks, viewmodel)
@@ -51,20 +52,22 @@ Registrar a consolidação do fluxo operacional via GOV-P013, instituindo o PROM
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. Próxima etapa: EWO-009 / EWO-010.
+- **EWO-009 (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. Aguardando Gate de Entrada.
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
-1. **Executar EWO-007** — Onda 2 (1º Renda Fixa 09: Slices 1-3; 2º Internacional 10: Slices 4-6; Slice 7 Closure).
-2. **Emitir EWO-009** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). Backtests 14 pode iniciar em paralelo com EWO-007.
-3. **Emitir EWO-010** — Onda 5 (Educação 17, Exportação Avançada 18).
+1. **Gate de Entrada EWO-009** — Auditoria ChatGPT para validar Baseline Lock (PI-010 + ER-010 + EWO-009 congelados).
+2. **Iniciar EWO-009 Slice 1** — Backtests 14 (Business Rules + Core Domain). Pode iniciar independentemente de EWO-007.
+3. **Executar EWO-007 em paralelo** — Onda 2 (Renda Fixa 09, Internacional 10) — pré-requisito para Slices 4-9 da EWO-009.
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
 - `architecture-lab/PI-009.md`: v1.2 (Approved) — Ondas 2 & 3 (módulos 09-13); O2 resolvida
 - `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
+- `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
 - `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
 - `architecture-lab/ER-009.md`: v1.0 (Approved) — Engineering Review da PI-009 (🟢 APROVADO)
 - `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
@@ -72,8 +75,8 @@ Registrar a consolidação do fluxo operacional via GOV-P013, instituindo o PROM
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.76 (reflete ER-010 + PI-010 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v1.89 (reflete GOV-P013)
+- `docs/DOCUMENTATION_INDEX.md`: v1.77 (reflete EWO-009 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v1.90 (reflete EWO-009 APPROVED)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -81,6 +84,10 @@ Registrar a consolidação do fluxo operacional via GOV-P013, instituindo o PROM
 ---
 
 ## Histórico
+
+### Versão 1.90
+
+- **EWO-009 CRIADA (APPROVED)** — Engineering Work Order para a Onda 4 (Análise e Insights): 10 Slices. Módulos: Backtests 14 (Slices 1-3), Alertas 15 (Slices 4-6), Comparação Avançada 16 (Slices 7-9), Engineering Closure (Slice 10). NCs ER-010 resolvidas: NC-010-002 (view composition /comparar via TanStack Router nested layout), NC-010-004 (AckAlertaCommand → ConfirmarAlertaCommand). NC-010-001 (dependência EWO-007): Backtests 14 independente — Slices 1-3 podem iniciar imediatamente. Slices 4-9 requerem EWO-007 (módulo 10 Internacional). Próximo passo: Gate de Entrada + iniciar Slice 1. DOCUMENTATION_INDEX v1.77, PROJECT_STATUS v1.90.
 
 ### Versão 1.89
 
