@@ -16,3 +16,5 @@ export type { ImportarDadosCommand } from "./importar-dados";
 export type { ExportarRelatorioCommand } from "./exportar-relatorio";
 export type { ConfigurarIntegracaoCommand } from "./configurar-integracao";
 export type { SincronizarIntegracaoCommand } from "./sincronizar-integracao";
+export type { ExecutarBacktestCommand } from "./executar-backtest";
+export type { SalvarEstrategiaCommand } from "./salvar-estrategia";

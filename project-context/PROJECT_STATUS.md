@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.90
+**Versão:** 1.91
 
 **Status:** APROVADO
 
@@ -40,6 +40,7 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 ### Concluído
 - **ER-010 🟢 APROVADA** — Engineering Review da PI-010: 10 critérios, 5 NCs baixas/médias. Veredito APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED.
 - **GOV-P013 implementada** — Consolidação Final do Fluxo Operacional. PROMPT_MASTER.md criado. AI_ENGINEERING_PROTOCOL.md e AI_OPERATION_CHECKLIST.md atualizados.
+- **EWO-009 Slices 1-3 (Backtests 14) CONCLUÍDOS** — BR doc `14_BACKTESTS.md`, Anexo `07_BACKTEST_ALGORITMOS.md`, Core Domain (Backtest, Strategy, SimulationResult, BacktestEngine, 9 errors), Application Layer (2 commands, 2 queries, 4 services, port, 4 DTOs), Infrastructure (FakeBacktestRepository, SupabaseBacktestRepository). Barrels e application-layer.ts atualizados. Build green.
 - **EWO-009 criada (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. NCs ER-010 resolvidas.
 - **EWO-008 — Onda 3: 🟢 CLOSED (Módulos 11, 12, 13 completos)**
   - **Módulo 11 (Import/Export):** BR doc, Core Domain (ImportJob, ExportJob, ImportMapping, ImportJobId), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (ImportExportPage, hooks, viewmodel)
@@ -52,15 +53,15 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. Próxima etapa: EWO-009 / EWO-010.
-- **EWO-009 (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. Aguardando Gate de Entrada.
+- **EWO-009 (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. **Slices 1-3 (Backtests 14) concluídas.** Slices 4-6 (Alertas 15) aguardando Gate de Entrada.
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
-1. **Gate de Entrada EWO-009** — Auditoria ChatGPT para validar Baseline Lock (PI-010 + ER-010 + EWO-009 congelados).
-2. **Iniciar EWO-009 Slice 1** — Backtests 14 (Business Rules + Core Domain). Pode iniciar independentemente de EWO-007.
-3. **Executar EWO-007 em paralelo** — Onda 2 (Renda Fixa 09, Internacional 10) — pré-requisito para Slices 4-9 da EWO-009.
+1. **Auditoria ChatGPT das Slices 1-3** — Validação da implementação de Backtests 14 antes de iniciar Alertas 15.
+2. **Iniciar EWO-009 Slice 4** — Alertas 15 (Business Rules + Core Domain).
+3. **Executar EWO-007 em paralelo** — Onda 2 (pré-requisito para Slices 4-9).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -75,8 +76,8 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.77 (reflete EWO-009 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v1.90 (reflete EWO-009 APPROVED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.78 (reflete EWO-009 Slices 1-3)
+- `project-context/PROJECT_STATUS.md`: v1.91 (reflete EWO-009 Slices 1-3)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -84,6 +85,10 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 ---
 
 ## Histórico
+
+### Versão 1.91
+
+- **EWO-009 Slices 1-3 (Backtests 14) CONCLUÍDOS** — BR doc `14_BACKTESTS.md` e Anexo Técnico `07_BACKTEST_ALGORITMOS.md` criados e aprovados. Core Domain `src/core/domain/backtests/`: Backtest, Strategy, SimulationResult (entities), BacktestEngine (domain service com algoritmo determinístico R-011), 9 erros de domínio, tipos (BacktestStatus, AllocationWeight, BenchmarkRef, DateRange, BacktestSnapshot, MonthlyReturn). Application Layer: commands ExecutarBacktestCommand e SalvarEstrategiaCommand; queries ObterBacktestQuery e ListarEstrategiasQuery; 4 DTOs (BacktestDto, StrategyDto, SimulationResultDto, BacktestCompletoDto, EstrategiaListDto); port IBacktestRepository; 4 services. Infrastructure: FakeBacktestRepository e SupabaseBacktestRepository. Barrels (commands, queries, dtos, ports, fakes, application-layer) atualizados. Build green. DOCUMENTATION_INDEX v1.78, PROJECT_STATUS v1.91.
 
 ### Versão 1.90
 

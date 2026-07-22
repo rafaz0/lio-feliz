@@ -84,6 +84,8 @@ A pasta `06_BUSINESS_RULES/` deverá possuir a seguinte organização:
 12_INTEGRATIONS.md
 
 13_REPORTS.md
+
+14_BACKTESTS.md
 ```
 
 Esta estrutura deverá ser mantida como padrão oficial do projeto.

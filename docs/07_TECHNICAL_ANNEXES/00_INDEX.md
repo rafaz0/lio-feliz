@@ -73,6 +73,10 @@ Eles apenas especificam sua implementação.
 
 07_PERFORMANCE_GUIDELINES.md
 
+08_BACKTEST_ALGORITHMS.md
+
+09_ALERT_EVENTS.md
+
 Novos anexos poderão ser adicionados futuramente.
 
 ---

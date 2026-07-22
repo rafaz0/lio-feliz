@@ -22,3 +22,4 @@ export type { RendaFixaDto, CronogramaItemDto, CronogramaPagamentosDto } from ".
 export type { ReportTemplateDto, ReportExecutionDto, ReportScheduleDto, ReportTemplateListDto, ReportExecutionDetailDto, ReportScheduleListDto } from "./relatorio";
 export type { ImportJobDto, ImportacaoRealizadaDto, ExportJobDto, HistoricoImportacaoDto, ModelosExportacaoDto } from "./importacao";
 export type { IntegrationConfigDto, SyncLogDto, IntegracaoConfiguradaDto, SyncResultDto, IntegracoesListDto, SyncStatusDto } from "./integracao";
+export type { BacktestDto, StrategyDto, SimulationResultDto, BacktestCompletoDto, EstrategiaListDto } from "./backtest";

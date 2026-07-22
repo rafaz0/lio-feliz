@@ -208,6 +208,10 @@ Este arquivo representa a estrutura oficial da documentação.
 
 ---
 
+## Versão 1.78
+
+- **EWO-009 Slices 1-3 (Backtests 14) CONCLUÍDOS** — BR `14_BACKTESTS.md` e Anexo `07_BACKTEST_ALGORITMOS.md` criados e aprovados. Core Domain `src/core/domain/backtests/`: Backtest, Strategy, SimulationResult, BacktestEngine (domain service), 9 domain errors, tipos. Application Layer: 2 commands, 2 queries, 4 services, port IBacktestRepository, 4 DTOs. Infrastructure: FakeBacktestRepository e SupabaseBacktestRepository. Composition Root, barrels e application-layer.ts estendidos. DOCUMENTATION_INDEX v1.78.
+
 ## Versão 1.77
 
 - **EWO-009 CRIADA (APPROVED)** — Engineering Work Order para a Onda 4 (Análise e Insights): 10 Slices (Backtests 14, Alertas 15, Comparação Avançada 16). NCs ER-010 tratadas: NC-010-001 (dependência EWO-007), NC-010-002 (view composition /comparar resolvida via TanStack Router nested layout), NC-010-004 (AckAlertaCommand → ConfirmarAlertaCommand). DOCUMENTATION_INDEX v1.77.

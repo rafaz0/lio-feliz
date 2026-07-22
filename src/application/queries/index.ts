@@ -20,3 +20,5 @@ export type { ObterHistoricoImportacaoQuery } from "./obter-historico-importacao
 export type { ObterModelosExportacaoQuery } from "./obter-modelos-exportacao";
 export type { ObterIntegracoesQuery } from "./obter-integracoes";
 export type { ObterStatusSincronizacaoQuery } from "./obter-status-sincronizacao";
+export type { ObterBacktestQuery } from "./obter-backtest";
+export type { ListarEstrategiasQuery } from "./listar-estrategias";
