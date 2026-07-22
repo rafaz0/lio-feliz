@@ -26,6 +26,7 @@ import type {
   AtualizarTooltipCommand,
   SolicitarExportacaoCommand,
   AgendarExportacaoCommand,
+  AtualizarTaxaCambioCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -116,6 +117,11 @@ import type {
   AlertDeliveryDto,
   AlertListDto,
   AlertRuleListDto,
+  ExportTemplateDto,
+  ExportJobDto,
+  ExportJobListDto,
+  AtivosInternacionaisDto,
+  TaxaCambioDto,
 } from "@/application/dtos";
 import type {
   ApplicationError,
@@ -176,6 +182,8 @@ export type {
   ObterScorecardQuery,
   ObterTermoQuery,
   BuscarGlossarioQuery,
+  ObterAtivosInternacionaisQuery,
+  ObterTaxaCambioQuery,
   ExecutarBacktestCommand,
   SalvarEstrategiaCommand,
   CriarAlertaCommand,
@@ -185,6 +193,9 @@ export type {
   SalvarScorecardCommand,
   CriarTermoGlossarioCommand,
   AtualizarTooltipCommand,
+  SolicitarExportacaoCommand,
+  AgendarExportacaoCommand,
+  AtualizarTaxaCambioCommand,
   PatrimonioDto,
   AlocacaoDto,
   PosicaoDetalhadaDto,
@@ -254,6 +265,8 @@ export type {
   ExportTemplateDto,
   ExportJobDto,
   ExportJobListDto,
+  AtivosInternacionaisDto,
+  TaxaCambioDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

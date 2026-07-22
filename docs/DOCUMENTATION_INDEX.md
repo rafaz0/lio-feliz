@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.86
+**Versão da Documentação:** 1.87
 
 **Status:** APROVADO
 
@@ -211,6 +211,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.87
+
+- **EWO-007 🟢 FECHADA** — Onda 2 concluída. Módulo 09 (Renda Fixa) já implementado. Módulo 10 (Internacional) implementado com BR doc, Anexo, Core Domain, Application + Infrastructure e Presentation. PI-009 (Ondas 2 e 3) totalmente materializada. DOCUMENTATION_INDEX v1.87.
 
 ## Versão 1.86
 

@@ -77,6 +77,8 @@ Eles apenas especificam sua implementação.
 
 09_ALERT_EVENTS.md
 
+10_EXPORTACAO_FORMATOS.md
+
 Novos anexos poderão ser adicionados futuramente.
 
 ---

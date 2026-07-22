@@ -27,3 +27,4 @@ export type { AlertaDto, AlertRuleDto, AlertDeliveryDto, AlertListDto, AlertRule
 export type { ComparacaoDto, ScorecardDto, ComparisonSetDto } from "./comparacao";
 export type { GlossaryTermDto, TooltipDto, LearningPathDto, GlossarySearchDto } from "./education";
 export type { ExportTemplateDto, ExportJobDto, ExportJobListDto } from "./exportacao-avancada";
+export type { AtivosInternacionaisDto, TaxaCambioDto } from "./internacional";

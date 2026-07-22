@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.99
+**Versão:** 2.00
 
 **Status:** APROVADO
 
@@ -53,8 +53,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
   - Barrels e application-layer.ts atualizados
 
 ### Em andamento (planejamento)
-- **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
-- **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
+- **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). **🟢 PI-009 MATERIALIZADA.** EWO-007 (Renda Fixa 09, Internacional 10) 🟢 FECHADA. EWO-008 (Import/Export 11, Integrações 12, Relatórios 13) 🟢 FECHADA.
+- **EWO-007 🟢 FECHADA** — Onda 2 concluída. Renda Fixa 09 e Internacional 10 implementados.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
 - **EWO-010 🟢 FECHADA** — Onda 5 concluída. 7 Slices executadas. Educação 17 e Exportação Avançada 18 implementados.
 - **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS**
@@ -67,8 +67,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - (nenhum)
 
 ### Próximo passo
-1. **Executar EWO-007** — Onda 2 (Renda Fixa 09, Internacional 10) — próxima pendência operacional.
-2. Avaliar planejamento de novas frentes após conclusão das Ondas 4 e 5.
+1. **Avaliar roadmap pós-PI-009 e PI-010** — Todas as ondas das PIs aprovadas foram executadas.
+2. Considerar elaboração da **PI-011** para novas frentes.
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -85,8 +85,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
-- `docs/DOCUMENTATION_INDEX.md`: v1.86 (reflete EWO-010 CLOSED)
-- `project-context/PROJECT_STATUS.md`: v1.99 (reflete EWO-010 CLOSED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.87 (reflete EWO-007 CLOSED)
+- `project-context/PROJECT_STATUS.md`: v2.00 (reflete EWO-007 CLOSED)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -94,6 +94,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 ---
 
 ## Histórico
+
+### Versão 2.00
+
+- **EWO-007 🟢 FECHADA** — Onda 2 concluída. Módulo 09 (Renda Fixa) já implementado. Módulo 10 (Internacional) implementado: BR doc `10_INTERNACIONAL.md`, Anexo `06_CONVERSÃO_MOEDA.md`, Core Domain (ForeignAsset, CurrencyConversionService), Application (AtualizarTaxaCambio, ObterAtivosInternacionais, ObterTaxaCambio), Infrastructure (FakeForeignAssetRepository, SupabaseForeignAssetRepository), Presentation (InternationalPage + hooks + viewmodel). PI-009 (Ondas 2 e 3) totalmente materializada. DOCUMENTATION_INDEX v1.87, PROJECT_STATUS v2.00.
 
 ### Versão 1.99
 

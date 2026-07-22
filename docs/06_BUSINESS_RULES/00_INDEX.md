@@ -86,6 +86,14 @@ A pasta `06_BUSINESS_RULES/` deverá possuir a seguinte organização:
 13_REPORTS.md
 
 14_BACKTESTS.md
+
+15_ALERTAS.md
+
+16_COMPARACAO_AVANCADA.md
+
+17_EDUCACAO.md
+
+18_EXPORTACAO_AVANCADA.md
 ```
 
 Esta estrutura deverá ser mantida como padrão oficial do projeto.

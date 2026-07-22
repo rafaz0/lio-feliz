@@ -30,3 +30,5 @@ export type { ObterTermoQuery } from "./obter-termo";
 export type { BuscarGlossarioQuery } from "./buscar-glossario";
 export type { ObterExportJobQuery } from "./obter-export-job";
 export type { ListarExportTemplatesQuery } from "./listar-export-templates";
+export type { ObterAtivosInternacionaisQuery } from "./obter-ativos-internacionais";
+export type { ObterTaxaCambioQuery } from "./obter-taxa-cambio";

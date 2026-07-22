@@ -34,3 +34,4 @@ export type { IAlertRepository } from "./alert-repository";
 export type { IComparisonRepository } from "./comparison-repository";
 export type { IGlossaryRepository } from "./glossary-repository";
 export type { IExportTemplateRepository } from "./export-template-repository";
+export type { IForeignAssetRepository } from "./foreign-asset-repository";

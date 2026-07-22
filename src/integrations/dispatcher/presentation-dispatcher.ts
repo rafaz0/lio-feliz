@@ -90,6 +90,12 @@ import { ObterScorecardService } from "@/application/services/obter-scorecard-se
 import type { ObterComparacaoQuery } from "@/application/queries/obter-comparacao";
 import type { ObterScorecardQuery } from "@/application/queries/obter-scorecard";
 import type { CriarComparacaoCommand } from "@/application/commands/criar-comparacao";
+import { AtualizarTaxaCambioService } from "@/application/services/atualizar-taxa-cambio-service";
+import { ObterAtivosInternacionaisService } from "@/application/services/obter-ativos-internacionais-service";
+import { ObterTaxaCambioService } from "@/application/services/obter-taxa-cambio-service";
+import type { ObterAtivosInternacionaisQuery } from "@/application/queries/obter-ativos-internacionais";
+import type { ObterTaxaCambioQuery } from "@/application/queries/obter-taxa-cambio";
+import type { AtualizarTaxaCambioCommand } from "@/application/commands/atualizar-taxa-cambio";
 import { SyncOrchestrationService } from "@/core/domain/integrations";
 
 interface PresentationDispatcherDeps {
@@ -106,6 +112,7 @@ interface PresentationDispatcherDeps {
   importHistoryRepository?: IImportHistoryRepository;
   integrationRepository?: IIntegrationRepository;
   comparisonRepository?: IComparisonRepository;
+  foreignAssetRepository?: IForeignAssetRepository;
 }
 
 /**
@@ -129,6 +136,7 @@ export function createPresentationDispatcher({
   importHistoryRepository,
   integrationRepository,
   comparisonRepository,
+  foreignAssetRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -353,6 +361,26 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterQuery("ObterScorecardQuery", (query) =>
       new ObterScorecardService(comparisonRepository).Execute(query as ObterScorecardQuery),
+    );
+  }
+
+  if (foreignAssetRepository) {
+    dispatcher.RegisterCommand("AtualizarTaxaCambioCommand", (command) =>
+      new AtualizarTaxaCambioService(foreignAssetRepository).Execute(
+        command as AtualizarTaxaCambioCommand,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterAtivosInternacionaisQuery", (query) =>
+      new ObterAtivosInternacionaisService(foreignAssetRepository).Execute(
+        query as ObterAtivosInternacionaisQuery,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterTaxaCambioQuery", (query) =>
+      new ObterTaxaCambioService(foreignAssetRepository).Execute(
+        query as ObterTaxaCambioQuery,
+      ),
     );
   }
 

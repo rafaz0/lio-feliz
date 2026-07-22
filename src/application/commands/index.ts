@@ -27,3 +27,4 @@ export type { CriarTermoGlossarioCommand } from "./criar-termo-glossario";
 export type { AtualizarTooltipCommand } from "./atualizar-tooltip";
 export type { SolicitarExportacaoCommand } from "./solicitar-exportacao";
 export type { AgendarExportacaoCommand } from "./agendar-exportacao";
+export type { AtualizarTaxaCambioCommand } from "./atualizar-taxa-cambio";
