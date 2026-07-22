@@ -173,6 +173,10 @@ Engineering Work Order para a Onda 2 (Renda Fixa 09, Internacional 10). 7 Slices
 
 Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada). Estende PI-008 (PA-008/R-001..R-007) e PI-009 (PA-009/R-008..R-010). 4 novas restrições (R-011..R-014: Backtest Determinístico, Alertas com Consentimento, Comparação Read-Only, Exportação Assíncrona Auditável). 3 novos Anexos Técnicos previstos (`07_BACKTEST_ALGORITMOS.md`, `08_ALERTAS_EVENTOS.md`, `09_EXPORTACAO_FORMATOS.md`). 6 riscos com mitigações. Seções 11 e 12 com critérios explícitos para a futura ER-010 e para as futuras EWO-009/EWO-010. **Dependência O2**: confirmar EWO-007 antes de abrir EWO-009.
 
+🔴 ER-010.md 🟢 (APPROVED)
+
+Engineering Review da PI-010: 10 critérios avaliados, 5 NCs baixas/médias (NC-010-001 O1, NC-010-002 O2, NC-010-003 O3, NC-010-004 O4, NC-010-005 O5), 5 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED. Próximos passos: aplicar NC-010-004 e NC-010-002, executar EWO-007, emitir EWO-009.
+
 ---
 
 ## Legenda
@@ -199,6 +203,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.76
+
+- **ER-010 — Engineering Review da PI-010 APROVADA** - 10 critérios avaliados; veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED. 5 NCs: NC-010-001 (Baixa/O1 — monolithicidade EWO-009), NC-010-002 (Média/O2 — view composition módulo 16), NC-010-003 (Baixa/O3 — injeção tooltips), NC-010-004 (Baixa/O4 — nomenclatura AckAlertaCommand), NC-010-005 (Baixa/O5 — sobreposição schedulers). 5 recomendações (REC-010-001 a REC-010-005). DOCUMENTATION_INDEX v1.76.
 
 ## Versão 1.75
 

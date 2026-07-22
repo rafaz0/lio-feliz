@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.87
+**Versão:** 1.88
 
 **Status:** APROVADO
 
@@ -15,16 +15,16 @@
 ---
 
 ## Objetivo
-Registrar a criação da PI-010 (Domain Enrichment & Investor Tooling — Ondas 4 & 5) como DRAFT, planejando a expansão futura do projeto para os módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada). PI-010 estende PI-008 e PI-009 sem modificar camadas congeladas.
+Registrar a aprovação da ER-010 (Engineering Review da PI-010), promovendo a PI-010 de DRAFT → APPROVED (v1.0). PI-010 aprovada com 5 NCs baixas/médias, pronta para implementação via EWO-009 / EWO-010.
 
 ## Detalhes Importantes
-- PI-010 (DRAFT v1.0) criada em `architecture-lab/PI-010.md` — next step no fluxo PI → ER → EWO.
-- Próxima etapa imediata permanece **EWO-007** (Onda 2: Renda Fixa 09, Internacional 10) — pendência operacional.
-- PI-010 registra explicitamente **Dependência O2**: EWO-007 deve ser concluída antes de EWO-009, pois Alertas 15 e Comparação 16 dependem de projeções de dividendos e posições internacionais.
-- PI-010 não modifica nenhuma camada congelada: novos Ports (`IBacktestRepository`, `IAlertRepository`, `IComparisonRepository`, `IGlossaryRepository`, `IExportTemplateRepository`) são adições.
-- 4 novas restrições propostas (R-011..R-014): Backtest Determinístico, Alertas com Consentimento, Comparação Read-Only, Exportação Assíncrona Auditável.
-- 3 novos Anexos Técnicos previstos (`07_BACKTEST_ALGORITMOS.md`, `08_ALERTAS_EVENTOS.md`, `09_EXPORTACAO_FORMATOS.md`).
-- DOCUMENTATION_INDEX atualizado para v1.75 com entrada da PI-010.
+- **ER-010 🟢 APROVADA** — 10 critérios avaliados, veredito APROVADO PARA IMPLEMENTAÇÃO.
+- **PI-010 promovida para APPROVED** (v1.0) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18).
+- 5 NCs emitidas: NC-010-001 (Baixa/O1), NC-010-002 (Média/O2), NC-010-003 (Baixa/O3), NC-010-004 (Baixa/O4), NC-010-005 (Baixa/O5).
+- NC-010-004 (renomear `AckAlertaCommand`) e NC-010-002 (especificar view composition mód.16) recomendadas para aplicação antes da EWO-009.
+- Próxima etapa operacional imediata: **executar EWO-007** (Onda 2: Renda Fixa 09, Internacional 10).
+- Próxima etapa do pipeline: **emitir EWO-009** (Onda 4), podendo iniciar com Backtests 14 em paralelo com EWO-007.
+- DOCUMENTATION_INDEX v1.76, PROJECT_STATUS v1.88.
 
 ## Estado Atual do Trabalho
 ### Concluído
@@ -37,9 +37,10 @@ Registrar a criação da PI-010 (Domain Enrichment & Investor Tooling — Ondas 
   - Slices 7-9: Rebalanceamento (Core + Application + Infrastructure + Presentation)
   - Slice 10: Engineering Closure (Auditoria Final + Closure + commit + push)
 - Quality gates verdes: architecture tests R-10 (37 testes, 0 violações), `vite build` green
-- DOCUMENTATION_INDEX v1.75, PROJECT_STATUS v1.87
+- DOCUMENTATION_INDEX v1.76, PROJECT_STATUS v1.88
 
 ### Concluído
+- **ER-010 🟢 APROVADA** — Engineering Review da PI-010: 10 critérios, 5 NCs baixas/médias. Veredito APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED.
 - **EWO-008 — Onda 3: 🟢 CLOSED (Módulos 11, 12, 13 completos)**
   - **Módulo 11 (Import/Export):** BR doc, Core Domain (ImportJob, ExportJob, ImportMapping, ImportJobId), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (ImportExportPage, hooks, viewmodel)
   - **Módulo 12 (Integrações):** BR doc, Core Domain (IntegrationConfig, SyncLog, SyncOrchestrationService), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (IntegrationsPage, hooks, viewmodel)
@@ -50,19 +51,21 @@ Registrar a criação da PI-010 (Domain Enrichment & Investor Tooling — Ondas 
 ### Em andamento (planejamento)
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
-- **PI-010 (DRAFT v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. Próxima etapa: ER-010 (Engineering Review).
+- **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. Próxima etapa: EWO-009 / EWO-010.
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
 1. **Executar EWO-007** — Onda 2 (1º Renda Fixa 09: Slices 1-3; 2º Internacional 10: Slices 4-6; Slice 7 Closure).
-2. Após EWO-007: executar **ER-010** para promover PI-010 de DRAFT → APPROVED, então emitir EWO-009 (Onda 4) e EWO-010 (Onda 5).
+2. **Emitir EWO-009** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). Backtests 14 pode iniciar em paralelo com EWO-007.
+3. **Emitir EWO-010** — Onda 5 (Educação 17, Exportação Avançada 18).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
 - `architecture-lab/PI-009.md`: v1.2 (Approved) — Ondas 2 & 3 (módulos 09-13); O2 resolvida
-- `architecture-lab/PI-010.md`: v1.0 (DRAFT) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
+- `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
+- `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
 - `architecture-lab/ER-009.md`: v1.0 (Approved) — Engineering Review da PI-009 (🟢 APROVADO)
 - `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
@@ -70,14 +73,18 @@ Registrar a criação da PI-010 (Domain Enrichment & Investor Tooling — Ondas 
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.75 (reflete PI-010 DRAFT)
-- `project-context/PROJECT_STATUS.md`: v1.87 (reflete PI-010 DRAFT)
+- `docs/DOCUMENTATION_INDEX.md`: v1.76 (reflete ER-010 + PI-010 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v1.88 (reflete ER-010 + PI-010 APPROVED)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines)
 - Git: branch `main`, origin sincronizado
 
 ---
 
 ## Histórico
+
+### Versão 1.88
+
+- **ER-010 — Engineering Review da PI-010 APROVADA** - 10 critérios avaliados; veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED (v1.0). 5 NCs: NC-010-001 (Baixa/O1 — monolithicidade EWO-009), NC-010-002 (Média/O2 — view composition módulo 16), NC-010-003 (Baixa/O3 — injeção tooltips), NC-010-004 (Baixa/O4 — nomenclatura AckAlertaCommand), NC-010-005 (Baixa/O5 — sobreposição schedulers). 5 recomendações (REC-010-001 a REC-010-005). Próximos passos: aplicar NCs, executar EWO-007, emitir EWO-009/EWO-010. DOCUMENTATION_INDEX v1.76, PROJECT_STATUS v1.88.
 
 ### Versão 1.87
 
