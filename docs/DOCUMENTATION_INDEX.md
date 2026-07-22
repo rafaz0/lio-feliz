@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.99
+**Versão da Documentação:** 2.00
 
 **Status:** APROVADO
 
@@ -193,6 +193,14 @@ Platform Consolidation & Product Readiness (Onda 6). 4 módulos: 19 (Assinaturas
 
 Engineering Review da PI-011: 10 critérios avaliados, 4 NCs baixas (NC-011-001 O1, NC-011-002 O2, NC-011-003 O3, NC-011-004 O4), 2 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-011 promovida DRAFT → APPROVED.
 
+🔴 PI-012.md 🟢 (APPROVED)
+
+Platform Completion & Production Readiness (Onda 7). 3 Blocos: A (Completude UI — Backtests 14, Alertas 15, Educação 17, Exportação 18 Presentation), B (Production Readiness — CI/CD, E2E, Performance, Observabilidade), C (Comercialização — Gateway pagamento, billing real, checkout). ADR-012-001, ADR-012-002. R-018, R-019.
+
+🔴 ER-012.md 🟢 (APPROVED)
+
+Engineering Review da PI-012: 8 critérios avaliados, 3 NCs baixas (NC-012-001, NC-012-002, NC-012-003), 2 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-012 promovida DRAFT → APPROVED.
+
 ---
 
 ## Legenda
@@ -219,6 +227,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.00
+
+- **ER-012 APROVADA** — Engineering Review da PI-012: 8 critérios avaliados, 3 NCs baixas (NC-012-001 FR-050, NC-012-002 tabela BillingSimulator, NC-012-003 NFRs imprecisos), 2 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-012 promovida DRAFT → APPROVED. DOCUMENTATION_INDEX v2.00.
 
 ## Versão 1.99
 

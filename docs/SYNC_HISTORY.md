@@ -14,6 +14,24 @@
 
 # Registro de Sincronizações
 
+## ER-012 — Engineering Review da PI-012 🟢 APPROVED
+
+**Data:** 22/07/2026
+
+### Resultado
+
+- 8 critérios avaliados, 3 NCs baixas, 2 recomendações
+- Veredito: 🟢 APROVADO PARA IMPLEMENTAÇÃO
+- PI-012 promovida DRAFT → APPROVED
+
+### Documentos
+
+- architecture-lab/ER-012.md v1.0
+- DOCUMENTATION_INDEX v2.00
+- PROJECT_STATUS v2.13
+
+---
+
 ## PI-012 — Platform Completion & Production Readiness (DRAFT)
 
 **Data:** 22/07/2026
