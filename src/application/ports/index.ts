@@ -32,3 +32,4 @@ export type { IIntegrationRepository } from "./integration-repository";
 export type { IBacktestRepository } from "./backtest-repository";
 export type { IAlertRepository } from "./alert-repository";
 export type { IComparisonRepository } from "./comparison-repository";
+export type { IGlossaryRepository } from "./glossary-repository";

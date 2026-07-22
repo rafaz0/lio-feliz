@@ -23,3 +23,5 @@ export type { AtualizarAlertaCommand } from "./atualizar-alerta";
 export type { ConfirmarAlertaCommand } from "./confirmar-alerta";
 export type { CriarComparacaoCommand } from "./criar-comparacao";
 export type { SalvarScorecardCommand } from "./salvar-scorecard";
+export type { CriarTermoGlossarioCommand } from "./criar-termo-glossario";
+export type { AtualizarTooltipCommand } from "./atualizar-tooltip";

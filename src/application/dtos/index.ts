@@ -25,3 +25,4 @@ export type { IntegrationConfigDto, SyncLogDto, IntegracaoConfiguradaDto, SyncRe
 export type { BacktestDto, StrategyDto, SimulationResultDto, BacktestCompletoDto, EstrategiaListDto } from "./backtest";
 export type { AlertaDto, AlertRuleDto, AlertDeliveryDto, AlertListDto, AlertRuleListDto } from "./alerta";
 export type { ComparacaoDto, ScorecardDto, ComparisonSetDto } from "./comparacao";
+export type { GlossaryTermDto, TooltipDto, LearningPathDto, GlossarySearchDto } from "./education";

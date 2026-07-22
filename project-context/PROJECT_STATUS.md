@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.96
+**Versão:** 1.97
 
 **Status:** APROVADO
 
@@ -57,8 +57,9 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. **EWO-009 (Onda 4) 🟢 FECHADA.**
-- **EWO-009 🟢 FECHADA** — Onda 4 concluída. 10 Slices executadas. Backtests 14, Alertas 15, Comparação Avançada 16 implementados.
-- **EWO-010 (APPROVED)** — Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. Próxima EWO no pipeline.
+- **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS** — BR doc `17_EDUCACAO.md`, Core Domain (GlossaryTerm, Tooltip, LearningPath, GlossaryIndexer, 4 errors), Application Layer (2 commands, 2 queries, 4 services, port, 4 DTOs), Infrastructure (FakeGlossaryRepository, SupabaseGlossaryRepository). NC-010-003 resolvida. Build green.
+- **EWO-009 🟢 FECHADA** — Onda 4 concluída.
+- **EWO-010 (APPROVED)** — Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. **Slices 1-3 (Educação 17) concluídas.** Slices 4-6 (Exportação 18) aguardando.
 
 ### Bloqueado
 
@@ -66,9 +67,8 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - (nenhum)
 
 ### Próximo passo
-1. **Gate de Entrada EWO-010** — Baseline Lock (PI-010 + ER-010 + EWO-010 congelados).
-2. **Iniciar EWO-010 Slice 1** — Educação 17 (Business Rules + Core Domain).
-3. **Executar EWO-007 em paralelo** — Onda 2 (Renda Fixa 09, Internacional 10).
+1. **Iniciar EWO-010 Slice 4** — Exportação Avançada 18 (BR + Anexo + Core Domain).
+2. **Executar EWO-007 em paralelo** — Onda 2 (Renda Fixa 09, Internacional 10).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -84,8 +84,8 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.83 (reflete EWO-010 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v1.96 (reflete EWO-010 APPROVED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.84 (reflete EWO-010 Slices 1-3)
+- `project-context/PROJECT_STATUS.md`: v1.97 (reflete EWO-010 Slices 1-3)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -93,6 +93,10 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 ---
 
 ## Histórico
+
+### Versão 1.97
+
+- **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS** — BR doc `17_EDUCACAO.md`. Core Domain `src/core/domain/education/`: GlossaryTerm, Tooltip, LearningPath (entities), GlossaryIndexer (domain service com lookup, search, getTooltips, getTermsByCategory, getLearningPathsByDifficulty), 4 erros de domínio, tipos. Application Layer: 2 commands (CriarTermoGlossarioCommand, AtualizarTooltipCommand), 2 queries (ObterTermoQuery, BuscarGlossarioQuery), 4 services, port IGlossaryRepository, 4 DTOs. Infrastructure: FakeGlossaryRepository e SupabaseGlossaryRepository. NC-010-003 resolvida (Tooltip como fonte de dados exclusivamente). Barrels e application-layer.ts atualizados. Build green. DOCUMENTATION_INDEX v1.84, PROJECT_STATUS v1.97.
 
 ### Versão 1.96
 

@@ -26,3 +26,5 @@ export type { ObterAlertaQuery } from "./obter-alerta";
 export type { ListarAlertasAtivosQuery } from "./listar-alertas-ativos";
 export type { ObterComparacaoQuery } from "./obter-comparacao";
 export type { ObterScorecardQuery } from "./obter-scorecard";
+export type { ObterTermoQuery } from "./obter-termo";
+export type { BuscarGlossarioQuery } from "./buscar-glossario";

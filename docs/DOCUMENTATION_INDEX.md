@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.83
+**Versão da Documentação:** 1.84
 
 **Status:** APROVADO
 
@@ -211,6 +211,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.84
+
+- **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS** — BR `17_EDUCACAO.md` criado. Core Domain `src/core/domain/education/`: GlossaryTerm, Tooltip, LearningPath, GlossaryIndexer, 4 errors. Application Layer: 2 commands, 2 queries, 4 services, port IGlossaryRepository, 4 DTOs. Infrastructure: FakeGlossaryRepository e SupabaseGlossaryRepository. NC-010-003 resolvida (Tooltip como fonte de dados, TooltipProvider na Presentation). Build green. DOCUMENTATION_INDEX v1.84.
 
 ## Versão 1.83
 
