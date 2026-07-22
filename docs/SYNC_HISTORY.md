@@ -14,6 +14,25 @@
 
 # Registro de Sincronizações
 
+## EWO-013 Slice 1 — Backtests 14 Presentation ✅
+
+**Data:** 22/07/2026
+
+### Artefatos
+
+- Feature `features/backtests/`: BacktestsPage, StrategyForm, BacktestResultCard, loading/empty/error
+- Hooks: useStrategiesQuery, useBacktestsQuery, useExecuteBacktestMutation
+- ViewModel: mappers puros (toStrategyViewModel, toBacktestResultViewModel)
+- Composition Root: ExecutarBacktestCommand, ObterBacktestQuery, ListarEstrategiasQuery
+- Presentation pura (R-018) — sem Core/App/Infra
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.02
+- PROJECT_STATUS v2.15
+
+---
+
 ## EWO-013 — Bloco A (Backtests 14, Alertas 15, Educação 17, Exportação 18) 🟢 APROVADA
 
 **Data:** 22/07/2026

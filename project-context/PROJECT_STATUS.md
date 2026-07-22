@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.14
+**Versão:** 2.15
 
 **Status:** APROVADO
 
@@ -90,8 +90,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.01 (reflete EWO-013 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v2.14 (reflete EWO-013 APPROVED)
+- `docs/DOCUMENTATION_INDEX.md`: v2.02 (reflete EWO-013 Slice 1)
+- `project-context/PROJECT_STATUS.md`: v2.15 (reflete EWO-013 Slice 1)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -101,6 +101,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.15
+
+- **EWO-013 Slice 1 (Backtests 14 Presentation) CONCLUÍDO** — Feature `features/backtests/`: BacktestsPage, StrategyForm, BacktestResultCard, BacktestsLoading/Empty/Error. Hooks (useStrategiesQuery, useBacktestsQuery, useExecuteBacktestMutation) com TanStack Query + Dispatcher. ViewModel com mappers puros. Barrel e query keys. Composition Root registrado (ExecutarBacktestCommand, ObterBacktestQuery, ListarEstrategiasQuery). Presentation pura (R-018) — sem Core/App/Infra. Build green. DOCUMENTATION_INDEX v2.02, PROJECT_STATUS v2.15.
 
 ### Versão 2.14
 

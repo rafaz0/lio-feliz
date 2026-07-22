@@ -111,6 +111,13 @@ import { ResponderQuestionarioService } from "@/application/services/responder-q
 import { CalcularPerfilService } from "@/application/services/calcular-perfil-service";
 import { ObterPerfilService } from "@/application/services/obter-perfil-service";
 import { ObterQuestionarioService } from "@/application/services/obter-questionario-service";
+import { ExecutarBacktestService } from "@/application/services/executar-backtest-service";
+import { ObterBacktestService } from "@/application/services/obter-backtest-service";
+import { ListarEstrategiasService } from "@/application/services/listar-estrategias-service";
+import type { ExecutarBacktestCommand } from "@/application/commands/executar-backtest";
+import type { ObterBacktestQuery } from "@/application/queries/obter-backtest";
+import type { ListarEstrategiasQuery } from "@/application/queries/listar-estrategias";
+import type { IBacktestRepository } from "@/application/ports/backtest-repository";
 import type { ResponderQuestionarioCommand } from "@/application/commands/responder-questionario";
 import type { CalcularPerfilCommand } from "@/application/commands/calcular-perfil";
 import type { ObterPerfilQuery } from "@/application/queries/obter-perfil";
@@ -154,6 +161,7 @@ interface PresentationDispatcherDeps {
   subscriptionRepository?: import("@/application/ports/subscription-repository").ISubscriptionRepository;
   investorProfileRepository?: import("@/application/ports/investor-profile-repository").IInvestorProfileRepository;
   glossaryRepository?: IGlossaryRepository;
+  backtestRepository?: IBacktestRepository;
 }
 
 /**
@@ -182,6 +190,7 @@ export function createPresentationDispatcher({
   subscriptionRepository,
   investorProfileRepository,
   glossaryRepository,
+  backtestRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -406,6 +415,22 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterQuery("ObterScorecardQuery", (query) =>
       new ObterScorecardService(comparisonRepository).Execute(query as ObterScorecardQuery),
+    );
+  }
+
+  if (backtestRepository) {
+    dispatcher.RegisterCommand("ExecutarBacktestCommand", (command) =>
+      new ExecutarBacktestService(backtestRepository, projectionRepository).Execute(
+        command as ExecutarBacktestCommand,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterBacktestQuery", (query) =>
+      new ObterBacktestService(backtestRepository).Execute(query as ObterBacktestQuery),
+    );
+
+    dispatcher.RegisterQuery("ListarEstrategiasQuery", (query) =>
+      new ListarEstrategiasService(backtestRepository).Execute(query as ListarEstrategiasQuery),
     );
   }
 

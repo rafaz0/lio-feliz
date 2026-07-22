@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.01
+**Versão da Documentação:** 2.02
 
 **Status:** APROVADO
 
@@ -231,6 +231,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.02
+
+- **EWO-013 Slice 1 (Backtests 14 Presentation) CONCLUÍDO** — Feature `features/backtests/` criada: BacktestsPage, StrategyForm, BacktestRunner, BacktestResultCard, BacktestsLoading/Empty/Error, hooks (useStrategiesQuery, useBacktestsQuery, useExecuteBacktestMutation), viewmodel, barrel. Composition Root registrado (ExecutarBacktestCommand, ObterBacktestQuery, ListarEstrategiasQuery). Build green. DOCUMENTATION_INDEX v2.02.
 
 ## Versão 2.01
 
