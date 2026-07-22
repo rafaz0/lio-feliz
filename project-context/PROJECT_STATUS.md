@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.93
+**Versão:** 1.94
 
 **Status:** APROVADO
 
@@ -15,14 +15,14 @@
 ---
 
 ## Objetivo
-Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializando a arquitetura aprovada na PI-010 para os módulos Backtests (14), Alertas (15) e Comparação Avançada (16) em 10 Slices verticais.
+Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), com todos os 3 módulos implementados (Backtests 14, Alertas 15, Comparação Avançada 16) e Engineering Closure concluído.
 
 ## Detalhes Importantes
-- **EWO-009 criada e APROVADA** — 10 Slices: 1-3 (Backtests 14), 4-6 (Alertas 15), 7-9 (Comparação Avançada 16), 10 (Engineering Closure).
-- Backtests 14 (Slices 1-3) **não depende de EWO-007** — pode iniciar imediatamente.
-- Alertas 15 e Comparação 16 dependem de posições e dividendos internacionais (EWO-007, módulo 10).
-- NCs ER-010 resolvidas: NC-010-002 (view composition /comparar via TanStack Router nested layout), NC-010-004 (AckAlertaCommand → ConfirmarAlertaCommand).
-- DOCUMENTATION_INDEX v1.77, PROJECT_STATUS v1.90.
+- **EWO-009 🟢 FECHADA** — 10 Slices executadas. 3 módulos implementados por extensão sobre camadas congeladas.
+- NCs ER-010 resolvidas: NC-010-002 (view composition), NC-010-004 (ConfirmarAlertaCommand).
+- Presentation do módulo 16 concluída (ComparisonPage, ScorecardGrid, hooks, tests).
+- Backtests 14 e Alertas 15 com Presentation pendente (não bloqueante).
+- DOCUMENTATION_INDEX v1.81, PROJECT_STATUS v1.94.
 
 ## Estado Atual do Trabalho
 ### Concluído
@@ -43,6 +43,8 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 - **EWO-009 Slices 1-3 (Backtests 14) CONCLUÍDOS** — BR doc `14_BACKTESTS.md`, Anexo `07_BACKTEST_ALGORITMOS.md`, Core Domain (Backtest, Strategy, SimulationResult, BacktestEngine, 9 errors), Application Layer (2 commands, 2 queries, 4 services, port, 4 DTOs), Infrastructure (FakeBacktestRepository, SupabaseBacktestRepository). Barrels e application-layer.ts atualizados. Build green.
 - **EWO-009 Slices 4-6 (Alertas 15) CONCLUÍDOS** — BR doc `15_ALERTAS.md`, Anexo `08_ALERTAS_EVENTOS.md`, Core Domain (Alert, AlertRule, AlertDelivery, AlertEvaluator, 5 errors), Application Layer (3 commands, 2 queries, 5 services, port, 6 DTOs), Infrastructure (FakeAlertRepository, SupabaseAlertRepository). NC-010-004 aplicada (ConfirmarAlertaCommand). Build green.
 - **EWO-009 Slices 7-8 (Comparação Avançada 16) CONCLUÍDOS** — BR doc `16_COMPARACAO_AVANCADA.md`, Core Domain (ComparisonSet, ComparisonEntry, Scorecard, ComparisonAggregator R-013, 5 errors), Application Layer (2 commands, 2 queries, 4 services, port, 3 DTOs), Infrastructure (FakeComparisonRepository, SupabaseComparisonRepository). Build green.
+- **EWO-009 Slice 9 (Comparação Avançada 16 Presentation) CONCLUÍDO** — ComparisonPage, ScorecardGrid, ComparisonAssetPicker, ComparisonLoading/Empty/Error, hooks (useComparisonQuery, useCreateComparisonMutation), viewmodel, tests. Composition Root registrado (CriarComparacaoCommand, ObterComparacaoQuery, ObterScorecardQuery).
+- **EWO-009 Slice 10 — Engineering Closure CONCLUÍDO** — Auditoria final, quality gates, `docs/EWO-009_ENGINEERING_CLOSURE.md` criado.
 - **EWO-009 criada (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. NCs ER-010 resolvidas.
 - **EWO-008 — Onda 3: 🟢 CLOSED (Módulos 11, 12, 13 completos)**
   - **Módulo 11 (Import/Export):** BR doc, Core Domain (ImportJob, ExportJob, ImportMapping, ImportJobId), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (ImportExportPage, hooks, viewmodel)
@@ -54,16 +56,17 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 ### Em andamento (planejamento)
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
-- **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. Próxima etapa: EWO-009 / EWO-010.
-- **EWO-009 (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. **Slices 1-3 (Backtests 14), 4-6 (Alertas 15) e 7-8 (Comparação 16 App+Infra) concluídas.** Slice 9 (Comparação 16 Presentation) e Slice 10 (Closure) pendentes.
+- **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. **EWO-009 (Onda 4) 🟢 FECHADA.**
+- **EWO-009 🟢 FECHADA** — Onda 4 concluída. 10 Slices executadas. Backtests 14, Alertas 15, Comparação Avançada 16 implementados.
+
+### Bloqueado
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
-1. **Iniciar EWO-009 Slice 9** — Comparação Avançada 16 (Presentation) — view composition com rota `/comparar`.
-2. **Slice 10** — Engineering Closure da EWO-009.
-3. **Executar EWO-007 em paralelo** — Onda 2 (Renda Fixa 09, Internacional 10).
+1. **Executar EWO-007** — Onda 2 (Renda Fixa 09, Internacional 10) — pendência operacional.
+2. **Planejar EWO-010** — Onda 5 (Educação 17, Exportação Avançada 18) — próxima no pipeline.
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -78,8 +81,8 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.80 (reflete EWO-009 Slices 1-8)
-- `project-context/PROJECT_STATUS.md`: v1.93 (reflete EWO-009 Slices 1-8)
+- `docs/DOCUMENTATION_INDEX.md`: v1.81 (reflete EWO-009 CLOSED)
+- `project-context/PROJECT_STATUS.md`: v1.94 (reflete EWO-009 CLOSED)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -87,6 +90,10 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 ---
 
 ## Histórico
+
+### Versão 1.94
+
+- **EWO-009 — Onda 4 🟢 FECHADA** — Engineering Closure concluído. 10 Slices executadas. Módulos: Backtests 14 (Slices 1-3), Alertas 15 (Slices 4-6), Comparação Avançada 16 (Slices 7-9). Slice 10 (Closure): auditoria, quality gates, documentação. NCs ER-010 resolvidas (NC-010-002, NC-010-004). Presentation do módulo 16 concluída (ComparisonPage, ScorecardGrid, hooks, viewmodel, tests, Composition Root). Presentation dos módulos 14 e 15 pendentes (não bloqueante). Engineering Closure em `docs/EWO-009_ENGINEERING_CLOSURE.md`. DOCUMENTATION_INDEX v1.81, PROJECT_STATUS v1.94.
 
 ### Versão 1.93
 

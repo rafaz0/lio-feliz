@@ -1,7 +1,6 @@
 import { DispatcherImpl } from "@/application/dispatcher-impl";
 import type { IDispatcher } from "@/application/dispatcher";
-import type {
-  IProjectionRepository,
+import type { IProjectionRepository,
   IPortfolioRepository,
   IConfigurationRepository,
   IDomainEventPublisher,
@@ -13,6 +12,7 @@ import type {
   IReportRepository,
   IImportHistoryRepository,
   IIntegrationRepository,
+  IComparisonRepository,
 } from "@/application/ports";
 import { ConsultarPatrimonioService } from "@/application/services/consultar-patrimonio-service";
 import { CalcularImpostoService } from "@/application/services/calcular-imposto-service";
@@ -84,6 +84,12 @@ import type { ConfigurarIntegracaoCommand } from "@/application/commands/configu
 import type { SincronizarIntegracaoCommand } from "@/application/commands/sincronizar-integracao";
 import type { ObterIntegracoesQuery } from "@/application/queries/obter-integracoes";
 import type { ObterStatusSincronizacaoQuery } from "@/application/queries/obter-status-sincronizacao";
+import { CriarComparacaoService } from "@/application/services/criar-comparacao-service";
+import { ObterComparacaoService } from "@/application/services/obter-comparacao-service";
+import { ObterScorecardService } from "@/application/services/obter-scorecard-service";
+import type { ObterComparacaoQuery } from "@/application/queries/obter-comparacao";
+import type { ObterScorecardQuery } from "@/application/queries/obter-scorecard";
+import type { CriarComparacaoCommand } from "@/application/commands/criar-comparacao";
 import { SyncOrchestrationService } from "@/core/domain/integrations";
 
 interface PresentationDispatcherDeps {
@@ -99,6 +105,7 @@ interface PresentationDispatcherDeps {
   reportRepository?: IReportRepository;
   importHistoryRepository?: IImportHistoryRepository;
   integrationRepository?: IIntegrationRepository;
+  comparisonRepository?: IComparisonRepository;
 }
 
 /**
@@ -121,6 +128,7 @@ export function createPresentationDispatcher({
   reportRepository,
   importHistoryRepository,
   integrationRepository,
+  comparisonRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -329,6 +337,22 @@ export function createPresentationDispatcher({
       new ObterStatusSincronizacaoService(integrationRepository, syncOrchestration).Execute(
         query as ObterStatusSincronizacaoQuery,
       ),
+    );
+  }
+
+  if (comparisonRepository) {
+    dispatcher.RegisterCommand("CriarComparacaoCommand", (command) =>
+      new CriarComparacaoService(comparisonRepository, projectionRepository).Execute(
+        command as CriarComparacaoCommand,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterComparacaoQuery", (query) =>
+      new ObterComparacaoService(comparisonRepository).Execute(query as ObterComparacaoQuery),
+    );
+
+    dispatcher.RegisterQuery("ObterScorecardQuery", (query) =>
+      new ObterScorecardService(comparisonRepository).Execute(query as ObterScorecardQuery),
     );
   }
 

@@ -1,6 +1,7 @@
 import { Result } from "../result";
 import { ComparisonSet } from "./comparison-set";
-import { Scorecard, ScorecardId } from "./scorecard";
+import { Scorecard } from "./scorecard";
+import { ScorecardId } from "./comparison-types";
 import {
   type ComparisonMetric,
   type MetricType,

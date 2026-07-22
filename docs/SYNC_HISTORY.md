@@ -14,6 +14,30 @@
 
 # Registro de Sincronizações
 
+## EWO-009 — Onda 4 (Análise e Insights) 🟢 FECHADA
+
+**Data:** 21/07/2026
+**Commit:** `18d6c95`, `137f95f`, `7e5503b`, `a6a165d`
+
+### Artefatos entregues
+
+- BR docs: 14_BACKTESTS.md, 15_ALERTAS.md, 16_COMPARACAO_AVANCADA.md
+- Anexos Técnicos: 07_BACKTEST_ALGORITMOS.md, 08_ALERTAS_EVENTOS.md
+- Core Domain: backtests/, alerts/, comparison/ (21 arquivos)
+- Application: 7 commands, 6 queries, 13 services, 3 ports, 13 DTOs
+- Infrastructure: 6 adapters (3 Fake + 3 Supabase)
+- Presentation: ComparisonPage, ScorecardGrid, AssetPicker, hooks, viewmodel, tests
+- Composition Root: registros para CriarComparacaoCommand, ObterComparacaoQuery, ObterScorecardQuery
+- Engineering Closure: EWO-009_ENGINEERING_CLOSURE.md
+- DOCUMENTATION_INDEX v1.81, PROJECT_STATUS v1.94
+
+### NCs resolvidas
+
+- NC-010-002 (view composition /comparar)
+- NC-010-004 (AckAlertaCommand → ConfirmarAlertaCommand)
+
+---
+
 ## PS#030B — Refinamento dos Protocolos Operacionais
 
 **Data:** 12/07/2026

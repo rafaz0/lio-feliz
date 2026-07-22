@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.80
+**Versão da Documentação:** 1.81
 
 **Status:** APROVADO
 
@@ -177,9 +177,9 @@ Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, A
 
 Engineering Review da PI-010: 10 critérios avaliados, 5 NCs baixas/médias (NC-010-001 O1, NC-010-002 O2, NC-010-003 O3, NC-010-004 O4, NC-010-005 O5), 5 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED. Próximos passos: aplicar NC-010-004 e NC-010-002, executar EWO-007, emitir EWO-009.
 
-🔴 EWO-009.md 🟢 (APPROVED)
+🔴 EWO-009.md 🟢 (CLOSED)
 
-Engineering Work Order para a Onda 4 (Análise e Insights): Backtests 14, Alertas 15, Comparação Avançada 16. 10 Slices. NCs ER-010 tratadas: NC-010-001 (dependência EWO-007 — Backtests independente), NC-010-002 (view composition /comparar resolvida), NC-010-004 (AckAlertaCommand → ConfirmarAlertaCommand). Backtests 14 pode iniciar imediatamente.
+Engineering Work Order para a Onda 4 (Análise e Insights): Backtests 14, Alertas 15, Comparação Avançada 16. 10 Slices executadas. Engineering Closure concluído. NCs ER-010 resolvidas (NC-010-002, NC-010-004). Backtests 14 independente de EWO-007.
 
 ---
 
@@ -207,6 +207,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.81
+
+- **EWO-009 — Onda 4 🟢 FECHADA** — Engineering Closure concluído. 10 Slices executadas. Módulos 14 (Backtests), 15 (Alertas), 16 (Comparação Avançada) implementados. Presentation do módulo 16 concluída (ComparisonPage, ScorecardGrid, hooks, tests). NCs ER-010 resolvidas (NC-010-002, NC-010-004). DOCUMENTATION_INDEX v1.81.
 
 ## Versão 1.80
 
