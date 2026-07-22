@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.85
+**Versão da Documentação:** 1.86
 
 **Status:** APROVADO
 
@@ -177,9 +177,9 @@ Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, A
 
 Engineering Review da PI-010: 10 critérios avaliados, 5 NCs baixas/médias. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED.
 
-🔴 EWO-010.md 🟢 (APPROVED)
+🔴 EWO-010.md 🟢 (CLOSED)
 
-Engineering Work Order para a Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. NCs ER-010 resolvidas: NC-010-003 (tooltips via TooltipProvider), NC-010-005 (scheduler compartilhado mód.13). Aderência GOV-P014.
+Engineering Work Order para a Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices executadas. Engineering Closure concluído. NCs ER-010 resolvidas (NC-010-003, NC-010-005). Decisão O1 aplicada.
 
 🔴 EWO-009.md 🟢 (CLOSED)
 
@@ -211,6 +211,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.86
+
+- **EWO-010 — Onda 5 🟢 FECHADA** — Engineering Closure concluído. 7 Slices executadas. Módulos 17 (Educação) e 18 (Exportação Avançada) implementados. NCs ER-010 resolvidas (NC-010-003 tooltips, NC-010-005 scheduler). Todas as 5 NCs da ER-010 encerradas. Decisão O1 aplicada. DOCUMENTATION_INDEX v1.86.
 
 ## Versão 1.85
 

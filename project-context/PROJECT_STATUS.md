@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.98
+**Versão:** 1.99
 
 **Status:** APROVADO
 
@@ -15,14 +15,13 @@
 ---
 
 ## Objetivo
-Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), com todos os 3 módulos implementados (Backtests 14, Alertas 15, Comparação Avançada 16) e Engineering Closure concluído.
+Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportação Avançada), com ambos os módulos implementados e Engineering Closure concluído. Todas as 5 NCs da ER-010 encerradas.
 
 ## Detalhes Importantes
-- **EWO-009 🟢 FECHADA** — 10 Slices executadas. 3 módulos implementados por extensão sobre camadas congeladas.
-- NCs ER-010 resolvidas: NC-010-002 (view composition), NC-010-004 (ConfirmarAlertaCommand).
-- Presentation do módulo 16 concluída (ComparisonPage, ScorecardGrid, hooks, tests).
-- Backtests 14 e Alertas 15 com Presentation pendente (não bloqueante).
-- DOCUMENTATION_INDEX v1.81, PROJECT_STATUS v1.94.
+- **EWO-010 🟢 FECHADA** — 7 Slices executadas. 2 módulos implementados por extensão.
+- Todas as NCs da ER-010 resolvidas: NC-010-002/004 (EWO-009), NC-010-003/005 (EWO-010).
+- Decisão O1 aplicada (reuso IReportRepository).
+- DOCUMENTATION_INDEX v1.86, PROJECT_STATUS v1.99.
 
 ## Estado Atual do Trabalho
 ### Concluído
@@ -56,8 +55,8 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 ### Em andamento (planejamento)
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
-- **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. **EWO-009 (Onda 4) 🟢 FECHADA.**
-- **EWO-010 Slices 4-6 (Exportação Avançada 18) CONCLUÍDOS** — BR doc `18_EXPORTACAO_AVANCADA.md`, Anexo `09_EXPORTACAO_FORMATOS.md`, Core Domain (ExportTemplate, ExportJob, ExportComposer R-014, 5 errors), Application Layer (2 commands, 2 queries, 4 services, port IExportTemplateRepository, 3 DTOs), Infrastructure (FakeExportTemplateRepository, SupabaseExportTemplateRepository). NC-010-005 resolvida (scheduler compartilhado). Decisão O1 aplicada (reuso IReportRepository). Build green.
+- **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
+- **EWO-010 🟢 FECHADA** — Onda 5 concluída. 7 Slices executadas. Educação 17 e Exportação Avançada 18 implementados.
 - **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS**
 - **EWO-009 🟢 FECHADA** — Onda 4 concluída.
 - **EWO-010 (APPROVED)** — Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. **Slices 1-6 concluídas.** Slice 7 (Closure) pendente.
@@ -68,8 +67,8 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - (nenhum)
 
 ### Próximo passo
-1. **Iniciar EWO-010 Slice 7** — Engineering Closure da EWO-010.
-2. **Executar EWO-007 em paralelo** — Onda 2 (Renda Fixa 09, Internacional 10).
+1. **Executar EWO-007** — Onda 2 (Renda Fixa 09, Internacional 10) — próxima pendência operacional.
+2. Avaliar planejamento de novas frentes após conclusão das Ondas 4 e 5.
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -77,7 +76,7 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
-- `architecture-lab/EWO-010.md`: v1.0 (APPROVED) — Onda 5 (Educação 17, Exportação Avançada 18), 7 Slices
+- `architecture-lab/EWO-010.md`: v1.0 (CLOSED) — Onda 5 (Educação 17, Exportação Avançada 18), 7 Slices
 - `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
 - `architecture-lab/ER-009.md`: v1.0 (Approved) — Engineering Review da PI-009 (🟢 APROVADO)
 - `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
@@ -85,8 +84,9 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.85 (reflete EWO-010 Slices 1-6)
-- `project-context/PROJECT_STATUS.md`: v1.98 (reflete EWO-010 Slices 1-6)
+- `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
+- `docs/DOCUMENTATION_INDEX.md`: v1.86 (reflete EWO-010 CLOSED)
+- `project-context/PROJECT_STATUS.md`: v1.99 (reflete EWO-010 CLOSED)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -94,6 +94,10 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 ---
 
 ## Histórico
+
+### Versão 1.99
+
+- **EWO-010 — Onda 5 🟢 FECHADA** — Engineering Closure concluído. 7 Slices executadas. Módulos: Educação 17 (Slices 1-3), Exportação Avançada 18 (Slices 4-6), Engineering Closure (Slice 7). NCs ER-010 resolvidas: NC-010-003 (TooltipProvider), NC-010-005 (scheduler compartilhado). Todas as 5 NCs da ER-010 oficialmente encerradas. Decisão O1 aplicada (reuso IReportRepository). Engineering Closure em `docs/EWO-010_ENGINEERING_CLOSURE.md`. PI-010 (Ondas 4 e 5) totalmente materializada. DOCUMENTATION_INDEX v1.86, PROJECT_STATUS v1.99.
 
 ### Versão 1.98
 

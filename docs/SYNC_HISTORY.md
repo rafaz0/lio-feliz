@@ -14,6 +14,28 @@
 
 # Registro de Sincronizações
 
+## EWO-010 — Onda 5 (Educação e Exportação Avançada) 🟢 FECHADA
+
+**Data:** 22/07/2026
+**Commit:** `7291e10`, `0316978`, `e5c6179`
+
+### Artefatos entregues
+
+- BR docs: 17_EDUCACAO.md, 18_EXPORTACAO_AVANCADA.md
+- Anexos Técnicos: 09_EXPORTACAO_FORMATOS.md
+- Core Domain: education/, advanced-export/ (27 arquivos de domínio)
+- Application: 4 commands, 4 queries, 8 services, 2 ports, 7 DTOs
+- Infrastructure: 4 adapters (2 Fake + 2 Supabase)
+- Engineering Closure: EWO-010_ENGINEERING_CLOSURE.md
+- DOCUMENTATION_INDEX v1.86, PROJECT_STATUS v1.99
+
+### NCs resolvidas
+
+- NC-010-003 (TooltipProvider — composição, não modificação)
+- NC-010-005 (scheduler compartilhado mód.13)
+
+---
+
 ## EWO-010 — Onda 5 (Educação e Exportação Avançada) 🟢 APROVADA
 
 **Data:** 22/07/2026
