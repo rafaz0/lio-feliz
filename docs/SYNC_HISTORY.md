@@ -14,6 +14,25 @@
 
 # Registro de Sincronizações
 
+## EWO-010 — Onda 5 (Educação e Exportação Avançada) 🟢 APROVADA
+
+**Data:** 22/07/2026
+**Commit:** pendente
+
+### Estrutura
+
+- 7 Slices: Educação 17 (S1-3), Exportação Avançada 18 (S4-6), Engineering Closure (S7)
+- NCs ER-010 resolvidas: NC-010-003 (TooltipProvider), NC-010-005 (scheduler compartilhado)
+- Aderência GOV-P014: resumo estatístico, rastreabilidade, estado da EWO
+
+### Documentos
+
+- architecture-lab/EWO-010.md v1.0
+- DOCUMENTATION_INDEX v1.83
+- PROJECT_STATUS v1.96
+
+---
+
 ## GOV-P014 — Atualização Metodológica de Prompt e Relatório
 
 **Data:** 22/07/2026

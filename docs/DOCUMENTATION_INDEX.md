@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.82
+**Versão da Documentação:** 1.83
 
 **Status:** APROVADO
 
@@ -175,7 +175,11 @@ Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, A
 
 🔴 ER-010.md 🟢 (APPROVED)
 
-Engineering Review da PI-010: 10 critérios avaliados, 5 NCs baixas/médias (NC-010-001 O1, NC-010-002 O2, NC-010-003 O3, NC-010-004 O4, NC-010-005 O5), 5 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED. Próximos passos: aplicar NC-010-004 e NC-010-002, executar EWO-007, emitir EWO-009.
+Engineering Review da PI-010: 10 critérios avaliados, 5 NCs baixas/médias. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED.
+
+🔴 EWO-010.md 🟢 (APPROVED)
+
+Engineering Work Order para a Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. NCs ER-010 resolvidas: NC-010-003 (tooltips via TooltipProvider), NC-010-005 (scheduler compartilhado mód.13). Aderência GOV-P014.
 
 🔴 EWO-009.md 🟢 (CLOSED)
 
@@ -207,6 +211,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.83
+
+- **EWO-010 CRIADA (APPROVED)** — Engineering Work Order para a Onda 5 (Educação e Exportação Avançada): 7 Slices (Educação 17 Slices 1-3, Exportação Avançada 18 Slices 4-6, Engineering Closure Slice 7). NCs ER-010 resolvidas (NC-010-003 tooltips via TooltipProvider, NC-010-005 scheduler compartilhado). Aderência às melhorias GOV-P014 (resumo estatístico, rastreabilidade). DOCUMENTATION_INDEX v1.83.
 
 ## Versão 1.82
 

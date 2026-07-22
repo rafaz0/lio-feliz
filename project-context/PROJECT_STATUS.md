@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.95
+**Versão:** 1.96
 
 **Status:** APROVADO
 
@@ -58,6 +58,7 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. **EWO-009 (Onda 4) 🟢 FECHADA.**
 - **EWO-009 🟢 FECHADA** — Onda 4 concluída. 10 Slices executadas. Backtests 14, Alertas 15, Comparação Avançada 16 implementados.
+- **EWO-010 (APPROVED)** — Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. Próxima EWO no pipeline.
 
 ### Bloqueado
 
@@ -65,8 +66,9 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - (nenhum)
 
 ### Próximo passo
-1. **Executar EWO-007** — Onda 2 (Renda Fixa 09, Internacional 10) — pendência operacional.
-2. **Planejar EWO-010** — Onda 5 (Educação 17, Exportação Avançada 18) — próxima no pipeline.
+1. **Gate de Entrada EWO-010** — Baseline Lock (PI-010 + ER-010 + EWO-010 congelados).
+2. **Iniciar EWO-010 Slice 1** — Educação 17 (Business Rules + Core Domain).
+3. **Executar EWO-007 em paralelo** — Onda 2 (Renda Fixa 09, Internacional 10).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -74,6 +76,7 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
+- `architecture-lab/EWO-010.md`: v1.0 (APPROVED) — Onda 5 (Educação 17, Exportação Avançada 18), 7 Slices
 - `architecture-lab/ER-008.md`: v1.0 (Approved) — Engineering Review da PI-008
 - `architecture-lab/ER-009.md`: v1.0 (Approved) — Engineering Review da PI-009 (🟢 APROVADO)
 - `architecture-lab/EWO-006.md`: v1.0 (Approved) — Onda 1 (Metas, Impostos, Rebalanceamento), 10 Slices
@@ -81,8 +84,8 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.82 (reflete GOV-P014)
-- `project-context/PROJECT_STATUS.md`: v1.95 (reflete GOV-P014)
+- `docs/DOCUMENTATION_INDEX.md`: v1.83 (reflete EWO-010 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v1.96 (reflete EWO-010 APPROVED)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -90,6 +93,10 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 ---
 
 ## Histórico
+
+### Versão 1.96
+
+- **EWO-010 CRIADA (APPROVED)** — Engineering Work Order para a Onda 5 (Educação e Exportação Avançada): 7 Slices. Módulo 17 Educação (Slices 1-3), Módulo 18 Exportação Avançada (Slices 4-6), Engineering Closure (Slice 7). NCs ER-010 resolvidas: NC-010-003 (tooltips via TooltipProvider), NC-010-005 (scheduler compartilhado mód.13). Ordem intra-onda: Educação 17 → Exportação 18. Aderência às melhorias GOV-P014 (resumo estatístico, rastreabilidade, estado da EWO). Próximo passo: Gate de Entrada + iniciar Slice 1. DOCUMENTATION_INDEX v1.83, PROJECT_STATUS v1.96.
 
 ### Versão 1.95
 
