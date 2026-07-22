@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.89
+**Versão da Documentação:** 1.90
 
 **Status:** APROVADO
 
@@ -185,6 +185,14 @@ Engineering Work Order para a Onda 5 (Educação 17, Exportação Avançada 18).
 
 Engineering Work Order para a Onda 4 (Análise e Insights): Backtests 14, Alertas 15, Comparação Avançada 16. 10 Slices executadas. Engineering Closure concluído. NCs ER-010 resolvidas (NC-010-002, NC-010-004). Backtests 14 independente de EWO-007.
 
+🔴 PI-011.md (DRAFT v1.0)
+
+Platform Consolidation & Product Readiness (Onda 6). 4 módulos: 19 (Assinaturas e Planos), 20 (Perfil do Investidor), 21 (Onboarding Inteligente), 22 (Personalização). 2 ports estendidos, 1 criado. 3 decisões arquiteturais (O1, O2, O3). R-015 a R-017. KPIs GOV-P015.
+
+🔴 ER-011.md 🟢 (APPROVED)
+
+Engineering Review da PI-011: 10 critérios avaliados, 4 NCs baixas (NC-011-001 O1, NC-011-002 O2, NC-011-003 O3, NC-011-004 O4), 2 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-011 promovida DRAFT → APPROVED.
+
 ---
 
 ## Legenda
@@ -211,6 +219,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.90
+
+- **ER-011 APROVADA** — Engineering Review da PI-011: 10 critérios avaliados, 4 NCs baixas (NC-011-001 O1, NC-011-002 O2, NC-011-003 O3, NC-011-004 O4), 2 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-011 promovida DRAFT → APPROVED. DOCUMENTATION_INDEX v1.90.
 
 ## Versão 1.89
 
