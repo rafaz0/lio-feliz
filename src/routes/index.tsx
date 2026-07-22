@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Info, LineChart, TrendingUp, Wallet } from "lucide-react";
+import { useState, useMemo } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { DeltaPct } from "@/components/delta-pct";
 import { Button } from "@/components/ui/button";
