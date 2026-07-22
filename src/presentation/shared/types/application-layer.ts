@@ -27,6 +27,9 @@ import type {
   SolicitarExportacaoCommand,
   AgendarExportacaoCommand,
   AtualizarTaxaCambioCommand,
+  AssinarPlanoCommand,
+  CancelarAssinaturaCommand,
+  VerificarAcessoCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -267,6 +270,9 @@ export type {
   ExportJobListDto,
   AtivosInternacionaisDto,
   TaxaCambioDto,
+  PlanoDetalhadoDto,
+  AssinaturaDto,
+  AcessoDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

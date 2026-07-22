@@ -28,3 +28,6 @@ export type { AtualizarTooltipCommand } from "./atualizar-tooltip";
 export type { SolicitarExportacaoCommand } from "./solicitar-exportacao";
 export type { AgendarExportacaoCommand } from "./agendar-exportacao";
 export type { AtualizarTaxaCambioCommand } from "./atualizar-taxa-cambio";
+export type { AssinarPlanoCommand } from "./assinar-plano";
+export type { CancelarAssinaturaCommand } from "./cancelar-assinatura";
+export type { VerificarAcessoCommand } from "./verificar-acesso";

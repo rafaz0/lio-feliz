@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.04
+**Versão:** 2.05
 
 **Status:** APROVADO
 
@@ -60,7 +60,7 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS**
 - **EWO-009 🟢 FECHADA** — Onda 4 concluída.
 - **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). ER-011 aprovada. **EWO-011 (Bloco A) criada.**
-- **EWO-011 (APPROVED)** — Bloco A (Assinaturas 19, Perfil do Investidor 20). 7 Slices. NCs ER-011 tratadas. ADRs registrados.
+- **EWO-011 (APPROVED)** — Bloco A (Assinaturas 19, Perfil do Investidor 20). 7 Slices. **Slices 1-3 (Assinaturas 19) concluídas.** Slices 4-6 (Perfil 20) pendentes.
 
 ### Bloqueado
 
@@ -89,8 +89,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
-- `docs/DOCUMENTATION_INDEX.md`: v1.91 (reflete EWO-011 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v2.04 (reflete EWO-011 APPROVED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.92 (reflete EWO-011 Slices 1-3)
+- `project-context/PROJECT_STATUS.md`: v2.05 (reflete EWO-011 Slices 1-3)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -100,6 +100,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 ---
 
 ## Histórico
+
+### Versão 2.05
+
+- **EWO-011 Slices 1-3 (Assinaturas 19) CONCLUÍDOS** — BR doc `19_ASSINATURAS.md`. Core Domain subscriptions/: Plan, Subscription, BillingCycle (entities), AuthorizationService (PlanCapabilities centralizadas REC-011-002), BillingSimulator (NC-011-003), 5 erros. Application: 3 commands (AssinarPlano, CancelarAssinatura, VerificarAcesso), 2 queries (ObterPlanoAtivo, ListarPlanos), 5 services, port ISubscriptionRepository estendido (savePlan, findPlanById, findAllPlans, saveSubscription, findSubscriptionsByUser), 3 DTOs. Infrastructure: FakeSubscriptionRepository e SupabaseSubscriptionRepository estendidos. Presentation: SubscriptionsPage, hooks (usePlansQuery, useSubscriptionQuery, useSubscribeMutation, useCancelSubscriptionMutation), viewmodel. ADR-011-001 aplicado. PlanCapabilities definidos (FREE, BASIC, PREMIUM). Composition Root registrado. Build green. DOCUMENTATION_INDEX v1.92, PROJECT_STATUS v2.05.
 
 ### Versão 2.04
 

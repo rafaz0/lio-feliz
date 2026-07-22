@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.91
+**Versão da Documentação:** 1.92
 
 **Status:** APROVADO
 
@@ -219,6 +219,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.92
+
+- **EWO-011 Slices 1-3 (Assinaturas 19) CONCLUÍDOS** — BR `19_ASSINATURAS.md`, Core Domain (Plan, Subscription, BillingCycle, AuthorizationService com PlanCapabilities, BillingSimulator), Application + Infrastructure (3 commands, 2 queries, 5 services, DTOs, repositórios estendidos), Presentation (SubscriptionsPage, hooks, viewmodel). PlanCapabilities centralizadas. Composition Root registrado. Build green. DOCUMENTATION_INDEX v1.92.
 
 ## Versão 1.91
 

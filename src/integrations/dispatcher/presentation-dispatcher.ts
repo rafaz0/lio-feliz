@@ -96,6 +96,17 @@ import { ObterTaxaCambioService } from "@/application/services/obter-taxa-cambio
 import type { ObterAtivosInternacionaisQuery } from "@/application/queries/obter-ativos-internacionais";
 import type { ObterTaxaCambioQuery } from "@/application/queries/obter-taxa-cambio";
 import type { AtualizarTaxaCambioCommand } from "@/application/commands/atualizar-taxa-cambio";
+import { AssinarPlanoService } from "@/application/services/assinar-plano-service";
+import { CancelarAssinaturaService } from "@/application/services/cancelar-assinatura-service";
+import { VerificarAcessoService } from "@/application/services/verificar-acesso-service";
+import { ObterPlanoAtivoService } from "@/application/services/obter-plano-ativo-service";
+import { ListarPlanosService } from "@/application/services/listar-planos-service";
+import type { INotificationPort } from "@/application/ports/notification-port";
+import type { ObterPlanoAtivoQuery } from "@/application/queries/obter-plano-ativo";
+import type { ListarPlanosQuery } from "@/application/queries/listar-planos";
+import type { AssinarPlanoCommand } from "@/application/commands/assinar-plano";
+import type { CancelarAssinaturaCommand } from "@/application/commands/cancelar-assinatura";
+import type { VerificarAcessoCommand } from "@/application/commands/verificar-acesso";
 import { SyncOrchestrationService } from "@/core/domain/integrations";
 
 interface PresentationDispatcherDeps {
@@ -113,6 +124,8 @@ interface PresentationDispatcherDeps {
   integrationRepository?: IIntegrationRepository;
   comparisonRepository?: IComparisonRepository;
   foreignAssetRepository?: IForeignAssetRepository;
+  notificationPort?: INotificationPort;
+  subscriptionRepository?: import("@/application/ports/subscription-repository").ISubscriptionRepository;
 }
 
 /**
@@ -137,6 +150,8 @@ export function createPresentationDispatcher({
   integrationRepository,
   comparisonRepository,
   foreignAssetRepository,
+  notificationPort,
+  subscriptionRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -380,6 +395,34 @@ export function createPresentationDispatcher({
     dispatcher.RegisterQuery("ObterTaxaCambioQuery", (query) =>
       new ObterTaxaCambioService(foreignAssetRepository).Execute(
         query as ObterTaxaCambioQuery,
+      ),
+    );
+  }
+
+  if (subscriptionRepository) {
+    dispatcher.RegisterQuery("ListarPlanosQuery", (query) =>
+      new ListarPlanosService(subscriptionRepository).Execute(query as ListarPlanosQuery),
+    );
+
+    dispatcher.RegisterQuery("ObterPlanoAtivoQuery", (query) =>
+      new ObterPlanoAtivoService(subscriptionRepository).Execute(query as ObterPlanoAtivoQuery),
+    );
+
+    dispatcher.RegisterCommand("AssinarPlanoCommand", (command) =>
+      new AssinarPlanoService(subscriptionRepository, notificationPort).Execute(
+        command as AssinarPlanoCommand,
+      ),
+    );
+
+    dispatcher.RegisterCommand("CancelarAssinaturaCommand", (command) =>
+      new CancelarAssinaturaService(subscriptionRepository).Execute(
+        command as CancelarAssinaturaCommand,
+      ),
+    );
+
+    dispatcher.RegisterCommand("VerificarAcessoCommand", (command) =>
+      new VerificarAcessoService(subscriptionRepository).Execute(
+        command as VerificarAcessoCommand,
       ),
     );
   }
