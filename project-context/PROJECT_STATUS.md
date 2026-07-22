@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.10
+**Versão:** 2.11
 
 **Status:** APROVADO
 
@@ -57,8 +57,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). **🟢 PI-009 MATERIALIZADA.** EWO-007 (Renda Fixa 09, Internacional 10) 🟢 FECHADA. EWO-008 (Import/Export 11, Integrações 12, Relatórios 13) 🟢 FECHADA.
 - **EWO-007 🟢 FECHADA** — Onda 2 concluída. Renda Fixa 09 e Internacional 10 implementados.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
-- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). **EWO-011 (Bloco A) 🟢 FECHADA. EWO-012 (Bloco B) em andamento.**
-- **EWO-012 (APPROVED)** — Bloco B (Onboarding 21, Personalização 22). 7 Slices. **Slices 1-3 (Onboarding 21) concluídas.**
+- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). **🟢 PI-011 TOTALMENTE MATERIALIZADA. EWO-011 (Bloco A) 🟢 FECHADA. EWO-012 (Bloco B) 🟢 FECHADA.**
+- **EWO-012 🟢 FECHADA** — Bloco B concluído. 7 Slices. Onboarding 21 e Personalização 22 implementados.
 
 ### Bloqueado
 
@@ -89,8 +89,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v1.97 (reflete EWO-012 Slices 1-6)
-- `project-context/PROJECT_STATUS.md`: v2.10 (reflete EWO-012 Slices 1-6)
+- `docs/DOCUMENTATION_INDEX.md`: v1.98 (reflete PI-011 materializada)
+- `project-context/PROJECT_STATUS.md`: v2.11 (reflete PI-011 materializada)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -101,8 +101,13 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 
 ## Histórico
 
+### Versão 2.11
+
+- **EWO-012 🟢 FECHADA** — Bloco B concluído. 7 Slices. Onboarding 21 (BR+Core+App+Presentation, 0 ports) e Personalização 22 (BR+Core+App+Infra+Presentation, estende IConfigurationRepository). ADR-011-002 e ADR-011-003 executados. PI-011 **totalmente materializada** — todos os 4 módulos (19-22) implementados. 18 FRs cobertos (FR-051 a FR-068). 4 módulos, 22 arquivos de domínio, 4 pages, 11 hooks. DOCUMENTATION_INDEX v1.98, PROJECT_STATUS v2.11.
+
 ### Versão 2.10
 
+- **EWO-012 🟢 FECHADA** — Bloco B concluído. 7 Slices. Onboarding 21 e Personalização 22 implementados. PI-011 totalmente materializada.
 - **EWO-012 Slices 4-6 (Personalização 22) CONCLUÍDOS** — BR doc `22_PERSONALIZACAO.md`. Core Domain preferences/: UserPreferences, DashboardLayout, ThemeConfig, WidgetPosition (entities/VOs), PreferencesService (mergeDefaults). Application: 3 commands (SalvarPreferencias, AtualizarTema, SalvarLayoutDashboard), 2 queries (ObterPreferencias, ObterTema), 5 services, 2 DTOs. IConfigurationRepository estendido com 6 métodos (ADR-011-002). FakeConfigurationRepository e SupabaseConfigurationRepository estendidos. Presentation: PreferencesPage, hooks, viewmodel. 0 novos ports. Build green. DOCUMENTATION_INDEX v1.97, PROJECT_STATUS v2.10.
 
 ### Versão 2.09

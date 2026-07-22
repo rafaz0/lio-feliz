@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.97
+**Versão da Documentação:** 1.98
 
 **Status:** APROVADO
 
@@ -220,6 +220,10 @@ Este arquivo representa a estrutura oficial da documentação.
 
 ---
 
+## Versão 1.98
+
+- **EWO-012 🟢 FECHADA** — Bloco B concluído. Módulo 21 (Onboarding) e Módulo 22 (Personalização) implementados. 0 novos ports. ADR-011-002 e ADR-011-003 executados. PI-011 totalmente materializada (Bloco A + Bloco B). DOCUMENTATION_INDEX v1.98.
+
 ## Versão 1.97
 
 - **EWO-012 Slices 4-6 (Personalização 22) CONCLUÍDOS** — BR `22_PERSONALIZACAO.md`. Core Domain (UserPreferences, DashboardLayout, ThemeConfig, PreferencesService), Application + Infrastructure (3 commands, 2 queries, 5 services, IConfigurationRepository estendido com 6 métodos), Presentation (PreferencesPage). Build green. DOCUMENTATION_INDEX v1.97.
@@ -236,9 +240,11 @@ Este arquivo representa a estrutura oficial da documentação.
 
 - **EWO-011 🟢 FECHADA**
 
-- 🔴 EWO-012.md 🟢 (APPROVED)
+- 🔴 EWO-012.md 🟢 (CLOSED)
 
-Engineering Work Order para o Bloco B (Onboarding 21, Personalização 22). 7 Slices. 0 novos ports. ADR-011-002 e ADR-011-003 executados. R-016 e R-017. — Bloco A concluído. Módulo 19 (Assinaturas) e Módulo 20 (Perfil do Investidor) implementados com todas as camadas. NCs ER-011 resolvidas (NC-011-001 a NC-011-004). RECs incorporadas (ADRs + PlanCapabilities). Engineering Closure em `docs/EWO-011_ENGINEERING_CLOSURE.md`. DOCUMENTATION_INDEX v1.94.
+Engineering Work Order para o Bloco B (Onboarding 21, Personalização 22). 7 Slices. 0 novos ports. ADR-011-002 e ADR-011-003 executados. R-016 e R-017.
+
+**🟢 PI-011 TOTALMENTE MATERIALIZADA** — Onda 6 concluída. — Bloco A concluído. Módulo 19 (Assinaturas) e Módulo 20 (Perfil do Investidor) implementados com todas as camadas. NCs ER-011 resolvidas (NC-011-001 a NC-011-004). RECs incorporadas (ADRs + PlanCapabilities). Engineering Closure em `docs/EWO-011_ENGINEERING_CLOSURE.md`. DOCUMENTATION_INDEX v1.94.
 
 ## Versão 1.93
 

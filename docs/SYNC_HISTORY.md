@@ -14,6 +14,28 @@
 
 # Registro de Sincronizações
 
+## EWO-012 — Bloco B (Onboarding 21, Personalização 22) 🟢 FECHADA
+
+**Data:** 22/07/2026
+**Commits:** `242dd35`, `dcd434a`, `a51d16f`
+
+### Artefatos entregues
+
+- BR docs: 21_ONBOARDING.md, 22_PERSONALIZACAO.md
+- Core Domain: onboarding/, preferences/ (11 arquivos de domínio)
+- Application: 5 commands, 4 queries, 9 services, 0 ports criados, 5 DTOs
+- Infrastructure: 1 port estendido (IConfigurationRepository +8 métodos)
+- Presentation: OnboardingPage (wizard), PreferencesPage, 5 hooks, viewmodels
+- Engineering Closure: EWO-012_ENGINEERING_CLOSURE.md
+- DOCUMENTATION_INDEX v1.98, PROJECT_STATUS v2.11
+
+### ADRs executados
+
+- ADR-011-002: IConfigurationRepository estendido
+- ADR-011-003: Onboarding sem port próprio
+
+---
+
 ## EWO-012 — Bloco B (Onboarding 21, Personalização 22) 🟢 APROVADA
 
 **Data:** 22/07/2026
