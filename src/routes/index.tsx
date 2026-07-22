@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Info, LineChart, TrendingUp, Wallet } from "lucide-react";
 import { useState, useMemo } from "react";
 import { SiteHeader } from "@/components/site-header";
