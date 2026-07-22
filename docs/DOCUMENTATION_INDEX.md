@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.93
+**Versão da Documentação:** 1.94
 
 **Status:** APROVADO
 
@@ -219,6 +219,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.94
+
+- **EWO-011 🟢 FECHADA** — Bloco A concluído. Módulo 19 (Assinaturas) e Módulo 20 (Perfil do Investidor) implementados com todas as camadas. NCs ER-011 resolvidas (NC-011-001 a NC-011-004). RECs incorporadas (ADRs + PlanCapabilities). Engineering Closure em `docs/EWO-011_ENGINEERING_CLOSURE.md`. DOCUMENTATION_INDEX v1.94.
 
 ## Versão 1.93
 

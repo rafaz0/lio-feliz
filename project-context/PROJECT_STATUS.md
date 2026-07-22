@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.06
+**Versão:** 2.07
 
 **Status:** APROVADO
 
@@ -44,6 +44,7 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - **EWO-009 Slices 7-8 (Comparação Avançada 16) CONCLUÍDOS** — BR doc `16_COMPARACAO_AVANCADA.md`, Core Domain (ComparisonSet, ComparisonEntry, Scorecard, ComparisonAggregator R-013, 5 errors), Application Layer (2 commands, 2 queries, 4 services, port, 3 DTOs), Infrastructure (FakeComparisonRepository, SupabaseComparisonRepository). Build green.
 - **EWO-009 Slice 9 (Comparação Avançada 16 Presentation) CONCLUÍDO** — ComparisonPage, ScorecardGrid, ComparisonAssetPicker, ComparisonLoading/Empty/Error, hooks (useComparisonQuery, useCreateComparisonMutation), viewmodel, tests. Composition Root registrado (CriarComparacaoCommand, ObterComparacaoQuery, ObterScorecardQuery).
 - **EWO-009 Slice 10 — Engineering Closure CONCLUÍDO** — Auditoria final, quality gates, `docs/EWO-009_ENGINEERING_CLOSURE.md` criado.
+- **EWO-011 🟢 FECHADA** — Bloco A concluído. 7 Slices. Assinaturas 19 e Perfil do Investidor 20 implementados.
 - **EWO-009 criada (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. NCs ER-010 resolvidas.
 - **EWO-008 — Onda 3: 🟢 CLOSED (Módulos 11, 12, 13 completos)**
   - **Módulo 11 (Import/Export):** BR doc, Core Domain (ImportJob, ExportJob, ImportMapping, ImportJobId), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (ImportExportPage, hooks, viewmodel)
@@ -56,11 +57,7 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). **🟢 PI-009 MATERIALIZADA.** EWO-007 (Renda Fixa 09, Internacional 10) 🟢 FECHADA. EWO-008 (Import/Export 11, Integrações 12, Relatórios 13) 🟢 FECHADA.
 - **EWO-007 🟢 FECHADA** — Onda 2 concluída. Renda Fixa 09 e Internacional 10 implementados.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
-- **EWO-010 🟢 FECHADA** — Onda 5 concluída. 7 Slices executadas. Educação 17 e Exportação Avançada 18 implementados.
-- **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS**
-- **EWO-009 🟢 FECHADA** — Onda 4 concluída.
-- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). ER-011 aprovada. **EWO-011 (Bloco A) criada.**
-- **EWO-011 (APPROVED)** — Bloco A (Assinaturas 19, Perfil do Investidor 20). 7 Slices. **Slices 1-6 concluídas.** Slice 7 (Closure) pendente.
+- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). **EWO-011 (Bloco A) 🟢 FECHADA. Bloco B (EWO-012) pendente.**
 
 ### Bloqueado
 
@@ -89,8 +86,9 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
-- `docs/DOCUMENTATION_INDEX.md`: v1.93 (reflete EWO-011 Slices 1-6)
-- `project-context/PROJECT_STATUS.md`: v2.06 (reflete EWO-011 Slices 1-6)
+- `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
+- `docs/DOCUMENTATION_INDEX.md`: v1.94 (reflete EWO-011 CLOSED)
+- `project-context/PROJECT_STATUS.md`: v2.07 (reflete EWO-011 CLOSED)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -100,6 +98,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 ---
 
 ## Histórico
+
+### Versão 2.07
+
+- **EWO-011 🟢 FECHADA** — Bloco A concluído. 7 Slices executadas. Módulo 19 (Assinaturas): Plan, Subscription, BillingCycle, AuthorizationService (PlanCapabilities FREE/BASIC/PREMIUM), BillingSimulator, 3 commands, 2 queries, 5 services, ISubscriptionRepository estendido. Módulo 20 (Perfil do Investidor): InvestorProfile, RiskQuestionnaire, RiskResult, RiskClassifier (8 perguntas ANBIMA), 2 commands, 2 queries, 4 services, IInvestorProfileRepository. NCs ER-011 resolvidas. REC-011-002 (PlanCapabilities) incorporada. ADR-011-001 a ADR-011-003 registrados. Engineering Closure em `docs/EWO-011_ENGINEERING_CLOSURE.md`. PI-011 (Bloco A) materializada. DOCUMENTATION_INDEX v1.94, PROJECT_STATUS v2.07.
 
 ### Versão 2.06
 

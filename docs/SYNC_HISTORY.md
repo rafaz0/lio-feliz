@@ -14,6 +14,33 @@
 
 # Registro de Sincronizações
 
+## EWO-011 — Bloco A (Assinaturas 19, Perfil 20) 🟢 FECHADA
+
+**Data:** 22/07/2026
+**Commits:** `92b11b8`, `6633c06`, `e5588e9`
+
+### Artefatos entregues
+
+- BR docs: 19_ASSINATURAS.md, 20_PERFIL_INVESTIDOR.md
+- Core Domain: subscriptions/, investor-profile/ (13 arquivos de domínio)
+- Application: 5 commands, 4 queries, 9 services, 2 ports (1 estendido, 1 novo), 7 DTOs
+- Infrastructure: 4 adapters (2 estendidos, 2 novos)
+- Presentation: SubscriptionsPage, InvestorProfilePage, 6 hooks, viewmodels
+- Composition Root: registros para ambos os módulos
+- Engineering Closure: EWO-011_ENGINEERING_CLOSURE.md
+- DOCUMENTATION_INDEX v1.94, PROJECT_STATUS v2.07
+
+### NCs resolvidas
+
+- NC-011-001, NC-011-002, NC-011-003, NC-011-004
+
+### RECs incorporadas
+
+- REC-011-001: ADR-011-001 a ADR-011-003
+- REC-011-002: AuthorizationService com PlanCapabilities
+
+---
+
 ## EWO-011 — Bloco A (Assinaturas 19, Perfil 20) 🟢 APROVADA
 
 **Data:** 22/07/2026
