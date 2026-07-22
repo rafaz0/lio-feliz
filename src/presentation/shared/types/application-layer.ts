@@ -22,6 +22,10 @@ import type {
   CriarAlertaCommand,
   AtualizarAlertaCommand,
   ConfirmarAlertaCommand,
+  CriarTermoGlossarioCommand,
+  AtualizarTooltipCommand,
+  SolicitarExportacaoCommand,
+  AgendarExportacaoCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -247,6 +251,9 @@ export type {
   TooltipDto,
   LearningPathDto,
   GlossarySearchDto,
+  ExportTemplateDto,
+  ExportJobDto,
+  ExportJobListDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

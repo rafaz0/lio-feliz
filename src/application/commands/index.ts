@@ -25,3 +25,5 @@ export type { CriarComparacaoCommand } from "./criar-comparacao";
 export type { SalvarScorecardCommand } from "./salvar-scorecard";
 export type { CriarTermoGlossarioCommand } from "./criar-termo-glossario";
 export type { AtualizarTooltipCommand } from "./atualizar-tooltip";
+export type { SolicitarExportacaoCommand } from "./solicitar-exportacao";
+export type { AgendarExportacaoCommand } from "./agendar-exportacao";

@@ -26,3 +26,4 @@ export type { BacktestDto, StrategyDto, SimulationResultDto, BacktestCompletoDto
 export type { AlertaDto, AlertRuleDto, AlertDeliveryDto, AlertListDto, AlertRuleListDto } from "./alerta";
 export type { ComparacaoDto, ScorecardDto, ComparisonSetDto } from "./comparacao";
 export type { GlossaryTermDto, TooltipDto, LearningPathDto, GlossarySearchDto } from "./education";
+export type { ExportTemplateDto, ExportJobDto, ExportJobListDto } from "./exportacao-avancada";

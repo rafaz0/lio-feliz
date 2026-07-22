@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.84
+**Versão da Documentação:** 1.85
 
 **Status:** APROVADO
 
@@ -211,6 +211,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.85
+
+- **EWO-010 Slices 4-6 (Exportação Avançada 18) CONCLUÍDOS** — BR `18_EXPORTACAO_AVANCADA.md` e Anexo `09_EXPORTACAO_FORMATOS.md` criados. Core Domain `src/core/domain/advanced-export/`: ExportTemplate, ExportJob, ExportComposer (R-014), 5 errors. Application Layer: 2 commands, 2 queries, 4 services, port IExportTemplateRepository, 3 DTOs. Infrastructure: FakeExportTemplateRepository e SupabaseExportTemplateRepository. NC-010-005 resolvida (scheduler compartilhado mód.13). Decisão O1 aplicada. Build green. DOCUMENTATION_INDEX v1.85.
 
 ## Versão 1.84
 

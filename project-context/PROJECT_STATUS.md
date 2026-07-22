@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.97
+**Versão:** 1.98
 
 **Status:** APROVADO
 
@@ -57,9 +57,10 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. **EWO-009 (Onda 4) 🟢 FECHADA.**
-- **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS** — BR doc `17_EDUCACAO.md`, Core Domain (GlossaryTerm, Tooltip, LearningPath, GlossaryIndexer, 4 errors), Application Layer (2 commands, 2 queries, 4 services, port, 4 DTOs), Infrastructure (FakeGlossaryRepository, SupabaseGlossaryRepository). NC-010-003 resolvida. Build green.
+- **EWO-010 Slices 4-6 (Exportação Avançada 18) CONCLUÍDOS** — BR doc `18_EXPORTACAO_AVANCADA.md`, Anexo `09_EXPORTACAO_FORMATOS.md`, Core Domain (ExportTemplate, ExportJob, ExportComposer R-014, 5 errors), Application Layer (2 commands, 2 queries, 4 services, port IExportTemplateRepository, 3 DTOs), Infrastructure (FakeExportTemplateRepository, SupabaseExportTemplateRepository). NC-010-005 resolvida (scheduler compartilhado). Decisão O1 aplicada (reuso IReportRepository). Build green.
+- **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS**
 - **EWO-009 🟢 FECHADA** — Onda 4 concluída.
-- **EWO-010 (APPROVED)** — Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. **Slices 1-3 (Educação 17) concluídas.** Slices 4-6 (Exportação 18) aguardando.
+- **EWO-010 (APPROVED)** — Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. **Slices 1-6 concluídas.** Slice 7 (Closure) pendente.
 
 ### Bloqueado
 
@@ -67,7 +68,7 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - (nenhum)
 
 ### Próximo passo
-1. **Iniciar EWO-010 Slice 4** — Exportação Avançada 18 (BR + Anexo + Core Domain).
+1. **Iniciar EWO-010 Slice 7** — Engineering Closure da EWO-010.
 2. **Executar EWO-007 em paralelo** — Onda 2 (Renda Fixa 09, Internacional 10).
 
 ## Arquivos Relevantes
@@ -84,8 +85,8 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.84 (reflete EWO-010 Slices 1-3)
-- `project-context/PROJECT_STATUS.md`: v1.97 (reflete EWO-010 Slices 1-3)
+- `docs/DOCUMENTATION_INDEX.md`: v1.85 (reflete EWO-010 Slices 1-6)
+- `project-context/PROJECT_STATUS.md`: v1.98 (reflete EWO-010 Slices 1-6)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -93,6 +94,10 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 ---
 
 ## Histórico
+
+### Versão 1.98
+
+- **EWO-010 Slices 4-6 (Exportação Avançada 18) CONCLUÍDOS** — BR doc `18_EXPORTACAO_AVANCADA.md` e Anexo `09_EXPORTACAO_FORMATOS.md`. Core Domain `src/core/domain/advanced-export/`: ExportTemplate, ExportJob (entities), ExportComposer (domain service com checksum SHA-256 R-014), 5 erros de domínio, tipos. Application Layer: 2 commands (SolicitarExportacao, AgendarExportacao), 2 queries (ObterExportJob, ListarExportTemplates), 4 services, port IExportTemplateRepository, 3 DTOs. Infrastructure: FakeExportTemplateRepository e SupabaseExportTemplateRepository. NC-010-005 resolvida (scheduler compartilhado mód.13). Decisão O1 aplicada (reuso IReportRepository). Barrels e application-layer.ts atualizados. Build green. DOCUMENTATION_INDEX v1.85, PROJECT_STATUS v1.98.
 
 ### Versão 1.97
 

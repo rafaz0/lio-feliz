@@ -28,3 +28,5 @@ export type { ObterComparacaoQuery } from "./obter-comparacao";
 export type { ObterScorecardQuery } from "./obter-scorecard";
 export type { ObterTermoQuery } from "./obter-termo";
 export type { BuscarGlossarioQuery } from "./buscar-glossario";
+export type { ObterExportJobQuery } from "./obter-export-job";
+export type { ListarExportTemplatesQuery } from "./listar-export-templates";
