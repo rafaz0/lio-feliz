@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.01
+**Versão:** 2.02
 
 **Status:** APROVADO
 
@@ -59,7 +59,7 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - **EWO-010 🟢 FECHADA** — Onda 5 concluída. 7 Slices executadas. Educação 17 e Exportação Avançada 18 implementados.
 - **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS**
 - **EWO-009 🟢 FECHADA** — Onda 4 concluída.
-- **EWO-010 (APPROVED)** — Onda 5 (Educação 17, Exportação Avançada 18). 7 Slices. **Slices 1-6 concluídas.** Slice 7 (Closure) pendente.
+- **PI-011 (DRAFT v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). Próxima etapa: ER-011.
 
 ### Bloqueado
 
@@ -74,6 +74,7 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
 - `architecture-lab/PI-009.md`: v1.2 (Approved) — Ondas 2 & 3 (módulos 09-13); O2 resolvida
 - `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
+- `architecture-lab/PI-011.md`: v1.0 (DRAFT) — Platform Consolidation & Product Readiness (Onda 6)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
 - `architecture-lab/EWO-010.md`: v1.0 (CLOSED) — Onda 5 (Educação 17, Exportação Avançada 18), 7 Slices
@@ -85,8 +86,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
-- `docs/DOCUMENTATION_INDEX.md`: v1.88 (reflete GOV-P015)
-- `project-context/PROJECT_STATUS.md`: v2.01 (reflete GOV-P015)
+- `docs/DOCUMENTATION_INDEX.md`: v1.89 (reflete PI-011 DRAFT)
+- `project-context/PROJECT_STATUS.md`: v2.02 (reflete PI-011 DRAFT)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -96,6 +97,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 ---
 
 ## Histórico
+
+### Versão 2.02
+
+- **PI-011 CRIADA (DRAFT)** — Platform Consolidation & Product Readiness. Nova Product Increment para os módulos 19-22 (Assinaturas, Perfil do Investidor, Onboarding Inteligente, Personalização), organizados em Bloco A (Assinaturas + Perfil / EWO-011) e Bloco B (Onboarding + Personalização / EWO-012). 2 ports existentes estendidos (ISubscriptionRepository, IConfigurationRepository), 1 criado (IInvestorProfileRepository). 3 decisões arquiteturais (O1 reuso subscription, O2 reuso configuration, O3 onboarding sem port próprio). R-015 (mock de pagamento), R-016 (onboarding consome Educação), R-017 (preferências como extensão). KPIs GOV-P015 por módulo. Escalabilidade: 18 FRs (FR-050 a FR-067), 0 novos anexos técnicos. DOCUMENTATION_INDEX v1.89, PROJECT_STATUS v2.02.
 
 ### Versão 2.01
 

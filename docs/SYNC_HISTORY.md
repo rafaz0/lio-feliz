@@ -14,6 +14,26 @@
 
 # Registro de Sincronizações
 
+## PI-011 — Platform Consolidation & Product Readiness (DRAFT)
+
+**Data:** 22/07/2026
+
+### Estrutura
+
+- 4 módulos: Assinaturas 19, Perfil 20, Onboarding 21, Personalização 22
+- 2 ports estendidos (ISubscriptionRepository, IConfigurationRepository)
+- 1 port novo (IInvestorProfileRepository)
+- 3 decisões arquiteturais (O1, O2, O3) priorizando reuso
+- R-015 (mock pagamento), R-016 (onboarding consome Educação), R-017 (preferências como extensão)
+
+### Documentos
+
+- architecture-lab/PI-011.md v1.0 (DRAFT)
+- DOCUMENTATION_INDEX v1.89
+- PROJECT_STATUS v2.02
+
+---
+
 ## GOV-P015 — Indicadores Oficiais de Progresso
 
 **Data:** 22/07/2026

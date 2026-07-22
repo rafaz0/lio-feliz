@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.88
+**Versão da Documentação:** 1.89
 
 **Status:** APROVADO
 
@@ -211,6 +211,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.89
+
+- **PI-011 CRIADA (DRAFT)** — Platform Consolidation & Product Readiness (Onda 6). 4 módulos: 19 (Assinaturas e Planos), 20 (Perfil do Investidor), 21 (Onboarding Inteligente), 22 (Personalização). 2 ports existentes estendidos (ISubscriptionRepository, IConfigurationRepository), 1 novo (IInvestorProfileRepository). 3 decisões arquiteturais (O1, O2, O3) priorizando reuso. R-015 a R-017. KPIs GOV-P015 por módulo. EWOs: 011 (Bloco A), 012 (Bloco B). DOCUMENTATION_INDEX v1.89.
 
 ## Versão 1.88
 
