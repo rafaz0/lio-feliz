@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.88
+**Versão:** 1.89
 
 **Status:** APROVADO
 
@@ -15,16 +15,14 @@
 ---
 
 ## Objetivo
-Registrar a aprovação da ER-010 (Engineering Review da PI-010), promovendo a PI-010 de DRAFT → APPROVED (v1.0). PI-010 aprovada com 5 NCs baixas/médias, pronta para implementação via EWO-009 / EWO-010.
+Registrar a consolidação do fluxo operacional via GOV-P013, instituindo o PROMPT_MASTER.md como fonte canônica para Matriz de Seleção de Modelos, Prompt Operacional, Fluxo Operacional do ChatGPT e Registro Permanente de Melhorias.
 
 ## Detalhes Importantes
-- **ER-010 🟢 APROVADA** — 10 critérios avaliados, veredito APROVADO PARA IMPLEMENTAÇÃO.
-- **PI-010 promovida para APPROVED** (v1.0) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18).
-- 5 NCs emitidas: NC-010-001 (Baixa/O1), NC-010-002 (Média/O2), NC-010-003 (Baixa/O3), NC-010-004 (Baixa/O4), NC-010-005 (Baixa/O5).
-- NC-010-004 (renomear `AckAlertaCommand`) e NC-010-002 (especificar view composition mód.16) recomendadas para aplicação antes da EWO-009.
-- Próxima etapa operacional imediata: **executar EWO-007** (Onda 2: Renda Fixa 09, Internacional 10).
-- Próxima etapa do pipeline: **emitir EWO-009** (Onda 4), podendo iniciar com Backtests 14 em paralelo com EWO-007.
-- DOCUMENTATION_INDEX v1.76, PROJECT_STATUS v1.88.
+- **GOV-P013 implementada** — Consolidação Final do Fluxo Operacional, registrada em PROJECT_BOOTSTRAP.md.
+- **PROMPT_MASTER.md criado** — Fonte canônica para seleção de modelos, cabeçalho de prompt e fluxo do ChatGPT.
+- **AI_ENGINEERING_PROTOCOL.md** atualizado — Referência cruzada para PROMPT_MASTER.md na seção de Papéis.
+- **AI_OPERATION_CHECKLIST.md** atualizado — Cabeçalho `Modelo recomendado: <modelo>` adicionado ao checklist de prompt.
+- Nenhuma implementação técnica, alteração arquitetural ou modificação de camada congelada foi realizada.
 
 ## Estado Atual do Trabalho
 ### Concluído
@@ -41,6 +39,7 @@ Registrar a aprovação da ER-010 (Engineering Review da PI-010), promovendo a P
 
 ### Concluído
 - **ER-010 🟢 APROVADA** — Engineering Review da PI-010: 10 critérios, 5 NCs baixas/médias. Veredito APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED.
+- **GOV-P013 implementada** — Consolidação Final do Fluxo Operacional. PROMPT_MASTER.md criado. AI_ENGINEERING_PROTOCOL.md e AI_OPERATION_CHECKLIST.md atualizados.
 - **EWO-008 — Onda 3: 🟢 CLOSED (Módulos 11, 12, 13 completos)**
   - **Módulo 11 (Import/Export):** BR doc, Core Domain (ImportJob, ExportJob, ImportMapping, ImportJobId), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (ImportExportPage, hooks, viewmodel)
   - **Módulo 12 (Integrações):** BR doc, Core Domain (IntegrationConfig, SyncLog, SyncOrchestrationService), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (IntegrationsPage, hooks, viewmodel)
@@ -74,13 +73,18 @@ Registrar a aprovação da ER-010 (Engineering Review da PI-010), promovendo a P
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/DOCUMENTATION_INDEX.md`: v1.76 (reflete ER-010 + PI-010 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v1.88 (reflete ER-010 + PI-010 APPROVED)
-- `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines)
+- `project-context/PROJECT_STATUS.md`: v1.89 (reflete GOV-P013)
+- `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
+- `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
 
 ---
 
 ## Histórico
+
+### Versão 1.89
+
+- **GOV-P013 implementada** — Consolidação Final do Fluxo Operacional. PROMPT_MASTER.md criado como fonte canônica para Matriz de Seleção de Modelos (DeepSeek V4 Flash/V4 Pro, GLM-5.2), Prompt Operacional (cabeçalho `Modelo recomendado: <modelo>`), Fluxo Operacional do ChatGPT (resumir, informar estado, gerar próximo prompt) e Registro Permanente de Melhorias (incorporar ou registrar como pendência). AI_ENGINEERING_PROTOCOL.md atualizado com referência cruzada. AI_OPERATION_CHECKLIST.md atualizado com cabeçalho de modelo no checklist de prompt. PROJECT_BOOTSTRAP.md atualizado com seção GOV-P013 e template Prompt OpenCode revisado. Nenhuma alteração técnica ou arquitetural. PROJECT_STATUS v1.89.
 
 ### Versão 1.88
 

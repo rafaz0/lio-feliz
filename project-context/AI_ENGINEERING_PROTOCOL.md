@@ -16,6 +16,8 @@ Em caso de conflito documental, prevalece a ordem oficial de precedência defini
 
 A engenharia do Lio Feliz distingue dois papéis complementares:
 
+> **Nota (GOV-P013):** A recomendação de modelo específico para cada papel é definida na **Matriz de Seleção de Modelos** do `PROMPT_MASTER.md`. Em resumo: DeepSeek V4 Pro é o modelo recomendado para o papel de ChatGPT (planejamento/revisão); DeepSeek V4 Flash é o modelo recomendado para o papel de OpenCode (execução); GLM-5.2 para auditoria independente.
+
 ### ChatGPT — Arquitetura, Governança e Otimização Contínua
 
 - Define objetivos, critérios de aceite e diretrizes de implementação

@@ -2,13 +2,13 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.56
+**Versão:** 2.57
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 19/07/2026
+**Última atualização:** 21/07/2026
 
 ---
 
@@ -618,6 +618,51 @@ Fora dessas situações, o fluxo continua automaticamente.
 
 ---
 
+## Consolidação Final do Fluxo Operacional (GOV-P013)
+
+Institui o `PROMPT_MASTER.md` como fonte canônica para quatro procedimentos operacionais consolidados durante o ciclo PI-010 / ER-010:
+
+### Matriz de Seleção de Modelos (GOV-P013-A)
+
+O uso de modelos de IA no projeto segue a matriz definida em `PROMPT_MASTER.md` (§1):
+
+| Modelo | Papel |
+|--------|-------|
+| DeepSeek V4 Flash | Implementação, correções, documentação operacional, auditoria incremental |
+| DeepSeek V4 Pro | PI, ER, EWO, decisões arquiteturais |
+| GLM-5.2 | Auditoria independente e validação extraordinária |
+
+### Prompt Operacional (GOV-P013-B)
+
+Todo prompt enviado ao Agente Executor deve iniciar com:
+
+```
+Modelo recomendado: <modelo>
+```
+
+O cabeçalho informa ao agente qual comportamento e escopo são esperados (executor vs. planejador/revisor).
+
+### Fluxo Operacional do ChatGPT (GOV-P013-C)
+
+Ao receber relatório do OpenCode, o ChatGPT deve:
+
+1. Resumir objetivamente o resultado.
+2. Informar o estado atual da engenharia.
+3. Gerar imediatamente o próximo prompt quando aplicável.
+
+Não iniciar ciclos de perguntas quando o próximo passo já é determinável.
+
+### Registro Permanente de Melhorias (GOV-P013-D)
+
+Toda melhoria de processo aprovada durante uma conversa deve ser:
+
+- incorporada à documentação oficial; ou
+- registrada explicitamente como pendência futura (BK, TD).
+
+Melhorias não podem permanecer apenas no histórico do chat. Este procedimento consolida GOV-006 e GOV-015 com o requisito explícito de registro permanente em **qualquer conversa**, não apenas em auditorias formais.
+
+---
+
 ## Project Map (GOV-020)
 
 O `20_PROJECT_MAP.md` é o documento oficial de visão macro do projeto.
@@ -745,9 +790,12 @@ Estrutura: resposta direta + Ritual de Encerramento (quando aplicável).
 
 Usar quando for necessário executar alterações via OpenCode ou qualquer Agente Executor.
 
+> **GOV-P013:** O cabeçalho `Modelo recomendado: <modelo>` é obrigatório (ver `PROMPT_MASTER.md`).
+
 Estrutura:
 
-1. Objetivo
+1. **Cabeçalho:** Modelo recomendado: <modelo>
+2. Objetivo
 2. Implementação
 3. Atualizações Obrigatórias
 4. DOCUMENTACAO_COMPLETA (regenerar ou não)

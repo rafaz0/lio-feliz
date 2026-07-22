@@ -122,8 +122,11 @@ Caso contrário, não exibir.
 
 ## Prompt para OpenCode
 
+> **GOV-P013:** O cabeçalho `Modelo recomendado: <modelo>` é obrigatório em todo prompt. Consulte `PROMPT_MASTER.md` (§1) para a Matriz de Seleção de Modelos.
+
 Se for gerar um prompt para o OpenCode, seguir a estrutura:
 
+- [ ] **Cabeçalho obrigatório:** `Modelo recomendado: <modelo>` (DeepSeek V4 Flash / DeepSeek V4 Pro / GLM-5.2)
 - [ ] Objetivo
 - [ ] Implementação
 - [ ] Atualizações Obrigatórias
@@ -173,6 +176,7 @@ O Agente Executor não possui acesso às conversas do ChatGPT. Ele executa exclu
 
 Checklist de prompt autossuficiente:
 
+- [ ] **Cabeçalho com modelo recomendado incluso? (GOV-P013)**
 - [ ] Contexto suficiente para compreender o problema?
 - [ ] Problema identificado explicitamente?
 - [ ] Objetivo claro e mensurável?
