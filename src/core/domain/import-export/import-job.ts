@@ -37,7 +37,7 @@ export class ImportJob extends ValueObject<ImportJob> {
     private readonly _metadata: ImportJobMetadata,
     private _status: ImportJobStatus,
     private readonly _createdAt: Date,
-    private _completedAt?: Date,
+    private _completedAt: Date | undefined = undefined,
     private readonly _totalRecords: number,
     private _processedRecords: number = 0,
     private _errorRecords: number = 0,

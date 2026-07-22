@@ -14,7 +14,7 @@ export class ExportJob extends ValueObject<ExportJob> {
     private readonly _metadata: ExportJobMetadata,
     private _status: "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED",
     private readonly _createdAt: Date,
-    private _completedAt?: Date,
+    private _completedAt: Date | undefined = undefined,
     private readonly _fileName: string,
     private readonly _fileUrl?: string,
     private readonly _downloadUrl?: string,
