@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.94
+**Versão da Documentação:** 1.95
 
 **Status:** APROVADO
 
@@ -220,9 +220,17 @@ Este arquivo representa a estrutura oficial da documentação.
 
 ---
 
+## Versão 1.95
+
+- **EWO-012 CRIADA (APPROVED)** — Engineering Work Order para o Bloco B (Onboarding 21, Personalização 22). 7 Slices. 0 novos ports (máximo reuso: consome IGlossaryRepository + estende IConfigurationRepository). ADR-011-002 e ADR-011-003 executados. R-016 e R-017. DOCUMENTATION_INDEX v1.95.
+
 ## Versão 1.94
 
-- **EWO-011 🟢 FECHADA** — Bloco A concluído. Módulo 19 (Assinaturas) e Módulo 20 (Perfil do Investidor) implementados com todas as camadas. NCs ER-011 resolvidas (NC-011-001 a NC-011-004). RECs incorporadas (ADRs + PlanCapabilities). Engineering Closure em `docs/EWO-011_ENGINEERING_CLOSURE.md`. DOCUMENTATION_INDEX v1.94.
+- **EWO-011 🟢 FECHADA**
+
+- 🔴 EWO-012.md 🟢 (APPROVED)
+
+Engineering Work Order para o Bloco B (Onboarding 21, Personalização 22). 7 Slices. 0 novos ports. ADR-011-002 e ADR-011-003 executados. R-016 e R-017. — Bloco A concluído. Módulo 19 (Assinaturas) e Módulo 20 (Perfil do Investidor) implementados com todas as camadas. NCs ER-011 resolvidas (NC-011-001 a NC-011-004). RECs incorporadas (ADRs + PlanCapabilities). Engineering Closure em `docs/EWO-011_ENGINEERING_CLOSURE.md`. DOCUMENTATION_INDEX v1.94.
 
 ## Versão 1.93
 

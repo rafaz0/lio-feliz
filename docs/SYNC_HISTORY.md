@@ -14,6 +14,25 @@
 
 # Registro de Sincronizações
 
+## EWO-012 — Bloco B (Onboarding 21, Personalização 22) 🟢 APROVADA
+
+**Data:** 22/07/2026
+
+### Estrutura
+
+- 7 Slices: Onboarding 21 (S1-3), Personalização 22 (S4-6), Closure (S7)
+- 0 novos ports (reuso: consome IGlossaryRepository + estende IConfigurationRepository)
+- ADR-011-002 e ADR-011-003 executados
+- R-016 (onboarding consome educação) e R-017 (preferências como extensão)
+
+### Documentos
+
+- architecture-lab/EWO-012.md v1.0
+- DOCUMENTATION_INDEX v1.95
+- PROJECT_STATUS v2.08
+
+---
+
 ## EWO-011 — Bloco A (Assinaturas 19, Perfil 20) 🟢 FECHADA
 
 **Data:** 22/07/2026

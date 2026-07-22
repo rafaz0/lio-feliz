@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.07
+**Versão:** 2.08
 
 **Status:** APROVADO
 
@@ -15,13 +15,13 @@
 ---
 
 ## Objetivo
-Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportação Avançada), com ambos os módulos implementados e Engineering Closure concluído. Todas as 5 NCs da ER-010 encerradas.
+Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22) da PI-011. Onda 6 (Bloco A) está fechada. Onda 6 (Bloco B) inicia.
 
 ## Detalhes Importantes
-- **EWO-010 🟢 FECHADA** — 7 Slices executadas. 2 módulos implementados por extensão.
-- Todas as NCs da ER-010 resolvidas: NC-010-002/004 (EWO-009), NC-010-003/005 (EWO-010).
-- Decisão O1 aplicada (reuso IReportRepository).
-- DOCUMENTATION_INDEX v1.86, PROJECT_STATUS v1.99.
+- **EWO-011 🟢 FECHADA** — Bloco A (Assinaturas 19, Perfil 20) concluído.
+- **EWO-012 (APPROVED)** — Bloco B (Onboarding 21, Personalização 22). 7 Slices. 0 novos ports criados.
+- ADR-011-002 e ADR-011-003 executados nesta EWO.
+- DOCUMENTATION_INDEX v1.95, PROJECT_STATUS v2.08.
 
 ## Estado Atual do Trabalho
 ### Concluído
@@ -57,7 +57,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). **🟢 PI-009 MATERIALIZADA.** EWO-007 (Renda Fixa 09, Internacional 10) 🟢 FECHADA. EWO-008 (Import/Export 11, Integrações 12, Relatórios 13) 🟢 FECHADA.
 - **EWO-007 🟢 FECHADA** — Onda 2 concluída. Renda Fixa 09 e Internacional 10 implementados.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
-- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). **EWO-011 (Bloco A) 🟢 FECHADA. Bloco B (EWO-012) pendente.**
+- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). **EWO-011 (Bloco A) 🟢 FECHADA. EWO-012 (Bloco B) criada.**
+- **EWO-012 (APPROVED)** — Bloco B (Onboarding 21, Personalização 22). 7 Slices. Aguardando execução.
 
 ### Bloqueado
 
@@ -65,15 +66,16 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - (nenhum)
 
 ### Próximo passo
-1. **Avaliar roadmap pós-PI-009 e PI-010** — Todas as ondas das PIs aprovadas foram executadas.
-2. Considerar elaboração da **PI-011** para novas frentes.
+1. **Gate de Entrada EWO-012** — Baseline Lock (PI-011 + ER-011 + EWO-012).
+2. **Iniciar EWO-012 Slice 1** — Onboarding 21 (Business Rules + Core Domain).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
 - `architecture-lab/PI-009.md`: v1.2 (Approved) — Ondas 2 & 3 (módulos 09-13); O2 resolvida
 - `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
 - `architecture-lab/PI-011.md`: v1.0 (APPROVED) — Platform Consolidation & Product Readiness (Onda 6)
-- `architecture-lab/EWO-011.md`: v1.0 (APPROVED) — Bloco A (Assinaturas 19, Perfil do Investidor 20), 7 Slices
+- `architecture-lab/EWO-011.md`: v1.0 (CLOSED) — Bloco A (Assinaturas 19, Perfil do Investidor 20), 7 Slices
+- `architecture-lab/EWO-012.md`: v1.0 (APPROVED) — Bloco B (Onboarding 21, Personalização 22), 7 Slices
 - `architecture-lab/ER-011.md`: v1.0 (APPROVED)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
@@ -87,8 +89,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v1.94 (reflete EWO-011 CLOSED)
-- `project-context/PROJECT_STATUS.md`: v2.07 (reflete EWO-011 CLOSED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.95 (reflete EWO-012 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v2.08 (reflete EWO-012 APPROVED)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -98,6 +100,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 ---
 
 ## Histórico
+
+### Versão 2.08
+
+- **EWO-012 CRIADA (APPROVED)** — Engineering Work Order para o Bloco B (Onboarding 21, Personalização 22). 7 Slices. 0 novos ports criados. ADR-011-002 (IConfigurationRepository estendido) e ADR-011-003 (Onboarding sem port próprio) executados. R-016 e R-017 respeitados. FRs 061-068. Ordem intra-onda: Onboarding → Personalização. Próximo passo: Gate de Entrada + iniciar Slice 1. DOCUMENTATION_INDEX v1.95, PROJECT_STATUS v2.08.
 
 ### Versão 2.07
 
