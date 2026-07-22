@@ -20,3 +20,4 @@ export { FakeComparisonRepository } from "./fake-comparison-repository";
 export { FakeGlossaryRepository } from "./fake-glossary-repository";
 export { FakeExportTemplateRepository } from "./fake-export-template-repository";
 export { FakeForeignAssetRepository } from "./fake-foreign-asset-repository";
+export { FakeInvestorProfileRepository } from "./fake-investor-profile-repository";

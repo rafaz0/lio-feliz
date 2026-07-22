@@ -30,6 +30,8 @@ import type {
   AssinarPlanoCommand,
   CancelarAssinaturaCommand,
   VerificarAcessoCommand,
+  ResponderQuestionarioCommand,
+  CalcularPerfilCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -273,6 +275,10 @@ export type {
   PlanoDetalhadoDto,
   AssinaturaDto,
   AcessoDto,
+  InvestidorPerfilCompletoDto,
+  InvestorProfileDto,
+  RiskResultDto,
+  QuestionarioPerguntasDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

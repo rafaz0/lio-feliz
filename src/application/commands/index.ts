@@ -31,3 +31,5 @@ export type { AtualizarTaxaCambioCommand } from "./atualizar-taxa-cambio";
 export type { AssinarPlanoCommand } from "./assinar-plano";
 export type { CancelarAssinaturaCommand } from "./cancelar-assinatura";
 export type { VerificarAcessoCommand } from "./verificar-acesso";
+export type { ResponderQuestionarioCommand } from "./responder-questionario";
+export type { CalcularPerfilCommand } from "./calcular-perfil";

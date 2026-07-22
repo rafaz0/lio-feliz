@@ -35,3 +35,4 @@ export type { IComparisonRepository } from "./comparison-repository";
 export type { IGlossaryRepository } from "./glossary-repository";
 export type { IExportTemplateRepository } from "./export-template-repository";
 export type { IForeignAssetRepository } from "./foreign-asset-repository";
+export type { IInvestorProfileRepository } from "./investor-profile-repository";

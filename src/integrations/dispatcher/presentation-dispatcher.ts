@@ -107,6 +107,14 @@ import type { ListarPlanosQuery } from "@/application/queries/listar-planos";
 import type { AssinarPlanoCommand } from "@/application/commands/assinar-plano";
 import type { CancelarAssinaturaCommand } from "@/application/commands/cancelar-assinatura";
 import type { VerificarAcessoCommand } from "@/application/commands/verificar-acesso";
+import { ResponderQuestionarioService } from "@/application/services/responder-questionario-service";
+import { CalcularPerfilService } from "@/application/services/calcular-perfil-service";
+import { ObterPerfilService } from "@/application/services/obter-perfil-service";
+import { ObterQuestionarioService } from "@/application/services/obter-questionario-service";
+import type { ResponderQuestionarioCommand } from "@/application/commands/responder-questionario";
+import type { CalcularPerfilCommand } from "@/application/commands/calcular-perfil";
+import type { ObterPerfilQuery } from "@/application/queries/obter-perfil";
+import type { ObterQuestionarioQuery } from "@/application/queries/obter-questionario";
 import { SyncOrchestrationService } from "@/core/domain/integrations";
 
 interface PresentationDispatcherDeps {
@@ -126,6 +134,7 @@ interface PresentationDispatcherDeps {
   foreignAssetRepository?: IForeignAssetRepository;
   notificationPort?: INotificationPort;
   subscriptionRepository?: import("@/application/ports/subscription-repository").ISubscriptionRepository;
+  investorProfileRepository?: import("@/application/ports/investor-profile-repository").IInvestorProfileRepository;
 }
 
 /**
@@ -152,6 +161,7 @@ export function createPresentationDispatcher({
   foreignAssetRepository,
   notificationPort,
   subscriptionRepository,
+  investorProfileRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -424,6 +434,28 @@ export function createPresentationDispatcher({
       new VerificarAcessoService(subscriptionRepository).Execute(
         command as VerificarAcessoCommand,
       ),
+    );
+  }
+
+  if (investorProfileRepository) {
+    dispatcher.RegisterCommand("ResponderQuestionarioCommand", (command) =>
+      new ResponderQuestionarioService(investorProfileRepository, projectionRepository).Execute(
+        command as ResponderQuestionarioCommand,
+      ),
+    );
+
+    dispatcher.RegisterCommand("CalcularPerfilCommand", (command) =>
+      new CalcularPerfilService(investorProfileRepository, projectionRepository).Execute(
+        command as CalcularPerfilCommand,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ObterPerfilQuery", (query) =>
+      new ObterPerfilService(investorProfileRepository).Execute(query as ObterPerfilQuery),
+    );
+
+    dispatcher.RegisterQuery("ObterQuestionarioQuery", (query) =>
+      new ObterQuestionarioService().Execute(query as ObterQuestionarioQuery),
     );
   }
 

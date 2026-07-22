@@ -34,3 +34,5 @@ export type { ObterAtivosInternacionaisQuery } from "./obter-ativos-internaciona
 export type { ObterTaxaCambioQuery } from "./obter-taxa-cambio";
 export type { ObterPlanoAtivoQuery } from "./obter-plano-ativo";
 export type { ListarPlanosQuery } from "./listar-planos";
+export type { ObterPerfilQuery } from "./obter-perfil";
+export type { ObterQuestionarioQuery } from "./obter-questionario";

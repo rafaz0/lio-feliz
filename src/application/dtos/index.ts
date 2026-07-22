@@ -29,3 +29,4 @@ export type { GlossaryTermDto, TooltipDto, LearningPathDto, GlossarySearchDto } 
 export type { ExportTemplateDto, ExportJobDto, ExportJobListDto } from "./exportacao-avancada";
 export type { AtivosInternacionaisDto, TaxaCambioDto } from "./internacional";
 export type { PlanoDetalhadoDto, AssinaturaDto, AcessoDto } from "./assinatura";
+export type { InvestidorPerfilCompletoDto, InvestorProfileDto, RiskResultDto, QuestionarioPerguntasDto } from "./investidor-perfil";

@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.92
+**Versão da Documentação:** 1.93
 
 **Status:** APROVADO
 
@@ -219,6 +219,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.93
+
+- **EWO-011 Slices 4-6 (Perfil do Investidor 20) CONCLUÍDOS** — BR `20_PERFIL_INVESTIDOR.md`, Core Domain (InvestorProfile, RiskQuestionnaire, RiskResult, RiskClassifier com 8 perguntas ANBIMA), Application + Infrastructure (2 commands, 2 queries, 4 services, IInvestorProfileRepository, Fake + Supabase), Presentation (InvestorProfilePage, questionário, viewmodel). Composition Root registrado. Build green. DOCUMENTATION_INDEX v1.93.
 
 ## Versão 1.92
 

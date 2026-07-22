@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.05
+**Versão:** 2.06
 
 **Status:** APROVADO
 
@@ -60,7 +60,7 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - **EWO-010 Slices 1-3 (Educação 17) CONCLUÍDOS**
 - **EWO-009 🟢 FECHADA** — Onda 4 concluída.
 - **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). ER-011 aprovada. **EWO-011 (Bloco A) criada.**
-- **EWO-011 (APPROVED)** — Bloco A (Assinaturas 19, Perfil do Investidor 20). 7 Slices. **Slices 1-3 (Assinaturas 19) concluídas.** Slices 4-6 (Perfil 20) pendentes.
+- **EWO-011 (APPROVED)** — Bloco A (Assinaturas 19, Perfil do Investidor 20). 7 Slices. **Slices 1-6 concluídas.** Slice 7 (Closure) pendente.
 
 ### Bloqueado
 
@@ -89,8 +89,8 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
-- `docs/DOCUMENTATION_INDEX.md`: v1.92 (reflete EWO-011 Slices 1-3)
-- `project-context/PROJECT_STATUS.md`: v2.05 (reflete EWO-011 Slices 1-3)
+- `docs/DOCUMENTATION_INDEX.md`: v1.93 (reflete EWO-011 Slices 1-6)
+- `project-context/PROJECT_STATUS.md`: v2.06 (reflete EWO-011 Slices 1-6)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -100,6 +100,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 ---
 
 ## Histórico
+
+### Versão 2.06
+
+- **EWO-011 Slices 4-6 (Perfil do Investidor 20) CONCLUÍDOS** — BR doc `20_PERFIL_INVESTIDOR.md`. Core Domain investor-profile/: InvestorProfile, RiskQuestionnaire, RiskResult (entities), RiskClassifier (domain service com 8 perguntas ANBIMA, WeightedSum scoring, inferência de horizonte), 4 erros de domínio, tipos. Application: 2 commands (ResponderQuestionario, CalcularPerfil), 2 queries (ObterPerfil, ObterQuestionario), 4 services, port IInvestorProfileRepository (6 métodos), 4 DTOs. Infrastructure: FakeInvestorProfileRepository e SupabaseInvestorProfileRepository. Presentation: InvestorProfilePage com formulário de 8 perguntas, hooks (useProfileQuery, useQuestionnaireQuery), viewmodel. Composition Root registrado. FRs 057-060. DOCUMENTATION_INDEX v1.93, PROJECT_STATUS v2.06.
 
 ### Versão 2.05
 
