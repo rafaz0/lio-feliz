@@ -4,13 +4,13 @@
 
 **Documento:** AI_OPERATION_CHECKLIST.md
 
-**Versão:** 1.43
+**Versão:** 1.44
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 18/07/2026
+**Última atualização:** 22/07/2026
 
 ---
 
@@ -135,6 +135,40 @@ Se for gerar um prompt para o OpenCode, seguir a estrutura:
 - [ ] Sugestões Técnicas
 - [ ] Oportunidades Futuras
 - [ ] Registro em SYNC_HISTORY
+
+### GOV-P014-003 — Resumo Estatístico no Relatório Consolidado
+
+Quando aplicável, o Relatório Consolidado Final deve incluir um resumo estatístico dos artefatos implementados, por exemplo:
+
+- [ ] Entidades criadas
+- [ ] Value Objects criados
+- [ ] Domain Services criados
+- [ ] Ports definidos
+- [ ] Commands criados
+- [ ] Queries criadas
+- [ ] DTOs criados
+- [ ] Repositórios (Fake + Supabase)
+- [ ] Testes criados e resultados
+
+### GOV-P014-004 — Bloco de Rastreabilidade (Opcional)
+
+Quando aplicável, adicionar um bloco de rastreabilidade contendo:
+
+- [ ] Regras de negócio aplicadas (R-xxx)
+- [ ] Invariantes implementadas (I-xxx)
+- [ ] Não Conformidades tratadas (NC-xxx)
+- [ ] Riscos mitigados
+
+### GOV-P014-005 — Estado da EWO no Relatório
+
+Incluir no Relatório Consolidado Final um bloco resumindo o estado atual da Engineering Work Order:
+
+- [ ] Módulos concluídos
+- [ ] Slices concluídas
+- [ ] Slices pendentes
+- [ ] Situação geral da EWO (🟢 FECHADA / 🟡 EM ANDAMENTO / ⏳ PENDENTE)
+
+Esse resumo deve permitir auditorias rápidas sem necessidade de abrir a EWO completa.
 
 ### GOV-M02 — Sincronização Git Obrigatória
 

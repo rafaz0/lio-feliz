@@ -2,13 +2,13 @@
 
 **Projeto:** Lio Feliz
 
-**Versão:** 1.0
+**Versão:** 1.1
 
 **Status:** APROVADO
 
 **Categoria:** Project Context / Governança
 
-**Última atualização:** 21/07/2026
+**Última atualização:** 22/07/2026
 
 ---
 
@@ -63,6 +63,67 @@ Modelo recomendado: DeepSeek V4 Pro
 
 ---
 
+## 2a. Orientação ao Operador (GOV-P014-001)
+
+Informações de governança que **não** são úteis ao executor devem ser apresentadas **fora do prompt**, como orientação ao operador humano (ChatGPT ou outro modelo de planejamento).
+
+### O que deve ficar FORA do prompt:
+
+- Modelo recomendado (já registrado no cabeçalho §2);
+- Nível de raciocínio esperado;
+- Justificativa da escolha do modelo;
+- Contexto arquitetural já consolidado;
+- Metadados de governança.
+
+### O que deve ficar DENTRO do prompt:
+
+Apenas informações úteis ao executor:
+
+- **Objetivo** — o que precisa ser feito;
+- **Escopo** — o que está incluído e o que não está;
+- **Restrições** — o que não pode ser feito;
+- **Dependências** — módulos ou camadas que impactam a tarefa;
+- **Critérios de aceite** — como validar o resultado.
+
+> **Regra:** Se a informação é relevante apenas para o operador (quem planeja), não pertence ao prompt do executor.
+
+---
+
+## 2b. Cabeçalho do Prompt (GOV-P014-002)
+
+O cabeçalho do prompt (quando utilizado) deve conter **exclusivamente** informações relevantes para a execução.
+
+### Formato padrão
+
+```
+## Objetivo
+
+<descrição concisa do que deve ser feito>
+
+## Escopo
+
+<itens incluídos e excluídos>
+
+## Restrições
+
+<regras que não podem ser violadas>
+
+## Dependências
+
+<módulos, arquivos ou decisões que impactam a tarefa>
+
+## Critérios Específicos
+
+<requisitos adicionais ou critérios de aceite>
+```
+
+### Proibido
+
+- Incluir metadados destinados apenas ao operador (justificativas, análise de riscos, histórico de decisões) dentro do cabeçalho do prompt.
+- Repetir contexto arquitetural já consolidado na PI/ER/EWO.
+
+---
+
 ## 3. Fluxo Operacional do ChatGPT
 
 Procedimento obrigatório para o ChatGPT ao receber um relatório do OpenCode:
@@ -99,4 +160,4 @@ Este procedimento consolida e reforça as regras GOV-006 (Materialização Obrig
 
 ---
 
-> **Fim do PROMPT_MASTER.md v1.0** — Instituído pela GOV-P013.
+> **Fim do PROMPT_MASTER.md v1.1** — Instituído pela GOV-P013. GOV-P014-001 e GOV-P014-002 incorporados.

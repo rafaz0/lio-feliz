@@ -14,6 +14,29 @@
 
 # Registro de Sincronizações
 
+## GOV-P014 — Atualização Metodológica de Prompt e Relatório
+
+**Data:** 22/07/2026
+**Commit:** pendente
+
+### Melhorias incorporadas
+
+- GOV-P014-001: Orientação ao Operador (info de governança fora do prompt)
+- GOV-P014-002: Cabeçalho do Prompt (apenas info útil à execução)
+- GOV-P014-003: Resumo Estatístico no Relatório Consolidado
+- GOV-P014-004: Bloco de Rastreabilidade (R-xxx, I-xxx, NC-xxx, riscos)
+- GOV-P014-005: Estado da EWO no Relatório
+
+### Documentos alterados
+
+- PROMPT_MASTER.md v1.0 → v1.1
+- AI_OPERATION_CHECKLIST.md v1.43 → v1.44
+- PROJECT_BOOTSTRAP.md v2.57 → v2.58
+- DOCUMENTATION_INDEX.md v1.81 → v1.82
+- PROJECT_STATUS.md v1.94 → v1.95
+
+---
+
 ## EWO-009 — Onda 4 (Análise e Insights) 🟢 FECHADA
 
 **Data:** 21/07/2026

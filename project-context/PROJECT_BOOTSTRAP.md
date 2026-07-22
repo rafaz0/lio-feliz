@@ -2,13 +2,13 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.57
+**Versão:** 2.58
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 21/07/2026
+**Última atualização:** 22/07/2026
 
 ---
 
@@ -663,6 +663,42 @@ Melhorias não podem permanecer apenas no histórico do chat. Este procedimento 
 
 ---
 
+## Atualização de Prompt e Relatório (GOV-P014)
+
+Institui cinco melhorias de processo consolidadas durante a execução da EWO-009 (Onda 4 — Análise e Insights).
+
+### GOV-P014-001 — Orientação ao Operador
+
+Informações de governança (modelo recomendado, nível de raciocínio, justificativa) devem ser apresentadas **fora do prompt**, como orientação ao operador. O prompt enviado ao executor deve conter apenas informações úteis à execução.
+
+Fonte: `PROMPT_MASTER.md` §2a.
+
+### GOV-P014-002 — Cabeçalho do Prompt
+
+O cabeçalho do prompt deve conter exclusivamente informações relevantes para a execução: Objetivo, Escopo, Restrições, Dependências, Critérios. Metadados do operador são proibidos no cabeçalho.
+
+Fonte: `PROMPT_MASTER.md` §2b.
+
+### GOV-P014-003 — Resumo Estatístico
+
+Relatórios Consolidados devem incluir resumo estatístico dos artefatos implementados (entidades, VOs, services, ports, commands, queries, DTOs, repositórios, testes) quando aplicável.
+
+Fonte: `AI_OPERATION_CHECKLIST.md` (GOV-P014-003).
+
+### GOV-P014-004 — Bloco de Rastreabilidade
+
+Relatórios Consolidados podem incluir bloco opcional de rastreabilidade: regras de negócio (R-xxx), invariantes (I-xxx), NCs, riscos tratados.
+
+Fonte: `AI_OPERATION_CHECKLIST.md` (GOV-P014-004).
+
+### GOV-P014-005 — Estado da EWO
+
+Relatórios Consolidados devem incluir bloco resumindo o estado atual da EWO: módulos concluídos, slices concluídas, slices pendentes, situação geral.
+
+Fonte: `AI_OPERATION_CHECKLIST.md` (GOV-P014-005).
+
+---
+
 ## Project Map (GOV-020)
 
 O `20_PROJECT_MAP.md` é o documento oficial de visão macro do projeto.
@@ -791,8 +827,9 @@ Estrutura: resposta direta + Ritual de Encerramento (quando aplicável).
 Usar quando for necessário executar alterações via OpenCode ou qualquer Agente Executor.
 
 > **GOV-P013:** O cabeçalho `Modelo recomendado: <modelo>` é obrigatório (ver `PROMPT_MASTER.md`).
+> **GOV-P014-002:** O cabeçalho deve conter apenas informações úteis à execução (Objetivo, Escopo, Restrições, Dependências, Critérios). Metadados do operador não pertencem ao cabeçalho.
 
-Estrutura:
+Estrutura conforme GOV-P014-002:
 
 1. **Cabeçalho:** Modelo recomendado: <modelo>
 2. Objetivo

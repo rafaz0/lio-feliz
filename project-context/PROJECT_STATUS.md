@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.94
+**Versão:** 1.95
 
 **Status:** APROVADO
 
@@ -81,8 +81,8 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.81 (reflete EWO-009 CLOSED)
-- `project-context/PROJECT_STATUS.md`: v1.94 (reflete EWO-009 CLOSED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.82 (reflete GOV-P014)
+- `project-context/PROJECT_STATUS.md`: v1.95 (reflete GOV-P014)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -90,6 +90,10 @@ Registrar o encerramento oficial da EWO-009 (Onda 4 — Análise e Insights), co
 ---
 
 ## Histórico
+
+### Versão 1.95
+
+- **GOV-P014 implementada** — Atualização Metodológica de Prompt e Relatório. 5 melhorias de processo incorporadas: GOV-P014-001 (Orientação ao Operador — fora do prompt), GOV-P014-002 (Cabeçalho do Prompt — apenas info útil à execução), GOV-P014-003 (Resumo Estatístico no Relatório), GOV-P014-004 (Bloco de Rastreabilidade), GOV-P014-005 (Estado da EWO). PROMPT_MASTER.md v1.1, AI_OPERATION_CHECKLIST.md v1.44, PROJECT_BOOTSTRAP.md v2.58. DOCUMENTATION_INDEX v1.82, PROJECT_STATUS v1.95.
 
 ### Versão 1.94
 

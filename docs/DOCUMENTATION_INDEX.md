@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.81
+**Versão da Documentação:** 1.82
 
 **Status:** APROVADO
 
@@ -207,6 +207,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.82
+
+- **GOV-P014 implementada** — Atualização Metodológica de Prompt e Relatório. 5 melhorias incorporadas: GOV-P014-001 (Orientação ao Operador), GOV-P014-002 (Cabeçalho do Prompt), GOV-P014-003 (Resumo Estatístico), GOV-P014-004 (Bloco de Rastreabilidade), GOV-P014-005 (Estado da EWO). PROMPT_MASTER.md v1.1, AI_OPERATION_CHECKLIST.md v1.44, PROJECT_BOOTSTRAP.md v2.58. DOCUMENTATION_INDEX v1.82.
 
 ## Versão 1.81
 
