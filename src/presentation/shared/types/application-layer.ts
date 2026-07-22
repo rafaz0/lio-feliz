@@ -19,6 +19,9 @@ import type {
   SincronizarIntegracaoCommand,
   ExecutarBacktestCommand,
   SalvarEstrategiaCommand,
+  CriarAlertaCommand,
+  AtualizarAlertaCommand,
+  ConfirmarAlertaCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -45,6 +48,8 @@ import type {
   ObterStatusSincronizacaoQuery,
   ObterBacktestQuery,
   ListarEstrategiasQuery,
+  ObterAlertaQuery,
+  ListarAlertasAtivosQuery,
 } from "@/application/queries";
 import type {
   PatrimonioDto,
@@ -102,6 +107,11 @@ import type {
   SimulationResultDto,
   BacktestCompletoDto,
   EstrategiaListDto,
+  AlertaDto,
+  AlertRuleDto,
+  AlertDeliveryDto,
+  AlertListDto,
+  AlertRuleListDto,
 } from "@/application/dtos";
 import type {
   ApplicationError,
@@ -156,8 +166,13 @@ export type {
   ObterStatusSincronizacaoQuery,
   ObterBacktestQuery,
   ListarEstrategiasQuery,
+  ObterAlertaQuery,
+  ListarAlertasAtivosQuery,
   ExecutarBacktestCommand,
   SalvarEstrategiaCommand,
+  CriarAlertaCommand,
+  AtualizarAlertaCommand,
+  ConfirmarAlertaCommand,
   PatrimonioDto,
   AlocacaoDto,
   PosicaoDetalhadaDto,
@@ -212,6 +227,11 @@ export type {
   SimulationResultDto,
   BacktestCompletoDto,
   EstrategiaListDto,
+  AlertaDto,
+  AlertRuleDto,
+  AlertDeliveryDto,
+  AlertListDto,
+  AlertRuleListDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

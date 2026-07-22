@@ -22,3 +22,5 @@ export type { ObterIntegracoesQuery } from "./obter-integracoes";
 export type { ObterStatusSincronizacaoQuery } from "./obter-status-sincronizacao";
 export type { ObterBacktestQuery } from "./obter-backtest";
 export type { ListarEstrategiasQuery } from "./listar-estrategias";
+export type { ObterAlertaQuery } from "./obter-alerta";
+export type { ListarAlertasAtivosQuery } from "./listar-alertas-ativos";

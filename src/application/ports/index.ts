@@ -30,3 +30,4 @@ export type { IReportRepository } from "./report-repository";
 export type { IImportHistoryRepository } from "./import-history-repository";
 export type { IIntegrationRepository } from "./integration-repository";
 export type { IBacktestRepository } from "./backtest-repository";
+export type { IAlertRepository } from "./alert-repository";

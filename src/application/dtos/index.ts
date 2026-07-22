@@ -23,3 +23,4 @@ export type { ReportTemplateDto, ReportExecutionDto, ReportScheduleDto, ReportTe
 export type { ImportJobDto, ImportacaoRealizadaDto, ExportJobDto, HistoricoImportacaoDto, ModelosExportacaoDto } from "./importacao";
 export type { IntegrationConfigDto, SyncLogDto, IntegracaoConfiguradaDto, SyncResultDto, IntegracoesListDto, SyncStatusDto } from "./integracao";
 export type { BacktestDto, StrategyDto, SimulationResultDto, BacktestCompletoDto, EstrategiaListDto } from "./backtest";
+export type { AlertaDto, AlertRuleDto, AlertDeliveryDto, AlertListDto, AlertRuleListDto } from "./alerta";

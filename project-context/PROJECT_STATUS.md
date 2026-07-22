@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 1.91
+**Versão:** 1.92
 
 **Status:** APROVADO
 
@@ -41,6 +41,7 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 - **ER-010 🟢 APROVADA** — Engineering Review da PI-010: 10 critérios, 5 NCs baixas/médias. Veredito APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED.
 - **GOV-P013 implementada** — Consolidação Final do Fluxo Operacional. PROMPT_MASTER.md criado. AI_ENGINEERING_PROTOCOL.md e AI_OPERATION_CHECKLIST.md atualizados.
 - **EWO-009 Slices 1-3 (Backtests 14) CONCLUÍDOS** — BR doc `14_BACKTESTS.md`, Anexo `07_BACKTEST_ALGORITMOS.md`, Core Domain (Backtest, Strategy, SimulationResult, BacktestEngine, 9 errors), Application Layer (2 commands, 2 queries, 4 services, port, 4 DTOs), Infrastructure (FakeBacktestRepository, SupabaseBacktestRepository). Barrels e application-layer.ts atualizados. Build green.
+- **EWO-009 Slices 4-6 (Alertas 15) CONCLUÍDOS** — BR doc `15_ALERTAS.md`, Anexo `08_ALERTAS_EVENTOS.md`, Core Domain (Alert, AlertRule, AlertDelivery, AlertEvaluator, 5 errors), Application Layer (3 commands, 2 queries, 5 services, port, 6 DTOs), Infrastructure (FakeAlertRepository, SupabaseAlertRepository). NC-010-004 aplicada (ConfirmarAlertaCommand). Build green.
 - **EWO-009 criada (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. NCs ER-010 resolvidas.
 - **EWO-008 — Onda 3: 🟢 CLOSED (Módulos 11, 12, 13 completos)**
   - **Módulo 11 (Import/Export):** BR doc, Core Domain (ImportJob, ExportJob, ImportMapping, ImportJobId), Application Layer (2 commands, 2 queries, 4 services, DTOs, port), Infrastructure (fake + Supabase), Presentation Feature (ImportExportPage, hooks, viewmodel)
@@ -53,15 +54,15 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). O2 (NC-009-002) **RESOLVIDA**: Renda Fixa/Internacional reutilizam `RegistrarOperacaoCommand` + `inferAssetType`. RER1 resolvida (ordem 09→10).
 - **EWO-007 (APPROVED)** — Onda 2 (Renda Fixa 09, Internacional 10), 7 Slices. Aguardando execução.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). Estende PI-008/PI-009. ER-010 aprovada com 5 NCs. Próxima etapa: EWO-009 / EWO-010.
-- **EWO-009 (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. **Slices 1-3 (Backtests 14) concluídas.** Slices 4-6 (Alertas 15) aguardando Gate de Entrada.
+- **EWO-009 (APPROVED)** — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16). 10 Slices. **Slices 1-3 (Backtests 14) e Slices 4-6 (Alertas 15) concluídas.** Slices 7-9 (Comparação 16) aguardando Gate de Entrada.
 
 ### Bloqueado
 - (nenhum)
 
 ### Próximo passo
-1. **Auditoria ChatGPT das Slices 1-3** — Validação da implementação de Backtests 14 antes de iniciar Alertas 15.
-2. **Iniciar EWO-009 Slice 4** — Alertas 15 (Business Rules + Core Domain).
-3. **Executar EWO-007 em paralelo** — Onda 2 (pré-requisito para Slices 4-9).
+1. **Auditoria ChatGPT das Slices 4-6** — Validação da implementação de Alertas 15.
+2. **Iniciar EWO-009 Slice 7** — Comparação Avançada 16 (BR + Core Domain).
+3. **Executar EWO-007 em paralelo** — Onda 2 (pré-requisito para Slices 7-9).
 
 ## Arquivos Relevantes
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
@@ -76,8 +77,8 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 - `docs/AUDITORIA_FINAL_EWO-006.md`: v1.0 🟢 — Auditoria final (veredito APROVADO PARA ENCERRAMENTO)
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
-- `docs/DOCUMENTATION_INDEX.md`: v1.78 (reflete EWO-009 Slices 1-3)
-- `project-context/PROJECT_STATUS.md`: v1.91 (reflete EWO-009 Slices 1-3)
+- `docs/DOCUMENTATION_INDEX.md`: v1.79 (reflete EWO-009 Slices 1-6)
+- `project-context/PROJECT_STATUS.md`: v1.92 (reflete EWO-009 Slices 1-6)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -85,6 +86,10 @@ Registrar a criação da EWO-009 (Onda 4 — Análise e Insights), materializand
 ---
 
 ## Histórico
+
+### Versão 1.92
+
+- **EWO-009 Slices 4-6 (Alertas 15) CONCLUÍDOS** — BR doc `15_ALERTAS.md` e Anexo `08_ALERTAS_EVENTOS.md` criados. Core Domain `src/core/domain/alerts/`: Alert, AlertRule, AlertDelivery (entities), AlertEvaluator (domain service idempotente R-012, dedup por rule_id+run_id+asset+event_date), 5 erros de domínio, tipos. Application Layer: 3 commands (CriarAlertaCommand, AtualizarAlertaCommand, ConfirmarAlertaCommand — NC-010-004), 2 queries (ObterAlertaQuery, ListarAlertasAtivosQuery), 5 services, port IAlertRepository, 6 DTOs. Infrastructure: FakeAlertRepository e SupabaseAlertRepository (batch create com dedup_key). Barrels e application-layer.ts atualizados. Build green. DOCUMENTATION_INDEX v1.79, PROJECT_STATUS v1.92.
 
 ### Versão 1.91
 

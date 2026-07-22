@@ -18,3 +18,6 @@ export type { ConfigurarIntegracaoCommand } from "./configurar-integracao";
 export type { SincronizarIntegracaoCommand } from "./sincronizar-integracao";
 export type { ExecutarBacktestCommand } from "./executar-backtest";
 export type { SalvarEstrategiaCommand } from "./salvar-estrategia";
+export type { CriarAlertaCommand } from "./criar-alerta";
+export type { AtualizarAlertaCommand } from "./atualizar-alerta";
+export type { ConfirmarAlertaCommand } from "./confirmar-alerta";

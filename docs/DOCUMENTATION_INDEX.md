@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.77
+**Versão da Documentação:** 1.79
 
 **Status:** APROVADO
 
@@ -207,6 +207,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.79
+
+- **EWO-009 Slices 4-6 (Alertas 15) CONCLUÍDOS** — BR `15_ALERTAS.md` e Anexo `08_ALERTAS_EVENTOS.md` criados. Core Domain `src/core/domain/alerts/`: Alert, AlertRule, AlertDelivery, AlertEvaluator (idempotente R-012), 5 errors. Application Layer: 3 commands (CriarAlerta, AtualizarAlerta, ConfirmarAlerta), 2 queries, 5 services, port IAlertRepository, 6 DTOs. Infrastructure: FakeAlertRepository e SupabaseAlertRepository. Build green. DOCUMENTATION_INDEX v1.79.
 
 ## Versão 1.78
 
