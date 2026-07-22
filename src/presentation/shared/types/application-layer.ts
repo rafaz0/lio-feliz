@@ -32,6 +32,8 @@ import type {
   VerificarAcessoCommand,
   ResponderQuestionarioCommand,
   CalcularPerfilCommand,
+  AvancarPassoCommand,
+  PularOnboardingCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -279,6 +281,9 @@ export type {
   InvestorProfileDto,
   RiskResultDto,
   QuestionarioPerguntasDto,
+  OnboardingStepDto,
+  UserProgressDto,
+  OnboardingCompletoDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

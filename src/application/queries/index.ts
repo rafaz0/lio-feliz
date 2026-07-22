@@ -36,3 +36,5 @@ export type { ObterPlanoAtivoQuery } from "./obter-plano-ativo";
 export type { ListarPlanosQuery } from "./listar-planos";
 export type { ObterPerfilQuery } from "./obter-perfil";
 export type { ObterQuestionarioQuery } from "./obter-questionario";
+export type { ObterProgressoOnboardingQuery } from "./obter-progresso-onboarding";
+export type { ObterPassoAtualQuery } from "./obter-passo-atual";

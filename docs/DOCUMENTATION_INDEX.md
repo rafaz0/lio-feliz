@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.95
+**Versão da Documentação:** 1.96
 
 **Status:** APROVADO
 
@@ -219,6 +219,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.96
+
+- **EWO-012 Slices 1-3 (Onboarding 21) CONCLUÍDOS** — BR `21_ONBOARDING.md`. Core Domain (OnboardingStep, UserProgress, OnboardingFlow com 5 passos e skip), Application (2 commands, 2 queries, 4 services, sem port próprio — ADR-011-003), Infrastructure (IConfigurationRepository estendido), Presentation (OnboardingPage wizard, hooks, viewmodel). Build green. DOCUMENTATION_INDEX v1.96.
 
 ## Versão 1.95
 

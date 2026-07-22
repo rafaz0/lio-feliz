@@ -33,3 +33,5 @@ export type { CancelarAssinaturaCommand } from "./cancelar-assinatura";
 export type { VerificarAcessoCommand } from "./verificar-acesso";
 export type { ResponderQuestionarioCommand } from "./responder-questionario";
 export type { CalcularPerfilCommand } from "./calcular-perfil";
+export type { AvancarPassoCommand } from "./avancar-passo";
+export type { PularOnboardingCommand } from "./pular-onboarding";

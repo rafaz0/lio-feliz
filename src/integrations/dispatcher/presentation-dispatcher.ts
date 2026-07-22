@@ -116,6 +116,14 @@ import type { CalcularPerfilCommand } from "@/application/commands/calcular-perf
 import type { ObterPerfilQuery } from "@/application/queries/obter-perfil";
 import type { ObterQuestionarioQuery } from "@/application/queries/obter-questionario";
 import { SyncOrchestrationService } from "@/core/domain/integrations";
+import { AvancarPassoService } from "@/application/services/avancar-passo-service";
+import { PularOnboardingService } from "@/application/services/pular-onboarding-service";
+import { ObterProgressoOnboardingService } from "@/application/services/obter-progresso-onboarding-service";
+import { ObterPassoAtualService } from "@/application/services/obter-passo-atual-service";
+import type { AvancarPassoCommand } from "@/application/commands/avancar-passo";
+import type { PularOnboardingCommand } from "@/application/commands/pular-onboarding";
+import type { ObterProgressoOnboardingQuery } from "@/application/queries/obter-progresso-onboarding";
+import type { ObterPassoAtualQuery } from "@/application/queries/obter-passo-atual";
 
 interface PresentationDispatcherDeps {
   projectionRepository: IProjectionRepository;
@@ -135,6 +143,7 @@ interface PresentationDispatcherDeps {
   notificationPort?: INotificationPort;
   subscriptionRepository?: import("@/application/ports/subscription-repository").ISubscriptionRepository;
   investorProfileRepository?: import("@/application/ports/investor-profile-repository").IInvestorProfileRepository;
+  glossaryRepository?: IGlossaryRepository;
 }
 
 /**
@@ -162,6 +171,7 @@ export function createPresentationDispatcher({
   notificationPort,
   subscriptionRepository,
   investorProfileRepository,
+  glossaryRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -456,6 +466,26 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterQuery("ObterQuestionarioQuery", (query) =>
       new ObterQuestionarioService().Execute(query as ObterQuestionarioQuery),
+    );
+  }
+
+  if (configurationRepository) {
+    const configRepo = configurationRepository as import("@/application/ports/configuration-repository").IConfigurationRepository;
+
+    dispatcher.RegisterCommand("AvancarPassoCommand", (command) =>
+      new AvancarPassoService(configRepo).Execute(command as AvancarPassoCommand),
+    );
+
+    dispatcher.RegisterCommand("PularOnboardingCommand", (command) =>
+      new PularOnboardingService(configRepo).Execute(command as PularOnboardingCommand),
+    );
+
+    dispatcher.RegisterQuery("ObterProgressoOnboardingQuery", (query) =>
+      new ObterProgressoOnboardingService(configRepo).Execute(query as ObterProgressoOnboardingQuery),
+    );
+
+    dispatcher.RegisterQuery("ObterPassoAtualQuery", (query) =>
+      new ObterPassoAtualService(configRepo, glossaryRepository).Execute(query as ObterPassoAtualQuery),
     );
   }
 

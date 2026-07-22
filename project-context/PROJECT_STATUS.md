@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.08
+**Versão:** 2.09
 
 **Status:** APROVADO
 
@@ -57,8 +57,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). **🟢 PI-009 MATERIALIZADA.** EWO-007 (Renda Fixa 09, Internacional 10) 🟢 FECHADA. EWO-008 (Import/Export 11, Integrações 12, Relatórios 13) 🟢 FECHADA.
 - **EWO-007 🟢 FECHADA** — Onda 2 concluída. Renda Fixa 09 e Internacional 10 implementados.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
-- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). **EWO-011 (Bloco A) 🟢 FECHADA. EWO-012 (Bloco B) criada.**
-- **EWO-012 (APPROVED)** — Bloco B (Onboarding 21, Personalização 22). 7 Slices. Aguardando execução.
+- **PI-011 (APPROVED v1.0)** — Platform Consolidation & Product Readiness (Onda 6: módulos 19-22). **EWO-011 (Bloco A) 🟢 FECHADA. EWO-012 (Bloco B) em andamento.**
+- **EWO-012 (APPROVED)** — Bloco B (Onboarding 21, Personalização 22). 7 Slices. **Slices 1-3 (Onboarding 21) concluídas.**
 
 ### Bloqueado
 
@@ -89,8 +89,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v1.95 (reflete EWO-012 APPROVED)
-- `project-context/PROJECT_STATUS.md`: v2.08 (reflete EWO-012 APPROVED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.96 (reflete EWO-012 Slices 1-3)
+- `project-context/PROJECT_STATUS.md`: v2.09 (reflete EWO-012 Slices 1-3)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -100,6 +100,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.09
+
+- **EWO-012 Slices 1-3 (Onboarding 21) CONCLUÍDOS** — BR doc `21_ONBOARDING.md`. Core Domain onboarding/: OnboardingStep, UserProgress, OnboardingFlow (5 passos padrão, max 5, skip total), 3 erros. Application: 2 commands (AvancarPasso, PularOnboarding), 2 queries (ObterProgresso, ObterPassoAtual), 4 services, 3 DTOs. **Sem port próprio (ADR-011-003)** — IConfigurationRepository estendido (saveOnboardingProgress, findOnboardingProgress). Infrastructure: FakeConfigurationRepository e SupabaseConfigurationRepository estendidos. Glossário consumido via IGlossaryRepository (R-016). Presentation: OnboardingPage wizard com progresso, skip, 5 passos. Composition Root registrado. Build green. DOCUMENTATION_INDEX v1.96, PROJECT_STATUS v2.09.
 
 ### Versão 2.08
 

@@ -18,4 +18,7 @@ export interface IConfigurationRepository {
   SalvarEstrategia(usuarioId: string, config: EstrategiaConfiguracao): Promise<void>;
   ObterMetas(usuarioId: string): Promise<MetaFinanceira[]>;
   SalvarMetas(usuarioId: string, metas: MetaFinanceira[]): Promise<void>;
+
+  saveOnboardingProgress(userId: string, progress: string): Promise<void>;
+  findOnboardingProgress(userId: string): Promise<string | null>;
 }
