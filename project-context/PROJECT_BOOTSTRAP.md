@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.58
+**Versão:** 2.59
 
 **Status:** APROVADO
 
@@ -696,6 +696,71 @@ Fonte: `AI_OPERATION_CHECKLIST.md` (GOV-P014-004).
 Relatórios Consolidados devem incluir bloco resumindo o estado atual da EWO: módulos concluídos, slices concluídas, slices pendentes, situação geral.
 
 Fonte: `AI_OPERATION_CHECKLIST.md` (GOV-P014-005).
+
+---
+
+## Indicadores Oficiais de Progresso (GOV-P015)
+
+Define os indicadores padronizados para mensurar o progresso da engenharia, aplicáveis em relatórios, auditorias e avaliações de roadmap.
+
+### I-001 — Implementação Arquitetural
+
+Mede quantas camadas estão implementadas por módulo. Escala de 0 a 4:
+
+| Pontos | Camadas Implementadas | Significado |
+|--------|----------------------|-------------|
+| 0 | Nenhuma | Não iniciado |
+| 1 | BR + Core Domain | Regras + Domínio |
+| 2 | BR + Core + Application + Infrastructure | Regras + Domínio + Aplicação |
+| 3 | Todas as anteriores | Completo (inclui Presentation) |
+| 4 | Completo + Composition Root registrado | Integrado ao sistema |
+
+> Usar notação: "3/4" para módulo com BR+Core+App+Infra sem Presentation.
+
+### I-002 — Implementação Funcional
+
+Mede quantos Requisitos Funcionais (FRs) atribuídos a um módulo foram materializados, em relação ao total previsto.
+
+```
+Indicador: (FRs materializados) / (FRs previstos)
+Exemplo: 4/4 (100%) ou 5/8 (62,5%)
+```
+
+### I-003 — Estado Consolidado por Módulo
+
+Tabela oficial de diagnóstico por módulo:
+
+| Módulo | BR | Core | App+Infra | Pres. | I-001 | FRs | NCs |
+|--------|----|------|-----------|-------|-------|-----|-----|
+
+Onde:
+- BR, Core, App+Infra, Pres.: ✅ ou ⏳
+- I-001: indicador arquitetural (0–4)
+- FRs: materializados / previstos
+- NCs: abertas / resolvidas
+
+### I-004 — Estado Geral do Projeto
+
+Métrica consolidada para a plataforma como um todo:
+
+```
+EWOs:     X de Y fechadas
+Módulos:  X de Y implementados (I-001 ≥ 3)
+Slices:   X de Y concluídas
+FRs:      X de Y materializados
+PIs:      X de Y materializadas (%)
+```
+
+### I-005 — Aplicabilidade dos Indicadores
+
+| Indicador | Uso Principal | Obrigatório em |
+|-----------|--------------|----------------|
+| I-001 | Planejamento de Slices, relatórios de Slice | Todo relatório de implementação |
+| I-002 | Acompanhamento de PI, roadmap | Engineering Review |
+| I-003 | Diagnóstico rápido, auditoria | Engineering Closure |
+| I-004 | Visão executiva, apresentações | Fechamento de PI |
+
+Os indicadores complementam a metodologia Slice First existente, sem substituí-la.
 
 ---
 

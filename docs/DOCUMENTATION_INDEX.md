@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.87
+**Versão da Documentação:** 1.88
 
 **Status:** APROVADO
 
@@ -211,6 +211,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.88
+
+- **GOV-P015 implementada** — Indicadores Oficiais de Progresso da Engenharia. 5 indicadores: I-001 (Implementação Arquitetural — 0-4), I-002 (Implementação Funcional — FRs), I-003 (Estado Consolidado por Módulo), I-004 (Estado Geral do Projeto), I-005 (Aplicabilidade). PROJECT_BOOTSTRAP.md v2.59, AI_OPERATION_CHECKLIST.md v1.45. DOCUMENTATION_INDEX v1.88.
 
 ## Versão 1.87
 

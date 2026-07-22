@@ -14,6 +14,27 @@
 
 # Registro de Sincronizações
 
+## GOV-P015 — Indicadores Oficiais de Progresso
+
+**Data:** 22/07/2026
+
+### Melhorias incorporadas
+
+- I-001: Implementação Arquitetural (0–4 por módulo)
+- I-002: Implementação Funcional (FRs materializados)
+- I-003: Estado Consolidado por Módulo
+- I-004: Estado Geral do Projeto (EWOs, módulos, slices, FRs, PIs)
+- I-005: Aplicabilidade dos indicadores por tipo de relatório
+
+### Documentos alterados
+
+- PROJECT_BOOTSTRAP.md v2.58 → v2.59
+- AI_OPERATION_CHECKLIST.md v1.44 → v1.45
+- DOCUMENTATION_INDEX.md v1.87 → v1.88
+- PROJECT_STATUS.md v2.00 → v2.01
+
+---
+
 ## EWO-010 — Onda 5 (Educação e Exportação Avançada) 🟢 FECHADA
 
 **Data:** 22/07/2026

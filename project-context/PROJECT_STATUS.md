@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.00
+**Versão:** 2.01
 
 **Status:** APROVADO
 
@@ -85,8 +85,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 - `docs/EWO-006_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure (Slice 10)
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
-- `docs/DOCUMENTATION_INDEX.md`: v1.87 (reflete EWO-007 CLOSED)
-- `project-context/PROJECT_STATUS.md`: v2.00 (reflete EWO-007 CLOSED)
+- `docs/DOCUMENTATION_INDEX.md`: v1.88 (reflete GOV-P015)
+- `project-context/PROJECT_STATUS.md`: v2.01 (reflete GOV-P015)
+- `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
+- `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.57 (Frozen Baselines + GOV-P013)
 - Git: branch `main`, origin sincronizado
@@ -94,6 +96,10 @@ Registrar o encerramento oficial da EWO-010 (Onda 5 — Educação e Exportaçã
 ---
 
 ## Histórico
+
+### Versão 2.01
+
+- **GOV-P015 implementada** — Indicadores Oficiais de Progresso da Engenharia. I-001 (Implementação Arquitetural 0-4), I-002 (Implementação Funcional por FRs), I-003 (Estado Consolidado por Módulo), I-004 (Estado Geral do Projeto), I-005 (Aplicabilidade). PROJECT_BOOTSTRAP.md v2.59, AI_OPERATION_CHECKLIST.md v1.45. DOCUMENTATION_INDEX v1.88, PROJECT_STATUS v2.01.
 
 ### Versão 2.00
 

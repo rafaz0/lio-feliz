@@ -170,6 +170,34 @@ Incluir no Relatório Consolidado Final um bloco resumindo o estado atual da Eng
 
 Esse resumo deve permitir auditorias rápidas sem necessidade de abrir a EWO completa.
 
+### GOV-P015 — Indicadores de Progresso
+
+Checklist para aplicação dos indicadores oficiais (I-001 a I-005) em relatórios:
+
+#### I-001 — Implementação Arquitetural
+- [ ] Informar camadas implementadas: BR, Core, App+Infra, Presentation
+- [ ] Informar pontuação (0–4)
+- [ ] Indicar se Composition Root está registrado
+
+#### I-002 — Implementação Funcional
+- [ ] Listar FRs atribuídos ao módulo
+- [ ] Informar quantos foram materializados
+- [ ] Calcular percentual: (materializados / previstos)
+
+#### I-003 — Estado Consolidado por Módulo
+- [ ] Tabela com colunas: Módulo, BR, Core, App+Infra, Pres., I-001, FRs, NCs
+- [ ] Usar ✅ / ⏳ nas colunas de camada
+
+#### I-004 — Estado Geral do Projeto
+- [ ] EWOs fechadas / total
+- [ ] Módulos implementados (I-001 ≥ 3) / total
+- [ ] Slices concluídas / total
+- [ ] FRs materializados / total
+- [ ] PIs materializadas / total
+
+#### I-005 — Aplicabilidade
+- [ ] Verificar se o indicador correto foi usado para o tipo de relatório (ver PROJECT_BOOTSTRAP §GOV-P015)
+
 ### GOV-M02 — Sincronização Git Obrigatória
 
 Checklist obrigatório no relatório final de toda atividade:
