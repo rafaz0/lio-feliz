@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.79
+**Versão da Documentação:** 1.80
 
 **Status:** APROVADO
 
@@ -207,6 +207,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.80
+
+- **EWO-009 Slices 7-8 (Comparação Avançada 16) CONCLUÍDOS** — BR `16_COMPARACAO_AVANCADA.md` criado. Core Domain `src/core/domain/comparison/`: ComparisonSet, ComparisonEntry, Scorecard, ComparisonAggregator (R-013), 5 errors. Application Layer: 2 commands, 2 queries, 4 services, port IComparisonRepository, 3 DTOs. Infrastructure: FakeComparisonRepository e SupabaseComparisonRepository. Build green. DOCUMENTATION_INDEX v1.80.
 
 ## Versão 1.79
 

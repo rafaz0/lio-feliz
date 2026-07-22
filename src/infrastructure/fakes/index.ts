@@ -16,3 +16,4 @@ export { FakeImportHistoryRepository } from "./fake-import-history-repository";
 export { FakeIntegrationRepository } from "./fake-integration-repository";
 export { FakeBacktestRepository } from "./fake-backtest-repository";
 export { FakeAlertRepository } from "./fake-alert-repository";
+export { FakeComparisonRepository } from "./fake-comparison-repository";

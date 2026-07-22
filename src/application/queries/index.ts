@@ -24,3 +24,5 @@ export type { ObterBacktestQuery } from "./obter-backtest";
 export type { ListarEstrategiasQuery } from "./listar-estrategias";
 export type { ObterAlertaQuery } from "./obter-alerta";
 export type { ListarAlertasAtivosQuery } from "./listar-alertas-ativos";
+export type { ObterComparacaoQuery } from "./obter-comparacao";
+export type { ObterScorecardQuery } from "./obter-scorecard";
