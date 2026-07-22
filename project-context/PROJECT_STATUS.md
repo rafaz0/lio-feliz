@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.09
+**Versão:** 2.10
 
 **Status:** APROVADO
 
@@ -89,8 +89,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v1.96 (reflete EWO-012 Slices 1-3)
-- `project-context/PROJECT_STATUS.md`: v2.09 (reflete EWO-012 Slices 1-3)
+- `docs/DOCUMENTATION_INDEX.md`: v1.97 (reflete EWO-012 Slices 1-6)
+- `project-context/PROJECT_STATUS.md`: v2.10 (reflete EWO-012 Slices 1-6)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -100,6 +100,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.10
+
+- **EWO-012 Slices 4-6 (Personalização 22) CONCLUÍDOS** — BR doc `22_PERSONALIZACAO.md`. Core Domain preferences/: UserPreferences, DashboardLayout, ThemeConfig, WidgetPosition (entities/VOs), PreferencesService (mergeDefaults). Application: 3 commands (SalvarPreferencias, AtualizarTema, SalvarLayoutDashboard), 2 queries (ObterPreferencias, ObterTema), 5 services, 2 DTOs. IConfigurationRepository estendido com 6 métodos (ADR-011-002). FakeConfigurationRepository e SupabaseConfigurationRepository estendidos. Presentation: PreferencesPage, hooks, viewmodel. 0 novos ports. Build green. DOCUMENTATION_INDEX v1.97, PROJECT_STATUS v2.10.
 
 ### Versão 2.09
 

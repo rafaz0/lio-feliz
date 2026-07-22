@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 1.96
+**Versão da Documentação:** 1.97
 
 **Status:** APROVADO
 
@@ -219,6 +219,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 1.97
+
+- **EWO-012 Slices 4-6 (Personalização 22) CONCLUÍDOS** — BR `22_PERSONALIZACAO.md`. Core Domain (UserPreferences, DashboardLayout, ThemeConfig, PreferencesService), Application + Infrastructure (3 commands, 2 queries, 5 services, IConfigurationRepository estendido com 6 métodos), Presentation (PreferencesPage). Build green. DOCUMENTATION_INDEX v1.97.
 
 ## Versão 1.96
 

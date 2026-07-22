@@ -34,6 +34,9 @@ import type {
   CalcularPerfilCommand,
   AvancarPassoCommand,
   PularOnboardingCommand,
+  SalvarPreferenciasCommand,
+  AtualizarTemaCommand,
+  SalvarLayoutDashboardCommand,
 } from "@/application/commands";
 import type {
   ObterPatrimonioQuery,
@@ -284,6 +287,8 @@ export type {
   OnboardingStepDto,
   UserProgressDto,
   OnboardingCompletoDto,
+  UserPreferencesDto,
+  ThemeConfigDto,
   ApplicationError,
   ValidationError,
   NotFoundError,

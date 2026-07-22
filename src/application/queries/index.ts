@@ -38,3 +38,5 @@ export type { ObterPerfilQuery } from "./obter-perfil";
 export type { ObterQuestionarioQuery } from "./obter-questionario";
 export type { ObterProgressoOnboardingQuery } from "./obter-progresso-onboarding";
 export type { ObterPassoAtualQuery } from "./obter-passo-atual";
+export type { ObterPreferenciasQuery } from "./obter-preferencias";
+export type { ObterTemaQuery } from "./obter-tema";

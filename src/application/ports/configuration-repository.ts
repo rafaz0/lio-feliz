@@ -21,4 +21,11 @@ export interface IConfigurationRepository {
 
   saveOnboardingProgress(userId: string, progress: string): Promise<void>;
   findOnboardingProgress(userId: string): Promise<string | null>;
+
+  savePreferences(userId: string, prefs: string): Promise<void>;
+  findPreferences(userId: string): Promise<string | null>;
+  saveTheme(userId: string, theme: string): Promise<void>;
+  findTheme(userId: string): Promise<string | null>;
+  saveDashboardLayout(userId: string, layout: string): Promise<void>;
+  findDashboardLayout(userId: string): Promise<string | null>;
 }

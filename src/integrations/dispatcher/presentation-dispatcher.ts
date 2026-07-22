@@ -124,6 +124,16 @@ import type { AvancarPassoCommand } from "@/application/commands/avancar-passo";
 import type { PularOnboardingCommand } from "@/application/commands/pular-onboarding";
 import type { ObterProgressoOnboardingQuery } from "@/application/queries/obter-progresso-onboarding";
 import type { ObterPassoAtualQuery } from "@/application/queries/obter-passo-atual";
+import { SalvarPreferenciasService } from "@/application/services/salvar-preferencias-service";
+import { AtualizarTemaService } from "@/application/services/atualizar-tema-service";
+import { SalvarLayoutDashboardService } from "@/application/services/salvar-layout-dashboard-service";
+import { ObterPreferenciasService } from "@/application/services/obter-preferencias-service";
+import { ObterTemaService } from "@/application/services/obter-tema-service";
+import type { SalvarPreferenciasCommand } from "@/application/commands/salvar-preferencias";
+import type { AtualizarTemaCommand } from "@/application/commands/atualizar-tema";
+import type { SalvarLayoutDashboardCommand } from "@/application/commands/salvar-layout-dashboard";
+import type { ObterPreferenciasQuery } from "@/application/queries/obter-preferencias";
+import type { ObterTemaQuery } from "@/application/queries/obter-tema";
 
 interface PresentationDispatcherDeps {
   projectionRepository: IProjectionRepository;
@@ -470,7 +480,27 @@ export function createPresentationDispatcher({
   }
 
   if (configurationRepository) {
-    const configRepo = configurationRepository as import("@/application/ports/configuration-repository").IConfigurationRepository;
+    const configRepo = configurationRepository;
+
+    dispatcher.RegisterCommand("SalvarPreferenciasCommand", (command) =>
+      new SalvarPreferenciasService(configRepo).Execute(command as SalvarPreferenciasCommand),
+    );
+
+    dispatcher.RegisterCommand("AtualizarTemaCommand", (command) =>
+      new AtualizarTemaService(configRepo).Execute(command as AtualizarTemaCommand),
+    );
+
+    dispatcher.RegisterCommand("SalvarLayoutDashboardCommand", (command) =>
+      new SalvarLayoutDashboardService(configRepo).Execute(command as SalvarLayoutDashboardCommand),
+    );
+
+    dispatcher.RegisterQuery("ObterPreferenciasQuery", (query) =>
+      new ObterPreferenciasService(configRepo).Execute(query as ObterPreferenciasQuery),
+    );
+
+    dispatcher.RegisterQuery("ObterTemaQuery", (query) =>
+      new ObterTemaService(configRepo).Execute(query as ObterTemaQuery),
+    );
 
     dispatcher.RegisterCommand("AvancarPassoCommand", (command) =>
       new AvancarPassoService(configRepo).Execute(command as AvancarPassoCommand),

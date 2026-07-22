@@ -35,3 +35,6 @@ export type { ResponderQuestionarioCommand } from "./responder-questionario";
 export type { CalcularPerfilCommand } from "./calcular-perfil";
 export type { AvancarPassoCommand } from "./avancar-passo";
 export type { PularOnboardingCommand } from "./pular-onboarding";
+export type { SalvarPreferenciasCommand } from "./salvar-preferencias";
+export type { AtualizarTemaCommand } from "./atualizar-tema";
+export type { SalvarLayoutDashboardCommand } from "./salvar-layout-dashboard";
