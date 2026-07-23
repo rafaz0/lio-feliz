@@ -14,6 +14,23 @@
 
 # Registro de Sincronizações
 
+## EWO-014 — Production Readiness (CI/CD, Observabilidade, E2E, Performance) 🟢 APROVADA
+
+**Data:** 22/07/2026
+
+### Estrutura
+
+- 5 Slices: CI/CD, Observabilidade, Testes E2E, Performance, Closure
+- Nenhum Core/BR/contrato alterado
+
+### Documentos
+
+- architecture-lab/EWO-014.md v1.0
+- DOCUMENTATION_INDEX v2.06
+- PROJECT_STATUS v2.19
+
+---
+
 ## EWO-013 Slice 4 — Exportação 18 Presentation ✅
 
 **Data:** 22/07/2026

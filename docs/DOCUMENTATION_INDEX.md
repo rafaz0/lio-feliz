@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.05
+**Versão da Documentação:** 2.06
 
 **Status:** APROVADO
 
@@ -205,6 +205,10 @@ Engineering Review da PI-012: 8 critérios avaliados, 3 NCs baixas (NC-012-001, 
 
 Engineering Work Order para o Bloco A (Completude UI): Backtests 14, Alertas 15, Educação 17, Exportação Avançada 18. 13 Slices. Presentation pura (R-018).
 
+🔴 EWO-014.md 🟢 (APPROVED)
+
+Engineering Work Order para o Bloco B (Production Readiness): CI/CD Pipeline, Observabilidade (Sentry), Testes E2E (Playwright), Performance. 5 Slices.
+
 ---
 
 ## Legenda
@@ -231,6 +235,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.06
+
+- **EWO-014 CRIADA (APPROVED)** — Engineering Work Order para o Bloco B (Production Readiness): 5 Slices (CI/CD, Observabilidade, E2E Tests, Performance, Closure). Nenhum Core/BR/contrato alterado. DOCUMENTATION_INDEX v2.06.
 
 ## Versão 2.05
 

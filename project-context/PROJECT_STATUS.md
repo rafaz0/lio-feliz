@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.18
+**Versão:** 2.19
 
 **Status:** APROVADO
 
@@ -76,7 +76,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `architecture-lab/EWO-011.md`: v1.0 (CLOSED) — Bloco A (Assinaturas 19, Perfil do Investidor 20), 7 Slices
 - `architecture-lab/EWO-012.md`: v1.0 (CLOSED) — Bloco B (Onboarding 21, Personalização 22), 7 Slices
 - `architecture-lab/PI-012.md`: v1.0 (APPROVED) — Platform Completion & Production Readiness (Onda 7)
-- `architecture-lab/EWO-013.md`: v1.0 (APPROVED) — Bloco A (Backtests 14, Alertas 15, Educação 17, Exportação 18), 13 Slices
+- `architecture-lab/EWO-014.md`: v1.0 (APPROVED) — Bloco B (Production Readiness), 5 Slices
 - `architecture-lab/ER-011.md`: v1.0 (APPROVED)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
@@ -90,8 +90,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.05 (reflete EWO-013 Slice 4)
-- `project-context/PROJECT_STATUS.md`: v2.18 (reflete EWO-013 Slice 4)
+- `docs/DOCUMENTATION_INDEX.md`: v2.06 (reflete EWO-014 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v2.19 (reflete EWO-014 APPROVED)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -101,6 +101,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.19
+
+- **EWO-014 CRIADA (APPROVED)** — Engineering Work Order para o Bloco B (Production Readiness): 5 Slices. CI/CD Pipeline (GitHub Actions), Observabilidade (Sentry + logs + health check), Testes E2E (Playwright, 4 suites), Performance (code splitting, cache, SSR). Nenhum Core/BR/contrato alterado. DOCUMENTATION_INDEX v2.06, PROJECT_STATUS v2.19.
 
 ### Versão 2.18
 
