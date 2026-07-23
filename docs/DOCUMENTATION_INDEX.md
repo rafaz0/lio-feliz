@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.12
+**Versão da Documentação:** 2.13
 
 **Status:** APROVADO
 
@@ -242,6 +242,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.13
+
+- **EWO-015 Slice 1 (IPaymentGateway) CONCLUÍDO** — Interface IPaymentGateway (charge, cancel, refund), adapter Stripe, FakePaymentGateway para testes. AssinarPlanoService estendido com gateway opcional (fallback para BillingSimulator). Build green. DOCUMENTATION_INDEX v2.13.
 
 ## Versão 2.12
 

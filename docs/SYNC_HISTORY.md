@@ -14,6 +14,25 @@
 
 # Registro de Sincronizações
 
+## EWO-015 Slice 1 — IPaymentGateway ✅
+
+**Data:** 22/07/2026
+
+### Artefatos
+
+- `src/application/gateways/payment-gateway.ts` — interface IPaymentGateway + PaymentResult
+- `src/infrastructure/gateways/stripe-payment-gateway.ts` — adapter Stripe
+- `src/infrastructure/gateways/fake-payment-gateway.ts` — fake para testes
+- `src/application/services/assinar-plano-service.ts` — estendido com gateway opcional
+- Retrocompatível: sem gateway, usa BillingSimulator (fallback)
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.13
+- PROJECT_STATUS v2.26
+
+---
+
 ## EWO-015 — Comercialização (Gateway, Billing, Checkout) 🟢 APROVADA
 
 **Data:** 22/07/2026

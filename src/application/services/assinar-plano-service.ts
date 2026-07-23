@@ -3,6 +3,7 @@ import type { AssinaturaDto } from "@/application/dtos/assinatura";
 import type { IApplicationService } from "@/application/application-service";
 import type { ISubscriptionRepository } from "@/application/ports/subscription-repository";
 import type { INotificationPort } from "@/application/ports/notification-port";
+import type { IPaymentGateway } from "@/application/gateways/payment-gateway";
 import { ValidationError, NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { Subscription, SubscriptionId, BillingSimulator } from "@/core/domain/subscriptions";
@@ -16,6 +17,7 @@ export class AssinarPlanoService implements IApplicationService<
   constructor(
     private readonly subscriptionRepo: ISubscriptionRepository,
     private readonly notificationPort?: INotificationPort,
+    private readonly paymentGateway?: IPaymentGateway,
   ) {}
 
   async Execute(command: AssinarPlanoCommand): Promise<AssinaturaDto | ApplicationError> {
@@ -36,7 +38,17 @@ export class AssinarPlanoService implements IApplicationService<
     });
 
     await this.subscriptionRepo.saveSubscription(subscription);
-    this.billingSimulator.simulateBilling(subscription, plan.monthlyPrice);
+
+    if (this.paymentGateway) {
+      const result = await this.paymentGateway.charge(subscription.id.value, plan.monthlyPrice);
+      if (!result.success) {
+        const cancelled = subscription.cancel();
+        await this.subscriptionRepo.saveSubscription(cancelled);
+        return new ValidationError("PAYMENT_FAILED", result.error ?? "Falha no pagamento");
+      }
+    } else {
+      this.billingSimulator.simulateBilling(subscription, plan.monthlyPrice);
+    }
 
     if (this.notificationPort) {
       await this.notificationPort.Notificar(
