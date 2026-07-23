@@ -62,15 +62,15 @@ Execução
 
 ## Marco Atual
 
-EWO-004 — Infrastructure Layer (Concluído — 7 Slices, 630 testes)
+EWO-015 — Comercialização (Concluído — 4 Slices, 12 testes novos, Bloco C da PI-012)
 
 ## PI Atual
 
-PI-006 — Infrastructure Layer (COMPLETED). PI-005 — Application Layer (COMPLETED). PI-004 — Domínio Patrimonial (COMPLETED). Core API Frozen (7 componentes estáveis).
+PI-012 — Platform Completion & Production Readiness (APPROVED — Bloco C materializado via EWO-015). PI-006 — Infrastructure Layer (COMPLETED). PI-005 — Application Layer (COMPLETED). Core API Frozen (7 componentes estáveis).
 
 ## PS Atual
 
-PS#052 — Engineering Closure EWO-004 (concluído)
+PS#053 — Engineering Closure EWO-015 (concluído)
 
 ## Dashboard Executivo
 
@@ -79,8 +79,8 @@ PS#052 — Engineering Closure EWO-004 (concluído)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#052
-Marco: EWO-004 (Infrastructure Layer)
+PS Atual: PS#053
+Marco: EWO-015 (Comercialização — Bloco C / PI-012)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -92,7 +92,7 @@ Marco: EWO-004 (Infrastructure Layer)
 
 ## Objetivos Ativos
 
-EWO-004 CONCLUÍDA. Infrastructure Layer completa — 10 Ports implementados como adaptadores concretos. Próxima fase: Presentation Layer ou nova EWO.
+EWO-015 CONCLUÍDA. Bloco C da PI-012 (Comercialização) materializado: gateway de pagamento (IPaymentGateway + Stripe adapter), billing real (job, retry, webhook) e checkout integrado (orquestrador + formulário). Próxima fase: definição do roadmap pós-PI-012.
 
 ## DEC Ativas
 
@@ -104,12 +104,11 @@ Nenhuma.
 | ------ | --------------------------------------------------- | ---------- | ---------- |
 | BK-005 | PROJECT_MANIFEST.md                                 | Baixa      | Proposto   |
 | BK-006 | Licensing & Feature Access Layer                    | Média      | Proposto   |
-| BK-007 | Comercialização                                     | Média      | Proposto   |
 | BK-008 | Substituição do mecanismo finalize() do DomainEvent | Baixa      | Observação |
 
 ## Próxima Etapa
 
-EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: **Presentation Layer** ou nova EWO conforme roadmap estratégico.
+EWO-015 CONCLUÍDA. Bloco C da PI-012 (Comercialização) materializado. Próxima etapa: **definição do roadmap** — possíveis frentes incluem refinamento do checkout, integração com provedor Asaas, ou nova EWO conforme priorização estratégica.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -130,10 +129,11 @@ EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: **
 - **EWO-002 CONCLUÍDA** — Domínio Patrimonial implementado (9 Slices, 362 testes, 12/12 DAs, 11/13 Invariantes)
 - **EWO-003 CONCLUÍDA** — Application Layer implementada (8 Slices, 528 testes, 14 Services, 9 Ports, 15 DTOs)
 - **EWO-004 CONCLUÍDA** — Infrastructure Layer implementada (7 Slices, 630 testes, 10 Ports → 14+ Adapters)
+- **EWO-015 CONCLUÍDA** — Comercialização implementada (4 Slices, 12 testes, IPaymentGateway, BillingJobService, CheckoutOrchestrator)
 
 ### Próxima Frente de Engenharia
 
-EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: Presentation Layer ou nova EWO conforme roadmap estratégico.
+EWO-015 CONCLUÍDA. Bloco C da PI-012 materializado. Próxima etapa: definição do roadmap pós-PI-012.
 
 ### Documentação Prevista
 
@@ -149,6 +149,9 @@ EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: Pr
 | PI-006           | Infrastructure Layer                  | ✅ Concluída |
 | ER-006           | Engineering Review da PI-006          | ✅ Aprovada  |
 | EWO-004          | Implementação da Infrastructure Layer | ✅ Concluída |
+| PI-012           | Platform Completion & Production Readiness | ✅ Aprovada |
+| ER-012           | Engineering Review da PI-012          | ✅ Aprovada  |
+| EWO-015          | Implementação da Comercialização (Bloco C) | ✅ Concluída |
 
 ### Observações Relevantes
 
@@ -160,8 +163,13 @@ EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: Pr
 - **EWO-003 CONCLUÍDA** — 8 Slices, 528 testes, Application Layer completa
 - EWO-001 concluído — detalhes na seção abaixo
 - EWO-004 concluído — 7 Slices, 630 testes, 10 Ports implementados, Infrastructure Layer completa
+- **EWO-015 CONCLUÍDO** — 4 Slices, 14 arquivos criados, 12 testes novos, Bloco C da PI-012 materializado
+- IPaymentGateway (ADR-012-001) implementado como interface + Stripe adapter + FakePaymentGateway
+- CheckoutOrchestrator (ADR-012-002) implementado compondo AssinarPlanoService
+- BillingSimulator preservado como fallback (R-019 respeitado)
+- Nenhum Core Domain alterado durante toda a EWO-015
 - Conhecimento consolidado: KC-001 a KC-008 (registrados nas Engineering Reviews), KB-006, KB-008
-- Backlog estratégico com 4 BKs ativos (BK-005 a BK-008)
+- Backlog estratégico com 3 BKs ativos (BK-005, BK-006, BK-008) — BK-007 (Comercialização) concluído
 
 ---
 

@@ -2,15 +2,15 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.16
+**Versão:** 1.17
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 19/07/2026
+**Última atualização:** 23/07/2026
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-003 CONCLUÍDA. Próxima etapa: Infrastructure Layer (EWO-004).
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-015 CONCLUÍDA. Próxima etapa: definição do roadmap pós-PI-012.
 
 ---
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-Engineering N2 — EWO-004 CONCLUÍDA (Infrastructure Layer). Próxima etapa: Presentation Layer ou nova EWO.
+EWO-015 CONCLUÍDA (Comercialização — Bloco C da PI-012). Próxima etapa: definição do roadmap pós-PI-012.
 
 # Referências Obrigatórias
 
@@ -44,6 +44,14 @@ Engineering N2 — EWO-004 CONCLUÍDA (Infrastructure Layer). Próxima etapa: Pr
 ---
 
 # Histórico
+
+### Versão 1.17
+
+EWO-015 CONCLUÍDA. Bloco C da PI-012 (Comercialização) materializado: IPaymentGateway, billing real com retry e webhook, checkout integrado. 4 Slices, 12 testes novos, 14 arquivos. Nenhum Core Domain alterado. Próxima etapa: definição do roadmap pós-PI-012.
+
+### Versão 1.16
+
+GOV-M06 — Baseline Lock. Baseline Congelada após Gate de Entrada. PI, ER, EWO congelados durante EWO ativa. Fluxo oficial atualizado. Projeto apto para EWO-004.
 
 ### Versão 1.15
 
