@@ -2,6 +2,7 @@ import type { ISubscriptionRepository, Assinatura, PlanoDto } from "@/applicatio
 import {
   Plan,
   Subscription,
+  BillingCycle,
   PlanId,
   SubscriptionId,
   type PlanTier,
@@ -11,6 +12,7 @@ export class FakeSubscriptionRepository implements ISubscriptionRepository {
   private assinaturas = new Map<string, Assinatura>();
   private domainPlans = new Map<string, Plan>();
   private domainSubscriptions = new Map<string, Subscription>();
+  private billingCycles = new Map<string, BillingCycle>();
   private planos: PlanoDto[] = [];
 
   async ObterPlanoAtivo(usuarioId: string): Promise<Assinatura | null> {
@@ -45,6 +47,24 @@ export class FakeSubscriptionRepository implements ISubscriptionRepository {
     return Array.from(this.domainSubscriptions.values()).filter((s) => s.userId === userId);
   }
 
+  async findAllActiveSubscriptions(): Promise<Subscription[]> {
+    return Array.from(this.domainSubscriptions.values()).filter((s) => s.isActive);
+  }
+
+  async findSubscriptionById(id: string): Promise<Subscription | null> {
+    return this.domainSubscriptions.get(id) ?? null;
+  }
+
+  async saveBillingCycle(cycle: BillingCycle): Promise<void> {
+    this.billingCycles.set(cycle.id.value, cycle);
+  }
+
+  async findBillingCyclesBySubscription(subscriptionId: string): Promise<BillingCycle[]> {
+    return Array.from(this.billingCycles.values()).filter(
+      (c) => c.subscriptionId === subscriptionId,
+    );
+  }
+
   setPlanos(planos: PlanoDto[]): void {
     this.planos = planos;
   }
@@ -53,6 +73,7 @@ export class FakeSubscriptionRepository implements ISubscriptionRepository {
     this.assinaturas.clear();
     this.domainPlans.clear();
     this.domainSubscriptions.clear();
+    this.billingCycles.clear();
     this.planos = [];
   }
 }

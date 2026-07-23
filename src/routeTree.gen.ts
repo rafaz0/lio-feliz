@@ -23,6 +23,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WatchlistIndexRouteImport } from './routes/watchlist.index'
 import { Route as FiiTickerRouteImport } from './routes/fii.$ticker'
 import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
+import { Route as ApiStripeWebhookRouteImport } from './routes/api.stripe-webhook'
 import { Route as ApiHealthRouteImport } from './routes/api.health'
 import { Route as AuthenticatedSyncRouteImport } from './routes/_authenticated/sync'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
@@ -119,6 +120,11 @@ const FiiTickerRoute = FiiTickerRouteImport.update({
 const AtivoTickerRoute = AtivoTickerRouteImport.update({
   id: '/ativo/$ticker',
   path: '/ativo/$ticker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
+  id: '/api/stripe-webhook',
+  path: '/api/stripe-webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiHealthRoute = ApiHealthRouteImport.update({
@@ -301,6 +307,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AuthenticatedSettingsRoute
   '/sync': typeof AuthenticatedSyncRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist/': typeof WatchlistIndexRoute
@@ -343,6 +350,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AuthenticatedSettingsRoute
   '/sync': typeof AuthenticatedSyncRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist': typeof WatchlistIndexRoute
@@ -388,6 +396,7 @@ export interface FileRoutesById {
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/sync': typeof AuthenticatedSyncRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
   '/watchlist/': typeof WatchlistIndexRoute
@@ -433,6 +442,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/sync'
     | '/api/health'
+    | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist/'
@@ -475,6 +485,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/sync'
     | '/api/health'
+    | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist'
@@ -519,6 +530,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings'
     | '/_authenticated/sync'
     | '/api/health'
+    | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
     | '/watchlist/'
@@ -558,6 +570,7 @@ export interface RootRouteChildren {
   _authLoginRoute: typeof _authLoginRoute
   _authRegisterRoute: typeof _authRegisterRoute
   ApiHealthRoute: typeof ApiHealthRoute
+  ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
   AtivoTickerRoute: typeof AtivoTickerRoute
   FiiTickerRoute: typeof FiiTickerRoute
   WatchlistIndexRoute: typeof WatchlistIndexRoute
@@ -661,6 +674,13 @@ declare module '@tanstack/react-router' {
       path: '/ativo/$ticker'
       fullPath: '/ativo/$ticker'
       preLoaderRoute: typeof AtivoTickerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/stripe-webhook': {
+      id: '/api/stripe-webhook'
+      path: '/api/stripe-webhook'
+      fullPath: '/api/stripe-webhook'
+      preLoaderRoute: typeof ApiStripeWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/health': {
@@ -966,6 +986,7 @@ const rootRouteChildren: RootRouteChildren = {
   _authLoginRoute: _authLoginRoute,
   _authRegisterRoute: _authRegisterRoute,
   ApiHealthRoute: ApiHealthRoute,
+  ApiStripeWebhookRoute: ApiStripeWebhookRoute,
   AtivoTickerRoute: AtivoTickerRoute,
   FiiTickerRoute: FiiTickerRoute,
   WatchlistIndexRoute: WatchlistIndexRoute,

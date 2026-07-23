@@ -26,4 +26,13 @@ export interface ISubscriptionRepository {
   findSubscriptionsByUser(
     userId: string,
   ): Promise<import("@/core/domain/subscriptions").Subscription[]>;
+
+  findAllActiveSubscriptions(): Promise<import("@/core/domain/subscriptions").Subscription[]>;
+  findSubscriptionById(
+    id: string,
+  ): Promise<import("@/core/domain/subscriptions").Subscription | null>;
+  saveBillingCycle(cycle: import("@/core/domain/subscriptions").BillingCycle): Promise<void>;
+  findBillingCyclesBySubscription(
+    subscriptionId: string,
+  ): Promise<import("@/core/domain/subscriptions").BillingCycle[]>;
 }
