@@ -19,7 +19,10 @@ dist-ssr
 .env.*
 !.env.example
 
-# Wrangler / Cloudflare
+# Vercel
+.vercel
+
+# Wrangler / Cloudflare (auto-generated during build, not versioned)
 .wrangler/
 .dev.vars
 

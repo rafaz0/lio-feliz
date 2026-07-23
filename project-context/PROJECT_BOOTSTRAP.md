@@ -2,13 +2,13 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.60
+**Versão:** 2.62
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 22/07/2026
+**Última atualização:** 23/07/2026
 
 ---
 
@@ -62,15 +62,15 @@ Execução
 
 ## Marco Atual
 
-EWO-015 — Comercialização (Concluído — 4 Slices, 12 testes novos, Bloco C da PI-012)
+EWO-016 — Production Deployment (Em andamento — Slice 1 concluída: Vercel configurada, Cloudflare substituída)
 
 ## PI Atual
 
-PI-012 — Platform Completion & Production Readiness (APPROVED — Bloco C materializado via EWO-015). PI-006 — Infrastructure Layer (COMPLETED). PI-005 — Application Layer (COMPLETED). Core API Frozen (7 componentes estáveis).
+PI-013 — Platform Maturity & Intelligence (APPROVED — Onda 8). PI-012 — Platform Completion & Production Readiness (COMPLETED). Core API Frozen (7 componentes estáveis).
 
 ## PS Atual
 
-PS#053 — Engineering Closure EWO-015 (concluído)
+PS#054 — EWO-016 Slice 1: Vercel Deployment Foundation (concluído)
 
 ## Dashboard Executivo
 
@@ -79,8 +79,8 @@ PS#053 — Engineering Closure EWO-015 (concluído)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#053
-Marco: EWO-015 (Comercialização — Bloco C / PI-012)
+PS Atual: PS#054
+Marco: EWO-016 (Production Deployment — Slice 1/5)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -92,7 +92,7 @@ Marco: EWO-015 (Comercialização — Bloco C / PI-012)
 
 ## Objetivos Ativos
 
-EWO-015 CONCLUÍDA. Bloco C da PI-012 (Comercialização) materializado: gateway de pagamento (IPaymentGateway + Stripe adapter), billing real (job, retry, webhook) e checkout integrado (orquestrador + formulário). Próxima fase: definição do roadmap pós-PI-012.
+EWO-016 em execução (Bloco A da PI-013). Slice 1 concluída: Vercel configurada como plataforma oficial (ADR-013-001), Cloudflare substituída, documentação de deploy criada. Próxima Slice: CI/CD com GitHub Actions + Vercel.
 
 ## DEC Ativas
 
@@ -108,7 +108,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-EWO-015 CONCLUÍDA. Bloco C da PI-012 (Comercialização) materializado. Próxima etapa: **definição do roadmap** — possíveis frentes incluem refinamento do checkout, integração com provedor Asaas, ou nova EWO conforme priorização estratégica.
+EWO-016 em andamento (5 Slices). Slice 1 (Vercel Deployment Foundation) concluída. Próxima: Slice 2 — CI/CD Pipeline com GitHub Actions + Vercel.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -130,10 +130,13 @@ EWO-015 CONCLUÍDA. Bloco C da PI-012 (Comercialização) materializado. Próxim
 - **EWO-003 CONCLUÍDA** — Application Layer implementada (8 Slices, 528 testes, 14 Services, 9 Ports, 15 DTOs)
 - **EWO-004 CONCLUÍDA** — Infrastructure Layer implementada (7 Slices, 630 testes, 10 Ports → 14+ Adapters)
 - **EWO-015 CONCLUÍDA** — Comercialização implementada (4 Slices, 12 testes, IPaymentGateway, BillingJobService, CheckoutOrchestrator)
+- **PI-013 APROVADA** — Platform Maturity & Intelligence (Onda 8), 5 blocos, 5 EWOs
+- **ER-013 APROVADA** — Engineering Review da PI-013, 5 NCs corrigidas
+- **EWO-016 EM EXECUÇÃO** — Production Deployment (Slice 1 concluída: Vercel)
 
 ### Próxima Frente de Engenharia
 
-EWO-015 CONCLUÍDA. Bloco C da PI-012 materializado. Próxima etapa: definição do roadmap pós-PI-012.
+EWO-016 — Production Deployment (5 Slices). Slice 1 concluída. Próxima: Slice 2 — CI/CD Pipeline com GitHub Actions + Vercel.
 
 ### Documentação Prevista
 
@@ -152,6 +155,10 @@ EWO-015 CONCLUÍDA. Bloco C da PI-012 materializado. Próxima etapa: definição
 | PI-012           | Platform Completion & Production Readiness | ✅ Aprovada |
 | ER-012           | Engineering Review da PI-012          | ✅ Aprovada  |
 | EWO-015          | Implementação da Comercialização (Bloco C) | ✅ Concluída |
+| PI-013           | Platform Maturity & Intelligence (Onda 8) | ✅ Aprovada |
+| ER-013           | Engineering Review da PI-013          | ✅ Aprovada  |
+| EWO-016          | Production Deployment (Bloco A)       | ▶️ Em execução |
+| DEPLOY.md        | Documentação de deploy                 | ✅ Criado |
 
 ### Observações Relevantes
 
@@ -170,6 +177,9 @@ EWO-015 CONCLUÍDA. Bloco C da PI-012 materializado. Próxima etapa: definição
 - Nenhum Core Domain alterado durante toda a EWO-015
 - Conhecimento consolidado: KC-001 a KC-008 (registrados nas Engineering Reviews), KB-006, KB-008
 - Backlog estratégico com 3 BKs ativos (BK-005, BK-006, BK-008) — BK-007 (Comercialização) concluído
+- **EWO-016 em execução** — Bloco A da PI-013 (Production Deployment), 5 Slices previstas
+- **Plataforma oficial: Vercel** (ADR-013-001) — Cloudflare Workers substituída
+- **CI/CD:** Vercel GitHub Integration (deploy automático por git push) + GitHub Actions (quality gates)
 
 ---
 
