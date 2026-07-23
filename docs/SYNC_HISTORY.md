@@ -14,6 +14,24 @@
 
 # Registro de Sincronizações
 
+## EWO-013 Slice 2 — Alertas 15 Presentation ✅
+
+**Data:** 22/07/2026
+
+### Artefatos
+
+- Feature `features/alerts/`: AlertsPage, AlertCard, AlertRuleForm, AlertRuleList, loading/empty/error
+- Hooks: useAlertsQuery, useAlertRulesQuery, useConfirmAlertMutation
+- ViewModel: mapeamento com severidade colorida
+- Composition Root: CriarAlerta, AtualizarAlerta, ConfirmarAlerta, ObterAlerta, ListarAlertasAtivos
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.03
+- PROJECT_STATUS v2.16
+
+---
+
 ## EWO-013 Slice 1 — Backtests 14 Presentation ✅
 
 **Data:** 22/07/2026

@@ -114,7 +114,17 @@ import { ObterQuestionarioService } from "@/application/services/obter-questiona
 import { ExecutarBacktestService } from "@/application/services/executar-backtest-service";
 import { ObterBacktestService } from "@/application/services/obter-backtest-service";
 import { ListarEstrategiasService } from "@/application/services/listar-estrategias-service";
-import type { ExecutarBacktestCommand } from "@/application/commands/executar-backtest";
+import { CriarAlertaService } from "@/application/services/criar-alerta-service";
+import { AtualizarAlertaService } from "@/application/services/atualizar-alerta-service";
+import { ConfirmarAlertaService } from "@/application/services/confirmar-alerta-service";
+import { ObterAlertaService } from "@/application/services/obter-alerta-service";
+import { ListarAlertasAtivosService } from "@/application/services/listar-alertas-ativos-service";
+import type { CriarAlertaCommand } from "@/application/commands/criar-alerta";
+import type { AtualizarAlertaCommand } from "@/application/commands/atualizar-alerta";
+import type { ConfirmarAlertaCommand } from "@/application/commands/confirmar-alerta";
+import type { ObterAlertaQuery } from "@/application/queries/obter-alerta";
+import type { ListarAlertasAtivosQuery } from "@/application/queries/listar-alertas-ativos";
+import type { IAlertRepository } from "@/application/ports/alert-repository";
 import type { ObterBacktestQuery } from "@/application/queries/obter-backtest";
 import type { ListarEstrategiasQuery } from "@/application/queries/listar-estrategias";
 import type { IBacktestRepository } from "@/application/ports/backtest-repository";
@@ -162,6 +172,7 @@ interface PresentationDispatcherDeps {
   investorProfileRepository?: import("@/application/ports/investor-profile-repository").IInvestorProfileRepository;
   glossaryRepository?: IGlossaryRepository;
   backtestRepository?: IBacktestRepository;
+  alertRepository?: IAlertRepository;
 }
 
 /**
@@ -191,6 +202,7 @@ export function createPresentationDispatcher({
   investorProfileRepository,
   glossaryRepository,
   backtestRepository,
+  alertRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -415,6 +427,28 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterQuery("ObterScorecardQuery", (query) =>
       new ObterScorecardService(comparisonRepository).Execute(query as ObterScorecardQuery),
+    );
+  }
+
+  if (alertRepository) {
+    dispatcher.RegisterCommand("CriarAlertaCommand", (command) =>
+      new CriarAlertaService(alertRepository).Execute(command as CriarAlertaCommand),
+    );
+
+    dispatcher.RegisterCommand("AtualizarAlertaCommand", (command) =>
+      new AtualizarAlertaService(alertRepository).Execute(command as AtualizarAlertaCommand),
+    );
+
+    dispatcher.RegisterCommand("ConfirmarAlertaCommand", (command) =>
+      new ConfirmarAlertaService(alertRepository).Execute(command as ConfirmarAlertaCommand),
+    );
+
+    dispatcher.RegisterQuery("ObterAlertaQuery", (query) =>
+      new ObterAlertaService(alertRepository).Execute(query as ObterAlertaQuery),
+    );
+
+    dispatcher.RegisterQuery("ListarAlertasAtivosQuery", (query) =>
+      new ListarAlertasAtivosService(alertRepository).Execute(query as ListarAlertasAtivosQuery),
     );
   }
 

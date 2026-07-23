@@ -1,6 +1,7 @@
-import { Alert, AlertId, type AlertProps } from "./alert";
+import { Alert, type AlertProps } from "./alert";
+import { AlertId, AlertDeliveryId } from "./alert-types";
 import { AlertRule } from "./alert-rule";
-import { AlertDelivery, AlertDeliveryId } from "./alert-delivery";
+import { AlertDelivery } from "./alert-delivery";
 import type { AlertSeverityLevel } from "./alert-types";
 
 export type AlertResult = {

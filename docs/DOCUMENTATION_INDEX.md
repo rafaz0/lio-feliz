@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.02
+**Versão da Documentação:** 2.03
 
 **Status:** APROVADO
 
@@ -231,6 +231,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.03
+
+- **EWO-013 Slice 2 (Alertas 15 Presentation) CONCLUÍDO** — Feature `features/alerts/` criada: AlertsPage, AlertCard (severidade colorida), AlertRuleForm (gatilho/canal), AlertRuleList (toggle enable/disable), hooks (useAlertsQuery, useAlertRulesQuery, useConfirmAlertMutation), viewmodel. Composition Root registrado (CriarAlerta, AtualizarAlerta, ConfirmarAlerta, ObterAlerta, ListarAlertasAtivos). Build green. DOCUMENTATION_INDEX v2.03.
 
 ## Versão 2.02
 
