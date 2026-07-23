@@ -14,6 +14,26 @@
 
 # Registro de Sincronizações
 
+## Pendência de plataforma de hospedagem registrada
+
+**Data:** 22/07/2026
+
+### Documentos
+
+- PROJECT_BOOTSTRAP.md v2.59 → v2.60 (seção Infraestrutura e Deploy)
+- DOCUMENTATION_INDEX v2.10 → v2.11
+- PROJECT_STATUS v2.23 → v2.24
+
+### Pendências Registradas
+
+- TD-DEPLOY-001: Definir plataforma oficial de hospedagem
+- TD-DEPLOY-002: Configurar deploy automático
+- TD-DEPLOY-003: Configurar secrets no GitHub
+- TD-DEPLOY-004: Remover config provisória Cloudflare
+- TD-E2E-INFRA-001: Ambiente para testes E2E
+
+---
+
 ## EWO-014 Slice 4 — Performance ✅
 
 **Data:** 22/07/2026

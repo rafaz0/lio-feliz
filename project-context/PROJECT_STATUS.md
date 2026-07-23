@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.23
+**Versão:** 2.24
 
 **Status:** APROVADO
 
@@ -99,8 +99,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.10 (reflete EWO-014 Slice 4)
-- `project-context/PROJECT_STATUS.md`: v2.23 (reflete EWO-014 Slice 4)
+- `docs/DOCUMENTATION_INDEX.md`: v2.11 (reflete pendência deploy)
+- `project-context/PROJECT_STATUS.md`: v2.24 (reflete pendência deploy)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -110,6 +110,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.24
+
+- **Pendência de plataforma de hospedagem registrada** — CI/CD pipeline operacional (lint, vitest, build). Deploy definido como provisório (Cloudflare Workers), dependente de definição oficial da plataforma. Pendências TD-DEPLOY-001 a 004 e TD-E2E-INFRA-001 registradas no PROJECT_BOOTSTRAP.md v2.60. SECRET\_CLOUDFLARE\_API\_TOKEN não configurado (não crítico — deploy é responsabilidade futura). DOCUMENTATION_INDEX v2.11, PROJECT_STATUS v2.24.
 
 ### Versão 2.23
 

@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.10
+**Versão da Documentação:** 2.11
 
 **Status:** APROVADO
 
@@ -238,6 +238,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.11
+
+- **Pendência de plataforma de hospedagem registrada** — Deploy documentado como provisório (Cloudflare Workers). Pendências TD-DEPLOY-001 a 004 e TD-E2E-INFRA-001 registradas no PROJECT_BOOTSTRAP.md v2.60. DOCUMENTATION_INDEX v2.11.
 
 ## Versão 2.10
 

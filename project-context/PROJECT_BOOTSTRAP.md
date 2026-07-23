@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.59
+**Versão:** 2.60
 
 **Status:** APROVADO
 
@@ -873,6 +873,51 @@ Utilizar apenas informações objetivas e verificáveis. Não repetir informaç�
 - Não repetir informações já apresentadas durante a resposta
 - Facilitar a retomada da conversa em novos chats
 - Obrigatório em toda Entrega Relevante (GOV-016)
+
+---
+
+## Infraestrutura e Deploy
+
+### Estado Atual do CI/CD
+
+A infraestrutura de CI/CD foi implementada e validada na EWO-014 (Slice 1 — CI/CD Pipeline). O pipeline executa 3 etapas de quality gate:
+
+1. **Lint** — `eslint .` (0 errors, 89 warnings)
+2. **Unit tests** — `vitest run` (137 passed, 2 skipped — dívida documentada)
+3. **Build** — `vite build`
+
+O pipeline está operacional e bloqueia merges que não passem nos quality gates.
+
+### Plataforma de Hospedagem
+
+A plataforma de hospedagem oficial **ainda não foi definida**. As opções consideradas incluem:
+
+- **Cloudflare Workers** — utilizada atualmente de forma provisória (via `wrangler deploy`)
+- **Vercel** — compatível com TanStack Start
+- **Netlify** — compatível com TanStack Start
+- **Outra** — a ser definida posteriormente
+
+### Deploy Automático
+
+O pipeline contém uma etapa `deploy` configurada para Cloudflare Workers, mas que falha porque o secret `CLOUDFLARE_API_TOKEN` não está configurado no repositório. Esta configuração é **provisória** e não representa uma decisão arquitetural definitiva.
+
+Após a definição da plataforma oficial:
+
+- O pipeline de deploy deverá ser adaptado
+- O `wrangler.json`/`wrangler.toml` deverá ser substituído pela configuração correspondente
+- Os secrets necessários deverão ser configurados no GitHub
+
+### Pendências Oficiais
+
+| ID | Descrição | Prioridade |
+|----|-----------|------------|
+| TD-DEPLOY-001 | Definir plataforma oficial de hospedagem | Alta |
+| TD-DEPLOY-002 | Configurar deploy automático na plataforma escolhida | Alta |
+| TD-DEPLOY-003 | Configurar secrets/credenciais no repositório GitHub | Alta |
+| TD-DEPLOY-004 | Remover configuração provisória do Cloudflare Workers | Média |
+| TD-E2E-INFRA-001 | Configurar ambiente para testes E2E (Supabase) | Média |
+
+---
 
 ## Templates Oficiais
 
