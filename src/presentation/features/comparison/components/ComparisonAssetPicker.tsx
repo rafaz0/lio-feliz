@@ -1,6 +1,7 @@
 import { useState } from "react";
-// eslint-disable-next-line no-restricted-imports
-import type { ComparisonScope } from "@/core/domain/comparison";
+
+export type ComparisonScopeType = "byAsset" | "byType" | "bySector";
+export type ComparisonScope = { type: ComparisonScopeType; filter?: string };
 
 export interface AssetOption {
   ticker: string;

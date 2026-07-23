@@ -1,6 +1,5 @@
 import { metricLabel, formatMetricValue } from "../viewmodels/comparison.view-model";
-// eslint-disable-next-line no-restricted-imports
-import type { ComparisonMetric } from "@/core/domain/comparison";
+import type { ComparisonMetric } from "../viewmodels/comparison.view-model";
 
 interface ScorecardGridProps {
   metrics: ComparisonMetric[];

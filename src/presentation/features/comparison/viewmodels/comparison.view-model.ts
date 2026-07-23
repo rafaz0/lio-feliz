@@ -1,5 +1,15 @@
-// eslint-disable-next-line no-restricted-imports
-import type { ComparisonMetric, ComparisonScope } from "@/core/domain/comparison";
+export type ComparisonMetric = {
+  assetTicker: string;
+  metricType: string;
+  value: number;
+  rank: number;
+  benchmarkValue: number;
+};
+
+export type ComparisonScope = {
+  type: string;
+  filter?: string;
+};
 
 export interface ComparisonSetViewModel {
   readonly id: string;

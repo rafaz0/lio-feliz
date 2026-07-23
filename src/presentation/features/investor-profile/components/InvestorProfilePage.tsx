@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useProfileQuery, useQuestionnaireQuery } from "../hooks/use-profile-query";
 import { toProfileViewModel } from "../viewmodels/investor-profile.view-model";
-// eslint-disable-next-line no-restricted-imports
-import type { Answer } from "@/core/domain/investor-profile";
+export type Answer = { questionId: string; value: number; weight: number };
 
 interface InvestorProfilePageProps {
   userId: string;
