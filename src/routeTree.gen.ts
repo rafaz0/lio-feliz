@@ -30,6 +30,7 @@ import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedProvisionadorRouteImport } from './routes/_authenticated/provisionador'
 import { Route as AuthenticatedMetasRouteImport } from './routes/_authenticated/metas'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedCheckoutRouteImport } from './routes/_authenticated/checkout'
 import { Route as AuthenticatedCarteiraRouteImport } from './routes/_authenticated/carteira'
 import { Route as _authRegisterRouteImport } from './routes/__auth/register'
 import { Route as _authLoginRouteImport } from './routes/__auth/login'
@@ -156,6 +157,11 @@ const AuthenticatedMetasRoute = AuthenticatedMetasRouteImport.update({
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCheckoutRoute = AuthenticatedCheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedCarteiraRoute = AuthenticatedCarteiraRouteImport.update({
@@ -301,6 +307,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof _authLoginRoute
   '/register': typeof _authRegisterRoute
   '/carteira': typeof AuthenticatedCarteiraRouteWithChildren
+  '/checkout': typeof AuthenticatedCheckoutRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/metas': typeof AuthenticatedMetasRoute
   '/provisionador': typeof AuthenticatedProvisionadorRoute
@@ -344,6 +351,7 @@ export interface FileRoutesByTo {
   '/forgot-password': typeof _authForgotPasswordRoute
   '/login': typeof _authLoginRoute
   '/register': typeof _authRegisterRoute
+  '/checkout': typeof AuthenticatedCheckoutRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/metas': typeof AuthenticatedMetasRoute
   '/provisionador': typeof AuthenticatedProvisionadorRoute
@@ -390,6 +398,7 @@ export interface FileRoutesById {
   '/__auth/login': typeof _authLoginRoute
   '/__auth/register': typeof _authRegisterRoute
   '/_authenticated/carteira': typeof AuthenticatedCarteiraRouteWithChildren
+  '/_authenticated/checkout': typeof AuthenticatedCheckoutRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/metas': typeof AuthenticatedMetasRoute
   '/_authenticated/provisionador': typeof AuthenticatedProvisionadorRoute
@@ -436,6 +445,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/carteira'
+    | '/checkout'
     | '/dashboard'
     | '/metas'
     | '/provisionador'
@@ -479,6 +489,7 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/register'
+    | '/checkout'
     | '/dashboard'
     | '/metas'
     | '/provisionador'
@@ -524,6 +535,7 @@ export interface FileRouteTypes {
     | '/__auth/login'
     | '/__auth/register'
     | '/_authenticated/carteira'
+    | '/_authenticated/checkout'
     | '/_authenticated/dashboard'
     | '/_authenticated/metas'
     | '/_authenticated/provisionador'
@@ -723,6 +735,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/checkout': {
+      id: '/_authenticated/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof AuthenticatedCheckoutRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/carteira': {
@@ -946,6 +965,7 @@ const AuthenticatedPortfolioPortfolioIdRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCarteiraRoute: typeof AuthenticatedCarteiraRouteWithChildren
+  AuthenticatedCheckoutRoute: typeof AuthenticatedCheckoutRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedMetasRoute: typeof AuthenticatedMetasRoute
   AuthenticatedProvisionadorRoute: typeof AuthenticatedProvisionadorRoute
@@ -957,6 +977,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCarteiraRoute: AuthenticatedCarteiraRouteWithChildren,
+  AuthenticatedCheckoutRoute: AuthenticatedCheckoutRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedMetasRoute: AuthenticatedMetasRoute,
   AuthenticatedProvisionadorRoute: AuthenticatedProvisionadorRoute,
