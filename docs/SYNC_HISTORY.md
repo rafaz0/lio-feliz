@@ -14,6 +14,23 @@
 
 # Registro de Sincronizações
 
+## EWO-014 Slice 4 — Performance ✅
+
+**Data:** 22/07/2026
+
+### Otimizações
+
+- TanStack Query: staleTime 30s → 300s, gcTime 5min → 10min
+- SSR streaming: `stream: true` em start.ts
+- Redução estimada de ~83% em requisições repetidas
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.10
+- PROJECT_STATUS v2.23
+
+---
+
 ## EWO-014 Slice 3 — Testes E2E ✅
 
 **Data:** 22/07/2026

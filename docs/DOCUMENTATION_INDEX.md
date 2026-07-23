@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.09
+**Versão da Documentação:** 2.10
 
 **Status:** APROVADO
 
@@ -235,6 +235,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.10
+
+- **EWO-014 Slice 4 (Performance) CONCLUÍDO** — TanStack Query staleTime aumentado para 300s (5min), gcTime 600s (10min), SSR streaming ativado. Build green. DOCUMENTATION_INDEX v2.10.
 
 ## Versão 2.09
 

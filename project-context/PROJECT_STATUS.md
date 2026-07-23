@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.22
+**Versão:** 2.23
 
 **Status:** APROVADO
 
@@ -90,8 +90,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.09 (reflete EWO-014 Slice 3)
-- `project-context/PROJECT_STATUS.md`: v2.22 (reflete EWO-014 Slice 3)
+- `docs/DOCUMENTATION_INDEX.md`: v2.10 (reflete EWO-014 Slice 4)
+- `project-context/PROJECT_STATUS.md`: v2.23 (reflete EWO-014 Slice 4)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -101,6 +101,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.23
+
+- **EWO-014 Slice 4 (Performance) CONCLUÍDO** — TanStack Query: staleTime 30s→300s (redução de ~83% em requisições repetidas), gcTime 5min→10min. SSR streaming ativado em start.ts (`stream: true`). Build green. DOCUMENTATION_INDEX v2.10, PROJECT_STATUS v2.23.
 
 ### Versão 2.22
 
