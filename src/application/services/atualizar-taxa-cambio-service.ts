@@ -17,7 +17,10 @@ export class AtualizarTaxaCambioService implements IApplicationService<
       return new ValidationError("VALID_ERROR", "Taxa de cambio deve ser maior que zero");
     }
 
-    const pair = CurrencyPair.create(command.fromCurrency as import("@/core/domain/international").CurrencyCode, command.toCurrency as import("@/core/domain/international").CurrencyCode);
+    const pair = CurrencyPair.create(
+      command.fromCurrency as import("@/core/domain/international").CurrencyCode,
+      command.toCurrency as import("@/core/domain/international").CurrencyCode,
+    );
 
     const rate = ExchangeRate.create(
       command.ticker,

@@ -81,8 +81,9 @@ export const Route = createFileRoute("/fii/$ticker")({
     </div>
   ),
   errorComponent: ({ error, reset }: { error: Error; reset: () => void }) => {
-    console.error(error);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
+    console.error(error);
     return (
       <div className="min-h-screen bg-background text-foreground">
         <SiteHeader />

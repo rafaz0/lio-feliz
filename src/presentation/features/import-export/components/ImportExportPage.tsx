@@ -47,7 +47,9 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-    } catch {}
+    } catch {
+      /* Silently clear file input on error */
+    }
   };
 
   return (

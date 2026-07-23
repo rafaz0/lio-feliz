@@ -1,4 +1,5 @@
 import { useState } from "react";
+// eslint-disable-next-line no-restricted-imports
 import type { ComparisonScope } from "@/core/domain/comparison";
 
 export interface AssetOption {

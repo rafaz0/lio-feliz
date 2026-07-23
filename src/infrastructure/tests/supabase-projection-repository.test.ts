@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { SupabaseProjectionRepository } from "@/infrastructure/repositories/supabase-projection-repository";
 
-type QueryChain = Record<string, any> & { then?: Function };
+type QueryChain = Record<string, any> & { then?: (...args: unknown[]) => unknown };
 
 function createMockSupabase() {
   const methods = ["select", "eq", "gte", "lte", "order", "single"];

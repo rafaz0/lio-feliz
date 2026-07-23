@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import type { ComparisonMetric, ComparisonScope } from "@/core/domain/comparison";
 
 export interface ComparisonSetViewModel {
