@@ -6,6 +6,8 @@
 
 **Última atualização:** 23/07/2026
 
+**Nota:** Este documento substitui toda configuração provisória da Cloudflare Workers. A plataforma oficial é Vercel.
+
 ---
 
 ## Plataforma Oficial
@@ -32,6 +34,7 @@ Todas as variáveis devem ser configuradas no Vercel Dashboard (Settings → Env
 
 | Variável | Descrição | Origem |
 |----------|-----------|--------|
+| `NITRO_PRESET` | **`vercel`** — define o preset do Nitro para Vercel | Fixo (configurar no Vercel Dashboard) |
 | `SUPABASE_URL` | URL do projeto Supabase | Supabase Dashboard → Settings → API |
 | `SUPABASE_PUBLISHABLE_KEY` | Chave anônima do Supabase | Supabase Dashboard → Settings → API |
 | `BRAPI_TOKEN` | Token da API BRAPI | [brapi.dev](https://brapi.dev) → Dashboard |
@@ -49,6 +52,31 @@ Todas as variáveis devem ser configuradas no Vercel Dashboard (Settings → Env
 |----------|-----------|
 | `STRIPE_SECRET_KEY` | Chave secreta do Stripe (começa com `sk_live_` ou `sk_test_`) |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Chave publicável do Stripe (começa com `pk_live_` ou `pk_test_`) |
+
+---
+
+## Configuração do Build (Nitro Preset)
+
+O build usa o **Nitro** como engine de server-side. O preset determina o formato de output.
+
+### Comportamento
+
+| Ambiente | Preset | Configuração |
+|----------|--------|-------------|
+| **Local (dev)** | `cloudflare-module` | Default do `@lovable.dev/vite-tanstack-config`. `npm run dev` funciona normalmente. |
+| **Lovable sandbox** | `cloudflare-module` | Forçado pelo Lovable. Output em `dist/`. |
+| **Vercel (produção)** | `vercel` | Definido via `NITRO_PRESET=vercel` nas env vars do Vercel Dashboard. |
+| **Build local para Vercel** | `vercel` | `$env:NITRO_PRESET='vercel'; npm run build` (PowerShell) |
+
+### Sobre o Nitro Preset
+
+Nitro v3 suporta auto-detecção do ambiente (`NITRO_PRESET`). Ao definir `NITRO_PRESET=vercel` no Vercel Dashboard:
+
+1. O build (`npm run build`) executa com preset `vercel`
+2. Nitro gera serverless functions compatíveis com Vercel
+3. O output é automaticamente detectado pelo Vercel
+
+> A configuração provisória da Cloudflare Workers (`copy-server-js-compat` plugin) foi removida na EWO-016 Slice 2.
 
 ---
 
