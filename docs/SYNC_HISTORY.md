@@ -14,6 +14,23 @@
 
 # Registro de Sincronizações
 
+## EWO-014 Slice 1 — CI/CD Pipeline ✅
+
+**Data:** 22/07/2026
+
+### Artefatos
+
+- `.github/workflows/cl-cd.yml` — Workflow GitHub Actions
+- Jobs: quality (lint, vitest, build) → deploy (wrangler)
+- Node 22, cache npm, push na main
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.07
+- PROJECT_STATUS v2.20
+
+---
+
 ## EWO-014 — Production Readiness (CI/CD, Observabilidade, E2E, Performance) 🟢 APROVADA
 
 **Data:** 22/07/2026

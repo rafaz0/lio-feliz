@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.06
+**Versão da Documentação:** 2.07
 
 **Status:** APROVADO
 
@@ -235,6 +235,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.07
+
+- **EWO-014 Slice 1 (CI/CD) CONCLUÍDO** — Pipeline GitHub Actions criado: lint, vitest, build, deploy. Workflow versionado em `.github/workflows/ci-cd.yml`. Build green. DOCUMENTATION_INDEX v2.07.
 
 ## Versão 2.06
 
