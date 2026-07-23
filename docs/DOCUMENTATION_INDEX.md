@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.11
+**Versão da Documentação:** 2.12
 
 **Status:** APROVADO
 
@@ -209,6 +209,10 @@ Engineering Work Order para o Bloco A (Completude UI): Backtests 14, Alertas 15,
 
 Engineering Work Order para o Bloco B (Production Readiness): CI/CD Pipeline, Observabilidade (Sentry), Testes E2E (Playwright), Performance. 5 Slices.
 
+🔴 EWO-015.md 🟢 (APPROVED)
+
+Engineering Work Order para o Bloco C (Comercialização): IPaymentGateway, Billing Real (job mensal + retry + webhook), Checkout Integrado. 4 Slices. ADR-012-001, ADR-012-002. 0 novos ports.
+
 ---
 
 ## Legenda
@@ -238,6 +242,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.12
+
+- **EWO-015 CRIADA (APPROVED)** — Engineering Work Order para o Bloco C (Comercialização): 4 Slices (IPaymentGateway, Billing Real, Checkout Integrado, Closure). ADR-012-001 e ADR-012-002. 0 novos ports. Nenhum Core Domain alterado. DOCUMENTATION_INDEX v2.12.
 
 ## Versão 2.11
 

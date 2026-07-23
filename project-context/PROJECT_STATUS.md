@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.24
+**Versão:** 2.25
 
 **Status:** APROVADO
 
@@ -85,7 +85,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `architecture-lab/EWO-011.md`: v1.0 (CLOSED) — Bloco A (Assinaturas 19, Perfil do Investidor 20), 7 Slices
 - `architecture-lab/EWO-012.md`: v1.0 (CLOSED) — Bloco B (Onboarding 21, Personalização 22), 7 Slices
 - `architecture-lab/PI-012.md`: v1.0 (APPROVED) — Platform Completion & Production Readiness (Onda 7)
-- `architecture-lab/EWO-014.md`: v1.0 (APPROVED) — Bloco B (Production Readiness), 5 Slices
+- `architecture-lab/EWO-015.md`: v1.0 (APPROVED) — Bloco C (Comercialização), 4 Slices
+- `architecture-lab/EWO-014.md`: v1.0 (APPROVED)
 - `architecture-lab/ER-011.md`: v1.0 (APPROVED)
 - `architecture-lab/ER-010.md`: v1.0 (APPROVED) — Engineering Review da PI-010 (🟢 APROVADO)
 - `architecture-lab/EWO-009.md`: v1.0 (APPROVED) — Onda 4 (Backtests 14, Alertas 15, Comparação Avançada 16), 10 Slices
@@ -99,8 +100,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.11 (reflete pendência deploy)
-- `project-context/PROJECT_STATUS.md`: v2.24 (reflete pendência deploy)
+- `docs/DOCUMENTATION_INDEX.md`: v2.12 (reflete EWO-015 APPROVED)
+- `project-context/PROJECT_STATUS.md`: v2.25 (reflete EWO-015 APPROVED)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -110,6 +111,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.25
+
+- **EWO-015 CRIADA (APPROVED)** — Engineering Work Order para o Bloco C (Comercialização): 4 Slices. IPaymentGateway (Stripe adapter), Billing Real (job mensal + retry + webhook), Checkout Integrado (CheckoutOrchestrator + CheckoutForm), Engineering Closure. ADR-012-001 e ADR-012-002. 0 novos ports. 0 comandos novos. Nenhum Core Domain alterado. PI-012 (Bloco C) pronta para implementação. DOCUMENTATION_INDEX v2.12, PROJECT_STATUS v2.25.
 
 ### Versão 2.24
 

@@ -14,6 +14,25 @@
 
 # Registro de Sincronizações
 
+## EWO-015 — Comercialização (Gateway, Billing, Checkout) 🟢 APROVADA
+
+**Data:** 22/07/2026
+
+### Estrutura
+
+- 4 Slices: IPaymentGateway, Billing Real, Checkout Integrado, Closure
+- ADR-012-001 e ADR-012-002 respeitados
+- 0 novos ports, 0 comandos novos
+- Nenhum Core Domain alterado
+
+### Documentos
+
+- architecture-lab/EWO-015.md v1.0
+- DOCUMENTATION_INDEX v2.12
+- PROJECT_STATUS v2.25
+
+---
+
 ## Pendência de plataforma de hospedagem registrada
 
 **Data:** 22/07/2026
