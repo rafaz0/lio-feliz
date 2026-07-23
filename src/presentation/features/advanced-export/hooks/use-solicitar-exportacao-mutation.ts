@@ -11,9 +11,13 @@ export function useSolicitarExportacaoMutation(portfolioId: string) {
   return useMutation({
     mutationFn: async (templateId: string): Promise<ExportJobDto> => {
       const r = await dispatcher.DispatchCommand<ExportJobDto>({
-        type: "SolicitarExportacaoCommand", templateId, portfolioId, parameters: {},
+        type: "SolicitarExportacaoCommand",
+        templateId,
+        portfolioId,
+        parameters: {},
       } as unknown as ICommand);
-      if (r instanceof Error) throw r; return r;
+      if (r instanceof Error) throw r;
+      return r;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: EXPORTS_QUERY_KEYS.jobs(portfolioId) });

@@ -132,17 +132,15 @@ describe("Fluxo Completo - Command Services via Dispatcher", () => {
     const subscriptionRepo = {
       ObterPlanoAtivo: vi.fn().mockResolvedValue(null),
       Salvar: vi.fn().mockResolvedValue(undefined),
-      ListarPlanosDisponiveis: vi
-        .fn()
-        .mockResolvedValue([
-          {
-            planoId: "premium",
-            nome: "Premium",
-            descricao: "Premium",
-            precoMensal: 29.9,
-            recursos: ["exportar"],
-          },
-        ]),
+      ListarPlanosDisponiveis: vi.fn().mockResolvedValue([
+        {
+          planoId: "premium",
+          nome: "Premium",
+          descricao: "Premium",
+          precoMensal: 29.9,
+          recursos: ["exportar"],
+        },
+      ]),
     };
 
     const notificationPort = {

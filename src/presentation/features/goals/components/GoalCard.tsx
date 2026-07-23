@@ -17,9 +17,7 @@ export function GoalCard({ goal }: GoalCardProps) {
           <h3 className="truncate text-sm font-medium" title={goal.name}>
             {goal.name}
           </h3>
-          <p className="mt-0.5 text-xs text-muted-foreground">
-            {categoryToLabel(goal.category)}
-          </p>
+          <p className="mt-0.5 text-xs text-muted-foreground">{categoryToLabel(goal.category)}</p>
         </div>
         <span
           data-testid={`goal-status-${goal.id}`}

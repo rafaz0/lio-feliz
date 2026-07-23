@@ -7,10 +7,15 @@ import type { ApplicationError } from "@/application/errors/application-error";
 
 const HEADER_CSV = "Ano,Mês,Ticker,Operação,Quantidade,Preço,Valor Total,Ganho,Imposto Devido";
 
-export class ExportarDeclaracaoService implements IApplicationService<ExportarDeclaracaoCommand, DadosExportadosDto> {
+export class ExportarDeclaracaoService implements IApplicationService<
+  ExportarDeclaracaoCommand,
+  DadosExportadosDto
+> {
   constructor(private readonly projectionRepo: IProjectionRepository) {}
 
-  async Execute(command: ExportarDeclaracaoCommand): Promise<DadosExportadosDto | ApplicationError> {
+  async Execute(
+    command: ExportarDeclaracaoCommand,
+  ): Promise<DadosExportadosDto | ApplicationError> {
     if (!command.portfolioId) {
       return new ValidationError("VALID_ERROR", "portfolioId é obrigatório");
     }
@@ -20,7 +25,9 @@ export class ExportarDeclaracaoService implements IApplicationService<ExportarDe
     }
 
     const posicoes = await this.projectionRepo.ObterPosicoes(command.portfolioId);
-    const proventos = await this.projectionRepo.ObterProventos(command.portfolioId, { ano: command.ano });
+    const proventos = await this.projectionRepo.ObterProventos(command.portfolioId, {
+      ano: command.ano,
+    });
 
     let conteudo = "";
     const extensao = command.formato === "pdf" ? "pdf" : "csv";
@@ -49,17 +56,9 @@ export class ExportarDeclaracaoService implements IApplicationService<ExportarDe
     if (includes.includes("operacoes") || includes.length === 0) {
       for (const p of posicoes) {
         linhas.push(
-          [
-            ano,
-            "12",
-            p.ticker,
-            "POSICAO",
-            p.quantidade,
-            0,
-            p.valorTotal.toFixed(2),
-            0,
-            0,
-          ].join(","),
+          [ano, "12", p.ticker, "POSICAO", p.quantidade, 0, p.valorTotal.toFixed(2), 0, 0].join(
+            ",",
+          ),
         );
       }
     }
@@ -67,7 +66,17 @@ export class ExportarDeclaracaoService implements IApplicationService<ExportarDe
     if (includes.includes("proventos") || includes.length === 0) {
       for (const p of proventos) {
         linhas.push(
-          [ano, p.data.slice(0, 7), p.ticker, p.tipo.toUpperCase(), 0, 0, p.valor.toFixed(2), 0, 0].join(","),
+          [
+            ano,
+            p.data.slice(0, 7),
+            p.ticker,
+            p.tipo.toUpperCase(),
+            0,
+            0,
+            p.valor.toFixed(2),
+            0,
+            0,
+          ].join(","),
         );
       }
     }

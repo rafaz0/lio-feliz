@@ -54,11 +54,7 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
   ): Result<FinancialGoal, DomainError> {
     if (!name || name.trim().length === 0) {
       return Result.fail(
-        new DomainError(
-          "EMPTY_GOAL_NAME",
-          "Goal name cannot be empty",
-          "INVARIANT_VIOLATION",
-        ),
+        new DomainError("EMPTY_GOAL_NAME", "Goal name cannot be empty", "INVARIANT_VIOLATION"),
       );
     }
 
@@ -98,7 +94,14 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
     );
 
     goal.addDomainEvent(
-      new GoalCreatedEvent(id.value, correlationId, name.trim(), roundedTarget, targetDate, category),
+      new GoalCreatedEvent(
+        id.value,
+        correlationId,
+        name.trim(),
+        roundedTarget,
+        targetDate,
+        category,
+      ),
     );
 
     return Result.ok(goal);
@@ -145,7 +148,13 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
     }
 
     const contributionId = ContributionId.create(`${this.id.value}-${Date.now()}`);
-    const contributionResult = GoalContribution.create(contributionId, this.id.value, amount, date, type);
+    const contributionResult = GoalContribution.create(
+      contributionId,
+      this.id.value,
+      amount,
+      date,
+      type,
+    );
 
     if (contributionResult.isFailure) {
       return Result.fail(contributionResult.error!);
@@ -182,7 +191,13 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
     );
 
     goal.addDomainEvent(
-      new GoalContributedEvent(this.id.value, correlationId, roundedAmount, newAmount, this.targetAmount),
+      new GoalContributedEvent(
+        this.id.value,
+        correlationId,
+        roundedAmount,
+        newAmount,
+        this.targetAmount,
+      ),
     );
 
     if (isNowCompleted) {
@@ -235,7 +250,10 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
     return Result.ok(goal);
   }
 
-  cancel(correlationId: string, reason: string = "USER_CANCELLED"): Result<FinancialGoal, DomainError> {
+  cancel(
+    correlationId: string,
+    reason: string = "USER_CANCELLED",
+  ): Result<FinancialGoal, DomainError> {
     if (this.status === GoalStatus.COMPLETED) {
       return Result.fail(
         new DomainError(
@@ -358,11 +376,7 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
 
     if (!name || name.trim().length === 0) {
       return Result.fail(
-        new DomainError(
-          "EMPTY_GOAL_NAME",
-          "Goal name cannot be empty",
-          "INVARIANT_VIOLATION",
-        ),
+        new DomainError("EMPTY_GOAL_NAME", "Goal name cannot be empty", "INVARIANT_VIOLATION"),
       );
     }
 
@@ -403,9 +417,10 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
   }
 
   calculateProgress(): GoalProgress {
-    const percentage = this.targetAmount > 0
-      ? Math.min(Math.round((this.currentAmount / this.targetAmount) * 10000) / 100, 100)
-      : 0;
+    const percentage =
+      this.targetAmount > 0
+        ? Math.min(Math.round((this.currentAmount / this.targetAmount) * 10000) / 100, 100)
+        : 0;
 
     const remainingAmount = Math.max(
       Math.round((this.targetAmount - this.currentAmount) * 100) / 100,
@@ -453,10 +468,7 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
 
     if (recentContributions.length === 0) {
       const allTotal = this._contributions.reduce((sum, c) => sum + c.amount, 0);
-      const allMonths = Math.max(
-        this.monthsBetween(this._contributions[0].date, now),
-        1,
-      );
+      const allMonths = Math.max(this.monthsBetween(this._contributions[0].date, now), 1);
       return Math.round((allTotal / allMonths) * 100) / 100;
     }
 
@@ -466,8 +478,7 @@ export class FinancialGoal extends AggregateRoot<FinancialGoalId> {
 
   private monthsBetween(start: Date, end: Date): number {
     return Math.max(
-      (end.getFullYear() - start.getFullYear()) * 12 +
-        (end.getMonth() - start.getMonth()),
+      (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()),
       1,
     );
   }

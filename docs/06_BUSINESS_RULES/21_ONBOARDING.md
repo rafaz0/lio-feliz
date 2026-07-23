@@ -22,27 +22,27 @@ Onboarding é **orquestração** — consome conteúdo do módulo 17 (Educação
 
 Define um passo do onboarding.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `OnboardingStepId` | Identificador único |
-| `stepType` | `StepType` | tutorial, config, first_operation, profile, glossary_intro |
-| `title` | `string` | Título do passo |
-| `description` | `string` | Descrição do passo |
-| `order` | `number` | Ordem do passo (1-5) |
-| `optional` | `boolean` | Se o passo pode ser pulado individualmente |
+| Atributo      | Tipo               | Regra                                                      |
+| ------------- | ------------------ | ---------------------------------------------------------- |
+| `id`          | `OnboardingStepId` | Identificador único                                        |
+| `stepType`    | `StepType`         | tutorial, config, first_operation, profile, glossary_intro |
+| `title`       | `string`           | Título do passo                                            |
+| `description` | `string`           | Descrição do passo                                         |
+| `order`       | `number`           | Ordem do passo (1-5)                                       |
+| `optional`    | `boolean`          | Se o passo pode ser pulado individualmente                 |
 
 ### 2.2 `UserProgress` (Entidade)
 
 Progresso do usuário no onboarding.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `UserProgressId` | Identificador único |
-| `userId` | `string` | ID do usuário |
-| `currentStep` | `number` | Passo atual (1-indexado) |
-| `status` | `StepStatus` | PENDING, ACTIVE, COMPLETED, SKIPPED |
-| `startedAt` | `Date` | Data de início |
-| `completedAt` | `Date` | Data de conclusão |
+| Atributo      | Tipo             | Regra                               |
+| ------------- | ---------------- | ----------------------------------- |
+| `id`          | `UserProgressId` | Identificador único                 |
+| `userId`      | `string`         | ID do usuário                       |
+| `currentStep` | `number`         | Passo atual (1-indexado)            |
+| `status`      | `StepStatus`     | PENDING, ACTIVE, COMPLETED, SKIPPED |
+| `startedAt`   | `Date`           | Data de início                      |
+| `completedAt` | `Date`           | Data de conclusão                   |
 
 ### 2.3 Value Objects
 
@@ -54,12 +54,12 @@ Progresso do usuário no onboarding.
 
 ## 3. Serviço de Domínio: `OnboardingFlow`
 
-| Método | Descrição |
-|--------|-----------|
-| `getNextStep(currentStep)` | Retorna o próximo passo ou null se concluído |
+| Método                         | Descrição                                         |
+| ------------------------------ | ------------------------------------------------- |
+| `getNextStep(currentStep)`     | Retorna o próximo passo ou null se concluído      |
 | `completeStep(progress, step)` | Marca passo como COMPLETED, avança para o próximo |
-| `canSkip(step)` | Retorna true se o passo é opcional |
-| `skipAll(progress)` | Marca todos os passos como SKIPPED |
+| `canSkip(step)`                | Retorna true se o passo é opcional                |
+| `skipAll(progress)`            | Marca todos os passos como SKIPPED                |
 
 ### Passos Padrão (máximo 5)
 

@@ -52,7 +52,8 @@ export class TaxCalculationService {
         const newQuantity = quantity + op.quantity;
         averageCost =
           newQuantity > 0
-            ? Math.round(((averageCost * quantity + op.price * op.quantity) / newQuantity) * 100) / 100
+            ? Math.round(((averageCost * quantity + op.price * op.quantity) / newQuantity) * 100) /
+              100
             : 0;
         quantity = newQuantity;
       } else if (op.side === "sell") {
@@ -66,7 +67,7 @@ export class TaxCalculationService {
         quantity += op.quantity;
         averageCost =
           quantity > 0
-            ? Math.round((averageCost * (quantity - op.quantity)) / quantity * 100) / 100
+            ? Math.round(((averageCost * (quantity - op.quantity)) / quantity) * 100) / 100
             : 0;
       }
     }
@@ -97,8 +98,9 @@ export class TaxCalculationService {
     for (const ticker of tickers) {
       const tickerOps = monthOps.filter((o) => o.ticker === ticker);
       const assetType = tickerOps[0]?.assetType ?? "other";
-      const rateEntry = TAX_RATE_TABLE.find((r) => r.assetType === assetType)
-        ?? TAX_RATE_TABLE.find((r) => r.assetType === "other")!;
+      const rateEntry =
+        TAX_RATE_TABLE.find((r) => r.assetType === assetType) ??
+        TAX_RATE_TABLE.find((r) => r.assetType === "other")!;
 
       const totalBuy = tickerOps
         .filter((o) => o.side === "buy")
@@ -110,10 +112,17 @@ export class TaxCalculationService {
 
       const sellOps = tickerOps.filter((o) => o.side === "sell");
       const sellDates = [...new Set(sellOps.map((o) => o.date.toDateString()))];
-      const isDayTrade = sellDates.length > 0 && monthOps.filter((o) => o.ticker === ticker && o.side === "sell")
-        .some((s, _i, arr) => arr.some((a) => a.date.getTime() === s.date.getTime() && a.side === "buy"));
+      const isDayTrade =
+        sellDates.length > 0 &&
+        monthOps
+          .filter((o) => o.ticker === ticker && o.side === "sell")
+          .some((s, _i, arr) =>
+            arr.some((a) => a.date.getTime() === s.date.getTime() && a.side === "buy"),
+          );
 
-      const calculationMode = isDayTrade ? TaxCalculationMode.DAY_TRADE : TaxCalculationMode.SWING_TRADE;
+      const calculationMode = isDayTrade
+        ? TaxCalculationMode.DAY_TRADE
+        : TaxCalculationMode.SWING_TRADE;
 
       let gain = 0;
       for (const sellOp of sellOps) {
@@ -122,8 +131,10 @@ export class TaxCalculationService {
         gain += sellGain;
       }
 
-      const isExempt = rateEntry.exemptionAmount > 0 && totalSell <= rateEntry.exemptionAmount
-        && calculationMode === TaxCalculationMode.SWING_TRADE;
+      const isExempt =
+        rateEntry.exemptionAmount > 0 &&
+        totalSell <= rateEntry.exemptionAmount &&
+        calculationMode === TaxCalculationMode.SWING_TRADE;
       const effectiveRate = isDayTrade ? rateEntry.dayTradeRate : rateEntry.swingTradeRate;
 
       const taxDue = isExempt || gain <= 0 ? 0 : Math.round(gain * effectiveRate * 100) / 100;
@@ -179,11 +190,7 @@ export class TaxCalculationService {
 
     const allLots: TaxLot[] = [];
     for (const ticker of [...new Set(operations.map((o) => o.ticker))]) {
-      const wac = this.calculateWeightedAverageCost(
-        operations,
-        ticker,
-        new Date(ano + 1, 0, 1),
-      );
+      const wac = this.calculateWeightedAverageCost(operations, ticker, new Date(ano + 1, 0, 1));
       try {
         allLots.push(
           TaxLot.create({

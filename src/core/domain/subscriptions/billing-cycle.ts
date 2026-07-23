@@ -12,13 +12,31 @@ export type BillingCycleProps = {
 };
 
 export class BillingCycle extends ValueObject<BillingCycleProps> {
-  private constructor(props: BillingCycleProps) { super(props); }
-  static create(props: BillingCycleProps): BillingCycle { return new BillingCycle(props); }
-  get id(): BillingCycleId { return this.props.id; }
-  get subscriptionId(): string { return this.props.subscriptionId; }
-  get periodStart(): Date { return this.props.periodStart; }
-  get periodEnd(): Date { return this.props.periodEnd; }
-  get amount(): number { return this.props.amount; }
-  get status(): BillingStatus { return this.props.status; }
-  get simulatedAt(): Date { return this.props.simulatedAt; }
+  private constructor(props: BillingCycleProps) {
+    super(props);
+  }
+  static create(props: BillingCycleProps): BillingCycle {
+    return new BillingCycle(props);
+  }
+  get id(): BillingCycleId {
+    return this.props.id;
+  }
+  get subscriptionId(): string {
+    return this.props.subscriptionId;
+  }
+  get periodStart(): Date {
+    return this.props.periodStart;
+  }
+  get periodEnd(): Date {
+    return this.props.periodEnd;
+  }
+  get amount(): number {
+    return this.props.amount;
+  }
+  get status(): BillingStatus {
+    return this.props.status;
+  }
+  get simulatedAt(): Date {
+    return this.props.simulatedAt;
+  }
 }

@@ -5,9 +5,10 @@ import type { IExportTemplateRepository } from "@/application/ports/export-templ
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ObterExportJobService
-  implements IApplicationService<ObterExportJobQuery, ExportJobDto>
-{
+export class ObterExportJobService implements IApplicationService<
+  ObterExportJobQuery,
+  ExportJobDto
+> {
   constructor(private readonly exportRepo: IExportTemplateRepository) {}
 
   async Execute(query: ObterExportJobQuery): Promise<ExportJobDto | ApplicationError> {

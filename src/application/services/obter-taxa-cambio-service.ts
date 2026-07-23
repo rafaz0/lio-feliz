@@ -5,9 +5,10 @@ import type { IForeignAssetRepository } from "@/application/ports/foreign-asset-
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ObterTaxaCambioService
-  implements IApplicationService<ObterTaxaCambioQuery, TaxaCambioDto>
-{
+export class ObterTaxaCambioService implements IApplicationService<
+  ObterTaxaCambioQuery,
+  TaxaCambioDto
+> {
   constructor(private readonly foreignRepo: IForeignAssetRepository) {}
 
   async Execute(query: ObterTaxaCambioQuery): Promise<TaxaCambioDto | ApplicationError> {

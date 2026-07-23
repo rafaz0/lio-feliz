@@ -1,10 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { IQuery } from "@/application/types";
-import type {
-  ApplicationError,
-  MetaListDto,
-} from "@/presentation/shared/types/application-layer";
+import type { ApplicationError, MetaListDto } from "@/presentation/shared/types/application-layer";
 import { GOALS_QUERY_KEYS } from "../queries";
 import {
   toGoalViewModels,

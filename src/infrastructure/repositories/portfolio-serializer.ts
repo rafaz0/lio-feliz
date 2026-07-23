@@ -50,39 +50,94 @@ function deserializeEvent(raw: SerializedEvent): DomainEvent {
 
   switch (eventName) {
     case "BUY": {
-      const e = new BuyEvent(aggregateId, correlationId, raw.assetId as string, raw.quantity as number, raw.price as number);
+      const e = new BuyEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.quantity as number,
+        raw.price as number,
+      );
       return e;
     }
     case "SELL": {
-      const e = new SellEvent(aggregateId, correlationId, raw.assetId as string, raw.quantity as number, raw.price as number);
+      const e = new SellEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.quantity as number,
+        raw.price as number,
+      );
       return e;
     }
     case "DIVIDEND": {
-      const e = new DividendEvent(aggregateId, correlationId, raw.assetId as string, raw.shares as number, raw.amountPerShare as number);
+      const e = new DividendEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.shares as number,
+        raw.amountPerShare as number,
+      );
       return e;
     }
     case "JCP": {
-      const e = new JcpEvent(aggregateId, correlationId, raw.assetId as string, raw.shares as number, raw.amountPerShare as number);
+      const e = new JcpEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.shares as number,
+        raw.amountPerShare as number,
+      );
       return e;
     }
     case "BONUS": {
-      const e = new BonusEvent(aggregateId, correlationId, raw.assetId as string, raw.sharesHeld as number, raw.bonusRatio as number);
+      const e = new BonusEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.sharesHeld as number,
+        raw.bonusRatio as number,
+      );
       return e;
     }
     case "SPLIT": {
-      const e = new SplitEvent(aggregateId, correlationId, raw.assetId as string, raw.oldQuantity as number, raw.newQuantity as number);
+      const e = new SplitEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.oldQuantity as number,
+        raw.newQuantity as number,
+      );
       return e;
     }
     case "GROUPING": {
-      const e = new GroupingEvent(aggregateId, correlationId, raw.assetId as string, raw.oldQuantity as number, raw.newQuantity as number);
+      const e = new GroupingEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.oldQuantity as number,
+        raw.newQuantity as number,
+      );
       return e;
     }
     case "AMORTIZATION": {
-      const e = new AmortizationEvent(aggregateId, correlationId, raw.assetId as string, raw.shares as number, raw.amountPerShare as number);
+      const e = new AmortizationEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.shares as number,
+        raw.amountPerShare as number,
+      );
       return e;
     }
     case "ADJUSTMENT": {
-      const e = new AdjustmentEvent(aggregateId, correlationId, raw.assetId as string, raw.shares as number, raw.amount as number, raw.description as string);
+      const e = new AdjustmentEvent(
+        aggregateId,
+        correlationId,
+        raw.assetId as string,
+        raw.shares as number,
+        raw.amount as number,
+        raw.description as string,
+      );
       return e;
     }
     default:

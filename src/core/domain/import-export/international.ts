@@ -24,11 +24,7 @@ export class InternationalValue extends ValueObject<InternationalValue> {
     return this._amount.multiply(this._rate);
   }
 
-  static create(
-    amount: Money,
-    currency: string,
-    rate: number,
-  ): InternationalValue {
+  static create(amount: Money, currency: string, rate: number): InternationalValue {
     return new InternationalValue(amount, currency, rate);
   }
 
@@ -46,9 +42,9 @@ export class InternationalValue extends ValueObject<InternationalValue> {
 
   static fromJSON(data: ReturnType<InternationalValue["toJSON"]>): InternationalValue {
     const instance = Object.create(InternationalValue.prototype);
-    instance['_amount'] = Money.fromJSON(data.amount);
-    instance['_currency'] = data.currency;
-    instance['_rate'] = data.rate;
+    instance["_amount"] = Money.fromJSON(data.amount);
+    instance["_currency"] = data.currency;
+    instance["_rate"] = data.rate;
     return instance;
   }
 }

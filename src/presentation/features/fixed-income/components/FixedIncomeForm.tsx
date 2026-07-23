@@ -18,8 +18,7 @@ const PRODUCT_OPTIONS: { value: RegistrarCupomInput["productType"]; label: strin
   { value: "POS_FIXADO", label: "Pós-fixado" },
 ];
 
-const fieldClass =
-  "rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground";
+const fieldClass = "rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground";
 
 export function FixedIncomeForm({
   portfolioId,
@@ -100,9 +99,7 @@ export function FixedIncomeForm({
             data-testid="fixed-income-product-type"
             className={fieldClass}
             value={productType}
-            onChange={(e) =>
-              setProductType(e.target.value as RegistrarCupomInput["productType"])
-            }
+            onChange={(e) => setProductType(e.target.value as RegistrarCupomInput["productType"])}
           >
             {PRODUCT_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -143,9 +140,7 @@ export function FixedIncomeForm({
             data-testid="fixed-income-rate-type"
             className={fieldClass}
             value={rateType}
-            onChange={(e) =>
-              setRateType(e.target.value as RegistrarCupomInput["rateType"])
-            }
+            onChange={(e) => setRateType(e.target.value as RegistrarCupomInput["rateType"])}
           >
             <option value="PRE">Prefixado (PRE)</option>
             <option value="POS">Pós-fixado (POS)</option>

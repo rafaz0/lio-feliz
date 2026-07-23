@@ -16,7 +16,11 @@ export class InMemoryTaxStatementRepository implements ITaxStatementRepository {
     return this.statements.get(key) ?? null;
   }
 
-  async findByAtivo(portfolioId: string, ticker: string, ano: number): Promise<TaxStatement | null> {
+  async findByAtivo(
+    portfolioId: string,
+    ticker: string,
+    ano: number,
+  ): Promise<TaxStatement | null> {
     const key = `${portfolioId}-${ano}`;
     const statement = this.statements.get(key);
     if (!statement) return null;

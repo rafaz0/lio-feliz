@@ -48,7 +48,7 @@ describe("SupabasePortfolioRepository", () => {
     it("retorna portfolio quando encontrado", async () => {
       const portfolioId = PortfolioId.create("portfolio-1");
       const portfolio = Portfolio.create(portfolioId);
-      const buyEvent = new BuyEvent("portfolio-1", "corr-1", "asset-1", 100, 25.50);
+      const buyEvent = new BuyEvent("portfolio-1", "corr-1", "asset-1", 100, 25.5);
       portfolio.applyEvent(buyEvent);
 
       const serialized = serializePortfolio(portfolio);
@@ -68,7 +68,7 @@ describe("SupabasePortfolioRepository", () => {
 
       const portfolioId = PortfolioId.create("portfolio-1");
       const portfolio = Portfolio.create(portfolioId);
-      const buyEvent = new BuyEvent("portfolio-1", "corr-1", "asset-1", 50, 30.00);
+      const buyEvent = new BuyEvent("portfolio-1", "corr-1", "asset-1", 50, 30.0);
       portfolio.applyEvent(buyEvent);
 
       await repo.Salvar(portfolio);
@@ -93,7 +93,7 @@ describe("SupabasePortfolioRepository", () => {
     it("retorna portfolios do usuario", async () => {
       const portfolioId = PortfolioId.create("p1");
       const portfolio = Portfolio.create(portfolioId);
-      const buyEvent = new BuyEvent("p1", "corr-1", "asset-1", 10, 50.00);
+      const buyEvent = new BuyEvent("p1", "corr-1", "asset-1", 10, 50.0);
       portfolio.applyEvent(buyEvent);
       const serialized = serializePortfolio(portfolio);
 

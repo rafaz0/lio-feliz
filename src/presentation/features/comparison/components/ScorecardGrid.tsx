@@ -1,5 +1,5 @@
-import type { ComparisonMetric } from "@/core/domain/comparison";
 import { metricLabel, formatMetricValue } from "../viewmodels/comparison.view-model";
+import type { ComparisonMetric } from "@/core/domain/comparison";
 
 interface ScorecardGridProps {
   metrics: ComparisonMetric[];

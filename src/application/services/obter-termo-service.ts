@@ -6,9 +6,7 @@ import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { GlossaryIndexer } from "@/core/domain/education";
 
-export class ObterTermoService
-  implements IApplicationService<ObterTermoQuery, GlossaryTermDto>
-{
+export class ObterTermoService implements IApplicationService<ObterTermoQuery, GlossaryTermDto> {
   private readonly indexer = new GlossaryIndexer();
 
   constructor(private readonly glossaryRepo: IGlossaryRepository) {}

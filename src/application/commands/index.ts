@@ -8,7 +8,10 @@ export type { AtualizarMetaCommand } from "./atualizar-meta";
 export type { RegistrarContribuicaoCommand } from "./registrar-contribuicao";
 export type { CalcularImpostoCommand } from "./calcular-imposto";
 export type { ExportarDeclaracaoCommand } from "./exportar-declaracao";
-export type { ExecutarRebalanceamentoCommand, AcaoRebalanceamentoDto } from "./executar-rebalanceamento";
+export type {
+  ExecutarRebalanceamentoCommand,
+  AcaoRebalanceamentoDto,
+} from "./executar-rebalanceamento";
 export type { RegistrarCupomCommand } from "./registrar-cupom";
 export type { GerarRelatorioCommand } from "./gerar-relatorio";
 export type { AgendarRelatorioCommand } from "./agendar-relatorio";

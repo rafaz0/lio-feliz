@@ -5,7 +5,10 @@ import type { IProjectionRepository } from "@/application/ports/projection-repos
 import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ObterPosicaoFiscalService implements IApplicationService<ObterPosicaoFiscalQuery, PosicaoFiscalDto[]> {
+export class ObterPosicaoFiscalService implements IApplicationService<
+  ObterPosicaoFiscalQuery,
+  PosicaoFiscalDto[]
+> {
   constructor(private readonly projectionRepo: IProjectionRepository) {}
 
   async Execute(query: ObterPosicaoFiscalQuery): Promise<PosicaoFiscalDto[] | ApplicationError> {

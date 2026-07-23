@@ -31,11 +31,17 @@ export function TaxCalculationDetail({ items }: TaxCalculationDetailProps) {
           </thead>
           <tbody>
             {items.map((item) => (
-              <tr key={item.mes} className="border-b last:border-0" data-testid="tax-calculation-row">
+              <tr
+                key={item.mes}
+                className="border-b last:border-0"
+                data-testid="tax-calculation-row"
+              >
                 <td className="p-2 font-medium">{item.mes}</td>
                 <td className="p-2 tabular-nums">{formatBRL(item.totalVendas)}</td>
                 <td className="p-2 tabular-nums">{formatBRL(item.totalCompras)}</td>
-                <td className={`p-2 tabular-nums ${item.ganhoLiquido >= 0 ? "text-green-600" : "text-red-600"}`}>
+                <td
+                  className={`p-2 tabular-nums ${item.ganhoLiquido >= 0 ? "text-green-600" : "text-red-600"}`}
+                >
                   {formatBRL(item.ganhoLiquido)}
                 </td>
                 <td className="p-2">

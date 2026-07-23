@@ -1,4 +1,5 @@
 # ER-005 — Engineering Review
+
 ## Encerramento da EWO-005
 
 ---
@@ -152,16 +153,17 @@ A Presentation Layer passa a integrar a Frozen Baseline do Projeto Lio Feliz.
 Toda evolução futura deverá ocorrer por extensão desta base, respeitando:
 
 - PROJECT_BOOTSTRAP.md
-- AI_OPERATION_CHECKLIST.md  
+- AI_OPERATION_CHECKLIST.md
 - EWO_EXECUTION_STANDARD.md
 - Regra de Dependency Rule
 - Arquitetura Guard (MANDATORY)
 
 Qualquer mudança quebre compatibilidade dependerá obrigatoriamente de:
+
 - Nova PI (Product Increment)
-- +
+- -
 - Novo ER (Engineering Review)
-- +
+- -
 - Nova aprovação arquitetural.
 
 ---

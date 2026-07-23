@@ -50,6 +50,9 @@ export class SimulationFailedError extends DomainError {
 
 export class DuplicateBacktestError extends DomainError {
   constructor(strategyId: string) {
-    super("DUPLICATE_BACKTEST", `Backtest ja executado para estrategia "${strategyId}" no mesmo periodo`);
+    super(
+      "DUPLICATE_BACKTEST",
+      `Backtest ja executado para estrategia "${strategyId}" no mesmo periodo`,
+    );
   }
 }

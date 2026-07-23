@@ -1,7 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { ICommand } from "@/application/types";
-import type { DadosExportadosDto, ExportarDeclaracaoCommand } from "@/presentation/shared/types/application-layer";
+import type {
+  DadosExportadosDto,
+  ExportarDeclaracaoCommand,
+} from "@/presentation/shared/types/application-layer";
 
 interface UseTaxDeclarationExportMutationResult {
   mutate: (command: ExportarDeclaracaoCommand) => void;
@@ -16,9 +19,7 @@ export function useTaxDeclarationExportMutation(): UseTaxDeclarationExportMutati
 
   const mutation = useMutation({
     mutationFn: async (command: ExportarDeclaracaoCommand): Promise<DadosExportadosDto> => {
-      const result = await dispatcher.DispatchCommand<DadosExportadosDto>(
-        command as ICommand,
-      );
+      const result = await dispatcher.DispatchCommand<DadosExportadosDto>(command as ICommand);
 
       if (result instanceof Error) {
         throw result;

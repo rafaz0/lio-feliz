@@ -53,7 +53,9 @@ export class FixedIncomeAsset {
     this.schedule = props.schedule;
   }
 
-  static create(props: Omit<FixedIncomeAssetProps, "schedule">): Result<FixedIncomeAsset, DomainError> {
+  static create(
+    props: Omit<FixedIncomeAssetProps, "schedule">,
+  ): Result<FixedIncomeAsset, DomainError> {
     if (props.rate < 0) {
       return Result.fail(new InvalidFixedIncomeRateError());
     }

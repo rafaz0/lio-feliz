@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { IQuery } from "@/application/types";
-import type { ApplicationError, TaxaCambioDto } from "@/presentation/shared/types/application-layer";
+import type {
+  ApplicationError,
+  TaxaCambioDto,
+} from "@/presentation/shared/types/application-layer";
 import { INTERNATIONAL_QUERY_KEYS } from "../queries";
 
 interface UseExchangeRateQueryResult {

@@ -1,12 +1,6 @@
 import { ValueObject } from "../value-object";
 
-export type FixedIncomeType =
-  | "TESOURO_DIRETO"
-  | "CDB"
-  | "LCI"
-  | "LCA"
-  | "PREFIXADO"
-  | "POS_FIXADO";
+export type FixedIncomeType = "TESOURO_DIRETO" | "CDB" | "LCI" | "LCA" | "PREFIXADO" | "POS_FIXADO";
 
 export const FIXED_INCOME_TYPES: readonly FixedIncomeType[] = [
   "TESOURO_DIRETO",

@@ -2,13 +2,18 @@ import type { SolicitarExportacaoCommand } from "@/application/commands/solicita
 import type { ExportJobDto } from "@/application/dtos/exportacao-avancada";
 import type { IApplicationService } from "@/application/application-service";
 import type { IExportTemplateRepository } from "@/application/ports/export-template-repository";
-import { ValidationError, NotFoundError, InternalError } from "@/application/errors/application-error";
+import {
+  ValidationError,
+  NotFoundError,
+  InternalError,
+} from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { ExportComposer } from "@/core/domain/advanced-export";
 
-export class SolicitarExportacaoService
-  implements IApplicationService<SolicitarExportacaoCommand, ExportJobDto>
-{
+export class SolicitarExportacaoService implements IApplicationService<
+  SolicitarExportacaoCommand,
+  ExportJobDto
+> {
   private readonly composer = new ExportComposer();
 
   constructor(private readonly exportRepo: IExportTemplateRepository) {}
@@ -57,7 +62,10 @@ export class SolicitarExportacaoService
     } catch (err) {
       const failed = processing.markFailed(err instanceof Error ? err.message : "Erro inesperado");
       await this.exportRepo.saveJob(failed);
-      return new InternalError("EXPORT_FAILED", err instanceof Error ? err.message : "Erro inesperado");
+      return new InternalError(
+        "EXPORT_FAILED",
+        err instanceof Error ? err.message : "Erro inesperado",
+      );
     }
   }
 

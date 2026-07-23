@@ -5,7 +5,10 @@ interface ComparisonErrorProps {
 
 export function ComparisonError({ message, onRetry }: ComparisonErrorProps) {
   return (
-    <div data-testid="comparison-error" className="flex flex-col items-center justify-center py-12 text-center">
+    <div
+      data-testid="comparison-error"
+      className="flex flex-col items-center justify-center py-12 text-center"
+    >
       <p className="text-sm text-red-500">{message}</p>
       {onRetry && (
         <button

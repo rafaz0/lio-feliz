@@ -5,14 +5,17 @@ import type { IConfigurationRepository } from "@/application/ports/configuration
 import type { ApplicationError } from "@/application/errors/application-error";
 import { PreferencesService } from "@/core/domain/preferences";
 
-export class SalvarLayoutDashboardService
-  implements IApplicationService<SalvarLayoutDashboardCommand, UserPreferencesDto>
-{
+export class SalvarLayoutDashboardService implements IApplicationService<
+  SalvarLayoutDashboardCommand,
+  UserPreferencesDto
+> {
   private readonly prefsService = new PreferencesService();
 
   constructor(private readonly configRepo: IConfigurationRepository) {}
 
-  async Execute(command: SalvarLayoutDashboardCommand): Promise<UserPreferencesDto | ApplicationError> {
+  async Execute(
+    command: SalvarLayoutDashboardCommand,
+  ): Promise<UserPreferencesDto | ApplicationError> {
     const merged = this.prefsService.mergeDefaults({ dashboardLayout: command.layout });
 
     await this.configRepo.saveOnboardingProgress(command.userId, JSON.stringify(merged));

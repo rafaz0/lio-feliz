@@ -8,7 +8,10 @@ export class AlertRuleNotFoundError extends DomainError {
 
 export class DuplicateAlertError extends DomainError {
   constructor(ruleId: string, assetTicker: string, eventDate: string) {
-    super("DUPLICATE_ALERT", `Alerta ja existe para regra "${ruleId}", ativo "${assetTicker}", data "${eventDate}"`);
+    super(
+      "DUPLICATE_ALERT",
+      `Alerta ja existe para regra "${ruleId}", ativo "${assetTicker}", data "${eventDate}"`,
+    );
   }
 }
 

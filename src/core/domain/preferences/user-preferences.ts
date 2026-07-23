@@ -11,12 +11,28 @@ export type UserPreferencesProps = {
 };
 
 export class UserPreferences extends ValueObject<UserPreferencesProps> {
-  private constructor(props: UserPreferencesProps) { super(props); }
-  static create(props: UserPreferencesProps): UserPreferences { return new UserPreferences(props); }
-  get id(): UserPreferencesId { return this.props.id; }
-  get userId(): string { return this.props.userId; }
-  get theme(): ThemeMode { return this.props.theme; }
-  get dashboardLayout(): DashboardLayout { return this.props.dashboardLayout; }
-  get notifications(): boolean { return this.props.notifications; }
-  get language(): string { return this.props.language; }
+  private constructor(props: UserPreferencesProps) {
+    super(props);
+  }
+  static create(props: UserPreferencesProps): UserPreferences {
+    return new UserPreferences(props);
+  }
+  get id(): UserPreferencesId {
+    return this.props.id;
+  }
+  get userId(): string {
+    return this.props.userId;
+  }
+  get theme(): ThemeMode {
+    return this.props.theme;
+  }
+  get dashboardLayout(): DashboardLayout {
+    return this.props.dashboardLayout;
+  }
+  get notifications(): boolean {
+    return this.props.notifications;
+  }
+  get language(): string {
+    return this.props.language;
+  }
 }

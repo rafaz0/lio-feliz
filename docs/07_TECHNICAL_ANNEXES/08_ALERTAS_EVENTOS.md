@@ -14,12 +14,12 @@ Definir os tipos de evento monitorados pelo módulo de Alertas, suas fontes de d
 
 ## 2. Fontes de Dados
 
-| Fonte | Dados | API/Módulo |
-|-------|-------|------------|
-| Proventos | Dividendos, JCP, rendimentos | BRAPI / Yahoo Finance |
-| Datas Ex | Data ex de proventos | BRAPI quote endpoint |
-| Vencimentos | Vencimento de títulos, opções | IProjectionRepository |
-| Resultados | Próximas divulgações | Yahoo Finance (earnings) |
+| Fonte       | Dados                         | API/Módulo               |
+| ----------- | ----------------------------- | ------------------------ |
+| Proventos   | Dividendos, JCP, rendimentos  | BRAPI / Yahoo Finance    |
+| Datas Ex    | Data ex de proventos          | BRAPI quote endpoint     |
+| Vencimentos | Vencimento de títulos, opções | IProjectionRepository    |
+| Resultados  | Próximas divulgações          | Yahoo Finance (earnings) |
 
 ---
 
@@ -133,8 +133,8 @@ Se um alerta com a mesma chave já existir no repositório, o novo é ignorado (
 
 ## 6. Canais de Entrega
 
-| Canal | Implementação | Ack possível |
-|-------|---------------|--------------|
-| inApp | Notificação no dashboard | Sim (via ConfirmarAlertaCommand) |
-| email | Envio via serviço de email | Não (ack apenas inApp) |
-| push | Push notification | Não (ack apenas inApp) |
+| Canal | Implementação              | Ack possível                     |
+| ----- | -------------------------- | -------------------------------- |
+| inApp | Notificação no dashboard   | Sim (via ConfirmarAlertaCommand) |
+| email | Envio via serviço de email | Não (ack apenas inApp)           |
+| push  | Push notification          | Não (ack apenas inApp)           |

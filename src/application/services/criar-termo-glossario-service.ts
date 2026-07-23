@@ -6,9 +6,10 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { GlossaryTerm, GlossaryTermId } from "@/core/domain/education";
 
-export class CriarTermoGlossarioService
-  implements IApplicationService<CriarTermoGlossarioCommand, GlossaryTermDto>
-{
+export class CriarTermoGlossarioService implements IApplicationService<
+  CriarTermoGlossarioCommand,
+  GlossaryTermDto
+> {
   constructor(private readonly glossaryRepo: IGlossaryRepository) {}
 
   async Execute(command: CriarTermoGlossarioCommand): Promise<GlossaryTermDto | ApplicationError> {

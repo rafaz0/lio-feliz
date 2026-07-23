@@ -26,10 +26,10 @@ A EWO-010 (Onda 5 — Educação e Exportação Avançada) foi executada integra
 
 ## 2. Módulos Entregues
 
-| Módulo | Slices | BR | Core Domain | App+Infra | Presentation | Status |
-|--------|--------|----|-------------|-----------|-------------|--------|
-| 17 — Educação | 1-3 | ✅ `17_EDUCACAO.md` | ✅ GlossaryTerm, Tooltip, LearningPath, GlossaryIndexer | ✅ Commands/Queries/Services + Fake/Supabase | ⏳ (planejado) | ✅ Impl. completa |
-| 18 — Exportação Avançada | 4-6 | ✅ `18_EXPORTACAO_AVANCADA.md` + `09_EXPORTACAO_FORMATOS.md` | ✅ ExportTemplate, ExportJob, ExportComposer (R-014) | ✅ Commands/Queries/Services + Fake/Supabase | ⏳ (planejado) | ✅ Impl. completa |
+| Módulo                   | Slices | BR                                                           | Core Domain                                             | App+Infra                                    | Presentation   | Status            |
+| ------------------------ | ------ | ------------------------------------------------------------ | ------------------------------------------------------- | -------------------------------------------- | -------------- | ----------------- |
+| 17 — Educação            | 1-3    | ✅ `17_EDUCACAO.md`                                          | ✅ GlossaryTerm, Tooltip, LearningPath, GlossaryIndexer | ✅ Commands/Queries/Services + Fake/Supabase | ⏳ (planejado) | ✅ Impl. completa |
+| 18 — Exportação Avançada | 4-6    | ✅ `18_EXPORTACAO_AVANCADA.md` + `09_EXPORTACAO_FORMATOS.md` | ✅ ExportTemplate, ExportJob, ExportComposer (R-014)    | ✅ Commands/Queries/Services + Fake/Supabase | ⏳ (planejado) | ✅ Impl. completa |
 
 ---
 
@@ -37,50 +37,50 @@ A EWO-010 (Onda 5 — Educação e Exportação Avançada) foi executada integra
 
 ### Slices 1-3 (Educação 17)
 
-| Componente | Descrição |
-|------------|-----------|
-| BR Doc | `17_EDUCACAO.md` — Glossário, tooltips, learning paths |
-| Core Domain | GlossaryTerm, Tooltip, LearningPath (entities), GlossaryIndexer (domain service), 4 errors |
-| Application | 2 commands (CriarTermoGlossario, AtualizarTooltip), 2 queries, 4 services, port IGlossaryRepository |
-| Infrastructure | FakeGlossaryRepository, SupabaseGlossaryRepository |
-| NC resolvida | NC-010-003 — Tooltip como fonte de dados (TooltipProvider na Presentation) |
+| Componente     | Descrição                                                                                           |
+| -------------- | --------------------------------------------------------------------------------------------------- |
+| BR Doc         | `17_EDUCACAO.md` — Glossário, tooltips, learning paths                                              |
+| Core Domain    | GlossaryTerm, Tooltip, LearningPath (entities), GlossaryIndexer (domain service), 4 errors          |
+| Application    | 2 commands (CriarTermoGlossario, AtualizarTooltip), 2 queries, 4 services, port IGlossaryRepository |
+| Infrastructure | FakeGlossaryRepository, SupabaseGlossaryRepository                                                  |
+| NC resolvida   | NC-010-003 — Tooltip como fonte de dados (TooltipProvider na Presentation)                          |
 
 ### Slices 4-6 (Exportação Avançada 18)
 
-| Componente | Descrição |
-|------------|-----------|
-| BR Doc | `18_EXPORTACAO_AVANCADA.md` — Formatos regulatórios, checksum, R-014 |
-| Anexo | `09_EXPORTACAO_FORMATOS.md` — PDF, CSV, JSON, XLSX, DIRPF |
-| Core Domain | ExportTemplate, ExportJob (entities), ExportComposer (domain service com SHA-256), 5 errors |
-| Application | 2 commands (SolicitarExportacao, AgendarExportacao), 2 queries, 4 services, port IExportTemplateRepository |
-| Infrastructure | FakeExportTemplateRepository, SupabaseExportTemplateRepository |
-| NC resolvida | NC-010-005 — Scheduler compartilhado com módulo 13 |
-| Decisão O1 | Reuso de IReportRepository para templates compartilhados |
+| Componente     | Descrição                                                                                                  |
+| -------------- | ---------------------------------------------------------------------------------------------------------- |
+| BR Doc         | `18_EXPORTACAO_AVANCADA.md` — Formatos regulatórios, checksum, R-014                                       |
+| Anexo          | `09_EXPORTACAO_FORMATOS.md` — PDF, CSV, JSON, XLSX, DIRPF                                                  |
+| Core Domain    | ExportTemplate, ExportJob (entities), ExportComposer (domain service com SHA-256), 5 errors                |
+| Application    | 2 commands (SolicitarExportacao, AgendarExportacao), 2 queries, 4 services, port IExportTemplateRepository |
+| Infrastructure | FakeExportTemplateRepository, SupabaseExportTemplateRepository                                             |
+| NC resolvida   | NC-010-005 — Scheduler compartilhado com módulo 13                                                         |
+| Decisão O1     | Reuso de IReportRepository para templates compartilhados                                                   |
 
 ---
 
 ## 4. NCs da ER-010 — Situação Final
 
-| NC | Descrição | Situação |
-|----|-----------|----------|
-| NC-010-001 (O1) | EWO monolithic dependency on EWO-007 | **Tratada** — executada conforme planejamento |
-| NC-010-002 (O2) | View composition /comparar | **Resolvida** na EWO-009 |
-| NC-010-003 (O3) | Injeção cross-feature de tooltips | **Resolvida** — TooltipProvider, sem modificar componentes |
-| NC-010-004 (O4) | AckAlertaCommand inglês | **Resolvida** na EWO-009 (ConfirmarAlertaCommand) |
-| NC-010-005 (O5) | Sobreposição schedulers 13/18 | **Resolvida** — scheduler compartilhado |
+| NC              | Descrição                            | Situação                                                   |
+| --------------- | ------------------------------------ | ---------------------------------------------------------- |
+| NC-010-001 (O1) | EWO monolithic dependency on EWO-007 | **Tratada** — executada conforme planejamento              |
+| NC-010-002 (O2) | View composition /comparar           | **Resolvida** na EWO-009                                   |
+| NC-010-003 (O3) | Injeção cross-feature de tooltips    | **Resolvida** — TooltipProvider, sem modificar componentes |
+| NC-010-004 (O4) | AckAlertaCommand inglês              | **Resolvida** na EWO-009 (ConfirmarAlertaCommand)          |
+| NC-010-005 (O5) | Sobreposição schedulers 13/18        | **Resolvida** — scheduler compartilhado                    |
 
 ---
 
 ## 5. Quality Gates
 
-| Gate | Resultado |
-|------|-----------|
-| `npm run build` | ✅ Green (exit 0) |
-| ESLint | ✅ Sem violações nos arquivos da EWO |
-| Working Tree | ✅ Limpa pós-commit |
-| Frozen Layers | ✅ Nenhuma camada congelada modificada |
+| Gate               | Resultado                                 |
+| ------------------ | ----------------------------------------- |
+| `npm run build`    | ✅ Green (exit 0)                         |
+| ESLint             | ✅ Sem violações nos arquivos da EWO      |
+| Working Tree       | ✅ Limpa pós-commit                       |
+| Frozen Layers      | ✅ Nenhuma camada congelada modificada    |
 | Architecture Guard | ✅ Preservado — novas features por adição |
-| Composition Root | ✅ Estendido por blocos condicionais |
+| Composition Root   | ✅ Estendido por blocos condicionais      |
 
 ---
 
@@ -88,21 +88,21 @@ A EWO-010 (Onda 5 — Educação e Exportação Avançada) foi executada integra
 
 ### Consolidado EWO-010
 
-| Artefato | Educação 17 | Exportação 18 | Total |
-|----------|-----------|--------------|-------|
-| BR docs | 1 | 1 | **2** |
-| Anexos Técnicos | 0 | 1 | **1** |
-| Entidades | 3 | 2 | **5** |
-| Value Objects | 2 | 3 | **5** |
-| Domain Services | 1 | 1 | **2** |
-| Domain Errors | 4 | 5 | **9** |
-| Commands | 2 | 2 | **4** |
-| Queries | 2 | 2 | **4** |
-| Services | 4 | 4 | **8** |
-| Ports | 1 | 1 | **2** |
-| DTOs | 4 | 3 | **7** |
-| Repositórios | 2 | 2 | **4** |
-| **Total de arquivos** | **14** | **13** | **27** |
+| Artefato              | Educação 17 | Exportação 18 | Total  |
+| --------------------- | ----------- | ------------- | ------ |
+| BR docs               | 1           | 1             | **2**  |
+| Anexos Técnicos       | 0           | 1             | **1**  |
+| Entidades             | 3           | 2             | **5**  |
+| Value Objects         | 2           | 3             | **5**  |
+| Domain Services       | 1           | 1             | **2**  |
+| Domain Errors         | 4           | 5             | **9**  |
+| Commands              | 2           | 2             | **4**  |
+| Queries               | 2           | 2             | **4**  |
+| Services              | 4           | 4             | **8**  |
+| Ports                 | 1           | 1             | **2**  |
+| DTOs                  | 4           | 3             | **7**  |
+| Repositórios          | 2           | 2             | **4**  |
+| **Total de arquivos** | **14**      | **13**        | **27** |
 
 ---
 
@@ -114,12 +114,12 @@ A EWO-010 (Onda 5 — Educação e Exportação Avançada) foi executada integra
 
 ### Não Conformidades Resolvidas
 
-| NC | Onda de resolução |
-|----|------------------|
-| NC-010-002 (O2) | EWO-009 (Onda 4) |
-| NC-010-003 (O3) | EWO-010 (Onda 5) |
-| NC-010-004 (O4) | EWO-009 (Onda 4) |
-| NC-010-005 (O5) | EWO-010 (Onda 5) |
+| NC              | Onda de resolução |
+| --------------- | ----------------- |
+| NC-010-002 (O2) | EWO-009 (Onda 4)  |
+| NC-010-003 (O3) | EWO-010 (Onda 5)  |
+| NC-010-004 (O4) | EWO-009 (Onda 4)  |
+| NC-010-005 (O5) | EWO-010 (Onda 5)  |
 
 ### FRs
 
@@ -145,11 +145,11 @@ Módulo 18 — Exportação         Slices 4-6  ✅ BR+Core+App+Infra
 
 ### Pendências para Próximas Etapas
 
-| Pendência | Destino |
-|-----------|---------|
-| Presentation Educação 17 (componentes/hooks) | Planejada para sprint futura |
+| Pendência                                      | Destino                      |
+| ---------------------------------------------- | ---------------------------- |
+| Presentation Educação 17 (componentes/hooks)   | Planejada para sprint futura |
 | Presentation Exportação 18 (componentes/hooks) | Planejada para sprint futura |
-| EWO-007 (Renda Fixa 09, Internacional 10) | Pendência operacional |
+| EWO-007 (Renda Fixa 09, Internacional 10)      | Pendência operacional        |
 
 ---
 

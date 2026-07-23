@@ -6,9 +6,10 @@ import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { Tooltip, TooltipId } from "@/core/domain/education";
 
-export class AtualizarTooltipService
-  implements IApplicationService<AtualizarTooltipCommand, TooltipDto>
-{
+export class AtualizarTooltipService implements IApplicationService<
+  AtualizarTooltipCommand,
+  TooltipDto
+> {
   constructor(private readonly glossaryRepo: IGlossaryRepository) {}
 
   async Execute(command: AtualizarTooltipCommand): Promise<TooltipDto | ApplicationError> {

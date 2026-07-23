@@ -138,16 +138,17 @@ Se não houver contribuições registradas, a projeção retorna indefinida (nã
 
 As transições de status permitidas são:
 
-| De | Para | Condição |
-|----|------|----------|
-| ATIVA | PAUSADA | Usuário pausa a meta |
-| PAUSADA | ATIVA | Usuário retoma a meta |
-| ATIVA | CONCLUÍDA | currentAmount >= targetAmount (automática ou manual) |
+| De      | Para      | Condição                                             |
+| ------- | --------- | ---------------------------------------------------- |
+| ATIVA   | PAUSADA   | Usuário pausa a meta                                 |
+| PAUSADA | ATIVA     | Usuário retoma a meta                                |
+| ATIVA   | CONCLUÍDA | currentAmount >= targetAmount (automática ou manual) |
 | PAUSADA | CONCLUÍDA | currentAmount >= targetAmount (automática ou manual) |
-| ATIVA | CANCELADA | Usuário cancela a meta |
-| PAUSADA | CANCELADA | Usuário cancela a meta |
+| ATIVA   | CANCELADA | Usuário cancela a meta                               |
+| PAUSADA | CANCELADA | Usuário cancela a meta                               |
 
 Transições não listadas são inválidas:
+
 - Uma meta concluída não pode ser reativada.
 - Uma meta cancelada não pode ser reativada.
 
@@ -156,10 +157,12 @@ Transições não listadas são inválidas:
 O usuário pode atualizar nome, valor-alvo, prazo e categoria de uma meta ativa ou pausada.
 
 Ao atualizar o valor-alvo, o sistema deve:
+
 1. validar que o novo valor-alvo é maior que zero;
 2. se o novo valor-alvo for menor que o valor atual, esto não configura conclusão automática (o usuário deve concluir manualmente).
 
 Ao atualizar o prazo, o sistema deve:
+
 1. validar que o novo prazo é posterior à data de criação.
 
 ---

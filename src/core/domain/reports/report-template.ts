@@ -30,7 +30,7 @@ export type ReportTemplateProps = {
   supportedFormats: ReportExportFormat[];
   icon: string;
   isBuiltIn: boolean;
-}
+};
 
 export class ReportTemplate extends ValueObject<ReportTemplateProps> {
   private constructor(props: ReportTemplateProps) {

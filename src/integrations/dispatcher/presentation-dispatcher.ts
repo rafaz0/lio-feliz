@@ -1,6 +1,7 @@
 import { DispatcherImpl } from "@/application/dispatcher-impl";
 import type { IDispatcher } from "@/application/dispatcher";
-import type { IProjectionRepository,
+import type {
+  IProjectionRepository,
   IPortfolioRepository,
   IConfigurationRepository,
   IDomainEventPublisher,
@@ -371,7 +372,13 @@ export function createPresentationDispatcher({
     );
   }
 
-  if (portfolioRepository && eventPublisher && dataGateway && importInterpreter && importHistoryRepository) {
+  if (
+    portfolioRepository &&
+    eventPublisher &&
+    dataGateway &&
+    importInterpreter &&
+    importHistoryRepository
+  ) {
     dispatcher.RegisterCommand("ImportarDadosCommand", (command) =>
       new ImportarDadosService(
         portfolioRepository,
@@ -385,7 +392,9 @@ export function createPresentationDispatcher({
 
   if (projectionRepository) {
     dispatcher.RegisterCommand("ExportarRelatorioCommand", (command) =>
-      new ExportarRelatorioService(projectionRepository).Execute(command as ExportarRelatorioCommand),
+      new ExportarRelatorioService(projectionRepository).Execute(
+        command as ExportarRelatorioCommand,
+      ),
     );
 
     dispatcher.RegisterQuery("ObterModelosExportacaoQuery", (query) =>
@@ -503,9 +512,7 @@ export function createPresentationDispatcher({
     );
 
     dispatcher.RegisterQuery("ObterTaxaCambioQuery", (query) =>
-      new ObterTaxaCambioService(foreignAssetRepository).Execute(
-        query as ObterTaxaCambioQuery,
-      ),
+      new ObterTaxaCambioService(foreignAssetRepository).Execute(query as ObterTaxaCambioQuery),
     );
   }
 
@@ -531,9 +538,7 @@ export function createPresentationDispatcher({
     );
 
     dispatcher.RegisterCommand("VerificarAcessoCommand", (command) =>
-      new VerificarAcessoService(subscriptionRepository).Execute(
-        command as VerificarAcessoCommand,
-      ),
+      new VerificarAcessoService(subscriptionRepository).Execute(command as VerificarAcessoCommand),
     );
   }
 
@@ -591,17 +596,23 @@ export function createPresentationDispatcher({
     );
 
     dispatcher.RegisterQuery("ObterProgressoOnboardingQuery", (query) =>
-      new ObterProgressoOnboardingService(configRepo).Execute(query as ObterProgressoOnboardingQuery),
+      new ObterProgressoOnboardingService(configRepo).Execute(
+        query as ObterProgressoOnboardingQuery,
+      ),
     );
 
     dispatcher.RegisterQuery("ObterPassoAtualQuery", (query) =>
-      new ObterPassoAtualService(configRepo, glossaryRepository).Execute(query as ObterPassoAtualQuery),
+      new ObterPassoAtualService(configRepo, glossaryRepository).Execute(
+        query as ObterPassoAtualQuery,
+      ),
     );
   }
 
   if (exportTemplateRepository) {
     dispatcher.RegisterCommand("SolicitarExportacaoCommand", (command) =>
-      new SolicitarExportacaoService(exportTemplateRepository).Execute(command as SolicitarExportacaoCommand),
+      new SolicitarExportacaoService(exportTemplateRepository).Execute(
+        command as SolicitarExportacaoCommand,
+      ),
     );
 
     dispatcher.RegisterQuery("ObterExportJobQuery", (query) =>
@@ -609,7 +620,9 @@ export function createPresentationDispatcher({
     );
 
     dispatcher.RegisterQuery("ListarExportTemplatesQuery", (query) =>
-      new ListarExportTemplatesService(exportTemplateRepository).Execute(query as ListarExportTemplatesQuery),
+      new ListarExportTemplatesService(exportTemplateRepository).Execute(
+        query as ListarExportTemplatesQuery,
+      ),
     );
   }
 

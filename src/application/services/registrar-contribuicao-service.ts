@@ -5,9 +5,10 @@ import type { IFinancialGoalRepository } from "@/application/ports/financial-goa
 import { ValidationError, NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class RegistrarContribuicaoService
-  implements IApplicationService<RegistrarContribuicaoCommand, MetaProgressoDetalhadoDto>
-{
+export class RegistrarContribuicaoService implements IApplicationService<
+  RegistrarContribuicaoCommand,
+  MetaProgressoDetalhadoDto
+> {
   constructor(private readonly goalRepo: IFinancialGoalRepository) {}
 
   async Execute(
@@ -26,7 +27,11 @@ export class RegistrarContribuicaoService
       return new NotFoundError("Meta", command.goalId, "META_NOT_FOUND", "Meta não encontrada");
     }
 
-    const result = goal.contribute(command.amount, command.date ?? new Date(), `correlation-${Date.now()}`);
+    const result = goal.contribute(
+      command.amount,
+      command.date ?? new Date(),
+      `correlation-${Date.now()}`,
+    );
     if (result.isFailure) {
       return new ValidationError("DOMAIN_ERROR", result.error!.message);
     }

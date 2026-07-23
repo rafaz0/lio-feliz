@@ -137,18 +137,18 @@ EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: Pr
 
 ### Documentação Prevista
 
-| Documento        | Finalidade                           | Status       |
-| ---------------- | ------------------------------------ | ------------ |
-| PI-004           | Arquitetura do Domínio Patrimonial   | ✅ Concluído |
-| ER-004           | Engineering Review da PI-004         | ✅ Aprovada  |
-| EWO-002          | Implementação do Domínio Patrimonial | ✅ Concluída |
-| EWO-002-COVERAGE | Relatório de Cobertura Arquitetural  | ✅ Concluído |
-| PI-005           | Application Layer                    | ✅ Concluída |
-| ER-005           | Engineering Review da PI-005         | ✅ Aprovada  |
-| EWO-003          | Implementação da Application Layer   | ✅ Concluída |
-| PI-006           | Infrastructure Layer                 | ✅ Concluída |
-| ER-006           | Engineering Review da PI-006         | ✅ Aprovada  |
-| EWO-004          | Implementação da Infrastructure Layer| ✅ Concluída |
+| Documento        | Finalidade                            | Status       |
+| ---------------- | ------------------------------------- | ------------ |
+| PI-004           | Arquitetura do Domínio Patrimonial    | ✅ Concluído |
+| ER-004           | Engineering Review da PI-004          | ✅ Aprovada  |
+| EWO-002          | Implementação do Domínio Patrimonial  | ✅ Concluída |
+| EWO-002-COVERAGE | Relatório de Cobertura Arquitetural   | ✅ Concluído |
+| PI-005           | Application Layer                     | ✅ Concluída |
+| ER-005           | Engineering Review da PI-005          | ✅ Aprovada  |
+| EWO-003          | Implementação da Application Layer    | ✅ Concluída |
+| PI-006           | Infrastructure Layer                  | ✅ Concluída |
+| ER-006           | Engineering Review da PI-006          | ✅ Aprovada  |
+| EWO-004          | Implementação da Infrastructure Layer | ✅ Concluída |
 
 ### Observações Relevantes
 
@@ -170,15 +170,19 @@ EWO-004 CONCLUÍDA. Infrastructure Layer completa e validada. Próxima etapa: Pr
 ## Arquitetura Base
 
 ### ✅ Core Foundation
+
 **Status:** Implementada e congelada.
 
 ### ✅ Domain Layer
+
 **Status:** Implementada e congelada.
 
 ### ✅ Application Layer
+
 **Status:** Implementada e congelada.
 
 ### ✅ Infrastructure Layer
+
 **Status:** Implementada e congelada.
 
 ---
@@ -494,6 +498,7 @@ Toda melhoria identificada durante auditorias (técnicas, metodológicas ou arqu
 3. **Registrada oficialmente** — documentada no relatório da auditoria com destino explícito.
 
 Caso a melhoria não possa ser implementada no momento da identificação:
+
 - Registrar justificativa técnica;
 - Registrar motivo do impedimento;
 - Manter como pendência ativa (BK ou TD) até que seja resolvida ou oficialmente descartada.
@@ -626,11 +631,11 @@ Institui o `PROMPT_MASTER.md` como fonte canônica para quatro procedimentos ope
 
 O uso de modelos de IA no projeto segue a matriz definida em `PROMPT_MASTER.md` (§1):
 
-| Modelo | Papel |
-|--------|-------|
+| Modelo            | Papel                                                                     |
+| ----------------- | ------------------------------------------------------------------------- |
 | DeepSeek V4 Flash | Implementação, correções, documentação operacional, auditoria incremental |
-| DeepSeek V4 Pro | PI, ER, EWO, decisões arquiteturais |
-| GLM-5.2 | Auditoria independente e validação extraordinária |
+| DeepSeek V4 Pro   | PI, ER, EWO, decisões arquiteturais                                       |
+| GLM-5.2           | Auditoria independente e validação extraordinária                         |
 
 ### Prompt Operacional (GOV-P013-B)
 
@@ -707,13 +712,13 @@ Define os indicadores padronizados para mensurar o progresso da engenharia, apli
 
 Mede quantas camadas estão implementadas por módulo. Escala de 0 a 4:
 
-| Pontos | Camadas Implementadas | Significado |
-|--------|----------------------|-------------|
-| 0 | Nenhuma | Não iniciado |
-| 1 | BR + Core Domain | Regras + Domínio |
-| 2 | BR + Core + Application + Infrastructure | Regras + Domínio + Aplicação |
-| 3 | Todas as anteriores | Completo (inclui Presentation) |
-| 4 | Completo + Composition Root registrado | Integrado ao sistema |
+| Pontos | Camadas Implementadas                    | Significado                    |
+| ------ | ---------------------------------------- | ------------------------------ |
+| 0      | Nenhuma                                  | Não iniciado                   |
+| 1      | BR + Core Domain                         | Regras + Domínio               |
+| 2      | BR + Core + Application + Infrastructure | Regras + Domínio + Aplicação   |
+| 3      | Todas as anteriores                      | Completo (inclui Presentation) |
+| 4      | Completo + Composition Root registrado   | Integrado ao sistema           |
 
 > Usar notação: "3/4" para módulo com BR+Core+App+Infra sem Presentation.
 
@@ -730,10 +735,11 @@ Exemplo: 4/4 (100%) ou 5/8 (62,5%)
 
 Tabela oficial de diagnóstico por módulo:
 
-| Módulo | BR | Core | App+Infra | Pres. | I-001 | FRs | NCs |
-|--------|----|------|-----------|-------|-------|-----|-----|
+| Módulo | BR  | Core | App+Infra | Pres. | I-001 | FRs | NCs |
+| ------ | --- | ---- | --------- | ----- | ----- | --- | --- |
 
 Onde:
+
 - BR, Core, App+Infra, Pres.: ✅ ou ⏳
 - I-001: indicador arquitetural (0–4)
 - FRs: materializados / previstos
@@ -753,12 +759,12 @@ PIs:      X de Y materializadas (%)
 
 ### I-005 — Aplicabilidade dos Indicadores
 
-| Indicador | Uso Principal | Obrigatório em |
-|-----------|--------------|----------------|
-| I-001 | Planejamento de Slices, relatórios de Slice | Todo relatório de implementação |
-| I-002 | Acompanhamento de PI, roadmap | Engineering Review |
-| I-003 | Diagnóstico rápido, auditoria | Engineering Closure |
-| I-004 | Visão executiva, apresentações | Fechamento de PI |
+| Indicador | Uso Principal                               | Obrigatório em                  |
+| --------- | ------------------------------------------- | ------------------------------- |
+| I-001     | Planejamento de Slices, relatórios de Slice | Todo relatório de implementação |
+| I-002     | Acompanhamento de PI, roadmap               | Engineering Review              |
+| I-003     | Diagnóstico rápido, auditoria               | Engineering Closure             |
+| I-004     | Visão executiva, apresentações              | Fechamento de PI                |
 
 Os indicadores complementam a metodologia Slice First existente, sem substituí-la.
 
@@ -898,13 +904,13 @@ Estrutura conforme GOV-P014-002:
 
 1. **Cabeçalho:** Modelo recomendado: <modelo>
 2. Objetivo
-2. Implementação
-3. Atualizações Obrigatórias
-4. DOCUMENTACAO_COMPLETA (regenerar ou não)
-5. Relatório Consolidado Final (quando aplicável)
-6. Sugestões Técnicas
-7. Oportunidades Futuras
-8. Registro em SYNC_HISTORY
+3. Implementação
+4. Atualizações Obrigatórias
+5. DOCUMENTACAO_COMPLETA (regenerar ou não)
+6. Relatório Consolidado Final (quando aplicável)
+7. Sugestões Técnicas
+8. Oportunidades Futuras
+9. Registro em SYNC_HISTORY
 
 **Lembrete Operacional Obrigatório (GOV-M02)** — Deve ser acrescentado ao final de todo prompt destinado ao Agente Executor.
 
@@ -1341,7 +1347,7 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 | Documento           | `architecture-lab/PI-004.md`                                                                                                         |
 | Objetivo            | Definir a arquitetura do domínio patrimonial: Aggregate Root Portfolio, Financial Events, Projections, Bounded Contexts, Invariantes |
 | Entregável esperado | Especificação completa da arquitetura patrimonial (12 DAs, 13 Invariantes, 4 Bounded Contexts)                                       |
-| Resultado           | Domínio Patrimonial implementado via EWO-002 (9 Slices, 362 testes, 12/12 DAs, 11/13 Invariantes)                                   |
+| Resultado           | Domínio Patrimonial implementado via EWO-002 (9 Slices, 362 testes, 12/12 DAs, 11/13 Invariantes)                                    |
 | Próximo passo       | **EWO-003** — Application Layer                                                                                                      |
 
 > **Resumo Operacional Canônico:** PI-004 define Portfolio como Aggregate Root principal, Financial Events como mecanismo de evolução patrimonial, Projections como visões derivadas. Implementado via EWO-002 (9 Slices). PI-005 usa esse domínio como base para a Application Layer.
@@ -1359,28 +1365,28 @@ Mesmo que apenas AI_CONTEXT e PROJECT_BOOTSTRAP sejam enviados no início do cha
 
 ### PI-005 v1.0 — Application Layer do Lio Feliz (Completed)
 
-| Campo               | Valor                                                                                                                                       |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Identificador       | PI-005                                                                                                                                      |
-| Versão              | v1.0 (Approved)                                                                                                                             |
-| Status              | COMPLETED                                                                                                                                   |
-| Documento           | `architecture-lab/PI-005.md`                                                                                                                |
-| Objetivo            | Definir a arquitetura da Application Layer: CQRS, Ports, DTOs, Services, Dispatcher, Handlers, Application Errors, Unit of Work            |
-| Entregável esperado | 5 Commands, 9 Queries, 14 Services, 9 Ports, 15 DTOs, 1 Dispatcher, 3 Handlers, 6 Application Errors, 1 Validator                          |
-| Resultado           | Application Layer implementada via EWO-003 (8 Slices, 528 testes, 14 Services, 9 Ports, 15 DTOs, 3 Handlers)                               |
-| Próximo passo       | **EWO-004** — Infrastructure Layer (implementação concreta dos Ports)                                                                       |
+| Campo               | Valor                                                                                                                           |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Identificador       | PI-005                                                                                                                          |
+| Versão              | v1.0 (Approved)                                                                                                                 |
+| Status              | COMPLETED                                                                                                                       |
+| Documento           | `architecture-lab/PI-005.md`                                                                                                    |
+| Objetivo            | Definir a arquitetura da Application Layer: CQRS, Ports, DTOs, Services, Dispatcher, Handlers, Application Errors, Unit of Work |
+| Entregável esperado | 5 Commands, 9 Queries, 14 Services, 9 Ports, 15 DTOs, 1 Dispatcher, 3 Handlers, 6 Application Errors, 1 Validator               |
+| Resultado           | Application Layer implementada via EWO-003 (8 Slices, 528 testes, 14 Services, 9 Ports, 15 DTOs, 3 Handlers)                    |
+| Próximo passo       | **EWO-004** — Infrastructure Layer (implementação concreta dos Ports)                                                           |
 
 > **Resumo Operacional Canônico:** PI-005 define a Application Layer como uma camada fina de orquestração CQRS. 5 Commands e 9 Queries são processados por um Dispatcher com Unit of Work (Commands transacionais, Queries sem transação). 14 Services implementam casos de uso. 9 Ports definem contratos com Infrastructure. 15 DTOs transportam dados sem expor entidades do domínio. 3 Domain Event Handlers reagem a eventos. ER-005 aprovou a PI-005 com 3 não conformidades corrigidas. EWO-003 implementou em 8 Slices com 528 testes.
 
 ### ER-005 v1.0 — Engineering Review da PI-005 (Approved)
 
-| Campo           | Valor                                                                                                                       |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Identificador   | ER-005                                                                                                                      |
-| Versão          | v1.0 (Approved)                                                                                                             |
-| Status          | Approved                                                                                                                    |
-| Documento       | `architecture-lab/ER-005.md`                                                                                                |
-| PI Referenciada | PI-005 v1.0 (Approved)                                                                                                      |
+| Campo           | Valor                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Identificador   | ER-005                                                                                                                       |
+| Versão          | v1.0 (Approved)                                                                                                              |
+| Status          | Approved                                                                                                                     |
+| Documento       | `architecture-lab/ER-005.md`                                                                                                 |
+| PI Referenciada | PI-005 v1.0 (Approved)                                                                                                       |
 | Resultado       | 14 dimensões auditadas, 3 não conformidades corrigidas, compatibilidade com PI-001 a PI-004 validada. Aprovada para EWO-003. |
 
 ## Baseline Arquitetural Atual
@@ -1855,15 +1861,15 @@ Os documentos abaixo estão previstos para criação futura. **Ainda não existe
 **Título:** Implementação da Infrastructure Layer
 **Status:** ✅ Concluída
 
-| Slice | Componentes | Testes | Status |
-|-------|------------|--------|--------|
-| S1 — Fakes + Estrutura | 10 Fakes, `src/infrastructure/` directories | — | ✅ CLOSED |
-| S2 — Repositories CRUD | SupabasePortfolioRepository, SupabaseAssetRepository, SupabaseConfigurationRepository | 15 | ✅ CLOSED |
-| S3 — Subscription + Projection | SupabaseSubscriptionRepository, SupabaseProjectionRepository | 13 | ✅ CLOSED |
-| S4 — UoW + Events | SupabaseUnitOfWork, InProcessEventPublisher | 22 | ✅ CLOSED |
-| S5 — Data Gateways | YahooFinanceGateway, CoingeckoGateway, ExchangeRateGateway, B3CsvGateway, DataGatewayFactory | 26 | ✅ CLOSED |
-| S6 — Notifications + Interpreter | InAppNotificationAdapter, EmailNotificationAdapter, ImportInterpreter | 17 | ✅ CLOSED |
-| S7 — Migration + Integration | Infrastructure integration tests | 9 | ✅ CLOSED |
+| Slice                            | Componentes                                                                                  | Testes | Status    |
+| -------------------------------- | -------------------------------------------------------------------------------------------- | ------ | --------- |
+| S1 — Fakes + Estrutura           | 10 Fakes, `src/infrastructure/` directories                                                  | —      | ✅ CLOSED |
+| S2 — Repositories CRUD           | SupabasePortfolioRepository, SupabaseAssetRepository, SupabaseConfigurationRepository        | 15     | ✅ CLOSED |
+| S3 — Subscription + Projection   | SupabaseSubscriptionRepository, SupabaseProjectionRepository                                 | 13     | ✅ CLOSED |
+| S4 — UoW + Events                | SupabaseUnitOfWork, InProcessEventPublisher                                                  | 22     | ✅ CLOSED |
+| S5 — Data Gateways               | YahooFinanceGateway, CoingeckoGateway, ExchangeRateGateway, B3CsvGateway, DataGatewayFactory | 26     | ✅ CLOSED |
+| S6 — Notifications + Interpreter | InAppNotificationAdapter, EmailNotificationAdapter, ImportInterpreter                        | 17     | ✅ CLOSED |
+| S7 — Migration + Integration     | Infrastructure integration tests                                                             | 9      | ✅ CLOSED |
 
 **Total: 7/7 Slices concluídas. 630 testes. Zero regressões. ✅ EWO-004 CONCLUÍDA**
 

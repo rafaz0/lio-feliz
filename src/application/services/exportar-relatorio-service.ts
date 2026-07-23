@@ -6,10 +6,11 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { ExportJob } from "@/core/domain/import-export";
 
-export class ExportarRelatorioService implements IApplicationService<ExportarRelatorioCommand, ExportJobDto> {
-  constructor(
-    private readonly projectionRepo: IProjectionRepository,
-  ) {}
+export class ExportarRelatorioService implements IApplicationService<
+  ExportarRelatorioCommand,
+  ExportJobDto
+> {
+  constructor(private readonly projectionRepo: IProjectionRepository) {}
 
   async Execute(command: ExportarRelatorioCommand): Promise<ExportJobDto | ApplicationError> {
     const validationError = this.validar(command);
@@ -17,7 +18,10 @@ export class ExportarRelatorioService implements IApplicationService<ExportarRel
 
     const positions = await this.projectionRepo.ObterPosicoes(command.portfolioId);
     if (!positions) {
-      return new ValidationError("PROJECTION_NOT_FOUND", "Posições não encontradas para o portfólio");
+      return new ValidationError(
+        "PROJECTION_NOT_FOUND",
+        "Posições não encontradas para o portfólio",
+      );
     }
 
     const projections = { posicoes: positions };
@@ -74,7 +78,14 @@ export class ExportarRelatorioService implements IApplicationService<ExportarRel
         break;
       }
       case "proventos": {
-        rows.push(["Ativo", "Data", "Tipo", "Valor por Cota", "Quantidade Cotas", "Total Recebido"]);
+        rows.push([
+          "Ativo",
+          "Data",
+          "Tipo",
+          "Valor por Cota",
+          "Quantidade Cotas",
+          "Total Recebido",
+        ]);
         if (projections.proventos) {
           for (const prov of projections.proventos) {
             rows.push([
@@ -127,7 +138,7 @@ export class ExportarRelatorioService implements IApplicationService<ExportarRel
       }
     }
 
-    return rows.map(row => row.join(",")).join("\n");
+    return rows.map((row) => row.join(",")).join("\n");
   }
 
   private validar(command: ExportarRelatorioCommand): ValidationError | null {

@@ -53,10 +53,12 @@ export function IntegrationsPage() {
               <select
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={configForm.provider}
-                onChange={e => setConfigForm(f => ({ ...f, provider: e.target.value }))}
+                onChange={(e) => setConfigForm((f) => ({ ...f, provider: e.target.value }))}
               >
-                {PROVIDERS.map(p => (
-                  <option key={p.value} value={p.value}>{p.label}</option>
+                {PROVIDERS.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label}
+                  </option>
                 ))}
               </select>
             </div>
@@ -67,7 +69,7 @@ export function IntegrationsPage() {
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 placeholder="Minha API BRAPI"
                 value={configForm.name}
-                onChange={e => setConfigForm(f => ({ ...f, name: e.target.value }))}
+                onChange={(e) => setConfigForm((f) => ({ ...f, name: e.target.value }))}
               />
             </div>
             <div>
@@ -75,7 +77,7 @@ export function IntegrationsPage() {
               <select
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={configForm.authType}
-                onChange={e => setConfigForm(f => ({ ...f, authType: e.target.value }))}
+                onChange={(e) => setConfigForm((f) => ({ ...f, authType: e.target.value }))}
               >
                 <option value="API_KEY">Chave de API</option>
                 <option value="NONE">Pública</option>
@@ -88,7 +90,12 @@ export function IntegrationsPage() {
                   type="password"
                   className="w-full border rounded-md px-3 py-2 text-sm"
                   placeholder="Sua chave de API"
-                  onChange={e => setConfigForm(f => ({ ...f, configData: { ...f.configData, apiKey: e.target.value } }))}
+                  onChange={(e) =>
+                    setConfigForm((f) => ({
+                      ...f,
+                      configData: { ...f.configData, apiKey: e.target.value },
+                    }))
+                  }
                 />
               </div>
             )}
@@ -104,19 +111,23 @@ export function IntegrationsPage() {
       )}
 
       {isLoading && <div className="text-muted-foreground">Carregando integrações...</div>}
-      {isError && <div className="text-red-500">Erro ao carregar integrações: {error?.message}</div>}
+      {isError && (
+        <div className="text-red-500">Erro ao carregar integrações: {error?.message}</div>
+      )}
 
       {!isLoading && !isError && integrations.length === 0 && !showConfig && (
         <Card>
           <CardContent className="p-8 text-center text-muted-foreground">
             <p className="text-lg mb-2">Nenhuma integração configurada</p>
-            <p className="text-sm">Conecte-se a corretoras e plataformas para sincronizar automaticamente suas operações.</p>
+            <p className="text-sm">
+              Conecte-se a corretoras e plataformas para sincronizar automaticamente suas operações.
+            </p>
           </CardContent>
         </Card>
       )}
 
       <div className="grid gap-4">
-        {integrations.map(integration => (
+        {integrations.map((integration) => (
           <Card key={integration.id}>
             <CardContent className="p-4">
               <div className="flex justify-between items-start mb-2">
@@ -124,14 +135,19 @@ export function IntegrationsPage() {
                   <h3 className="font-semibold">{integration.name}</h3>
                   <p className="text-sm text-muted-foreground">{integration.provider}</p>
                 </div>
-                <span className={`px-2 py-1 rounded-full text-xs ${integration.statusColor} bg-opacity-10`}>
+                <span
+                  className={`px-2 py-1 rounded-full text-xs ${integration.statusColor} bg-opacity-10`}
+                >
                   {integration.status}
                 </span>
               </div>
               <div className="flex gap-4 text-sm text-muted-foreground mb-3">
                 <span>Auth: {integration.authType}</span>
                 {integration.lastSyncAt && (
-                  <span>Última sincronização: {new Date(integration.lastSyncAt).toLocaleDateString("pt-BR")}</span>
+                  <span>
+                    Última sincronização:{" "}
+                    {new Date(integration.lastSyncAt).toLocaleDateString("pt-BR")}
+                  </span>
                 )}
               </div>
               {integration.errorMessage && (
@@ -142,7 +158,9 @@ export function IntegrationsPage() {
               <button
                 className="bg-primary text-primary-foreground px-3 py-1.5 rounded-md text-sm"
                 onClick={() => {
-                  syncMutation.mutateAsync({ integrationId: integration.id, type: "MANUAL" }).catch(() => {});
+                  syncMutation
+                    .mutateAsync({ integrationId: integration.id, type: "MANUAL" })
+                    .catch(() => {});
                 }}
                 disabled={syncMutation.isPending}
                 data-testid={`sync-btn-${integration.id}`}

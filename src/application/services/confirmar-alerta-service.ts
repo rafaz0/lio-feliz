@@ -5,9 +5,10 @@ import type { IAlertRepository } from "@/application/ports/alert-repository";
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ConfirmarAlertaService
-  implements IApplicationService<ConfirmarAlertaCommand, AlertaDto>
-{
+export class ConfirmarAlertaService implements IApplicationService<
+  ConfirmarAlertaCommand,
+  AlertaDto
+> {
   constructor(private readonly alertRepo: IAlertRepository) {}
 
   async Execute(command: ConfirmarAlertaCommand): Promise<AlertaDto | ApplicationError> {

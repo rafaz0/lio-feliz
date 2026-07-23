@@ -4,9 +4,10 @@ import type { IApplicationService } from "@/application/application-service";
 import type { IExportTemplateRepository } from "@/application/ports/export-template-repository";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ListarExportTemplatesService
-  implements IApplicationService<ListarExportTemplatesQuery, ExportJobListDto>
-{
+export class ListarExportTemplatesService implements IApplicationService<
+  ListarExportTemplatesQuery,
+  ExportJobListDto
+> {
   constructor(private readonly exportRepo: IExportTemplateRepository) {}
 
   async Execute(_query: ListarExportTemplatesQuery): Promise<ExportJobListDto | ApplicationError> {

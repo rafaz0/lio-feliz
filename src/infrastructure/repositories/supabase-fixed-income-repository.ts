@@ -22,10 +22,12 @@ export class SupabaseFixedIncomeRepository implements IFixedIncomeRepository {
 
   async save(asset: FixedIncomeAsset): Promise<void> {
     const serialized = this.serialize(asset);
-    const { error } = await this.supabase.from("fixed_income").upsert(
-      { id: asset.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("fixed_income")
+      .upsert(
+        { id: asset.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
 
     if (error) {
       throw new Error(`Failed to save fixed income asset: ${error.message}`);

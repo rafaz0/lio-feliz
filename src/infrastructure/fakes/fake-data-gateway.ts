@@ -3,7 +3,10 @@ import type { IDataGateway, ParametrosImportacao, DadosImportacao } from "@/appl
 export class FakeDataGateway implements IDataGateway {
   private dados: Map<string, DadosImportacao> = new Map();
 
-  async ObterDadosImportacao(origem: string, _parametros: ParametrosImportacao): Promise<DadosImportacao> {
+  async ObterDadosImportacao(
+    origem: string,
+    _parametros: ParametrosImportacao,
+  ): Promise<DadosImportacao> {
     const cached = this.dados.get(origem);
     if (cached) {
       return cached;

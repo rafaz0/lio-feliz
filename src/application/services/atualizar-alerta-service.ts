@@ -6,9 +6,10 @@ import { NotFoundError, InternalError } from "@/application/errors/application-e
 import type { ApplicationError } from "@/application/errors/application-error";
 import { AlertRule, AlertRuleId } from "@/core/domain/alerts";
 
-export class AtualizarAlertaService
-  implements IApplicationService<AtualizarAlertaCommand, AlertRuleDto>
-{
+export class AtualizarAlertaService implements IApplicationService<
+  AtualizarAlertaCommand,
+  AlertRuleDto
+> {
   constructor(private readonly alertRepo: IAlertRepository) {}
 
   async Execute(command: AtualizarAlertaCommand): Promise<AlertRuleDto | ApplicationError> {
@@ -34,7 +35,10 @@ export class AtualizarAlertaService
     return {
       id: updated.id.value,
       name: updated.name,
-      triggerWhen: { daysBefore: updated.triggerWhen.daysBefore, eventType: updated.triggerWhen.eventType },
+      triggerWhen: {
+        daysBefore: updated.triggerWhen.daysBefore,
+        eventType: updated.triggerWhen.eventType,
+      },
       assetFilter: updated.assetFilter,
       channel: { type: updated.channel.type, destination: updated.channel.destination },
       enabled: updated.enabled,

@@ -41,7 +41,9 @@ export function useCronogramaQuery(
   });
 
   return {
-    cronograma: query.data ? toCronogramaViewModel(query.data) : { items: [], totalJuros: "R$ 0,00", totalAmortizacao: "R$ 0,00" },
+    cronograma: query.data
+      ? toCronogramaViewModel(query.data)
+      : { items: [], totalJuros: "R$ 0,00", totalAmortizacao: "R$ 0,00" },
     isLoading: query.isLoading,
     isError: query.isError,
     error: (query.error as ApplicationError | null) ?? null,

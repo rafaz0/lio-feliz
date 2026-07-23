@@ -33,10 +33,7 @@ export class SyncOrchestrationService {
     });
   }
 
-  static createLog(props: {
-    integrationId: string;
-    type: SyncType;
-  }): SyncLog {
+  static createLog(props: { integrationId: string; type: SyncType }): SyncLog {
     return SyncLog.create(props);
   }
 }

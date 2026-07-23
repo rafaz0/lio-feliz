@@ -13,7 +13,9 @@ export class ReportScheduleId extends EntityId {
   }
 
   static generate(): ReportScheduleId {
-    return new ReportScheduleId(`sched-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`);
+    return new ReportScheduleId(
+      `sched-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+    );
   }
 }
 

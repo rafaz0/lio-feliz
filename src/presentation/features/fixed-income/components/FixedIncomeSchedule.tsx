@@ -37,7 +37,10 @@ export function FixedIncomeSchedule({ cronograma }: FixedIncomeScheduleProps) {
             </thead>
             <tbody>
               {cronograma.items.map((item, index) => (
-                <tr key={`${item.assetId}-${item.date}-${item.tipo}-${index}`} className="border-t border-border">
+                <tr
+                  key={`${item.assetId}-${item.date}-${item.tipo}-${index}`}
+                  className="border-t border-border"
+                >
                   <td className="px-3 py-2">{item.date}</td>
                   <td className="px-3 py-2">{item.ticker}</td>
                   <td className="px-3 py-2">{item.tipoLabel}</td>

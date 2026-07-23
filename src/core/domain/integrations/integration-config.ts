@@ -10,7 +10,8 @@ export class IntegrationConfigId extends EntityId {
   }
 }
 
-export type IntegrationProvider = "BRAPI" | "YAHOO_FINANCE" | "BANCO_INTER" | "XP_INVESTIMENTOS" | "CUSTOM";
+export type IntegrationProvider =
+  "BRAPI" | "YAHOO_FINANCE" | "BANCO_INTER" | "XP_INVESTIMENTOS" | "CUSTOM";
 export type IntegrationAuthType = "API_KEY" | "OAUTH2" | "BASIC_AUTH" | "NONE";
 export type IntegrationStatus = "ACTIVE" | "INACTIVE" | "ERROR" | "PENDING";
 
@@ -28,18 +29,40 @@ export interface IntegrationConfigProps {
 }
 
 export class IntegrationConfig extends ValueObject<IntegrationConfig> {
-  private constructor(private readonly props: IntegrationConfigProps) { super(); }
+  private constructor(private readonly props: IntegrationConfigProps) {
+    super();
+  }
 
-  get id(): IntegrationConfigId { return this.props.id; }
-  get provider(): IntegrationProvider { return this.props.provider; }
-  get name(): string { return this.props.name; }
-  get authType(): IntegrationAuthType { return this.props.authType; }
-  get status(): IntegrationStatus { return this.props.status; }
-  get lastSyncAt(): Date | undefined { return this.props.lastSyncAt; }
-  get errorMessage(): string | undefined { return this.props.errorMessage; }
-  get configData(): Record<string, string> { return { ...this.props.configData }; }
-  get createdAt(): Date { return this.props.createdAt; }
-  get updatedAt(): Date { return this.props.updatedAt; }
+  get id(): IntegrationConfigId {
+    return this.props.id;
+  }
+  get provider(): IntegrationProvider {
+    return this.props.provider;
+  }
+  get name(): string {
+    return this.props.name;
+  }
+  get authType(): IntegrationAuthType {
+    return this.props.authType;
+  }
+  get status(): IntegrationStatus {
+    return this.props.status;
+  }
+  get lastSyncAt(): Date | undefined {
+    return this.props.lastSyncAt;
+  }
+  get errorMessage(): string | undefined {
+    return this.props.errorMessage;
+  }
+  get configData(): Record<string, string> {
+    return { ...this.props.configData };
+  }
+  get createdAt(): Date {
+    return this.props.createdAt;
+  }
+  get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 
   static create(props: {
     provider: IntegrationProvider;

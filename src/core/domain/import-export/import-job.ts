@@ -2,7 +2,13 @@ import { ValueObject } from "../value-object";
 import { EntityId } from "../entity-id";
 import type { ImportFormat } from "./import-format";
 import type { ImportSource, ImportError } from "./errors";
-import { isValidImportSource, MAX_IMPORT_RECORDS, ImportRecordLimitError, ImportSourceError, InvalidImportFormatError } from "./errors";
+import {
+  isValidImportSource,
+  MAX_IMPORT_RECORDS,
+  ImportRecordLimitError,
+  ImportSourceError,
+  InvalidImportFormatError,
+} from "./errors";
 import { isValidImportFormat } from "./import-format";
 
 export class ImportJobId extends EntityId {
@@ -11,7 +17,9 @@ export class ImportJobId extends EntityId {
   }
 
   static create(value?: string): ImportJobId {
-    return new ImportJobId(value ?? `import_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`);
+    return new ImportJobId(
+      value ?? `import_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`,
+    );
   }
 
   static fromString(value: string): ImportJobId {
@@ -46,19 +54,45 @@ export class ImportJob extends ValueObject<ImportJob> {
     super();
   }
 
-  get id(): ImportJobId { return this._id; }
-  get fileName(): string { return this._fileName; }
-  get fileSize(): number { return this._fileSize; }
-  get format(): ImportFormat { return this._format; }
-  get source(): ImportSource { return this._source; }
-  get metadata(): ImportJobMetadata { return this._metadata; }
-  get status(): ImportJobStatus { return this._status; }
-  get createdAt(): Date { return this._createdAt; }
-  get completedAt(): Date | undefined { return this._completedAt; }
-  get totalRecords(): number { return this._totalRecords; }
-  get processedRecords(): number { return this._processedRecords; }
-  get errorRecords(): number { return this._errorRecords; }
-  get errors(): ImportError[] { return [...this._errors]; }
+  get id(): ImportJobId {
+    return this._id;
+  }
+  get fileName(): string {
+    return this._fileName;
+  }
+  get fileSize(): number {
+    return this._fileSize;
+  }
+  get format(): ImportFormat {
+    return this._format;
+  }
+  get source(): ImportSource {
+    return this._source;
+  }
+  get metadata(): ImportJobMetadata {
+    return this._metadata;
+  }
+  get status(): ImportJobStatus {
+    return this._status;
+  }
+  get createdAt(): Date {
+    return this._createdAt;
+  }
+  get completedAt(): Date | undefined {
+    return this._completedAt;
+  }
+  get totalRecords(): number {
+    return this._totalRecords;
+  }
+  get processedRecords(): number {
+    return this._processedRecords;
+  }
+  get errorRecords(): number {
+    return this._errorRecords;
+  }
+  get errors(): ImportError[] {
+    return [...this._errors];
+  }
 
   static create(props: {
     fileName: string;

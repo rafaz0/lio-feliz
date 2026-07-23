@@ -17,35 +17,36 @@ Registrar o encerramento definitivo da EWO-008, consolidando a entrega completa 
 
 ## 2. Escopo Planejado vs. Entregue
 
-| Módulo | Planejado (PI-009 §5.2) | Entregue | Status |
-|--------|------------------------|----------|--------|
-| 11 — Import/Export | BR + Core + App + Infra + Presentation | Completo (BR, Core, App, Infra, Presentation, testes) | ✅ Completo |
-| 12 — Integrações | BR + Core + App + Infra + Presentation | Completo (BR, Core, App, Infra, Presentation, testes) | ✅ Completo |
-| 13 — Relatórios | BR + Core + App + Infra + Presentation | Completo (BR, Core, App, Infra, Presentation, testes, docs) | ✅ Completo |
+| Módulo             | Planejado (PI-009 §5.2)                | Entregue                                                    | Status      |
+| ------------------ | -------------------------------------- | ----------------------------------------------------------- | ----------- |
+| 11 — Import/Export | BR + Core + App + Infra + Presentation | Completo (BR, Core, App, Infra, Presentation, testes)       | ✅ Completo |
+| 12 — Integrações   | BR + Core + App + Infra + Presentation | Completo (BR, Core, App, Infra, Presentation, testes)       | ✅ Completo |
+| 13 — Relatórios    | BR + Core + App + Infra + Presentation | Completo (BR, Core, App, Infra, Presentation, testes, docs) | ✅ Completo |
 
 ### 2.1 Detalhamento por Slice
 
 #### Módulo 13 — Relatórios (completo, commitado em `85d2114`)
 
-| Slice | Camada | Status |
-|-------|--------|--------|
-| A | BR `13_RELATÓRIOS.md` | ✅ 7 invariantes, 8 templates built-in |
-| B | Core Domain (`src/core/domain/reports/`) | ✅ 6 arquivos (entities, VOs, service, errors, barrel) |
-| C | Application + Infrastructure | ✅ 2 commands, 2 queries, 4 services, `IReportRepository`, DTOs, `FakeReportRepository`, `SupabaseReportRepository` |
-| D | Presentation (`src/presentation/features/reports/`) | ✅ 7 componentes, 4 hooks, viewmodel, 9 testes |
-| E | Documentação | ✅ DOCUMENTATION_INDEX v1.72, PROJECT_STATUS v1.84, barrels atualizados |
+| Slice | Camada                                              | Status                                                                                                              |
+| ----- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| A     | BR `13_RELATÓRIOS.md`                               | ✅ 7 invariantes, 8 templates built-in                                                                              |
+| B     | Core Domain (`src/core/domain/reports/`)            | ✅ 6 arquivos (entities, VOs, service, errors, barrel)                                                              |
+| C     | Application + Infrastructure                        | ✅ 2 commands, 2 queries, 4 services, `IReportRepository`, DTOs, `FakeReportRepository`, `SupabaseReportRepository` |
+| D     | Presentation (`src/presentation/features/reports/`) | ✅ 7 componentes, 4 hooks, viewmodel, 9 testes                                                                      |
+| E     | Documentação                                        | ✅ DOCUMENTATION_INDEX v1.72, PROJECT_STATUS v1.84, barrels atualizados                                             |
 
 #### Módulo 11 — Import/Export (completo, commitado em `a6b167d` + finalização)
 
-| Slice | Camada | Status |
-|-------|--------|--------|
-| A | BR `11_IMPORT_EXPORT.md` | ✅ Commitado |
-| B | Core Domain (`src/core/domain/import-export/`) | ✅ 8 arquivos (ImportJob, ExportJob, ImportMapping, ImportFormat, errors, international, fixed-income, barrel) |
-| C | Application | ✅ 2 commands, 2 queries, 4 services, DTOs, `IImportHistoryRepository`, `IImportInterpreterPort` |
-| D | Infrastructure | ✅ `FakeImportHistoryRepository`, `SupabaseImportHistoryRepository`, `FakeImportInterpreter`, `ImportInterpreter` |
-| E | Presentation (`src/presentation/features/import-export/`) | ✅ ImportExportPage com file upload (CSV/Excel/JSON), hooks, viewmodel, 7 testes |
+| Slice | Camada                                                    | Status                                                                                                            |
+| ----- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| A     | BR `11_IMPORT_EXPORT.md`                                  | ✅ Commitado                                                                                                      |
+| B     | Core Domain (`src/core/domain/import-export/`)            | ✅ 8 arquivos (ImportJob, ExportJob, ImportMapping, ImportFormat, errors, international, fixed-income, barrel)    |
+| C     | Application                                               | ✅ 2 commands, 2 queries, 4 services, DTOs, `IImportHistoryRepository`, `IImportInterpreterPort`                  |
+| D     | Infrastructure                                            | ✅ `FakeImportHistoryRepository`, `SupabaseImportHistoryRepository`, `FakeImportInterpreter`, `ImportInterpreter` |
+| E     | Presentation (`src/presentation/features/import-export/`) | ✅ ImportExportPage com file upload (CSV/Excel/JSON), hooks, viewmodel, 7 testes                                  |
 
 **Correções aplicadas:**
+
 - `ImportJob._format`: `string` → `ImportFormat`; `_source`: `string` → `ImportSource` union; `_errors`: `string[]` → `ImportError[]`
 - Invariante I-007 (limite 5.000 registros) implementada no `ImportJob.create()` e `addSuccess()`
 - `ImportError` VO criado com `line`, `field`, `message`, `code`
@@ -55,15 +56,16 @@ Registrar o encerramento definitivo da EWO-008, consolidando a entrega completa 
 
 #### Módulo 12 — Integrações (completo, commitado em `a6b167d` + finalização)
 
-| Slice | Camada | Status |
-|-------|--------|--------|
-| A | BR `12_INTEGRACOES.md` | ✅ Commitado |
-| B | Core Domain (`src/core/domain/integrations/`) | ✅ 6 arquivos (IntegrationConfig, SyncLog, SyncOrchestrationService, ConnectionStatus, errors, barrel) |
-| C | Application | ✅ 2 commands, 2 queries, 4 services, DTOs, `IIntegrationRepository` |
-| D | Infrastructure | ✅ `FakeIntegrationRepository`, `SupabaseIntegrationRepository` |
-| E | Presentation (`src/presentation/features/integrations/`) | ✅ IntegrationsPage com config UI (provider/name/authType/apiKey), hooks, viewmodel, 7 testes |
+| Slice | Camada                                                   | Status                                                                                                 |
+| ----- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| A     | BR `12_INTEGRACOES.md`                                   | ✅ Commitado                                                                                           |
+| B     | Core Domain (`src/core/domain/integrations/`)            | ✅ 6 arquivos (IntegrationConfig, SyncLog, SyncOrchestrationService, ConnectionStatus, errors, barrel) |
+| C     | Application                                              | ✅ 2 commands, 2 queries, 4 services, DTOs, `IIntegrationRepository`                                   |
+| D     | Infrastructure                                           | ✅ `FakeIntegrationRepository`, `SupabaseIntegrationRepository`                                        |
+| E     | Presentation (`src/presentation/features/integrations/`) | ✅ IntegrationsPage com config UI (provider/name/authType/apiKey), hooks, viewmodel, 7 testes          |
 
 **Correções aplicadas:**
+
 - `SyncOrchestrationService` injetado como singleton no dispatcher (evita race condition `canStartSync`)
 - `SincronizarIntegracaoService` usa conectores HTTP reais (BRAPI/Yahoo Finance) com `AbortSignal.timeout(10000)` e retry/backoff
 - `ConnectionStatus` VO criado (lastSync, status, totalErrors)
@@ -74,15 +76,15 @@ Registrar o encerramento definitivo da EWO-008, consolidando a entrega completa 
 
 ## 3. Quality Gates
 
-| Gate | Comando | Resultado |
-|------|---------|-----------|
-| Testes (Módulo 13) | `npx vitest run src/presentation/features/reports/__tests__/` | ✅ 9/9 passando |
-| Testes (Módulo 11) | `npx vitest run src/presentation/features/import-export/__tests__/` | ✅ 7/7 passando |
-| Testes (Módulo 12) | `npx vitest run src/presentation/features/integrations/__tests__/` | ✅ 7/7 passando |
-| Architecture Tests (R-10) | `npx vitest run presentation-boundaries` | ✅ 37/37 passando, 0 violações |
-| Build de produção | `npm run build` (vite) | ✅ Concluída sem erros (exit 0) |
-| Testes globais | `npx vitest run` | ✅ 134/136 arquivos (2 falhas pre-existing de EWO-005) |
-| Frozen Baseline | Verificação de extensão (sem modificação) | ✅ Preservada — Módulos 11, 12, 13 são extensão pura |
+| Gate                      | Comando                                                             | Resultado                                              |
+| ------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------ |
+| Testes (Módulo 13)        | `npx vitest run src/presentation/features/reports/__tests__/`       | ✅ 9/9 passando                                        |
+| Testes (Módulo 11)        | `npx vitest run src/presentation/features/import-export/__tests__/` | ✅ 7/7 passando                                        |
+| Testes (Módulo 12)        | `npx vitest run src/presentation/features/integrations/__tests__/`  | ✅ 7/7 passando                                        |
+| Architecture Tests (R-10) | `npx vitest run presentation-boundaries`                            | ✅ 37/37 passando, 0 violações                         |
+| Build de produção         | `npm run build` (vite)                                              | ✅ Concluída sem erros (exit 0)                        |
+| Testes globais            | `npx vitest run`                                                    | ✅ 134/136 arquivos (2 falhas pre-existing de EWO-005) |
+| Frozen Baseline           | Verificação de extensão (sem modificação)                           | ✅ Preservada — Módulos 11, 12, 13 são extensão pura   |
 
 ### Observações
 
@@ -107,12 +109,12 @@ Registrar o encerramento definitivo da EWO-008, consolidando a entrega completa 
 
 ## 5. Pendências Resolvidas
 
-| ID | Descrição | Status |
-|----|-----------|--------|
-| TD-008-001 | Módulo 12 (Integrações) — não implementado. BR doc nunca criado (JSON parse error). | ✅ **Resolvido** — BR + Core + App + Infra + Presentation + testes entregues |
-| TD-008-002 | Módulo 11 (Import/Export) — BR doc e Core Domain stubs parciais, Application/Infra incompletos, Presentation não iniciada. | ✅ **Resolvido** — Todas as camadas completas e testadas |
-| TD-008-003 | 19 arquivos untracked (Módulo 11 stubs, International leftovers) + 2 modificações não versionadas. | ✅ **Resolvido** — Working tree limpa; duplicatas removidas (`ImportacaoRealizadaDto`, `ImportarDadosCommand`, `SincronizacaoRealizadaDto` colidindo) |
-| TD-008-004 | 2 testes pre-existing falhando (EWO-005). | 🟡 **Herdado** — fora do escopo desta EWO |
+| ID         | Descrição                                                                                                                  | Status                                                                                                                                                |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TD-008-001 | Módulo 12 (Integrações) — não implementado. BR doc nunca criado (JSON parse error).                                        | ✅ **Resolvido** — BR + Core + App + Infra + Presentation + testes entregues                                                                          |
+| TD-008-002 | Módulo 11 (Import/Export) — BR doc e Core Domain stubs parciais, Application/Infra incompletos, Presentation não iniciada. | ✅ **Resolvido** — Todas as camadas completas e testadas                                                                                              |
+| TD-008-003 | 19 arquivos untracked (Módulo 11 stubs, International leftovers) + 2 modificações não versionadas.                         | ✅ **Resolvido** — Working tree limpa; duplicatas removidas (`ImportacaoRealizadaDto`, `ImportarDadosCommand`, `SincronizacaoRealizadaDto` colidindo) |
+| TD-008-004 | 2 testes pre-existing falhando (EWO-005).                                                                                  | 🟡 **Herdado** — fora do escopo desta EWO                                                                                                             |
 
 ---
 

@@ -19,6 +19,7 @@
 Este documento define todas as regras relacionadas ao módulo de Impostos do Lio Feliz.
 
 O módulo de Impostos é responsável por:
+
 - apurar o Imposto de Renda sobre operações de renda variável (day-trade e swing-trade);
 - consolidar proventos (dividendos e JCP) recebidos no ano-calendário;
 - gerenciar lotes fiscais para controle de custo médio e prejuízo compensar;
@@ -30,6 +31,7 @@ O módulo de Impostos é responsável por:
 # Escopo
 
 Este documento cobre:
+
 - apuração mensal de IR sobre operações de compra e venda;
 - classificação de operações como day-trade ou swing-trade;
 - cálculo de alíquotas conforme tipo de ativo e modalidade;
@@ -39,6 +41,7 @@ Este documento cobre:
 - exportação de relatórios fiscais.
 
 Este documento NÃO cobre:
+
 - regras de declaração de bens e direitos (fora do escopo do sistema);
 - cálculo de IR sobre renda fixa (módulo 09);
 - cálculo de IR sobre investimentos internacionais (módulo 10);
@@ -74,6 +77,7 @@ Este documento NÃO cobre:
 # Entradas
 
 O módulo de Impostos recebe as seguintes informações:
+
 - **Operações:** compras, vendas, dividendos, JCP, bonificações registradas pelo usuário.
 - **Ticker do Ativo:** identificador do ativo negociado.
 - **Tipo do Ativo:** classificação para aplicação da alíquota correta.
@@ -113,21 +117,22 @@ Prejuízos fiscais devem ser compensados automaticamente:
 
 Alíquotas vigentes por tipo de ativo:
 
-| Tipo | Swing-Trade | Day-Trade | Isenção Mensal |
-|------|-------------|-----------|----------------|
-| Ação | 15% | 20% | R$ 20.000 |
-| FII | 20% | 20% | — |
-| BDR | 15% | 20% | R$ 20.000 |
-| ETF | 15% | 20% | R$ 20.000 |
-| ETF Internacional | 15% | 20% | R$ 20.000 |
-| Stock EUA | 15% | 20% | R$ 20.000 |
-| REIT EUA | 15% | 20% | R$ 20.000 |
-| Cripto | 15% | 20% | R$ 35.000 |
-| Renda Fixa | 15% | 20% | — |
+| Tipo              | Swing-Trade | Day-Trade | Isenção Mensal |
+| ----------------- | ----------- | --------- | -------------- |
+| Ação              | 15%         | 20%       | R$ 20.000      |
+| FII               | 20%         | 20%       | —              |
+| BDR               | 15%         | 20%       | R$ 20.000      |
+| ETF               | 15%         | 20%       | R$ 20.000      |
+| ETF Internacional | 15%         | 20%       | R$ 20.000      |
+| Stock EUA         | 15%         | 20%       | R$ 20.000      |
+| REIT EUA          | 15%         | 20%       | R$ 20.000      |
+| Cripto            | 15%         | 20%       | R$ 35.000      |
+| Renda Fixa        | 15%         | 20%       | —              |
 
 ## Cálculo de Custos
 
 O custo de aquisição deve incluir:
+
 - Preço unitário pago pelo ativo.
 - Custos operacionais (taxas de corretagem, emolumentos, ISS) proporcionais.
 
@@ -136,6 +141,7 @@ O custo de venda pode ser descontado para apuração do ganho líquido.
 ## Consolidação Anual
 
 Ao final do ano-calendário, o sistema deve consolidar:
+
 - Total de operações realizadas (compras e vendas).
 - Ganho líquido total por tipo de operação.
 - Imposto devido por mês.
@@ -148,6 +154,7 @@ Ao final do ano-calendário, o sistema deve consolidar:
 ## Exportação
 
 O sistema deve permitir exportar:
+
 - Relatório completo em CSV com todas as operações do ano.
 - Relatório de imposto mensal consolidado.
 - Posição em 31 de dezembro.
@@ -157,6 +164,7 @@ O sistema deve permitir exportar:
 # Saídas
 
 O módulo de Impostos produz as seguintes informações:
+
 - **Resumo Fiscal:** cards com Dividendos, JCP, Ganho de Capital, Prejuízo Compensar.
 - **Tabela de Operações:** detalhamento por mês com tipo, ticker, compra, venda, ganho, imposto.
 - **Relatório Anual:** consolidação de todo o ano-calendário.
@@ -224,6 +232,7 @@ O módulo de Impostos produz as seguintes informações:
 # Preparação para Crescimento
 
 O módulo de Impostos deve permitir futuras expansões sem reescrita:
+
 - **Novos Tipos de Ativo:** novas categorias com alíquotas específicas devem ser adicionáveis via configuração.
 - **Regras por Jurisdição:** preparar para cenários de dupla tributação (Brasil-EUA, Brasil-Portugal).
 - **Integração com DARF:** preparar para cálculo automático de DARF com código de receita correto.
@@ -235,6 +244,7 @@ O módulo de Impostos deve permitir futuras expansões sem reescrita:
 # Histórico
 
 ## Versão 1.0
+
 - Criação do documento de Regra de Negócio do módulo de Impostos.
 - Definição de conceitos, alíquotas, apuração mensal e anual.
 - Definição de compensação de prejuízos, isenções e casos especiais.

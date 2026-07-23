@@ -38,13 +38,13 @@ Detalhes completos em `AUDITORIA_FINAL_EWO-006.md`.
 
 ## 4. Quality Gates
 
-| Gate | Comando | Resultado |
-|------|---------|-----------|
-| Testes | `npx vitest run` | ✅ 134 arquivos, **1052 testes, 100% passando**, 0 regressões |
-| Architecture Tests (R-10) | `npx vitest run presentation-boundaries` | ✅ 37 testes, 0 violações |
-| Build de produção | `npm run build` (vite) | ✅ Concluída sem erros (exit 0) |
-| ESLint | ESLint nos arquivos EWO-006 | ✅ Limpo (prettier aplicado) |
-| TypeCheck (`tsc --noEmit`) | `tsc --noEmit` | ⚪ Sem novos erros nos arquivos EWO-006; restam erros pré-existentes fora de escopo (TD-006-001/002) |
+| Gate                       | Comando                                  | Resultado                                                                                            |
+| -------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Testes                     | `npx vitest run`                         | ✅ 134 arquivos, **1052 testes, 100% passando**, 0 regressões                                        |
+| Architecture Tests (R-10)  | `npx vitest run presentation-boundaries` | ✅ 37 testes, 0 violações                                                                            |
+| Build de produção          | `npm run build` (vite)                   | ✅ Concluída sem erros (exit 0)                                                                      |
+| ESLint                     | ESLint nos arquivos EWO-006              | ✅ Limpo (prettier aplicado)                                                                         |
+| TypeCheck (`tsc --noEmit`) | `tsc --noEmit`                           | ⚪ Sem novos erros nos arquivos EWO-006; restam erros pré-existentes fora de escopo (TD-006-001/002) |
 
 ---
 
@@ -57,11 +57,11 @@ Detalhes completos em `AUDITORIA_FINAL_EWO-006.md`.
 
 ## 6. Pendências
 
-| ID | Descrição | Severidade | Escopo |
-|----|-----------|------------|--------|
-| TD-006-001 | `tax/tax-calculation-service.ts` importa `DomainError` de módulo errado | 🟡 Baixa | Herdado / fora de escopo |
-| TD-006-002 | Tipagem `ProventoProjection` em `exportar-declaracao-service.ts` | 🟡 Baixa | Herdado / fora de escopo |
-| TD-006-003 | Nomenclatura `declaracao.ts` vs `DeclaracaoDto` (case) | ⚪ Info | Backlog / GOV-M05 |
+| ID         | Descrição                                                               | Severidade | Escopo                   |
+| ---------- | ----------------------------------------------------------------------- | ---------- | ------------------------ |
+| TD-006-001 | `tax/tax-calculation-service.ts` importa `DomainError` de módulo errado | 🟡 Baixa   | Herdado / fora de escopo |
+| TD-006-002 | Tipagem `ProventoProjection` em `exportar-declaracao-service.ts`        | 🟡 Baixa   | Herdado / fora de escopo |
+| TD-006-003 | Nomenclatura `declaracao.ts` vs `DeclaracaoDto` (case)                  | ⚪ Info    | Backlog / GOV-M05        |
 
 Nenhuma pendência bloqueante. As 3 são débitos técnicos herdados, não introduzidos pela EWO-006.
 

@@ -18,14 +18,14 @@ acompanhar o cronograma de pagamentos de juros e amortizações e projetar o ret
 
 ## 2. Tipos de Ativo Suportados
 
-| `productType`        | Descrição                              | Isenção IR | Regime de Juros        |
-| -------------------- | -------------------------------------- | ---------- | ---------------------- |
-| `TESOURO_DIRETO`     | Tesouro Selic, Prefixado, IPCA+        | Não        | Pre/Pos conforme subtipo |
-| `CDB`                | Certificado de Depósito Bancário       | Não*       | Pre/Pos                |
-| `LCI`                | Letra de Crédito Imobiliário           | Sim        | Pre/Pos                |
-| `LCA`                | Letra de Crédito do Agronegócio        | Sim        | Pre/Pos                |
-| `PREFIXADO`          | Título prefixado genérico              | Não        | Pre                    |
-| `POS_FIXADO`         | Título pós-fixado (Selic/CDI/IPCA)     | Não        | Pos                    |
+| `productType`    | Descrição                          | Isenção IR | Regime de Juros          |
+| ---------------- | ---------------------------------- | ---------- | ------------------------ |
+| `TESOURO_DIRETO` | Tesouro Selic, Prefixado, IPCA+    | Não        | Pre/Pos conforme subtipo |
+| `CDB`            | Certificado de Depósito Bancário   | Não*       | Pre/Pos                  |
+| `LCI`            | Letra de Crédito Imobiliário       | Sim        | Pre/Pos                  |
+| `LCA`            | Letra de Crédito do Agronegócio    | Sim        | Pre/Pos                  |
+| `PREFIXADO`      | Título prefixado genérico          | Não        | Pre                      |
+| `POS_FIXADO`     | Título pós-fixado (Selic/CDI/IPCA) | Não        | Pos                      |
 
 \* CDB até R$ 250 mil por instituição possui isenção após 720 dias (regra de IRPF tratada em BR-07).
 
@@ -35,38 +35,38 @@ acompanhar o cronograma de pagamentos de juros e amortizações e projetar o ret
 
 ### 3.1 `FixedIncomeAsset` (Entidade)
 
-| Atributo       | Tipo                                   | Regra                                   |
-| -------------- | -------------------------------------- | --------------------------------------- |
-| `id`           | `EntityId`                             | Identificador imutável                   |
-| `ticker`       | `Ticker`                               | Ticket do título (ex: `TESOURO-IPCA+`》) |
-| `name`         | `string`                               | Nome de exibição                         |
-| `institution`  | `string`                               | Emissor / Instituição financeira         |
-| `productType`  | `FixedIncomeType`                      | Um dos valores da seção 2               |
-| `nominalValue` | `number`                               | Valor nominal (Price 100)               |
-| `rate`         | `number`                               | Taxa anual (% a.a.)                      |
-| `rateType`     | `"PRE" \| "POS"`                       | Regime de juros                         |
-| `issueDate`    | `Date`                                 | Data de emissão                          |
-| `maturityDate` | `Date`                                 | Data de vencimento                       |
-| `schedule`     | `AmortizationSchedule`                 | Cronograma gerado (seção 3.3)            |
+| Atributo       | Tipo                   | Regra                                    |
+| -------------- | ---------------------- | ---------------------------------------- |
+| `id`           | `EntityId`             | Identificador imutável                   |
+| `ticker`       | `Ticker`               | Ticket do título (ex: `TESOURO-IPCA+`》) |
+| `name`         | `string`               | Nome de exibição                         |
+| `institution`  | `string`               | Emissor / Instituição financeira         |
+| `productType`  | `FixedIncomeType`      | Um dos valores da seção 2                |
+| `nominalValue` | `number`               | Valor nominal (Price 100)                |
+| `rate`         | `number`               | Taxa anual (% a.a.)                      |
+| `rateType`     | `"PRE" \| "POS"`       | Regime de juros                          |
+| `issueDate`    | `Date`                 | Data de emissão                          |
+| `maturityDate` | `Date`                 | Data de vencimento                       |
+| `schedule`     | `AmortizationSchedule` | Cronograma gerado (seção 3.3)            |
 
 ### 3.2 `Coupon` (Value Object)
 
 Representa um pagamento periódico.
 
-| Atributo      | Tipo      | Regra                                         |
-| ------------- | --------- | --------------------------------------------- |
-| `date`        | `Date`    | Data do pagamento                             |
-| `juros`       | `number`  | Valor dos juros no período                    |
-| `amortizacao` | `number`  | Valor da amortização de principal no período  |
+| Atributo      | Tipo     | Regra                                        |
+| ------------- | -------- | -------------------------------------------- |
+| `date`        | `Date`   | Data do pagamento                            |
+| `juros`       | `number` | Valor dos juros no período                   |
+| `amortizacao` | `number` | Valor da amortização de principal no período |
 
 ### 3.3 `AmortizationSchedule` (Value Object)
 
 Coleção ordenada de `Coupon`s entre emissão e vencimento.
 
-| Atributo      | Tipo             | Regra                                       |
-| ------------- | ---------------- | ------------------------------------------- |
-| `coupons`     | `Coupon[]`       | Ordenados por `date` ascendente             |
-| `principal`   | `number`         | Principal total (igual a `nominalValue`)    |
+| Atributo    | Tipo       | Regra                                    |
+| ----------- | ---------- | ---------------------------------------- |
+| `coupons`   | `Coupon[]` | Ordenados por `date` ascendente          |
+| `principal` | `number`   | Principal total (igual a `nominalValue`) |
 
 ---
 
@@ -111,9 +111,10 @@ Para um `FixedIncomeAsset` válido:
 ## 7. Reuso de O2 (Decisão PI-009 v1.2)
 
 O registro de uma operação de compra/venda de renda fixa **reutiliza** `RegistrarOperacaoCommand`
-+ `inferAssetType` (o legado já reconhece `fixed_income` em `asset-types.ts`). O comando
-`RegistrarCupomCommand` desta BR é responsável apenas por **registrar o título e seu cronograma**
-para acompanhamento de proventos, e **não** cria movimentação de carteira.
+
+- `inferAssetType` (o legado já reconhece `fixed_income` em `asset-types.ts`). O comando
+  `RegistrarCupomCommand` desta BR é responsável apenas por **registrar o título e seu cronograma**
+  para acompanhamento de proventos, e **não** cria movimentação de carteira.
 
 ---
 

@@ -42,7 +42,7 @@ export class FakeIntegrationRepository implements IIntegrationRepository {
     const logs = this.syncLogs.get(integrationId) || [];
     if (logs.length === 0) return null;
     return logs.reduce((latest, current) =>
-      current.startedAt > latest.startedAt ? current : latest
+      current.startedAt > latest.startedAt ? current : latest,
     );
   }
 }

@@ -1,9 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { IQuery } from "@/application/types";
-import type { ApplicationError, ComparisonSetDto } from "@/presentation/shared/types/application-layer";
+import type {
+  ApplicationError,
+  ComparisonSetDto,
+} from "@/presentation/shared/types/application-layer";
 import { COMPARISON_QUERY_KEYS } from "../queries";
-import { toScorecardViewModel, type ScorecardViewModel, type ComparisonSetViewModel } from "../viewmodels/comparison.view-model";
+import {
+  toScorecardViewModel,
+  type ScorecardViewModel,
+  type ComparisonSetViewModel,
+} from "../viewmodels/comparison.view-model";
 
 interface UseComparisonQueryResult {
   comparisonSet: ComparisonSetViewModel | null;

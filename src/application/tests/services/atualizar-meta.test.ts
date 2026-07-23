@@ -3,12 +3,23 @@ import { AtualizarMetaService } from "@/application/services/atualizar-meta-serv
 import type { AtualizarMetaCommand } from "@/application/commands/atualizar-meta";
 import { FakeFinancialGoalRepository } from "@/infrastructure/fakes/fake-financial-goal-repository";
 import { GoalCategory, FinancialGoal, FinancialGoalId } from "@/core/domain/financial-goal";
-import { ApplicationError, ValidationError, NotFoundError } from "@/application/errors/application-error";
+import {
+  ApplicationError,
+  ValidationError,
+  NotFoundError,
+} from "@/application/errors/application-error";
 
 function createRepoWithGoal(): FakeFinancialGoalRepository {
   const repo = new FakeFinancialGoalRepository();
   const id = FinancialGoalId.create("goal-001");
-  const result = FinancialGoal.create(id, "Reserva", 100000, new Date("2027-12-31"), GoalCategory.EMERGENCY, "corr-1");
+  const result = FinancialGoal.create(
+    id,
+    "Reserva",
+    100000,
+    new Date("2027-12-31"),
+    GoalCategory.EMERGENCY,
+    "corr-1",
+  );
   if (result.isSuccess) repo.save(result.value!);
   return repo;
 }
@@ -64,7 +75,12 @@ describe("AtualizarMetaService", () => {
     it("permite atualizacao parcial apenas com name", async () => {
       const repo = createRepoWithGoal();
       const service = new AtualizarMetaService(repo);
-      const command = createCommand({ name: "SoNome", targetAmount: undefined, targetDate: undefined, category: undefined });
+      const command = createCommand({
+        name: "SoNome",
+        targetAmount: undefined,
+        targetDate: undefined,
+        category: undefined,
+      });
 
       const result = await service.Execute(command);
 

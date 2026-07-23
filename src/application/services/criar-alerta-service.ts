@@ -29,7 +29,10 @@ export class CriarAlertaService implements IApplicationService<CriarAlertaComman
     return {
       id: rule.id.value,
       name: rule.name,
-      triggerWhen: { daysBefore: rule.triggerWhen.daysBefore, eventType: rule.triggerWhen.eventType },
+      triggerWhen: {
+        daysBefore: rule.triggerWhen.daysBefore,
+        eventType: rule.triggerWhen.eventType,
+      },
       assetFilter: rule.assetFilter,
       channel: { type: rule.channel.type, destination: rule.channel.destination },
       enabled: rule.enabled,

@@ -5,21 +5,26 @@ import type { IForeignAssetRepository } from "@/application/ports/foreign-asset-
 import type { ApplicationError } from "@/application/errors/application-error";
 import { CurrencyConversionService } from "@/core/domain/international";
 
-export class ObterAtivosInternacionaisService
-  implements IApplicationService<ObterAtivosInternacionaisQuery, AtivosInternacionaisDto>
-{
+export class ObterAtivosInternacionaisService implements IApplicationService<
+  ObterAtivosInternacionaisQuery,
+  AtivosInternacionaisDto
+> {
   private readonly conversionService = new CurrencyConversionService();
 
   constructor(private readonly foreignRepo: IForeignAssetRepository) {}
 
-  async Execute(query: ObterAtivosInternacionaisQuery): Promise<AtivosInternacionaisDto | ApplicationError> {
+  async Execute(
+    query: ObterAtivosInternacionaisQuery,
+  ): Promise<AtivosInternacionaisDto | ApplicationError> {
     const assets = await this.foreignRepo.findAssetsByPortfolio(query.portfolioId);
 
     const ativos = await Promise.all(
       assets.map(async (asset) => {
         const latestRate = await this.foreignRepo.findLatestExchangeRate(asset.ticker);
         const valorOriginal = 0;
-        const valorBRL = latestRate ? this.conversionService.convert(valorOriginal, asset.currency, latestRate) : null;
+        const valorBRL = latestRate
+          ? this.conversionService.convert(valorOriginal, asset.currency, latestRate)
+          : null;
 
         return {
           ticker: asset.ticker,

@@ -2,7 +2,10 @@ import type { IDataGateway, ParametrosImportacao, DadosImportacao } from "@/appl
 import { getUsdBrlRate } from "@/lib/exchange.server";
 
 export class ExchangeRateGateway implements IDataGateway {
-  async ObterDadosImportacao(origem: string, _parametros: ParametrosImportacao): Promise<DadosImportacao> {
+  async ObterDadosImportacao(
+    origem: string,
+    _parametros: ParametrosImportacao,
+  ): Promise<DadosImportacao> {
     try {
       const rate = await getUsdBrlRate();
 

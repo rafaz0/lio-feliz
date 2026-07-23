@@ -7,7 +7,10 @@ import type { ApplicationError } from "@/application/errors/application-error";
 import { TaxCalculationService, TaxCalculationMode } from "@/core/domain/tax";
 import type { RawOperation } from "@/core/domain/tax";
 
-export class CalcularImpostoService implements IApplicationService<CalcularImpostoCommand, DeclaracaoDto> {
+export class CalcularImpostoService implements IApplicationService<
+  CalcularImpostoCommand,
+  DeclaracaoDto
+> {
   private readonly taxCalcService: TaxCalculationService;
 
   constructor(private readonly projectionRepo: IProjectionRepository) {
@@ -24,7 +27,9 @@ export class CalcularImpostoService implements IApplicationService<CalcularImpos
     }
 
     const posicoes = await this.projectionRepo.ObterPosicoes(command.portfolioId);
-    const proventos = await this.projectionRepo.ObterProventos(command.portfolioId, { ano: command.ano });
+    const proventos = await this.projectionRepo.ObterProventos(command.portfolioId, {
+      ano: command.ano,
+    });
 
     const rawOps: RawOperation[] = posicoes.map((p) => ({
       ticker: p.ticker,
@@ -49,13 +54,16 @@ export class CalcularImpostoService implements IApplicationService<CalcularImpos
 
     const totalProventos = proventos.reduce((sum, p) => sum + p.valor, 0);
 
-    const selecionados = command.modo === TaxCalculationMode.COMPLETO
-      ? consolidation.monthlyResults
-      : consolidation.monthlyResults.filter(
-          (r) =>
-            (command.modo === TaxCalculationMode.DAY_TRADE && r.calculationMode === TaxCalculationMode.DAY_TRADE) ||
-            (command.modo === TaxCalculationMode.SWING_TRADE && r.calculationMode === TaxCalculationMode.SWING_TRADE),
-        );
+    const selecionados =
+      command.modo === TaxCalculationMode.COMPLETO
+        ? consolidation.monthlyResults
+        : consolidation.monthlyResults.filter(
+            (r) =>
+              (command.modo === TaxCalculationMode.DAY_TRADE &&
+                r.calculationMode === TaxCalculationMode.DAY_TRADE) ||
+              (command.modo === TaxCalculationMode.SWING_TRADE &&
+                r.calculationMode === TaxCalculationMode.SWING_TRADE),
+          );
 
     const impostoMensal = selecionados.map((r) => ({
       mes: r.month,

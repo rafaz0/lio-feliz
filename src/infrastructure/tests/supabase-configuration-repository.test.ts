@@ -75,8 +75,20 @@ describe("SupabaseConfigurationRepository", () => {
       const now = new Date();
       mockQuery.eq.mockReturnValue({
         data: [
-          { usuario_id: "user-1", meta_id: "m1", nome: "Aposentadoria", valor_alvo: 1000000, prazo: now.toISOString() },
-          { usuario_id: "user-1", meta_id: "m2", nome: "Reserva", valor_alvo: 50000, prazo: now.toISOString() },
+          {
+            usuario_id: "user-1",
+            meta_id: "m1",
+            nome: "Aposentadoria",
+            valor_alvo: 1000000,
+            prazo: now.toISOString(),
+          },
+          {
+            usuario_id: "user-1",
+            meta_id: "m2",
+            nome: "Reserva",
+            valor_alvo: 50000,
+            prazo: now.toISOString(),
+          },
         ],
         error: null,
       } as never);
@@ -94,7 +106,13 @@ describe("SupabaseConfigurationRepository", () => {
       mockQuery.upsert.mockResolvedValue({ error: null });
 
       const metas: MetaFinanceira[] = [
-        { metaId: "m1", usuarioId: "user-1", nome: "Aposentadoria", valorAlvo: 1000000, prazo: new Date() },
+        {
+          metaId: "m1",
+          usuarioId: "user-1",
+          nome: "Aposentadoria",
+          valorAlvo: 1000000,
+          prazo: new Date(),
+        },
       ];
 
       await repo.SalvarMetas("user-1", metas);

@@ -4,12 +4,15 @@ import type { IApplicationService } from "@/application/application-service";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { ReportRenderingService } from "@/core/domain/reports";
 
-export class ObterRelatoriosDisponiveisService
-  implements IApplicationService<ObterRelatoriosDisponiveisQuery, ReportTemplateListDto>
-{
+export class ObterRelatoriosDisponiveisService implements IApplicationService<
+  ObterRelatoriosDisponiveisQuery,
+  ReportTemplateListDto
+> {
   private readonly renderingService = new ReportRenderingService();
 
-  async Execute(_query: ObterRelatoriosDisponiveisQuery): Promise<ReportTemplateListDto | ApplicationError> {
+  async Execute(
+    _query: ObterRelatoriosDisponiveisQuery,
+  ): Promise<ReportTemplateListDto | ApplicationError> {
     const templates = this.renderingService.getBuiltInTemplates();
 
     return {

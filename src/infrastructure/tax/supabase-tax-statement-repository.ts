@@ -16,7 +16,19 @@ interface DeclaracaoRow {
 }
 
 export class SupabaseTaxStatementRepository implements ITaxStatementRepository {
-  constructor(private readonly supabase: { from: (table: string) => { insert: (data: unknown) => { select: () => Promise<{ data: unknown }> }; upsert: (data: unknown) => { select: () => Promise<{ data: unknown }> }; select: () => { eq: (col: string, val: unknown) => Promise<{ data: unknown[] | null }> }; update: (data: unknown) => { eq: (col: string, val: unknown) => Promise<{ data: unknown | null }> }; delete: () => { eq: (col: string, val: unknown) => Promise<{ data: unknown | null }> } } }) {}
+  constructor(
+    private readonly supabase: {
+      from: (table: string) => {
+        insert: (data: unknown) => { select: () => Promise<{ data: unknown }> };
+        upsert: (data: unknown) => { select: () => Promise<{ data: unknown }> };
+        select: () => { eq: (col: string, val: unknown) => Promise<{ data: unknown[] | null }> };
+        update: (data: unknown) => {
+          eq: (col: string, val: unknown) => Promise<{ data: unknown | null }>;
+        };
+        delete: () => { eq: (col: string, val: unknown) => Promise<{ data: unknown | null }> };
+      };
+    },
+  ) {}
 
   async save(statement: TaxStatement): Promise<void> {
     const payload = {
@@ -45,7 +57,11 @@ export class SupabaseTaxStatementRepository implements ITaxStatementRepository {
     return this.rowToStatement(row);
   }
 
-  async findByAtivo(portfolioId: string, _ticker: string, ano: number): Promise<TaxStatement | null> {
+  async findByAtivo(
+    portfolioId: string,
+    _ticker: string,
+    ano: number,
+  ): Promise<TaxStatement | null> {
     return this.findByAno(portfolioId, ano);
   }
 

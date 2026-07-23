@@ -8,7 +8,10 @@ import type { ApplicationError } from "@/application/errors/application-error";
 import { TaxCalculationService } from "@/core/domain/tax";
 import type { RawOperation } from "@/core/domain/tax";
 
-export class ObterDeclaracaoService implements IApplicationService<ObterDeclaracaoQuery, DeclaracaoDto> {
+export class ObterDeclaracaoService implements IApplicationService<
+  ObterDeclaracaoQuery,
+  DeclaracaoDto
+> {
   private readonly taxCalcService: TaxCalculationService;
 
   constructor(
@@ -67,7 +70,9 @@ export class ObterDeclaracaoService implements IApplicationService<ObterDeclarac
     }
 
     const posicoes = await this.projectionRepo.ObterPosicoes(query.portfolioId);
-    const proventos = await this.projectionRepo.ObterProventos(query.portfolioId, { ano: query.ano });
+    const proventos = await this.projectionRepo.ObterProventos(query.portfolioId, {
+      ano: query.ano,
+    });
 
     const rawOps: RawOperation[] = posicoes.map((p) => ({
       ticker: p.ticker,
@@ -78,10 +83,14 @@ export class ObterDeclaracaoService implements IApplicationService<ObterDeclarac
       price: p.valorTotal > 0 && p.quantidade > 0 ? p.valorTotal / p.quantidade : 0,
     }));
 
-    const consolidationResult = this.taxCalcService.calculateAnnualConsolidation(rawOps, query.ano, {
-      swingTrade: 0,
-      dayTrade: 0,
-    });
+    const consolidationResult = this.taxCalcService.calculateAnnualConsolidation(
+      rawOps,
+      query.ano,
+      {
+        swingTrade: 0,
+        dayTrade: 0,
+      },
+    );
 
     if (consolidationResult.isFailure) {
       return new NotFoundError("TAX_NOT_FOUND", `Nenhuma declaração encontrada para ${query.ano}`);

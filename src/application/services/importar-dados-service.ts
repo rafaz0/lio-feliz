@@ -6,11 +6,19 @@ import type { IImportInterpreterPort } from "@/application/ports/import-interpre
 import type { IDomainEventPublisher } from "@/application/ports/domain-event-publisher";
 import type { IImportHistoryRepository } from "@/application/ports/import-history-repository";
 import type { IPortfolioRepository } from "@/application/ports/portfolio-repository";
-import { ImportJob, isValidImportFormat, ImportJobId, isValidImportSource } from "@/core/domain/import-export";
+import {
+  ImportJob,
+  isValidImportFormat,
+  ImportJobId,
+  isValidImportSource,
+} from "@/core/domain/import-export";
 import { NotFoundError, ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ImportarDadosService implements IApplicationService<ImportarDadosCommand, ImportacaoRealizadaDto> {
+export class ImportarDadosService implements IApplicationService<
+  ImportarDadosCommand,
+  ImportacaoRealizadaDto
+> {
   constructor(
     private readonly portfolioRepo: IPortfolioRepository,
     private readonly dataGateway: IDataGateway,
@@ -51,7 +59,11 @@ export class ImportarDadosService implements IApplicationService<ImportarDadosCo
       fileSize: command.arquivoSize || 0,
       format,
       source,
-      metadata: { usuarioId: command.usuarioId, fonte: command.conexao?.provedor || command.origem, observacoes: command.observacoes },
+      metadata: {
+        usuarioId: command.usuarioId,
+        fonte: command.conexao?.provedor || command.origem,
+        observacoes: command.observacoes,
+      },
       totalRecords: dadosImportacao.operacoes.length,
     });
 
@@ -64,20 +76,31 @@ export class ImportarDadosService implements IApplicationService<ImportarDadosCo
     for (let i = 0; i < dadosImportacao.operacoes.length; i++) {
       const op = dadosImportacao.operacoes[i];
       try {
-        const event = this.importInterpreter.InterpretarOperacao(op, portfolio.id.value, importJob.id.value);
+        const event = this.importInterpreter.InterpretarOperacao(
+          op,
+          portfolio.id.value,
+          importJob.id.value,
+        );
         await this.eventPublisher.Publicar(event);
         operacoesImportadas++;
         importJob.addSuccess(1);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : "Erro ao interpretar operação";
-        const importErr = { line: i + 1, field: "operacao", message: errorMessage, code: "INTERPRET_ERROR" };
+        const importErr = {
+          line: i + 1,
+          field: "operacao",
+          message: errorMessage,
+          code: "INTERPRET_ERROR",
+        };
         erros.push({ linha: i + 1, tipo: "INTERPRET_ERROR", mensagem: errorMessage });
         importJob.addError(importErr);
       }
     }
 
     if (erros.length > 0) {
-      importJob.fail(erros.map(e => ({ line: e.linha, field: "import", message: e.mensagem, code: e.tipo })));
+      importJob.fail(
+        erros.map((e) => ({ line: e.linha, field: "import", message: e.mensagem, code: e.tipo })),
+      );
     } else {
       importJob.complete();
     }
@@ -98,7 +121,8 @@ export class ImportarDadosService implements IApplicationService<ImportarDadosCo
     if (!command.usuarioId) errors.usuarioId = ["Campo obrigatório"];
     if (!command.origem) errors.origem = ["Campo obrigatório"];
     if (!command.formato) errors.formato = ["Campo obrigatório"];
-    if (!isValidImportFormat(command.formato)) errors.formato = ["Formato inválido. Use EXCEL, CSV ou JSON"];
+    if (!isValidImportFormat(command.formato))
+      errors.formato = ["Formato inválido. Use EXCEL, CSV ou JSON"];
     return Object.keys(errors).length > 0
       ? new ValidationError("VALID_ERROR", "Dados de entrada inválidos", errors)
       : null;

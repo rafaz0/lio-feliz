@@ -1,9 +1,16 @@
 import type { ExportJobViewModel } from "../viewmodels/exports.view-model";
 
-interface ExportJobCardProps { job: ExportJobViewModel }
+interface ExportJobCardProps {
+  job: ExportJobViewModel;
+}
 
 export function ExportJobCard({ job }: ExportJobCardProps) {
-  const statusColor = job.status === "COMPLETED" ? "text-green-600" : job.status === "FAILED" ? "text-red-600" : "text-yellow-600";
+  const statusColor =
+    job.status === "COMPLETED"
+      ? "text-green-600"
+      : job.status === "FAILED"
+        ? "text-red-600"
+        : "text-yellow-600";
 
   return (
     <div className="rounded-lg border px-4 py-3 text-sm">

@@ -4,9 +4,10 @@ import type { IApplicationService } from "@/application/application-service";
 import type { IAlertRepository } from "@/application/ports/alert-repository";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ListarAlertasAtivosService
-  implements IApplicationService<ListarAlertasAtivosQuery, AlertRuleListDto>
-{
+export class ListarAlertasAtivosService implements IApplicationService<
+  ListarAlertasAtivosQuery,
+  AlertRuleListDto
+> {
   constructor(private readonly alertRepo: IAlertRepository) {}
 
   async Execute(query: ListarAlertasAtivosQuery): Promise<AlertRuleListDto | ApplicationError> {

@@ -43,13 +43,17 @@ export function TaxSummaryExtended({
         </div>
         <div className="space-y-1">
           <p className="text-xs text-muted-foreground">Ganho Líquido</p>
-          <p className={`text-lg font-semibold tabular-nums ${ganhoLiquido >= 0 ? "text-green-600" : "text-red-600"}`}>
+          <p
+            className={`text-lg font-semibold tabular-nums ${ganhoLiquido >= 0 ? "text-green-600" : "text-red-600"}`}
+          >
             {formatBRL(ganhoLiquido)}
           </p>
         </div>
         <div className="space-y-1">
           <p className="text-xs text-muted-foreground">IR Devido</p>
-          <p className="text-lg font-semibold tabular-nums text-red-600">{formatBRL(impostoDevido)}</p>
+          <p className="text-lg font-semibold tabular-nums text-red-600">
+            {formatBRL(impostoDevido)}
+          </p>
         </div>
         <div className="space-y-1">
           <p className="text-xs text-muted-foreground">IR Pago</p>
@@ -57,7 +61,9 @@ export function TaxSummaryExtended({
         </div>
         <div className="space-y-1">
           <p className="text-xs text-muted-foreground">Saldo a Pagar</p>
-          <p className={`text-lg font-semibold tabular-nums ${saldoAPagar > 0 ? "text-red-600" : "text-green-600"}`}>
+          <p
+            className={`text-lg font-semibold tabular-nums ${saldoAPagar > 0 ? "text-red-600" : "text-green-600"}`}
+          >
             {saldoAPagar > 0 ? formatBRL(saldoAPagar) : "R$ 0,00"}
           </p>
         </div>

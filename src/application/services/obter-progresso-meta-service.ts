@@ -5,9 +5,10 @@ import type { IFinancialGoalRepository } from "@/application/ports/financial-goa
 import { ValidationError, NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ObterProgressoMetaService
-  implements IApplicationService<ObterProgressoMetaQuery, MetaProgressoDetalhadoDto>
-{
+export class ObterProgressoMetaService implements IApplicationService<
+  ObterProgressoMetaQuery,
+  MetaProgressoDetalhadoDto
+> {
   constructor(private readonly goalRepo: IFinancialGoalRepository) {}
 
   async Execute(

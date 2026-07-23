@@ -2,7 +2,10 @@ import type { IDataGateway, ParametrosImportacao, DadosImportacao } from "@/appl
 import { fetchCryptoQuotes } from "@/lib/coingecko.server";
 
 export class CoingeckoGateway implements IDataGateway {
-  async ObterDadosImportacao(_origem: string, parametros: ParametrosImportacao): Promise<DadosImportacao> {
+  async ObterDadosImportacao(
+    _origem: string,
+    parametros: ParametrosImportacao,
+  ): Promise<DadosImportacao> {
     const tickers = this.extractTickers(parametros);
 
     try {

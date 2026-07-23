@@ -1,24 +1,38 @@
 import { EntityId } from "../entity-id";
 
 export class InvestorProfileId extends EntityId {
-  private constructor(value: string) { super(value); }
-  static create(value: string): InvestorProfileId { return new InvestorProfileId(value); }
+  private constructor(value: string) {
+    super(value);
+  }
+  static create(value: string): InvestorProfileId {
+    return new InvestorProfileId(value);
+  }
   static generate(): InvestorProfileId {
     return new InvestorProfileId(`ip-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`);
   }
 }
 
 export class RiskQuestionnaireId extends EntityId {
-  private constructor(value: string) { super(value); }
-  static create(value: string): RiskQuestionnaireId { return new RiskQuestionnaireId(value); }
+  private constructor(value: string) {
+    super(value);
+  }
+  static create(value: string): RiskQuestionnaireId {
+    return new RiskQuestionnaireId(value);
+  }
   static generate(): RiskQuestionnaireId {
-    return new RiskQuestionnaireId(`rq-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`);
+    return new RiskQuestionnaireId(
+      `rq-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+    );
   }
 }
 
 export class RiskResultId extends EntityId {
-  private constructor(value: string) { super(value); }
-  static create(value: string): RiskResultId { return new RiskResultId(value); }
+  private constructor(value: string) {
+    super(value);
+  }
+  static create(value: string): RiskResultId {
+    return new RiskResultId(value);
+  }
   static generate(): RiskResultId {
     return new RiskResultId(`rr-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`);
   }

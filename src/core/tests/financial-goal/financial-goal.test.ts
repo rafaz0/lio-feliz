@@ -62,7 +62,14 @@ describe("FinancialGoal", () => {
     });
 
     it("emits GoalCreatedEvent", () => {
-      const result = createValidGoal("goal-002", "Teste", 1000, futureDate(), GoalCategory.OTHER, "corr-1");
+      const result = createValidGoal(
+        "goal-002",
+        "Teste",
+        1000,
+        futureDate(),
+        GoalCategory.OTHER,
+        "corr-1",
+      );
       const events = result.value!.getDomainEvents();
       expect(events).toHaveLength(1);
       expect(events[0].eventName).toBe("GOAL_CREATED");
@@ -268,14 +275,18 @@ describe("FinancialGoal", () => {
       const contributed = goal.contribute(800, new Date(), "c1");
       const completed = contributed.value!.complete("corr-complete");
       expect(completed.value!.status).toBe(GoalStatus.COMPLETED);
-      expect(completed.value!.getDomainEvents().some((e) => e.eventName === "GOAL_COMPLETED")).toBe(true);
+      expect(completed.value!.getDomainEvents().some((e) => e.eventName === "GOAL_COMPLETED")).toBe(
+        true,
+      );
     });
 
     it("cancels an active goal", () => {
       const result = createValidGoal();
       const cancelled = result.value!.cancel("corr", "USER_CANCELLED");
       expect(cancelled.value!.status).toBe(GoalStatus.CANCELLED);
-      expect(cancelled.value!.getDomainEvents().some((e) => e.eventName === "GOAL_CANCELLED")).toBe(true);
+      expect(cancelled.value!.getDomainEvents().some((e) => e.eventName === "GOAL_CANCELLED")).toBe(
+        true,
+      );
     });
 
     it("rejects cancel on a completed goal", () => {
@@ -326,7 +337,12 @@ describe("FinancialGoal", () => {
   describe("updateDetails", () => {
     it("updates goal details", () => {
       const result = createValidGoal("g1", "Old Name", 1000, futureDate(365), GoalCategory.TRAVEL);
-      const updated = result.value!.updateDetails("New Name", 2000, futureDate(730), GoalCategory.EDUCATION);
+      const updated = result.value!.updateDetails(
+        "New Name",
+        2000,
+        futureDate(730),
+        GoalCategory.EDUCATION,
+      );
       expect(updated.value!.name).toBe("New Name");
       expect(updated.value!.targetAmount).toBe(2000);
       expect(updated.value!.category).toBe(GoalCategory.EDUCATION);
@@ -334,14 +350,24 @@ describe("FinancialGoal", () => {
 
     it("rejects update with empty name", () => {
       const result = createValidGoal();
-      const updated = result.value!.updateDetails("", 2000, futureDate(730), GoalCategory.EDUCATION);
+      const updated = result.value!.updateDetails(
+        "",
+        2000,
+        futureDate(730),
+        GoalCategory.EDUCATION,
+      );
       expect(updated.isFailure).toBe(true);
       expect(updated.error!.code).toBe("EMPTY_GOAL_NAME");
     });
 
     it("rejects update with zero targetAmount", () => {
       const result = createValidGoal();
-      const updated = result.value!.updateDetails("Meta", 0, futureDate(730), GoalCategory.EDUCATION);
+      const updated = result.value!.updateDetails(
+        "Meta",
+        0,
+        futureDate(730),
+        GoalCategory.EDUCATION,
+      );
       expect(updated.isFailure).toBe(true);
       expect(updated.error!.code).toBe("INVALID_TARGET_AMOUNT");
     });
@@ -351,7 +377,12 @@ describe("FinancialGoal", () => {
       const goal = result.value!;
       goal.clearDomainEvents();
       const completed = goal.contribute(500, new Date(), "c1");
-      const updated = completed.value!.updateDetails("Novo", 1000, futureDate(365), GoalCategory.OTHER);
+      const updated = completed.value!.updateDetails(
+        "Novo",
+        1000,
+        futureDate(365),
+        GoalCategory.OTHER,
+      );
       expect(updated.isFailure).toBe(true);
       expect(updated.error!.code).toBe("GOAL_ALREADY_COMPLETED");
     });

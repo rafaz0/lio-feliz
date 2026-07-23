@@ -5,9 +5,10 @@ import type { IFixedIncomeRepository } from "@/application/ports/fixed-income-re
 import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ObterCronogramaPagamentosService
-  implements IApplicationService<ObterCronogramaPagamentosQuery, CronogramaPagamentosDto>
-{
+export class ObterCronogramaPagamentosService implements IApplicationService<
+  ObterCronogramaPagamentosQuery,
+  CronogramaPagamentosDto
+> {
   constructor(private readonly repo: IFixedIncomeRepository) {}
 
   async Execute(

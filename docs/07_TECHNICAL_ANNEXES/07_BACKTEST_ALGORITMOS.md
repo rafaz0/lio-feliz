@@ -147,21 +147,21 @@ function calcularRetornoBenchmark(benchmark, mes, snapshot):
 
 ```typescript
 function calcularBeta(retCarteira: number[], retBenchmark: number[]): number {
-    const n = retCarteira.length;
-    const mediaCarteira = media(retCarteira);
-    const mediaBenchmark = media(retBenchmark);
+  const n = retCarteira.length;
+  const mediaCarteira = media(retCarteira);
+  const mediaBenchmark = media(retBenchmark);
 
-    let covariancia = 0;
-    let varianciaBenchmark = 0;
+  let covariancia = 0;
+  let varianciaBenchmark = 0;
 
-    for (let i = 0; i < n; i++) {
-        const diffCarteira = retCarteira[i] - mediaCarteira;
-        const diffBenchmark = retBenchmark[i] - mediaBenchmark;
-        covariancia += diffCarteira * diffBenchmark;
-        varianciaBenchmark += diffBenchmark * diffBenchmark;
-    }
+  for (let i = 0; i < n; i++) {
+    const diffCarteira = retCarteira[i] - mediaCarteira;
+    const diffBenchmark = retBenchmark[i] - mediaBenchmark;
+    covariancia += diffCarteira * diffBenchmark;
+    varianciaBenchmark += diffBenchmark * diffBenchmark;
+  }
 
-    return covariancia / varianciaBenchmark;
+  return covariancia / varianciaBenchmark;
 }
 ```
 
@@ -169,11 +169,11 @@ function calcularBeta(retCarteira: number[], retBenchmark: number[]): number {
 
 ```typescript
 function calcularSharpeRatio(retornos: number[], taxaLivreRiscoAnual: number): number {
-    const n = retornos.length;
-    const retornoMedioMensal = media(retornos);
-    const desvioPadraoMensal = desvioPadrao(retornos);
-    const retornoExcessMensal = retornoMedioMensal - (taxaLivreRiscoAnual / 12);
-    return (retornoExcessMensal / desvioPadraoMensal) * Math.sqrt(12);
+  const n = retornos.length;
+  const retornoMedioMensal = media(retornos);
+  const desvioPadraoMensal = desvioPadrao(retornos);
+  const retornoExcessMensal = retornoMedioMensal - taxaLivreRiscoAnual / 12;
+  return (retornoExcessMensal / desvioPadraoMensal) * Math.sqrt(12);
 }
 ```
 
@@ -216,10 +216,10 @@ interface BacktestSnapshotData {
 
 ## 5. Validações
 
-| Validação | Código | Comportamento |
-|-----------|--------|---------------|
-| Alocação > 100% | `INVALID_ALLOCATION` | Rejeitar estratégia |
-| Período inválido | `INVALID_DATE_RANGE` | Rejeitar backtest |
-| Benchmark não encontrado | `BENCHMARK_NOT_FOUND` | Usar CDI como fallback |
-| Snapshot expirado (>30 dias) | `SNAPSHOT_EXPIRED` | Solicitar novo snapshot |
-| Ativo sem dados no período | `ASSET_NO_DATA` | Ignorar ativo com warning |
+| Validação                    | Código                | Comportamento             |
+| ---------------------------- | --------------------- | ------------------------- |
+| Alocação > 100%              | `INVALID_ALLOCATION`  | Rejeitar estratégia       |
+| Período inválido             | `INVALID_DATE_RANGE`  | Rejeitar backtest         |
+| Benchmark não encontrado     | `BENCHMARK_NOT_FOUND` | Usar CDI como fallback    |
+| Snapshot expirado (>30 dias) | `SNAPSHOT_EXPIRED`    | Solicitar novo snapshot   |
+| Ativo sem dados no período   | `ASSET_NO_DATA`       | Ignorar ativo com warning |

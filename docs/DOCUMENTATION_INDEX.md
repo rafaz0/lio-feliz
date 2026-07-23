@@ -222,14 +222,17 @@ Engineering Work Order para o Bloco B (Production Readiness): CI/CD Pipeline, Ob
 ## Regras
 
 Sempre que um novo documento for criado:
+
 - adicionar neste índice;
 - atualizar seu status;
 - registrar sua versão.
 
 Sempre que um documento mudar de nome:
+
 - atualizar este índice.
 
 Sempre que um documento for removido:
+
 - atualizar este índice.
 
 Este arquivo representa a estrutura oficial da documentação.
@@ -451,12 +454,12 @@ Engineering Work Order para o Bloco B (Onboarding 21, Personalização 22). 7 Sl
 ## Versão 1.58
 
 - **Consolidação Final da EWO-005** - Aplicadas melhorias documentais e de governança identificadas durante a auditoria final do ChatGPT:
-  * Padronização das métricas na documentação (substituindo números voláteis por descrições consolidadas)
-  * Padronização de nomenclatura (correção de termos como "Rebalancement" para "Rebalanceamento", etc.)
-  * Adição da seção "Frozen Baseline" ao PROJECT_BOOTSTRAP.md
-  * Adição das seções "Lições Aprendidas" e "Encerramento Oficial" ao ER-005
-  * Atualização dos documentos de projeto para refletir a consolidação final
-  * Esta é a última atividade oficial da EWO-005
+  - Padronização das métricas na documentação (substituindo números voláteis por descrições consolidadas)
+  - Padronização de nomenclatura (correção de termos como "Rebalancement" para "Rebalanceamento", etc.)
+  - Adição da seção "Frozen Baseline" ao PROJECT_BOOTSTRAP.md
+  - Adição das seções "Lições Aprendidas" e "Encerramento Oficial" ao ER-005
+  - Atualização dos documentos de projeto para refletir a consolidação final
+  - Esta é a última atividade oficial da EWO-005
 
 ## Versão 1.57
 

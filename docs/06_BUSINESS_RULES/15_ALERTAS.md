@@ -18,12 +18,12 @@ Nenhum alerta é disparado sem regra explicitamente criada pelo usuário (`Alert
 
 ## 2. Tipos de Evento Monitorados
 
-| Evento | Descrição | Gatilho |
-|--------|-----------|---------|
-| **Dividendo** | Distribuição de dividendos ou JCP | X dias antes da data ex |
-| **Data Ex** | Data ex de provento | X dias antes |
-| **Vencimento** | Vencimento de título ou opção | X dias antes |
-| **Resultado** | Divulgação de resultado trimestral | X dias antes |
+| Evento         | Descrição                          | Gatilho                 |
+| -------------- | ---------------------------------- | ----------------------- |
+| **Dividendo**  | Distribuição de dividendos ou JCP  | X dias antes da data ex |
+| **Data Ex**    | Data ex de provento                | X dias antes            |
+| **Vencimento** | Vencimento de título ou opção      | X dias antes            |
+| **Resultado**  | Divulgação de resultado trimestral | X dias antes            |
 
 ---
 
@@ -33,44 +33,44 @@ Nenhum alerta é disparado sem regra explicitamente criada pelo usuário (`Alert
 
 Define uma regra de notificação.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `AlertRuleId` | Identificador único |
-| `name` | `string` | Nome de exibição (ex: "PETR4 dividendos") |
-| `triggerWhen` | `TriggerWhen` | Condições de disparo |
-| `assetFilter` | `string[]` | Tickers monitorados (vazio = todos) |
-| `channel` | `AlertChannel` | Canal de entrega |
-| `enabled` | `boolean` | Se a regra está ativa |
-| `userId` | `string` | ID do usuário proprietário |
-| `createdAt` | `Date` | Data de criação |
-| `lastTriggeredAt` | `Date` | Data do último disparo |
+| Atributo          | Tipo           | Regra                                     |
+| ----------------- | -------------- | ----------------------------------------- |
+| `id`              | `AlertRuleId`  | Identificador único                       |
+| `name`            | `string`       | Nome de exibição (ex: "PETR4 dividendos") |
+| `triggerWhen`     | `TriggerWhen`  | Condições de disparo                      |
+| `assetFilter`     | `string[]`     | Tickers monitorados (vazio = todos)       |
+| `channel`         | `AlertChannel` | Canal de entrega                          |
+| `enabled`         | `boolean`      | Se a regra está ativa                     |
+| `userId`          | `string`       | ID do usuário proprietário                |
+| `createdAt`       | `Date`         | Data de criação                           |
+| `lastTriggeredAt` | `Date`         | Data do último disparo                    |
 
 ### 3.2 `Alert` (Entidade)
 
 Um alerta disparado.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `AlertId` | Identificador único |
-| `ruleId` | `string` | Regra de origem |
-| `runId` | `string` | ID da execução de avaliação |
-| `assetTicker` | `string` | Ticker do ativo |
-| `eventDate` | `Date` | Data do evento |
-| `message` | `string` | Mensagem do alerta |
-| `severity` | `AlertSeverity` | Nível de severidade |
-| `createdAt` | `Date` | Data de criação |
+| Atributo      | Tipo            | Regra                       |
+| ------------- | --------------- | --------------------------- |
+| `id`          | `AlertId`       | Identificador único         |
+| `ruleId`      | `string`        | Regra de origem             |
+| `runId`       | `string`        | ID da execução de avaliação |
+| `assetTicker` | `string`        | Ticker do ativo             |
+| `eventDate`   | `Date`          | Data do evento              |
+| `message`     | `string`        | Mensagem do alerta          |
+| `severity`    | `AlertSeverity` | Nível de severidade         |
+| `createdAt`   | `Date`          | Data de criação             |
 
 ### 3.3 `AlertDelivery` (Entidade)
 
 Registro de entrega do alerta.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `AlertDeliveryId` | Identificador único |
-| `alertId` | `string` | Alerta de origem |
-| `channel` | `AlertChannel` | Canal usado |
-| `sentAt` | `Date` | Data de envio |
-| `ack` | `boolean` | Confirmado pelo usuário (default false) |
+| Atributo  | Tipo              | Regra                                   |
+| --------- | ----------------- | --------------------------------------- |
+| `id`      | `AlertDeliveryId` | Identificador único                     |
+| `alertId` | `string`          | Alerta de origem                        |
+| `channel` | `AlertChannel`    | Canal usado                             |
+| `sentAt`  | `Date`            | Data de envio                           |
+| `ack`     | `boolean`         | Confirmado pelo usuário (default false) |
 
 ### 3.4 `AlertSeverity` (Value Object)
 

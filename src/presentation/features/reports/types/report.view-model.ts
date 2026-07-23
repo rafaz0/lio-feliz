@@ -1,4 +1,8 @@
-import type { ReportTemplateDto, ReportExecutionDto, ReportScheduleDto } from "@/application/dtos/relatorio";
+import type {
+  ReportTemplateDto,
+  ReportExecutionDto,
+  ReportScheduleDto,
+} from "@/application/dtos/relatorio";
 
 export interface ReportTemplateCardViewModel {
   readonly id: string;
@@ -50,7 +54,9 @@ export function toTemplateCardViewModel(dto: ReportTemplateDto): ReportTemplateC
   };
 }
 
-export function toExecutionHistoryViewModel(dto: ReportExecutionDto): ReportExecutionHistoryViewModel {
+export function toExecutionHistoryViewModel(
+  dto: ReportExecutionDto,
+): ReportExecutionHistoryViewModel {
   return {
     id: dto.id,
     templateName: dto.templateName,

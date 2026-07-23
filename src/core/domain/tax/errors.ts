@@ -2,11 +2,7 @@ import { DomainError } from "@/core/domain/errors";
 
 export class InvalidTaxPeriodError extends DomainError {
   constructor(ano: number) {
-    super(
-      "INVALID_TAX_PERIOD",
-      `Período fiscal inválido: ${ano}`,
-      "INVARIANT_VIOLATION",
-    );
+    super("INVALID_TAX_PERIOD", `Período fiscal inválido: ${ano}`, "INVARIANT_VIOLATION");
   }
 }
 

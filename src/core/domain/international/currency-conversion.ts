@@ -10,13 +10,27 @@ export type CurrencyConversionProps = {
 };
 
 export class CurrencyConversion extends ValueObject<CurrencyConversionProps> {
-  private constructor(props: CurrencyConversionProps) { super(props); }
-  static create(props: CurrencyConversionProps): CurrencyConversion { return new CurrencyConversion(props); }
-  get fromAmount(): number { return this.props.fromAmount; }
-  get fromCurrency(): string { return this.props.fromCurrency; }
-  get toAmount(): number { return this.props.toAmount; }
-  get rate(): number { return this.props.rate; }
-  get date(): Date { return this.props.date; }
+  private constructor(props: CurrencyConversionProps) {
+    super(props);
+  }
+  static create(props: CurrencyConversionProps): CurrencyConversion {
+    return new CurrencyConversion(props);
+  }
+  get fromAmount(): number {
+    return this.props.fromAmount;
+  }
+  get fromCurrency(): string {
+    return this.props.fromCurrency;
+  }
+  get toAmount(): number {
+    return this.props.toAmount;
+  }
+  get rate(): number {
+    return this.props.rate;
+  }
+  get date(): Date {
+    return this.props.date;
+  }
 }
 
 export class CurrencyConversionService {

@@ -36,10 +36,18 @@ export class ImportMapping extends ValueObject<ImportMapping> {
     super();
   }
 
-  get source(): string { return this._source; }
-  get fieldMappings(): Record<string, string> { return this._fieldMappings; }
-  get validationRules(): ValidationRule[] { return this._validationRules; }
-  get transformers(): FieldTransformer[] { return this._transformers; }
+  get source(): string {
+    return this._source;
+  }
+  get fieldMappings(): Record<string, string> {
+    return this._fieldMappings;
+  }
+  get validationRules(): ValidationRule[] {
+    return this._validationRules;
+  }
+  get transformers(): FieldTransformer[] {
+    return this._transformers;
+  }
 
   static create(props: {
     source: string;

@@ -1,4 +1,8 @@
-import type { InvestorProfile, RiskQuestionnaire, RiskResult } from "@/core/domain/investor-profile";
+import type {
+  InvestorProfile,
+  RiskQuestionnaire,
+  RiskResult,
+} from "@/core/domain/investor-profile";
 
 export interface IInvestorProfileRepository {
   saveProfile(profile: InvestorProfile): Promise<void>;

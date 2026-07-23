@@ -51,9 +51,7 @@ export function GoalsPage({ portfolioId }: GoalsPageProps) {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">Metas Financeiras</h1>
-          <p className="text-sm text-muted-foreground">
-            Acompanhe seus objetivos patrimoniais.
-          </p>
+          <p className="text-sm text-muted-foreground">Acompanhe seus objetivos patrimoniais.</p>
         </div>
         <button
           type="button"

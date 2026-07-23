@@ -5,9 +5,10 @@ import type { ISubscriptionRepository } from "@/application/ports/subscription-r
 import type { ApplicationError } from "@/application/errors/application-error";
 import { AuthorizationService } from "@/core/domain/subscriptions";
 
-export class VerificarAcessoService
-  implements IApplicationService<VerificarAcessoCommand, AcessoDto>
-{
+export class VerificarAcessoService implements IApplicationService<
+  VerificarAcessoCommand,
+  AcessoDto
+> {
   private readonly authService = new AuthorizationService();
 
   constructor(private readonly subscriptionRepo: ISubscriptionRepository) {}
@@ -20,7 +21,7 @@ export class VerificarAcessoService
     const result = this.authService.checkAccess(command.userId, command.capability, active, plans);
 
     const tier = active
-      ? plans.find((p) => p.id.value === active.planId)?.tier ?? "FREE"
+      ? (plans.find((p) => p.id.value === active.planId)?.tier ?? "FREE")
       : "FREE";
 
     return {

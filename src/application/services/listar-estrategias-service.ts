@@ -4,9 +4,10 @@ import type { IApplicationService } from "@/application/application-service";
 import type { IBacktestRepository } from "@/application/ports/backtest-repository";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ListarEstrategiasService
-  implements IApplicationService<ListarEstrategiasQuery, EstrategiaListDto>
-{
+export class ListarEstrategiasService implements IApplicationService<
+  ListarEstrategiasQuery,
+  EstrategiaListDto
+> {
   constructor(private readonly backtestRepo: IBacktestRepository) {}
 
   async Execute(query: ListarEstrategiasQuery): Promise<EstrategiaListDto | ApplicationError> {

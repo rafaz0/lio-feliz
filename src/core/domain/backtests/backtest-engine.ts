@@ -1,18 +1,14 @@
 import { Result } from "../result";
 import { Backtest, type BacktestProps } from "./backtest";
 import { Strategy } from "./strategy";
-import { SimulationResult, type SimulationResultProps} from "./simulation-result";
+import { SimulationResult, type SimulationResultProps } from "./simulation-result";
 import {
   SimulationResultId,
   type DateRange,
   type MonthlyReturn,
   type BacktestSnapshot,
 } from "./backtest-types";
-import {
-  InvalidAllocationError,
-  InvalidDateRangeError,
-  SimulationFailedError,
-} from "./errors";
+import { InvalidAllocationError, InvalidDateRangeError, SimulationFailedError } from "./errors";
 
 const MAX_SNAPSHOT_AGE_DAYS = 30;
 
@@ -32,7 +28,9 @@ export class BacktestEngine {
       return Result.ok(result);
     } catch (err) {
       return Result.fail(
-        new SimulationFailedError(err instanceof Error ? err.message : "Erro inesperado na simulacao"),
+        new SimulationFailedError(
+          err instanceof Error ? err.message : "Erro inesperado na simulacao",
+        ),
       );
     }
   }
@@ -91,7 +89,8 @@ export class BacktestEngine {
         const endPrice = this.findClosestPrice(assetPrices, new Date(month.end));
         if (!startPrice || !endPrice) continue;
 
-        const assetReturn = (endPrice.adjustedClose - startPrice.adjustedClose) / startPrice.adjustedClose;
+        const assetReturn =
+          (endPrice.adjustedClose - startPrice.adjustedClose) / startPrice.adjustedClose;
         monthReturn += assetReturn * (allocation.weightPercentage / 100);
       }
 
@@ -100,14 +99,15 @@ export class BacktestEngine {
         const bmStart = this.findClosestPrice(benchmarkPrices, new Date(month.start));
         const bmEnd = this.findClosestPrice(benchmarkPrices, new Date(month.end));
         if (bmStart && bmEnd) {
-          monthBenchmarkReturn = (bmEnd.adjustedClose - bmStart.adjustedClose) / bmStart.adjustedClose;
+          monthBenchmarkReturn =
+            (bmEnd.adjustedClose - bmStart.adjustedClose) / bmStart.adjustedClose;
         }
       }
 
       const cashReturn = this.calculateCashReturn(cashPercentage / 100, snapshot, month);
       monthReturn += cashReturn;
 
-      currentCapital *= (1 + monthReturn);
+      currentCapital *= 1 + monthReturn;
 
       if (currentCapital > peak) {
         peak = currentCapital;
@@ -127,7 +127,11 @@ export class BacktestEngine {
     }
 
     const totalReturn = ((currentCapital - initialCapital) / initialCapital) * 100;
-    const totalBenchmarkReturn = this.calculateTotalBenchmarkReturn(strategy, snapshot, backtest.dateRange);
+    const totalBenchmarkReturn = this.calculateTotalBenchmarkReturn(
+      strategy,
+      snapshot,
+      backtest.dateRange,
+    );
     const volatility = this.calculateVolatility(monthlyStrategyReturns);
     const sharpe = this.calculateSharpeRatio(monthlyStrategyReturns);
     const beta = this.calculateBeta(monthlyStrategyReturns, monthlyBenchmarkReturns);
@@ -150,7 +154,9 @@ export class BacktestEngine {
     return SimulationResult.create(resultProps);
   }
 
-  private generateMonths(dateRange: DateRange): Array<{ start: string; end: string; label: string }> {
+  private generateMonths(
+    dateRange: DateRange,
+  ): Array<{ start: string; end: string; label: string }> {
     const months: Array<{ start: string; end: string; label: string }> = [];
     const current = new Date(dateRange.start);
     current.setDate(1);
@@ -196,9 +202,8 @@ export class BacktestEngine {
     month: { start: string; end: string },
   ): number {
     if (cashWeight <= 0) return 0;
-    const cdiData = snapshot.cdiRates?.filter(
-      (r) => r.date >= month.start && r.date <= month.end,
-    ) ?? [];
+    const cdiData =
+      snapshot.cdiRates?.filter((r) => r.date >= month.start && r.date <= month.end) ?? [];
     if (cdiData.length === 0) return 0;
     const cdiAccumulated = cdiData.reduce((acc, r) => acc * (1 + r.rate / 100), 1) - 1;
     return cashWeight * cdiAccumulated;

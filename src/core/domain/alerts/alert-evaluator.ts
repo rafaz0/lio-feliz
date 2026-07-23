@@ -57,10 +57,7 @@ export class AlertEvaluator {
     return results;
   }
 
-  calculateSeverity(
-    eventType: string,
-    positionPercentage?: number,
-  ): AlertSeverityLevel {
+  calculateSeverity(eventType: string, positionPercentage?: number): AlertSeverityLevel {
     if (eventType === "maturity") {
       return "critical";
     }

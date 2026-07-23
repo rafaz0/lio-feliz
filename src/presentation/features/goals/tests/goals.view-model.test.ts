@@ -95,15 +95,21 @@ describe("goals view-model", () => {
     ]);
 
     it("filtra por termo", () => {
-      expect(filterGoals(goals, { termo: "viagem", status: "TODOS", category: "TODAS" })).toHaveLength(1);
+      expect(
+        filterGoals(goals, { termo: "viagem", status: "TODOS", category: "TODAS" }),
+      ).toHaveLength(1);
     });
 
     it("filtra por status", () => {
-      expect(filterGoals(goals, { termo: "", status: "ACTIVE", category: "TODAS" })).toHaveLength(2);
+      expect(filterGoals(goals, { termo: "", status: "ACTIVE", category: "TODAS" })).toHaveLength(
+        2,
+      );
     });
 
     it("filtra por categoria", () => {
-      expect(filterGoals(goals, { termo: "", status: "TODOS", category: "EMERGENCY" })).toHaveLength(1);
+      expect(
+        filterGoals(goals, { termo: "", status: "TODOS", category: "EMERGENCY" }),
+      ).toHaveLength(1);
     });
 
     it("retorna todos sem filtros", () => {

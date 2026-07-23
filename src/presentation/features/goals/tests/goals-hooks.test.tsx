@@ -100,9 +100,7 @@ describe("goals hooks", () => {
 
       await waitFor(() => expect(dispatcher.commands.length).toBe(1));
       expect((dispatcher.commands[0] as any).type).toBe("CriarMetaCommand");
-      await waitFor(() =>
-        expect(screen.getByTestId("create-data").textContent).toBe("Nova Meta"),
-      );
+      await waitFor(() => expect(screen.getByTestId("create-data").textContent).toBe("Nova Meta"));
     });
   });
 

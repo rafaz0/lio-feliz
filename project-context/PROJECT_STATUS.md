@@ -15,16 +15,20 @@
 ---
 
 ## Objetivo
+
 Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22) da PI-011. Onda 6 (Bloco A) está fechada. Onda 6 (Bloco B) inicia.
 
 ## Detalhes Importantes
+
 - **EWO-011 🟢 FECHADA** — Bloco A (Assinaturas 19, Perfil 20) concluído.
 - **EWO-012 (APPROVED)** — Bloco B (Onboarding 21, Personalização 22). 7 Slices. 0 novos ports criados.
 - ADR-011-002 e ADR-011-003 executados nesta EWO.
 - DOCUMENTATION_INDEX v1.95, PROJECT_STATUS v2.08.
 
 ## Estado Atual do Trabalho
+
 ### Concluído
+
 - EWO-005 encerrada: 13 Slices (Foundation, Auth, Dashboard, Portfolio, Operations, Dividends, History, Rebalanceamento, Impostos, Configurações, Sincronização, Relatórios, Engineering Closure)
 - PI-008 (Domain Expansion) — APPROVED
 - ER-008 — APPROVED (14 critérios, 4 NCs baixas)
@@ -37,6 +41,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - DOCUMENTATION_INDEX v1.76, PROJECT_STATUS v1.88
 
 ### Concluído
+
 - **ER-010 🟢 APROVADA** — Engineering Review da PI-010: 10 critérios, 5 NCs baixas/médias. Veredito APROVADO PARA IMPLEMENTAÇÃO. PI-010 promovida DRAFT → APPROVED.
 - **GOV-P013 implementada** — Consolidação Final do Fluxo Operacional. PROMPT_MASTER.md criado. AI_ENGINEERING_PROTOCOL.md e AI_OPERATION_CHECKLIST.md atualizados.
 - **EWO-009 Slices 1-3 (Backtests 14) CONCLUÍDOS** — BR doc `14_BACKTESTS.md`, Anexo `07_BACKTEST_ALGORITMOS.md`, Core Domain (Backtest, Strategy, SimulationResult, BacktestEngine, 9 errors), Application Layer (2 commands, 2 queries, 4 services, port, 4 DTOs), Infrastructure (FakeBacktestRepository, SupabaseBacktestRepository). Barrels e application-layer.ts atualizados. Build green.
@@ -54,6 +59,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
   - Barrels e application-layer.ts atualizados
 
 ### Em andamento (planejamento)
+
 - **PI-009 (APPROVED v1.2)** — Domain Expansion Ondas 2 & 3 (módulos 09-13). **🟢 PI-009 MATERIALIZADA.** EWO-007 (Renda Fixa 09, Internacional 10) 🟢 FECHADA. EWO-008 (Import/Export 11, Integrações 12, Relatórios 13) 🟢 FECHADA.
 - **EWO-007 🟢 FECHADA** — Onda 2 concluída. Renda Fixa 09 e Internacional 10 implementados.
 - **PI-010 (APPROVED v1.0)** — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18). **EWO-009 (Onda 4) 🟢 FECHADA. EWO-010 (Onda 5) 🟢 FECHADA.**
@@ -62,13 +68,16 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ### Bloqueado
 
 ### Bloqueado
+
 - (nenhum)
 
 ### Próximo passo
+
 1. **Gate de Entrada EWO-012** — Baseline Lock (PI-011 + ER-011 + EWO-012).
 2. **Iniciar EWO-012 Slice 1** — Onboarding 21 (Business Rules + Core Domain).
 
 ## Arquivos Relevantes
+
 - `architecture-lab/PI-008.md`: v1.0 (Approved) — Domain Expansion & Business Rules Completion (base da PI-009)
 - `architecture-lab/PI-009.md`: v1.2 (Approved) — Ondas 2 & 3 (módulos 09-13); O2 resolvida
 - `architecture-lab/PI-010.md`: v1.0 (APPROVED) — Domain Enrichment & Investor Tooling (Ondas 4 & 5: módulos 14-18)
@@ -298,12 +307,12 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ### Versão 1.74
 
 - **Consolidação Final da EWO-005** - Aplicadas melhorias documentais e de governança identificadas durante a auditoria final do ChatGPT:
-  * Padronização das métricas na documentação (substituindo números voláteis por descrições consolidadas)
-  * Padronização de nomenclatura (correção de termos como "Rebalancement" para "Rebalanceamento", etc.)
-  * Adição da seção "Frozen Baseline" ao PROJECT_BOOTSTRAP.md
-  * Adição das seções "Lições Aprendidas" e "Encerramento Oficial" ao ER-005
-  * Atualização dos documentos de projeto para refletir a consolidação final
-  * Esta é a última atividade oficial da EWO-005
+  - Padronização das métricas na documentação (substituindo números voláteis por descrições consolidadas)
+  - Padronização de nomenclatura (correção de termos como "Rebalancement" para "Rebalanceamento", etc.)
+  - Adição da seção "Frozen Baseline" ao PROJECT_BOOTSTRAP.md
+  - Adição das seções "Lições Aprendidas" e "Encerramento Oficial" ao ER-005
+  - Atualização dos documentos de projeto para refletir a consolidação final
+  - Esta é a última atividade oficial da EWO-005
 
 ### Versão 1.73
 
@@ -456,7 +465,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ### Versão 1.36
 
 - **Criação do índice oficial da documentação.**
- 
+
 - **Definição da estrutura inicial dos documentos.**
 
 (End of file - total 323 lines)

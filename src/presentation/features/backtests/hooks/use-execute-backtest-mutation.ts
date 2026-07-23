@@ -1,7 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { ICommand } from "@/application/types";
-import type { ApplicationError, BacktestCompletoDto } from "@/presentation/shared/types/application-layer";
+import type {
+  ApplicationError,
+  BacktestCompletoDto,
+} from "@/presentation/shared/types/application-layer";
 import { BACKTEST_QUERY_KEYS } from "../queries";
 
 export function useExecuteBacktestMutation() {
@@ -15,7 +18,8 @@ export function useExecuteBacktestMutation() {
         strategyId,
         dateRange: { start: new Date(Date.now() - 365 * 86400000), end: new Date() },
       } as unknown as ICommand);
-      if (r instanceof Error) throw r; return r;
+      if (r instanceof Error) throw r;
+      return r;
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: BACKTEST_QUERY_KEYS.list() });

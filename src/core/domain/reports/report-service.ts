@@ -1,7 +1,16 @@
 import { Result } from "../result";
-import { ReportTemplate, BUILT_IN_TEMPLATES, type ReportExportFormat, type ReportTemplateId } from "./report-template";
+import {
+  ReportTemplate,
+  BUILT_IN_TEMPLATES,
+  type ReportExportFormat,
+  type ReportTemplateId,
+} from "./report-template";
 import { ReportExecution, ReportExecutionId, type ReportParameters } from "./report-execution";
-import { InvalidReportFormatError, InvalidReportTemplateError, ReportFileTooLargeError } from "./errors";
+import {
+  InvalidReportFormatError,
+  InvalidReportTemplateError,
+  ReportFileTooLargeError,
+} from "./errors";
 
 const MAX_FILE_SIZE_BYTES = 50 * 1024 * 1024;
 
@@ -23,12 +32,16 @@ export class ReportRenderingService {
   ): Result<ReportExecution> {
     const template = this.findTemplate(templateId);
     if (!template) {
-      return Result.fail(new InvalidReportTemplateError(`Template "${templateId.value}" nao encontrado`));
+      return Result.fail(
+        new InvalidReportTemplateError(`Template "${templateId.value}" nao encontrado`),
+      );
     }
 
     if (!template.supportsFormat(format)) {
       return Result.fail(
-        new InvalidReportFormatError(`Formato "${format}" nao suportado pelo template "${template.name}"`),
+        new InvalidReportFormatError(
+          `Formato "${format}" nao suportado pelo template "${template.name}"`,
+        ),
       );
     }
 

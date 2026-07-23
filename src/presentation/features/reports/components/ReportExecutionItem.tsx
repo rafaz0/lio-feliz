@@ -34,11 +34,10 @@ export function ReportExecutionItem({ execution }: ReportExecutionItemProps) {
           </span>
         </div>
         <p className="mt-1 text-xs text-muted-foreground">
-          Formato: {execution.format} | Solicitado em: {new Date(execution.requestedAt).toLocaleDateString("pt-BR")}
+          Formato: {execution.format} | Solicitado em:{" "}
+          {new Date(execution.requestedAt).toLocaleDateString("pt-BR")}
         </p>
-        {execution.error && (
-          <p className="mt-1 text-xs text-destructive">{execution.error}</p>
-        )}
+        {execution.error && <p className="mt-1 text-xs text-destructive">{execution.error}</p>}
       </div>
       {execution.fileUrl && (
         <a

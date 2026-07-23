@@ -29,9 +29,7 @@ export function GoalsTable({ goals }: GoalsTableProps) {
               className="border-b last:border-0"
             >
               <td className="py-3 font-medium">{goal.name}</td>
-              <td className="py-3 text-muted-foreground">
-                {categoryToLabel(goal.category)}
-              </td>
+              <td className="py-3 text-muted-foreground">{categoryToLabel(goal.category)}</td>
               <td className="py-3">
                 <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium">
                   {statusToLabel(goal.status)}
@@ -41,11 +39,7 @@ export function GoalsTable({ goals }: GoalsTableProps) {
               <td className="py-3 text-right tabular-nums">{goal.currentAmount}</td>
               <td className="py-3">
                 <div className="w-24 ml-auto">
-                  <GoalProgress
-                    percentage={goal.percentage}
-                    size="sm"
-                    showLabel={false}
-                  />
+                  <GoalProgress percentage={goal.percentage} size="sm" showLabel={false} />
                 </div>
               </td>
               <td className="py-3 text-right tabular-nums text-muted-foreground">

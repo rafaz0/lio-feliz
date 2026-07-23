@@ -34,7 +34,9 @@ describe("SupabaseUnitOfWork", () => {
     });
 
     it("sets transaction active even when rpc fails (fallback)", async () => {
-      const failingSupabase = { rpc: vi.fn().mockRejectedValue(new Error("RPC not found")) } as unknown as SupabaseClient;
+      const failingSupabase = {
+        rpc: vi.fn().mockRejectedValue(new Error("RPC not found")),
+      } as unknown as SupabaseClient;
       const fallbackUow = new SupabaseUnitOfWork(failingSupabase);
 
       await fallbackUow.IniciarTransacao();
@@ -117,8 +119,20 @@ describe("SupabaseUnitOfWork", () => {
       const uowWithPublisher = new SupabaseUnitOfWork(mockSupabase, publisher);
 
       await uowWithPublisher.IniciarTransacao();
-      await publisher.Publicar({ eventName: "TestEvent", eventId: "1", occurredOn: new Date(), correlationId: "c1", aggregateId: "a1" });
-      await publisher.Publicar({ eventName: "TestEvent", eventId: "2", occurredOn: new Date(), correlationId: "c1", aggregateId: "a1" });
+      await publisher.Publicar({
+        eventName: "TestEvent",
+        eventId: "1",
+        occurredOn: new Date(),
+        correlationId: "c1",
+        aggregateId: "a1",
+      });
+      await publisher.Publicar({
+        eventName: "TestEvent",
+        eventId: "2",
+        occurredOn: new Date(),
+        correlationId: "c1",
+        aggregateId: "a1",
+      });
       await uowWithPublisher.Commit();
 
       expect(handler.Handle).toHaveBeenCalledTimes(2);
@@ -132,7 +146,13 @@ describe("SupabaseUnitOfWork", () => {
       const uowWithPublisher = new SupabaseUnitOfWork(mockSupabase, publisher);
 
       await uowWithPublisher.IniciarTransacao();
-      await publisher.Publicar({ eventName: "TestEvent", eventId: "1", occurredOn: new Date(), correlationId: "c1", aggregateId: "a1" });
+      await publisher.Publicar({
+        eventName: "TestEvent",
+        eventId: "1",
+        occurredOn: new Date(),
+        correlationId: "c1",
+        aggregateId: "a1",
+      });
       await uowWithPublisher.Rollback();
 
       expect(handler.Handle).not.toHaveBeenCalled();

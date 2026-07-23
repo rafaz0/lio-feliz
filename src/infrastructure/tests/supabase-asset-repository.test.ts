@@ -39,7 +39,13 @@ describe("SupabaseAssetRepository", () => {
 
     it("retorna asset quando encontrado", async () => {
       mockQuery.single.mockResolvedValue({
-        data: { id: "asset-1", ticker: "PETR4", name: "Petrobras", asset_type: "stock", is_active: true },
+        data: {
+          id: "asset-1",
+          ticker: "PETR4",
+          name: "Petrobras",
+          asset_type: "stock",
+          is_active: true,
+        },
         error: null,
       });
 
@@ -54,7 +60,13 @@ describe("SupabaseAssetRepository", () => {
   describe("ObterPorTicker", () => {
     it("retorna asset pelo ticker", async () => {
       mockQuery.single.mockResolvedValue({
-        data: { id: "asset-1", ticker: "PETR4", name: "Petrobras PN", asset_type: "stock", is_active: true },
+        data: {
+          id: "asset-1",
+          ticker: "PETR4",
+          name: "Petrobras PN",
+          asset_type: "stock",
+          is_active: true,
+        },
         error: null,
       });
 

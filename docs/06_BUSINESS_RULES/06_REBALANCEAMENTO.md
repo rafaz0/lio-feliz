@@ -59,12 +59,12 @@ Combina aportes direcionados com vendas parciais. Vendem-se apenas classes com s
 
 ## 4. Disparadores de Rebalanceamento
 
-| Disparador               | Descrição                                                   | Default      |
-| ------------------------ | ----------------------------------------------------------- | ------------ |
-| **Banda de Tolerância**  | Qualquer classe ultrapassa a banda definida na estratégia   | 5% absoluto  |
-| **Periódico**            | Rebalanceamento forçado em intervalo fixo (trimestral)      | 90 dias      |
-| **Evento de Carteira**   | Aporte ou resgate significativo (>10% do patrimônio)        | Automático   |
-| **Manual**               | Usuário solicita explicitamente o rebalanceamento           | Sob demanda  |
+| Disparador              | Descrição                                                 | Default     |
+| ----------------------- | --------------------------------------------------------- | ----------- |
+| **Banda de Tolerância** | Qualquer classe ultrapassa a banda definida na estratégia | 5% absoluto |
+| **Periódico**           | Rebalanceamento forçado em intervalo fixo (trimestral)    | 90 dias     |
+| **Evento de Carteira**  | Aporte ou resgate significativo (>10% do patrimônio)      | Automático  |
+| **Manual**              | Usuário solicita explicitamente o rebalanceamento         | Sob demanda |
 
 ---
 
@@ -146,6 +146,7 @@ A tela de rebalanceamento deve exibir:
 A estratégia de alocação-alvo é definida em `ConfigurarEstrategiaCommand` e armazenada via `IConfigurationRepository`.
 
 Campos relevantes:
+
 - `percentuais: Record<string, number>` — alocação-alvo por classe
 - `toleranciaRebalanceamento: number` — banda de tolerância percentual (default: 5)
 - Rebalanceamento consulta esses dados automaticamente ao ser acionado
@@ -154,14 +155,14 @@ Campos relevantes:
 
 ## 10. Casos de Limite
 
-| Caso                                    | Comportamento Esperado                                                    |
-| --------------------------------------- | ------------------------------------------------------------------------- |
-| Nenhuma estratégia configurada          | Exibir mensagem "Configure uma estratégia de alocação"                    |
-| Apenas uma classe de ativo              | Rebalanceamento não se aplica (100% em uma classe)                        |
-| Aporte maior que o patrimônio atual     | Calcular normalmente (novoPatrimonio = atual + aporte)                    |
-| Todas as classes dentro da tolerância   | Exibir "Carteira dentro da tolerância. Nenhuma ação necessária."          |
-| Venda com prejuízo fiscal               | Exibir alerta de possível compensação de prejuízo                         |
-| Estratégia com soma diferente de 100%   | Normalizar percentuais para somar 100% e exibir aviso ao usuário          |
+| Caso                                  | Comportamento Esperado                                           |
+| ------------------------------------- | ---------------------------------------------------------------- |
+| Nenhuma estratégia configurada        | Exibir mensagem "Configure uma estratégia de alocação"           |
+| Apenas uma classe de ativo            | Rebalanceamento não se aplica (100% em uma classe)               |
+| Aporte maior que o patrimônio atual   | Calcular normalmente (novoPatrimonio = atual + aporte)           |
+| Todas as classes dentro da tolerância | Exibir "Carteira dentro da tolerância. Nenhuma ação necessária." |
+| Venda com prejuízo fiscal             | Exibir alerta de possível compensação de prejuízo                |
+| Estratégia com soma diferente de 100% | Normalizar percentuais para somar 100% e exibir aviso ao usuário |
 
 ---
 

@@ -10,7 +10,10 @@ import { ConnectionFailedError } from "@/core/domain/integrations";
 
 const RETRY_BACKOFF = [60_000, 300_000, 900_000];
 
-export class SincronizarIntegracaoService implements IApplicationService<SincronizarIntegracaoCommand, SyncResultDto> {
+export class SincronizarIntegracaoService implements IApplicationService<
+  SincronizarIntegracaoCommand,
+  SyncResultDto
+> {
   constructor(
     private readonly integrationRepo: IIntegrationRepository,
     private readonly orchestration: SyncOrchestrationService,
@@ -81,9 +84,10 @@ export class SincronizarIntegracaoService implements IApplicationService<Sincron
         const timeout = setTimeout(() => controller.abort(), 10000);
 
         try {
-          const url = provider === "BRAPI"
-            ? "https://brapi.dev/api/quote/list"
-            : "https://query1.finance.yahoo.com/v8/finance/chart/PETR4.SA";
+          const url =
+            provider === "BRAPI"
+              ? "https://brapi.dev/api/quote/list"
+              : "https://query1.finance.yahoo.com/v8/finance/chart/PETR4.SA";
 
           const response = await fetch(url, {
             signal: controller.signal,

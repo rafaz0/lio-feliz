@@ -8,7 +8,9 @@ export interface PreferencesViewModel {
 }
 
 const THEME_LABELS: Record<string, string> = {
-  LIGHT: "Claro", DARK: "Escuro", SYSTEM: "Sistema",
+  LIGHT: "Claro",
+  DARK: "Escuro",
+  SYSTEM: "Sistema",
 };
 
 export function toPreferencesViewModel(dto: UserPreferencesDto): PreferencesViewModel {

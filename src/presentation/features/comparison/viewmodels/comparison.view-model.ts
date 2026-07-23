@@ -45,9 +45,7 @@ function metricLabel(type: string): string {
   return map[type] ?? type;
 }
 
-export function toScorecardViewModel(
-  metrics: ComparisonMetric[],
-): ScorecardViewModel {
+export function toScorecardViewModel(metrics: ComparisonMetric[]): ScorecardViewModel {
   const groupedByAsset: Record<string, ComparisonMetric[]> = {};
   for (const m of metrics) {
     if (!groupedByAsset[m.assetTicker]) groupedByAsset[m.assetTicker] = [];

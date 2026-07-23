@@ -7,7 +7,10 @@ import {
 } from "@/lib/yahoo.server";
 
 export class YahooFinanceGateway implements IDataGateway {
-  async ObterDadosImportacao(origem: string, parametros: ParametrosImportacao): Promise<DadosImportacao> {
+  async ObterDadosImportacao(
+    origem: string,
+    parametros: ParametrosImportacao,
+  ): Promise<DadosImportacao> {
     const ticker = this.extractTicker(origem, parametros);
 
     if (origem === "yahoo-fundamentals" || origem === "yahoo") {
@@ -56,7 +59,11 @@ export class YahooFinanceGateway implements IDataGateway {
     }
   }
 
-  private async obterHistorico(ticker: string, origem: string, parametros: ParametrosImportacao): Promise<DadosImportacao> {
+  private async obterHistorico(
+    ticker: string,
+    origem: string,
+    parametros: ParametrosImportacao,
+  ): Promise<DadosImportacao> {
     try {
       const range = parametros.metadados?.range ?? "1y";
       const interval = parametros.metadados?.interval ?? "1wk";

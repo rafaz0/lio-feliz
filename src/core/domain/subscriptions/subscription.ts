@@ -11,17 +11,35 @@ export type SubscriptionProps = {
 };
 
 export class Subscription extends ValueObject<SubscriptionProps> {
-  private constructor(props: SubscriptionProps) { super(props); }
-  static create(props: SubscriptionProps): Subscription { return new Subscription(props); }
+  private constructor(props: SubscriptionProps) {
+    super(props);
+  }
+  static create(props: SubscriptionProps): Subscription {
+    return new Subscription(props);
+  }
 
-  get id(): SubscriptionId { return this.props.id; }
-  get planId(): string { return this.props.planId; }
-  get userId(): string { return this.props.userId; }
-  get startDate(): Date { return this.props.startDate; }
-  get endDate(): Date | null { return this.props.endDate; }
-  get status(): SubscriptionStatus { return this.props.status; }
+  get id(): SubscriptionId {
+    return this.props.id;
+  }
+  get planId(): string {
+    return this.props.planId;
+  }
+  get userId(): string {
+    return this.props.userId;
+  }
+  get startDate(): Date {
+    return this.props.startDate;
+  }
+  get endDate(): Date | null {
+    return this.props.endDate;
+  }
+  get status(): SubscriptionStatus {
+    return this.props.status;
+  }
 
-  get isActive(): boolean { return this.props.status === "ACTIVE"; }
+  get isActive(): boolean {
+    return this.props.status === "ACTIVE";
+  }
 
   cancel(): Subscription {
     return Subscription.create({ ...this.props, status: "CANCELLED", endDate: new Date() });

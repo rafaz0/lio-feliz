@@ -1,4 +1,8 @@
-import type { IConfigurationRepository, EstrategiaConfiguracao, MetaFinanceira } from "@/application/ports";
+import type {
+  IConfigurationRepository,
+  EstrategiaConfiguracao,
+  MetaFinanceira,
+} from "@/application/ports";
 
 export class FakeConfigurationRepository implements IConfigurationRepository {
   private estrategias = new Map<string, EstrategiaConfiguracao>();
@@ -24,12 +28,24 @@ export class FakeConfigurationRepository implements IConfigurationRepository {
     this.metas.set(usuarioId, metasList);
   }
 
-  async savePreferences(userId: string, prefs: string): Promise<void> { this.preferences.set(userId, prefs); }
-  async findPreferences(userId: string): Promise<string | null> { return this.preferences.get(userId) ?? null; }
-  async saveTheme(userId: string, theme: string): Promise<void> { this.themes.set(userId, theme); }
-  async findTheme(userId: string): Promise<string | null> { return this.themes.get(userId) ?? null; }
-  async saveDashboardLayout(userId: string, layout: string): Promise<void> { this.layouts.set(userId, layout); }
-  async findDashboardLayout(userId: string): Promise<string | null> { return this.layouts.get(userId) ?? null; }
+  async savePreferences(userId: string, prefs: string): Promise<void> {
+    this.preferences.set(userId, prefs);
+  }
+  async findPreferences(userId: string): Promise<string | null> {
+    return this.preferences.get(userId) ?? null;
+  }
+  async saveTheme(userId: string, theme: string): Promise<void> {
+    this.themes.set(userId, theme);
+  }
+  async findTheme(userId: string): Promise<string | null> {
+    return this.themes.get(userId) ?? null;
+  }
+  async saveDashboardLayout(userId: string, layout: string): Promise<void> {
+    this.layouts.set(userId, layout);
+  }
+  async findDashboardLayout(userId: string): Promise<string | null> {
+    return this.layouts.get(userId) ?? null;
+  }
 
   async saveOnboardingProgress(userId: string, progress: string): Promise<void> {
     this.onboardingProgress.set(userId, progress);

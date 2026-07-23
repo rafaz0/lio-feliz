@@ -1,6 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, BarChart3, Building2, Calculator, CalendarDays, Info, LineChart, Medal, Newspaper, PiggyBank, Search, Star, Target, TrendingUp, Wallet } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  Building2,
+  Calculator,
+  CalendarDays,
+  Info,
+  LineChart,
+  Medal,
+  Newspaper,
+  PiggyBank,
+  Search,
+  Star,
+  Target,
+  TrendingUp,
+  Wallet,
+} from "lucide-react";
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/site-header";

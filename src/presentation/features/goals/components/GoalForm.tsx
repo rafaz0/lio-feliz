@@ -30,9 +30,7 @@ export function GoalForm({
   const [name, setName] = useState(initial?.name ?? "");
   const [targetAmount, setTargetAmount] = useState(String(initial?.targetAmount ?? ""));
   const [targetDate, setTargetDate] = useState(
-    initial?.targetDate
-      ? new Date(initial.targetDate).toISOString().split("T")[0]
-      : "",
+    initial?.targetDate ? new Date(initial.targetDate).toISOString().split("T")[0] : "",
   );
   const [category, setCategory] = useState(initial?.category ?? "EMERGENCY");
 
@@ -48,9 +46,7 @@ export function GoalForm({
   };
 
   const isValid =
-    name.trim().length > 0 &&
-    Number.parseFloat(targetAmount) > 0 &&
-    targetDate.length > 0;
+    name.trim().length > 0 && Number.parseFloat(targetAmount) > 0 && targetDate.length > 0;
 
   return (
     <form

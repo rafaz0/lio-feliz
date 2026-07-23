@@ -39,7 +39,9 @@ export class SimulationResultId extends EntityId {
   }
 
   static generate(): SimulationResultId {
-    return new SimulationResultId(`res-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`);
+    return new SimulationResultId(
+      `res-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+    );
   }
 }
 
@@ -59,7 +61,8 @@ export class SnapshotId extends EntityId {
 
 export type BacktestStatus = "PENDING" | "RUNNING" | "COMPLETED" | "FAILED";
 
-export type AssetType = "stock" | "fii" | "bdr" | "etf" | "crypto" | "stock_us" | "reit" | "etf_internacional" | "other";
+export type AssetType =
+  "stock" | "fii" | "bdr" | "etf" | "crypto" | "stock_us" | "reit" | "etf_internacional" | "other";
 
 export type BenchmarkType = "indice" | "etf" | "cdi";
 

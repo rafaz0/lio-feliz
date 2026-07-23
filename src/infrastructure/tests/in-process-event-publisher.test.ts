@@ -28,7 +28,9 @@ describe("InProcessEventPublisher", () => {
       await publisher.Publicar(new TestEvent());
 
       expect(handler.Handle).toHaveBeenCalledOnce();
-      expect((handler.Handle as ReturnType<typeof vi.fn>).mock.calls[0][0].eventName).toBe("TestEvent");
+      expect((handler.Handle as ReturnType<typeof vi.fn>).mock.calls[0][0].eventName).toBe(
+        "TestEvent",
+      );
     });
 
     it("does nothing when no handler registered", async () => {

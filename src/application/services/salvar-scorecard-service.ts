@@ -6,9 +6,10 @@ import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { ComparisonAggregator } from "@/core/domain/comparison";
 
-export class SalvarScorecardService
-  implements IApplicationService<SalvarScorecardCommand, ScorecardDto>
-{
+export class SalvarScorecardService implements IApplicationService<
+  SalvarScorecardCommand,
+  ScorecardDto
+> {
   private readonly aggregator = new ComparisonAggregator();
 
   constructor(
@@ -32,7 +33,11 @@ export class SalvarScorecardService
           dividendYield12m: proj?.dividendYield12m ?? 0,
         });
       } catch {
-        projections.push({ assetTicker: entry.assetTicker, monthlyReturns: [], dividendYield12m: 0 });
+        projections.push({
+          assetTicker: entry.assetTicker,
+          monthlyReturns: [],
+          dividendYield12m: 0,
+        });
       }
     }
 

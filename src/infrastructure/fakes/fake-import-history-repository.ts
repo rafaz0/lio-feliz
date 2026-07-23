@@ -27,10 +27,10 @@ export class FakeImportHistoryRepository implements IImportHistoryRepository {
   }
 
   async findByStatus(status: string): Promise<ImportJob[]> {
-    return Array.from(this.jobs.values()).filter(job => job.status === status);
+    return Array.from(this.jobs.values()).filter((job) => job.status === status);
   }
 
   async findByUserId(userId: string): Promise<ImportJob[]> {
-    return Array.from(this.jobs.values()).filter(job => job.metadata?.usuarioId === userId);
+    return Array.from(this.jobs.values()).filter((job) => job.metadata?.usuarioId === userId);
   }
 }

@@ -26,7 +26,11 @@ describe("IntegrationConfigViewModel", () => {
   });
 
   it("mapeia status ERROR para cor vermelha", () => {
-    const dto: IntegrationConfigDto = { ...mockDto, status: "ERROR", errorMessage: "Falha de conexão" };
+    const dto: IntegrationConfigDto = {
+      ...mockDto,
+      status: "ERROR",
+      errorMessage: "Falha de conexão",
+    };
     const vm = toIntegrationViewModel(dto);
     expect(vm.statusColor).toBe("text-red-600");
     expect(vm.errorMessage).toBe("Falha de conexão");

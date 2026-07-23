@@ -22,11 +22,11 @@
 
 Define qual modelo de IA deve ser usado para cada categoria de atividade no projeto Lio Feliz.
 
-| Modelo | Uso Principal | Atividades |
-|--------|---------------|------------|
-| **DeepSeek V4 Flash** | Implementação, correções, documentação operacional | Codificação, testes, build, lint, commit, push, auditoria incremental, encerramentos de EWO, relatórios de sincronização |
-| **DeepSeek V4 Pro** | Planejamento estratégico, revisão arquitetural | Product Increment (PI), Engineering Review (ER), Engineering Work Order (EWO), decisões arquiteturais, validação metodológica |
-| **GLM-5.2** | Auditoria independente e validação extraordinária | Segunda opinião arquitetural, validação de decisões críticas, auditoria externa de governança |
+| Modelo                | Uso Principal                                      | Atividades                                                                                                                    |
+| --------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **DeepSeek V4 Flash** | Implementação, correções, documentação operacional | Codificação, testes, build, lint, commit, push, auditoria incremental, encerramentos de EWO, relatórios de sincronização      |
+| **DeepSeek V4 Pro**   | Planejamento estratégico, revisão arquitetural     | Product Increment (PI), Engineering Review (ER), Engineering Work Order (EWO), decisões arquiteturais, validação metodológica |
+| **GLM-5.2**           | Auditoria independente e validação extraordinária  | Segunda opinião arquitetural, validação de decisões críticas, auditoria externa de governança                                 |
 
 ### 1.1 Regras
 

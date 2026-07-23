@@ -26,16 +26,16 @@ Define o padrão operacional permanente para execução de **qualquer Engineerin
 
 Os princípios abaixo foram observados em todas as EWOs concluídas e devem ser preservados:
 
-| Princípio | Descrição |
-|-----------|-----------|
-| **Implementação Incremental** | Cada Slice produz um incremento completo, compilável e testável. |
-| **Slice Pequena** | Escopo limitado a um conjunto coeso de componentes arquiteturais. |
-| **Slice Independente** | Não depende de Slices futuras; apenas das concluídas. |
-| **Slice Testável** | Cobertura de testes obrigatória (unitários + integração quando aplicável). |
-| **Slice Reversível** | Rollback trivial via Git (commit por Slice). |
-| **Zero Quebra Arquitetural** | PI referenciada é fonte exclusiva de arquitetura; EWO não cria nem modifica arquitetura. |
-| **Baseline Lock Obrigatório** | PI, ER e EWO entram em congelamento no Gate de Entrada (GOV-M06). |
-| **Clean Architecture Preservada** | Dependency Rule, DDD, Ports & Adapters, Dispatcher Pattern inalterados. |
+| Princípio                         | Descrição                                                                                |
+| --------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Implementação Incremental**     | Cada Slice produz um incremento completo, compilável e testável.                         |
+| **Slice Pequena**                 | Escopo limitado a um conjunto coeso de componentes arquiteturais.                        |
+| **Slice Independente**            | Não depende de Slices futuras; apenas das concluídas.                                    |
+| **Slice Testável**                | Cobertura de testes obrigatória (unitários + integração quando aplicável).               |
+| **Slice Reversível**              | Rollback trivial via Git (commit por Slice).                                             |
+| **Zero Quebra Arquitetural**      | PI referenciada é fonte exclusiva de arquitetura; EWO não cria nem modifica arquitetura. |
+| **Baseline Lock Obrigatório**     | PI, ER e EWO entram em congelamento no Gate de Entrada (GOV-M06).                        |
+| **Clean Architecture Preservada** | Dependency Rule, DDD, Ports & Adapters, Dispatcher Pattern inalterados.                  |
 
 ---
 
@@ -77,23 +77,23 @@ Baseline Atualizada
 
 Toda EWO deve conter, obrigatoriamente, as seções abaixo:
 
-| Seção | Obrigatória | Conteúdo |
-|-------|-------------|----------|
-| **Identificação** | ✅ | Documento, Versão, Status, Categoria |
-| **PI Referenciada** | ✅ | PI-XXX vX.X (Approved) — fonte arquitetural exclusiva |
-| **Engineering Review Referenciada** | ✅ | ER-XXX vX.X (Approved) — validação assumida integralmente |
-| **Objetivo** | ✅ | O que a EWO materializa (uma camada/domínio específico) |
-| **Escopo** | ✅ | Inclui / Não contempla (limites claros) |
-| **Princípios Obrigatórios** | ✅ | Regras inegociáveis durante a implementação |
-| **Princípio da Neutralidade** | ✅ | EWO organiza implementação; não define detalhes concretos |
-| **Estratégia Geral** | ✅ | Ordem de dependências (não prioridade funcional) |
-| **Referências Normativas** | ✅ | PIs, ERs, Bootstrap, Checklist — ordem de precedência |
-| **Estrutura Oficial de uma Slice** | ✅ | Template padronizado (ver Seção 5) |
-| **Fluxo Oficial de Execução** | ✅ | 11 etapas obrigatórias (ver Seção 5) |
-| **Planejamento Executivo das Slices** | ✅ | Lista de Slices com objetivo, arquivos, testes, critérios |
-| **Critérios de Entrada** | ✅ | Checklist (ver Seção 6) |
-| **Critérios de Saída** | ✅ | Checklist (ver Seção 7) |
-| **Engineering Closure** | ✅ | Quando emitir, conteúdo mínimo, aprovação final |
+| Seção                                 | Obrigatória | Conteúdo                                                  |
+| ------------------------------------- | ----------- | --------------------------------------------------------- |
+| **Identificação**                     | ✅          | Documento, Versão, Status, Categoria                      |
+| **PI Referenciada**                   | ✅          | PI-XXX vX.X (Approved) — fonte arquitetural exclusiva     |
+| **Engineering Review Referenciada**   | ✅          | ER-XXX vX.X (Approved) — validação assumida integralmente |
+| **Objetivo**                          | ✅          | O que a EWO materializa (uma camada/domínio específico)   |
+| **Escopo**                            | ✅          | Inclui / Não contempla (limites claros)                   |
+| **Princípios Obrigatórios**           | ✅          | Regras inegociáveis durante a implementação               |
+| **Princípio da Neutralidade**         | ✅          | EWO organiza implementação; não define detalhes concretos |
+| **Estratégia Geral**                  | ✅          | Ordem de dependências (não prioridade funcional)          |
+| **Referências Normativas**            | ✅          | PIs, ERs, Bootstrap, Checklist — ordem de precedência     |
+| **Estrutura Oficial de uma Slice**    | ✅          | Template padronizado (ver Seção 5)                        |
+| **Fluxo Oficial de Execução**         | ✅          | 11 etapas obrigatórias (ver Seção 5)                      |
+| **Planejamento Executivo das Slices** | ✅          | Lista de Slices com objetivo, arquivos, testes, critérios |
+| **Critérios de Entrada**              | ✅          | Checklist (ver Seção 6)                                   |
+| **Critérios de Saída**                | ✅          | Checklist (ver Seção 7)                                   |
+| **Engineering Closure**               | ✅          | Quando emitir, conteúdo mínimo, aprovação final           |
 
 ---
 
@@ -134,11 +134,11 @@ Unir componentes na mesma Slice quando:
 
 ### 5.5 Granularidade Ideal
 
-| Camada | Slices Típicas | Testes por Slice |
-|--------|----------------|------------------|
-| Domínio (EWO-002) | 8–10 | 30–50 |
-| Application (EWO-003) | 7–9 | 50–80 |
-| Infrastructure (EWO-004) | 6–8 | 70–100 |
+| Camada                   | Slices Típicas | Testes por Slice |
+| ------------------------ | -------------- | ---------------- |
+| Domínio (EWO-002)        | 8–10           | 30–50            |
+| Application (EWO-003)    | 7–9            | 50–80            |
+| Infrastructure (EWO-004) | 6–8            | 70–100           |
 
 **Regra prática:** 1 Slice ≈ 1 a 2 dias de implementação focada.
 
@@ -198,18 +198,19 @@ Ao concluir **cada Slice**, validar **todos** os itens:
 
 Todo relatório de Slice deve conter, **no mínimo**:
 
-| Seção | Conteúdo |
-|-------|----------|
-| **Resumo Executivo** | O que foi implementado, status, evidência principal |
-| **Arquivos** | Lista de arquivos criados/alterados com caminhos |
-| **Testes** | Quantidade, tipo (unit/integração), cobertura, comando executado |
-| **Build** | Resultado de `npm run build` |
+| Seção                      | Conteúdo                                                                      |
+| -------------------------- | ----------------------------------------------------------------------------- |
+| **Resumo Executivo**       | O que foi implementado, status, evidência principal                           |
+| **Arquivos**               | Lista de arquivos criados/alterados com caminhos                              |
+| **Testes**                 | Quantidade, tipo (unit/integração), cobertura, comando executado              |
+| **Build**                  | Resultado de `npm run build`                                                  |
 | **Aderência Arquitetural** | Confirmação de que nenhum componente fora do escopo foi tocado; PI respeitada |
-| **Pendências** | Lista com status (Implementada / Adiada / Rejeitada) — GOV-M04 |
-| **Git** | Branch, HEAD, hash, push confirmado, working tree limpa |
-| **Conclusão** | Slice CLOSED / Próxima Slice autorizada |
+| **Pendências**             | Lista com status (Implementada / Adiada / Rejeitada) — GOV-M04                |
+| **Git**                    | Branch, HEAD, hash, push confirmado, working tree limpa                       |
+| **Conclusão**              | Slice CLOSED / Próxima Slice autorizada                                       |
 
 **Template de mensagem de commit:**
+
 ```
 feat(ewo-XXX): conclui Slice N — <nome da slice>
 
@@ -228,13 +229,13 @@ feat(ewo-XXX): conclui Slice N — <nome da slice>
 
 **Valida obrigatoriamente:**
 
-| Dimensão | Verificação |
-|----------|-------------|
-| **Arquitetura** | Clean Architecture, Dependency Rule, DDD, Ports & Adapters, Dispatcher |
-| **Contratos** | Commands, Queries, DTOs, Ports, Errors idênticos à PI/ER |
-| **Regressões** | Testes anteriores passam; nenhuma quebra silenciosa |
-| **Governança** | GOV-M01 a GOV-M06, Baseline Lock, sincronização Git |
-| **Aderência Metodológica** | Fluxo oficial, critérios de entrada/saída, relatório padrão |
+| Dimensão                   | Verificação                                                            |
+| -------------------------- | ---------------------------------------------------------------------- |
+| **Arquitetura**            | Clean Architecture, Dependency Rule, DDD, Ports & Adapters, Dispatcher |
+| **Contratos**              | Commands, Queries, DTOs, Ports, Errors idênticos à PI/ER               |
+| **Regressões**             | Testes anteriores passam; nenhuma quebra silenciosa                    |
+| **Governança**             | GOV-M01 a GOV-M06, Baseline Lock, sincronização Git                    |
+| **Aderência Metodológica** | Fluxo oficial, critérios de entrada/saída, relatório padrão            |
 
 **Resultado:** `APROVADA` (próxima Slice autorizada) ou `CHANGES REQUIRED` (correções obrigatórias antes de prosseguir).
 
@@ -248,16 +249,16 @@ Ao concluir a **última Slice** da EWO, após auditoria final aprovada.
 
 ### 10.2 Conteúdo Mínimo
 
-| Seção | Obrigatória |
-|-------|-------------|
-| **Identificação** | EWO-XXX, data, status final |
-| **Resumo Executivo** | Objetivo, Slices executadas, testes totais, regressões |
-| **Cobertura Arquitetural** | Tabela DA × Status, Tabela Invariante × Status (se domínio) |
-| **Cobertura de Slices** | Slice × Componentes × Status × Commits |
-| **Verificação de Coesão** | Critérios de integridade do domínio/camada |
-| **Estatísticas Finais** | Slices, testes, arquivos, regressões (zero) |
-| **Conhecimento Consolidado** | KCs, KBs, BKs, TDs, melhorias (GOV-M03) |
-| **Aprovação Final** | 🟢 CONCLUÍDA / 🔴 REJEITADA |
+| Seção                        | Obrigatória                                                 |
+| ---------------------------- | ----------------------------------------------------------- |
+| **Identificação**            | EWO-XXX, data, status final                                 |
+| **Resumo Executivo**         | Objetivo, Slices executadas, testes totais, regressões      |
+| **Cobertura Arquitetural**   | Tabela DA × Status, Tabela Invariante × Status (se domínio) |
+| **Cobertura de Slices**      | Slice × Componentes × Status × Commits                      |
+| **Verificação de Coesão**    | Critérios de integridade do domínio/camada                  |
+| **Estatísticas Finais**      | Slices, testes, arquivos, regressões (zero)                 |
+| **Conhecimento Consolidado** | KCs, KBs, BKs, TDs, melhorias (GOV-M03)                     |
+| **Aprovação Final**          | 🟢 CONCLUÍDA / 🔴 REJEITADA                                 |
 
 ### 10.3 Critérios de Aprovação
 
@@ -304,58 +305,58 @@ Push
 
 ### 12.1 O que funcionou bem
 
-| Prática | EWO-002 | EWO-003 | EWO-004 | Recomendação |
-|---------|---------|---------|---------|--------------|
-| **Fakes primeiro** | ✅ Slice 1 | — | ✅ Slice 1 | **Sempre iniciar com fakes/in-memory** para desacoplar testes de infra |
-| **Order por dependência** | ✅ Base → Aggregate → Projections | ✅ Contratos → Dispatcher → Services → Handlers | ✅ Fakes → Repos → UoW → Gateways | **Ordem técnica > ordem funcional** |
-| **Uma Slice = um commit** | ✅ 9 commits | ✅ 8 commits | ✅ 7 commits | **Manter atomicidade** |
-| **Auditoria por Slice** | ✅ 9 auditorias | ✅ 8 auditorias | ✅ 7 auditorias | **Não pular** — evita acúmulo de NCs |
-| **Barrel exports** | ✅ index.ts por módulo | ✅ | ✅ | **Facilita imports e refatoração** |
-| **Zod para validação** | ✅ Domain events | ✅ DTOs/Commands | ✅ Repos/Gateways | **Padronizar validação de fronteira** |
-| **Cobertura >90%** | ✅ 362 testes | ✅ 528 testes | ✅ 630 testes | **Exigir desde a Slice 1** |
+| Prática                   | EWO-002                           | EWO-003                                         | EWO-004                           | Recomendação                                                           |
+| ------------------------- | --------------------------------- | ----------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------- |
+| **Fakes primeiro**        | ✅ Slice 1                        | —                                               | ✅ Slice 1                        | **Sempre iniciar com fakes/in-memory** para desacoplar testes de infra |
+| **Order por dependência** | ✅ Base → Aggregate → Projections | ✅ Contratos → Dispatcher → Services → Handlers | ✅ Fakes → Repos → UoW → Gateways | **Ordem técnica > ordem funcional**                                    |
+| **Uma Slice = um commit** | ✅ 9 commits                      | ✅ 8 commits                                    | ✅ 7 commits                      | **Manter atomicidade**                                                 |
+| **Auditoria por Slice**   | ✅ 9 auditorias                   | ✅ 8 auditorias                                 | ✅ 7 auditorias                   | **Não pular** — evita acúmulo de NCs                                   |
+| **Barrel exports**        | ✅ index.ts por módulo            | ✅                                              | ✅                                | **Facilita imports e refatoração**                                     |
+| **Zod para validação**    | ✅ Domain events                  | ✅ DTOs/Commands                                | ✅ Repos/Gateways                 | **Padronizar validação de fronteira**                                  |
+| **Cobertura >90%**        | ✅ 362 testes                     | ✅ 528 testes                                   | ✅ 630 testes                     | **Exigir desde a Slice 1**                                             |
 
 ### 12.2 Armadilhas evitadas
 
-| Armadilha | Como foi evitada |
-|-----------|------------------|
-| Implementar infra antes do domínio | Ordem estrita: Domain → App → Infra |
-| Criar arquitetura durante EWO | PI/ER congeladas (Baseline Lock) |
+| Armadilha                           | Como foi evitada                                    |
+| ----------------------------------- | --------------------------------------------------- |
+| Implementar infra antes do domínio  | Ordem estrita: Domain → App → Infra                 |
+| Criar arquitetura durante EWO       | PI/ER congeladas (Baseline Lock)                    |
 | Pular auditoria para "ganhar tempo" | Gate obrigatório: sem auditoria → sem próxima Slice |
-| Testes apenas no final | Testes **dentro** da Slice (critério de saída) |
-| Acúmulo de NCs | NCs corrigidas na Slice ou registradas para próxima |
-| Working Tree suja entre Slices | Commit + Push obrigatórios por Slice |
+| Testes apenas no final              | Testes **dentro** da Slice (critério de saída)      |
+| Acúmulo de NCs                      | NCs corrigidas na Slice ou registradas para próxima |
+| Working Tree suja entre Slices      | Commit + Push obrigatórios por Slice                |
 
 ### 12.3 Melhorias incorporadas
 
-| Melhoria | Origem | Destino |
-|----------|--------|---------|
-| Architecture Tests (R-10) | Auditoria PI-007 | EWO-005 Slice 1 |
-| ESLint `no-restricted-imports` | RA-007-001 | EWO-005 Slice 1 |
-| `@tanstack/react-virtual` desde início | RA-007-004 | EWO-005 Slice 1 |
-| `axe-core` no CI desde Slice 1 | RA-007-005 | EWO-005 Slice 1 |
-| Mapeamento `Command → queryKeys` integral | RA-007-003 | EWO-005 Slice Dispatcher |
+| Melhoria                                  | Origem           | Destino                  |
+| ----------------------------------------- | ---------------- | ------------------------ |
+| Architecture Tests (R-10)                 | Auditoria PI-007 | EWO-005 Slice 1          |
+| ESLint `no-restricted-imports`            | RA-007-001       | EWO-005 Slice 1          |
+| `@tanstack/react-virtual` desde início    | RA-007-004       | EWO-005 Slice 1          |
+| `axe-core` no CI desde Slice 1            | RA-007-005       | EWO-005 Slice 1          |
+| Mapeamento `Command → queryKeys` integral | RA-007-003       | EWO-005 Slice Dispatcher |
 
 ---
 
 ## 13. Referências Normativas
 
-| Documento | Papel |
-|-----------|-------|
-| `PROJECT_BOOTSTRAP.md` | Runtime operacional (#1 precedência) |
-| `AI_OPERATION_CHECKLIST.md` | Checklist executável obrigatório |
-| `DEVELOPMENT_METHODOLOGY.md` | Metodologia detalhada |
-| `PI-XXX (Approved)` | Fonte arquitetural exclusiva da EWO |
-| `ER-XXX (Approved)` | Validação assumida integralmente |
-| `EWO-XXX` | Este padrão + planejamento específico |
-| `GOV-003, GOV-004, GOV-005, GOV-006, GOV-007, GOV-009, GOV-M01 a GOV-M06` | Regras de governança vinculantes |
+| Documento                                                                 | Papel                                 |
+| ------------------------------------------------------------------------- | ------------------------------------- |
+| `PROJECT_BOOTSTRAP.md`                                                    | Runtime operacional (#1 precedência)  |
+| `AI_OPERATION_CHECKLIST.md`                                               | Checklist executável obrigatório      |
+| `DEVELOPMENT_METHODOLOGY.md`                                              | Metodologia detalhada                 |
+| `PI-XXX (Approved)`                                                       | Fonte arquitetural exclusiva da EWO   |
+| `ER-XXX (Approved)`                                                       | Validação assumida integralmente      |
+| `EWO-XXX`                                                                 | Este padrão + planejamento específico |
+| `GOV-003, GOV-004, GOV-005, GOV-006, GOV-007, GOV-009, GOV-M01 a GOV-M06` | Regras de governança vinculantes      |
 
 ---
 
 ## 14. Histórico
 
-| Versão | Data | Descrição |
-|--------|------|-----------|
-| 1.0 | 19/07/2026 | Criação consolidando EWO-002, EWO-003, EWO-004 |
+| Versão | Data       | Descrição                                      |
+| ------ | ---------- | ---------------------------------------------- |
+| 1.0    | 19/07/2026 | Criação consolidando EWO-002, EWO-003, EWO-004 |
 
 ---
 

@@ -5,7 +5,11 @@ interface ReportErrorProps {
 
 export function ReportError({ message, onRetry }: ReportErrorProps) {
   return (
-    <section data-testid="report-error" aria-label="Erro ao carregar relatórios" className="rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-center">
+    <section
+      data-testid="report-error"
+      aria-label="Erro ao carregar relatórios"
+      className="rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-center"
+    >
       <p className="text-destructive">{message}</p>
       {onRetry && (
         <button

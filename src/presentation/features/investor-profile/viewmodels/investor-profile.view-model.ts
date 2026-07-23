@@ -9,7 +9,9 @@ export interface ProfileViewModel {
 }
 
 const RISK_LABELS: Record<string, string> = {
-  CONSERVADOR: "Conservador", MODERADO: "Moderado", ARROJADO: "Arrojado",
+  CONSERVADOR: "Conservador",
+  MODERADO: "Moderado",
+  ARROJADO: "Arrojado",
 };
 
 const HORIZON_LABELS: Record<string, string> = {
@@ -18,7 +20,10 @@ const HORIZON_LABELS: Record<string, string> = {
   LONGO_PRAZO: "Longo Prazo (acima de 5 anos)",
 };
 
-export function toProfileViewModel(profile: InvestorProfileDto, result?: RiskResultDto): ProfileViewModel {
+export function toProfileViewModel(
+  profile: InvestorProfileDto,
+  result?: RiskResultDto,
+): ProfileViewModel {
   return {
     riskLevel: profile.riskLevel,
     riskLevelLabel: RISK_LABELS[profile.riskLevel] ?? profile.riskLevel,

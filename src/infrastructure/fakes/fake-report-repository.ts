@@ -1,5 +1,11 @@
 import type { IReportRepository } from "@/application/ports/report-repository";
-import { ReportExecution, ReportSchedule, ReportTemplate, BUILT_IN_TEMPLATES, ReportTemplateId } from "@/core/domain/reports";
+import {
+  ReportExecution,
+  ReportSchedule,
+  ReportTemplate,
+  BUILT_IN_TEMPLATES,
+  ReportTemplateId,
+} from "@/core/domain/reports";
 
 export class FakeReportRepository implements IReportRepository {
   private executions = new Map<string, ReportExecution>();

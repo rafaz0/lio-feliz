@@ -3,17 +3,30 @@ import { RegistrarContribuicaoService } from "@/application/services/registrar-c
 import type { RegistrarContribuicaoCommand } from "@/application/commands/registrar-contribuicao";
 import { FakeFinancialGoalRepository } from "@/infrastructure/fakes/fake-financial-goal-repository";
 import { GoalCategory, FinancialGoal, FinancialGoalId } from "@/core/domain/financial-goal";
-import { ApplicationError, ValidationError, NotFoundError } from "@/application/errors/application-error";
+import {
+  ApplicationError,
+  ValidationError,
+  NotFoundError,
+} from "@/application/errors/application-error";
 
 function createRepoWithGoal(): FakeFinancialGoalRepository {
   const repo = new FakeFinancialGoalRepository();
   const id = FinancialGoalId.create("goal-001");
-  const result = FinancialGoal.create(id, "Reserva", 100000, new Date("2027-12-31"), GoalCategory.EMERGENCY, "corr-1");
+  const result = FinancialGoal.create(
+    id,
+    "Reserva",
+    100000,
+    new Date("2027-12-31"),
+    GoalCategory.EMERGENCY,
+    "corr-1",
+  );
   if (result.isSuccess) repo.save(result.value!);
   return repo;
 }
 
-function createCommand(overrides?: Partial<RegistrarContribuicaoCommand>): RegistrarContribuicaoCommand {
+function createCommand(
+  overrides?: Partial<RegistrarContribuicaoCommand>,
+): RegistrarContribuicaoCommand {
   return {
     type: "RegistrarContribuicaoCommand",
     goalId: "goal-001",

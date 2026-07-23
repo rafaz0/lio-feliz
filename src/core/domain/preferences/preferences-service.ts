@@ -13,12 +13,19 @@ const DEFAULT_LAYOUT: DashboardLayout = {
 };
 
 export class PreferencesService {
-  mergeDefaults(prefs: Partial<{
+  mergeDefaults(
+    prefs: Partial<{
+      theme: ThemeMode;
+      dashboardLayout: DashboardLayout;
+      notifications: boolean;
+      language: string;
+    }>,
+  ): {
     theme: ThemeMode;
     dashboardLayout: DashboardLayout;
     notifications: boolean;
     language: string;
-  }>): { theme: ThemeMode; dashboardLayout: DashboardLayout; notifications: boolean; language: string } {
+  } {
     return {
       theme: prefs.theme ?? "SYSTEM",
       dashboardLayout: prefs.dashboardLayout ?? DEFAULT_LAYOUT,

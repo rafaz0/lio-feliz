@@ -4,12 +4,42 @@ import { OnboardingStepId, UserProgressId } from "./onboarding-types";
 import { UserProgress } from "./user-progress";
 import { InvalidStepOrderError } from "./errors";
 
-const DEFAULT_STEPS: Array<{ stepType: StepType; title: string; description: string; optional: boolean }> = [
-  { stepType: "tutorial", title: "Boas-vindas ao Lio Feliz", description: "Conheça os principais recursos da plataforma.", optional: true },
-  { stepType: "config", title: "Configure sua moeda e estratégia", description: "Defina sua moeda principal e percentuais de alocação.", optional: false },
-  { stepType: "first_operation", title: "Faça seu primeiro lançamento", description: "Registre sua primeira operação de compra ou venda.", optional: false },
-  { stepType: "profile", title: "Responda ao questionário de perfil", description: "Descubra seu perfil de investidor.", optional: false },
-  { stepType: "glossary_intro", title: "Conheça o glossário", description: "Explore termos e conceitos do mercado financeiro.", optional: true },
+const DEFAULT_STEPS: Array<{
+  stepType: StepType;
+  title: string;
+  description: string;
+  optional: boolean;
+}> = [
+  {
+    stepType: "tutorial",
+    title: "Boas-vindas ao Lio Feliz",
+    description: "Conheça os principais recursos da plataforma.",
+    optional: true,
+  },
+  {
+    stepType: "config",
+    title: "Configure sua moeda e estratégia",
+    description: "Defina sua moeda principal e percentuais de alocação.",
+    optional: false,
+  },
+  {
+    stepType: "first_operation",
+    title: "Faça seu primeiro lançamento",
+    description: "Registre sua primeira operação de compra ou venda.",
+    optional: false,
+  },
+  {
+    stepType: "profile",
+    title: "Responda ao questionário de perfil",
+    description: "Descubra seu perfil de investidor.",
+    optional: false,
+  },
+  {
+    stepType: "glossary_intro",
+    title: "Conheça o glossário",
+    description: "Explore termos e conceitos do mercado financeiro.",
+    optional: true,
+  },
 ];
 
 export class OnboardingFlow {

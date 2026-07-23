@@ -10,23 +10,70 @@ export type {
 export type { RelatorioFiscalDto, PosicaoFiscalDto, GanhoCapitalDto } from "./relatorio-fiscal";
 export type { HistoricoPatrimonialDto, PeriodoDto, PontoHistoricoDto } from "./historico";
 export type { RentabilidadeDto } from "./rentabilidade";
-export type { ProgressoMetasDto, MetaProgressoDto, MetaListDto, MetaProgressoDetalhadoDto } from "./metas";
+export type {
+  ProgressoMetasDto,
+  MetaProgressoDto,
+  MetaListDto,
+  MetaProgressoDetalhadoDto,
+} from "./metas";
 export type { ConfiguracoesDto } from "./configuracoes";
 export type { AssinaturaAtualizadaDto } from "./assinatura";
 export type { DadosExportadosDto } from "./exportacao";
 export type { EstrategiaConfiguradaDto } from "./estrategia";
 export type { RebalanceamentoExecutadoDto } from "./rebalanceamento-executado";
 export type { SincronizacaoRealizadaDto, SincronizacaoErroDto } from "./sincronizacao";
-export type { DeclaracaoDto, LoteFiscalDto, ImpostoMensalDto, ConsolidadoAnualDto } from "./declaracao";
+export type {
+  DeclaracaoDto,
+  LoteFiscalDto,
+  ImpostoMensalDto,
+  ConsolidadoAnualDto,
+} from "./declaracao";
 export type { RendaFixaDto, CronogramaItemDto, CronogramaPagamentosDto } from "./renda-fixa";
-export type { ReportTemplateDto, ReportExecutionDto, ReportScheduleDto, ReportTemplateListDto, ReportExecutionDetailDto, ReportScheduleListDto } from "./relatorio";
-export type { ImportJobDto, ImportacaoRealizadaDto, ExportJobDto, HistoricoImportacaoDto, ModelosExportacaoDto } from "./importacao";
-export type { IntegrationConfigDto, SyncLogDto, IntegracaoConfiguradaDto, SyncResultDto, IntegracoesListDto, SyncStatusDto } from "./integracao";
-export type { BacktestDto, StrategyDto, SimulationResultDto, BacktestCompletoDto, EstrategiaListDto } from "./backtest";
-export type { AlertaDto, AlertRuleDto, AlertDeliveryDto, AlertListDto, AlertRuleListDto } from "./alerta";
+export type {
+  ReportTemplateDto,
+  ReportExecutionDto,
+  ReportScheduleDto,
+  ReportTemplateListDto,
+  ReportExecutionDetailDto,
+  ReportScheduleListDto,
+} from "./relatorio";
+export type {
+  ImportJobDto,
+  ImportacaoRealizadaDto,
+  ExportJobDto,
+  HistoricoImportacaoDto,
+  ModelosExportacaoDto,
+} from "./importacao";
+export type {
+  IntegrationConfigDto,
+  SyncLogDto,
+  IntegracaoConfiguradaDto,
+  SyncResultDto,
+  IntegracoesListDto,
+  SyncStatusDto,
+} from "./integracao";
+export type {
+  BacktestDto,
+  StrategyDto,
+  SimulationResultDto,
+  BacktestCompletoDto,
+  EstrategiaListDto,
+} from "./backtest";
+export type {
+  AlertaDto,
+  AlertRuleDto,
+  AlertDeliveryDto,
+  AlertListDto,
+  AlertRuleListDto,
+} from "./alerta";
 export type { ComparacaoDto, ScorecardDto, ComparisonSetDto } from "./comparacao";
 export type { GlossaryTermDto, TooltipDto, LearningPathDto, GlossarySearchDto } from "./education";
 export type { ExportTemplateDto, ExportJobDto, ExportJobListDto } from "./exportacao-avancada";
 export type { AtivosInternacionaisDto, TaxaCambioDto } from "./internacional";
 export type { PlanoDetalhadoDto, AssinaturaDto, AcessoDto } from "./assinatura";
-export type { InvestidorPerfilCompletoDto, InvestorProfileDto, RiskResultDto, QuestionarioPerguntasDto } from "./investidor-perfil";
+export type {
+  InvestidorPerfilCompletoDto,
+  InvestorProfileDto,
+  RiskResultDto,
+  QuestionarioPerguntasDto,
+} from "./investidor-perfil";

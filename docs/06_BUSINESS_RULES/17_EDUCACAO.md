@@ -22,26 +22,26 @@ Nenhum componente existente da interface é modificado para exibir tooltips — 
 
 Um verbete do glossário.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `GlossaryTermId` | Identificador único |
-| `term` | `string` | Nome do termo (ex: "Dividendo", "DY") |
-| `definition` | `string` | Definição completa |
-| `category` | `TermCategory` | Categoria temática |
-| `synonyms` | `string[]` | Sinônimos (busca alternativa) |
-| `relatedTerms` | `string[]` | Termos relacionados |
+| Atributo       | Tipo             | Regra                                 |
+| -------------- | ---------------- | ------------------------------------- |
+| `id`           | `GlossaryTermId` | Identificador único                   |
+| `term`         | `string`         | Nome do termo (ex: "Dividendo", "DY") |
+| `definition`   | `string`         | Definição completa                    |
+| `category`     | `TermCategory`   | Categoria temática                    |
+| `synonyms`     | `string[]`       | Sinônimos (busca alternativa)         |
+| `relatedTerms` | `string[]`       | Termos relacionados                   |
 
 ### 2.2 `Tooltip` (Entidade)
 
 Tooltip contextual associado a um componente da interface.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `TooltipId` | Identificador único |
-| `targetComponent` | `string` | Identificador do componente alvo (ex: "dividend-yield-card") |
-| `termKey` | `string` | Chave do termo glossário relacionado |
-| `text` | `string` | Texto curto do tooltip |
-| `difficulty` | `DifficultyLevel` | Nível de dificuldade |
+| Atributo          | Tipo              | Regra                                                        |
+| ----------------- | ----------------- | ------------------------------------------------------------ |
+| `id`              | `TooltipId`       | Identificador único                                          |
+| `targetComponent` | `string`          | Identificador do componente alvo (ex: "dividend-yield-card") |
+| `termKey`         | `string`          | Chave do termo glossário relacionado                         |
+| `text`            | `string`          | Texto curto do tooltip                                       |
+| `difficulty`      | `DifficultyLevel` | Nível de dificuldade                                         |
 
 > **Nota:** Tooltip é exclusivamente fonte de dados. A renderização visual é feita pelo `TooltipProvider` (camada Presentation), sem modificar componentes existentes (NC-010-003).
 
@@ -49,13 +49,13 @@ Tooltip contextual associado a um componente da interface.
 
 Trilha de aprendizado com passos ordenados.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `LearningPathId` | Identificador único |
-| `name` | `string` | Nome da trilha (ex: "Começando em FIIS") |
-| `description` | `string` | Descrição da trilha |
-| `steps` | `string[]` | Lista de chaves de termos na ordem |
-| `difficulty` | `DifficultyLevel` | Nível de dificuldade |
+| Atributo      | Tipo              | Regra                                    |
+| ------------- | ----------------- | ---------------------------------------- |
+| `id`          | `LearningPathId`  | Identificador único                      |
+| `name`        | `string`          | Nome da trilha (ex: "Começando em FIIS") |
+| `description` | `string`          | Descrição da trilha                      |
+| `steps`       | `string[]`        | Lista de chaves de termos na ordem       |
+| `difficulty`  | `DifficultyLevel` | Nível de dificuldade                     |
 
 ### 2.4 Value Objects
 
@@ -86,11 +86,11 @@ enum DifficultyLevel {
 
 ## 3. Serviço de Domínio: `GlossaryIndexer`
 
-| Método | Descrição |
-|--------|-----------|
-| `lookup(term)` | Retorna termos que correspondem exatamente ao termo ou sinônimo |
-| `search(query)` | Busca termos por substring no termo, definição ou sinônimos |
-| `getTooltips(component)` | Retorna tooltips associados a um componente específico |
+| Método                   | Descrição                                                       |
+| ------------------------ | --------------------------------------------------------------- |
+| `lookup(term)`           | Retorna termos que correspondem exatamente ao termo ou sinônimo |
+| `search(query)`          | Busca termos por substring no termo, definição ou sinônimos     |
+| `getTooltips(component)` | Retorna tooltips associados a um componente específico          |
 
 ---
 

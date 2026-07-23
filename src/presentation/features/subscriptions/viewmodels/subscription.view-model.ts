@@ -25,9 +25,12 @@ function formatPrice(cents: number): string {
 
 export function toPlanViewModel(dto: PlanoDetalhadoDto): PlanViewModel {
   return {
-    id: dto.id, name: dto.name, tier: dto.tier,
+    id: dto.id,
+    name: dto.name,
+    tier: dto.tier,
     monthlyPrice: formatPrice(dto.monthlyPrice),
-    description: dto.description, capabilities: dto.capabilities,
+    description: dto.description,
+    capabilities: dto.capabilities,
     isFree: dto.tier === "FREE",
   };
 }
@@ -38,8 +41,11 @@ export function toPlanViewModels(dtos: PlanoDetalhadoDto[]): PlanViewModel[] {
 
 export function toSubscriptionViewModel(dto: AssinaturaDto): SubscriptionViewModel {
   return {
-    id: dto.id, planName: dto.planName, tier: dto.tier,
-    status: dto.status, isActive: dto.isActive,
+    id: dto.id,
+    planName: dto.planName,
+    tier: dto.tier,
+    status: dto.status,
+    isActive: dto.isActive,
     startDate: new Date(dto.startDate).toLocaleDateString("pt-BR"),
   };
 }

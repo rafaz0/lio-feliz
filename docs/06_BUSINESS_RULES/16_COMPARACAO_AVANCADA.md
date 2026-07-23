@@ -22,49 +22,49 @@ O módulo **nunca recalcula projeções** (R-013). O `ComparisonAggregator` é u
 
 Conjunto de ativos selecionados para comparação.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `ComparisonSetId` | Identificador único |
-| `name` | `string` | Nome de exibição (ex: "Fiis vs Ações") |
-| `entries` | `ComparisonEntry[]` | Ativos do conjunto |
-| `scope` | `ComparisonScope` | Escopo da comparação |
-| `userId` | `string` | ID do usuário proprietário |
-| `createdAt` | `Date` | Data de criação |
+| Atributo    | Tipo                | Regra                                  |
+| ----------- | ------------------- | -------------------------------------- |
+| `id`        | `ComparisonSetId`   | Identificador único                    |
+| `name`      | `string`            | Nome de exibição (ex: "Fiis vs Ações") |
+| `entries`   | `ComparisonEntry[]` | Ativos do conjunto                     |
+| `scope`     | `ComparisonScope`   | Escopo da comparação                   |
+| `userId`    | `string`            | ID do usuário proprietário             |
+| `createdAt` | `Date`              | Data de criação                        |
 
 ### 2.2 `ComparisonEntry` (Entidade)
 
 Um ativo dentro do conjunto de comparação.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `ComparisonEntryId` | Identificador único |
-| `comparisonSetId` | `string` | Conjunto de origem |
-| `assetTicker` | `string` | Ticker do ativo |
-| `assetType` | `string` | Tipo do ativo (stock, fii, etf, etc.) |
-| `weight` | `number` | Peso opcional no conjunto (0-100) |
+| Atributo          | Tipo                | Regra                                 |
+| ----------------- | ------------------- | ------------------------------------- |
+| `id`              | `ComparisonEntryId` | Identificador único                   |
+| `comparisonSetId` | `string`            | Conjunto de origem                    |
+| `assetTicker`     | `string`            | Ticker do ativo                       |
+| `assetType`       | `string`            | Tipo do ativo (stock, fii, etf, etc.) |
+| `weight`          | `number`            | Peso opcional no conjunto (0-100)     |
 
 ### 2.3 `Scorecard` (Entidade)
 
 Resultado da agregação de métricas.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `ScorecardId` | Identificador único |
-| `comparisonSetId` | `string` | Conjunto de origem |
-| `metrics` | `ComparisonMetric[]` | Métricas agregadas por ativo |
-| `generatedAt` | `Date` | Data de geração |
+| Atributo          | Tipo                 | Regra                        |
+| ----------------- | -------------------- | ---------------------------- |
+| `id`              | `ScorecardId`        | Identificador único          |
+| `comparisonSetId` | `string`             | Conjunto de origem           |
+| `metrics`         | `ComparisonMetric[]` | Métricas agregadas por ativo |
+| `generatedAt`     | `Date`               | Data de geração              |
 
 ### 2.4 `ComparisonMetric` (Value Object)
 
 Uma métrica de um ativo no scorecard.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `assetTicker` | `string` | Ticker do ativo |
-| `metricType` | `MetricType` | Nome da métrica |
-| `value` | `number` | Valor calculado |
-| `rank` | `number` | Posição relativa entre ativos |
-| `benchmarkValue` | `number` | Valor de referência |
+| Atributo         | Tipo         | Regra                         |
+| ---------------- | ------------ | ----------------------------- |
+| `assetTicker`    | `string`     | Ticker do ativo               |
+| `metricType`     | `MetricType` | Nome da métrica               |
+| `value`          | `number`     | Valor calculado               |
+| `rank`           | `number`     | Posição relativa entre ativos |
+| `benchmarkValue` | `number`     | Valor de referência           |
 
 ### 2.5 `ComparisonScope` (Value Object)
 
@@ -83,15 +83,15 @@ interface ComparisonScope {
 
 ## 3. Métricas do Scorecard
 
-| Métrica | Descrição | Fonte |
-|---------|-----------|-------|
-| **Rentabilidade (12m)** | Retorno acumulado nos últimos 12 meses | `IProjectionRepository` |
-| **Rentabilidade (24m)** | Retorno acumulado nos últimos 24 meses | `IProjectionRepository` |
-| **Rentabilidade (36m)** | Retorno acumulado desde o início | `IProjectionRepository` |
-| **Volatilidade** | Desvio padrão anualizado dos retornos | Cálculo derivado sobre retornos |
-| **Drawdown Máximo** | Maior queda do pico ao vale no período | Cálculo derivado sobre retornos |
-| **Dividend Yield (12m)** | Rendimento de dividendos nos últimos 12 meses | `IProjectionRepository` |
-| **Índice de Sharpe** | Retorno ajustado ao risco | Cálculo derivado (retorno - RF / volatilidade) |
+| Métrica                  | Descrição                                     | Fonte                                          |
+| ------------------------ | --------------------------------------------- | ---------------------------------------------- |
+| **Rentabilidade (12m)**  | Retorno acumulado nos últimos 12 meses        | `IProjectionRepository`                        |
+| **Rentabilidade (24m)**  | Retorno acumulado nos últimos 24 meses        | `IProjectionRepository`                        |
+| **Rentabilidade (36m)**  | Retorno acumulado desde o início              | `IProjectionRepository`                        |
+| **Volatilidade**         | Desvio padrão anualizado dos retornos         | Cálculo derivado sobre retornos                |
+| **Drawdown Máximo**      | Maior queda do pico ao vale no período        | Cálculo derivado sobre retornos                |
+| **Dividend Yield (12m)** | Rendimento de dividendos nos últimos 12 meses | `IProjectionRepository`                        |
+| **Índice de Sharpe**     | Retorno ajustado ao risco                     | Cálculo derivado (retorno - RF / volatilidade) |
 
 ---
 

@@ -108,15 +108,15 @@ export class ExportJob extends ValueObject<ExportJob> {
 
   static fromJSON(data: ReturnType<ExportJob["toJSON"]>): ExportJob {
     const instance = Object.create(ExportJob.prototype);
-    instance['_id'] = data.id;
-    instance['_format'] = data.format;
-    instance['_metadata'] = data.metadata;
-    instance['_status'] = data.status;
-    instance['_createdAt'] = new Date(data.createdAt);
-    instance['_completedAt'] = data.completedAt ? new Date(data.completedAt) : undefined;
-    instance['_fileName'] = data.fileName;
-    instance['_fileUrl'] = data.fileUrl;
-    instance['_downloadUrl'] = data.downloadUrl;
+    instance["_id"] = data.id;
+    instance["_format"] = data.format;
+    instance["_metadata"] = data.metadata;
+    instance["_status"] = data.status;
+    instance["_createdAt"] = new Date(data.createdAt);
+    instance["_completedAt"] = data.completedAt ? new Date(data.completedAt) : undefined;
+    instance["_fileName"] = data.fileName;
+    instance["_fileUrl"] = data.fileUrl;
+    instance["_downloadUrl"] = data.downloadUrl;
     return instance;
   }
 }

@@ -7,7 +7,10 @@ import { ValidationError, NotFoundError } from "@/application/errors/application
 import type { ApplicationError } from "@/application/errors/application-error";
 import { Subscription, SubscriptionId, BillingSimulator } from "@/core/domain/subscriptions";
 
-export class AssinarPlanoService implements IApplicationService<AssinarPlanoCommand, AssinaturaDto> {
+export class AssinarPlanoService implements IApplicationService<
+  AssinarPlanoCommand,
+  AssinaturaDto
+> {
   private readonly billingSimulator = new BillingSimulator();
 
   constructor(
@@ -37,7 +40,8 @@ export class AssinarPlanoService implements IApplicationService<AssinarPlanoComm
 
     if (this.notificationPort) {
       await this.notificationPort.Notificar(
-        command.userId, "Assinatura Ativada",
+        command.userId,
+        "Assinatura Ativada",
         `Seu plano ${plan.name} foi ativado com sucesso.`,
       );
     }

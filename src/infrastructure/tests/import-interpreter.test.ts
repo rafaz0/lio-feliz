@@ -23,17 +23,17 @@ describe("ImportInterpreter", () => {
 
   describe("InterpretarOperacao", () => {
     it("converts BUY to BuyEvent", () => {
-      const op = { tipo: "BUY", ativo: "PETR4", quantidade: 100, valor: 25.50, data: new Date() };
+      const op = { tipo: "BUY", ativo: "PETR4", quantidade: 100, valor: 25.5, data: new Date() };
       const event = interpreter.InterpretarOperacao(op, portfolioId, correlationId);
 
       expect(event).toBeInstanceOf(BuyEvent);
       expect(event.assetId).toBe("PETR4");
       expect(event.quantity).toBe(100);
-      expect(event.price).toBe(25.50);
+      expect(event.price).toBe(25.5);
     });
 
     it("converts SELL to SellEvent", () => {
-      const op = { tipo: "SELL", ativo: "VALE3", quantidade: 50, valor: 78.30, data: new Date() };
+      const op = { tipo: "SELL", ativo: "VALE3", quantidade: 50, valor: 78.3, data: new Date() };
       const event = interpreter.InterpretarOperacao(op, portfolioId, correlationId);
 
       expect(event).toBeInstanceOf(SellEvent);
@@ -42,17 +42,23 @@ describe("ImportInterpreter", () => {
     });
 
     it("converts DIVIDEND to DividendEvent", () => {
-      const op = { tipo: "DIVIDEND", ativo: "PETR4", quantidade: 100, valor: 2.50, data: new Date() };
+      const op = {
+        tipo: "DIVIDEND",
+        ativo: "PETR4",
+        quantidade: 100,
+        valor: 2.5,
+        data: new Date(),
+      };
       const event = interpreter.InterpretarOperacao(op, portfolioId, correlationId);
 
       expect(event).toBeInstanceOf(DividendEvent);
       expect(event.assetId).toBe("PETR4");
       expect(event.shares).toBe(100);
-      expect(event.amountPerShare).toBe(2.50);
+      expect(event.amountPerShare).toBe(2.5);
     });
 
     it("converts JCP to JcpEvent", () => {
-      const op = { tipo: "JCP", ativo: "PETR4", quantidade: 100, valor: 1.50, data: new Date() };
+      const op = { tipo: "JCP", ativo: "PETR4", quantidade: 100, valor: 1.5, data: new Date() };
       const event = interpreter.InterpretarOperacao(op, portfolioId, correlationId);
 
       expect(event).toBeInstanceOf(JcpEvent);
@@ -86,14 +92,27 @@ describe("ImportInterpreter", () => {
     });
 
     it("converts AMORTIZATION to AmortizationEvent", () => {
-      const op = { tipo: "AMORTIZATION", ativo: "PETR4", quantidade: 100, valor: 0.50, data: new Date() };
+      const op = {
+        tipo: "AMORTIZATION",
+        ativo: "PETR4",
+        quantidade: 100,
+        valor: 0.5,
+        data: new Date(),
+      };
       const event = interpreter.InterpretarOperacao(op, portfolioId, correlationId);
 
       expect(event).toBeInstanceOf(AmortizationEvent);
     });
 
     it("converts ADJUSTMENT to AdjustmentEvent", () => {
-      const op = { tipo: "ADJUSTMENT", ativo: "PETR4", quantidade: 100, valor: 500, data: new Date(), observacao: "Correcao" };
+      const op = {
+        tipo: "ADJUSTMENT",
+        ativo: "PETR4",
+        quantidade: 100,
+        valor: 500,
+        data: new Date(),
+        observacao: "Correcao",
+      };
       const event = interpreter.InterpretarOperacao(op, portfolioId, correlationId);
 
       expect(event).toBeInstanceOf(AdjustmentEvent);
@@ -117,8 +136,18 @@ describe("ImportInterpreter", () => {
     });
 
     it("uses default description for ADJUSTMENT when observacao is empty", () => {
-      const op = { tipo: "ADJUSTMENT", ativo: "PETR4", quantidade: 10, valor: 100, data: new Date() };
-      const event = interpreter.InterpretarOperacao(op, portfolioId, correlationId) as AdjustmentEvent;
+      const op = {
+        tipo: "ADJUSTMENT",
+        ativo: "PETR4",
+        quantidade: 10,
+        valor: 100,
+        data: new Date(),
+      };
+      const event = interpreter.InterpretarOperacao(
+        op,
+        portfolioId,
+        correlationId,
+      ) as AdjustmentEvent;
 
       expect(event.description).toBe("Ajuste manual");
     });

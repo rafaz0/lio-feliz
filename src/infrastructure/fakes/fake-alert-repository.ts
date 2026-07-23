@@ -1,5 +1,12 @@
 import type { IAlertRepository } from "@/application/ports/alert-repository";
-import { Alert, AlertRule, AlertDelivery, AlertId, AlertRuleId, AlertDeliveryId } from "@/core/domain/alerts";
+import {
+  Alert,
+  AlertRule,
+  AlertDelivery,
+  AlertId,
+  AlertRuleId,
+  AlertDeliveryId,
+} from "@/core/domain/alerts";
 
 export class FakeAlertRepository implements IAlertRepository {
   private rules = new Map<string, AlertRule>();

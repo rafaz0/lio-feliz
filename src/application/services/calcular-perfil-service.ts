@@ -6,15 +6,18 @@ import type { IProjectionRepository } from "@/application/ports/projection-repos
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class CalcularPerfilService
-  implements IApplicationService<CalcularPerfilCommand, InvestidorPerfilCompletoDto>
-{
+export class CalcularPerfilService implements IApplicationService<
+  CalcularPerfilCommand,
+  InvestidorPerfilCompletoDto
+> {
   constructor(
     private readonly profileRepo: IInvestorProfileRepository,
     private readonly projectionRepo?: IProjectionRepository,
   ) {}
 
-  async Execute(command: CalcularPerfilCommand): Promise<InvestidorPerfilCompletoDto | ApplicationError> {
+  async Execute(
+    command: CalcularPerfilCommand,
+  ): Promise<InvestidorPerfilCompletoDto | ApplicationError> {
     const profile = await this.profileRepo.findProfileByUser(command.userId);
     if (!profile) return new NotFoundError("InvestorProfile", command.userId);
 
@@ -22,16 +25,23 @@ export class CalcularPerfilService
 
     return {
       profile: {
-        id: profile.id.value, userId: profile.userId,
-        riskLevel: profile.riskLevel, investmentHorizon: profile.investmentHorizon,
+        id: profile.id.value,
+        userId: profile.userId,
+        riskLevel: profile.riskLevel,
+        investmentHorizon: profile.investmentHorizon,
         totalPortfolioValue: profile.totalPortfolioValue,
-        createdAt: profile.createdAt.toISOString(), updatedAt: profile.updatedAt.toISOString(),
+        createdAt: profile.createdAt.toISOString(),
+        updatedAt: profile.updatedAt.toISOString(),
       },
-      lastResult: latestResult ? {
-        id: latestResult.id.value, profileId: latestResult.profileId,
-        riskLevel: latestResult.riskLevel, score: latestResult.score,
-        generatedAt: latestResult.generatedAt.toISOString(),
-      } : undefined,
+      lastResult: latestResult
+        ? {
+            id: latestResult.id.value,
+            profileId: latestResult.profileId,
+            riskLevel: latestResult.riskLevel,
+            score: latestResult.score,
+            generatedAt: latestResult.generatedAt.toISOString(),
+          }
+        : undefined,
     };
   }
 }

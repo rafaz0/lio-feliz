@@ -6,9 +6,10 @@ import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { BillingSimulator } from "@/core/domain/subscriptions";
 
-export class CancelarAssinaturaService
-  implements IApplicationService<CancelarAssinaturaCommand, AssinaturaDto>
-{
+export class CancelarAssinaturaService implements IApplicationService<
+  CancelarAssinaturaCommand,
+  AssinaturaDto
+> {
   private readonly billingSimulator = new BillingSimulator();
 
   constructor(private readonly subscriptionRepo: ISubscriptionRepository) {}

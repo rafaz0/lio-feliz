@@ -23,10 +23,7 @@ export interface RegistrarCupomInput {
 }
 
 interface UseRegistrarCupomMutationResult {
-  mutate: (
-    input: RegistrarCupomInput,
-    options?: { onSuccess?: () => void },
-  ) => void;
+  mutate: (input: RegistrarCupomInput, options?: { onSuccess?: () => void }) => void;
   mutateAsync: (input: RegistrarCupomInput) => Promise<RendaFixaViewModel>;
   isPending: boolean;
   isError: boolean;

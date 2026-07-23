@@ -6,9 +6,10 @@ import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { PreferencesService } from "@/core/domain/preferences";
 
-export class ObterPreferenciasService
-  implements IApplicationService<ObterPreferenciasQuery, UserPreferencesDto>
-{
+export class ObterPreferenciasService implements IApplicationService<
+  ObterPreferenciasQuery,
+  UserPreferencesDto
+> {
   private readonly prefsService = new PreferencesService();
 
   constructor(private readonly configRepo: IConfigurationRepository) {}

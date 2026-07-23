@@ -5,11 +5,18 @@ import type { IComparisonRepository } from "@/application/ports/comparison-repos
 import type { IProjectionRepository } from "@/application/ports/projection-repository";
 import { ValidationError, InternalError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
-import { ComparisonSet, ComparisonSetId, ComparisonEntry, ComparisonEntryId, ComparisonAggregator } from "@/core/domain/comparison";
+import {
+  ComparisonSet,
+  ComparisonSetId,
+  ComparisonEntry,
+  ComparisonEntryId,
+  ComparisonAggregator,
+} from "@/core/domain/comparison";
 
-export class CriarComparacaoService
-  implements IApplicationService<CriarComparacaoCommand, ComparacaoDto>
-{
+export class CriarComparacaoService implements IApplicationService<
+  CriarComparacaoCommand,
+  ComparacaoDto
+> {
   private readonly aggregator = new ComparisonAggregator();
 
   constructor(
@@ -51,7 +58,10 @@ export class CriarComparacaoService
         await this.comparisonRepo.saveScorecard(result.value);
       }
     } catch (err) {
-      return new InternalError("AGGREGATION_FAILED", err instanceof Error ? err.message : "Falha na agregacao");
+      return new InternalError(
+        "AGGREGATION_FAILED",
+        err instanceof Error ? err.message : "Falha na agregacao",
+      );
     }
 
     return {
@@ -71,7 +81,11 @@ export class CriarComparacaoService
   private async loadProjections(
     tickers: string[],
   ): Promise<Array<{ assetTicker: string; monthlyReturns: number[]; dividendYield12m: number }>> {
-    const results: Array<{ assetTicker: string; monthlyReturns: number[]; dividendYield12m: number }> = [];
+    const results: Array<{
+      assetTicker: string;
+      monthlyReturns: number[];
+      dividendYield12m: number;
+    }> = [];
 
     for (const ticker of tickers) {
       try {

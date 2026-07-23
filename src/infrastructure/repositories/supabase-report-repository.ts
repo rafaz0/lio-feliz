@@ -1,6 +1,14 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { IReportRepository } from "@/application/ports/report-repository";
-import { ReportExecution, ReportExecutionId, ReportSchedule, ReportScheduleId, ReportTemplate, ReportTemplateId, BUILT_IN_TEMPLATES } from "@/core/domain/reports";
+import {
+  ReportExecution,
+  ReportExecutionId,
+  ReportSchedule,
+  ReportScheduleId,
+  ReportTemplate,
+  ReportTemplateId,
+  BUILT_IN_TEMPLATES,
+} from "@/core/domain/reports";
 import type { ReportParameters, ReportStatus, ReportExportFormat } from "@/core/domain/reports";
 
 interface SerializedExecution {
@@ -35,10 +43,12 @@ export class SupabaseReportRepository implements IReportRepository {
 
   async saveExecution(execution: ReportExecution): Promise<void> {
     const serialized = this.serializeExecution(execution);
-    const { error } = await this.supabase.from("report_executions").upsert(
-      { id: execution.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("report_executions")
+      .upsert(
+        { id: execution.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar execução de relatório: ${error.message}`);
   }
 
@@ -59,15 +69,19 @@ export class SupabaseReportRepository implements IReportRepository {
       .eq("dados->>portfolioId", portfolioId)
       .order("dados->>requestedAt", { ascending: false });
     if (error || !data) return [];
-    return data.map((row) => this.deserializeExecution(row.dados as unknown as SerializedExecution));
+    return data.map((row) =>
+      this.deserializeExecution(row.dados as unknown as SerializedExecution),
+    );
   }
 
   async saveSchedule(schedule: ReportSchedule): Promise<void> {
     const serialized = this.serializeSchedule(schedule);
-    const { error } = await this.supabase.from("report_schedules").upsert(
-      { id: schedule.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("report_schedules")
+      .upsert(
+        { id: schedule.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar agendamento: ${error.message}`);
   }
 

@@ -6,14 +6,17 @@ import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { ReportRenderingService } from "@/core/domain/reports";
 
-export class ObterRelatorioExecutadoService
-  implements IApplicationService<ObterRelatorioExecutadoQuery, ReportExecutionDetailDto>
-{
+export class ObterRelatorioExecutadoService implements IApplicationService<
+  ObterRelatorioExecutadoQuery,
+  ReportExecutionDetailDto
+> {
   private readonly renderingService = new ReportRenderingService();
 
   constructor(private readonly reportRepo: IReportRepository) {}
 
-  async Execute(query: ObterRelatorioExecutadoQuery): Promise<ReportExecutionDetailDto | ApplicationError> {
+  async Execute(
+    query: ObterRelatorioExecutadoQuery,
+  ): Promise<ReportExecutionDetailDto | ApplicationError> {
     const execution = await this.reportRepo.findExecutionById(query.executionId);
     if (!execution) {
       return new NotFoundError("ReportExecution", query.executionId);

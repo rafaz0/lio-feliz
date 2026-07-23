@@ -1,4 +1,9 @@
-import type { Backtest, BacktestSnapshot, SimulationResult, Strategy } from "@/core/domain/backtests";
+import type {
+  Backtest,
+  BacktestSnapshot,
+  SimulationResult,
+  Strategy,
+} from "@/core/domain/backtests";
 
 export interface IBacktestRepository {
   saveStrategy(strategy: Strategy): Promise<void>;

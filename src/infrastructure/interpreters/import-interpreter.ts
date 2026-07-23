@@ -26,19 +26,55 @@ export class ImportInterpreter implements IImportInterpreterPort {
       case "BUY":
         return new BuyEvent(portfolioId, correlationId, ativo, operacao.quantidade, operacao.valor);
       case "SELL":
-        return new SellEvent(portfolioId, correlationId, ativo, operacao.quantidade, operacao.valor);
+        return new SellEvent(
+          portfolioId,
+          correlationId,
+          ativo,
+          operacao.quantidade,
+          operacao.valor,
+        );
       case "DIVIDEND":
-        return new DividendEvent(portfolioId, correlationId, ativo, operacao.quantidade, operacao.valor);
+        return new DividendEvent(
+          portfolioId,
+          correlationId,
+          ativo,
+          operacao.quantidade,
+          operacao.valor,
+        );
       case "JCP":
         return new JcpEvent(portfolioId, correlationId, ativo, operacao.quantidade, operacao.valor);
       case "BONUS":
-        return new BonusEvent(portfolioId, correlationId, ativo, operacao.quantidade, operacao.valor);
+        return new BonusEvent(
+          portfolioId,
+          correlationId,
+          ativo,
+          operacao.quantidade,
+          operacao.valor,
+        );
       case "SPLIT":
-        return new SplitEvent(portfolioId, correlationId, ativo, operacao.quantidade, operacao.valor);
+        return new SplitEvent(
+          portfolioId,
+          correlationId,
+          ativo,
+          operacao.quantidade,
+          operacao.valor,
+        );
       case "GROUPING":
-        return new GroupingEvent(portfolioId, correlationId, ativo, operacao.quantidade, operacao.valor);
+        return new GroupingEvent(
+          portfolioId,
+          correlationId,
+          ativo,
+          operacao.quantidade,
+          operacao.valor,
+        );
       case "AMORTIZATION":
-        return new AmortizationEvent(portfolioId, correlationId, ativo, operacao.quantidade, operacao.valor);
+        return new AmortizationEvent(
+          portfolioId,
+          correlationId,
+          ativo,
+          operacao.quantidade,
+          operacao.valor,
+        );
       case "ADJUSTMENT":
         return new AdjustmentEvent(
           portfolioId,

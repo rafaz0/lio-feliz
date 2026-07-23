@@ -45,26 +45,26 @@ Persistir posição consolidada em BRL
 
 Um ativo negociado em bolsa estrangeira.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `ForeignAssetId` | Identificador único |
-| `ticker` | `string` | Ticker na bolsa de origem (ex: "AAPL") |
-| `name` | `string` | Nome do ativo |
-| `exchange` | `string` | Bolsa de origem (NASDAQ, NYSE, etc.) |
-| `currency` | `string` | Moeda de negociação (USD, EUR, etc.) |
-| `assetType` | `string` | stock_us, reit, etf_internacional, bdr |
+| Atributo    | Tipo             | Regra                                  |
+| ----------- | ---------------- | -------------------------------------- |
+| `id`        | `ForeignAssetId` | Identificador único                    |
+| `ticker`    | `string`         | Ticker na bolsa de origem (ex: "AAPL") |
+| `name`      | `string`         | Nome do ativo                          |
+| `exchange`  | `string`         | Bolsa de origem (NASDAQ, NYSE, etc.)   |
+| `currency`  | `string`         | Moeda de negociação (USD, EUR, etc.)   |
+| `assetType` | `string`         | stock_us, reit, etf_internacional, bdr |
 
 ### 3.2 `CurrencyConversion` (Value Object)
 
 Resultado de uma conversão de moeda.
 
-| Atributo | Tipo |
-|----------|------|
-| `fromAmount` | `number` |
-| `fromCurrency` | `string` |
-| `toAmount` | `number` (sempre BRL) |
-| `rate` | `number` |
-| `date` | `Date` |
+| Atributo       | Tipo                  |
+| -------------- | --------------------- |
+| `fromAmount`   | `number`              |
+| `fromCurrency` | `string`              |
+| `toAmount`     | `number` (sempre BRL) |
+| `rate`         | `number`              |
+| `date`         | `Date`                |
 
 ### 3.3 `ExchangeRate` (Value Object) — já implementado
 
@@ -78,10 +78,10 @@ Par de moedas (ex: USD → BRL).
 
 ## 4. Serviço de Domínio: `CurrencyConversionService`
 
-| Método | Descrição |
-|--------|-----------|
+| Método                                | Descrição                                                          |
+| ------------------------------------- | ------------------------------------------------------------------ |
 | `convert(amount, fromCurrency, rate)` | Converte valor usando taxa fornecida, retorna `CurrencyConversion` |
-| `getFreshRate(pair, rates)` | Retorna a taxa mais recente de um cache, se fresca |
+| `getFreshRate(pair, rates)`           | Retorna a taxa mais recente de um cache, se fresca                 |
 
 ### Regras
 

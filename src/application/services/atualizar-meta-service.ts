@@ -5,7 +5,10 @@ import type { IFinancialGoalRepository } from "@/application/ports/financial-goa
 import { ValidationError, NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class AtualizarMetaService implements IApplicationService<AtualizarMetaCommand, MetaListDto> {
+export class AtualizarMetaService implements IApplicationService<
+  AtualizarMetaCommand,
+  MetaListDto
+> {
   constructor(private readonly goalRepo: IFinancialGoalRepository) {}
 
   async Execute(command: AtualizarMetaCommand): Promise<MetaListDto | ApplicationError> {

@@ -1,5 +1,12 @@
 import type { IComparisonRepository } from "@/application/ports/comparison-repository";
-import { ComparisonSet, ComparisonEntry, Scorecard, ComparisonSetId, ComparisonEntryId, ScorecardId } from "@/core/domain/comparison";
+import {
+  ComparisonSet,
+  ComparisonEntry,
+  Scorecard,
+  ComparisonSetId,
+  ComparisonEntryId,
+  ScorecardId,
+} from "@/core/domain/comparison";
 
 export class FakeComparisonRepository implements IComparisonRepository {
   private sets = new Map<string, ComparisonSet>();
@@ -33,7 +40,10 @@ export class FakeComparisonRepository implements IComparisonRepository {
   }
 
   async findScorecardByComparisonSet(comparisonSetId: string): Promise<Scorecard | null> {
-    return Array.from(this.scorecards.values()).find((s) => s.comparisonSetId === comparisonSetId) ?? null;
+    return (
+      Array.from(this.scorecards.values()).find((s) => s.comparisonSetId === comparisonSetId) ??
+      null
+    );
   }
 
   reset(): void {

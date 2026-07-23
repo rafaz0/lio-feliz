@@ -92,7 +92,16 @@ export class TaxStatement extends AggregateRoot<TaxStatementId> {
     createdAt: Date,
     updatedAt: Date,
   ): TaxStatement {
-    return new TaxStatement(id, portfolioId, ano, taxEvents, taxLots, consolidation, createdAt, updatedAt);
+    return new TaxStatement(
+      id,
+      portfolioId,
+      ano,
+      taxEvents,
+      taxLots,
+      consolidation,
+      createdAt,
+      updatedAt,
+    );
   }
 
   getTotalTaxDue(): number {

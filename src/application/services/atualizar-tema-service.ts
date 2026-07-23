@@ -6,7 +6,10 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { PreferencesService } from "@/core/domain/preferences";
 
-export class AtualizarTemaService implements IApplicationService<AtualizarTemaCommand, ThemeConfigDto> {
+export class AtualizarTemaService implements IApplicationService<
+  AtualizarTemaCommand,
+  ThemeConfigDto
+> {
   private readonly prefsService = new PreferencesService();
 
   constructor(private readonly configRepo: IConfigurationRepository) {}
@@ -16,7 +19,10 @@ export class AtualizarTemaService implements IApplicationService<AtualizarTemaCo
       return new ValidationError("VALID_ERROR", `Tema invalido: ${command.theme}`);
     }
 
-    await this.configRepo.saveOnboardingProgress(command.userId, JSON.stringify({ theme: command.theme }));
+    await this.configRepo.saveOnboardingProgress(
+      command.userId,
+      JSON.stringify({ theme: command.theme }),
+    );
     return { theme: command.theme };
   }
 }

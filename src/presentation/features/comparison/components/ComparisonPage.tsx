@@ -59,7 +59,12 @@ export function ComparisonPage({ setId, userId }: ComparisonPageProps) {
 
   if (setId && query.isLoading) return <ComparisonLoading />;
   if (setId && query.isError) {
-    return <ComparisonError message={query.error?.message ?? "Erro ao carregar comparacao"} onRetry={query.refetch} />;
+    return (
+      <ComparisonError
+        message={query.error?.message ?? "Erro ao carregar comparacao"}
+        onRetry={query.refetch}
+      />
+    );
   }
 
   return (
@@ -107,20 +112,12 @@ export function ComparisonPage({ setId, userId }: ComparisonPageProps) {
 
       {createComparison.data && (
         <div className="rounded-lg border p-4 space-y-4">
-          <h2 className="text-sm font-medium">
-            Scorecard: {createComparison.data.name}
-          </h2>
-          {scorecardMetrics ? (
-            <ScorecardGrid metrics={scorecardMetrics} />
-          ) : (
-            <ComparisonEmpty />
-          )}
+          <h2 className="text-sm font-medium">Scorecard: {createComparison.data.name}</h2>
+          {scorecardMetrics ? <ScorecardGrid metrics={scorecardMetrics} /> : <ComparisonEmpty />}
         </div>
       )}
 
-      {!setId && !createComparison.data && selectedAssets.length === 0 && (
-        <ComparisonEmpty />
-      )}
+      {!setId && !createComparison.data && selectedAssets.length === 0 && <ComparisonEmpty />}
     </div>
   );
 }

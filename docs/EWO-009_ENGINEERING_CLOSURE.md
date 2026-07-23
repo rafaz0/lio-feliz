@@ -26,11 +26,11 @@ A EWO-009 (Onda 4 — Análise e Insights) foi executada integralmente, material
 
 ## 2. Módulos Entregues
 
-| Módulo | Slices | BR | Core Domain | App+Infra | Presentation | Status |
-|--------|--------|----|-------------|-----------|-------------|--------|
-| 14 — Backtests | 1-3 | ✅ `14_BACKTESTS.md` + `07_BACKTEST_ALGORITMOS.md` | ✅ Backtest, Strategy, SimulationResult, BacktestEngine | ✅ Commands/Queries/Services + Fake/Supabase | ⏳ (planejado, não implementado nesta EWO) | ✅ Impl. completa |
-| 15 — Alertas | 4-6 | ✅ `15_ALERTAS.md` + `08_ALERTAS_EVENTOS.md` | ✅ Alert, AlertRule, AlertDelivery, AlertEvaluator | ✅ Commands/Queries/Services + Fake/Supabase | ⏳ (planejado, não implementado nesta EWO) | ✅ Impl. completa |
-| 16 — Comparação Avançada | 7-9 | ✅ `16_COMPARACAO_AVANCADA.md` | ✅ ComparisonSet, ComparisonEntry, Scorecard, ComparisonAggregator | ✅ Commands/Queries/Services + Fake/Supabase | ✅ ComparisonPage, ScorecardGrid, AssetPicker | ✅ Completo |
+| Módulo                   | Slices | BR                                                 | Core Domain                                                        | App+Infra                                    | Presentation                                  | Status            |
+| ------------------------ | ------ | -------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------- | --------------------------------------------- | ----------------- |
+| 14 — Backtests           | 1-3    | ✅ `14_BACKTESTS.md` + `07_BACKTEST_ALGORITMOS.md` | ✅ Backtest, Strategy, SimulationResult, BacktestEngine            | ✅ Commands/Queries/Services + Fake/Supabase | ⏳ (planejado, não implementado nesta EWO)    | ✅ Impl. completa |
+| 15 — Alertas             | 4-6    | ✅ `15_ALERTAS.md` + `08_ALERTAS_EVENTOS.md`       | ✅ Alert, AlertRule, AlertDelivery, AlertEvaluator                 | ✅ Commands/Queries/Services + Fake/Supabase | ⏳ (planejado, não implementado nesta EWO)    | ✅ Impl. completa |
+| 16 — Comparação Avançada | 7-9    | ✅ `16_COMPARACAO_AVANCADA.md`                     | ✅ ComparisonSet, ComparisonEntry, Scorecard, ComparisonAggregator | ✅ Commands/Queries/Services + Fake/Supabase | ✅ ComparisonPage, ScorecardGrid, AssetPicker | ✅ Completo       |
 
 ---
 
@@ -38,79 +38,79 @@ A EWO-009 (Onda 4 — Análise e Insights) foi executada integralmente, material
 
 ### Slices 1-3 (Backtests 14)
 
-| Componente | Descrição |
-|------------|-----------|
-| BR Doc | `14_BACKTESTS.md` — Estratégias, alocação, snapshot determinístico (R-011) |
-| Anexo | `07_BACKTEST_ALGORITMOS.md` — Sharpe, Beta, Alpha, drawdown |
-| Core Domain | Backtest, Strategy, SimulationResult (entities), BacktestEngine (domain service), 9 errors |
-| Application | 2 commands (ExecutarBacktest, SalvarEstrategia), 2 queries, 4 services, port `IBacktestRepository` |
-| Infrastructure | FakeBacktestRepository, SupabaseBacktestRepository |
+| Componente     | Descrição                                                                                          |
+| -------------- | -------------------------------------------------------------------------------------------------- |
+| BR Doc         | `14_BACKTESTS.md` — Estratégias, alocação, snapshot determinístico (R-011)                         |
+| Anexo          | `07_BACKTEST_ALGORITMOS.md` — Sharpe, Beta, Alpha, drawdown                                        |
+| Core Domain    | Backtest, Strategy, SimulationResult (entities), BacktestEngine (domain service), 9 errors         |
+| Application    | 2 commands (ExecutarBacktest, SalvarEstrategia), 2 queries, 4 services, port `IBacktestRepository` |
+| Infrastructure | FakeBacktestRepository, SupabaseBacktestRepository                                                 |
 
 ### Slices 4-6 (Alertas 15)
 
-| Componente | Descrição |
-|------------|-----------|
-| BR Doc | `15_ALERTAS.md` — Consentimento (R-012), idempotência, dedup |
-| Anexo | `08_ALERTAS_EVENTOS.md` — Critérios de disparo por tipo de evento |
-| Core Domain | Alert, AlertRule, AlertDelivery (entities), AlertEvaluator (domain service idempotente), 5 errors |
-| Application | 3 commands (CriarAlerta, AtualizarAlerta, **ConfirmarAlerta** — NC-010-004), 2 queries, 5 services, port `IAlertRepository` |
-| Infrastructure | FakeAlertRepository, SupabaseAlertRepository (batch com dedup_key) |
+| Componente     | Descrição                                                                                                                   |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| BR Doc         | `15_ALERTAS.md` — Consentimento (R-012), idempotência, dedup                                                                |
+| Anexo          | `08_ALERTAS_EVENTOS.md` — Critérios de disparo por tipo de evento                                                           |
+| Core Domain    | Alert, AlertRule, AlertDelivery (entities), AlertEvaluator (domain service idempotente), 5 errors                           |
+| Application    | 3 commands (CriarAlerta, AtualizarAlerta, **ConfirmarAlerta** — NC-010-004), 2 queries, 5 services, port `IAlertRepository` |
+| Infrastructure | FakeAlertRepository, SupabaseAlertRepository (batch com dedup_key)                                                          |
 
 ### Slices 7-9 (Comparação Avançada 16)
 
-| Componente | Descrição |
-|------------|-----------|
-| BR Doc | `16_COMPARACAO_AVANCADA.md` — Scorecard multi-ativo, 7 métricas, R-013 |
-| Core Domain | ComparisonSet, ComparisonEntry, Scorecard (entities), ComparisonAggregator (domain service com ranking), 5 errors |
-| Application | 2 commands (CriarComparacao, SalvarScorecard), 2 queries, 4 services, port `IComparisonRepository` |
-| Infrastructure | FakeComparisonRepository, SupabaseComparisonRepository |
-| Presentation | ComparisonPage, ScorecardGrid, ComparisonAssetPicker, ComparisonLoading/Empty/Error, 2 hooks, viewmodel, tests |
+| Componente     | Descrição                                                                                                         |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- |
+| BR Doc         | `16_COMPARACAO_AVANCADA.md` — Scorecard multi-ativo, 7 métricas, R-013                                            |
+| Core Domain    | ComparisonSet, ComparisonEntry, Scorecard (entities), ComparisonAggregator (domain service com ranking), 5 errors |
+| Application    | 2 commands (CriarComparacao, SalvarScorecard), 2 queries, 4 services, port `IComparisonRepository`                |
+| Infrastructure | FakeComparisonRepository, SupabaseComparisonRepository                                                            |
+| Presentation   | ComparisonPage, ScorecardGrid, ComparisonAssetPicker, ComparisonLoading/Empty/Error, 2 hooks, viewmodel, tests    |
 
 ---
 
 ## 4. NCs da ER-010 — Tratamento
 
-| NC | Descrição | Tratamento |
-|----|-----------|------------|
-| NC-010-001 (O1) | EWO-009 monolithic dependency on EWO-007 | Backtests 14 (Slices 1-3) executado independentemente. Slices 4-9 projetadas para depender de EWO-007 — tratado no planejamento. |
+| NC              | Descrição                                       | Tratamento                                                                                                                                                                                                                             |
+| --------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NC-010-001 (O1) | EWO-009 monolithic dependency on EWO-007        | Backtests 14 (Slices 1-3) executado independentemente. Slices 4-9 projetadas para depender de EWO-007 — tratado no planejamento.                                                                                                       |
 | NC-010-002 (O2) | View composition módulo 16 com rota `/comparar` | **Resolvida.** A feature `comparison/` foi implementada como componente independente. A rota `/comparar` existente não foi modificada. A view composition é feita via importação do `ComparisonPage` no roteamento, sem nested layout. |
-| NC-010-004 (O4) | AckAlertaCommand inglês | **Resolvida.** Comando renomeado para `ConfirmarAlertaCommand` em todos os artefatos. |
-| NC-010-003 (O3) | Injeção tooltips módulo 17 | Postergado para EWO-010 (Onda 5). |
-| NC-010-005 (O5) | Sobreposição schedulers 13/18 | Postergado para EWO-010 (Onda 5). |
+| NC-010-004 (O4) | AckAlertaCommand inglês                         | **Resolvida.** Comando renomeado para `ConfirmarAlertaCommand` em todos os artefatos.                                                                                                                                                  |
+| NC-010-003 (O3) | Injeção tooltips módulo 17                      | Postergado para EWO-010 (Onda 5).                                                                                                                                                                                                      |
+| NC-010-005 (O5) | Sobreposição schedulers 13/18                   | Postergado para EWO-010 (Onda 5).                                                                                                                                                                                                      |
 
 ---
 
 ## 5. Quality Gates
 
-| Gate | Resultado |
-|------|-----------|
-| `npm run build` | ✅ Green (exit 0) |
-| ESLint | ✅ Sem violações nos arquivos da EWO |
-| Working Tree | ✅ Limpa pós-commit |
-| Frozen Layers | ✅ Nenhuma camada congelada modificada |
+| Gate               | Resultado                                 |
+| ------------------ | ----------------------------------------- |
+| `npm run build`    | ✅ Green (exit 0)                         |
+| ESLint             | ✅ Sem violações nos arquivos da EWO      |
+| Working Tree       | ✅ Limpa pós-commit                       |
+| Frozen Layers      | ✅ Nenhuma camada congelada modificada    |
 | Architecture Guard | ✅ Preservado — novas features por adição |
-| Composition Root | ✅ Estendido por blocos condicionais |
+| Composition Root   | ✅ Estendido por blocos condicionais      |
 
 ---
 
 ## 6. Estatísticas
 
-| Métrica | Valor |
-|---------|-------|
-| Slices executadas | 10 de 10 |
-| Módulos implementados | 3 de 3 |
-| BR docs criados | 3 |
-| Anexos Técnicos criados | 3 |
-| Arquivos de domínio criados | 21 |
-| Commands criados | 7 |
-| Queries criadas | 6 |
-| Services criados | 13 |
-| Ports criados | 3 |
-| Infrastructure adapters | 6 (3 Fake + 3 Supabase) |
-| Presentation componentes | 7 |
-| Presentation hooks | 2 |
-| Testes criados | 5 (components test suite) |
-| NCs resolvidas | 2 (NC-010-002, NC-010-004) |
+| Métrica                     | Valor                      |
+| --------------------------- | -------------------------- |
+| Slices executadas           | 10 de 10                   |
+| Módulos implementados       | 3 de 3                     |
+| BR docs criados             | 3                          |
+| Anexos Técnicos criados     | 3                          |
+| Arquivos de domínio criados | 21                         |
+| Commands criados            | 7                          |
+| Queries criadas             | 6                          |
+| Services criados            | 13                         |
+| Ports criados               | 3                          |
+| Infrastructure adapters     | 6 (3 Fake + 3 Supabase)    |
+| Presentation componentes    | 7                          |
+| Presentation hooks          | 2                          |
+| Testes criados              | 5 (components test suite)  |
+| NCs resolvidas              | 2 (NC-010-002, NC-010-004) |
 
 ---
 
@@ -126,13 +126,13 @@ A EWO-009 (Onda 4 — Análise e Insights) foi executada integralmente, material
 
 ## 8. Pendências para Próximas Etapas
 
-| Pendência | Destino |
-|-----------|---------|
-| Presentation Backtests 14 (componentes/hooks) | Planejada para sprint futura (não bloqueante) |
-| Presentation Alertas 15 (componentes/hooks) | Planejada para sprint futura (não bloqueante) |
-| NC-010-003 (tooltips mód. 17) | EWO-010 (Onda 5) |
-| NC-010-005 (sobreposição schedulers) | EWO-010 (Onda 5) |
-| EWO-007 (Renda Fixa 09, Internacional 10) | Pendência operacional — pré-requisito para módulos que dependem de posições internacionais |
+| Pendência                                     | Destino                                                                                    |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Presentation Backtests 14 (componentes/hooks) | Planejada para sprint futura (não bloqueante)                                              |
+| Presentation Alertas 15 (componentes/hooks)   | Planejada para sprint futura (não bloqueante)                                              |
+| NC-010-003 (tooltips mód. 17)                 | EWO-010 (Onda 5)                                                                           |
+| NC-010-005 (sobreposição schedulers)          | EWO-010 (Onda 5)                                                                           |
+| EWO-007 (Renda Fixa 09, Internacional 10)     | Pendência operacional — pré-requisito para módulos que dependem de posições internacionais |
 
 ---
 

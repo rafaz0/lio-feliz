@@ -22,41 +22,41 @@ O `AuthorizationService` centraliza as regras de autorização via **Plan Capabi
 
 Define um plano de assinatura.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `PlanId` | Identificador único |
-| `name` | `string` | Nome de exibição (ex: "Premium") |
-| `tier` | `PlanTier` | FREE, BASIC, PREMIUM |
-| `monthlyPrice` | `number` | Preço mensal em centavos (0 para FREE) |
-| `description` | `string` | Descrição do plano |
-| `capabilities` | `string[]` | Lista de capabilities liberadas |
+| Atributo       | Tipo       | Regra                                  |
+| -------------- | ---------- | -------------------------------------- |
+| `id`           | `PlanId`   | Identificador único                    |
+| `name`         | `string`   | Nome de exibição (ex: "Premium")       |
+| `tier`         | `PlanTier` | FREE, BASIC, PREMIUM                   |
+| `monthlyPrice` | `number`   | Preço mensal em centavos (0 para FREE) |
+| `description`  | `string`   | Descrição do plano                     |
+| `capabilities` | `string[]` | Lista de capabilities liberadas        |
 
 ### 2.2 `Subscription` (Entidade)
 
 Assinatura de um usuário a um plano.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `SubscriptionId` | Identificador único |
-| `planId` | `string` | Plano contratado |
-| `userId` | `string` | Usuário assinante |
-| `startDate` | `Date` | Início da vigência |
-| `endDate` | `Date` | Fim da vigência |
-| `status` | `SubscriptionStatus` | ACTIVE, CANCELLED, EXPIRED |
+| Atributo    | Tipo                 | Regra                      |
+| ----------- | -------------------- | -------------------------- |
+| `id`        | `SubscriptionId`     | Identificador único        |
+| `planId`    | `string`             | Plano contratado           |
+| `userId`    | `string`             | Usuário assinante          |
+| `startDate` | `Date`               | Início da vigência         |
+| `endDate`   | `Date`               | Fim da vigência            |
+| `status`    | `SubscriptionStatus` | ACTIVE, CANCELLED, EXPIRED |
 
 ### 2.3 `BillingCycle` (Entidade)
 
 Ciclo de cobrança simulado.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `BillingCycleId` | Identificador único |
-| `subscriptionId` | `string` | Assinatura de origem |
-| `periodStart` | `Date` | Início do período |
-| `periodEnd` | `Date` | Fim do período |
-| `amount` | `number` | Valor cobrado |
-| `status` | `BillingStatus` | PENDING, PAID, FAILED |
-| `simulatedAt` | `Date` | Data da simulação |
+| Atributo         | Tipo             | Regra                 |
+| ---------------- | ---------------- | --------------------- |
+| `id`             | `BillingCycleId` | Identificador único   |
+| `subscriptionId` | `string`         | Assinatura de origem  |
+| `periodStart`    | `Date`           | Início do período     |
+| `periodEnd`      | `Date`           | Fim do período        |
+| `amount`         | `number`         | Valor cobrado         |
+| `status`         | `BillingStatus`  | PENDING, PAID, FAILED |
+| `simulatedAt`    | `Date`           | Data da simulação     |
 
 ### 2.4 Value Objects
 
@@ -83,6 +83,7 @@ const PLAN_CAPABILITIES = {
 ```
 
 O `AuthorizationService.checkAccess(userId, requiredCapability)`:
+
 1. Obtém a subscription ativa do usuário
 2. Identifica o plano
 3. Verifica se a capability está na lista do plano

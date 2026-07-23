@@ -3,13 +3,24 @@ import type { BacktestCompletoDto } from "@/application/dtos/backtest";
 import type { IApplicationService } from "@/application/application-service";
 import type { IBacktestRepository } from "@/application/ports/backtest-repository";
 import type { IProjectionRepository } from "@/application/ports/projection-repository";
-import { ValidationError, NotFoundError, InternalError } from "@/application/errors/application-error";
+import {
+  ValidationError,
+  NotFoundError,
+  InternalError,
+} from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
-import { Backtest, BacktestId, BacktestEngine, StrategyId, SnapshotId } from "@/core/domain/backtests";
+import {
+  Backtest,
+  BacktestId,
+  BacktestEngine,
+  StrategyId,
+  SnapshotId,
+} from "@/core/domain/backtests";
 
-export class ExecutarBacktestService
-  implements IApplicationService<ExecutarBacktestCommand, BacktestCompletoDto>
-{
+export class ExecutarBacktestService implements IApplicationService<
+  ExecutarBacktestCommand,
+  BacktestCompletoDto
+> {
   private readonly engine = new BacktestEngine();
 
   constructor(
@@ -85,7 +96,10 @@ export class ExecutarBacktestService
     } catch (err) {
       const failed = backtest.markFailed(err instanceof Error ? err.message : "Erro inesperado");
       await this.backtestRepo.saveBacktest(failed);
-      return new InternalError("BACKTEST_FAILED", err instanceof Error ? err.message : "Erro inesperado");
+      return new InternalError(
+        "BACKTEST_FAILED",
+        err instanceof Error ? err.message : "Erro inesperado",
+      );
     }
   }
 
@@ -111,7 +125,11 @@ export class ExecutarBacktestService
     const errors: Record<string, string[]> = {};
     if (!command.strategyId) errors.strategyId = ["Campo obrigatorio"];
     if (!command.dateRange) errors.dateRange = ["Periodo obrigatorio"];
-    if (command.dateRange?.start && command.dateRange?.end && command.dateRange.end < command.dateRange.start) {
+    if (
+      command.dateRange?.start &&
+      command.dateRange?.end &&
+      command.dateRange.end < command.dateRange.start
+    ) {
       errors.dateRange = ["Data final deve ser maior ou igual a data inicial"];
     }
 

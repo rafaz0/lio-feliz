@@ -2,10 +2,7 @@ import { Result } from "../result";
 import { ComparisonSet } from "./comparison-set";
 import { Scorecard } from "./scorecard";
 import { ScorecardId } from "./comparison-types";
-import {
-  type ComparisonMetric,
-  type MetricType,
-} from "./comparison-types";
+import { type ComparisonMetric, type MetricType } from "./comparison-types";
 import { InsufficientDataError, MinimumEntriesError } from "./errors";
 
 export type ProjectionData = {
@@ -15,10 +12,7 @@ export type ProjectionData = {
 };
 
 export class ComparisonAggregator {
-  aggregate(
-    comparisonSet: ComparisonSet,
-    projections: ProjectionData[],
-  ): Result<Scorecard> {
+  aggregate(comparisonSet: ComparisonSet, projections: ProjectionData[]): Result<Scorecard> {
     if (comparisonSet.entries.length < 2) {
       return Result.fail(new MinimumEntriesError());
     }
@@ -49,13 +43,55 @@ export class ComparisonAggregator {
       const sharpe = this.calcSharpeRatio(returns);
 
       metrics.push(
-        { assetTicker: entry.assetTicker, metricType: "rentabilidade_12m", value: rent12, rank: 0, benchmarkValue: 0 },
-        { assetTicker: entry.assetTicker, metricType: "rentabilidade_24m", value: rent24, rank: 0, benchmarkValue: 0 },
-        { assetTicker: entry.assetTicker, metricType: "rentabilidade_36m", value: rent36, rank: 0, benchmarkValue: 0 },
-        { assetTicker: entry.assetTicker, metricType: "volatilidade", value: vol, rank: 0, benchmarkValue: 0 },
-        { assetTicker: entry.assetTicker, metricType: "drawdown_maximo", value: dd, rank: 0, benchmarkValue: 0 },
-        { assetTicker: entry.assetTicker, metricType: "dividend_yield_12m", value: projection.dividendYield12m, rank: 0, benchmarkValue: 0 },
-        { assetTicker: entry.assetTicker, metricType: "sharpe_ratio", value: sharpe, rank: 0, benchmarkValue: 0 },
+        {
+          assetTicker: entry.assetTicker,
+          metricType: "rentabilidade_12m",
+          value: rent12,
+          rank: 0,
+          benchmarkValue: 0,
+        },
+        {
+          assetTicker: entry.assetTicker,
+          metricType: "rentabilidade_24m",
+          value: rent24,
+          rank: 0,
+          benchmarkValue: 0,
+        },
+        {
+          assetTicker: entry.assetTicker,
+          metricType: "rentabilidade_36m",
+          value: rent36,
+          rank: 0,
+          benchmarkValue: 0,
+        },
+        {
+          assetTicker: entry.assetTicker,
+          metricType: "volatilidade",
+          value: vol,
+          rank: 0,
+          benchmarkValue: 0,
+        },
+        {
+          assetTicker: entry.assetTicker,
+          metricType: "drawdown_maximo",
+          value: dd,
+          rank: 0,
+          benchmarkValue: 0,
+        },
+        {
+          assetTicker: entry.assetTicker,
+          metricType: "dividend_yield_12m",
+          value: projection.dividendYield12m,
+          rank: 0,
+          benchmarkValue: 0,
+        },
+        {
+          assetTicker: entry.assetTicker,
+          metricType: "sharpe_ratio",
+          value: sharpe,
+          rank: 0,
+          benchmarkValue: 0,
+        },
       );
     }
 
@@ -81,7 +117,8 @@ export class ComparisonAggregator {
   private calcVolatility(monthlyReturns: number[]): number {
     if (monthlyReturns.length < 2) return 0;
     const mean = monthlyReturns.reduce((a, b) => a + b, 0) / monthlyReturns.length;
-    const variance = monthlyReturns.reduce((acc, r) => acc + (r - mean) ** 2, 0) / (monthlyReturns.length - 1);
+    const variance =
+      monthlyReturns.reduce((acc, r) => acc + (r - mean) ** 2, 0) / (monthlyReturns.length - 1);
     return +Math.sqrt(variance * 12).toFixed(2);
   }
 
@@ -91,7 +128,7 @@ export class ComparisonAggregator {
     let maxDd = 0;
 
     for (const r of monthlyReturns) {
-      current *= (1 + r / 100);
+      current *= 1 + r / 100;
       if (current > peak) peak = current;
       const dd = (peak - current) / peak;
       if (dd > maxDd) maxDd = dd;
@@ -113,13 +150,16 @@ export class ComparisonAggregator {
 
   private calculateRanks(metrics: ComparisonMetric[], metricTypes: MetricType[]): void {
     const higherIsBetter = new Set<MetricType>([
-      "rentabilidade_12m", "rentabilidade_24m", "rentabilidade_36m",
-      "dividend_yield_12m", "sharpe_ratio",
+      "rentabilidade_12m",
+      "rentabilidade_24m",
+      "rentabilidade_36m",
+      "dividend_yield_12m",
+      "sharpe_ratio",
     ]);
 
     for (const mt of metricTypes) {
       const filtered = metrics.filter((m) => m.metricType === mt);
-      filtered.sort((a, b) => higherIsBetter.has(mt) ? b.value - a.value : a.value - b.value);
+      filtered.sort((a, b) => (higherIsBetter.has(mt) ? b.value - a.value : a.value - b.value));
       filtered.forEach((m, idx) => {
         const metric = metrics.find((x) => x.assetTicker === m.assetTicker && x.metricType === mt);
         if (metric) metric.rank = idx + 1;

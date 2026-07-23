@@ -487,11 +487,11 @@ describe("Architecture Tests — Presentation Layer Boundaries (R-10)", () => {
     );
     expect(reportsPage, "ReportsPage deve existir").toBeDefined();
     const text = reportsPage!.getFullText();
-    expect(text.includes("useReportsQuery"), "ReportsPage deve consumir useReportsQuery").toBe(true);
+    expect(text.includes("useReportsQuery"), "ReportsPage deve consumir useReportsQuery").toBe(
+      true,
+    );
     expect(
-      text.match(
-        /new (ExportarDadosService|ConsultarPatrimonioService|ConsultarPosicaoService)/,
-      ),
+      text.match(/new (ExportarDadosService|ConsultarPatrimonioService|ConsultarPosicaoService)/),
       "ReportsPage não deve instanciar Application Services",
     ).toBeNull();
   });

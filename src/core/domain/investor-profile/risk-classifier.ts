@@ -12,14 +12,64 @@ type QuestionTemplate = {
 };
 
 export const QUESTIONARIO_PADRAO: QuestionTemplate[] = [
-  { id: "q1", text: "Qual o seu objetivo principal com os investimentos?", options: ["Preservar patrimonio", "Gerar renda", "Crescimento moderado", "Crescimento agressivo", "Maximo retorno"] },
-  { id: "q2", text: "Em quanto tempo voce pretende utilizar os recursos investidos?", options: ["< 1 ano", "1-2 anos", "2-5 anos", "5-10 anos", "> 10 anos"] },
-  { id: "q3", text: "Qual percentual do seu patrimonio esta em renda variavel?", options: ["Nao invisto", "Ate 25%", "25-50%", "50-75%", "Acima de 75%"] },
-  { id: "q4", text: "Como voce reagiria a uma queda de 20% na sua carteira?", options: ["Venderia tudo", "Venderia parte", "Manteria", "Compraria mais", "Compraria muito mais"] },
-  { id: "q5", text: "Qual seu nivel de conhecimento sobre investimentos?", options: ["Nenhum", "Basico", "Intermediario", "Avancado", "Profissional"] },
-  { id: "q6", text: "Qual a origem dos recursos que voce investe?", options: ["Reserva de emergencia", "Excedente pequeno", "Excedente regular", "Renda estavel", "Patrimonio consolidado"] },
-  { id: "q7", text: "Com que frequencia voce acompanha seus investimentos?", options: ["Nao acompanho", "Anualmente", "Mensalmente", "Semanalmente", "Diariamente"] },
-  { id: "q8", text: "Qual sua tolerancia a oscilacoes de curto prazo?", options: ["Muito baixa", "Baixa", "Moderada", "Alta", "Muito alta"] },
+  {
+    id: "q1",
+    text: "Qual o seu objetivo principal com os investimentos?",
+    options: [
+      "Preservar patrimonio",
+      "Gerar renda",
+      "Crescimento moderado",
+      "Crescimento agressivo",
+      "Maximo retorno",
+    ],
+  },
+  {
+    id: "q2",
+    text: "Em quanto tempo voce pretende utilizar os recursos investidos?",
+    options: ["< 1 ano", "1-2 anos", "2-5 anos", "5-10 anos", "> 10 anos"],
+  },
+  {
+    id: "q3",
+    text: "Qual percentual do seu patrimonio esta em renda variavel?",
+    options: ["Nao invisto", "Ate 25%", "25-50%", "50-75%", "Acima de 75%"],
+  },
+  {
+    id: "q4",
+    text: "Como voce reagiria a uma queda de 20% na sua carteira?",
+    options: [
+      "Venderia tudo",
+      "Venderia parte",
+      "Manteria",
+      "Compraria mais",
+      "Compraria muito mais",
+    ],
+  },
+  {
+    id: "q5",
+    text: "Qual seu nivel de conhecimento sobre investimentos?",
+    options: ["Nenhum", "Basico", "Intermediario", "Avancado", "Profissional"],
+  },
+  {
+    id: "q6",
+    text: "Qual a origem dos recursos que voce investe?",
+    options: [
+      "Reserva de emergencia",
+      "Excedente pequeno",
+      "Excedente regular",
+      "Renda estavel",
+      "Patrimonio consolidado",
+    ],
+  },
+  {
+    id: "q7",
+    text: "Com que frequencia voce acompanha seus investimentos?",
+    options: ["Nao acompanho", "Anualmente", "Mensalmente", "Semanalmente", "Diariamente"],
+  },
+  {
+    id: "q8",
+    text: "Qual sua tolerancia a oscilacoes de curto prazo?",
+    options: ["Muito baixa", "Baixa", "Moderada", "Alta", "Muito alta"],
+  },
 ];
 
 export class RiskClassifier {
@@ -30,10 +80,14 @@ export class RiskClassifier {
 
     for (const a of answers) {
       if (a.value < 0 || a.value > 4) {
-        return Result.fail(new InvalidAnswerError(`Valor da resposta ${a.questionId} deve estar entre 0 e 4`));
+        return Result.fail(
+          new InvalidAnswerError(`Valor da resposta ${a.questionId} deve estar entre 0 e 4`),
+        );
       }
       if (a.weight <= 0) {
-        return Result.fail(new InvalidAnswerError(`Peso da resposta ${a.questionId} deve ser maior que zero`));
+        return Result.fail(
+          new InvalidAnswerError(`Peso da resposta ${a.questionId} deve ser maior que zero`),
+        );
       }
     }
 
@@ -64,7 +118,12 @@ export class RiskClassifier {
     return Result.ok(riskResult);
   }
 
-  createQuestionnaire(profileId: string, answers: Answer[], riskLevel: RiskLevel, totalScore: number): RiskQuestionnaire {
+  createQuestionnaire(
+    profileId: string,
+    answers: Answer[],
+    riskLevel: RiskLevel,
+    totalScore: number,
+  ): RiskQuestionnaire {
     return RiskQuestionnaire.create({
       id: RiskQuestionnaireId.generate(),
       profileId,

@@ -22,33 +22,33 @@ Toda exportação regulatória é submetida via `SolicitarExportacaoCommand` e m
 
 Define o molde de uma exportação.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `ExportTemplateId` | Identificador único |
-| `name` | `string` | Nome de exibição (ex: "DIRPF 2026") |
-| `description` | `string` | Descrição do conteúdo |
-| `format` | `ExportFormatType` | Formato de saída |
-| `version` | `string` | Versão do template (ex: "1.0") |
-| `schema` | `Record<string, unknown>` | Schema/definição dos campos |
-| `isBuiltIn` | `boolean` | Se é template nativo (não pode ser excluído) |
+| Atributo      | Tipo                      | Regra                                        |
+| ------------- | ------------------------- | -------------------------------------------- |
+| `id`          | `ExportTemplateId`        | Identificador único                          |
+| `name`        | `string`                  | Nome de exibição (ex: "DIRPF 2026")          |
+| `description` | `string`                  | Descrição do conteúdo                        |
+| `format`      | `ExportFormatType`        | Formato de saída                             |
+| `version`     | `string`                  | Versão do template (ex: "1.0")               |
+| `schema`      | `Record<string, unknown>` | Schema/definição dos campos                  |
+| `isBuiltIn`   | `boolean`                 | Se é template nativo (não pode ser excluído) |
 
 ### 2.2 `ExportJob` (Entidade)
 
 Uma execução concreta de exportação.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `ExportJobId` | Identificador único |
-| `templateId` | `string` | Template usado |
-| `portfolioId` | `string` | Carteira alvo |
-| `parameters` | `Record<string, unknown>` | Parâmetros da exportação |
-| `status` | `ExportStatus` | PENDING, PROCESSING, COMPLETED, FAILED |
-| `fileUrl` | `string` | URL do arquivo gerado (se COMPLETED) |
-| `checksum` | `string` | SHA-256 do conteúdo gerado (R-014) |
-| `sizeBytes` | `number` | Tamanho do arquivo em bytes |
-| `error` | `string` | Mensagem de erro (se FAILED) |
-| `requestedAt` | `Date` | Quando foi solicitado |
-| `completedAt` | `Date` | Quando foi concluído |
+| Atributo      | Tipo                      | Regra                                  |
+| ------------- | ------------------------- | -------------------------------------- |
+| `id`          | `ExportJobId`             | Identificador único                    |
+| `templateId`  | `string`                  | Template usado                         |
+| `portfolioId` | `string`                  | Carteira alvo                          |
+| `parameters`  | `Record<string, unknown>` | Parâmetros da exportação               |
+| `status`      | `ExportStatus`            | PENDING, PROCESSING, COMPLETED, FAILED |
+| `fileUrl`     | `string`                  | URL do arquivo gerado (se COMPLETED)   |
+| `checksum`    | `string`                  | SHA-256 do conteúdo gerado (R-014)     |
+| `sizeBytes`   | `number`                  | Tamanho do arquivo em bytes            |
+| `error`       | `string`                  | Mensagem de erro (se FAILED)           |
+| `requestedAt` | `Date`                    | Quando foi solicitado                  |
+| `completedAt` | `Date`                    | Quando foi concluído                   |
 
 ### 2.3 `ExportFormat` (Value Object)
 
@@ -89,8 +89,8 @@ enum ExportStatus {
 
 ## 3. Serviço de Domínio: `ExportComposer`
 
-| Método | Descrição |
-|--------|-----------|
+| Método                    | Descrição                                                                      |
+| ------------------------- | ------------------------------------------------------------------------------ |
 | `compose(template, data)` | Renderiza o template com os dados fornecidos, retorna bytes + checksum SHA-256 |
 
 ### Fluxo

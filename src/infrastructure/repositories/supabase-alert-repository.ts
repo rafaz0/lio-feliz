@@ -58,10 +58,12 @@ export class SupabaseAlertRepository implements IAlertRepository {
       createdAt: rule.createdAt.toISOString(),
       lastTriggeredAt: rule.lastTriggeredAt?.toISOString(),
     };
-    const { error } = await this.supabase.from("alert_rules").upsert(
-      { id: rule.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("alert_rules")
+      .upsert(
+        { id: rule.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar regra de alerta: ${error.message}`);
   }
 
@@ -105,7 +107,12 @@ export class SupabaseAlertRepository implements IAlertRepository {
       createdAt: alert.createdAt.toISOString(),
     };
     const { error } = await this.supabase.from("alerts").upsert(
-      { id: alert.id.value, dados: serialized, dedup_key: alert.dedupKey(), updated_at: new Date().toISOString() },
+      {
+        id: alert.id.value,
+        dados: serialized,
+        dedup_key: alert.dedupKey(),
+        updated_at: new Date().toISOString(),
+      },
       { onConflict: "dedup_key" },
     );
     if (error) throw new Error(`Falha ao salvar alerta: ${error.message}`);
@@ -156,10 +163,12 @@ export class SupabaseAlertRepository implements IAlertRepository {
       sentAt: delivery.sentAt.toISOString(),
       ack: delivery.ack,
     };
-    const { error } = await this.supabase.from("alert_deliveries").upsert(
-      { id: delivery.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("alert_deliveries")
+      .upsert(
+        { id: delivery.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar entrega: ${error.message}`);
   }
 

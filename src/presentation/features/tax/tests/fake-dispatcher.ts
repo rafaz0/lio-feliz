@@ -29,12 +29,35 @@ const relatorioFake: RelatorioFiscalDto = {
 const declaracaoFake: DeclaracaoDto = {
   ano: 2025,
   operacoes: [
-    { mes: "2025-01", totalVendas: 10000, totalCompras: 8000, ganhoLiquido: 2000, impostoDevido: 300, prejuizoCompensar: 0, operacaoDayTrade: false },
+    {
+      mes: "2025-01",
+      totalVendas: 10000,
+      totalCompras: 8000,
+      ganhoLiquido: 2000,
+      impostoDevido: 300,
+      prejuizoCompensar: 0,
+      operacaoDayTrade: false,
+    },
   ],
   lotes: [
-    { ticker: "PETR4", quantidade: 100, custoMedio: 28.50, valorTotal: 2850, dataAquisicao: "2025-01-15" },
+    {
+      ticker: "PETR4",
+      quantidade: 100,
+      custoMedio: 28.5,
+      valorTotal: 2850,
+      dataAquisicao: "2025-01-15",
+    },
   ],
-  consolidado: { totalOperacoes: 10, totalVendas: 10000, totalCompras: 8000, ganhoLiquido: 2000, impostoDevido: 300, impostoPago: 100, prejuizoCompensarSwing: 0, prejuizoCompensarDayTrade: 0 },
+  consolidado: {
+    totalOperacoes: 10,
+    totalVendas: 10000,
+    totalCompras: 8000,
+    ganhoLiquido: 2000,
+    impostoDevido: 300,
+    impostoPago: 100,
+    prejuizoCompensarSwing: 0,
+    prejuizoCompensarDayTrade: 0,
+  },
   prejuizoCompensarSwing: 0,
   prejuizoCompensarDayTrade: 0,
 };
@@ -48,7 +71,10 @@ export class FakeTaxDispatcher implements IDispatcher {
   async DispatchCommand<TDto>(command: ICommand): Promise<TDto | ApplicationError> {
     this.commands.push(command);
     if (command.type === "ExportarDeclaracaoCommand") {
-      return { nomeArquivo: "declaracao_2025.csv", conteudo: "ticker,quantidade,valor" } as unknown as TDto;
+      return {
+        nomeArquivo: "declaracao_2025.csv",
+        conteudo: "ticker,quantidade,valor",
+      } as unknown as TDto;
     }
     throw new Error(`Command não suportado no fake: ${command.type}`);
   }

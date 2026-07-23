@@ -6,7 +6,10 @@ import { GoalCategory } from "@/core/domain/financial-goal";
 import { ApplicationError, ValidationError } from "@/application/errors/application-error";
 
 function createService() {
-  return { service: new CriarMetaService(new FakeFinancialGoalRepository()), repo: new FakeFinancialGoalRepository() };
+  return {
+    service: new CriarMetaService(new FakeFinancialGoalRepository()),
+    repo: new FakeFinancialGoalRepository(),
+  };
 }
 
 function createCommand(overrides?: Partial<CriarMetaCommand>): CriarMetaCommand {

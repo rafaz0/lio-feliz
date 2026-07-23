@@ -1,9 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { IQuery } from "@/application/types";
-import type { ApplicationError, AtivosInternacionaisDto } from "@/presentation/shared/types/application-layer";
+import type {
+  ApplicationError,
+  AtivosInternacionaisDto,
+} from "@/presentation/shared/types/application-layer";
 import { INTERNATIONAL_QUERY_KEYS } from "../queries";
-import { toInternationalSummaryViewModel, type InternationalAssetViewModel, type InternationalSummaryViewModel } from "../viewmodels/international.view-model";
+import {
+  toInternationalSummaryViewModel,
+  type InternationalAssetViewModel,
+  type InternationalSummaryViewModel,
+} from "../viewmodels/international.view-model";
 
 interface UseInternationalQueryResult {
   ativos: InternationalAssetViewModel[];
@@ -38,7 +45,9 @@ export function useInternationalQuery(portfolioId: string): UseInternationalQuer
         currency: a.currency,
         assetType: a.assetType,
         valorOriginal: a.valorOriginal,
-        valorBRL: new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(a.valorBRL),
+        valorBRL: new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
+          a.valorBRL,
+        ),
         taxaCambio: a.taxaCambio,
       }))
     : [];

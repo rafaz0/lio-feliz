@@ -2,7 +2,10 @@ import { ValueObject } from "../value-object";
 import { Money } from "../money";
 
 export class FixedIncomeValue extends ValueObject<FixedIncomeValue> {
-  private constructor(private readonly _amount: Money, private readonly _currency: string = "BRL") {}
+  private constructor(
+    private readonly _amount: Money,
+    private readonly _currency: string = "BRL",
+  ) {}
 
   get amount(): Money {
     return this._amount;
@@ -43,8 +46,8 @@ export class FixedIncomeValue extends ValueObject<FixedIncomeValue> {
 
   static fromJSON(data: ReturnType<FixedIncomeValue["toJSON"]>): FixedIncomeValue {
     const instance = Object.create(FixedIncomeValue.prototype);
-    instance['_amount'] = Money.fromJSON(data.amount);
-    instance['_currency'] = data.currency;
+    instance["_amount"] = Money.fromJSON(data.amount);
+    instance["_currency"] = data.currency;
     return instance;
   }
 }

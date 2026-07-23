@@ -12,7 +12,9 @@ export class ReportExecutionId extends EntityId {
   }
 
   static generate(): ReportExecutionId {
-    return new ReportExecutionId(`exec-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`);
+    return new ReportExecutionId(
+      `exec-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+    );
   }
 }
 
@@ -23,7 +25,7 @@ export type ReportParameters = {
   endDate?: Date;
   tickers?: string[];
   categories?: string[];
-}
+};
 
 export type ReportExecutionProps = {
   id: ReportExecutionId;

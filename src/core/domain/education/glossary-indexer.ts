@@ -6,9 +6,7 @@ export class GlossaryIndexer {
   lookup(term: string, terms: GlossaryTerm[]): GlossaryTerm[] {
     const query = term.toLowerCase();
     return terms.filter(
-      (t) =>
-        t.term.toLowerCase() === query ||
-        t.synonyms.some((s) => s.toLowerCase() === query),
+      (t) => t.term.toLowerCase() === query || t.synonyms.some((s) => s.toLowerCase() === query),
     );
   }
 
@@ -30,10 +28,7 @@ export class GlossaryIndexer {
     return terms.filter((t) => t.category === category);
   }
 
-  getLearningPathsByDifficulty(
-    difficulty: string,
-    paths: LearningPath[],
-  ): LearningPath[] {
+  getLearningPathsByDifficulty(difficulty: string, paths: LearningPath[]): LearningPath[] {
     return paths.filter((p) => p.difficulty === difficulty);
   }
 }

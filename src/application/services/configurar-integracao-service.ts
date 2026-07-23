@@ -6,10 +6,15 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { IntegrationConfig } from "@/core/domain/integrations";
 
-export class ConfigurarIntegracaoService implements IApplicationService<ConfigurarIntegracaoCommand, IntegracaoConfiguradaDto> {
+export class ConfigurarIntegracaoService implements IApplicationService<
+  ConfigurarIntegracaoCommand,
+  IntegracaoConfiguradaDto
+> {
   constructor(private readonly integrationRepo: IIntegrationRepository) {}
 
-  async Execute(command: ConfigurarIntegracaoCommand): Promise<IntegracaoConfiguradaDto | ApplicationError> {
+  async Execute(
+    command: ConfigurarIntegracaoCommand,
+  ): Promise<IntegracaoConfiguradaDto | ApplicationError> {
     if (!command.provider || !command.name) {
       return new ValidationError("VALID_ERROR", "Provider e name são obrigatórios");
     }

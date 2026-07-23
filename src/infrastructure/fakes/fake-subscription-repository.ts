@@ -1,5 +1,11 @@
 import type { ISubscriptionRepository, Assinatura, PlanoDto } from "@/application/ports";
-import { Plan, Subscription, PlanId, SubscriptionId, type PlanTier } from "@/core/domain/subscriptions";
+import {
+  Plan,
+  Subscription,
+  PlanId,
+  SubscriptionId,
+  type PlanTier,
+} from "@/core/domain/subscriptions";
 
 export class FakeSubscriptionRepository implements ISubscriptionRepository {
   private assinaturas = new Map<string, Assinatura>();

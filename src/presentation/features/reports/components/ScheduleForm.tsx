@@ -76,9 +76,7 @@ export function ScheduleForm({ templates, onSubmit, onCancel }: ScheduleFormProp
             placeholder="0 8 * * 1"
             className="w-full rounded border p-2 font-mono text-sm"
           />
-          <p className="mt-1 text-xs text-muted-foreground">
-            Ex: toda segunda 8h = "0 8 * * 1"
-          </p>
+          <p className="mt-1 text-xs text-muted-foreground">Ex: toda segunda 8h = "0 8 * * 1"</p>
         </div>
 
         <div>

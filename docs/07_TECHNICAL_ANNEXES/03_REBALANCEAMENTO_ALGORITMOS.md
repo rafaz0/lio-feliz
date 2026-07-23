@@ -18,9 +18,9 @@ Definir os algoritmos, fórmulas e pseudocódigo para o cálculo de rebalanceame
 
 ```typescript
 interface AlocacaoAtual {
-  classe: string;        // "acoes", "fiis", "etf", "renda_fixa", etc.
+  classe: string; // "acoes", "fiis", "etf", "renda_fixa", etc.
   valorPresente: number; // valor de mercado total na classe
-  percentual: number;    // percentual calculado (0-100)
+  percentual: number; // percentual calculado (0-100)
 }
 ```
 
@@ -40,7 +40,7 @@ interface DiferencaAlocacao {
   classe: string;
   percentualAtual: number;
   percentualDesejado: number;
-  diferenca: number;          // atual - desejado (positivo = sobrepeso)
+  diferenca: number; // atual - desejado (positivo = sobrepeso)
   dentroDaTolerancia: boolean;
 }
 ```

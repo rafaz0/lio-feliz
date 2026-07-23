@@ -22,14 +22,14 @@ Toda persistência reutiliza exclusivamente `IConfigurationRepository` (ADR-011-
 
 Preferências consolidadas do usuário.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `UserPreferencesId` | Identificador único |
-| `userId` | `string` | ID do usuário |
-| `theme` | `ThemeMode` | LIGHT, DARK, SYSTEM |
-| `dashboardLayout` | `DashboardLayout` | Layout do dashboard |
-| `notifications` | `boolean` | Notificações ativadas |
-| `language` | `string` | Idioma (padrão: "pt-BR") |
+| Atributo          | Tipo                | Regra                    |
+| ----------------- | ------------------- | ------------------------ |
+| `id`              | `UserPreferencesId` | Identificador único      |
+| `userId`          | `string`            | ID do usuário            |
+| `theme`           | `ThemeMode`         | LIGHT, DARK, SYSTEM      |
+| `dashboardLayout` | `DashboardLayout`   | Layout do dashboard      |
+| `notifications`   | `boolean`           | Notificações ativadas    |
+| `language`        | `string`            | Idioma (padrão: "pt-BR") |
 
 ### 2.2 Value Objects
 
@@ -45,10 +45,10 @@ Preferências consolidadas do usuário.
 
 ## 3. Serviço de Domínio: `PreferencesService`
 
-| Método | Descrição |
-|--------|-----------|
+| Método                               | Descrição                                   |
+| ------------------------------------ | ------------------------------------------- |
 | `mergeDefaults(userPrefs, defaults)` | Aplica defaults sobre preferências parciais |
-| `applyTheme(theme)` | Valida tema, retorna configuração de tema |
+| `applyTheme(theme)`                  | Valida tema, retorna configuração de tema   |
 
 ---
 
@@ -62,13 +62,13 @@ Preferências consolidadas do usuário.
 
 ## 5. Layout Padrão do Dashboard
 
-| Widget | Posição padrão |
-|--------|---------------|
-| Patrimônio Total | x:0, y:0, w:6, h:2 |
+| Widget              | Posição padrão     |
+| ------------------- | ------------------ |
+| Patrimônio Total    | x:0, y:0, w:6, h:2 |
 | Alocação por Classe | x:6, y:0, w:6, h:2 |
-| Últimos Proventos | x:0, y:2, w:4, h:2 |
-| Rentabilidade | x:4, y:2, w:4, h:2 |
-| Metas | x:8, y:2, w:4, h:2 |
+| Últimos Proventos   | x:0, y:2, w:4, h:2 |
+| Rentabilidade       | x:4, y:2, w:4, h:2 |
+| Metas               | x:8, y:2, w:4, h:2 |
 
 ---
 

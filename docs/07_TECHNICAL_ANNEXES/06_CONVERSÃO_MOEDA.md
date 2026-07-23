@@ -14,12 +14,12 @@ Definir os algoritmos e fontes de dados para conversão de moeda estrangeira (US
 
 ## 2. Fontes de Dados
 
-| Fonte | Dados | Atualização |
-|-------|-------|-------------|
-| **AwesomeAPI** | Cotação USD-BRL comercial | Tempo real (5min cache) |
-| **Yahoo Finance** | Pares de moedas (USDBRL=X) | Diária |
-| **BRAPI** | Taxa Ptax | Diária (fechamento) |
-| **Fallback manual** | Taxa informada pelo usuário | Manual |
+| Fonte               | Dados                       | Atualização             |
+| ------------------- | --------------------------- | ----------------------- |
+| **AwesomeAPI**      | Cotação USD-BRL comercial   | Tempo real (5min cache) |
+| **Yahoo Finance**   | Pares de moedas (USDBRL=X)  | Diária                  |
+| **BRAPI**           | Taxa Ptax                   | Diária (fechamento)     |
+| **Fallback manual** | Taxa informada pelo usuário | Manual                  |
 
 ---
 
@@ -55,12 +55,12 @@ valorBRL = valorUSD × taxaUSD_BRL
 
 ## 5. Cache e Frescor
 
-| Cenário | Comportamento |
-|---------|--------------|
+| Cenário         | Comportamento           |
+| --------------- | ----------------------- |
 | Taxa com < 5min | Reutilizar (AwesomeAPI) |
-| Taxa com < 1h | Reutilizar (Yahoo) |
-| Taxa com < 24h | Reutilizar com aviso |
-| Taxa com > 24h | Buscar nova |
+| Taxa com < 1h   | Reutilizar (Yahoo)      |
+| Taxa com < 24h  | Reutilizar com aviso    |
+| Taxa com > 24h  | Buscar nova             |
 
 O `ExchangeRate.isFresh` retorna `true` se a taxa tem menos de 24h.
 
@@ -78,7 +78,7 @@ interface ConversionAudit {
   toCurrency: string; // sempre BRL
   rate: number;
   rateSource: string; // "awesomeapi" | "yahoo" | "brapi" | "manual"
-  rateDate: string;   // ISO date da taxa utilizada
+  rateDate: string; // ISO date da taxa utilizada
   conversionDate: string; // ISO date da conversão
 }
 ```
@@ -87,8 +87,8 @@ interface ConversionAudit {
 
 ## 7. Tratamento de Erros
 
-| Erro | Causa | Ação |
-|------|-------|------|
+| Erro                | Causa                       | Ação                                 |
+| ------------------- | --------------------------- | ------------------------------------ |
 | Taxa não encontrada | Nenhuma fonte retornou dado | Bloquear conversão, informar usuário |
-| Taxa expirada | Taxa > 24h sem atualização | Usar com aviso visual (frescor) |
-| Par inválido | Par de moedas não suportado | Reportar erro ao usuário |
+| Taxa expirada       | Taxa > 24h sem atualização  | Usar com aviso visual (frescor)      |
+| Par inválido        | Par de moedas não suportado | Reportar erro ao usuário             |

@@ -4,11 +4,19 @@ import type { IApplicationService } from "@/application/application-service";
 import type { IReportRepository } from "@/application/ports/report-repository";
 import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
-import { ReportSchedule, ReportScheduleId, ReportTemplateId, ReportRenderingService } from "@/core/domain/reports";
+import {
+  ReportSchedule,
+  ReportScheduleId,
+  ReportTemplateId,
+  ReportRenderingService,
+} from "@/core/domain/reports";
 
 const CRON_REGEX = /^(\S+\s){4}\S+$/;
 
-export class AgendarRelatorioService implements IApplicationService<AgendarRelatorioCommand, ReportScheduleDto> {
+export class AgendarRelatorioService implements IApplicationService<
+  AgendarRelatorioCommand,
+  ReportScheduleDto
+> {
   private readonly renderingService = new ReportRenderingService();
 
   constructor(private readonly reportRepo: IReportRepository) {}

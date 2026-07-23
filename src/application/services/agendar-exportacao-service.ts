@@ -6,9 +6,10 @@ import type { IReportRepository } from "@/application/ports/report-repository";
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class AgendarExportacaoService
-  implements IApplicationService<AgendarExportacaoCommand, ExportJobDto>
-{
+export class AgendarExportacaoService implements IApplicationService<
+  AgendarExportacaoCommand,
+  ExportJobDto
+> {
   constructor(
     private readonly exportRepo: IExportTemplateRepository,
     private readonly reportRepo: IReportRepository,

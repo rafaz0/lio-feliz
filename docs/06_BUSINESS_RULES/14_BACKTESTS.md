@@ -22,31 +22,31 @@ Toda execução de backtest é **determinística e reproduzível** (R-011): os d
 
 Uma estratégia é composta por:
 
-| Atributo | Tipo | Descrição |
-|----------|------|-----------|
-| Nome | `string` | Nome de exibição (ex: "Dividendos 60/40") |
-| Alocações | `AllocationWeight[]` | Proporção por ativo (soma ≤ 100%) |
-| Benchmark | `BenchmarkRef` | Índice de referência (ex: IBOV, IDIV, IFIX) |
-| Data de criação | `Date` | Quando foi criada |
-| Ativo | `boolean` | Se pode ser usada para novos backtests |
+| Atributo        | Tipo                 | Descrição                                   |
+| --------------- | -------------------- | ------------------------------------------- |
+| Nome            | `string`             | Nome de exibição (ex: "Dividendos 60/40")   |
+| Alocações       | `AllocationWeight[]` | Proporção por ativo (soma ≤ 100%)           |
+| Benchmark       | `BenchmarkRef`       | Índice de referência (ex: IBOV, IDIV, IFIX) |
+| Data de criação | `Date`               | Quando foi criada                           |
+| Ativo           | `boolean`            | Se pode ser usada para novos backtests      |
 
 ### 2.2 AllocationWeight
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `assetTicker` | `string` | Ticker do ativo (ex: "PETR4", "BBDC4") |
-| `weightPercentage` | `number` | Percentual alocado (0-100%) |
-| `assetType` | `AssetType` | Tipo do ativo (stock, fii, etf, etc.) |
+| Atributo           | Tipo        | Regra                                  |
+| ------------------ | ----------- | -------------------------------------- |
+| `assetTicker`      | `string`    | Ticker do ativo (ex: "PETR4", "BBDC4") |
+| `weightPercentage` | `number`    | Percentual alocado (0-100%)            |
+| `assetType`        | `AssetType` | Tipo do ativo (stock, fii, etf, etc.)  |
 
 **Invariante:** A soma de todos `weightPercentage` em uma estratégia não pode exceder 100%. Se for menor que 100%, o restante é considerado como posição em caixa (CDI).
 
 ### 2.3 BenchmarkRef
 
-| Atributo | Tipo | Descrição |
-|----------|------|-----------|
+| Atributo | Tipo     | Descrição                                        |
+| -------- | -------- | ------------------------------------------------ |
 | `ticker` | `string` | Identificador do benchmark (ex: "IBOV", "^GSPC") |
-| `name` | `string` | Nome de exibição |
-| `type` | `string` | Tipo (indice, etf, cdi) |
+| `name`   | `string` | Nome de exibição                                 |
+| `type`   | `string` | Tipo (indice, etf, cdi)                          |
 
 ---
 
@@ -56,55 +56,55 @@ Uma estratégia é composta por:
 
 Define uma estratégia de alocação.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `string` | Identificador único |
-| `name` | `string` | Nome de exibição |
-| `allocations` | `AllocationWeight[]` | Alocações por ativo |
-| `benchmark` | `BenchmarkRef` | Índice de referência |
-| `userId` | `string` | ID do usuário proprietário |
-| `createdAt` | `Date` | Data de criação |
-| `isActive` | `boolean` | Se a estratégia está ativa |
+| Atributo      | Tipo                 | Regra                      |
+| ------------- | -------------------- | -------------------------- |
+| `id`          | `string`             | Identificador único        |
+| `name`        | `string`             | Nome de exibição           |
+| `allocations` | `AllocationWeight[]` | Alocações por ativo        |
+| `benchmark`   | `BenchmarkRef`       | Índice de referência       |
+| `userId`      | `string`             | ID do usuário proprietário |
+| `createdAt`   | `Date`               | Data de criação            |
+| `isActive`    | `boolean`            | Se a estratégia está ativa |
 
 ### 3.2 `Backtest` (Entidade)
 
 Uma execução concreta de backtest.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `string` | Identificador único |
-| `strategyId` | `string` | Estratégia usada |
-| `dateRange` | `DateRange` | Período simulado |
-| `snapshotId` | `string` | ID do snapshot de dados usado |
-| `status` | `BacktestStatus` | PENDING, RUNNING, COMPLETED, FAILED |
-| `createdAt` | `Date` | Data de solicitação |
-| `completedAt` | `Date` | Data de conclusão |
-| `error` | `string` | Mensagem de erro (se FAILED) |
+| Atributo      | Tipo             | Regra                               |
+| ------------- | ---------------- | ----------------------------------- |
+| `id`          | `string`         | Identificador único                 |
+| `strategyId`  | `string`         | Estratégia usada                    |
+| `dateRange`   | `DateRange`      | Período simulado                    |
+| `snapshotId`  | `string`         | ID do snapshot de dados usado       |
+| `status`      | `BacktestStatus` | PENDING, RUNNING, COMPLETED, FAILED |
+| `createdAt`   | `Date`           | Data de solicitação                 |
+| `completedAt` | `Date`           | Data de conclusão                   |
+| `error`       | `string`         | Mensagem de erro (se FAILED)        |
 
 ### 3.3 `SimulationResult` (Entidade)
 
 O resultado de uma execução.
 
-| Atributo | Tipo | Descrição |
-|----------|------|-----------|
-| `id` | `string` | Identificador único |
-| `backtestId` | `string` | Backtest de origem |
-| `periodReturns` | `number` | Retorno total do período (%) |
-| `benchmarkReturn` | `number` | Retorno do benchmark (%) |
-| `maxDrawdown` | `number` | Drawdown máximo (%) |
-| `sharpeRatio` | `number` | Índice de Sharpe |
-| `volatility` | `number` | Volatilidade anualizada (%) |
-| `alpha` | `number` | Alpha vs benchmark (%) |
-| `beta` | `number` | Beta vs benchmark |
-| `dividendYield` | `number` | Rendimento de dividendos (%) |
-| `monthlyReturns` | `MonthlyReturn[]` | Retorno mês a mês |
+| Atributo          | Tipo              | Descrição                    |
+| ----------------- | ----------------- | ---------------------------- |
+| `id`              | `string`          | Identificador único          |
+| `backtestId`      | `string`          | Backtest de origem           |
+| `periodReturns`   | `number`          | Retorno total do período (%) |
+| `benchmarkReturn` | `number`          | Retorno do benchmark (%)     |
+| `maxDrawdown`     | `number`          | Drawdown máximo (%)          |
+| `sharpeRatio`     | `number`          | Índice de Sharpe             |
+| `volatility`      | `number`          | Volatilidade anualizada (%)  |
+| `alpha`           | `number`          | Alpha vs benchmark (%)       |
+| `beta`            | `number`          | Beta vs benchmark            |
+| `dividendYield`   | `number`          | Rendimento de dividendos (%) |
+| `monthlyReturns`  | `MonthlyReturn[]` | Retorno mês a mês            |
 
 ### 3.4 `DateRange` (Value Object)
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `start` | `Date` | Início do período |
-| `end` | `Date` | Fim do período |
+| Atributo | Tipo   | Regra             |
+| -------- | ------ | ----------------- |
+| `start`  | `Date` | Início do período |
+| `end`    | `Date` | Fim do período    |
 
 **Invariante:** `end >= start`.
 
@@ -112,25 +112,25 @@ O resultado de uma execução.
 
 Snapshot dos dados históricos usados na simulação.
 
-| Atributo | Tipo | Descrição |
-|----------|------|-----------|
-| `id` | `string` | Identificador único |
-| `backtestId` | `string` | Backtest de origem |
-| `assets` | `string[]` | Tickers incluídos |
-| `startDate` | `string` | Data inicial (ISO) |
-| `endDate` | `string` | Data final (ISO) |
-| `prices` | `unknown` | Dados de preço serializados |
-| `dividends` | `unknown` | Dados de dividendos serializados |
-| `splits` | `unknown` | Dados de splits serializados |
-| `createdAt` | `string` | Timestamp ISO do snapshot |
+| Atributo     | Tipo       | Descrição                        |
+| ------------ | ---------- | -------------------------------- |
+| `id`         | `string`   | Identificador único              |
+| `backtestId` | `string`   | Backtest de origem               |
+| `assets`     | `string[]` | Tickers incluídos                |
+| `startDate`  | `string`   | Data inicial (ISO)               |
+| `endDate`    | `string`   | Data final (ISO)                 |
+| `prices`     | `unknown`  | Dados de preço serializados      |
+| `dividends`  | `unknown`  | Dados de dividendos serializados |
+| `splits`     | `unknown`  | Dados de splits serializados     |
+| `createdAt`  | `string`   | Timestamp ISO do snapshot        |
 
 ### 3.6 `MonthlyReturn` (Value Object)
 
-| Atributo | Tipo |
-|----------|------|
-| `month` | `string` | Mês no formato "YYYY-MM" |
-| `strategyReturn` | `number` | Retorno da estratégia (%) |
-| `benchmarkReturn` | `number` | Retorno do benchmark (%) |
+| Atributo          | Tipo     |
+| ----------------- | -------- |
+| `month`           | `string` | Mês no formato "YYYY-MM"  |
+| `strategyReturn`  | `number` | Retorno da estratégia (%) |
+| `benchmarkReturn` | `number` | Retorno do benchmark (%)  |
 
 ---
 
@@ -162,14 +162,14 @@ Snapshot dos dados históricos usados na simulação.
 
 ## 6. Métricas Calculadas
 
-| Métrica | Fórmula |
-|---------|---------|
-| Retorno Período | `(valorFinal - valorInicial) / valorInicial × 100` |
-| Drawdown Máximo | Maior queda do pico ao vale no período |
-| Sharpe Ratio | `(Rp - Rf) / σp` onde Rp = retorno carteira, Rf = taxa livre de risco, σp = desvio padrão |
-| Volatilidade | Desvio padrão dos retornos anualizado |
-| Alpha | `Rp - (Rf + β × (Rm - Rf))` |
-| Beta | Covariância(Rp, Rm) / Variância(Rm) |
+| Métrica         | Fórmula                                                                                   |
+| --------------- | ----------------------------------------------------------------------------------------- |
+| Retorno Período | `(valorFinal - valorInicial) / valorInicial × 100`                                        |
+| Drawdown Máximo | Maior queda do pico ao vale no período                                                    |
+| Sharpe Ratio    | `(Rp - Rf) / σp` onde Rp = retorno carteira, Rf = taxa livre de risco, σp = desvio padrão |
+| Volatilidade    | Desvio padrão dos retornos anualizado                                                     |
+| Alpha           | `Rp - (Rf + β × (Rm - Rf))`                                                               |
+| Beta            | Covariância(Rp, Rm) / Variância(Rm)                                                       |
 
 ---
 

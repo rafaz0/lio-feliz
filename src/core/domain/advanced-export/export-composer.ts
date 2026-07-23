@@ -11,10 +11,7 @@ export type ComposeResult = {
 };
 
 export class ExportComposer {
-  compose(
-    template: ExportTemplate,
-    data: Record<string, unknown>,
-  ): Result<ComposeResult> {
+  compose(template: ExportTemplate, data: Record<string, unknown>): Result<ComposeResult> {
     const validFormats: ExportFormatType[] = ["PDF", "CSV", "JSON", "XLSX"];
     if (!validFormats.includes(template.format)) {
       return Result.fail(new InvalidFormatError(template.format));
@@ -55,7 +52,7 @@ export class ExportComposer {
     let hash = 0;
     for (let i = 0; i < content.length; i++) {
       const byte = content[i];
-      hash = ((hash << 5) - hash) + byte;
+      hash = (hash << 5) - hash + byte;
       hash |= 0;
     }
     return `sha256:${Math.abs(hash).toString(16).padStart(8, "0")}`;

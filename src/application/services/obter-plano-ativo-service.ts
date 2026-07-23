@@ -5,9 +5,10 @@ import type { ISubscriptionRepository } from "@/application/ports/subscription-r
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ObterPlanoAtivoService
-  implements IApplicationService<ObterPlanoAtivoQuery, AssinaturaDto>
-{
+export class ObterPlanoAtivoService implements IApplicationService<
+  ObterPlanoAtivoQuery,
+  AssinaturaDto
+> {
   constructor(private readonly subscriptionRepo: ISubscriptionRepository) {}
 
   async Execute(query: ObterPlanoAtivoQuery): Promise<AssinaturaDto | ApplicationError> {

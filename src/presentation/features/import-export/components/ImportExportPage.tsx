@@ -51,7 +51,11 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
   };
 
   return (
-    <section data-testid="import-export-page" aria-label="Importação e Exportação" className="space-y-6">
+    <section
+      data-testid="import-export-page"
+      aria-label="Importação e Exportação"
+      className="space-y-6"
+    >
       <div className="flex gap-4 border-b pb-2">
         <button
           className={`px-4 py-2 ${activeTab === "import" ? "border-b-2 border-primary font-bold" : "text-muted-foreground"}`}
@@ -91,7 +95,8 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
 
               {selectedFile && (
                 <div className="text-sm text-muted-foreground">
-                  Arquivo selecionado: {selectedFile.name} ({(selectedFile.size / 1024).toFixed(1)} KB)
+                  Arquivo selecionado: {selectedFile.name} ({(selectedFile.size / 1024).toFixed(1)}{" "}
+                  KB)
                 </div>
               )}
 
@@ -124,7 +129,8 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
 
               {importMutation.data && (
                 <div className="p-3 bg-green-50 border border-green-200 rounded-md text-sm">
-                  {importMutation.data.operacoesImportadas} operações importadas, {importMutation.data.operacoesRejeitadas} rejeitadas
+                  {importMutation.data.operacoesImportadas} operações importadas,{" "}
+                  {importMutation.data.operacoesRejeitadas} rejeitadas
                 </div>
               )}
               {importMutation.isError && importMutation.error && (
@@ -141,7 +147,11 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
             </CardHeader>
             <CardContent>
               {isLoading && <div className="text-sm text-muted-foreground">Carregando...</div>}
-              {isError && <div className="text-sm text-red-500">Erro ao carregar histórico: {error?.message}</div>}
+              {isError && (
+                <div className="text-sm text-red-500">
+                  Erro ao carregar histórico: {error?.message}
+                </div>
+              )}
               {!isLoading && !isError && jobs.length === 0 && (
                 <div className="text-sm text-muted-foreground">Nenhuma importação realizada</div>
               )}
@@ -158,22 +168,29 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
                       </tr>
                     </thead>
                     <tbody>
-                      {jobs.map(job => (
+                      {jobs.map((job) => (
                         <tr key={job.id} className="border-b">
                           <td className="py-2 pr-4">{job.fileName}</td>
                           <td className="py-2 pr-4">{job.format}</td>
                           <td className="py-2 pr-4">
-                            <span className={`px-2 py-1 rounded-full text-xs ${
-                              job.status === "COMPLETED" ? "bg-green-100 text-green-700" :
-                              job.status === "FAILED" ? "bg-red-100 text-red-700" :
-                              job.status === "PROCESSING" ? "bg-yellow-100 text-yellow-700" :
-                              "bg-gray-100 text-gray-700"
-                            }`}>
+                            <span
+                              className={`px-2 py-1 rounded-full text-xs ${
+                                job.status === "COMPLETED"
+                                  ? "bg-green-100 text-green-700"
+                                  : job.status === "FAILED"
+                                    ? "bg-red-100 text-red-700"
+                                    : job.status === "PROCESSING"
+                                      ? "bg-yellow-100 text-yellow-700"
+                                      : "bg-gray-100 text-gray-700"
+                              }`}
+                            >
                               {job.status}
                             </span>
                           </td>
                           <td className="py-2 pr-4">{job.progressPercent}%</td>
-                          <td className="py-2 pr-4">{new Date(job.createdAt).toLocaleDateString("pt-BR")}</td>
+                          <td className="py-2 pr-4">
+                            {new Date(job.createdAt).toLocaleDateString("pt-BR")}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -198,11 +215,13 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
               <button
                 className="bg-primary text-primary-foreground px-4 py-2 rounded-md"
                 onClick={() => {
-                  exportMutation.mutateAsync({
-                    portfolioId,
-                    formato: "CSV",
-                    templateId: "carteira-completa",
-                  }).catch(() => {});
+                  exportMutation
+                    .mutateAsync({
+                      portfolioId,
+                      formato: "CSV",
+                      templateId: "carteira-completa",
+                    })
+                    .catch(() => {});
                 }}
                 disabled={exportMutation.isPending}
               >
@@ -211,11 +230,13 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
               <button
                 className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md"
                 onClick={() => {
-                  exportMutation.mutateAsync({
-                    portfolioId,
-                    formato: "CSV",
-                    templateId: "proventos",
-                  }).catch(() => {});
+                  exportMutation
+                    .mutateAsync({
+                      portfolioId,
+                      formato: "CSV",
+                      templateId: "proventos",
+                    })
+                    .catch(() => {});
                 }}
                 disabled={exportMutation.isPending}
               >
@@ -224,11 +245,13 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
               <button
                 className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md"
                 onClick={() => {
-                  exportMutation.mutateAsync({
-                    portfolioId,
-                    formato: "CSV",
-                    templateId: "operacoes",
-                  }).catch(() => {});
+                  exportMutation
+                    .mutateAsync({
+                      portfolioId,
+                      formato: "CSV",
+                      templateId: "operacoes",
+                    })
+                    .catch(() => {});
                 }}
                 disabled={exportMutation.isPending}
               >
@@ -239,7 +262,14 @@ export function ImportExportPage({ usuarioId, portfolioId }: ImportExportPagePro
               <div className="p-3 bg-green-50 border border-green-200 rounded-md text-sm">
                 Relatório exportado: {exportMutation.data.fileName}
                 {exportMutation.data.fileUrl && (
-                  <a href={exportMutation.data.fileUrl} className="ml-2 text-primary underline" target="_blank" rel="noreferrer">Download</a>
+                  <a
+                    href={exportMutation.data.fileUrl}
+                    className="ml-2 text-primary underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Download
+                  </a>
                 )}
               </div>
             )}

@@ -2,7 +2,11 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { PortfolioId } from "@/core/domain";
 import { Portfolio } from "@/core/domain/portfolio";
 import type { IPortfolioRepository } from "@/application/ports";
-import { serializePortfolio, deserializePortfolio, type SerializedPortfolio } from "./portfolio-serializer";
+import {
+  serializePortfolio,
+  deserializePortfolio,
+  type SerializedPortfolio,
+} from "./portfolio-serializer";
 
 export class SupabasePortfolioRepository implements IPortfolioRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -23,10 +27,12 @@ export class SupabasePortfolioRepository implements IPortfolioRepository {
 
   async Salvar(portfolio: Portfolio): Promise<void> {
     const serialized = serializePortfolio(portfolio);
-    const { error } = await this.supabase.from("portfolios").upsert(
-      { id: portfolio.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("portfolios")
+      .upsert(
+        { id: portfolio.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
 
     if (error) {
       throw new Error(`Failed to save portfolio: ${error.message}`);

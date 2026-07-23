@@ -5,9 +5,10 @@ import type { IComparisonRepository } from "@/application/ports/comparison-repos
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ObterScorecardService
-  implements IApplicationService<ObterScorecardQuery, ScorecardDto>
-{
+export class ObterScorecardService implements IApplicationService<
+  ObterScorecardQuery,
+  ScorecardDto
+> {
   constructor(private readonly comparisonRepo: IComparisonRepository) {}
 
   async Execute(query: ObterScorecardQuery): Promise<ScorecardDto | ApplicationError> {

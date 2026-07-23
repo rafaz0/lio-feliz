@@ -1,6 +1,11 @@
 export { TaxLot, type TaxLotProps } from "./tax-lot";
 export { TaxEvent, TaxEventId, type TaxEventData } from "./tax-event";
-export { TaxStatement, TaxStatementId, type MonthlyTaxSummary, type AnnualTaxConsolidation } from "./tax-statement";
+export {
+  TaxStatement,
+  TaxStatementId,
+  type MonthlyTaxSummary,
+  type AnnualTaxConsolidation,
+} from "./tax-statement";
 export {
   TaxCalculationService,
   type RawOperation,

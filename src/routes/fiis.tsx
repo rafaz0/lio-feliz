@@ -40,7 +40,7 @@ function FiisPage() {
 
   const filtered = useMemo(() => {
     const term = search.trim().toUpperCase();
-    let list = FIIS.filter((f) => {
+    const list = FIIS.filter((f) => {
       if (segment !== "Todos" && f.segment !== segment) return false;
       if (term && !f.ticker.includes(term) && !f.name.toUpperCase().includes(term)) return false;
       return true;

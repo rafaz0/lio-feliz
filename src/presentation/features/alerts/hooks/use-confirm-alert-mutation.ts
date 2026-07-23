@@ -10,7 +10,10 @@ export function useConfirmAlertMutation(userId: string) {
 
   return useMutation({
     mutationFn: async (alertId: string) => {
-      const r = await dispatcher.DispatchCommand<void>({ type: "ConfirmarAlertaCommand", alertId } as unknown as ICommand);
+      const r = await dispatcher.DispatchCommand<void>({
+        type: "ConfirmarAlertaCommand",
+        alertId,
+      } as unknown as ICommand);
       if (r instanceof Error) throw r;
     },
     onSuccess: () => {

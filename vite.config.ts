@@ -30,12 +30,11 @@ export default defineConfig({
             const src = resolve(process.cwd(), "dist/server/index.mjs");
             const dest = resolve(process.cwd(), "dist/server/server.js");
             copyFileSync(src, dest);
-            // eslint-disable-next-line no-console
+
             console.log(
               "[copy-server-js-compat] dist/server/server.js created for preview-server-plugin compatibility.",
             );
           } catch (e) {
-            // eslint-disable-next-line no-console
             console.warn(
               "[copy-server-js-compat] could not copy dist/server/index.mjs -> dist/server/server.js:",
               e instanceof Error ? e.message : String(e),

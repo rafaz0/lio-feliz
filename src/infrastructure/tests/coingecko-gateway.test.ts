@@ -16,12 +16,25 @@ describe("CoingeckoGateway", () => {
   it("retorna cotacoes cripto como operacoes", async () => {
     const { fetchCryptoQuotes } = await import("@/lib/coingecko.server");
     vi.mocked(fetchCryptoQuotes).mockResolvedValue({
-      "BTC-USD": { ticker: "BTC-USD", priceUsd: 50000, priceBrl: 275000, changePct24h: 2.5, name: "Bitcoin" },
-      "ETH-USD": { ticker: "ETH-USD", priceUsd: 3000, priceBrl: 16500, changePct24h: 1.5, name: "Ethereum" },
+      "BTC-USD": {
+        ticker: "BTC-USD",
+        priceUsd: 50000,
+        priceBrl: 275000,
+        changePct24h: 2.5,
+        name: "Bitcoin",
+      },
+      "ETH-USD": {
+        ticker: "ETH-USD",
+        priceUsd: 3000,
+        priceBrl: 16500,
+        changePct24h: 1.5,
+        name: "Ethereum",
+      },
     });
 
     const result = await gateway.ObterDadosImportacao("coingecko", {
-      origem: "coingecko", conexao: { tickers: "BTC-USD,ETH-USD" },
+      origem: "coingecko",
+      conexao: { tickers: "BTC-USD,ETH-USD" },
     });
 
     expect(result.operacoes).toHaveLength(2);
@@ -36,7 +49,8 @@ describe("CoingeckoGateway", () => {
     vi.mocked(fetchCryptoQuotes).mockResolvedValue({});
 
     const result = await gateway.ObterDadosImportacao("coingecko", {
-      origem: "coingecko", conexao: { ticker: "BTC-USD" },
+      origem: "coingecko",
+      conexao: { ticker: "BTC-USD" },
     });
 
     expect(result.operacoes).toHaveLength(0);

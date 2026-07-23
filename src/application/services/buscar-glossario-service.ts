@@ -5,9 +5,10 @@ import type { IGlossaryRepository } from "@/application/ports/glossary-repositor
 import type { ApplicationError } from "@/application/errors/application-error";
 import { GlossaryIndexer } from "@/core/domain/education";
 
-export class BuscarGlossarioService
-  implements IApplicationService<BuscarGlossarioQuery, GlossarySearchDto>
-{
+export class BuscarGlossarioService implements IApplicationService<
+  BuscarGlossarioQuery,
+  GlossarySearchDto
+> {
   private readonly indexer = new GlossaryIndexer();
 
   constructor(private readonly glossaryRepo: IGlossaryRepository) {}

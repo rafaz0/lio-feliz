@@ -17,7 +17,7 @@ const mockDto: ImportJobDto = {
 };
 
 describe("ImportJobViewModel", () => {
-it("mapeia dto para view model com progresso 100%", () => {
+  it("mapeia dto para view model com progresso 100%", () => {
     const vm = toImportJobViewModel(mockDto);
     expect(vm.id).toBe("import-001");
     expect(vm.fileName).toBe("operacoes.csv");
@@ -28,7 +28,12 @@ it("mapeia dto para view model com progresso 100%", () => {
   });
 
   it("calcula progresso parcial corretamente", () => {
-    const dto: ImportJobDto = { ...mockDto, totalRecords: 20, processedRecords: 5, status: "PROCESSING" };
+    const dto: ImportJobDto = {
+      ...mockDto,
+      totalRecords: 20,
+      processedRecords: 5,
+      status: "PROCESSING",
+    };
     const vm = toImportJobViewModel(dto);
     expect(vm.progressPercent).toBe(25);
   });

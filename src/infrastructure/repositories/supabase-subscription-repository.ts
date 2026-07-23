@@ -1,9 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type {
-  ISubscriptionRepository,
-  Assinatura,
-  PlanoDto,
-} from "@/application/ports";
+import type { ISubscriptionRepository, Assinatura, PlanoDto } from "@/application/ports";
 
 type AssinaturaRow = {
   usuario_id: string;

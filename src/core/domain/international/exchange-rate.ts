@@ -1,12 +1,33 @@
 import { ValueObject } from "../value-object";
 import { CurrencyPair } from "./currency-pair";
 
-export class ExchangeRate extends ValueObject<{ ticker: string; currency: string; pair: CurrencyPair; rate: number; source: string; lastUpdated: Date }> {
-  private constructor(ticker: string, currency: string, pair: CurrencyPair, rate: number, source: string, lastUpdated: Date) {
+export class ExchangeRate extends ValueObject<{
+  ticker: string;
+  currency: string;
+  pair: CurrencyPair;
+  rate: number;
+  source: string;
+  lastUpdated: Date;
+}> {
+  private constructor(
+    ticker: string,
+    currency: string,
+    pair: CurrencyPair,
+    rate: number,
+    source: string,
+    lastUpdated: Date,
+  ) {
     super({ ticker, currency, pair, rate, source, lastUpdated });
   }
 
-  static create(ticker: string, currency: string, pair: CurrencyPair, rate: number, source: string, lastUpdated: Date): ExchangeRate {
+  static create(
+    ticker: string,
+    currency: string,
+    pair: CurrencyPair,
+    rate: number,
+    source: string,
+    lastUpdated: Date,
+  ): ExchangeRate {
     return new ExchangeRate(ticker, currency, pair, rate, source, lastUpdated);
   }
 
@@ -35,7 +56,8 @@ export class ExchangeRate extends ValueObject<{ ticker: string; currency: string
   }
 
   get isFresh(): boolean {
-    const hoursSinceLastUpdate = (new Date().getTime() - this.props.lastUpdated.getTime()) / (1000 * 60 * 60);
+    const hoursSinceLastUpdate =
+      (new Date().getTime() - this.props.lastUpdated.getTime()) / (1000 * 60 * 60);
     return hoursSinceLastUpdate <= 24;
   }
 }

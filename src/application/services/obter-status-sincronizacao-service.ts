@@ -6,7 +6,10 @@ import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import type { SyncOrchestrationService } from "@/core/domain/integrations";
 
-export class ObterStatusSincronizacaoService implements IApplicationService<ObterStatusSincronizacaoQuery, SyncStatusDto> {
+export class ObterStatusSincronizacaoService implements IApplicationService<
+  ObterStatusSincronizacaoQuery,
+  SyncStatusDto
+> {
   constructor(
     private readonly integrationRepo: IIntegrationRepository,
     private readonly orchestration: SyncOrchestrationService,
@@ -26,7 +29,7 @@ export class ObterStatusSincronizacaoService implements IApplicationService<Obte
       lastSync: status.lastSync?.toISOString() ?? null,
       status: status.status,
       totalErrors: status.totalErrors,
-      logs: logs.map(l => ({
+      logs: logs.map((l) => ({
         id: l.id.value,
         integrationId: l.integrationId,
         type: l.type,

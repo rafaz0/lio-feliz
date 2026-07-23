@@ -5,9 +5,10 @@ import type { IBacktestRepository } from "@/application/ports/backtest-repositor
 import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
-export class ObterBacktestService
-  implements IApplicationService<ObterBacktestQuery, BacktestCompletoDto>
-{
+export class ObterBacktestService implements IApplicationService<
+  ObterBacktestQuery,
+  BacktestCompletoDto
+> {
   constructor(private readonly backtestRepo: IBacktestRepository) {}
 
   async Execute(query: ObterBacktestQuery): Promise<BacktestCompletoDto | ApplicationError> {

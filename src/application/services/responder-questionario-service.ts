@@ -7,9 +7,10 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { RiskClassifier, InvestorProfile, InvestorProfileId } from "@/core/domain/investor-profile";
 
-export class ResponderQuestionarioService
-  implements IApplicationService<ResponderQuestionarioCommand, InvestidorPerfilCompletoDto>
-{
+export class ResponderQuestionarioService implements IApplicationService<
+  ResponderQuestionarioCommand,
+  InvestidorPerfilCompletoDto
+> {
   private readonly classifier = new RiskClassifier();
 
   constructor(
@@ -17,7 +18,9 @@ export class ResponderQuestionarioService
     private readonly projectionRepo?: IProjectionRepository,
   ) {}
 
-  async Execute(command: ResponderQuestionarioCommand): Promise<InvestidorPerfilCompletoDto | ApplicationError> {
+  async Execute(
+    command: ResponderQuestionarioCommand,
+  ): Promise<InvestidorPerfilCompletoDto | ApplicationError> {
     if (!command.userId || !command.answers || command.answers.length === 0) {
       return new ValidationError("VALID_ERROR", "UserId e respostas obrigatorios");
     }
@@ -33,7 +36,9 @@ export class ResponderQuestionarioService
       if (this.projectionRepo) {
         portfolioValue = 50000;
       }
-    } catch { /* fallback */ }
+    } catch {
+      /* fallback */
+    }
 
     const profileId = InvestorProfileId.generate();
     const profile = InvestorProfile.create({
@@ -49,7 +54,10 @@ export class ResponderQuestionarioService
     await this.profileRepo.saveProfile(profile);
 
     const questionnaire = this.classifier.createQuestionnaire(
-      profileId.value, command.answers, classification.value!.riskLevel, classification.value!.score,
+      profileId.value,
+      command.answers,
+      classification.value!.riskLevel,
+      classification.value!.score,
     );
     await this.profileRepo.saveQuestionnaire(questionnaire);
     await this.profileRepo.saveRiskResult(classification.value!);
@@ -62,14 +70,19 @@ export class ResponderQuestionarioService
 
     return {
       profile: {
-        id: profile.id.value, userId: profile.userId,
-        riskLevel: profile.riskLevel, investmentHorizon: profile.investmentHorizon,
+        id: profile.id.value,
+        userId: profile.userId,
+        riskLevel: profile.riskLevel,
+        investmentHorizon: profile.investmentHorizon,
         totalPortfolioValue: profile.totalPortfolioValue,
-        createdAt: profile.createdAt.toISOString(), updatedAt: profile.updatedAt.toISOString(),
+        createdAt: profile.createdAt.toISOString(),
+        updatedAt: profile.updatedAt.toISOString(),
       },
       lastResult: {
-        id: resultWithProfile.id.value, profileId: resultWithProfile.profileId,
-        riskLevel: resultWithProfile.riskLevel, score: resultWithProfile.score,
+        id: resultWithProfile.id.value,
+        profileId: resultWithProfile.profileId,
+        riskLevel: resultWithProfile.riskLevel,
+        score: resultWithProfile.score,
         generatedAt: resultWithProfile.generatedAt.toISOString(),
       },
     };

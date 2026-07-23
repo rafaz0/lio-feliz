@@ -28,7 +28,7 @@ export class SafeBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, info: ErrorInfo) {
     const label = this.props.label ?? "?";
     // Diagnóstico local: aparece no console do navegador, útil em preview.
-    // eslint-disable-next-line no-console
+
     console.error(`[SafeBoundary:${label}]`, error, info.componentStack);
   }
 

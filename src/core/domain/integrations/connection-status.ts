@@ -6,11 +6,19 @@ export class ConnectionStatus extends ValueObject<ConnectionStatus> {
     private readonly _lastSync: Date | null,
     private readonly _status: SyncStatus,
     private readonly _totalErrors: number,
-  ) { super(); }
+  ) {
+    super();
+  }
 
-  get lastSync(): Date | null { return this._lastSync; }
-  get status(): SyncStatus { return this._status; }
-  get totalErrors(): number { return this._totalErrors; }
+  get lastSync(): Date | null {
+    return this._lastSync;
+  }
+  get status(): SyncStatus {
+    return this._status;
+  }
+  get totalErrors(): number {
+    return this._totalErrors;
+  }
 
   static create(props: {
     lastSync: Date | null;

@@ -34,6 +34,7 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 ## 3. Escopo
 
 ### Incluído
+
 - Inspeção de código das 9 features (`src/presentation/features/*`).
 - Composition Root (`src/integrations/dispatcher/presentation-dispatcher.ts`).
 - Application-layer types (`src/presentation/shared/types/application-layer.ts`).
@@ -43,6 +44,7 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 - Execução dos testes da presentation (`npx vitest run src/presentation`).
 
 ### Excluído (fora de escopo desta auditoria)
+
 - Implementação da Slice 11 (Sincronização) — não iniciada.
 - Débito técnico pré-existente: `tsc --noEmit` global quebra em rotas legadas (`index.tsx`, `ativo.$ticker.tsx`, `carteira.operacoes.tsx`) e camadas Core/Application — herdado, não introduzido pelas Slices 1-10.
 - Features `import`, `performance`, `reports`, `sync` (pastas presentes em `features/` mas não materializadas pelas Slices 1-10 — placeholders/planejamento, sem conteúdo de implementação avaliado).
@@ -51,29 +53,30 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 
 ## 4. Critérios de Avaliação (ER-007 — 15 critérios)
 
-| # | Critério | Resultado |
-|---|----------|-----------|
-| 1 | Clean Architecture | ✅ Aprovado |
-| 2 | Dependency Rule | ✅ Aprovado |
-| 3 | Dispatcher Pattern | ✅ Aprovado (1 achado menor) |
-| 4 | Feature-First | ✅ Aprovado |
-| 5 | Gerenciamento de estado | ✅ Aprovado |
-| 6 | Comunicação via Dispatcher | ✅ Aprovado |
-| 7 | Estratégia TanStack Start | ✅ Aprovado (1 recomendação de performance) |
-| 8 | Testabilidade | ✅ Aprovado |
-| 9 | Performance | 🟡 Aprovado c/ recomendação |
-| 10 | UX (Loading/Error/Empty) | ✅ Aprovado |
-| 11 | Acessibilidade (WCAG 2.1 AA) | ✅ Aprovado |
-| 12 | Governança (GOV-M01-M06, Baseline Lock) | ✅ Aprovado |
-| 13 | Riscos | ✅ 0 críticos / 0 altos |
-| 14 | Prontidão para Slice 11 | ✅ Aprovado |
-| 15 | Conformidade metodológica (PRESENTATION_SLICE_TEMPLATE) | ✅ Aprovado |
+| #   | Critério                                                | Resultado                                   |
+| --- | ------------------------------------------------------- | ------------------------------------------- |
+| 1   | Clean Architecture                                      | ✅ Aprovado                                 |
+| 2   | Dependency Rule                                         | ✅ Aprovado                                 |
+| 3   | Dispatcher Pattern                                      | ✅ Aprovado (1 achado menor)                |
+| 4   | Feature-First                                           | ✅ Aprovado                                 |
+| 5   | Gerenciamento de estado                                 | ✅ Aprovado                                 |
+| 6   | Comunicação via Dispatcher                              | ✅ Aprovado                                 |
+| 7   | Estratégia TanStack Start                               | ✅ Aprovado (1 recomendação de performance) |
+| 8   | Testabilidade                                           | ✅ Aprovado                                 |
+| 9   | Performance                                             | 🟡 Aprovado c/ recomendação                 |
+| 10  | UX (Loading/Error/Empty)                                | ✅ Aprovado                                 |
+| 11  | Acessibilidade (WCAG 2.1 AA)                            | ✅ Aprovado                                 |
+| 12  | Governança (GOV-M01-M06, Baseline Lock)                 | ✅ Aprovado                                 |
+| 13  | Riscos                                                  | ✅ 0 críticos / 0 altos                     |
+| 14  | Prontidão para Slice 11                                 | ✅ Aprovado                                 |
+| 15  | Conformidade metodológica (PRESENTATION_SLICE_TEMPLATE) | ✅ Aprovado                                 |
 
 ---
 
 ## 5. Conformidades
 
 ### 5.1 Arquitetural
+
 - **Dependency Rule (R-10):** Nenhum import de `@/core/domain`, `@/infrastructure` ou `@/integrations/supabase` na presentation. Confirmado por grep e pelos 32 architecture tests.
 - **Serviços da Application não instanciados na presentation:** Nenhum `new XxxService` em `src/presentation`. Confirmado por grep e architecture tests.
 - **Composition Root fora da presentation:** `presentation-dispatcher.ts` reside em `src/integrations/` (fora de `src/presentation`), conforme exigido.
@@ -82,17 +85,20 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 - **Auth via port:** `AuthProvider` depende apenas da interface `AuthService`, não do Supabase (validado por architecture test dedicado).
 
 ### 5.2 Metodológica
+
 - Todas as Slices seguiram `PRESENTATION_SLICE_TEMPLATE` (entrada: PI/ER/EWO aprovadas, baseline lock, working tree limpa; saída: build/lint/test/architecture verdes, commit, push).
 - Convenção de hooks respeitada: `use<Recurso>Query` (ex.: `useRebalancingQuery`, `useTaxReportQuery`, `useSettingsQuery`) e `use<Acao><Recurso>Mutation` (ex.: `useRegisterOperationMutation`, `useUpdateSettingsMutation`).
 - Estrutura Feature-First consistente: `components/`, `hooks/`, `queries/`, `mutations/`, `types/`, `tests/`.
 - Relatório obrigatório de cada Slice emitido e registrado em DOCUMENTATION_INDEX.
 
 ### 5.3 Documental
+
 - PROJECT_STATUS atualizado a cada Slice (v1.62 → v1.69).
 - DOCUMENTATION_INDEX atualizado a cada Slice (v1.44 → v1.53).
 - Novos contratos Application da Slice 10 (`ObterConfiguracoesQuery`, `ConfiguracoesDto`, `ObterConfiguracoesService`) documentados e exportados em `application/queries/index.ts` e `application/dtos/index.ts`.
 
 ### 5.4 Qualidade (testes)
+
 - **Execução:** `npx vitest run src/presentation` → **43 arquivos, 222 testes, 100% passando**.
 - **Architecture tests:** 32 testes (R-10), todos verdes, cobrindo todas as Slices 1-10.
 - **Cobertura de padrões:** Unit (ViewModel), Component, Integration (flow), Architecture — presentes por Slice.
@@ -102,23 +108,24 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 
 ## 6. Avaliações por Camada / Feature
 
-| Feature | Slice | Conformidade | Observações |
-|---------|-------|--------------|-------------|
-| `auth` | 2 | ✅ | AuthProvider via port; route guards; forms com zod. |
-| `dashboard` | 3 | ✅ | 3 hooks, charts recharts, ViewModels. |
-| `portfolio` | 4 | ✅ | `ConsultarPosicaoQuery` registrada no dispatcher. |
-| `operations` | 5 | ✅ (1 achado baixo) | `OperationForm.tsx` importa DTO direto (ver Achado A2). |
-| `dividends` | 6 | ✅ | `ObterProventosQuery`; filtros acessíveis. |
-| `history` | 7 | ✅ | `ConsultarRentabilidadeQuery` consumida. |
-| `rebalancing` | 8 | ✅ | `CalcularRebalanceamentoQuery` no bloco `configurationRepository`. |
-| `tax` | 9 | ✅ | `GerarRelatorioFiscalQuery`; export panel acessível. |
-| `settings` | 10 | ✅ | `ObterConfiguracoesQuery` + `ConfigurarEstrategiaCommand`. |
+| Feature       | Slice | Conformidade        | Observações                                                        |
+| ------------- | ----- | ------------------- | ------------------------------------------------------------------ |
+| `auth`        | 2     | ✅                  | AuthProvider via port; route guards; forms com zod.                |
+| `dashboard`   | 3     | ✅                  | 3 hooks, charts recharts, ViewModels.                              |
+| `portfolio`   | 4     | ✅                  | `ConsultarPosicaoQuery` registrada no dispatcher.                  |
+| `operations`  | 5     | ✅ (1 achado baixo) | `OperationForm.tsx` importa DTO direto (ver Achado A2).            |
+| `dividends`   | 6     | ✅                  | `ObterProventosQuery`; filtros acessíveis.                         |
+| `history`     | 7     | ✅                  | `ConsultarRentabilidadeQuery` consumida.                           |
+| `rebalancing` | 8     | ✅                  | `CalcularRebalanceamentoQuery` no bloco `configurationRepository`. |
+| `tax`         | 9     | ✅                  | `GerarRelatorioFiscalQuery`; export panel acessível.               |
+| `settings`    | 10    | ✅                  | `ObterConfiguracoesQuery` + `ConfigurarEstrategiaCommand`.         |
 
 ---
 
 ## 7. Dívidas e Achados (Classificados)
 
 ### Achado A1 — 🟡 Duplicação de handler no Composition Root (MÉDIA, fora da presentation)
+
 - **Local:** `src/integrations/dispatcher/presentation-dispatcher.ts`, linhas 70-74 e 102-106.
 - **Descrição:** `ConsultarRentabilidadeQuery` é registrado duas vezes no `IDispatcher`. O segundo registration sobrescreve o primeiro (sem quebra de runtime), mas viola o critério de ausência de duplicações/handlers órfãos.
 - **Impacto:** Nenhum funcional. Apenas redundância de código e risco de confusão de manutenção.
@@ -126,6 +133,7 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 - **Ação recomendada:** Remover o bloco duplicado (linhas 102-106) na Slice 11 ou em cleanup dedicado.
 
 ### Achado A2 — 🟡 Import de DTO fora do padrão centralizado (BAIXA, na presentation)
+
 - **Local:** `src/presentation/features/operations/components/OperationForm.tsx:8`.
 - **Descrição:** Importa `OperacaoRegistradaDto` diretamente de `@/application/dtos/operacao` em vez de via `shared/types/application-layer.ts` (padrão adotado nas Slices 8-10).
 - **Impacto:** Nenhum (type-only). Inconsistência de padronização apenas.
@@ -133,6 +141,7 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 - **Ação recomendada:** Realinhar o import para `application-layer.ts` em oportunidade de cleanup.
 
 ### Achado A3 — 🟡 Code-splitting ausente nas rotas (BAIXA/MÉDIA, performance)
+
 - **Local:** `src/routes/_authenticated/portfolio.$portfolioId.*.tsx` e `/settings`, `/dashboard`.
 - **Descrição:** Todas as rotas usam `createFileRoute` (eager). Rotas pesadas com gráficos recharts (`rebalancing`, `tax`, `history`) não usam `createLazyFileRoute`/Suspense.
 - **Impacto:** Bundle inicial maior; oportunidade de performance não explorada (ER-007 critério 9).
@@ -140,6 +149,7 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 - **Ação recomendada:** Introduzir lazy loading nas rotas pesadas (oportunidade para Slice 11 ou otimização posterior).
 
 ### Achado A4 — ⚪ Teste arquitetural redundante (INFO)
+
 - **Local:** `presentation-boundaries.test.ts`, linhas 172-177 — repete a checagem do adapter fora da presentation (já coberta em linhas 132-137).
 - **Impacto:** Nenhum funcional. Apenas redundância de teste.
 - **Ação recomendada:** Opcional — remover duplicata em cleanup.
@@ -157,12 +167,12 @@ Validar, de forma puramente avaliativa (sem alteração de código, arquitetura 
 
 ## 9. Riscos
 
-| Risco | Severidade | Status |
-|-------|------------|--------|
-| Violação da Dependency Rule | 0 crítico / 0 alto | ✅ Mitigado (architecture tests verdes) |
-| Regra de negócio vazando para presentation | 0 | ✅ Não detectado |
-| Quebra de build/lint/testes | 0 | ✅ Todos verdes na presentation |
-| Débito `tsc --noEmit` global (herdado) | Médio (pré-existente) | ⚪ Fora de escopo das Slices 1-10 |
+| Risco                                      | Severidade            | Status                                  |
+| ------------------------------------------ | --------------------- | --------------------------------------- |
+| Violação da Dependency Rule                | 0 crítico / 0 alto    | ✅ Mitigado (architecture tests verdes) |
+| Regra de negócio vazando para presentation | 0                     | ✅ Não detectado                        |
+| Quebra de build/lint/testes                | 0                     | ✅ Todos verdes na presentation         |
+| Débito `tsc --noEmit` global (herdado)     | Médio (pré-existente) | ⚪ Fora de escopo das Slices 1-10       |
 
 ---
 

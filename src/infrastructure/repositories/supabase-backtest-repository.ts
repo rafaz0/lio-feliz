@@ -64,10 +64,12 @@ export class SupabaseBacktestRepository implements IBacktestRepository {
       createdAt: strategy.createdAt.toISOString(),
       isActive: strategy.isActive,
     };
-    const { error } = await this.supabase.from("strategies").upsert(
-      { id: strategy.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("strategies")
+      .upsert(
+        { id: strategy.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar estrategia: ${error.message}`);
   }
 
@@ -82,9 +84,7 @@ export class SupabaseBacktestRepository implements IBacktestRepository {
   }
 
   async findStrategiesByUser(userId: string): Promise<Strategy[]> {
-    const { data, error } = await this.supabase
-      .from("strategies")
-      .select("dados");
+    const { data, error } = await this.supabase.from("strategies").select("dados");
     if (error || !data) return [];
     const all = data.map((d: { dados: SerializedStrategy }) => d.dados);
     return all.filter((s) => s.userId === userId).map(this.deserializeStrategy);
@@ -106,10 +106,12 @@ export class SupabaseBacktestRepository implements IBacktestRepository {
       completedAt: backtest.completedAt?.toISOString(),
       error: backtest.error,
     };
-    const { error } = await this.supabase.from("backtests").upsert(
-      { id: backtest.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("backtests")
+      .upsert(
+        { id: backtest.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar backtest: ${error.message}`);
   }
 
@@ -124,9 +126,7 @@ export class SupabaseBacktestRepository implements IBacktestRepository {
   }
 
   async findBacktestsByStrategy(strategyId: string): Promise<Backtest[]> {
-    const { data, error } = await this.supabase
-      .from("backtests")
-      .select("dados");
+    const { data, error } = await this.supabase.from("backtests").select("dados");
     if (error || !data) return [];
     const all = data.map((d: { dados: SerializedBacktest }) => d.dados);
     return all.filter((b) => b.strategyId === strategyId).map(this.deserializeBacktest);
@@ -146,10 +146,12 @@ export class SupabaseBacktestRepository implements IBacktestRepository {
       dividendYield: result.dividendYield,
       monthlyReturns: result.monthlyReturns,
     };
-    const { error } = await this.supabase.from("simulation_results").upsert(
-      { id: result.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("simulation_results")
+      .upsert(
+        { id: result.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar resultado: ${error.message}`);
   }
 
@@ -164,10 +166,12 @@ export class SupabaseBacktestRepository implements IBacktestRepository {
   }
 
   async saveSnapshot(snapshot: BacktestSnapshot): Promise<void> {
-    const { error } = await this.supabase.from("backtest_snapshots").upsert(
-      { id: snapshot.id, dados: snapshot, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("backtest_snapshots")
+      .upsert(
+        { id: snapshot.id, dados: snapshot, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar snapshot: ${error.message}`);
   }
 

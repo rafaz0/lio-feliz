@@ -7,30 +7,53 @@ interface InternationalPageProps {
 }
 
 function InternationalLoading() {
-  return <div data-testid="international-loading" className="text-sm text-muted-foreground py-8 text-center">Carregando ativos internacionais...</div>;
+  return (
+    <div
+      data-testid="international-loading"
+      className="text-sm text-muted-foreground py-8 text-center"
+    >
+      Carregando ativos internacionais...
+    </div>
+  );
 }
 
 function InternationalEmpty() {
-  return <div data-testid="international-empty" className="text-sm text-muted-foreground py-8 text-center">Nenhum ativo internacional encontrado.</div>;
+  return (
+    <div
+      data-testid="international-empty"
+      className="text-sm text-muted-foreground py-8 text-center"
+    >
+      Nenhum ativo internacional encontrado.
+    </div>
+  );
 }
 
 export function InternationalPage({ portfolioId }: InternationalPageProps) {
-  const { ativos, summary, isLoading, isError, error, refetch } = useInternationalQuery(portfolioId);
+  const { ativos, summary, isLoading, isError, error, refetch } =
+    useInternationalQuery(portfolioId);
 
   if (isLoading) return <InternationalLoading />;
-  if (isError) return (
-    <div data-testid="international-error" className="text-center py-8">
-      <p className="text-sm text-red-500">{error?.message ?? "Erro ao carregar"}</p>
-      <button onClick={refetch} className="mt-2 rounded-md bg-foreground px-4 py-2 text-sm text-background">Tentar novamente</button>
-    </div>
-  );
+  if (isError)
+    return (
+      <div data-testid="international-error" className="text-center py-8">
+        <p className="text-sm text-red-500">{error?.message ?? "Erro ao carregar"}</p>
+        <button
+          onClick={refetch}
+          className="mt-2 rounded-md bg-foreground px-4 py-2 text-sm text-background"
+        >
+          Tentar novamente
+        </button>
+      </div>
+    );
   if (ativos.length === 0) return <InternationalEmpty />;
 
   return (
     <div data-testid="international-page" className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold">Ativos Internacionais</h1>
-        <span className="text-sm text-muted-foreground">Total: {formatBRL(summary.totalValorBRL)}</span>
+        <span className="text-sm text-muted-foreground">
+          Total: {formatBRL(summary.totalValorBRL)}
+        </span>
       </div>
 
       <div className="overflow-x-auto rounded-lg border">

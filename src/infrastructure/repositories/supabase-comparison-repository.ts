@@ -53,12 +53,19 @@ export class SupabaseComparisonRepository implements IComparisonRepository {
     };
     const { error } = await this.supabase
       .from("comparison_sets")
-      .upsert({ id: set.id.value, dados: serialized, updated_at: new Date().toISOString() }, { onConflict: "id" });
+      .upsert(
+        { id: set.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar conjunto: ${error.message}`);
   }
 
   async findComparisonSetById(setId: string): Promise<ComparisonSet | null> {
-    const { data, error } = await this.supabase.from("comparison_sets").select("dados").eq("id", setId).single();
+    const { data, error } = await this.supabase
+      .from("comparison_sets")
+      .select("dados")
+      .eq("id", setId)
+      .single();
     if (error || !data) return null;
     return this.deserializeSet(data.dados as SerializedSet);
   }
@@ -66,7 +73,10 @@ export class SupabaseComparisonRepository implements IComparisonRepository {
   async findComparisonSetsByUser(userId: string): Promise<ComparisonSet[]> {
     const { data, error } = await this.supabase.from("comparison_sets").select("dados");
     if (error || !data) return [];
-    return data.map((d: { dados: SerializedSet }) => d.dados).filter((s) => s.userId === userId).map((s) => this.deserializeSet(s));
+    return data
+      .map((d: { dados: SerializedSet }) => d.dados)
+      .filter((s) => s.userId === userId)
+      .map((s) => this.deserializeSet(s));
   }
 
   async deleteComparisonSet(setId: string): Promise<void> {
@@ -83,12 +93,19 @@ export class SupabaseComparisonRepository implements IComparisonRepository {
     };
     const { error } = await this.supabase
       .from("scorecards")
-      .upsert({ id: scorecard.id.value, dados: serialized, updated_at: new Date().toISOString() }, { onConflict: "id" });
+      .upsert(
+        { id: scorecard.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
     if (error) throw new Error(`Falha ao salvar scorecard: ${error.message}`);
   }
 
   async findScorecardById(scorecardId: string): Promise<Scorecard | null> {
-    const { data, error } = await this.supabase.from("scorecards").select("dados").eq("id", scorecardId).single();
+    const { data, error } = await this.supabase
+      .from("scorecards")
+      .select("dados")
+      .eq("id", scorecardId)
+      .single();
     if (error || !data) return null;
     return this.deserializeScorecard(data.dados as SerializedScorecard);
   }

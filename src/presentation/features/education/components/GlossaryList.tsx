@@ -18,11 +18,16 @@ export function GlossaryList({ terms, onSelect }: GlossaryListProps) {
     <div className="space-y-4">
       {Object.entries(grouped).map(([category, categoryTerms]) => (
         <div key={category}>
-          <h3 className="text-xs font-medium uppercase text-muted-foreground mb-2">{categoryTerms[0].categoryLabel}</h3>
+          <h3 className="text-xs font-medium uppercase text-muted-foreground mb-2">
+            {categoryTerms[0].categoryLabel}
+          </h3>
           <div className="space-y-1">
             {categoryTerms.map((term) => (
-              <button key={term.id} onClick={() => onSelect(term)}
-                className="w-full text-left rounded-md px-3 py-2 text-sm hover:bg-muted transition">
+              <button
+                key={term.id}
+                onClick={() => onSelect(term)}
+                className="w-full text-left rounded-md px-3 py-2 text-sm hover:bg-muted transition"
+              >
                 {term.term}
               </button>
             ))}

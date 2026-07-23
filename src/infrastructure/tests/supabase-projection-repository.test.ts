@@ -8,7 +8,9 @@ function createMockSupabase() {
   const methods = ["select", "eq", "gte", "lte", "order", "single"];
 
   let _resolve: (value: unknown) => void;
-  const chainPromise = new Promise((resolve) => { _resolve = resolve; });
+  const chainPromise = new Promise((resolve) => {
+    _resolve = resolve;
+  });
 
   const query: QueryChain = {};
   for (const m of methods) {
@@ -75,7 +77,7 @@ describe("SupabaseProjectionRepository", () => {
           nome: "Petrobras",
           classe: "stock",
           quantidade: 100,
-          preco_medio: 25.50,
+          preco_medio: 25.5,
           valor_total: 2550,
           valorizacao: 500,
           rentabilidade_total: 10.5,
@@ -97,8 +99,32 @@ describe("SupabaseProjectionRepository", () => {
     it("retorna todas as posicoes do portfolio", async () => {
       query._resolve({
         data: [
-          { portfolio_id: "p1", asset_id: "a1", ticker: "PETR4", nome: "Petrobras", classe: "stock", quantidade: 100, preco_medio: 25.5, valor_total: 2550, valorizacao: 500, rentabilidade_total: 10, rentabilidade_periodo: 2 },
-          { portfolio_id: "p1", asset_id: "a2", ticker: "VALE3", nome: "Vale", classe: "stock", quantidade: 50, preco_medio: 68, valor_total: 3400, valorizacao: 200, rentabilidade_total: 8, rentabilidade_periodo: 1.5 },
+          {
+            portfolio_id: "p1",
+            asset_id: "a1",
+            ticker: "PETR4",
+            nome: "Petrobras",
+            classe: "stock",
+            quantidade: 100,
+            preco_medio: 25.5,
+            valor_total: 2550,
+            valorizacao: 500,
+            rentabilidade_total: 10,
+            rentabilidade_periodo: 2,
+          },
+          {
+            portfolio_id: "p1",
+            asset_id: "a2",
+            ticker: "VALE3",
+            nome: "Vale",
+            classe: "stock",
+            quantidade: 50,
+            preco_medio: 68,
+            valor_total: 3400,
+            valorizacao: 200,
+            rentabilidade_total: 8,
+            rentabilidade_periodo: 1.5,
+          },
         ],
         error: null,
       });
@@ -114,8 +140,18 @@ describe("SupabaseProjectionRepository", () => {
     it("retorna historico filtrado por periodo", async () => {
       query._resolve({
         data: [
-          { portfolio_id: "p1", data: "2026-01-01T00:00:00.000Z", patrimonio_total: 50000, patrimonio_investido: 40000 },
-          { portfolio_id: "p1", data: "2026-06-01T00:00:00.000Z", patrimonio_total: 80000, patrimonio_investido: 65000 },
+          {
+            portfolio_id: "p1",
+            data: "2026-01-01T00:00:00.000Z",
+            patrimonio_total: 50000,
+            patrimonio_investido: 40000,
+          },
+          {
+            portfolio_id: "p1",
+            data: "2026-06-01T00:00:00.000Z",
+            patrimonio_total: 80000,
+            patrimonio_investido: 65000,
+          },
         ],
         error: null,
       });
@@ -136,7 +172,15 @@ describe("SupabaseProjectionRepository", () => {
     it("retorna proventos filtrados por ano e ticker", async () => {
       query._resolve({
         data: [
-          { portfolio_id: "p1", asset_id: "a1", ticker: "PETR4", tipo: "DIVIDEND", valor: 500, data_pagamento: "2026-06-15T00:00:00.000Z", data_base: "2026-06-01T00:00:00.000Z" },
+          {
+            portfolio_id: "p1",
+            asset_id: "a1",
+            ticker: "PETR4",
+            tipo: "DIVIDEND",
+            valor: 500,
+            data_pagamento: "2026-06-15T00:00:00.000Z",
+            data_base: "2026-06-01T00:00:00.000Z",
+          },
         ],
         error: null,
       });

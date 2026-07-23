@@ -6,9 +6,10 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import type { FixedIncomeAsset } from "@/core/domain/fixed-income";
 
-export class ObterRendaFixaService
-  implements IApplicationService<ObterRendaFixaQuery, RendaFixaDto[]>
-{
+export class ObterRendaFixaService implements IApplicationService<
+  ObterRendaFixaQuery,
+  RendaFixaDto[]
+> {
   constructor(private readonly repo: IFixedIncomeRepository) {}
 
   async Execute(query: ObterRendaFixaQuery): Promise<RendaFixaDto[] | ApplicationError> {

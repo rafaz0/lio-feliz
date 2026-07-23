@@ -1,6 +1,11 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { FakeFinancialGoalRepository } from "@/infrastructure/fakes/fake-financial-goal-repository";
-import { GoalCategory, GoalStatus, FinancialGoal, FinancialGoalId } from "@/core/domain/financial-goal";
+import {
+  GoalCategory,
+  GoalStatus,
+  FinancialGoal,
+  FinancialGoalId,
+} from "@/core/domain/financial-goal";
 
 describe("FakeFinancialGoalRepository", () => {
   let repo: FakeFinancialGoalRepository;
@@ -12,7 +17,14 @@ describe("FakeFinancialGoalRepository", () => {
   describe("save and findById", () => {
     it("salva e recupera uma meta", async () => {
       const id = FinancialGoalId.create("g1");
-      const result = FinancialGoal.create(id, "Teste", 50000, new Date("2027-12-31"), GoalCategory.EDUCATION, "corr-1");
+      const result = FinancialGoal.create(
+        id,
+        "Teste",
+        50000,
+        new Date("2027-12-31"),
+        GoalCategory.EDUCATION,
+        "corr-1",
+      );
       expect(result.isSuccess).toBe(true);
       await repo.save(result.value!);
 
@@ -30,8 +42,22 @@ describe("FakeFinancialGoalRepository", () => {
 
   describe("findAll", () => {
     it("retorna todas as metas", async () => {
-      const g1 = FinancialGoal.create(FinancialGoalId.create("g1"), "G1", 1000, new Date("2027-01-01"), GoalCategory.OTHER, "corr-1").value!;
-      const g2 = FinancialGoal.create(FinancialGoalId.create("g2"), "G2", 2000, new Date("2028-01-01"), GoalCategory.TRAVEL, "corr-2").value!;
+      const g1 = FinancialGoal.create(
+        FinancialGoalId.create("g1"),
+        "G1",
+        1000,
+        new Date("2027-01-01"),
+        GoalCategory.OTHER,
+        "corr-1",
+      ).value!;
+      const g2 = FinancialGoal.create(
+        FinancialGoalId.create("g2"),
+        "G2",
+        2000,
+        new Date("2028-01-01"),
+        GoalCategory.TRAVEL,
+        "corr-2",
+      ).value!;
       await repo.save(g1);
       await repo.save(g2);
 
@@ -42,8 +68,22 @@ describe("FakeFinancialGoalRepository", () => {
 
   describe("findByCategory", () => {
     it("filtra por categoria", async () => {
-      const g1 = FinancialGoal.create(FinancialGoalId.create("g1"), "G1", 1000, new Date("2027-01-01"), GoalCategory.EMERGENCY, "corr-1").value!;
-      const g2 = FinancialGoal.create(FinancialGoalId.create("g2"), "G2", 2000, new Date("2028-01-01"), GoalCategory.RETIREMENT, "corr-2").value!;
+      const g1 = FinancialGoal.create(
+        FinancialGoalId.create("g1"),
+        "G1",
+        1000,
+        new Date("2027-01-01"),
+        GoalCategory.EMERGENCY,
+        "corr-1",
+      ).value!;
+      const g2 = FinancialGoal.create(
+        FinancialGoalId.create("g2"),
+        "G2",
+        2000,
+        new Date("2028-01-01"),
+        GoalCategory.RETIREMENT,
+        "corr-2",
+      ).value!;
       await repo.save(g1);
       await repo.save(g2);
 
@@ -55,7 +95,14 @@ describe("FakeFinancialGoalRepository", () => {
 
   describe("findByStatus", () => {
     it("filtra por status", async () => {
-      const g1 = FinancialGoal.create(FinancialGoalId.create("g1"), "G1", 1000, new Date("2027-01-01"), GoalCategory.OTHER, "corr-1").value!;
+      const g1 = FinancialGoal.create(
+        FinancialGoalId.create("g1"),
+        "G1",
+        1000,
+        new Date("2027-01-01"),
+        GoalCategory.OTHER,
+        "corr-1",
+      ).value!;
       await repo.save(g1);
 
       const active = await repo.findByStatus("p1", GoalStatus.ACTIVE);
@@ -65,7 +112,14 @@ describe("FakeFinancialGoalRepository", () => {
 
   describe("delete", () => {
     it("remove uma meta", async () => {
-      const g1 = FinancialGoal.create(FinancialGoalId.create("g1"), "G1", 1000, new Date("2027-01-01"), GoalCategory.OTHER, "corr-1").value!;
+      const g1 = FinancialGoal.create(
+        FinancialGoalId.create("g1"),
+        "G1",
+        1000,
+        new Date("2027-01-01"),
+        GoalCategory.OTHER,
+        "corr-1",
+      ).value!;
       await repo.save(g1);
       await repo.delete("g1");
 
@@ -76,7 +130,14 @@ describe("FakeFinancialGoalRepository", () => {
 
   describe("reset", () => {
     it("limpa todas as metas", async () => {
-      const g1 = FinancialGoal.create(FinancialGoalId.create("g1"), "G1", 1000, new Date("2027-01-01"), GoalCategory.OTHER, "corr-1").value!;
+      const g1 = FinancialGoal.create(
+        FinancialGoalId.create("g1"),
+        "G1",
+        1000,
+        new Date("2027-01-01"),
+        GoalCategory.OTHER,
+        "corr-1",
+      ).value!;
       await repo.save(g1);
       repo.reset();
 

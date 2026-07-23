@@ -132,10 +132,7 @@ export class SupabaseProjectionRepository implements IProjectionRepository {
     portfolioId: string,
     filtro: { ano?: number; ticker?: string },
   ): Promise<ProventoProjection[]> {
-    let query = this.supabase
-      .from("vw_proventos")
-      .select("*")
-      .eq("portfolio_id", portfolioId);
+    let query = this.supabase.from("vw_proventos").select("*").eq("portfolio_id", portfolioId);
 
     if (filtro.ano !== undefined) {
       const inicio = new Date(filtro.ano, 0, 1).toISOString();

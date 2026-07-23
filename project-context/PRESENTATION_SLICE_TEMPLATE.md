@@ -208,7 +208,7 @@ Executar conforme aplicável.
 
 Cobertura mínima:
 
->90%
+> 90%
 
 ---
 

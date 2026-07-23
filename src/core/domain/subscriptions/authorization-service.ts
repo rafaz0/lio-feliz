@@ -16,7 +16,12 @@ export class AuthorizationService {
     this.planCapabilities = planCapabilities ?? DEFAULT_CAPABILITIES;
   }
 
-  checkAccess(userId: string, requiredCapability: string, subscription: Subscription | null, plans: Plan[]): Result<boolean> {
+  checkAccess(
+    userId: string,
+    requiredCapability: string,
+    subscription: Subscription | null,
+    plans: Plan[],
+  ): Result<boolean> {
     const activePlan = subscription?.isActive
       ? plans.find((p) => p.id.value === subscription.planId)
       : plans.find((p) => p.tier === "FREE");

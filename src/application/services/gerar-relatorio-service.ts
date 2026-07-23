@@ -7,7 +7,10 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { ReportRenderingService, ReportTemplateId } from "@/core/domain/reports";
 
-export class GerarRelatorioService implements IApplicationService<GerarRelatorioCommand, ReportExecutionDto> {
+export class GerarRelatorioService implements IApplicationService<
+  GerarRelatorioCommand,
+  ReportExecutionDto
+> {
   private readonly renderingService = new ReportRenderingService();
 
   constructor(
@@ -54,7 +57,9 @@ export class GerarRelatorioService implements IApplicationService<GerarRelatorio
         sizeBytes: completed.sizeBytes,
       };
     } catch (err) {
-      const failed = execution.markFailed(err instanceof Error ? err.message : "Erro ao gerar relatório");
+      const failed = execution.markFailed(
+        err instanceof Error ? err.message : "Erro ao gerar relatório",
+      );
       await this.reportRepo.saveExecution(failed);
 
       return {
@@ -76,7 +81,11 @@ export class GerarRelatorioService implements IApplicationService<GerarRelatorio
     if (!command.templateId) errors.templateId = ["Campo obrigatório"];
     if (!command.portfolioId) errors.portfolioId = ["Campo obrigatório"];
     if (!command.format) errors.format = ["Formato é obrigatório"];
-    if (command.parameters?.startDate && command.parameters?.endDate && command.parameters.endDate < command.parameters.startDate) {
+    if (
+      command.parameters?.startDate &&
+      command.parameters?.endDate &&
+      command.parameters.endDate < command.parameters.startDate
+    ) {
       errors.parameters = ["Data final deve ser maior ou igual à data inicial"];
     }
 

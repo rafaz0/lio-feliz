@@ -20,7 +20,9 @@ export interface AlertRuleViewModel {
 }
 
 const SEVERITY_LABELS: Record<string, string> = {
-  info: "Informativo", warning: "Atencao", critical: "Critico",
+  info: "Informativo",
+  warning: "Atencao",
+  critical: "Critico",
 };
 
 export function toAlertViewModel(dto: AlertaDto): AlertViewModel {

@@ -16,13 +16,13 @@ Definir as regras de negócio do módulo **Integrações** do Investidor Pro. O 
 
 ## 2. Tipos de Integração Suportados
 
-| Tipo | Mecanismo | Provedores Suportados | Recursos |
-|------|-----------|-----------------------|----------|
-| **API Direta** | Chave de API (`API_KEY`) | BRAPI, Yahoo Finance | Cotações, dividendos, fundamentos |
-| **OAuth 2.0** | Fluxo OAuth (`OAUTH2`) | Banco Inter, XP Investimentos | Posição consolidada, extrato |
-| **Autenticação Básica** | Login + Senha (`BASIC_AUTH`) | Custom (self-hosted) | Dados proprietários |
-| **Sem Autenticação** | API pública (`NONE`) | Yahoo Finance (pública), CoinGecko | Cotações públicas |
-| **Importação de Arquivo** | Upload manual (Excel/CSV/JSON) | Corretoras sem API | Extrato de operações |
+| Tipo                      | Mecanismo                      | Provedores Suportados              | Recursos                          |
+| ------------------------- | ------------------------------ | ---------------------------------- | --------------------------------- |
+| **API Direta**            | Chave de API (`API_KEY`)       | BRAPI, Yahoo Finance               | Cotações, dividendos, fundamentos |
+| **OAuth 2.0**             | Fluxo OAuth (`OAUTH2`)         | Banco Inter, XP Investimentos      | Posição consolidada, extrato      |
+| **Autenticação Básica**   | Login + Senha (`BASIC_AUTH`)   | Custom (self-hosted)               | Dados proprietários               |
+| **Sem Autenticação**      | API pública (`NONE`)           | Yahoo Finance (pública), CoinGecko | Cotações públicas                 |
+| **Importação de Arquivo** | Upload manual (Excel/CSV/JSON) | Corretoras sem API                 | Extrato de operações              |
 
 ---
 
@@ -32,93 +32,74 @@ Definir as regras de negócio do módulo **Integrações** do Investidor Pro. O 
 
 Configuração de uma conexão com provedor externo.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `IntegrationConfigId` | Identificador imutável |
-| `provider` | `IntegrationProvider` | (`BRAPI`, `YAHOO_FINANCE`, `BANCO_INTER`, `XP_INVESTIMENTOS`, `CUSTOM`) |
-| `name` | `string` | Nome de exibição (ex: "Minha API BRAPI") |
-| `authType` | `IntegrationAuthType` | (`API_KEY`, `OAUTH2`, `BASIC_AUTH`, `NONE`) |
-| `status` | `IntegrationStatus` | (`ACTIVE`, `INACTIVE`, `ERROR`, `PENDING`) |
-| `lastSyncAt` | `Date` | Timestamp da última sincronização bem-sucedida |
-| `errorMessage` | `string` | Mensagem do último erro (se `status === ERROR`) |
-| `configData` | `Record<string, string>` | Dados de configuração chave-valor (ex: `{ apiKey: "..." }`) |
-| `createdAt` | `Date` | Data de criação |
-| `updatedAt` | `Date` | Data da última alteração |
+| Atributo       | Tipo                     | Regra                                                                   |
+| -------------- | ------------------------ | ----------------------------------------------------------------------- |
+| `id`           | `IntegrationConfigId`    | Identificador imutável                                                  |
+| `provider`     | `IntegrationProvider`    | (`BRAPI`, `YAHOO_FINANCE`, `BANCO_INTER`, `XP_INVESTIMENTOS`, `CUSTOM`) |
+| `name`         | `string`                 | Nome de exibição (ex: "Minha API BRAPI")                                |
+| `authType`     | `IntegrationAuthType`    | (`API_KEY`, `OAUTH2`, `BASIC_AUTH`, `NONE`)                             |
+| `status`       | `IntegrationStatus`      | (`ACTIVE`, `INACTIVE`, `ERROR`, `PENDING`)                              |
+| `lastSyncAt`   | `Date`                   | Timestamp da última sincronização bem-sucedida                          |
+| `errorMessage` | `string`                 | Mensagem do último erro (se `status === ERROR`)                         |
+| `configData`   | `Record<string, string>` | Dados de configuração chave-valor (ex: `{ apiKey: "..." }`)             |
+| `createdAt`    | `Date`                   | Data de criação                                                         |
+| `updatedAt`    | `Date`                   | Data da última alteração                                                |
 
 ### 3.2 `SyncLog` (Entidade)
 
 Registro de uma execução de sincronização.
 
-| Atributo | Tipo | Regra |
-|----------|------|-------|
-| `id` | `SyncLogId` | Identificador imutável |
-| `integrationId` | `string` | Integração que originou a sincronização |
-| `type` | `SyncType` | (`MANUAL`, `SCHEDULED`, `WEBHOOK`) |
-| `status` | `SyncStatus` | (`RUNNING`, `SUCCESS`, `PARTIAL`, `FAILED`) |
-| `startedAt` | `Date` | Início da sincronização |
-| `completedAt` | `Date` | Término da sincronização |
-| `recordsProcessed` | `number` | Quantidade de registros processados |
-| `errors` | `string[]` | Lista de erros ocorridos |
-| `message` | `string` | Mensagem de resumo |
+| Atributo           | Tipo         | Regra                                       |
+| ------------------ | ------------ | ------------------------------------------- |
+| `id`               | `SyncLogId`  | Identificador imutável                      |
+| `integrationId`    | `string`     | Integração que originou a sincronização     |
+| `type`             | `SyncType`   | (`MANUAL`, `SCHEDULED`, `WEBHOOK`)          |
+| `status`           | `SyncStatus` | (`RUNNING`, `SUCCESS`, `PARTIAL`, `FAILED`) |
+| `startedAt`        | `Date`       | Início da sincronização                     |
+| `completedAt`      | `Date`       | Término da sincronização                    |
+| `recordsProcessed` | `number`     | Quantidade de registros processados         |
+| `errors`           | `string[]`   | Lista de erros ocorridos                    |
+| `message`          | `string`     | Mensagem de resumo                          |
 
 ### 3.3 `ConnectionStatus` (Value Object)
 
 Status agregado de uma conexão, calculado a partir dos logs.
 
-| Atributo | Tipo | Descrição |
-|----------|------|-----------|
-| `lastSync` | `Date \| null` | Data da última sincronização |
-| `status` | `SyncStatus` | Status atual (`SUCCESS`, `PARTIAL`, `FAILED`) |
-| `totalErrors` | `number` | Total de erros acumulados |
+| Atributo      | Tipo           | Descrição                                     |
+| ------------- | -------------- | --------------------------------------------- |
+| `lastSync`    | `Date \| null` | Data da última sincronização                  |
+| `status`      | `SyncStatus`   | Status atual (`SUCCESS`, `PARTIAL`, `FAILED`) |
+| `totalErrors` | `number`       | Total de erros acumulados                     |
 
 ### 3.4 `IntegrationProvider` (Value Object)
 
 ```ts
 export type IntegrationProvider =
-  | "BRAPI"
-  | "YAHOO_FINANCE"
-  | "BANCO_INTER"
-  | "XP_INVESTIMENTOS"
-  | "CUSTOM";
+  "BRAPI" | "YAHOO_FINANCE" | "BANCO_INTER" | "XP_INVESTIMENTOS" | "CUSTOM";
 ```
 
 ### 3.5 `IntegrationAuthType` (Value Object)
 
 ```ts
-export type IntegrationAuthType =
-  | "API_KEY"
-  | "OAUTH2"
-  | "BASIC_AUTH"
-  | "NONE";
+export type IntegrationAuthType = "API_KEY" | "OAUTH2" | "BASIC_AUTH" | "NONE";
 ```
 
 ### 3.6 `IntegrationStatus` (Value Object)
 
 ```ts
-export type IntegrationStatus =
-  | "ACTIVE"
-  | "INACTIVE"
-  | "ERROR"
-  | "PENDING";
+export type IntegrationStatus = "ACTIVE" | "INACTIVE" | "ERROR" | "PENDING";
 ```
 
 ### 3.7 `SyncStatus` (Value Object)
 
 ```ts
-export type SyncStatus =
-  | "RUNNING"
-  | "SUCCESS"
-  | "PARTIAL"
-  | "FAILED";
+export type SyncStatus = "RUNNING" | "SUCCESS" | "PARTIAL" | "FAILED";
 ```
 
 ### 3.8 `SyncType` (Value Object)
 
 ```ts
-export type SyncType =
-  | "MANUAL"
-  | "SCHEDULED"
-  | "WEBHOOK";
+export type SyncType = "MANUAL" | "SCHEDULED" | "WEBHOOK";
 ```
 
 ### 3.9 `SyncOrchestrationService` (Serviço de Domínio)
@@ -156,13 +137,13 @@ Orquestra o ciclo de vida da sincronização, garantindo que não haja concorrê
 
 ## 6. Tratamento de Erros e Retry
 
-| Erro | Causa | Ação |
-|------|-------|------|
-| `InvalidIntegrationConfigError` | Configuração com dados insuficientes | Notificar usuário para revisar configuração |
-| `IntegrationNotFoundError` | `integrationId` não encontrado | Retornar 404 |
-| `SyncInProgressError` | Sync já em andamento | Informar usuário que sync já está rodando |
-| `ConnectionFailedError` | Falha de rede ou autenticação | Registrar erro, marcar integração como `ERROR`, agendar retry com backoff exponencial (3 tentativas: 1min, 5min, 15min) |
-| `InvalidSyncScheduleError` | Expressão cron inválida | Notificar usuário |
+| Erro                            | Causa                                | Ação                                                                                                                    |
+| ------------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `InvalidIntegrationConfigError` | Configuração com dados insuficientes | Notificar usuário para revisar configuração                                                                             |
+| `IntegrationNotFoundError`      | `integrationId` não encontrado       | Retornar 404                                                                                                            |
+| `SyncInProgressError`           | Sync já em andamento                 | Informar usuário que sync já está rodando                                                                               |
+| `ConnectionFailedError`         | Falha de rede ou autenticação        | Registrar erro, marcar integração como `ERROR`, agendar retry com backoff exponencial (3 tentativas: 1min, 5min, 15min) |
+| `InvalidSyncScheduleError`      | Expressão cron inválida              | Notificar usuário                                                                                                       |
 
 ### Política de Retry
 

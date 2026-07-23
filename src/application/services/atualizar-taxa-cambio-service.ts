@@ -6,9 +6,10 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { ExchangeRate, CurrencyPair } from "@/core/domain/international";
 
-export class AtualizarTaxaCambioService
-  implements IApplicationService<AtualizarTaxaCambioCommand, TaxaCambioDto>
-{
+export class AtualizarTaxaCambioService implements IApplicationService<
+  AtualizarTaxaCambioCommand,
+  TaxaCambioDto
+> {
   constructor(private readonly foreignRepo: IForeignAssetRepository) {}
 
   async Execute(command: AtualizarTaxaCambioCommand): Promise<TaxaCambioDto | ApplicationError> {
@@ -16,10 +17,7 @@ export class AtualizarTaxaCambioService
       return new ValidationError("VALID_ERROR", "Taxa de cambio deve ser maior que zero");
     }
 
-    const pair = CurrencyPair.create(
-      command.fromCurrency as any,
-      command.toCurrency as any,
-    );
+    const pair = CurrencyPair.create(command.fromCurrency as import("@/core/domain/international").CurrencyCode, command.toCurrency as import("@/core/domain/international").CurrencyCode);
 
     const rate = ExchangeRate.create(
       command.ticker,

@@ -81,8 +81,10 @@ describe("SupabaseSubscriptionRepository", () => {
       mockQuery.upsert.mockResolvedValue({ error: { message: "db error" } });
 
       const assinatura: Assinatura = {
-        usuarioId: "user-1", plano: "basic",
-        dataAtivacao: new Date(), dataExpiracao: null,
+        usuarioId: "user-1",
+        plano: "basic",
+        dataAtivacao: new Date(),
+        dataExpiracao: null,
         recursosLiberados: [],
       };
 
@@ -94,8 +96,20 @@ describe("SupabaseSubscriptionRepository", () => {
     it("retorna planos quando encontrados", async () => {
       mockQuery.select.mockResolvedValue({
         data: [
-          { plano_id: "p1", nome: "Basic", descricao: "Basico", preco_mensal: 0, recursos: ["import"] },
-          { plano_id: "p2", nome: "Premium", descricao: "Completo", preco_mensal: 29.90, recursos: ["import", "rebalance"] },
+          {
+            plano_id: "p1",
+            nome: "Basic",
+            descricao: "Basico",
+            preco_mensal: 0,
+            recursos: ["import"],
+          },
+          {
+            plano_id: "p2",
+            nome: "Premium",
+            descricao: "Completo",
+            preco_mensal: 29.9,
+            recursos: ["import", "rebalance"],
+          },
         ],
         error: null,
       });
@@ -104,7 +118,7 @@ describe("SupabaseSubscriptionRepository", () => {
 
       expect(result).toHaveLength(2);
       expect(result[0].planoId).toBe("p1");
-      expect(result[1].precoMensal).toBe(29.90);
+      expect(result[1].precoMensal).toBe(29.9);
     });
 
     it("retorna array vazio quando sem dados", async () => {

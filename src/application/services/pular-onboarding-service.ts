@@ -5,19 +5,27 @@ import type { IConfigurationRepository } from "@/application/ports/configuration
 import type { ApplicationError } from "@/application/errors/application-error";
 import { OnboardingFlow } from "@/core/domain/onboarding";
 
-export class PularOnboardingService implements IApplicationService<PularOnboardingCommand, OnboardingCompletoDto> {
+export class PularOnboardingService implements IApplicationService<
+  PularOnboardingCommand,
+  OnboardingCompletoDto
+> {
   private readonly flow = new OnboardingFlow();
 
   constructor(private readonly configRepo: IConfigurationRepository) {}
 
-  async Execute(command: PularOnboardingCommand): Promise<OnboardingCompletoDto | ApplicationError> {
+  async Execute(
+    command: PularOnboardingCommand,
+  ): Promise<OnboardingCompletoDto | ApplicationError> {
     const progress = this.flow.skipAll(command.userId);
-    await this.configRepo.saveOnboardingProgress(command.userId, JSON.stringify({
-      currentStep: progress.currentStep,
-      status: progress.status,
-      startedAt: progress.startedAt.toISOString(),
-      completedAt: progress.completedAt?.toISOString(),
-    }));
+    await this.configRepo.saveOnboardingProgress(
+      command.userId,
+      JSON.stringify({
+        currentStep: progress.currentStep,
+        status: progress.status,
+        startedAt: progress.startedAt.toISOString(),
+        completedAt: progress.completedAt?.toISOString(),
+      }),
+    );
 
     return {
       progress: {

@@ -1,7 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { ICommand } from "@/application/types";
-import type { ApplicationError, ComparacaoDto } from "@/presentation/shared/types/application-layer";
+import type {
+  ApplicationError,
+  ComparacaoDto,
+} from "@/presentation/shared/types/application-layer";
 import type { CriarComparacaoCommand } from "@/application/commands/criar-comparacao";
 import { COMPARISON_QUERY_KEYS } from "../queries";
 

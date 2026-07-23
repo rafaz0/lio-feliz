@@ -5,7 +5,10 @@ import { ReportList } from "../components/ReportList";
 import { ReportError } from "../components/ReportError";
 import { ReportLoading } from "../components/ReportLoading";
 import { ReportExecutionItem } from "../components/ReportExecutionItem";
-import type { ReportTemplateCardViewModel, ReportExecutionHistoryViewModel } from "../types/report.view-model";
+import type {
+  ReportTemplateCardViewModel,
+  ReportExecutionHistoryViewModel,
+} from "../types/report.view-model";
 
 const mockTemplate: ReportTemplateCardViewModel = {
   id: "carteira-consolidada",

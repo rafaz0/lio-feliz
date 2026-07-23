@@ -39,10 +39,9 @@ describe("B3CsvGateway", () => {
   });
 
   it("parse CSV sem cabecalho", async () => {
-    const csv = [
-      "COMPRA,PETR4,50,30.00,15/01/2026",
-      "DIVIDENDO,PETR4,1,2.50,20/01/2026",
-    ].join("\n");
+    const csv = ["COMPRA,PETR4,50,30.00,15/01/2026", "DIVIDENDO,PETR4,1,2.50,20/01/2026"].join(
+      "\n",
+    );
 
     const result = await gateway.ObterDadosImportacao("b3-csv", {
       origem: "b3-csv",
@@ -55,7 +54,7 @@ describe("B3CsvGateway", () => {
   });
 
   it("parse CSV com valores em formato brasileiro", async () => {
-    const csv = "COMPRA,PETR4,10,\"25,50\",15/01/2026";
+    const csv = 'COMPRA,PETR4,10,"25,50",15/01/2026';
 
     const result = await gateway.ObterDadosImportacao("b3-csv", {
       origem: "b3-csv",

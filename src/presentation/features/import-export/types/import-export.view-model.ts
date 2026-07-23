@@ -1,4 +1,8 @@
-import type { ImportJobDto, HistoricoImportacaoDto, ModelosExportacaoDto } from "@/application/dtos/importacao";
+import type {
+  ImportJobDto,
+  HistoricoImportacaoDto,
+  ModelosExportacaoDto,
+} from "@/application/dtos/importacao";
 
 export interface ImportJobViewModel {
   readonly id: string;
@@ -23,7 +27,8 @@ export interface ModeloExportacaoViewModel {
 }
 
 export function toImportJobViewModel(dto: ImportJobDto): ImportJobViewModel {
-  const progress = dto.totalRecords > 0 ? Math.round((dto.processedRecords / dto.totalRecords) * 100) : 0;
+  const progress =
+    dto.totalRecords > 0 ? Math.round((dto.processedRecords / dto.totalRecords) * 100) : 0;
   return {
     id: dto.id,
     fileName: dto.fileName,

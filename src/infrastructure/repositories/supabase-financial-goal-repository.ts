@@ -29,10 +29,12 @@ export class SupabaseFinancialGoalRepository implements IFinancialGoalRepository
 
   async save(goal: FinancialGoal): Promise<void> {
     const serialized = this.serialize(goal);
-    const { error } = await this.supabase.from("financial_goals").upsert(
-      { id: goal.id.value, dados: serialized, updated_at: new Date().toISOString() },
-      { onConflict: "id" },
-    );
+    const { error } = await this.supabase
+      .from("financial_goals")
+      .upsert(
+        { id: goal.id.value, dados: serialized, updated_at: new Date().toISOString() },
+        { onConflict: "id" },
+      );
 
     if (error) {
       throw new Error(`Failed to save financial goal: ${error.message}`);

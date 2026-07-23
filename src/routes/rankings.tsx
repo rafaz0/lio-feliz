@@ -99,7 +99,7 @@ function RankingsPage() {
   }, [filters]);
 
   const rankedStocks = useMemo(() => {
-    let list = [...filteredStocks];
+    const list = [...filteredStocks];
     switch (tab) {
       case "dy":
         return list.sort((a, b) => b.fundamentals.dy - a.fundamentals.dy);
@@ -133,7 +133,7 @@ function RankingsPage() {
   }, [tab]);
 
   const rankedFiis = useMemo(() => {
-    let list = [...filteredFiis];
+    const list = [...filteredFiis];
     switch (fiiTab) {
       case "dy":
         return list.sort((a, b) => b.dy - a.dy);

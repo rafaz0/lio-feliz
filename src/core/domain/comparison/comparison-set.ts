@@ -45,7 +45,10 @@ export class ComparisonSet extends ValueObject<ComparisonSetProps> {
   }
 
   cacheHash(): string {
-    const tickers = this.props.entries.map((e) => e.assetTicker).sort().join(",");
+    const tickers = this.props.entries
+      .map((e) => e.assetTicker)
+      .sort()
+      .join(",");
     return `${this.props.id.value}:${tickers}`;
   }
 }

@@ -6,7 +6,10 @@ import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { OnboardingFlow } from "@/core/domain/onboarding";
 
-export class AvancarPassoService implements IApplicationService<AvancarPassoCommand, OnboardingCompletoDto> {
+export class AvancarPassoService implements IApplicationService<
+  AvancarPassoCommand,
+  OnboardingCompletoDto
+> {
   private readonly flow = new OnboardingFlow();
 
   constructor(private readonly configRepo: IConfigurationRepository) {}
@@ -24,12 +27,15 @@ export class AvancarPassoService implements IApplicationService<AvancarPassoComm
     const result = this.flow.completeStep(progress, currentStepDef);
     if (result.isFailure) return new NotFoundError("Step", "completion_failed");
 
-    await this.configRepo.saveOnboardingProgress(command.userId, JSON.stringify({
-      currentStep: result.value!.currentStep,
-      status: result.value!.status,
-      startedAt: result.value!.startedAt.toISOString(),
-      completedAt: result.value!.completedAt?.toISOString(),
-    }));
+    await this.configRepo.saveOnboardingProgress(
+      command.userId,
+      JSON.stringify({
+        currentStep: result.value!.currentStep,
+        status: result.value!.status,
+        startedAt: result.value!.startedAt.toISOString(),
+        completedAt: result.value!.completedAt?.toISOString(),
+      }),
+    );
 
     const updatedProgress = result.value!;
     const currentStep = this.flow.getStepByOrder(updatedProgress.currentStep);
@@ -44,16 +50,26 @@ export class AvancarPassoService implements IApplicationService<AvancarPassoComm
         isSkipped: updatedProgress.isSkipped,
         startedAt: updatedProgress.startedAt.toISOString(),
       },
-      currentStep: currentStep ? {
-        order: currentStep.order, stepType: currentStep.stepType,
-        title: currentStep.title, description: currentStep.description,
-        optional: currentStep.optional, isCurrent: true,
-      } : null,
-      nextStep: nextStep ? {
-        order: nextStep.order, stepType: nextStep.stepType,
-        title: nextStep.title, description: nextStep.description,
-        optional: nextStep.optional, isCurrent: false,
-      } : null,
+      currentStep: currentStep
+        ? {
+            order: currentStep.order,
+            stepType: currentStep.stepType,
+            title: currentStep.title,
+            description: currentStep.description,
+            optional: currentStep.optional,
+            isCurrent: true,
+          }
+        : null,
+      nextStep: nextStep
+        ? {
+            order: nextStep.order,
+            stepType: nextStep.stepType,
+            title: nextStep.title,
+            description: nextStep.description,
+            optional: nextStep.optional,
+            isCurrent: false,
+          }
+        : null,
       hasMoreSteps: this.flow.hasMoreSteps(updatedProgress.currentStep),
     };
   }

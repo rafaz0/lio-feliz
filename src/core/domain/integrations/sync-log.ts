@@ -24,29 +24,40 @@ export class SyncLog extends ValueObject<SyncLog> {
     private _recordsProcessed: number = 0,
     private _errors: string[] = [],
     private _message?: string,
-  ) { super(); }
+  ) {
+    super();
+  }
 
-  get id(): SyncLogId { return this._id; }
-  get integrationId(): string { return this._integrationId; }
-  get type(): SyncType { return this._type; }
-  get status(): SyncStatus { return this._status; }
-  get startedAt(): Date { return this._startedAt; }
-  get completedAt(): Date | undefined { return this._completedAt; }
-  get recordsProcessed(): number { return this._recordsProcessed; }
-  get errors(): string[] { return [...this._errors]; }
-  get message(): string | undefined { return this._message; }
+  get id(): SyncLogId {
+    return this._id;
+  }
+  get integrationId(): string {
+    return this._integrationId;
+  }
+  get type(): SyncType {
+    return this._type;
+  }
+  get status(): SyncStatus {
+    return this._status;
+  }
+  get startedAt(): Date {
+    return this._startedAt;
+  }
+  get completedAt(): Date | undefined {
+    return this._completedAt;
+  }
+  get recordsProcessed(): number {
+    return this._recordsProcessed;
+  }
+  get errors(): string[] {
+    return [...this._errors];
+  }
+  get message(): string | undefined {
+    return this._message;
+  }
 
-  static create(props: {
-    integrationId: string;
-    type: SyncType;
-  }): SyncLog {
-    return new SyncLog(
-      SyncLogId.create(),
-      props.integrationId,
-      props.type,
-      "RUNNING",
-      new Date(),
-    );
+  static create(props: { integrationId: string; type: SyncType }): SyncLog {
+    return new SyncLog(SyncLogId.create(), props.integrationId, props.type, "RUNNING", new Date());
   }
 
   complete(recordsProcessed: number, message?: string): void {

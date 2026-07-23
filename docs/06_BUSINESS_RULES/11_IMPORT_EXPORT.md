@@ -16,11 +16,11 @@ Definir as regras de negócio do módulo **Import/Export** do Investidor Pro. O 
 
 ## 2. Tipos de Importação Suportados
 
-| Formato | Fonte | Extensão(es) | Provedor | Recursos Suportados |
-|---------|--------|-------------|-----------|---------------------|
-| **Excel** | Sistemas bancários, corretoras | `.xlsx`, `.xlsm` | BRAPI, Banco X, XP Investimentos | Códigos de ativos, nomes, preços, quantidades, datas, tipos de operação, grupos de conta |
-| **CSV** | Plataformas externas, customizadas | `.csv` | Yahoo Finance BR, arquivos locais | Campo delimitado por vírgula, opcional cabeçalho, opcional encoding UTF-8 |
-| **JSON** | APIs (BRAPI, Yahoo Finance) | `.json` | BRAPI, Yahoo Finance | Estrutura standard (`operacoes`, `dividendos`, `stock_dividends`) |
+| Formato   | Fonte                              | Extensão(es)     | Provedor                          | Recursos Suportados                                                                      |
+| --------- | ---------------------------------- | ---------------- | --------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Excel** | Sistemas bancários, corretoras     | `.xlsx`, `.xlsm` | BRAPI, Banco X, XP Investimentos  | Códigos de ativos, nomes, preços, quantidades, datas, tipos de operação, grupos de conta |
+| **CSV**   | Plataformas externas, customizadas | `.csv`           | Yahoo Finance BR, arquivos locais | Campo delimitado por vírgula, opcional cabeçalho, opcional encoding UTF-8                |
+| **JSON**  | APIs (BRAPI, Yahoo Finance)        | `.json`          | BRAPI, Yahoo Finance              | Estrutura standard (`operacoes`, `dividendos`, `stock_dividends`)                        |
 
 ---
 
@@ -30,20 +30,20 @@ Definir as regras de negócio do módulo **Import/Export** do Investidor Pro. O 
 
 Representa um **trabalho** importação processado por um `ImportInterpreter`. Ele contém o arquivo bruto, resultado da análise e status do processamento.
 
-| Atributo | Tipo | Regra |
-|----------|------|------|
-| `id` | `ImportJobId` | Identificador imutável |
-| `fileName` | `string` | Nome do arquivo original |
-| `fileSize` | `number` | Tamanho do arquivo em bytes |
-| `source` | `string` | Provedor de origem (`BRAPI`, `BANC00XXXX`, `XP_INVEST`, `YAHOO_BR`, `LOCAL`) |
-| `format` | `ImportFormat` | Formato (`EXCEL`, `CSV`, `JSON`) |
-| `totalRecords` | `number` | Total de linhas no arquivo |
-| `processedRecords` | `number` | Quantas linhas foram processadas com sucesso |
-| `errorRecords` | `number` | Quantas linhas falharam na validação |
-| `errors` | `ImportError[]` | Mensagens de erro por registro |
-| `status` | `ImportJobStatus` | (`PENDING`, `PROCESSING`, `COMPLETED`, `FAILED`) |
-| `createdAt` | `Date` | Marcação de criação |
-| `completedAt` | `Date` | Marcação de conclusão (se concluído) |
+| Atributo           | Tipo              | Regra                                                                        |
+| ------------------ | ----------------- | ---------------------------------------------------------------------------- |
+| `id`               | `ImportJobId`     | Identificador imutável                                                       |
+| `fileName`         | `string`          | Nome do arquivo original                                                     |
+| `fileSize`         | `number`          | Tamanho do arquivo em bytes                                                  |
+| `source`           | `string`          | Provedor de origem (`BRAPI`, `BANC00XXXX`, `XP_INVEST`, `YAHOO_BR`, `LOCAL`) |
+| `format`           | `ImportFormat`    | Formato (`EXCEL`, `CSV`, `JSON`)                                             |
+| `totalRecords`     | `number`          | Total de linhas no arquivo                                                   |
+| `processedRecords` | `number`          | Quantas linhas foram processadas com sucesso                                 |
+| `errorRecords`     | `number`          | Quantas linhas falharam na validação                                         |
+| `errors`           | `ImportError[]`   | Mensagens de erro por registro                                               |
+| `status`           | `ImportJobStatus` | (`PENDING`, `PROCESSING`, `COMPLETED`, `FAILED`)                             |
+| `createdAt`        | `Date`            | Marcação de criação                                                          |
+| `completedAt`      | `Date`            | Marcação de conclusão (se concluído)                                         |
 
 ### 3.2 `ImportFormat` (Value Object)
 
@@ -65,30 +65,30 @@ export type ImportJobStatus = "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED";
 
 Resultado da validação de um registro de importação.
 
-| Atributo | Tipo | Regra |
-|----------|------|------|
-| `isValid` | `boolean` | `true` se registro válido |
-| `errors` | `ValidationError[]` | Mensagens de erro de validação |
+| Atributo         | Tipo                     | Regra                           |
+| ---------------- | ------------------------ | ------------------------------- |
+| `isValid`        | `boolean`                | `true` se registro válido       |
+| `errors`         | `ValidationError[]`      | Mensagens de erro de validação  |
 | `normalizedData` | `ImportRecordNormalized` | Campos padronizados por formato |
 
 ### 3.5 `ImportRecordNormalized` (Value Object)
 
 Campos normalizados por formato.
 
-| Campo | Tipo | Notas |
-|-------|------|-------|
-| `assetId` | `string` | Ticker normalizado (ex: `PETR4`, `ABEV3`) |
-| `ticker` | `string` | Nome do ativo no arquivo original |
-| `operation` | `OperationSide` | `BUY`, `SELL`, `DIVIDEND`, `BONUS` |
-| `quantity` | `number` | Cotas compradas/vendidas por provento |
-| `unitPrice` | `number` | Preço unitário registrado |
-| `date` | `Date` | Data local (DD/MM/AAAA) parseada para UTC |
-| `settlementDate` | `Date` | Data de liquidação (se presente) |
-| `currency` | `string` | Moeda (`BRL`, `USD`) |
-| `brokerageCode` | `string` | Código de corretagem (`BANC00XXXX`) |
-| `accountGroup` | `string` | Grupo de conta (`CARTEIRA`, `POUPANCA`) |
-| `strategy` | `string` | Estratégia (`EMERGENCY`, `RETIREMENT`, `TRAVEL`) para ativos brasileiros opcionais |
-| `notes` | `string` | Campo livre, pode conter observações |
+| Campo            | Tipo            | Notas                                                                              |
+| ---------------- | --------------- | ---------------------------------------------------------------------------------- |
+| `assetId`        | `string`        | Ticker normalizado (ex: `PETR4`, `ABEV3`)                                          |
+| `ticker`         | `string`        | Nome do ativo no arquivo original                                                  |
+| `operation`      | `OperationSide` | `BUY`, `SELL`, `DIVIDEND`, `BONUS`                                                 |
+| `quantity`       | `number`        | Cotas compradas/vendidas por provento                                              |
+| `unitPrice`      | `number`        | Preço unitário registrado                                                          |
+| `date`           | `Date`          | Data local (DD/MM/AAAA) parseada para UTC                                          |
+| `settlementDate` | `Date`          | Data de liquidação (se presente)                                                   |
+| `currency`       | `string`        | Moeda (`BRL`, `USD`)                                                               |
+| `brokerageCode`  | `string`        | Código de corretagem (`BANC00XXXX`)                                                |
+| `accountGroup`   | `string`        | Grupo de conta (`CARTEIRA`, `POUPANCA`)                                            |
+| `strategy`       | `string`        | Estratégia (`EMERGENCY`, `RETIREMENT`, `TRAVEL`) para ativos brasileiros opcionais |
+| `notes`          | `string`        | Campo livre, pode conter observações                                               |
 
 ---
 
@@ -131,6 +131,7 @@ Campos normalizados por formato.
 ## 7. Reuso de O2/BR-09 (Decisão PI-009)
 
 O registro de operações importadas **reutiliza fluxos existentes**:
+
 - `RegistrarOperacaoCommand` → ´RegistrarOperacaoService` (já existente, EWO-005)
 - `inferAssetType` → já reconhece ativos brasileiros e internacionais
 - `RegistrarCupomCommand` → usado para cupom original (ou bonificação) com as mesmas regras

@@ -21,11 +21,21 @@ export interface ExportJobViewModel {
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  PENDING: "Pendente", PROCESSING: "Processando", COMPLETED: "Concluido", FAILED: "Falhou",
+  PENDING: "Pendente",
+  PROCESSING: "Processando",
+  COMPLETED: "Concluido",
+  FAILED: "Falhou",
 };
 
 export function toExportTemplateViewModel(dto: ExportTemplateDto): ExportTemplateViewModel {
-  return { id: dto.id, name: dto.name, description: dto.description, format: dto.format, version: dto.version, isBuiltIn: dto.isBuiltIn };
+  return {
+    id: dto.id,
+    name: dto.name,
+    description: dto.description,
+    format: dto.format,
+    version: dto.version,
+    isBuiltIn: dto.isBuiltIn,
+  };
 }
 
 export function toExportTemplateViewModels(dtos: ExportTemplateDto[]): ExportTemplateViewModel[] {
@@ -34,9 +44,12 @@ export function toExportTemplateViewModels(dtos: ExportTemplateDto[]): ExportTem
 
 export function toExportJobViewModel(dto: ExportJobDto): ExportJobViewModel {
   return {
-    id: dto.id, templateId: dto.templateId, status: dto.status,
+    id: dto.id,
+    templateId: dto.templateId,
+    status: dto.status,
     statusLabel: STATUS_LABELS[dto.status] ?? dto.status,
-    checksum: dto.checksum, sizeBytes: dto.sizeBytes,
+    checksum: dto.checksum,
+    sizeBytes: dto.sizeBytes,
     requestedAt: new Date(dto.requestedAt).toLocaleDateString("pt-BR"),
     hasFile: !!dto.fileUrl,
   };

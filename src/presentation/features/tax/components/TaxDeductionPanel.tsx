@@ -37,13 +37,13 @@ export function TaxDeductionPanel({
         </div>
         <div className="space-y-1">
           <p className="text-xs text-muted-foreground">Total Prejuízo</p>
-          <p className="text-base font-semibold tabular-nums">
-            {formatBRL(totalPrejuizo)}
-          </p>
+          <p className="text-base font-semibold tabular-nums">{formatBRL(totalPrejuizo)}</p>
         </div>
         <div className="space-y-1">
           <p className="text-xs text-muted-foreground">Saldo a Pagar</p>
-          <p className={`text-base font-semibold tabular-nums ${saldoAPagar > 0 ? "text-red-600" : "text-green-600"}`}>
+          <p
+            className={`text-base font-semibold tabular-nums ${saldoAPagar > 0 ? "text-red-600" : "text-green-600"}`}
+          >
             {saldoAPagar > 0 ? formatBRL(saldoAPagar) : "R$ 0,00"}
           </p>
         </div>

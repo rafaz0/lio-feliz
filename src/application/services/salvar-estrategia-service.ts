@@ -6,9 +6,10 @@ import { ValidationError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 import { Strategy, StrategyId } from "@/core/domain/backtests";
 
-export class SalvarEstrategiaService
-  implements IApplicationService<SalvarEstrategiaCommand, StrategyDto>
-{
+export class SalvarEstrategiaService implements IApplicationService<
+  SalvarEstrategiaCommand,
+  StrategyDto
+> {
   constructor(private readonly backtestRepo: IBacktestRepository) {}
 
   async Execute(command: SalvarEstrategiaCommand): Promise<StrategyDto | ApplicationError> {

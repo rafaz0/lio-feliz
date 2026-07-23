@@ -14,12 +14,12 @@ Definir os formatos de exportação suportados pelo módulo de Exportação Avan
 
 ## 2. Formatos Suportados
 
-| Formato | Extensão | Uso Principal | Separação |
-|---------|----------|---------------|-----------|
-| PDF | .pdf | DIRPF oficial, relatórios regulatórios, extratos | Layout da Receita Federal |
-| CSV | .csv | Planilhas de dados, importação em outras ferramentas | `;` (ponto e vírgula) |
-| JSON | .json | Exportação programática, APIs | UTF-8 sem BOM |
-| XLSX | .xlsx | Planilhas formatadas para análise | Estrutura Office Open XML |
+| Formato | Extensão | Uso Principal                                        | Separação                 |
+| ------- | -------- | ---------------------------------------------------- | ------------------------- |
+| PDF     | .pdf     | DIRPF oficial, relatórios regulatórios, extratos     | Layout da Receita Federal |
+| CSV     | .csv     | Planilhas de dados, importação em outras ferramentas | `;` (ponto e vírgula)     |
+| JSON    | .json    | Exportação programática, APIs                        | UTF-8 sem BOM             |
+| XLSX    | .xlsx    | Planilhas formatadas para análise                    | Estrutura Office Open XML |
 
 ---
 
@@ -75,10 +75,8 @@ Estrutura JSON padronizada:
   "checksum": "sha256:abc123...",
   "data": {
     "portfolioId": "port-123",
-    "totalValue": 100000.00,
-    "assets": [
-      { "ticker": "PETR4", "type": "stock", "quantity": 100, "total": 3850.00 }
-    ]
+    "totalValue": 100000.0,
+    "assets": [{ "ticker": "PETR4", "type": "stock", "quantity": 100, "total": 3850.0 }]
   }
 }
 ```
@@ -112,11 +110,11 @@ O checksum é armazenado em `ExportJob.checksum` e pode ser verificado posterior
 
 Para exportações com muitos dados (>10MB estimados):
 
-| Técnica | Descrição |
-|---------|-----------|
-| Chunked rendering | Processar dados em lotes de 1000 registros |
-| Byte streaming | Upload progressivo para Supabase Storage durante a composição |
-| Timeout | Job expira após 5 minutos de processamento |
+| Técnica           | Descrição                                                     |
+| ----------------- | ------------------------------------------------------------- |
+| Chunked rendering | Processar dados em lotes de 1000 registros                    |
+| Byte streaming    | Upload progressivo para Supabase Storage durante a composição |
+| Timeout           | Job expira após 5 minutos de processamento                    |
 
 ---
 

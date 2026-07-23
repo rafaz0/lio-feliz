@@ -9,9 +9,10 @@ import { FixedIncomeAsset } from "@/core/domain/fixed-income";
 import { FixedIncomeId } from "@/core/domain/fixed-income";
 import { convertDomainError } from "@/application/error-converter";
 
-export class RegistrarCupomService
-  implements IApplicationService<RegistrarCupomCommand, RendaFixaDto>
-{
+export class RegistrarCupomService implements IApplicationService<
+  RegistrarCupomCommand,
+  RendaFixaDto
+> {
   constructor(private readonly repo: IFixedIncomeRepository) {}
 
   async Execute(command: RegistrarCupomCommand): Promise<RendaFixaDto | ApplicationError> {
@@ -64,7 +65,8 @@ export class RegistrarCupomService
     const errors: Record<string, string[]> = {};
 
     if (!command.portfolioId) errors.portfolioId = ["Campo obrigatório"];
-    if (!command.ticker || command.ticker.trim().length === 0) errors.ticker = ["Ticket é obrigatório"];
+    if (!command.ticker || command.ticker.trim().length === 0)
+      errors.ticker = ["Ticket é obrigatório"];
     if (!command.name || command.name.trim().length === 0) errors.name = ["Nome é obrigatório"];
     if (!command.institution || command.institution.trim().length === 0)
       errors.institution = ["Instituição é obrigatória"];

@@ -6,11 +6,7 @@ interface GoalProgressProps {
 
 const HEIGHT = { sm: "h-1.5", md: "h-2.5", lg: "h-4" };
 
-export function GoalProgress({
-  percentage,
-  size = "md",
-  showLabel = true,
-}: GoalProgressProps) {
+export function GoalProgress({ percentage, size = "md", showLabel = true }: GoalProgressProps) {
   const clamped = Math.min(100, Math.max(0, percentage));
   const barColor =
     clamped >= 100

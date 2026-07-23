@@ -1,10 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { ICommand } from "@/application/types";
-import type {
-  ApplicationError,
-  MetaListDto,
-} from "@/presentation/shared/types/application-layer";
+import type { ApplicationError, MetaListDto } from "@/presentation/shared/types/application-layer";
 import type { AtualizarMetaCommand } from "@/application/commands/atualizar-meta";
 import { GOALS_QUERY_KEYS } from "../queries";
 import { toGoalViewModel, type GoalViewModel } from "../types/goals.view-model";
@@ -42,9 +39,7 @@ export function useUpdateGoalMutation(): UseUpdateGoalMutationResult {
         ...(input.targetDate !== undefined && { targetDate: input.targetDate }),
       };
 
-      const result = await dispatcher.DispatchCommand<MetaListDto>(
-        command as unknown as ICommand,
-      );
+      const result = await dispatcher.DispatchCommand<MetaListDto>(command as unknown as ICommand);
 
       if (result instanceof Error) {
         throw result;

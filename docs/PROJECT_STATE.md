@@ -117,62 +117,62 @@
 
 # Últimas Alterações
 
-| Data       | Alteração                                                                                                                                                                                      |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 09/07/2026 | Consolidação nº 1 concluída                                                                                                                                                                    |
-| 09/07/2026 | Sprint de Estabilização nº 1: auditoria + correções documentais                                                                                                                                |
-| 09/07/2026 | 02_CORPORATE_ACTION_ENGINE.md v1.1 — escopo corrigido                                                                                                                                          |
-| 09/07/2026 | 19_GLOSSARY.md — Vocabulário Oficial do Projeto                                                                                                                                                |
-| 09/07/2026 | Micro Sprint de Estabilização nº 2 — correção da ordem de leitura                                                                                                                              |
-| 09/07/2026 | 02_TRANSACTIONS.md v0.9 — Working Draft criado                                                                                                                                                 |
-| 12/07/2026 | PS#030B — IA-015, IA-025, IA-026, PG-019, OP-002, OP-003                                                                                                                                       |
-| 12/07/2026 | PS#030C — IA-016, IA-027, OP-007, Fluxo Evidências Externas                                                                                                                                    |
-| 12/07/2026 | PS#030D (Prompt 1) — IA-028, IA-029, OP-008, OP-009, Painel Operacional                                                                                                                        |
-| 12/07/2026 | Emenda PS#030D — Ritual OP-002 inomitível, OP-010, OP-011, PS_TEMPLATE.md                                                                                                                      |
-| 12/07/2026 | Emenda Final PS#030D — OP-012, IA-026, Backlog Estratégico (BK-001, BK-002)                                                                                                                    |
-| 12/07/2026 | PS#031 (Prompt 1) — PROJECT_BOOTSTRAP.md criado. Nova camada documental de inicialização rápida.                                                                                               |
-| 12/07/2026 | PS#032 (Prompt 2) — IA-030, Strategic Backlog, Fonte Canônica, AI_CONTEXT simplificado.                                                                                                        |
-| 12/07/2026 | PS#033 (Prompt 3) — Regeneração Global. Ordem de Precedência. Marco Documentação Consolidada. Fim do ciclo metodológico.                                                                       |
-| 12/07/2026 | PROJECT_BOOTSTRAP v2.0 (Runtime Operacional). AI_CONTEXT v1.8 simplificado.                                                                                                                    |
-| 12/07/2026 | Auditoria de Runtime — Bootstrap v2.0 comprovadamente autossuficiente. Prompt 1 e 2 de 2 concluídos.                                                                                           |
-| 12/07/2026 | Continuidade Arquitetural (IA-031). Resumo Operacional Canônico obrigatório. Bootstrap v2.1 com PI-001 completo.                                                                               |
-| 12/07/2026 | GS-001.1 — OP-002 evoluído. ❤️ Saúde do Chat classificado 🟢🟡🔴. IA-032 Gatilhos Operacionais. Bootstrap v2.3.                                                                                |
-| 12/07/2026 | OP-002 consolidado como Fonte Canônica exclusiva da ❤️ Saúde do Chat. Cópia removida do DEVELOPMENT_METHODOLOGY.md. Bootstrap v2.4.                                                            |
-| 12/07/2026 | Fluxo de Engenharia (PI → EWO → ER) formalizado. DEVELOPMENT_METHODOLOGY.md v2.0. Bootstrap v2.5.                                                                                              |
-| 12/07/2026 | Versionamento e Imutabilidade das PI. DEVELOPMENT_METHODOLOGY.md v2.1. Bootstrap v2.6.                                                                                                         |
-| 12/07/2026 | PI-001 v0.1 (Draft) — Interpretation Layer materializada. Bootstrap v2.7.                                                                                                                      |
-| 13/07/2026 | Consolidação Metodológica — Governança das PI e Gestão de Backlog. Papéis das Ferramentas, IA-033/034/035. DEVELOPMENT_METHODOLOGY.md v2.2. Bootstrap v2.8.                                    |
-| 13/07/2026 | Consolidação Arquitetural — Classificação das Decisões Estratégicas. Universalidade e Multi-Mercado na Constituição. BK-006 e BK-007. IA-036. DEVELOPMENT_METHODOLOGY.md v2.3. Bootstrap v2.9. |
-| 13/07/2026 | Engineering Outlook (EO-001). Seção padronizada de planejamento da próxima PI no Bootstrap. Bootstrap v2.10.                                                                                   |
-| 13/07/2026 | ER-001 — Engineering Review aprovada. PI-001 v1.0 Approved. Bootstrap v2.11.                                                                                                                   |
-| 13/07/2026 | Ajuste Metodológico — Prioridade Arquitetural. PI-002 antes de EWO-001. Bootstrap v2.12.                                                                                                       |
-| 13/07/2026 | OP-015 + Baseline Arquitetural. Bootstrap v2.20. Custo documental como requisito.                                                                                                              |
-| 13/07/2026 | ER-003 — Engineering Review da PI-003 aprovada. PI-003 v1.0 Approved. Engineering N1 consolidado. Bootstrap v2.19.                                                                             |
-| 13/07/2026 | G-001 — Sprint de Governança. GOV-001 e GOV-002 implementados. OP-013/OP-014. Bootstrap v2.18.                                                                                                 |
-| 13/07/2026 | PI-003 definida: Canonical Operations & Event Flow Architecture. Bootstrap v2.17.                                                                                                              |
-| 13/07/2026 | ER-002 — Engineering Review da PI-002 aprovada. PI-002 v1.0 Approved. Bootstrap v2.16.                                                                                                         |
-| 13/07/2026 | PI-002 v0.1 (Draft) — Canonical Investment Model materializada. GOV-001 a GOV-005. Bootstrap v2.14.                                                                                            |
-| 15/07/2026 | C-001 + C-002 concluídos. 10 Slices, 175 testes, zero regressões.                                                                                                                              |
-| 15/07/2026 | ER-C001-C002-001 aprovada. Core Foundation classificada como Excelente.                                                                                                                        |
-| 15/07/2026 | GOV-006 — Core API Frozen. Technical Roadmap. Projeto entra em evolução do domínio de investimentos. Bootstrap v2.24.          |
-| 15/07/2026 | PI-004 aprovada — Modelo Patrimonial. 12 DAs, 13 Invariantes. Bootstrap v2.25.                                                      |
-| 15/07/2026 | ER-004 aprovada — Engineering Review da PI-004. Bootstrap v2.26.                                                                     |
-| 15/07/2026 | GOV-007 — Fluxo Oficial da Engenharia + Mapa de Dependências Documentais. Bootstrap v2.26.                                           |
-| 16/07/2026 | **EWO-002 concluída** — Domínio Patrimonial. 9 Slices, 362 testes, 12/12 DAs. Bootstrap v2.27.                                       |
-| 16/07/2026 | GOV-008 — EWO Slices Dinâmica Generalizada. Bootstrap v2.28.                                                                         |
-| 16/07/2026 | GOV-009 — Sincronização Operacional Obrigatória. Bootstrap v2.29.                                                                    |
-| 16/07/2026 | GOV-010 — Consolidação Final da Governança. ER-004 marcada concluída. Bootstrap v2.30.                                               |
-| 16/07/2026 | GOV-011 — Workspace Guard + Scripts de Inicialização. Bootstrap v2.31.                                                               |
-| 16/07/2026 | PI-005 aprovada — Application Layer. 14 Serviços, 9 Portas. Bootstrap v2.32.                                                         |
-| 16/07/2026 | ER-005 aprovada — Engineering Review da PI-005. Bootstrap v2.33.                                                                     |
-| 17/07/2026 | **EWO-003 concluída** — Application Layer. 8 Slices, 528 testes, zero regressões. Bootstrap v2.45.                                   |
-| 17/07/2026 | GOV-020 — 20_PROJECT_MAP.md institucionalizado.                                                                                      |
-| 18/07/2026 | GOV-021 — 21_FUNCTIONAL_SPECIFICATION.md institucionalizado (34 FRs, 14 UCs, 15 NFRs).                                               |
-| 18/07/2026 | PI-006 aprovada — Infrastructure Layer. 10+ Portas, 14+ Adapters, Cross-Cutting. Bootstrap v2.49.                                    |
-| 18/07/2026 | ER-006 aprovada — Engineering Review da PI-006. Bootstrap v2.50.                                                                     |
-| 19/07/2026 | **EWO-004 concluída** — Infrastructure Layer. 7 Slices, 630 testes, zero regressões. Bootstrap v2.55.                               |
-| 19/07/2026 | GOV-M01–M06 — Ciclo de Sincronização Documental Pós-EWO-004. Inconsistências corrigidas em 4 documentos.                           |
-| 19/07/2026 | **PI-007 (Draft)** — Presentation Layer criada. Feature-First, TanStack Start + Tailwind + shadcn/ui, 13 features, 14 UCs, 34 FRs. Aguarda ER-007 e EWO-005. |
+| Data       | Alteração                                                                                                                                                                                       |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 09/07/2026 | Consolidação nº 1 concluída                                                                                                                                                                     |
+| 09/07/2026 | Sprint de Estabilização nº 1: auditoria + correções documentais                                                                                                                                 |
+| 09/07/2026 | 02_CORPORATE_ACTION_ENGINE.md v1.1 — escopo corrigido                                                                                                                                           |
+| 09/07/2026 | 19_GLOSSARY.md — Vocabulário Oficial do Projeto                                                                                                                                                 |
+| 09/07/2026 | Micro Sprint de Estabilização nº 2 — correção da ordem de leitura                                                                                                                               |
+| 09/07/2026 | 02_TRANSACTIONS.md v0.9 — Working Draft criado                                                                                                                                                  |
+| 12/07/2026 | PS#030B — IA-015, IA-025, IA-026, PG-019, OP-002, OP-003                                                                                                                                        |
+| 12/07/2026 | PS#030C — IA-016, IA-027, OP-007, Fluxo Evidências Externas                                                                                                                                     |
+| 12/07/2026 | PS#030D (Prompt 1) — IA-028, IA-029, OP-008, OP-009, Painel Operacional                                                                                                                         |
+| 12/07/2026 | Emenda PS#030D — Ritual OP-002 inomitível, OP-010, OP-011, PS_TEMPLATE.md                                                                                                                       |
+| 12/07/2026 | Emenda Final PS#030D — OP-012, IA-026, Backlog Estratégico (BK-001, BK-002)                                                                                                                     |
+| 12/07/2026 | PS#031 (Prompt 1) — PROJECT_BOOTSTRAP.md criado. Nova camada documental de inicialização rápida.                                                                                                |
+| 12/07/2026 | PS#032 (Prompt 2) — IA-030, Strategic Backlog, Fonte Canônica, AI_CONTEXT simplificado.                                                                                                         |
+| 12/07/2026 | PS#033 (Prompt 3) — Regeneração Global. Ordem de Precedência. Marco Documentação Consolidada. Fim do ciclo metodológico.                                                                        |
+| 12/07/2026 | PROJECT_BOOTSTRAP v2.0 (Runtime Operacional). AI_CONTEXT v1.8 simplificado.                                                                                                                     |
+| 12/07/2026 | Auditoria de Runtime — Bootstrap v2.0 comprovadamente autossuficiente. Prompt 1 e 2 de 2 concluídos.                                                                                            |
+| 12/07/2026 | Continuidade Arquitetural (IA-031). Resumo Operacional Canônico obrigatório. Bootstrap v2.1 com PI-001 completo.                                                                                |
+| 12/07/2026 | GS-001.1 — OP-002 evoluído. ❤️ Saúde do Chat classificado 🟢🟡🔴. IA-032 Gatilhos Operacionais. Bootstrap v2.3.                                                                                 |
+| 12/07/2026 | OP-002 consolidado como Fonte Canônica exclusiva da ❤️ Saúde do Chat. Cópia removida do DEVELOPMENT_METHODOLOGY.md. Bootstrap v2.4.                                                             |
+| 12/07/2026 | Fluxo de Engenharia (PI → EWO → ER) formalizado. DEVELOPMENT_METHODOLOGY.md v2.0. Bootstrap v2.5.                                                                                               |
+| 12/07/2026 | Versionamento e Imutabilidade das PI. DEVELOPMENT_METHODOLOGY.md v2.1. Bootstrap v2.6.                                                                                                          |
+| 12/07/2026 | PI-001 v0.1 (Draft) — Interpretation Layer materializada. Bootstrap v2.7.                                                                                                                       |
+| 13/07/2026 | Consolidação Metodológica — Governança das PI e Gestão de Backlog. Papéis das Ferramentas, IA-033/034/035. DEVELOPMENT_METHODOLOGY.md v2.2. Bootstrap v2.8.                                     |
+| 13/07/2026 | Consolidação Arquitetural — Classificação das Decisões Estratégicas. Universalidade e Multi-Mercado na Constituição. BK-006 e BK-007. IA-036. DEVELOPMENT_METHODOLOGY.md v2.3. Bootstrap v2.9.  |
+| 13/07/2026 | Engineering Outlook (EO-001). Seção padronizada de planejamento da próxima PI no Bootstrap. Bootstrap v2.10.                                                                                    |
+| 13/07/2026 | ER-001 — Engineering Review aprovada. PI-001 v1.0 Approved. Bootstrap v2.11.                                                                                                                    |
+| 13/07/2026 | Ajuste Metodológico — Prioridade Arquitetural. PI-002 antes de EWO-001. Bootstrap v2.12.                                                                                                        |
+| 13/07/2026 | OP-015 + Baseline Arquitetural. Bootstrap v2.20. Custo documental como requisito.                                                                                                               |
+| 13/07/2026 | ER-003 — Engineering Review da PI-003 aprovada. PI-003 v1.0 Approved. Engineering N1 consolidado. Bootstrap v2.19.                                                                              |
+| 13/07/2026 | G-001 — Sprint de Governança. GOV-001 e GOV-002 implementados. OP-013/OP-014. Bootstrap v2.18.                                                                                                  |
+| 13/07/2026 | PI-003 definida: Canonical Operations & Event Flow Architecture. Bootstrap v2.17.                                                                                                               |
+| 13/07/2026 | ER-002 — Engineering Review da PI-002 aprovada. PI-002 v1.0 Approved. Bootstrap v2.16.                                                                                                          |
+| 13/07/2026 | PI-002 v0.1 (Draft) — Canonical Investment Model materializada. GOV-001 a GOV-005. Bootstrap v2.14.                                                                                             |
+| 15/07/2026 | C-001 + C-002 concluídos. 10 Slices, 175 testes, zero regressões.                                                                                                                               |
+| 15/07/2026 | ER-C001-C002-001 aprovada. Core Foundation classificada como Excelente.                                                                                                                         |
+| 15/07/2026 | GOV-006 — Core API Frozen. Technical Roadmap. Projeto entra em evolução do domínio de investimentos. Bootstrap v2.24.                                                                           |
+| 15/07/2026 | PI-004 aprovada — Modelo Patrimonial. 12 DAs, 13 Invariantes. Bootstrap v2.25.                                                                                                                  |
+| 15/07/2026 | ER-004 aprovada — Engineering Review da PI-004. Bootstrap v2.26.                                                                                                                                |
+| 15/07/2026 | GOV-007 — Fluxo Oficial da Engenharia + Mapa de Dependências Documentais. Bootstrap v2.26.                                                                                                      |
+| 16/07/2026 | **EWO-002 concluída** — Domínio Patrimonial. 9 Slices, 362 testes, 12/12 DAs. Bootstrap v2.27.                                                                                                  |
+| 16/07/2026 | GOV-008 — EWO Slices Dinâmica Generalizada. Bootstrap v2.28.                                                                                                                                    |
+| 16/07/2026 | GOV-009 — Sincronização Operacional Obrigatória. Bootstrap v2.29.                                                                                                                               |
+| 16/07/2026 | GOV-010 — Consolidação Final da Governança. ER-004 marcada concluída. Bootstrap v2.30.                                                                                                          |
+| 16/07/2026 | GOV-011 — Workspace Guard + Scripts de Inicialização. Bootstrap v2.31.                                                                                                                          |
+| 16/07/2026 | PI-005 aprovada — Application Layer. 14 Serviços, 9 Portas. Bootstrap v2.32.                                                                                                                    |
+| 16/07/2026 | ER-005 aprovada — Engineering Review da PI-005. Bootstrap v2.33.                                                                                                                                |
+| 17/07/2026 | **EWO-003 concluída** — Application Layer. 8 Slices, 528 testes, zero regressões. Bootstrap v2.45.                                                                                              |
+| 17/07/2026 | GOV-020 — 20_PROJECT_MAP.md institucionalizado.                                                                                                                                                 |
+| 18/07/2026 | GOV-021 — 21_FUNCTIONAL_SPECIFICATION.md institucionalizado (34 FRs, 14 UCs, 15 NFRs).                                                                                                          |
+| 18/07/2026 | PI-006 aprovada — Infrastructure Layer. 10+ Portas, 14+ Adapters, Cross-Cutting. Bootstrap v2.49.                                                                                               |
+| 18/07/2026 | ER-006 aprovada — Engineering Review da PI-006. Bootstrap v2.50.                                                                                                                                |
+| 19/07/2026 | **EWO-004 concluída** — Infrastructure Layer. 7 Slices, 630 testes, zero regressões. Bootstrap v2.55.                                                                                           |
+| 19/07/2026 | GOV-M01–M06 — Ciclo de Sincronização Documental Pós-EWO-004. Inconsistências corrigidas em 4 documentos.                                                                                        |
+| 19/07/2026 | **PI-007 (Draft)** — Presentation Layer criada. Feature-First, TanStack Start + Tailwind + shadcn/ui, 13 features, 14 UCs, 34 FRs. Aguarda ER-007 e EWO-005.                                    |
 | 19/07/2026 | **ER-007 (Approved)** — Engineering Review da PI-007 v1.2 aprovada. Auditoria completa dos 15 critérios obrigatórios. Veredito: APPROVED. PI-007 promovida a Approved. Autorizada para EWO-005. |
 
 ---

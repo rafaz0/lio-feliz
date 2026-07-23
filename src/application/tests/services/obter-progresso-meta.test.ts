@@ -3,12 +3,23 @@ import { ObterProgressoMetaService } from "@/application/services/obter-progress
 import type { ObterProgressoMetaQuery } from "@/application/queries/obter-progresso-meta";
 import { FakeFinancialGoalRepository } from "@/infrastructure/fakes/fake-financial-goal-repository";
 import { GoalCategory, FinancialGoal, FinancialGoalId } from "@/core/domain/financial-goal";
-import { ApplicationError, ValidationError, NotFoundError } from "@/application/errors/application-error";
+import {
+  ApplicationError,
+  ValidationError,
+  NotFoundError,
+} from "@/application/errors/application-error";
 
 function createRepoWithGoal(): FakeFinancialGoalRepository {
   const repo = new FakeFinancialGoalRepository();
   const id = FinancialGoalId.create("goal-001");
-  const result = FinancialGoal.create(id, "Reserva", 100000, new Date("2027-12-31"), GoalCategory.EMERGENCY, "corr-1");
+  const result = FinancialGoal.create(
+    id,
+    "Reserva",
+    100000,
+    new Date("2027-12-31"),
+    GoalCategory.EMERGENCY,
+    "corr-1",
+  );
   if (result.isSuccess) {
     const goal = result.value!;
     const contributed = goal.contribute(5000, new Date("2026-07-01"), "corr-2");

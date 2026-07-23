@@ -10,7 +10,10 @@ type B3CsvRow = {
 };
 
 export class B3CsvGateway implements IDataGateway {
-  async ObterDadosImportacao(origem: string, parametros: ParametrosImportacao): Promise<DadosImportacao> {
+  async ObterDadosImportacao(
+    origem: string,
+    parametros: ParametrosImportacao,
+  ): Promise<DadosImportacao> {
     if (!parametros.arquivo) {
       return {
         fonte: origem,
@@ -55,7 +58,10 @@ export class B3CsvGateway implements IDataGateway {
   }
 
   private parseCsv(content: string): B3CsvRow[] {
-    const lines = content.split("\n").map((l) => l.trim()).filter((l) => l.length > 0);
+    const lines = content
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => l.length > 0);
     if (lines.length === 0) return [];
 
     const header = lines[0].toLowerCase();

@@ -185,7 +185,7 @@ function ProvisionadorPage() {
                           { month: "short" },
                         );
                         const total = items.reduce((s, p) => s + p.amount * p.qty, 0);
-                        let cumulative = 0;
+                        const cumulative = 0;
                         return { label, total: Number(total.toFixed(2)), month };
                       })
                       .map((d, i, arr) => ({
