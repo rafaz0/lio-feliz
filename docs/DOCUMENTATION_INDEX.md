@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.07
+**Versão da Documentação:** 2.08
 
 **Status:** APROVADO
 
@@ -235,6 +235,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.08
+
+- **EWO-014 Slice 2 (Observabilidade) CONCLUÍDO** — Sentry inicializado (server + client), logs estruturados, health check (`/api/health`), módulo `src/lib/observability/`. DOCUMENTATION_INDEX v2.08.
 
 ## Versão 2.07
 

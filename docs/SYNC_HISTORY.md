@@ -14,6 +14,24 @@
 
 # Registro de Sincronizações
 
+## EWO-014 Slice 2 — Observabilidade ✅
+
+**Data:** 22/07/2026
+
+### Artefatos
+
+- `src/lib/observability/`: initSentry (client), initSentryServer, logError, logWarning, setUser
+- `src/start.ts`: Sentry init server + error middleware aprimorado
+- `src/routes/api.health.ts`: endpoint /api/health
+- Pacotes: @sentry/node, @sentry/react
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.08
+- PROJECT_STATUS v2.21
+
+---
+
 ## EWO-014 Slice 1 — CI/CD Pipeline ✅
 
 **Data:** 22/07/2026
