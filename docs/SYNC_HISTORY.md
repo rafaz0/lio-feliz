@@ -14,6 +14,26 @@
 
 # Registro de Sincronizações
 
+## EWO-014 Slice 3 — Testes E2E ✅
+
+**Data:** 22/07/2026
+
+### Artefatos
+
+- `playwright.config.ts` — 2 browsers (chromium, firefox), retry, report HTML
+- `e2e/auth.spec.ts` — login, registro, erro
+- `e2e/carteira.spec.ts` — página, resumo, tabela
+- `e2e/proventos.spec.ts` — página, dividendos
+- `e2e/irpf.spec.ts` — página, mensal, anual
+- CI/CD: pipeline atualizado com Playwright
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.09
+- PROJECT_STATUS v2.22
+
+---
+
 ## EWO-014 Slice 2 — Observabilidade ✅
 
 **Data:** 22/07/2026

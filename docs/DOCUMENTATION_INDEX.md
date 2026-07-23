@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.08
+**Versão da Documentação:** 2.09
 
 **Status:** APROVADO
 
@@ -235,6 +235,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.09
+
+- **EWO-014 Slice 3 (Testes E2E) CONCLUÍDO** — Playwright configurado, 4 suítes E2E (auth, carteira, proventos, IRPF). CI pipeline atualizado com Playwright. DOCUMENTATION_INDEX v2.09.
 
 ## Versão 2.08
 

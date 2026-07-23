@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.21
+**Versão:** 2.22
 
 **Status:** APROVADO
 
@@ -90,8 +90,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.08 (reflete EWO-014 Slice 2)
-- `project-context/PROJECT_STATUS.md`: v2.21 (reflete EWO-014 Slice 2)
+- `docs/DOCUMENTATION_INDEX.md`: v2.09 (reflete EWO-014 Slice 3)
+- `project-context/PROJECT_STATUS.md`: v2.22 (reflete EWO-014 Slice 3)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -101,6 +101,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.22
+
+- **EWO-014 Slice 3 (Testes E2E) CONCLUÍDO** — Playwright configurado (`playwright.config.ts`, 2 browsers). 4 suítes E2E: auth (login, registro, erro), carteira (página, resumo, tabela), proventos (página, lista), IRPF (página, mensal, anual). CI pipeline atualizado com install + execução do Playwright (chromium). DOCUMENTATION_INDEX v2.09, PROJECT_STATUS v2.22.
 
 ### Versão 2.21
 
