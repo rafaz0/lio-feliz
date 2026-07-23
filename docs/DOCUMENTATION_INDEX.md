@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.04
+**Versão da Documentação:** 2.05
 
 **Status:** APROVADO
 
@@ -231,6 +231,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.05
+
+- **EWO-013 Slice 4 (Exportação 18 Presentation) CONCLUÍDO** — Feature `features/advanced-export/` criada: AdvancedExportPage, ExportTemplateCard (formato/versão), ExportJobCard (status/checksum), hooks (useExportTemplatesQuery, useSolicitarExportacaoMutation), viewmodel. Composition Root registrado (exportTemplateRepository). Build green. DOCUMENTATION_INDEX v2.05.
 
 ## Versão 2.04
 

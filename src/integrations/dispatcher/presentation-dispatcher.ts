@@ -121,7 +121,13 @@ import { ObterAlertaService } from "@/application/services/obter-alerta-service"
 import { ListarAlertasAtivosService } from "@/application/services/listar-alertas-ativos-service";
 import { ObterTermoService } from "@/application/services/obter-termo-service";
 import { BuscarGlossarioService } from "@/application/services/buscar-glossario-service";
-import type { ObterTermoQuery } from "@/application/queries/obter-termo";
+import { SolicitarExportacaoService } from "@/application/services/solicitar-exportacao-service";
+import { ObterExportJobService } from "@/application/services/obter-export-job-service";
+import { ListarExportTemplatesService } from "@/application/services/listar-export-templates-service";
+import type { SolicitarExportacaoCommand } from "@/application/commands/solicitar-exportacao";
+import type { ObterExportJobQuery } from "@/application/queries/obter-export-job";
+import type { ListarExportTemplatesQuery } from "@/application/queries/listar-export-templates";
+import type { IExportTemplateRepository } from "@/application/ports/export-template-repository";
 import type { BuscarGlossarioQuery } from "@/application/queries/buscar-glossario";
 import type { AtualizarAlertaCommand } from "@/application/commands/atualizar-alerta";
 import type { ConfirmarAlertaCommand } from "@/application/commands/confirmar-alerta";
@@ -176,6 +182,7 @@ interface PresentationDispatcherDeps {
   glossaryRepository?: IGlossaryRepository;
   backtestRepository?: IBacktestRepository;
   alertRepository?: IAlertRepository;
+  exportTemplateRepository?: IExportTemplateRepository;
 }
 
 /**
@@ -206,6 +213,7 @@ export function createPresentationDispatcher({
   glossaryRepository,
   backtestRepository,
   alertRepository,
+  exportTemplateRepository,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -588,6 +596,20 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterQuery("ObterPassoAtualQuery", (query) =>
       new ObterPassoAtualService(configRepo, glossaryRepository).Execute(query as ObterPassoAtualQuery),
+    );
+  }
+
+  if (exportTemplateRepository) {
+    dispatcher.RegisterCommand("SolicitarExportacaoCommand", (command) =>
+      new SolicitarExportacaoService(exportTemplateRepository).Execute(command as SolicitarExportacaoCommand),
+    );
+
+    dispatcher.RegisterQuery("ObterExportJobQuery", (query) =>
+      new ObterExportJobService(exportTemplateRepository).Execute(query as ObterExportJobQuery),
+    );
+
+    dispatcher.RegisterQuery("ListarExportTemplatesQuery", (query) =>
+      new ListarExportTemplatesService(exportTemplateRepository).Execute(query as ListarExportTemplatesQuery),
     );
   }
 

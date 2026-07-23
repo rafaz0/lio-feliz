@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.17
+**Versão:** 2.18
 
 **Status:** APROVADO
 
@@ -90,8 +90,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.04 (reflete EWO-013 Slice 3)
-- `project-context/PROJECT_STATUS.md`: v2.17 (reflete EWO-013 Slice 3)
+- `docs/DOCUMENTATION_INDEX.md`: v2.05 (reflete EWO-013 Slice 4)
+- `project-context/PROJECT_STATUS.md`: v2.18 (reflete EWO-013 Slice 4)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -101,6 +101,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.18
+
+- **EWO-013 Slice 4 (Exportação 18 Presentation) CONCLUÍDO** — Feature `features/advanced-export/`: AdvancedExportPage com lista de templates de exportação, ExportTemplateCard (formato, versão, ação Exportar), ExportJobCard (status, checksum, tamanho). Hooks (useExportTemplatesQuery, useExportJobsQuery, useSolicitarExportacaoMutation). ViewModel com labels de status e formatação. Composition Root registrado (SolicitarExportacaoCommand, ObterExportJobQuery, ListarExportTemplatesQuery). Presentation pura (R-018). Build green. DOCUMENTATION_INDEX v2.05, PROJECT_STATUS v2.18.
 
 ### Versão 2.17
 

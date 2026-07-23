@@ -1,6 +1,7 @@
 import { Result } from "../result";
 import { ExportTemplate } from "./export-template";
-import { ExportJob, ExportJobId } from "./export-job";
+import { ExportJob } from "./export-job";
+import { ExportJobId } from "./export-types";
 import { type ExportFormatType } from "./export-types";
 import { InvalidFormatError, ExportFailedError } from "./errors";
 

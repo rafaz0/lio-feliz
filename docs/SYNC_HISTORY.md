@@ -14,6 +14,25 @@
 
 # Registro de Sincronizações
 
+## EWO-013 Slice 4 — Exportação 18 Presentation ✅
+
+**Data:** 22/07/2026
+
+### Artefatos
+
+- Feature `features/advanced-export/`: AdvancedExportPage, ExportTemplateCard, ExportJobCard, loading/empty/error
+- Hooks: useExportTemplatesQuery, useExportJobsQuery, useSolicitarExportacaoMutation
+- ViewModel: labels de status, formatação de checksum
+- Composition Root: SolicitarExportacaoCommand, ObterExportJobQuery, ListarExportTemplatesQuery
+- Presentation pura (R-018)
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.05
+- PROJECT_STATUS v2.18
+
+---
+
 ## EWO-013 Slice 3 — Educação 17 Presentation ✅
 
 **Data:** 22/07/2026
