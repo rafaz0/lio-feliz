@@ -4,7 +4,7 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.16
+**Versão:** 2.17
 
 **Status:** APROVADO
 
@@ -90,8 +90,8 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-008_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 3 (encerramento definitivo)
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
-- `docs/DOCUMENTATION_INDEX.md`: v2.03 (reflete EWO-013 Slice 2)
-- `project-context/PROJECT_STATUS.md`: v2.16 (reflete EWO-013 Slice 2)
+- `docs/DOCUMENTATION_INDEX.md`: v2.04 (reflete EWO-013 Slice 3)
+- `project-context/PROJECT_STATUS.md`: v2.17 (reflete EWO-013 Slice 3)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -101,6 +101,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.17
+
+- **EWO-013 Slice 3 (Educação 17 Presentation) CONCLUÍDO** — Feature `features/education/`: EducationPage com busca de termos, GlossaryList agrupado por categoria (CONCEITO, TIPO_ATIVO, INDICADOR, etc.), TermDetail com definição, sinônimos e termos relacionados. Hooks (useGlossaryQuery, useSearchGlossaryQuery) com TanStack Query + Dispatcher. ViewModel com labels em português e groupByCategory. Composition Root registrado (ObterTermoQuery, BuscarGlossarioQuery). Presentation pura (R-018). Build green. DOCUMENTATION_INDEX v2.04, PROJECT_STATUS v2.17.
 
 ### Versão 2.16
 

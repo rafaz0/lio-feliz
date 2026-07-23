@@ -14,6 +14,25 @@
 
 # Registro de Sincronizações
 
+## EWO-013 Slice 3 — Educação 17 Presentation ✅
+
+**Data:** 22/07/2026
+
+### Artefatos
+
+- Feature `features/education/`: EducationPage, GlossaryList (agrupado), TermDetail (definição + sinônimos), loading/empty/error
+- Hooks: useGlossaryQuery, useSearchGlossaryQuery
+- ViewModel: groupByCategory, labels em português
+- Composition Root: ObterTermoQuery, BuscarGlossarioQuery
+- Presentation pura (R-018)
+
+### Documentos
+
+- DOCUMENTATION_INDEX v2.04
+- PROJECT_STATUS v2.17
+
+---
+
 ## EWO-013 Slice 2 — Alertas 15 Presentation ✅
 
 **Data:** 22/07/2026

@@ -6,7 +6,7 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.03
+**Versão da Documentação:** 2.04
 
 **Status:** APROVADO
 
@@ -231,6 +231,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.04
+
+- **EWO-013 Slice 3 (Educação 17 Presentation) CONCLUÍDO** — Feature `features/education/` criada: EducationPage (busca + navegação), GlossaryList (agrupado por categoria), TermDetail (definição, sinônimos), hooks (useGlossaryQuery, useSearchGlossaryQuery), viewmodel. Composition Root registrado (ObterTermoQuery, BuscarGlossarioQuery). Build green. DOCUMENTATION_INDEX v2.04.
 
 ## Versão 2.03
 

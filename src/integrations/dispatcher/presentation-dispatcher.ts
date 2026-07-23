@@ -119,7 +119,10 @@ import { AtualizarAlertaService } from "@/application/services/atualizar-alerta-
 import { ConfirmarAlertaService } from "@/application/services/confirmar-alerta-service";
 import { ObterAlertaService } from "@/application/services/obter-alerta-service";
 import { ListarAlertasAtivosService } from "@/application/services/listar-alertas-ativos-service";
-import type { CriarAlertaCommand } from "@/application/commands/criar-alerta";
+import { ObterTermoService } from "@/application/services/obter-termo-service";
+import { BuscarGlossarioService } from "@/application/services/buscar-glossario-service";
+import type { ObterTermoQuery } from "@/application/queries/obter-termo";
+import type { BuscarGlossarioQuery } from "@/application/queries/buscar-glossario";
 import type { AtualizarAlertaCommand } from "@/application/commands/atualizar-alerta";
 import type { ConfirmarAlertaCommand } from "@/application/commands/confirmar-alerta";
 import type { ObterAlertaQuery } from "@/application/queries/obter-alerta";
@@ -427,6 +430,16 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterQuery("ObterScorecardQuery", (query) =>
       new ObterScorecardService(comparisonRepository).Execute(query as ObterScorecardQuery),
+    );
+  }
+
+  if (glossaryRepository) {
+    dispatcher.RegisterQuery("ObterTermoQuery", (query) =>
+      new ObterTermoService(glossaryRepository).Execute(query as ObterTermoQuery),
+    );
+
+    dispatcher.RegisterQuery("BuscarGlossarioQuery", (query) =>
+      new BuscarGlossarioService(glossaryRepository).Execute(query as BuscarGlossarioQuery),
     );
   }
 
