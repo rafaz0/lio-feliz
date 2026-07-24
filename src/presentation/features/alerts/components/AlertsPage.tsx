@@ -7,12 +7,21 @@ import { AlertRuleList } from "./AlertRuleList";
 import { AlertsLoading } from "./AlertsLoading";
 import { AlertsEmpty } from "./AlertsEmpty";
 import { AlertsError } from "./AlertsError";
+import { RequireCapability } from "@/presentation/features/licensing";
 
 interface AlertsPageProps {
   userId: string;
 }
 
 export function AlertsPage({ userId }: AlertsPageProps) {
+  return (
+    <RequireCapability capability="alertas:view" showUpgrade>
+      <AlertsContent userId={userId} />
+    </RequireCapability>
+  );
+}
+
+function AlertsContent({ userId }: AlertsPageProps) {
   const [tab, setTab] = useState<"pending" | "rules">("pending");
   const [showForm, setShowForm] = useState(false);
 

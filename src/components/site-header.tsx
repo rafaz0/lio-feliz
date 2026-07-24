@@ -33,8 +33,9 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SyncIndicator } from "@/components/sync-indicator";
 import { NotificationPanel } from "@/components/notification-panel";
-import { useAlertsQuery, useConfirmAlertMutation } from "@/presentation/features/alerts";
+import { useAlertsQuery } from "@/presentation/features/alerts";
 import { useSyncStatus } from "@/presentation/features/sync/hooks/use-sync-status";
+import { PlanBadge } from "@/presentation/features/licensing";
 
 export function SiteHeader() {
   const navigate = useNavigate();
@@ -359,7 +360,10 @@ export function SiteHeader() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-52">
-                <DropdownMenuLabel className="truncate">{user.email}</DropdownMenuLabel>
+                <DropdownMenuLabel className="flex items-center gap-2 truncate">
+                  {user.email}
+                  <PlanBadge capability="carteira:read" />
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link to="/carteira/proventos" className="flex items-center gap-2">

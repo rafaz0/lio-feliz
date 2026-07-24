@@ -7,12 +7,21 @@ import { BacktestResultCard } from "./BacktestResultCard";
 import { BacktestsLoading } from "./BacktestsLoading";
 import { BacktestsEmpty } from "./BacktestsEmpty";
 import { BacktestsError } from "./BacktestsError";
+import { RequireCapability } from "@/presentation/features/licensing";
 
 interface BacktestsPageProps {
   userId: string;
 }
 
 export function BacktestsPage({ userId }: BacktestsPageProps) {
+  return (
+    <RequireCapability capability="backtest:execute" showUpgrade>
+      <BacktestsContent userId={userId} />
+    </RequireCapability>
+  );
+}
+
+function BacktestsContent({ userId }: BacktestsPageProps) {
   const [selectedStrategyId, setSelectedStrategyId] = useState<string>("");
   const [showForm, setShowForm] = useState(false);
 

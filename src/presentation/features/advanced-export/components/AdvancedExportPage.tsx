@@ -4,12 +4,21 @@ import { ExportTemplateCard } from "./ExportTemplateCard";
 import { AdvancedExportLoading } from "./AdvancedExportLoading";
 import { AdvancedExportEmpty } from "./AdvancedExportEmpty";
 import { AdvancedExportError } from "./AdvancedExportError";
+import { RequireCapability } from "@/presentation/features/licensing";
 
 interface AdvancedExportPageProps {
   portfolioId: string;
 }
 
 export function AdvancedExportPage({ portfolioId }: AdvancedExportPageProps) {
+  return (
+    <RequireCapability capability="export:advanced" showUpgrade>
+      <AdvancedExportContent portfolioId={portfolioId} />
+    </RequireCapability>
+  );
+}
+
+function AdvancedExportContent({ portfolioId }: AdvancedExportPageProps) {
   const { data: templates, isLoading, isError, refetch } = useExportTemplatesQuery();
   const solicitar = useSolicitarExportacaoMutation(portfolioId);
 
