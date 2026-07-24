@@ -2,7 +2,7 @@
 
 **Documento:** INFRASTRUCTURE.md
 
-**Versão:** 1.0
+**Versão:** 1.1
 
 **Última atualização:** 23/07/2026
 
@@ -37,11 +37,35 @@
 
 ### Variáveis de Ambiente
 
+#### Produção (Vercel)
+
+```env
+# Obrigatórias
+NITRO_PRESET=vercel
+SUPABASE_URL=https://shllrynjuqtkdvmjjrqj.supabase.co
+SUPABASE_PUBLISHABLE_KEY=<anon_key>
+BRAPI_TOKEN=<token>
+DEV_MODE=false
+
+# Opcionais
+SENTRY_DSN=<dsn>
+```
+
+#### Desenvolvimento Local (`.env`)
+
 ```env
 SUPABASE_PROJECT_ID=shllrynjuqtkdvmjjrqj
 SUPABASE_URL=https://shllrynjuqtkdvmjjrqj.supabase.co
 SUPABASE_PUBLISHABLE_KEY=<anon_key>
+SUPABASE_SERVICE_ROLE_KEY=<service_role_key>
+VITE_SUPABASE_PROJECT_ID=shllrynjuqtkdvmjjrqj
+VITE_SUPABASE_PUBLISHABLE_KEY=<anon_key>
+VITE_SUPABASE_URL=https://shllrynjuqtkdvmjjrqj.supabase.co
+BRAPI_TOKEN=<token>
+DEV_MODE=true
 ```
+
+> **Nota:** Em ambiente Lovable sandbox, a `SUPABASE_URL` pode ser um proxy Lovable (`https://c--<uuid>-prod.lovable.cloud`). Em produção, usar sempre a URL direta do Supabase Dashboard.
 
 ### Bootstrap do Banco
 
@@ -169,6 +193,13 @@ supabase db push
 ---
 
 ## Histórico
+
+### Versão 1.1
+
+- Adicionada seção de variáveis de ambiente para produção e desenvolvimento.
+- Adicionada `SUPABASE_SERVICE_ROLE_KEY` à documentação.
+- Esclarecida a diferença entre URL direta Supabase e proxy Lovable.
+- Adicionada `NITRO_PRESET` à documentação de variáveis obrigatórias.
 
 ### Versão 1.0
 

@@ -2,7 +2,7 @@
 
 **Documento:** DEPLOY.md
 
-**Versão:** 1.1
+**Versão:** 1.2
 
 **Última atualização:** 23/07/2026
 
@@ -203,6 +203,12 @@ Os logs de produção são acessíveis pelo Vercel Dashboard:
 ---
 
 ## Histórico
+
+### Versão 1.2
+
+- Validação de produção — EWO-016 Slice 3.
+- Inconsistências corrigidas: `NITRO_PRESET` adicionado ao `.env.example`, Stripe reclassificado como opcional.
+- `SUPABASE_SERVICE_ROLE_KEY` adicionada à documentação.
 
 ### Versão 1.1
 
