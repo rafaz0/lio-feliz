@@ -33,7 +33,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SyncIndicator } from "@/components/sync-indicator";
 import { NotificationPanel } from "@/components/notification-panel";
-import { useAlertsQuery } from "@/presentation/features/alerts";
+import { useAlertsQuery, useConfirmAlertMutation } from "@/presentation/features/alerts";
 import { useSyncStatus } from "@/presentation/features/sync/hooks/use-sync-status";
 
 export function SiteHeader() {
@@ -406,7 +406,14 @@ function SyncIndicatorConnected({ userId }: { userId: string }) {
 
 function NotificationPanelWrapper({ userId }: { userId: string }) {
   const { data: alerts, isLoading } = useAlertsQuery(userId);
-  return <NotificationPanel alerts={alerts ?? []} isLoading={isLoading} />;
+  const confirmMutation = useConfirmAlertMutation(userId);
+  return (
+    <NotificationPanel
+      alerts={alerts ?? []}
+      isLoading={isLoading}
+      onConfirm={(alertId) => confirmMutation.mutate(alertId)}
+    />
+  );
 }
 
 function MobileNavLink({
