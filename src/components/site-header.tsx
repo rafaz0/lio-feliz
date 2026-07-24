@@ -34,6 +34,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SyncIndicator } from "@/components/sync-indicator";
 import { NotificationPanel } from "@/components/notification-panel";
 import { useAlertsQuery } from "@/presentation/features/alerts";
+import { useSyncStatus } from "@/presentation/features/sync/hooks/use-sync-status";
 
 export function SiteHeader() {
   const navigate = useNavigate();
@@ -343,14 +344,7 @@ export function SiteHeader() {
 
         {user ? (
           <>
-            <SyncIndicator
-              onSync={async () => {
-                const { syncPendingDividends } = await import("@/lib/operations.functions");
-                await syncPendingDividends({ data: {} });
-              }}
-              lastSync={null}
-              className="hidden md:flex"
-            />
+            <SyncIndicatorConnected userId={user?.id ?? "dev-user-0000"} />
             <NotificationPanelWrapper userId={user?.id ?? "dev-user-0000"} />
             <ThemeToggle />
             <DropdownMenu>
@@ -394,6 +388,19 @@ export function SiteHeader() {
         )}
       </div>
     </header>
+  );
+}
+
+function SyncIndicatorConnected({ userId }: { userId: string }) {
+  const { lastSyncAt, isSyncing, hasError, triggerSync } = useSyncStatus(userId);
+  return (
+    <SyncIndicator
+      onSync={triggerSync}
+      lastSync={lastSyncAt}
+      isSyncing={isSyncing}
+      hasError={hasError}
+      className="hidden md:flex"
+    />
   );
 }
 
