@@ -21,6 +21,7 @@ import { getExchangeRates } from "@/lib/exchange.server";
 import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
 import { formatBRL, formatDate } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyState } from "@/components/empty-state";
 
 export const Route = createFileRoute("/_authenticated/carteira/patrimonio")({
   head: () => ({
@@ -122,13 +123,11 @@ function PatrimonioPage() {
 
   if (isEmpty) {
     return (
-      <div className="rounded-lg border border-dashed border-border bg-card p-10 text-center">
-        <Wallet className="mx-auto size-8 text-muted-foreground" />
-        <h2 className="mt-3 text-lg font-semibold">Carteira vazia</h2>
-        <p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">
-          Registre operações na aba Lançamentos para ver evolução patrimonial e alocação.
-        </p>
-      </div>
+      <EmptyState
+        icon={Wallet}
+        title="Carteira vazia"
+        description="Registre operações na aba Lançamentos para ver evolução patrimonial e alocação."
+      />
     );
   }
 

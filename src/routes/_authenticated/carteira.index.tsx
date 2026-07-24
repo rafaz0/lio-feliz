@@ -17,6 +17,7 @@ import {
   YAxis,
 } from "recharts";
 import { AlertTriangle, DollarSign, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
+import { EmptyState } from "@/components/empty-state";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
@@ -572,13 +573,11 @@ function PortfolioOverview() {
       )}
 
       {isEmpty ? (
-        <div className="rounded-lg border border-dashed border-border bg-card p-10 text-center">
-          <Wallet className="mx-auto size-8 text-muted-foreground" />
-          <h2 className="mt-3 text-lg font-semibold">Sua carteira está vazia</h2>
-          <p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">
-            Registre suas primeiras compras para ver posição consolidada, rentabilidade e alocação.
-          </p>
-          <div className="mt-4">
+        <EmptyState
+          icon={Wallet}
+          title="Sua carteira está vazia"
+          description="Registre suas primeiras compras para ver posição consolidada, rentabilidade e alocação."
+          action={
             <AddOperationDialog
               trigger={
                 <Button className="gap-2">
@@ -586,8 +585,8 @@ function PortfolioOverview() {
                 </Button>
               }
             />
-          </div>
-        </div>
+          }
+        />
       ) : (
         <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
           <div className="overflow-hidden rounded-lg border border-border bg-card">

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Plus, Search, Star, TrendingUp, X } from "lucide-react";
+import { EmptyState } from "@/components/empty-state";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { SiteHeader } from "@/components/site-header";
@@ -132,19 +133,19 @@ function WatchlistPage() {
           )}
         </div>
 
-        {/* Empty state */}
         {watchedAssets.length === 0 && (
-          <div className="rounded-lg border border-dashed border-border bg-card p-12 text-center">
-            <Star className="mx-auto size-8 text-muted-foreground" />
-            <p className="mt-3 text-sm text-muted-foreground">
-              Sua watchlist está vazia. Busque tickers acima para começar a monitorar.
-            </p>
-            <Button asChild variant="outline" className="mt-4">
-              <Link to="/">
-                <TrendingUp className="mr-1.5 size-3.5" /> Explorar ativos
-              </Link>
-            </Button>
-          </div>
+          <EmptyState
+            icon={Star}
+            title="Watchlist vazia"
+            description="Busque tickers acima para começar a monitorar seus ativos favoritos."
+            action={
+              <Button asChild variant="outline">
+                <Link to="/">
+                  <TrendingUp className="mr-1.5 size-3.5" /> Explorar ativos
+                </Link>
+              </Button>
+            }
+          />
         )}
 
         {/* Watchlist table */}
