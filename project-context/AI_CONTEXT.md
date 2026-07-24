@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.20
+**Versão:** 1.21
 
 **Status:** APROVADO
 
@@ -10,7 +10,7 @@
 
 **Última atualização:** 23/07/2026
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-018 CONCLUÍDA. Próxima etapa: Bloco D da PI-013 (Feature Completion — EWO-019) ou próximo roadmap.
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-019 CONCLUÍDA. Próxima etapa: Bloco E da PI-013 (Licensing & Access — EWO-020) ou próximo roadmap.
 
 ---
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-EWO-018 CONCLUÍDA (Intelligence Layer — Bloco C da PI-013). InsightCard, 4 geradores de insight, hook unificado useAllInsights, integração no dashboard. Próxima etapa: Bloco D da PI-013 (Feature Completion — EWO-019) ou próximo roadmap.
+EWO-019 CONCLUÍDA (Feature Completion — Bloco D da PI-013). SyncIndicator com status real, NotificationPanel com confirmação de alertas, useSyncStatus. FEAT-009 e FEAT-008 implementados. Próxima etapa: Bloco E (Licensing & Access — EWO-020) ou próximo roadmap.
 
 # Referências Obrigatórias
 
@@ -44,6 +44,10 @@ EWO-018 CONCLUÍDA (Intelligence Layer — Bloco C da PI-013). InsightCard, 4 ge
 ---
 
 # Histórico
+
+### Versão 1.21
+
+EWO-019 CONCLUÍDA. Bloco D da PI-013 (Feature Completion) materializado: SyncIndicator, NotificationBell, NotificationPanel com confirmação, useSyncStatus com dados reais. 5 Slices, 4 componentes, 202 linhas. FEAT-009 e FEAT-008 implementados. Nenhum Core Domain alterado. Próxima etapa: Bloco E (Licensing & Access — EWO-020).
 
 ### Versão 1.20
 
