@@ -1,6 +1,7 @@
 export { InsightCard } from "./components/InsightCard";
 export { InsightSection } from "./components/InsightSection";
 export { useDashboardInsights } from "./hooks/use-dashboard-insights";
+export { useAllInsights } from "./hooks/use-all-insights";
 export type {
   InsightSeverity,
   InsightCategory,
