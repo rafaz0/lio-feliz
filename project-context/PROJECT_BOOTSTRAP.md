@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.64
+**Versão:** 2.65
 
 **Status:** APROVADO
 
@@ -62,15 +62,15 @@ Execução
 
 ## Marco Atual
 
-EWO-017 — UX Excellence (Concluído — 5 Slices: responsividade, skeletons, error handling, acessibilidade)
+EWO-018 — Intelligence Layer (Concluído — 4 Slices: fundação, dashboard insights, indicadores)
 
 ## PI Atual
 
-PI-013 — Platform Maturity & Intelligence (APPROVED — Bloco B materializado via EWO-017). PI-012 — Platform Completion & Production Readiness (COMPLETED). Core API Frozen (7 componentes estáveis).
+PI-013 — Platform Maturity & Intelligence (APPROVED — Bloco C materializado via EWO-018). PI-012 — Platform Completion & Production Readiness (COMPLETED). Core API Frozen (7 componentes estáveis).
 
 ## PS Atual
 
-PS#057 — EWO-017 Slice 5: Engineering Closure (concluído)
+PS#061 — EWO-018 Slice 4: Engineering Closure (concluído)
 
 ## Dashboard Executivo
 
@@ -79,8 +79,8 @@ PS#057 — EWO-017 Slice 5: Engineering Closure (concluído)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#057
-Marco: EWO-017 (UX Excellence — Concluído)
+PS Atual: PS#061
+Marco: EWO-018 (Intelligence Layer — Concluído)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -92,7 +92,7 @@ Marco: EWO-017 (UX Excellence — Concluído)
 
 ## Objetivos Ativos
 
-EWO-017 CONCLUÍDA. Bloco B da PI-013 (UX Excellence) materializado: responsividade mobile, skeletons padronizados, empty states, error handling, acessibilidade (ARIA, reduced-motion, focus-visible). Próxima etapa: Bloco C da PI-013 (Intelligence Layer — EWO-018).
+EWO-018 CONCLUÍDA. Bloco C da PI-013 (Intelligence Layer) materializado: InsightCard, 4 geradores de insight (patrimônio, dividendos, metas, rebalanceamento), hook unificado useAllInsights. Próxima etapa: Bloco D da PI-013 (Feature Completion — EWO-019) ou próximo roadmap estratégico.
 
 ## DEC Ativas
 
@@ -108,7 +108,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-EWO-017 CONCLUÍDA. Bloco B da PI-013 (UX Excellence) materializado. Próxima etapa: **Bloco C (Intelligence Layer — EWO-018)**.
+EWO-018 CONCLUÍDA. Bloco C da PI-013 (Intelligence Layer) materializado. Próxima etapa: **Bloco D (Feature Completion — EWO-019)** ou próximo roadmap estratégico.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -134,10 +134,11 @@ EWO-017 CONCLUÍDA. Bloco B da PI-013 (UX Excellence) materializado. Próxima et
 - **ER-013 APROVADA** — Engineering Review da PI-013, 5 NCs corrigidas
 - **EWO-016 CONCLUÍDA** — Production Deployment (4 Slices: Vercel, Nitro, validação, docs)
 - **EWO-017 CONCLUÍDA** — UX Excellence (5 Slices: mobile, skeletons, errors, acessibilidade)
+- **EWO-018 CONCLUÍDA** — Intelligence Layer (4 Slices: fundação, dashboard insights, indicadores)
 
 ### Próxima Frente de Engenharia
 
-EWO-017 CONCLUÍDA. Bloco B da PI-013 materializado. Próxima etapa: **Bloco C da PI-013 (Intelligence Layer — EWO-018)**.
+EWO-018 CONCLUÍDA. Bloco C da PI-013 materializado. Próxima etapa: **Bloco D da PI-013 (Feature Completion — EWO-019)** ou próximo roadmap.
 
 ### Documentação Prevista
 
@@ -160,6 +161,7 @@ EWO-017 CONCLUÍDA. Bloco B da PI-013 materializado. Próxima etapa: **Bloco C d
 | ER-013           | Engineering Review da PI-013          | ✅ Aprovada  |
 | EWO-016          | Production Deployment (Bloco A)       | ✅ Concluída |
 | EWO-017          | UX Excellence (Bloco B)               | ✅ Concluída |
+| EWO-018          | Intelligence Layer (Bloco C)          | ✅ Concluída |
 | DEPLOY.md        | Documentação de deploy                 | ✅ Criado |
 | INFRASTRUCTURE.md | Documentação de infraestrutura        | ✅ Criado |
 
@@ -182,6 +184,7 @@ EWO-017 CONCLUÍDA. Bloco B da PI-013 materializado. Próxima etapa: **Bloco C d
 - Backlog estratégico com 3 BKs ativos (BK-005, BK-006, BK-008) — BK-007 (Comercialização) concluído
 - **EWO-016 CONCLUÍDA** — Bloco A da PI-013 (Production Deployment), 4 Slices, 3 commits
 - **EWO-017 CONCLUÍDA** — Bloco B da PI-013 (UX Excellence), 5 Slices, 4 commits, 4 novos componentes
+- **EWO-018 CONCLUÍDA** — Bloco C da PI-013 (Intelligence Layer), 4 Slices, 3 commits, 10 arquivos, 0 Core Domain alterados
 - **Plataforma oficial: Vercel** (ADR-013-001) — Cloudflare Workers substituída
 - **Stack oficial:** GitHub (código) + Supabase (banco) + Vercel (host) + Sentry (monitoramento)
 - **Lovable** registrado como legado — não faz parte da infraestrutura oficial

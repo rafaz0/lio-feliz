@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.19
+**Versão:** 1.20
 
 **Status:** APROVADO
 
@@ -10,7 +10,7 @@
 
 **Última atualização:** 23/07/2026
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-017 CONCLUÍDA. Próxima etapa: Bloco C da PI-013 (Intelligence Layer — EWO-018).
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-018 CONCLUÍDA. Próxima etapa: Bloco D da PI-013 (Feature Completion — EWO-019) ou próximo roadmap.
 
 ---
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-EWO-017 CONCLUÍDA (UX Excellence — Bloco B da PI-013). Responsividade mobile, skeletons, empty/error states, acessibilidade implementados. Próxima etapa: Bloco C da PI-013 (Intelligence Layer — EWO-018).
+EWO-018 CONCLUÍDA (Intelligence Layer — Bloco C da PI-013). InsightCard, 4 geradores de insight, hook unificado useAllInsights, integração no dashboard. Próxima etapa: Bloco D da PI-013 (Feature Completion — EWO-019) ou próximo roadmap.
 
 # Referências Obrigatórias
 
@@ -44,6 +44,10 @@ EWO-017 CONCLUÍDA (UX Excellence — Bloco B da PI-013). Responsividade mobile,
 ---
 
 # Histórico
+
+### Versão 1.20
+
+EWO-018 CONCLUÍDA. Bloco C da PI-013 (Intelligence Layer) materializado: InsightCard, InsightSection, 4 geradores (patrimônio, dividendos, metas, rebalanceamento), hook unificado useAllInsights. 4 Slices, 10 arquivos, 421 linhas. Nenhum Core Domain alterado. Conformidade R-021 validada. Próxima etapa: Bloco D da PI-013 (EWO-019) ou próximo roadmap.
 
 ### Versão 1.19
 
