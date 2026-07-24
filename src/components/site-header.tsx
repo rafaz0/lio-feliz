@@ -7,10 +7,12 @@ import {
   FileText,
   LineChart,
   LogOut,
+  Menu,
   Search,
   TrendingUp,
   User,
   Sparkles,
+  X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
@@ -28,12 +30,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function SiteHeader() {
   const navigate = useNavigate();
   const router = useRouter();
   const { user } = useSession();
   const [q, setQ] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const search = useServerFn(searchTickers);
   const { data: suggestions } = useQuery({
     queryKey: ["ticker-search", q],
@@ -56,13 +60,108 @@ export function SiteHeader() {
     setQ("");
   }
 
+  function closeMobile() {
+    setMobileMenuOpen(false);
+  }
+
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-4 px-4 text-base">
+      <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-2 px-4 text-base md:gap-4">
         <Link to="/" className="flex items-center gap-2 text-base font-semibold tracking-tight">
           <LineChart className="size-5 text-primary" />
           <span>Investidor Pro</span>
         </Link>
+
+        <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="md:hidden">
+              <Menu className="size-5" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-72 p-0">
+            <div className="flex h-full flex-col">
+              <div className="flex items-center justify-between border-b border-border px-4 py-3">
+                <span className="font-semibold">Navegação</span>
+                <Button variant="ghost" size="icon" onClick={closeMobile}>
+                  <X className="size-5" />
+                </Button>
+              </div>
+              <nav className="flex-1 overflow-y-auto p-4">
+                <div className="mb-4 space-y-1">
+                  <p className="px-3 py-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Mercado
+                  </p>
+                  <MobileNavLink to="/" onClick={closeMobile}>
+                    Mercado
+                  </MobileNavLink>
+                  <MobileNavLink to="/dividendos" onClick={closeMobile}>
+                    Dividendos
+                  </MobileNavLink>
+                  <MobileNavLink to="/fiis" onClick={closeMobile}>
+                    FIIs
+                  </MobileNavLink>
+                  <MobileNavLink to="/rankings" onClick={closeMobile}>
+                    Rankings
+                  </MobileNavLink>
+                  <MobileNavLink to="/setores" onClick={closeMobile}>
+                    Setores
+                  </MobileNavLink>
+                  <MobileNavLink to="/comparar" onClick={closeMobile}>
+                    Comparar
+                  </MobileNavLink>
+                </div>
+                <div className="space-y-1">
+                  <p className="px-3 py-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Ferramentas
+                  </p>
+                  <MobileNavLink to="/watchlist" onClick={closeMobile}>
+                    Watchlist
+                  </MobileNavLink>
+                  <MobileNavLink to="/calculadoras" onClick={closeMobile}>
+                    Calculadoras
+                  </MobileNavLink>
+                  <MobileNavLink to="/carteiras-recomendadas" onClick={closeMobile}>
+                    Carteiras Recomendadas
+                  </MobileNavLink>
+                  <MobileNavLink to="/noticias" onClick={closeMobile}>
+                    Notícias
+                  </MobileNavLink>
+                </div>
+                {user && (
+                  <div className="mt-4 space-y-1 border-t border-border pt-4">
+                    <p className="px-3 py-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      Carteira
+                    </p>
+                    <MobileNavLink to="/carteira" onClick={closeMobile}>
+                      Resumo
+                    </MobileNavLink>
+                    <MobileNavLink to="/carteira/proventos" onClick={closeMobile}>
+                      Proventos
+                    </MobileNavLink>
+                    <MobileNavLink to="/carteira/patrimonio" onClick={closeMobile}>
+                      Patrimônio
+                    </MobileNavLink>
+                    <MobileNavLink to="/carteira/rentabilidade" onClick={closeMobile}>
+                      Rentabilidade
+                    </MobileNavLink>
+                    <MobileNavLink to="/carteira/cobertura" onClick={closeMobile}>
+                      Cobertura
+                    </MobileNavLink>
+                    <MobileNavLink to="/carteira/analise" onClick={closeMobile}>
+                      Análise
+                    </MobileNavLink>
+                    <MobileNavLink to="/metas" onClick={closeMobile}>
+                      Metas
+                    </MobileNavLink>
+                    <MobileNavLink to="/provisionador" onClick={closeMobile}>
+                      Provisionador
+                    </MobileNavLink>
+                  </div>
+                )}
+              </nav>
+            </div>
+          </SheetContent>
+        </Sheet>
 
         <nav className="hidden items-center gap-1 text-base text-muted-foreground md:flex">
           <Link
@@ -194,7 +293,7 @@ export function SiteHeader() {
           </DropdownMenu>
         </nav>
 
-        <div className="relative ml-auto w-full max-w-[180px]">
+        <div className="relative ml-auto w-full max-w-[140px] md:max-w-[180px]">
           <Search className="pointer-events-none absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
           <Input
             value={q}
@@ -283,5 +382,26 @@ export function SiteHeader() {
         )}
       </div>
     </header>
+  );
+}
+
+function MobileNavLink({
+  to,
+  onClick,
+  children,
+}: {
+  to: string;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      to={to as any}
+      onClick={onClick}
+      className="flex rounded-lg px-3 py-2 text-sm transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary [&.active]:font-semibold [&.active]:text-foreground"
+      activeOptions={{ exact: to === "/" }}
+    >
+      {children}
+    </Link>
   );
 }

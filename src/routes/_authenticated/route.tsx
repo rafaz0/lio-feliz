@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { AuthenticatedRoute } from "@/presentation/features/auth";
+import { MobileNav } from "@/components/mobile-nav";
 
 function isLocalDev(): boolean {
   if (typeof window === "undefined") return false;
@@ -22,7 +23,10 @@ export const Route = createFileRoute("/_authenticated")({
 function AuthenticatedLayout() {
   return (
     <AuthenticatedRoute>
-      <Outlet />
+      <div className="pb-16 md:pb-0">
+        <Outlet />
+        <MobileNav />
+      </div>
     </AuthenticatedRoute>
   );
 }
