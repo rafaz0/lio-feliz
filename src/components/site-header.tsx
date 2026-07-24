@@ -33,7 +33,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SyncIndicator } from "@/components/sync-indicator";
 import { NotificationPanel } from "@/components/notification-panel";
-import { useAlertsQuery } from "@/presentation/features/alerts";
+import { useAlertsQuery, useConfirmAlertMutation } from "@/presentation/features/alerts";
 import { useSyncStatus } from "@/presentation/features/sync/hooks/use-sync-status";
 import { PlanBadge } from "@/presentation/features/licensing";
 
@@ -77,6 +77,8 @@ export function SiteHeader() {
           <span>Investidor Pro</span>
         </Link>
 
+        {/* Mobile hamburger trigger — wraps only trigger + content so
+            Radix Dialog context doesn't interfere with DropdownMenu */}
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="md:hidden">
@@ -168,6 +170,7 @@ export function SiteHeader() {
           </SheetContent>
         </Sheet>
 
+        {/* Desktop nav — outside Sheet so DropdownMenu is not inside Dialog context */}
         <nav className="hidden items-center gap-1 text-base text-muted-foreground md:flex">
           <Link
             to="/"
