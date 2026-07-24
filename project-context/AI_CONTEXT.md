@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.18
+**Versão:** 1.19
 
 **Status:** APROVADO
 
@@ -10,7 +10,7 @@
 
 **Última atualização:** 23/07/2026
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-016 CONCLUÍDA. Próxima etapa: Bloco B da PI-013 (UX Excellence — EWO-017).
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-017 CONCLUÍDA. Próxima etapa: Bloco C da PI-013 (Intelligence Layer — EWO-018).
 
 ---
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-EWO-016 CONCLUÍDA (Production Deployment — Bloco A da PI-013). Vercel configurada como plataforma oficial, Nitro preset ajustado, Cloudflare substituído. Próxima etapa: Bloco B da PI-013 (UX Excellence — EWO-017).
+EWO-017 CONCLUÍDA (UX Excellence — Bloco B da PI-013). Responsividade mobile, skeletons, empty/error states, acessibilidade implementados. Próxima etapa: Bloco C da PI-013 (Intelligence Layer — EWO-018).
 
 # Referências Obrigatórias
 
@@ -44,6 +44,10 @@ EWO-016 CONCLUÍDA (Production Deployment — Bloco A da PI-013). Vercel configu
 ---
 
 # Histórico
+
+### Versão 1.19
+
+EWO-017 CONCLUÍDA. Bloco B da PI-013 (UX Excellence) materializado: MobileNav, SkeletonCard/Chart/Table, EmptyState, ErrorState/NotFoundState/RouteErrorBoundary, prefers-reduced-motion, ARIA labels, focus-visible. 5 Slices, 4 componentes, 277 linhas adicionadas. Nenhum Core Domain alterado. Próxima etapa: Bloco C da PI-013 (Intelligence Layer — EWO-018).
 
 ### Versão 1.18
 
