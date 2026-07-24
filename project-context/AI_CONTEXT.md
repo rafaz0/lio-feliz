@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 1.17
+**Versão:** 1.18
 
 **Status:** APROVADO
 
@@ -10,7 +10,7 @@
 
 **Última atualização:** 23/07/2026
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-015 CONCLUÍDA. Próxima etapa: definição do roadmap pós-PI-012.
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. EWO-016 CONCLUÍDA. Próxima etapa: Bloco B da PI-013 (UX Excellence — EWO-017).
 
 ---
 
@@ -20,7 +20,7 @@
 
 # Identidade
 
-Projeto Lio Feliz — Dashboard de Investimentos. Stack: TanStack Start, Tailwind CSS, shadcn/ui, Supabase, Cloudflare.
+Projeto Lio Feliz — Dashboard de Investimentos. Stack: TanStack Start, Tailwind CSS, shadcn/ui, Supabase, Vercel.
 
 # Estado Operacional
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-EWO-015 CONCLUÍDA (Comercialização — Bloco C da PI-012). Próxima etapa: definição do roadmap pós-PI-012.
+EWO-016 CONCLUÍDA (Production Deployment — Bloco A da PI-013). Vercel configurada como plataforma oficial, Nitro preset ajustado, Cloudflare substituído. Próxima etapa: Bloco B da PI-013 (UX Excellence — EWO-017).
 
 # Referências Obrigatórias
 
@@ -44,6 +44,10 @@ EWO-015 CONCLUÍDA (Comercialização — Bloco C da PI-012). Próxima etapa: de
 ---
 
 # Histórico
+
+### Versão 1.18
+
+EWO-016 CONCLUÍDA. Bloco A da PI-013 (Production Deployment) materializado: Vercel configurada como plataforma oficial (ADR-013-001), Nitro preset ajustado, Cloudflare Workers substituído, variáveis de ambiente validadas. Stack oficial: GitHub + Supabase + Vercel. Lovable registrado como legado. Próxima etapa: Bloco B da PI-013 (UX Excellence — EWO-017).
 
 ### Versão 1.17
 

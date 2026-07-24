@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.62
+**Versão:** 2.63
 
 **Status:** APROVADO
 
@@ -62,15 +62,15 @@ Execução
 
 ## Marco Atual
 
-EWO-016 — Production Deployment (Em andamento — Slice 1 concluída: Vercel configurada, Cloudflare substituída)
+EWO-016 — Production Deployment (Concluído — 4 Slices: Vercel configurada, Nitro ajustado, documentação de infraestrutura completa)
 
 ## PI Atual
 
-PI-013 — Platform Maturity & Intelligence (APPROVED — Onda 8). PI-012 — Platform Completion & Production Readiness (COMPLETED). Core API Frozen (7 componentes estáveis).
+PI-013 — Platform Maturity & Intelligence (APPROVED — Bloco A materializado via EWO-016). PI-012 — Platform Completion & Production Readiness (COMPLETED). Core API Frozen (7 componentes estáveis).
 
 ## PS Atual
 
-PS#054 — EWO-016 Slice 1: Vercel Deployment Foundation (concluído)
+PS#055 — EWO-016 Slice 4: Engineering Closure (concluído)
 
 ## Dashboard Executivo
 
@@ -79,8 +79,8 @@ PS#054 — EWO-016 Slice 1: Vercel Deployment Foundation (concluído)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#054
-Marco: EWO-016 (Production Deployment — Slice 1/5)
+PS Atual: PS#055
+Marco: EWO-016 (Production Deployment — Concluído)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -92,7 +92,7 @@ Marco: EWO-016 (Production Deployment — Slice 1/5)
 
 ## Objetivos Ativos
 
-EWO-016 em execução (Bloco A da PI-013). Slice 1 concluída: Vercel configurada como plataforma oficial (ADR-013-001), Cloudflare substituída, documentação de deploy criada. Próxima Slice: CI/CD com GitHub Actions + Vercel.
+EWO-016 CONCLUÍDA. Bloco A da PI-013 (Production Deployment) materializado: Vercel configurada como plataforma oficial (ADR-013-001), Nitro preset documentado, Cloudflare Workers substituído, variáveis de ambiente validadas, infraestrutura documentada (GitHub + Supabase + Vercel). Próxima etapa: Bloco B da PI-013 (UX Excellence — EWO-017) ou próximo roadmap.
 
 ## DEC Ativas
 
@@ -108,7 +108,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-EWO-016 em andamento (5 Slices). Slice 1 (Vercel Deployment Foundation) concluída. Próxima: Slice 2 — CI/CD Pipeline com GitHub Actions + Vercel.
+EWO-016 CONCLUÍDA. Bloco A da PI-013 (Production Deployment) materializado. Próxima etapa: **Bloco B (UX Excellence — EWO-017)** ou próximo roadmap estratégico.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -132,11 +132,11 @@ EWO-016 em andamento (5 Slices). Slice 1 (Vercel Deployment Foundation) concluí
 - **EWO-015 CONCLUÍDA** — Comercialização implementada (4 Slices, 12 testes, IPaymentGateway, BillingJobService, CheckoutOrchestrator)
 - **PI-013 APROVADA** — Platform Maturity & Intelligence (Onda 8), 5 blocos, 5 EWOs
 - **ER-013 APROVADA** — Engineering Review da PI-013, 5 NCs corrigidas
-- **EWO-016 EM EXECUÇÃO** — Production Deployment (Slice 1 concluída: Vercel)
+- **EWO-016 CONCLUÍDA** — Production Deployment (4 Slices: Vercel, Nitro, validação, docs)
 
 ### Próxima Frente de Engenharia
 
-EWO-016 — Production Deployment (5 Slices). Slice 1 concluída. Próxima: Slice 2 — CI/CD Pipeline com GitHub Actions + Vercel.
+EWO-016 CONCLUÍDA. Bloco A da PI-013 materializado. Próxima etapa: **Bloco B da PI-013 (UX Excellence — EWO-017)** ou próximo roadmap estratégico.
 
 ### Documentação Prevista
 
@@ -157,8 +157,9 @@ EWO-016 — Production Deployment (5 Slices). Slice 1 concluída. Próxima: Slic
 | EWO-015          | Implementação da Comercialização (Bloco C) | ✅ Concluída |
 | PI-013           | Platform Maturity & Intelligence (Onda 8) | ✅ Aprovada |
 | ER-013           | Engineering Review da PI-013          | ✅ Aprovada  |
-| EWO-016          | Production Deployment (Bloco A)       | ▶️ Em execução |
+| EWO-016          | Production Deployment (Bloco A)       | ✅ Concluída |
 | DEPLOY.md        | Documentação de deploy                 | ✅ Criado |
+| INFRASTRUCTURE.md | Documentação de infraestrutura        | ✅ Criado |
 
 ### Observações Relevantes
 
@@ -177,9 +178,11 @@ EWO-016 — Production Deployment (5 Slices). Slice 1 concluída. Próxima: Slic
 - Nenhum Core Domain alterado durante toda a EWO-015
 - Conhecimento consolidado: KC-001 a KC-008 (registrados nas Engineering Reviews), KB-006, KB-008
 - Backlog estratégico com 3 BKs ativos (BK-005, BK-006, BK-008) — BK-007 (Comercialização) concluído
-- **EWO-016 em execução** — Bloco A da PI-013 (Production Deployment), 5 Slices previstas
+- **EWO-016 CONCLUÍDA** — Bloco A da PI-013 (Production Deployment), 4 Slices, 3 commits
 - **Plataforma oficial: Vercel** (ADR-013-001) — Cloudflare Workers substituída
-- **CI/CD:** Vercel GitHub Integration (deploy automático por git push) + GitHub Actions (quality gates)
+- **Stack oficial:** GitHub (código) + Supabase (banco) + Vercel (host) + Sentry (monitoramento)
+- **Lovable** registrado como legado — não faz parte da infraestrutura oficial
+- **CI/CD:** Vercel GitHub Integration (deploy automático) + GitHub Actions (quality gates)
 
 ---
 
