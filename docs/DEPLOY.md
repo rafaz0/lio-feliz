@@ -2,11 +2,13 @@
 
 **Documento:** DEPLOY.md
 
-**Versão:** 1.0
+**Versão:** 1.1
 
 **Última atualização:** 23/07/2026
 
 **Nota:** Este documento substitui toda configuração provisória da Cloudflare Workers. A plataforma oficial é Vercel.
+
+> Consulte também `INFRASTRUCTURE.md` para visão completa da stack (GitHub + Supabase + Vercel).
 
 ---
 
@@ -201,6 +203,12 @@ Os logs de produção são acessíveis pelo Vercel Dashboard:
 ---
 
 ## Histórico
+
+### Versão 1.1
+
+- Adicionada referência cruzada para `INFRASTRUCTURE.md`.
+- Infraestrutura oficial documentada separadamente: GitHub + Supabase + Vercel.
+- Lovable registrado como legado.
 
 ### Versão 1.0
 
