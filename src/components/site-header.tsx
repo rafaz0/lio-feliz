@@ -32,7 +32,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SyncIndicator } from "@/components/sync-indicator";
-import { NotificationBell } from "@/components/notification-bell";
+import { NotificationPanel } from "@/components/notification-panel";
+import { useAlertsQuery } from "@/presentation/features/alerts";
 
 export function SiteHeader() {
   const navigate = useNavigate();
@@ -350,7 +351,7 @@ export function SiteHeader() {
               lastSync={null}
               className="hidden md:flex"
             />
-            <NotificationBell count={0} />
+            <NotificationPanelWrapper userId={user?.id ?? "dev-user-0000"} />
             <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -394,6 +395,11 @@ export function SiteHeader() {
       </div>
     </header>
   );
+}
+
+function NotificationPanelWrapper({ userId }: { userId: string }) {
+  const { data: alerts, isLoading } = useAlertsQuery(userId);
+  return <NotificationPanel alerts={alerts ?? []} isLoading={isLoading} />;
 }
 
 function MobileNavLink({
