@@ -9,7 +9,7 @@ import { renderErrorPage } from "./lib/error-page";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
 import { initSentryServer, logServerError } from "./lib/observability/server";
 
-initSentryServer();
+initSentryServer().catch(() => {});
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
