@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DashboardView } from "@/presentation/features/dashboard";
 import { useAuth } from "@/presentation/features/auth";
+import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   component: DashboardPage,
+  errorComponent: RouteErrorBoundary,
+  notFoundComponent: () => <NotFoundState />,
 });
 
 function DashboardPage() {

@@ -22,8 +22,11 @@ import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
 import { formatBRL, formatDate } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/empty-state";
+import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
 
 export const Route = createFileRoute("/_authenticated/carteira/patrimonio")({
+  errorComponent: RouteErrorBoundary,
+  notFoundComponent: () => <NotFoundState />,
   head: () => ({
     meta: [
       { title: "Patrimônio — Investidor Pro" },

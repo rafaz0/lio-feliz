@@ -1,9 +1,12 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { CheckoutForm } from "@/presentation/features/checkout";
 import { useAuth } from "@/presentation/features/auth";
+import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
 
 export const Route = createFileRoute("/_authenticated/checkout")({
   component: CheckoutPage,
+  errorComponent: RouteErrorBoundary,
+  notFoundComponent: () => <NotFoundState />,
 });
 
 function CheckoutPage() {

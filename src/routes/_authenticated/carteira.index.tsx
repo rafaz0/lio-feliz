@@ -29,8 +29,11 @@ import { DeltaPct } from "@/components/delta-pct";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatQty, formatDate } from "@/lib/format";
+import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
 
 export const Route = createFileRoute("/_authenticated/carteira/")({
+  errorComponent: RouteErrorBoundary,
+  notFoundComponent: () => <NotFoundState />,
   head: () => ({
     meta: [
       { title: "Carteira — Investidor Pro" },
