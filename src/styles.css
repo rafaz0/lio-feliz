@@ -151,14 +151,37 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
-  :root {
-    color-scheme: dark;
-  }
-  :root.light {
-    color-scheme: light;
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
   body {
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  /* Prefer reduced motion — disable animations for vestibular/accessibility users */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  /* Respect OS color-scheme for form controls and scrollbars */
+  :root {
+    color-scheme: dark;
+    accent-color: var(--color-primary);
+  }
+  :root.light {
+    color-scheme: light;
   }
 }
 

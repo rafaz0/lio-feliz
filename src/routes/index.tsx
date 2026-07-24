@@ -209,24 +209,37 @@ function HomePage() {
             <table className="w-full text-sm">
               <thead className="bg-surface-2 text-xs uppercase tracking-wider text-muted-foreground">
                 <tr>
-                  <th className="px-4 py-2.5 text-left font-medium">Ticker</th>
-                  <th className="px-4 py-2.5 text-left font-medium">Empresa</th>
-                  <th className="hidden sm:table-cell px-4 py-2.5 text-left font-medium">Setor</th>
-                  <th className="px-4 py-2.5 text-right font-medium">Preço</th>
-                  <th className="px-4 py-2.5 text-right font-medium">Var. dia</th>
-                  <th className="px-4 py-2.5 text-right font-medium">
+                  <th scope="col" className="px-4 py-2.5 text-left font-medium">
+                    Ticker
+                  </th>
+                  <th scope="col" className="px-4 py-2.5 text-left font-medium">
+                    Empresa
+                  </th>
+                  <th
+                    scope="col"
+                    className="hidden sm:table-cell px-4 py-2.5 text-left font-medium"
+                  >
+                    Setor
+                  </th>
+                  <th scope="col" className="px-4 py-2.5 text-right font-medium">
+                    Preço
+                  </th>
+                  <th scope="col" className="px-4 py-2.5 text-right font-medium">
+                    Var. dia
+                  </th>
+                  <th scope="col" className="px-4 py-2.5 text-right font-medium">
                     <ThHint
                       label="DY"
                       tooltip="Dividend Yield. Rendimento de dividendos pagos nos últimos 12 meses em relação ao preço da ação."
                     />
                   </th>
-                  <th className="px-4 py-2.5 text-right font-medium">
+                  <th scope="col" className="px-4 py-2.5 text-right font-medium">
                     <ThHint
                       label="P/L"
                       tooltip="Preço / Lucro. Quantos anos de lucro para pagar o preço da ação. Menor pode indicar ação mais barata; maior pode indicar expectativa de crescimento."
                     />
                   </th>
-                  <th className="px-4 py-2.5 text-right font-medium">
+                  <th scope="col" className="px-4 py-2.5 text-right font-medium">
                     <ThHint
                       label="Valor de mercado"
                       tooltip="Market Cap. Valor total da empresa na bolsa (preço × ações). Empresas maiores tendem a ser mais estáveis."
@@ -236,7 +249,10 @@ function HomePage() {
               </thead>
               <tbody>
                 {filteredAssets.map((a) => (
-                  <tr key={a.ticker} className="border-t border-border transition hover:bg-surface">
+                  <tr
+                    key={a.ticker}
+                    className="border-t border-border transition hover:bg-surface focus-visible:bg-surface focus-visible:outline-none"
+                  >
                     <td className="px-4 py-2.5">
                       <Link
                         to="/ativo/$ticker"
@@ -272,7 +288,8 @@ function HomePage() {
         <section className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             to="/watchlist"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Watchlist — monitore seus ativos"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Star className="size-5 text-chart-5" />
             <div>
@@ -282,7 +299,8 @@ function HomePage() {
           </Link>
           <Link
             to="/dividendos"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Agenda de Dividendos — calendário de proventos"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <CalendarDays className="size-5 text-primary" />
             <div>
@@ -292,7 +310,8 @@ function HomePage() {
           </Link>
           <Link
             to="/rankings"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Rankings — DY, P/L, Graham, Bazin"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Medal className="size-5 text-chart-2" />
             <div>
@@ -302,7 +321,8 @@ function HomePage() {
           </Link>
           <Link
             to="/setores"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Setores — análise por setor"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Building2 className="size-5 text-chart-1" />
             <div>
@@ -312,7 +332,8 @@ function HomePage() {
           </Link>
           <Link
             to="/comparar"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Comparador — compare ativos lado a lado"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <BarChart3 className="size-5 text-chart-4" />
             <div>
@@ -322,7 +343,8 @@ function HomePage() {
           </Link>
           <Link
             to="/fiis"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Fundos Imobiliários — FIIs, DY, P/VP"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Building2 className="size-5 text-chart-5" />
             <div>
@@ -334,7 +356,8 @@ function HomePage() {
             <>
               <Link
                 to="/provisionador"
-                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+                aria-label="Provisionador — projeção de dividendos"
+                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <PiggyBank className="size-5 text-primary" />
                 <div>
@@ -344,7 +367,8 @@ function HomePage() {
               </Link>
               <Link
                 to="/metas"
-                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+                aria-label="Metas — acompanhe seus objetivos"
+                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <Target className="size-5 text-chart-6" />
                 <div>
@@ -356,7 +380,8 @@ function HomePage() {
           )}
           <Link
             to="/calculadoras"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Calculadoras — juros, DCF, preço teto"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Calculator className="size-5 text-chart-6" />
             <div>
@@ -366,7 +391,8 @@ function HomePage() {
           </Link>
           <Link
             to="/carteiras-recomendadas"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Carteiras Recomendadas — para todos os perfis"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <BarChart3 className="size-5 text-chart-1" />
             <div>
@@ -376,7 +402,8 @@ function HomePage() {
           </Link>
           <Link
             to="/noticias"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Notícias — fatos relevantes do mercado"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Newspaper className="size-5 text-chart-3" />
             <div>
@@ -386,7 +413,8 @@ function HomePage() {
           </Link>
           <Link
             to="/carteira"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface"
+            aria-label="Carteira — posição consolidada"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Wallet className="size-5 text-chart-5" />
             <div>
