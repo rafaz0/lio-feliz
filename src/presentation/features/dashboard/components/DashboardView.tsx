@@ -5,6 +5,8 @@ import { EvolucaoChart } from "./EvolucaoChart";
 import { DashboardLoading } from "./DashboardLoading";
 import { DashboardError } from "./DashboardError";
 import { useDashboardQuery } from "../hooks/use-dashboard-query";
+import { InsightCard, InsightSection } from "@/presentation/features/intelligence";
+import { useDashboardInsights } from "@/presentation/features/intelligence/hooks/use-dashboard-insights";
 
 interface DashboardViewProps {
   portfolioId: string;
@@ -12,6 +14,7 @@ interface DashboardViewProps {
 
 export function DashboardView({ portfolioId }: DashboardViewProps) {
   const { viewModel, isLoading, isError, error, refetch } = useDashboardQuery(portfolioId);
+  const insights = useDashboardInsights(viewModel);
 
   if (isLoading) {
     return <DashboardLoading />;
@@ -26,6 +29,9 @@ export function DashboardView({ portfolioId }: DashboardViewProps) {
     );
   }
 
+  const patrimonioInsights = insights.filter((i) => i.category === "patrimonio");
+  const rentabilidadeInsights = insights.filter((i) => i.category === "rentabilidade");
+
   return (
     <section data-testid="dashboard-view" aria-label="Dashboard" className="grid gap-4">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -33,6 +39,20 @@ export function DashboardView({ portfolioId }: DashboardViewProps) {
           <KpiCard key={kpi.label} kpi={kpi} />
         ))}
       </div>
+
+      {insights.length > 0 && (
+        <div className="space-y-3 rounded-lg border border-border bg-card p-4">
+          <h3 className="text-sm font-semibold text-foreground">Insights</h3>
+          <div className="grid gap-2 md:grid-cols-2">
+            {patrimonioInsights.map((insight) => (
+              <InsightCard key={insight.id} insight={insight} />
+            ))}
+            {rentabilidadeInsights.map((insight) => (
+              <InsightCard key={insight.id} insight={insight} />
+            ))}
+          </div>
+        </div>
+      )}
 
       <PatrimonioConsolidado viewModel={viewModel} />
 
