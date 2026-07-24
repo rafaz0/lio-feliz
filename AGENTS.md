@@ -45,7 +45,7 @@ Um dashboard de carteira de investimentos completo que rivaliza com o **Investid
 - **Build target:** Cloudflare Module Worker
 - **Banco:** Supabase (PostgreSQL) — mas `DEV_MODE=true` usa store em memória
 - **Auth:** Supabase Auth via Lovable Cloud Auth
-- **Deploy:** Cloudflare (npx wrangler)
+- **Deploy:** Vercel (GitHub Integration, automático por git push)
 
 ## Como Rodar
 

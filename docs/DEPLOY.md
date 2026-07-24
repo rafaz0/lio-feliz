@@ -2,7 +2,7 @@
 
 **Documento:** DEPLOY.md
 
-**Versão:** 1.2
+**Versão:** 2.0
 
 **Última atualização:** 23/07/2026
 
@@ -132,13 +132,17 @@ vercel --prod
 
 ## CI/CD (GitHub Actions)
 
-O pipeline de CI/CD está configurado em `.github/workflows/ci.yml` e executa:
+O pipeline de quality gates está configurado em `.github/workflows/ci-cd.yml` e executa:
 
 1. **Lint** — `eslint .`
 2. **Testes** — `vitest run`
 3. **Build** — `vite build`
 
-O deploy para a Vercel é feito pelo [Vercel GitHub Integration](https://vercel.com/docs/deployments/git), não pelo GitHub Actions. A integração nativa da Vercel com GitHub oferece:
+> A etapa de deploy foi removida do GitHub Actions. O deploy é responsabilidade exclusiva da [integração nativa GitHub ↔ Vercel](https://vercel.com/docs/deployments/git).
+
+**O deploy do Cloudflare Workers foi descontinuado.** A configuração provisória (`wrangler deploy`) foi removida do CI/CD.
+
+A integração Vercel + GitHub oferece:
 
 - Deploy automático em todo push para `main`
 - Preview Deployments para PRs
@@ -203,6 +207,13 @@ Os logs de produção são acessíveis pelo Vercel Dashboard:
 ---
 
 ## Histórico
+
+### Versão 2.0
+
+- Workflow GitHub Actions renomeado para `quality-gates`.
+- Etapa `deploy` (Cloudflare Workers / wrangler) removida do CI/CD.
+- Cloudflare registrado como legado encerrado — deploy exclusivo via Vercel.
+- Documentação atualizada: GitHub Actions = quality gates, Vercel = deploy.
 
 ### Versão 1.2
 
