@@ -31,6 +31,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { SyncIndicator } from "@/components/sync-indicator";
+import { NotificationBell } from "@/components/notification-bell";
 
 export function SiteHeader() {
   const navigate = useNavigate();
@@ -340,6 +342,15 @@ export function SiteHeader() {
 
         {user ? (
           <>
+            <SyncIndicator
+              onSync={async () => {
+                const { syncPendingDividends } = await import("@/lib/operations.functions");
+                await syncPendingDividends({ data: {} });
+              }}
+              lastSync={null}
+              className="hidden md:flex"
+            />
+            <NotificationBell count={0} />
             <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
