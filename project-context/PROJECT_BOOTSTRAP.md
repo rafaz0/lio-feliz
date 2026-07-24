@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.67
+**Versão:** 2.68
 
 **Status:** APROVADO
 
@@ -62,11 +62,11 @@ Execução
 
 ## Marco Atual
 
-EWO-020 — Licensing & Access (Concluído — 4 Slices: fundação, integração, UX, closure)
+PI-014 — Product Evolution & Module Unification (Em andamento — Onda 9)
 
 ## PI Atual
 
-PI-013 — Platform Maturity & Intelligence (COMPLETED — 5 Blocos materializados: Deploy A, UX B, Insights C, Features D, Licensing E)
+PI-014 — Product Evolution & Module Unification (DRAFT). PI-013 — Platform Maturity & Intelligence (COMPLETED).
 
 ## PS Atual
 
@@ -92,7 +92,7 @@ Marco: EWO-020 (Licensing & Access — Concluído)
 
 ## Objetivos Ativos
 
-PI-013 CONCLUÍDA. Todos os 5 Blocos materializados: A (Deploy/Vercel), B (UX Excellence), C (Intelligence Layer), D (Feature Completion), E (Licensing & Access). Próxima etapa: definição do próximo roadmap estratégico.
+PI-014 EM ELABORAÇÃO. Transição para evolução funcional do produto. Módulos: Mercado, Carteira, Proventos, Relatórios, Ferramentas, Configurações. Piloto: Módulo Carteira. Próxima etapa: ER-014 (Engineering Review).
 
 ## DEC Ativas
 
@@ -108,7 +108,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-PI-013 CONCLUÍDA. Todos os 5 blocos materializados. Próxima etapa: **definição do próximo roadmap estratégico** — todas as 5 EWOs da PI-013 concluídas.
+PI-014 em elaboração. Transição para evolução funcional. Próxima etapa: **ER-014 (Engineering Review)**. Após aprovação: EWO-021 (Módulo Carteira).
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -138,10 +138,11 @@ PI-013 CONCLUÍDA. Todos os 5 blocos materializados. Próxima etapa: **definiç�
 - **EWO-019 CONCLUÍDA** — Feature Completion (5 Slices: sync, notificações, confirmação)
 - **EWO-020 CONCLUÍDA** — Licensing & Access (4 Slices: fundação, integração, UX, closure)
 - **PI-013 CONCLUÍDA** — Platform Maturity & Intelligence (5 Blocos, 24 Slices, ~17 EWOs)
+- **PI-014 EM ELABORAÇÃO** — Product Evolution & Module Unification (Onda 9)
 
 ### Próxima Frente de Engenharia
 
-PI-013 CONCLUÍDA. Todos os 5 blocos materializados. Próxima etapa: **definição do próximo roadmap estratégico**.
+PI-014 em elaboração. Transição para evolução funcional — módulos Carteira, Mercado, Proventos, Relatórios, Ferramentas, Configurações.
 
 ### Documentação Prevista
 
@@ -168,6 +169,7 @@ PI-013 CONCLUÍDA. Todos os 5 blocos materializados. Próxima etapa: **definiç�
 | EWO-019          | Feature Completion (Bloco D)          | ✅ Concluída |
 | EWO-020          | Licensing & Access (Bloco E)          | ✅ Concluída |
 | PI-013           | Platform Maturity & Intelligence      | ✅ CONCLUÍDA |
+| PI-014           | Product Evolution & Module Unification | ▶️ Em elaboração |
 | DEPLOY.md        | Documentação de deploy                 | ✅ Criado |
 | INFRASTRUCTURE.md | Documentação de infraestrutura        | ✅ Criado |
 

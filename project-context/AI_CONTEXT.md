@@ -2,7 +2,7 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 2.00
+**Versão:** 2.01
 
 **Status:** APROVADO
 
@@ -10,7 +10,7 @@
 
 **Última atualização:** 23/07/2026
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. PI-013 CONCLUÍDA. Próxima etapa: definição do próximo roadmap estratégico.
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. PI-014 em elaboração. Próxima etapa: ER-014 (Engineering Review).
 
 ---
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-PI-013 CONCLUÍDA (Platform Maturity & Intelligence — 5 blocos). Vercel, UX Excellence, Intelligence Layer, Feature Completion, Licensing & Access implementados. 24 slices concluídas. Próxima etapa: definição do próximo roadmap estratégico.
+PI-014 EM ELABORAÇÃO (Product Evolution — Onda 9). Transição para evolução funcional do produto. Módulos: Mercado, Carteira, Proventos, Relatórios, Ferramentas, Configurações. Próxima etapa: ER-014 (Engineering Review).
 
 # Referências Obrigatórias
 
