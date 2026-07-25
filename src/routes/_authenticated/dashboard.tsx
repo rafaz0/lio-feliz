@@ -15,6 +15,8 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useSession } from "@/hooks/use-session";
+import { DemoBadge } from "@/components/demo-badge";
+import { isDemoSession } from "@/seed/demo-session";
 import { SiteHeader } from "@/components/site-header";
 import { ModuleSection } from "@/components/module-section";
 import {
@@ -327,10 +329,22 @@ function DashboardPage() {
 
       <main className="mx-auto max-w-[1400px] px-4 py-6">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold tracking-tight">Olá, {displayName}</h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold tracking-tight">Olá, {displayName}</h1>
+            {isDemoSession() && <DemoBadge />}
+          </div>
           <p className="mt-0.5 text-sm text-muted-foreground">
             Visão consolidada do seu patrimônio e acesso rápido aos módulos.
           </p>
+          {isDemoSession() && (
+            <div className="mt-3 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-2 text-xs text-amber-600">
+              Você está usando uma conta demonstrativa. Os dados não serão salvos.{" "}
+              <a href="/register" className="font-medium underline hover:no-underline">
+                Crie sua conta gratuita
+              </a>{" "}
+              para manter seus dados.
+            </div>
+          )}
         </div>
 
         <ModuleSection

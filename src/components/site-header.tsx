@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
+import { DemoBadge } from "@/components/demo-badge";
+import { isDemoSession } from "@/seed/demo-session";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -262,6 +264,7 @@ export function SiteHeader() {
                   <span className="grid size-7 place-items-center rounded-full bg-primary/15 text-primary">
                     <User className="size-4" />
                   </span>
+                  {isDemoSession() && <DemoBadge />}
                   <span className="hidden text-sm md:inline">
                     {user.user_metadata?.display_name ?? user.email?.split("@")[0]}
                   </span>

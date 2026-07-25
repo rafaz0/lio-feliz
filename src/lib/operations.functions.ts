@@ -41,6 +41,25 @@ const operationInput = z.object({
 // Dev mode in-memory store (ephemeral, survives server restarts during dev)
 const DEV_STORE: Operation[] = [];
 
+// Demo mode multi-session store — keyed by sessionId
+const DEMO_STORES: Map<string, Operation[]> = new Map();
+
+export function initDemoStore(sessionId: string, operations: Operation[]): void {
+  DEMO_STORES.set(sessionId, [...operations]);
+}
+
+export function getDemoStore(sessionId: string): Operation[] | undefined {
+  return DEMO_STORES.get(sessionId);
+}
+
+export function clearDemoStore(sessionId: string): void {
+  DEMO_STORES.delete(sessionId);
+}
+
+export function isDemoMode(): boolean {
+  return process.env.DEMO_MODE === "true";
+}
+
 export const listOperations = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }): Promise<Operation[]> => {
