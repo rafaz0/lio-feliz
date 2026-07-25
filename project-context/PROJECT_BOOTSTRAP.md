@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.68
+**Versão:** 2.69
 
 **Status:** APROVADO
 
@@ -170,6 +170,7 @@ PI-014 em elaboração. Transição para evolução funcional — módulos Carte
 | EWO-020          | Licensing & Access (Bloco E)          | ✅ Concluída |
 | PI-013           | Platform Maturity & Intelligence      | ✅ CONCLUÍDA |
 | PI-014           | Product Evolution & Module Unification | ▶️ Em elaboração |
+| EWO-021          | Module Infrastructure Components       | ✅ Concluída |
 | DEPLOY.md        | Documentação de deploy                 | ✅ Criado |
 | INFRASTRUCTURE.md | Documentação de infraestrutura        | ✅ Criado |
 
