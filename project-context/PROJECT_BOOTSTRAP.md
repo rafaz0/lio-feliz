@@ -92,7 +92,7 @@ Marco: PI-016 — Experience Layer & Architecture Preservation (concluída)
 
 ## Objetivos Ativos
 
-PI-016 CONCLUÍDA. Experience Layer & Architecture Preservation (Onda 10). 10 EWOs executadas (EWO-031 a EWO-040). Experience Layer criada, integrada e consolidada com dados reais. Dashboard como Hub Central com 4 estados de funcionamento. Documentação: APPLICATION_STATES.md (v2.0), PERSONAL_FINANCE_ARCHITECTURE.md, ADR-009. Metodologia: R-MET-001 (critérios de conclusão de EWO). Próxima etapa: PI-017 (Arquitetura da Gestão Financeira).
+PI-017 EM ELABORAÇÃO (Arquitetura da Gestão Financeira — Onda 11). PI-017.md em DRAFT. Definição de bounded contexts, módulos, modelo conceitual, integração opcional com Carteira, feature flags. Próxima etapa: ER-017 (Engineering Review).
 
 ## DEC Ativas
 
@@ -142,7 +142,7 @@ PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Próxima e
 
 ### Próxima Frente de Engenharia
 
-PI-016 CONCLUÍDA. Experience Layer & Architecture Preservation. 10 EWOs executadas. Próxima etapa: PI-017 (Arquitetura da Gestão Financeira).
+PI-017 EM ELABORAÇÃO. Arquitetura da Gestão Financeira (Onda 11). PI-017.md em DRAFT. Próxima etapa: ER-017 (Engineering Review).
 
 ### Documentação Prevista
 

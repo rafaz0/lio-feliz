@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-PI-016 CONCLUÍDA (Experience Layer & Architecture Preservation — Onda 10). 10 EWOs executadas. Experience Layer criada, integrada e consolidada. Dashboard como Hub Central. APPLICATION_STATES.md v2.0, PERSONAL_FINANCE_ARCHITECTURE.md, ADR-009. Próxima etapa: PI-017 (Arquitetura da Gestão Financeira).
+PI-017 EM ELABORAÇÃO (Arquitetura da Gestão Financeira — Onda 11). PI-017.md em DRAFT. Definição de bounded contexts, módulos, integração opcional com Carteira. Próxima etapa: ER-017 (Engineering Review).
 
 # Referências Obrigatórias
 
