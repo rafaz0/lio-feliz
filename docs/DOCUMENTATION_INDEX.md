@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.13
+**Versão da Documentação:** 2.14
 
 **Status:** APROVADO
 
-**Última atualização:** 21/07/2026
+**Última atualização:** 25/07/2026
 
 ---
 
@@ -169,6 +169,12 @@ Engineering Review da PI-009: 14 critérios + 6 dimensões solicitadas validadas
 
 Engineering Work Order para a Onda 2 (Renda Fixa 09, Internacional 10). 7 Slices. O2 resolvida por reuso do fluxo canônico de operações. NC-009-001/003 incorporadas ao planejamento.
 
+✅ USER_FLOWS.md
+
+Mapeamento oficial dos fluxos de navegação da plataforma. 7 fluxos públicos, 15 fluxos privados, 11 integrações entre módulos, matriz de navegação com 34 entradas, 10 oportunidades futuras.
+
+---
+
 🔴 PI-010.md (DRAFT v1.0)
 
 Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada). Estende PI-008 (PA-008/R-001..R-007) e PI-009 (PA-009/R-008..R-010). 4 novas restrições (R-011..R-014: Backtest Determinístico, Alertas com Consentimento, Comparação Read-Only, Exportação Assíncrona Auditável). 3 novos Anexos Técnicos previstos (`07_BACKTEST_ALGORITMOS.md`, `08_ALERTAS_EVENTOS.md`, `09_EXPORTACAO_FORMATOS.md`). 6 riscos com mitigações. Seções 11 e 12 com critérios explícitos para a futura ER-010 e para as futuras EWO-009/EWO-010. **Dependência O2**: confirmar EWO-007 antes de abrir EWO-009.
@@ -242,6 +248,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.14
+
+- **EWO-027 CONCLUÍDA — USER_FLOWS.md criado.** Mapeamento oficial dos fluxos de navegação da plataforma: 7 fluxos públicos, 15 fluxos privados, 11 integrações entre módulos, matriz de navegação com 34 entradas, 10 oportunidades futuras registradas. DOCUMENTATION_INDEX v2.14.
 
 ## Versão 2.13
 
