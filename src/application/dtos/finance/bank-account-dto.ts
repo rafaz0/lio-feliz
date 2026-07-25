@@ -61,12 +61,21 @@ export interface DebtDto {
   updatedAt: string;
 }
 
-export interface CreateDebtDto {
-  description: string;
-  type: string;
-  totalAmount: number;
-  monthlyPayment: number;
-  interestRate?: number;
-  institution?: string;
-  dueDay?: number;
+export interface GlobalWealthDto {
+  totalCash: number;
+  totalInvested: number;
+  totalDebt: number;
+  netWorth: number;
+  accountCount: number;
+  debtCount: number;
+  monthlyIncome: number;
+  monthlyExpenses: number;
+  monthlyNet: number;
+  updatedAt: string;
+}
+
+export interface PortfolioSummaryDto {
+  totalValue: number;
+  totalInvested: number;
+  totalPnl: number;
 }

@@ -9,6 +9,8 @@ export { ListIncomesService } from "./list-incomes-service";
 export { ListExpensesService } from "./list-expenses-service";
 export { CreateDebtService } from "./create-debt-service";
 export { ListDebtsService } from "./list-debts-service";
+export { GetGlobalWealthService } from "./get-global-wealth-service";
+export { getPortfolioSummaryStub } from "./get-portfolio-summary";
 export { FinanceIntegrationService } from "./finance-integration-service";
 export { NullFinanceIntegrationService } from "./null-finance-integration-service";
 export type { IFinanceIntegrationService } from "./ifinance-integration-service";
