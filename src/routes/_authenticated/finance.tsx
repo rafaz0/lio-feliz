@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { Building2, Wallet, TrendingUp, ArrowDownUp, TrendingDown } from "lucide-react";
+import { Building2, Wallet, TrendingUp, ArrowDownUp, TrendingDown, CreditCard } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { ModuleLayout } from "@/components/module-layout";
 import type { ModuleTab } from "@/components/module-tabs";
@@ -25,6 +25,11 @@ const TABS: ModuleTab[] = [
     label: "Despesas",
     to: "/_authenticated/finance/despesas",
     icon: <TrendingDown className="size-4" />,
+  },
+  {
+    label: "Dívidas",
+    to: "/_authenticated/finance/dividas",
+    icon: <CreditCard className="size-4" />,
   },
 ];
 

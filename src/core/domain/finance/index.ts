@@ -12,6 +12,9 @@ export { IncomeEntry, IncomeId } from "./income-entry";
 export type { IncomeEntryProps } from "./income-entry";
 export { ExpenseEntry, ExpenseId } from "./expense-entry";
 export type { ExpenseEntryProps } from "./expense-entry";
+export { DebtType, debtTypeLabel } from "./debt-type";
+export { Debt, DebtId } from "./debt";
+export type { DebtProps } from "./debt";
 export { DEFAULT_FINANCE_CONFIG } from "./finance-integration-config";
 export type { FinanceIntegrationConfig, IncomeSource } from "./finance-integration-config";
 export type { SyncOperationEvent, SyncResult } from "./finance-integration-types";
@@ -25,4 +28,5 @@ export type {
   ICashTransactionRepository,
   IIncomeRepository,
   IExpenseRepository,
+  IDebtRepository,
 } from "./finance-repository";

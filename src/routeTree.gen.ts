@@ -51,6 +51,7 @@ import { Route as AuthenticatedCarteiraIndexRouteImport } from './routes/_authen
 import { Route as AuthenticatedPortfolioPortfolioIdRouteImport } from './routes/_authenticated/portfolio.$portfolioId'
 import { Route as AuthenticatedFinanceReceitasRouteImport } from './routes/_authenticated/finance.receitas'
 import { Route as AuthenticatedFinanceMovimentacoesRouteImport } from './routes/_authenticated/finance.movimentacoes'
+import { Route as AuthenticatedFinanceDividasRouteImport } from './routes/_authenticated/finance.dividas'
 import { Route as AuthenticatedFinanceDespesasRouteImport } from './routes/_authenticated/finance.despesas'
 import { Route as AuthenticatedFinanceContasRouteImport } from './routes/_authenticated/finance.contas'
 import { Route as AuthenticatedCarteiraRentabilidadeRouteImport } from './routes/_authenticated/carteira.rentabilidade'
@@ -287,6 +288,12 @@ const AuthenticatedFinanceMovimentacoesRoute =
     path: '/movimentacoes',
     getParentRoute: () => AuthenticatedFinanceRoute,
   } as any)
+const AuthenticatedFinanceDividasRoute =
+  AuthenticatedFinanceDividasRouteImport.update({
+    id: '/dividas',
+    path: '/dividas',
+    getParentRoute: () => AuthenticatedFinanceRoute,
+  } as any)
 const AuthenticatedFinanceDespesasRoute =
   AuthenticatedFinanceDespesasRouteImport.update({
     id: '/despesas',
@@ -458,6 +465,7 @@ export interface FileRoutesByFullPath {
   '/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/finance/contas': typeof AuthenticatedFinanceContasRoute
   '/finance/despesas': typeof AuthenticatedFinanceDespesasRoute
+  '/finance/dividas': typeof AuthenticatedFinanceDividasRoute
   '/finance/movimentacoes': typeof AuthenticatedFinanceMovimentacoesRoute
   '/finance/receitas': typeof AuthenticatedFinanceReceitasRoute
   '/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
@@ -518,6 +526,7 @@ export interface FileRoutesByTo {
   '/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/finance/contas': typeof AuthenticatedFinanceContasRoute
   '/finance/despesas': typeof AuthenticatedFinanceDespesasRoute
+  '/finance/dividas': typeof AuthenticatedFinanceDividasRoute
   '/finance/movimentacoes': typeof AuthenticatedFinanceMovimentacoesRoute
   '/finance/receitas': typeof AuthenticatedFinanceReceitasRoute
   '/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
@@ -583,6 +592,7 @@ export interface FileRoutesById {
   '/_authenticated/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/_authenticated/finance/contas': typeof AuthenticatedFinanceContasRoute
   '/_authenticated/finance/despesas': typeof AuthenticatedFinanceDespesasRoute
+  '/_authenticated/finance/dividas': typeof AuthenticatedFinanceDividasRoute
   '/_authenticated/finance/movimentacoes': typeof AuthenticatedFinanceMovimentacoesRoute
   '/_authenticated/finance/receitas': typeof AuthenticatedFinanceReceitasRoute
   '/_authenticated/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
@@ -648,6 +658,7 @@ export interface FileRouteTypes {
     | '/carteira/rentabilidade'
     | '/finance/contas'
     | '/finance/despesas'
+    | '/finance/dividas'
     | '/finance/movimentacoes'
     | '/finance/receitas'
     | '/portfolio/$portfolioId'
@@ -708,6 +719,7 @@ export interface FileRouteTypes {
     | '/carteira/rentabilidade'
     | '/finance/contas'
     | '/finance/despesas'
+    | '/finance/dividas'
     | '/finance/movimentacoes'
     | '/finance/receitas'
     | '/portfolio/$portfolioId'
@@ -772,6 +784,7 @@ export interface FileRouteTypes {
     | '/_authenticated/carteira/rentabilidade'
     | '/_authenticated/finance/contas'
     | '/_authenticated/finance/despesas'
+    | '/_authenticated/finance/dividas'
     | '/_authenticated/finance/movimentacoes'
     | '/_authenticated/finance/receitas'
     | '/_authenticated/portfolio/$portfolioId'
@@ -1105,6 +1118,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFinanceMovimentacoesRouteImport
       parentRoute: typeof AuthenticatedFinanceRoute
     }
+    '/_authenticated/finance/dividas': {
+      id: '/_authenticated/finance/dividas'
+      path: '/dividas'
+      fullPath: '/finance/dividas'
+      preLoaderRoute: typeof AuthenticatedFinanceDividasRouteImport
+      parentRoute: typeof AuthenticatedFinanceRoute
+    }
     '/_authenticated/finance/despesas': {
       id: '/_authenticated/finance/despesas'
       path: '/despesas'
@@ -1291,6 +1311,7 @@ const AuthenticatedCarteiraRouteWithChildren =
 interface AuthenticatedFinanceRouteChildren {
   AuthenticatedFinanceContasRoute: typeof AuthenticatedFinanceContasRoute
   AuthenticatedFinanceDespesasRoute: typeof AuthenticatedFinanceDespesasRoute
+  AuthenticatedFinanceDividasRoute: typeof AuthenticatedFinanceDividasRoute
   AuthenticatedFinanceMovimentacoesRoute: typeof AuthenticatedFinanceMovimentacoesRoute
   AuthenticatedFinanceReceitasRoute: typeof AuthenticatedFinanceReceitasRoute
   AuthenticatedFinanceIndexRoute: typeof AuthenticatedFinanceIndexRoute
@@ -1299,6 +1320,7 @@ interface AuthenticatedFinanceRouteChildren {
 const AuthenticatedFinanceRouteChildren: AuthenticatedFinanceRouteChildren = {
   AuthenticatedFinanceContasRoute: AuthenticatedFinanceContasRoute,
   AuthenticatedFinanceDespesasRoute: AuthenticatedFinanceDespesasRoute,
+  AuthenticatedFinanceDividasRoute: AuthenticatedFinanceDividasRoute,
   AuthenticatedFinanceMovimentacoesRoute:
     AuthenticatedFinanceMovimentacoesRoute,
   AuthenticatedFinanceReceitasRoute: AuthenticatedFinanceReceitasRoute,

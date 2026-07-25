@@ -47,19 +47,26 @@ export interface ExpenseDto {
   createdAt: string;
 }
 
-export interface CreateIncomeDto {
+export interface DebtDto {
+  id: string;
   description: string;
-  amount: number;
-  category: string;
-  date?: string;
-  recurrence?: string;
+  type: string;
+  totalAmount: number;
+  outstandingBalance: number;
+  monthlyPayment: number;
+  interestRate?: number;
+  institution?: string;
+  dueDay?: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface CreateExpenseDto {
+export interface CreateDebtDto {
   description: string;
-  amount: number;
-  category: string;
-  dueDate: string;
-  paidAt?: string;
-  isRecurring?: boolean;
+  type: string;
+  totalAmount: number;
+  monthlyPayment: number;
+  interestRate?: number;
+  institution?: string;
+  dueDay?: number;
 }

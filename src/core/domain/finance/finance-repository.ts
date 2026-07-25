@@ -2,6 +2,7 @@ import type { BankAccount } from "./bank-account";
 import type { CashTransaction } from "./cash-transaction";
 import type { IncomeEntry } from "./income-entry";
 import type { ExpenseEntry } from "./expense-entry";
+import type { Debt } from "./debt";
 
 export interface IBankAccountRepository {
   findById(id: string): Promise<BankAccount | null>;
@@ -29,5 +30,12 @@ export interface IExpenseRepository {
   findById(id: string): Promise<ExpenseEntry | null>;
   findByUserId(userId: string): Promise<ExpenseEntry[]>;
   save(expense: ExpenseEntry): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+
+export interface IDebtRepository {
+  findById(id: string): Promise<Debt | null>;
+  findByUserId(userId: string): Promise<Debt[]>;
+  save(debt: Debt): Promise<void>;
   delete(id: string): Promise<void>;
 }
