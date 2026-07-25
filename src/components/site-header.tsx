@@ -166,8 +166,9 @@ export function SiteHeader() {
           <Link
             to="/_authenticated/carteira"
             className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
+            activeOptions={{ exact: false }}
           >
-            <TrendingUp className="size-4" /> Carteira
+            Carteira
           </Link>
           <Link
             to="/dividendos"
