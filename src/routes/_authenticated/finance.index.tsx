@@ -18,21 +18,16 @@ export const Route = createFileRoute("/_authenticated/finance/")({
 });
 
 const QUICK_ACTIONS: QuickActionItem[] = [
-  {
-    label: "Contas",
-    to: "/_authenticated/finance/contas",
-    icon: Building2,
-    description: "Ver contas bancárias",
-  },
+  { label: "Contas", to: "/finance/contas", icon: Building2, description: "Ver contas bancárias" },
   {
     label: "Movimentações",
-    to: "/_authenticated/finance/movimentacoes",
+    to: "/finance/movimentacoes",
     icon: ArrowDownUp,
     description: "Últimas transações",
   },
   {
     label: "Receitas",
-    to: "/_authenticated/finance/receitas",
+    to: "/finance/receitas",
     icon: TrendingUp,
     description: "Registrar receitas",
   },

@@ -147,7 +147,7 @@ export function SiteHeader() {
                     <MobileNavLink to="/provisionador" onClick={closeMobile}>
                       Provisionador
                     </MobileNavLink>
-                    <MobileNavLink to="/_authenticated/finance" onClick={closeMobile}>
+                    <MobileNavLink to="/finance" onClick={closeMobile}>
                       Finanças
                     </MobileNavLink>
                   </div>
@@ -197,7 +197,7 @@ export function SiteHeader() {
           </Link>
           {user && (
             <Link
-              to="/_authenticated/finance"
+              to="/finance"
               className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
               activeOptions={{ exact: false }}
             >

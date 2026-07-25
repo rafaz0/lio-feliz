@@ -17,33 +17,17 @@ export const Route = createFileRoute("/_authenticated/finance")({
 });
 
 const TABS: ModuleTab[] = [
-  { label: "Resumo", to: "/_authenticated/finance", icon: <Building2 className="size-4" /> },
-  { label: "Contas", to: "/_authenticated/finance/contas", icon: <Wallet className="size-4" /> },
+  { label: "Resumo", to: "/finance", icon: <Building2 className="size-4" /> },
+  { label: "Contas", to: "/finance/contas", icon: <Wallet className="size-4" /> },
   {
     label: "Movimentações",
-    to: "/_authenticated/finance/movimentacoes",
+    to: "/finance/movimentacoes",
     icon: <ArrowDownUp className="size-4" />,
   },
-  {
-    label: "Receitas",
-    to: "/_authenticated/finance/receitas",
-    icon: <TrendingUp className="size-4" />,
-  },
-  {
-    label: "Despesas",
-    to: "/_authenticated/finance/despesas",
-    icon: <TrendingDown className="size-4" />,
-  },
-  {
-    label: "Dívidas",
-    to: "/_authenticated/finance/dividas",
-    icon: <CreditCard className="size-4" />,
-  },
-  {
-    label: "Patrimônio",
-    to: "/_authenticated/finance/patrimonio",
-    icon: <Landmark className="size-4" />,
-  },
+  { label: "Receitas", to: "/finance/receitas", icon: <TrendingUp className="size-4" /> },
+  { label: "Despesas", to: "/finance/despesas", icon: <TrendingDown className="size-4" /> },
+  { label: "Dívidas", to: "/finance/dividas", icon: <CreditCard className="size-4" /> },
+  { label: "Patrimônio", to: "/finance/patrimonio", icon: <Landmark className="size-4" /> },
 ];
 
 function FinanceModule() {
@@ -54,7 +38,7 @@ function FinanceModule() {
         <ModuleLayout
           title="Gestão Financeira"
           description="Contas, caixa, receitas, despesas e patrimônio."
-          breadcrumbs={[{ label: "Gestão Financeira", to: "/_authenticated/finance" }]}
+          breadcrumbs={[{ label: "Gestão Financeira", to: "/finance" }]}
           tabs={TABS}
         >
           <Outlet />
