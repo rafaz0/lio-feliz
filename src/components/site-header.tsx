@@ -1,19 +1,6 @@
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import {
-  BarChart3,
-  ChevronDown,
-  Coins,
-  FileText,
-  LineChart,
-  LogOut,
-  Menu,
-  Search,
-  TrendingUp,
-  User,
-  Sparkles,
-  X,
-} from "lucide-react";
+import { FileText, LogOut, Menu, Search, TrendingUp, User, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
 import { Button } from "@/components/ui/button";
@@ -139,23 +126,8 @@ export function SiteHeader() {
                     <p className="px-3 py-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       Carteira
                     </p>
-                    <MobileNavLink to="/carteira" onClick={closeMobile}>
-                      Resumo
-                    </MobileNavLink>
-                    <MobileNavLink to="/carteira/proventos" onClick={closeMobile}>
-                      Proventos
-                    </MobileNavLink>
-                    <MobileNavLink to="/carteira/patrimonio" onClick={closeMobile}>
-                      Patrimônio
-                    </MobileNavLink>
-                    <MobileNavLink to="/carteira/rentabilidade" onClick={closeMobile}>
-                      Rentabilidade
-                    </MobileNavLink>
-                    <MobileNavLink to="/carteira/cobertura" onClick={closeMobile}>
-                      Cobertura
-                    </MobileNavLink>
-                    <MobileNavLink to="/carteira/analise" onClick={closeMobile}>
-                      Análise
+                    <MobileNavLink to="/_authenticated/carteira" onClick={closeMobile}>
+                      Carteira
                     </MobileNavLink>
                     <MobileNavLink to="/metas" onClick={closeMobile}>
                       Metas
@@ -179,46 +151,12 @@ export function SiteHeader() {
           >
             Mercado
           </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="gap-1.5 text-muted-foreground hover:text-foreground"
-              >
-                <TrendingUp className="size-4" /> Carteira
-                <ChevronDown className="size-3" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-44">
-              <DropdownMenuItem asChild>
-                <Link to="/carteira/proventos" className="flex items-center gap-2">
-                  <Coins className="size-4" /> Proventos
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/carteira/patrimonio" className="flex items-center gap-2">
-                  <TrendingUp className="size-4" /> Patrimônio
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/carteira/rentabilidade" className="flex items-center gap-2">
-                  <LineChart className="size-4" /> Rentabilidade
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/carteira/analise" className="flex items-center gap-2">
-                  <Sparkles className="size-4" /> Cobertura
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/carteira" className="flex items-center gap-2">
-                  <BarChart3 className="size-4" /> Resumo da carteira
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Link
+            to="/_authenticated/carteira"
+            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
+          >
+            <TrendingUp className="size-4" /> Carteira
+          </Link>
           <Link
             to="/dividendos"
             className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
