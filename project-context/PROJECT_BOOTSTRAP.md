@@ -92,7 +92,7 @@ Marco: PI-017 — Arquitetura da Gestão Financeira (concluída)
 
 ## Objetivos Ativos
 
-PI-017 CONCLUÍDA (Arquitetura da Gestão Financeira — Onda 11). 5 EWOs executadas (EWO-041 a EWO-045). 6 módulos implementados: Contas, Caixa, Receitas, Despesas, Dívidas, Patrimônio Global. Integração opcional com Carteira estabelecida. 2 ADRs produzidos (ADR-017-001, ADR-017-002). Próxima etapa: definição da PI-018.
+PI-018 EM ELABORAÇÃO (Plataforma de Demonstração, Perfis de Usuário e Ambientes — Onda 12). PI-018.md em DRAFT. Definição de 5 perfis, 3 modos, dados demo, navegação adaptativa. Próxima etapa: ER-018 (Engineering Review).
 
 ## DEC Ativas
 
@@ -108,7 +108,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-PI-017 CONCLUÍDA. Gestão Financeira implementada. Próxima etapa: **definição da PI-018**.
+PI-018 EM ELABORAÇÃO. Plataforma de Demonstração, Perfis de Usuário e Ambientes (Onda 12). Próxima etapa: **ER-018 (Engineering Review)**.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -142,7 +142,7 @@ PI-017 CONCLUÍDA. Gestão Financeira implementada. Próxima etapa: **definiçã
 
 ### Próxima Frente de Engenharia
 
-PI-017 CONCLUÍDA. Arquitetura da Gestão Financeira (Onda 11). 5 EWOs executadas. Próxima etapa: definição da PI-018.
+PI-018 EM ELABORAÇÃO. Plataforma de Demonstração, Perfis de Usuário e Ambientes (Onda 12). PI-018.md em DRAFT. Próxima etapa: ER-018 (Engineering Review).
 
 ### Documentação Prevista
 

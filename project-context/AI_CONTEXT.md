@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-PI-017 CONCLUÍDA (Arquitetura da Gestão Financeira — Onda 11). 5 EWOs, 6 módulos, 2 ADRs. Gestão Financeira implementada. Próxima etapa: definição da PI-018.
+PI-018 EM ELABORAÇÃO (Plataforma de Demonstração, Perfis de Usuário e Ambientes — Onda 12). PI-018.md em DRAFT. 5 perfis, 3 modos. Próxima etapa: ER-018 (Engineering Review).
 
 # Referências Obrigatórias
 

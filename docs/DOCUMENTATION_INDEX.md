@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.20
+**Versão da Documentação:** 2.21
 
 **Status:** APROVADO
 
-**Última atualização:** 25/07/2026 (v2.20)
+**Última atualização:** 25/07/2026 (v2.21)
 
 ---
 
@@ -198,6 +198,12 @@ Documentação dos estados operacionais: Visitante, Demo, Usuário, Desenvolvedo
 
 Arquitetura da Gestão Financeira. 8 princípios R-PF, 5 bounded contexts, 6 módulos, 5 EWOs, integração opcional com Carteira.
 
+---
+
+🔴 PI-018.md (DRAFT v1.0)
+
+Plataforma de Demonstração, Perfis de Usuário e Ambientes. 5 perfis, 3 modos, dados demo, navegação adaptativa, feature flags por ambiente.
+
 Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada). Estende PI-008 (PA-008/R-001..R-007) e PI-009 (PA-009/R-008..R-010). 4 novas restrições (R-011..R-014: Backtest Determinístico, Alertas com Consentimento, Comparação Read-Only, Exportação Assíncrona Auditável). 3 novos Anexos Técnicos previstos (`07_BACKTEST_ALGORITMOS.md`, `08_ALERTAS_EVENTOS.md`, `09_EXPORTACAO_FORMATOS.md`). 6 riscos com mitigações. Seções 11 e 12 com critérios explícitos para a futura ER-010 e para as futuras EWO-009/EWO-010. **Dependência O2**: confirmar EWO-007 antes de abrir EWO-009.
 
 ✅ ER-017.md 🟢 (APPROVED)
@@ -281,6 +287,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.21
+
+- **PI-018 CRIADA (DRAFT) — Plataforma de Demonstração, Perfis de Usuário e Ambientes.** 5 perfis arquitetados (Visitante, Demo, Usuário, Desenvolvedor, Administrador). 3 modos especificados. 3 EWOs planejadas (EWO-046 a EWO-048). 2 ADRs recomendadas. DOCUMENTATION_INDEX v2.21.
 
 ## Versão 2.20
 
