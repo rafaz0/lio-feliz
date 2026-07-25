@@ -10,6 +10,12 @@
 
 **PI:** PI-016
 
+**Documentos relacionados:**
+- `ADR-009` — Decisão arquitetural de separação Carteira / Gestão Financeira
+- `USER_FLOWS.md` — Fluxos de navegação da plataforma
+- `APPLICATION_STATES.md` — Estados operacionais (Dashboard, Visitante, Demo, etc.)
+- `MODULE_ARCHITECTURE.md` — Padrão de módulos reutilizáveis
+
 ---
 
 ## 1. Objetivo

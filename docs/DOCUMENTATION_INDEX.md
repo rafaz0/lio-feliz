@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.18
+**Versão da Documentação:** 2.19
 
 **Status:** APROVADO
 
-**Última atualização:** 25/07/2026 (v2.18)
+**Última atualização:** 25/07/2026 (v2.19)
 
 ---
 
@@ -182,9 +182,9 @@ Arquitetura do módulo de Gestão Financeira Integrada. Separação de responsab
 
 ---
 
-✅ APPLICATION_STATES.md
+✅ APPLICATION_STATES.md (v2.0)
 
-Documentação dos estados operacionais da plataforma: Visitante, Usuário Autenticado, Desenvolvedor, Produção. Diferenças entre localhost e produção. Comportamentos DEV_USER/DEV_STORE/DEV_MODE.
+Documentação dos estados operacionais: Visitante, Demo, Usuário, Desenvolvedor, Administrador. Dashboard com 4 estados (A-D). Roadmap de estados PI-017 a PI-022. Regra R-DB-001.
 
 ---
 
@@ -261,6 +261,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.19
+
+- **PI-016 CONCLUÍDA — Experience Layer & Architecture Preservation.** 10 EWOs executadas (EWO-031 a EWO-040). APPLICATION_STATES.md v2.0 expandido (Demo, Admin, Roadmap). Cross-references entre documentos. R-MET-001 adicionado ao PROJECT_BOOTSTRAP. Próxima etapa: PI-017. DOCUMENTATION_INDEX v2.19.
 
 ## Versão 2.18
 

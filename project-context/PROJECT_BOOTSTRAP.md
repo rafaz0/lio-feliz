@@ -8,7 +8,7 @@
 
 **Categoria:** Project Context
 
-**Última atualização:** 25/07/2026 (v2.73)
+**Última atualização:** 25/07/2026 (v2.74)
 
 ---
 
@@ -62,15 +62,15 @@ Execução
 
 ## Marco Atual
 
-PI-015 — Product Evolution & Module Unification (Concluída — Onda 9 — Fluxos de navegação mapeados, deep linking implementado, UX refinada, Dashboard como Hub)
+PI-016 — Experience Layer & Architecture Preservation (Concluída — Onda 10 — 10 EWOs, Experience Layer, Dashboard Hub, PI-016 encerrada)
 
 ## PI Atual
 
-PI-014 — Product Evolution & Module Unification (DRAFT). PI-013 — Platform Maturity & Intelligence (COMPLETED).
+PI-016 — Experience Layer & Architecture Preservation (COMPLETED). PI-015 — Product Evolution & Module Unification (COMPLETED).
 
 ## PS Atual
 
-PS#066 — PI-016: Experience Layer & Architecture Preservation (em andamento)
+PS#067 — PI-016: Experience Layer & Architecture Preservation (concluída)
 
 ## Dashboard Executivo
 
@@ -79,8 +79,8 @@ PS#066 — PI-016: Experience Layer & Architecture Preservation (em andamento)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#065
-Marco: PI-016 — Experience Layer & Architecture Preservation (em andamento)
+PS Atual: PS#067
+Marco: PI-016 — Experience Layer & Architecture Preservation (concluída)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -92,7 +92,7 @@ Marco: PI-016 — Experience Layer & Architecture Preservation (em andamento)
 
 ## Objetivos Ativos
 
-PI-016 EM ELABORAÇÃO. Experience Layer & Architecture Preservation. 9 EWOs em execução (EWO-031 a EWO-039). Experience Layer criada e integrada. Dashboard robusto com 4 estados de funcionamento. Documentação: APPLICATION_STATES.md, PERSONAL_FINANCE_ARCHITECTURE.md, ADR-009. Próxima etapa: conclusão da PI-016.
+PI-016 CONCLUÍDA. Experience Layer & Architecture Preservation (Onda 10). 10 EWOs executadas (EWO-031 a EWO-040). Experience Layer criada, integrada e consolidada com dados reais. Dashboard como Hub Central com 4 estados de funcionamento. Documentação: APPLICATION_STATES.md (v2.0), PERSONAL_FINANCE_ARCHITECTURE.md, ADR-009. Metodologia: R-MET-001 (critérios de conclusão de EWO). Próxima etapa: PI-017 (Arquitetura da Gestão Financeira).
 
 ## DEC Ativas
 
@@ -142,7 +142,7 @@ PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Próxima e
 
 ### Próxima Frente de Engenharia
 
-PI-016 EM ELABORAÇÃO. Experience Layer & Architecture Preservation. Aguardando conclusão das EWOs restantes.
+PI-016 CONCLUÍDA. Experience Layer & Architecture Preservation. 10 EWOs executadas. Próxima etapa: PI-017 (Arquitetura da Gestão Financeira).
 
 ### Documentação Prevista
 
@@ -1281,6 +1281,25 @@ Toda implementação, slice, sprint ou engineering review deverá encerrar com o
 ```
 
 O relatório final deverá reproduzir este checklist com o status de cada item.
+
+### 8. Critérios de Conclusão de EWO (R-MET-001)
+
+Uma EWO somente poderá ser considerada concluída quando atender **todos** os critérios abaixo:
+
+| # | Critério | Descrição |
+|---|----------|-----------|
+| 1 | Build | `npm run build` — sem erros |
+| 2 | Lint | `npm run lint` — 0 erros |
+| 3 | Testes | `npx vitest run` — sem regressões |
+| 4 | Push | `git push` — confirmado no remoto |
+| 5 | Working Tree | `git status` — limpa |
+| 6 | Validação funcional | Comportamento verificado nos cenários aplicáveis |
+| 7 | Confirmação visual | Quando aplicável, inspeção visual da interface |
+| 8 | Documentação | Documentos pertinentes atualizados |
+| 9 | Relatório | Relatório final emitido conforme padrão |
+| 10 | HEAD | Hash do commit registrado |
+
+Nenhum critério pode ser suprimido. Se qualquer critério não for atendido, a EWO permanece com status **Pendente de Encerramento**.
 
 ## Regras Operacionais
 

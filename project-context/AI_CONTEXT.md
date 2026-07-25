@@ -8,7 +8,7 @@
 
 **Categoria:** Project Context
 
-**Última atualização:** 25/07/2026 (v2.02)
+**Última atualização:** 25/07/2026 (v2.03)
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. PI-014 em elaboração. Próxima etapa: ER-014 (Engineering Review).
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-PI-016 EM ELABORAÇÃO (Experience Layer & Architecture Preservation — Onda 10). Experience Layer criada e integrada. Dashboard robusto com 4 estados de funcionamento. Documentos: APPLICATION_STATES.md, PERSONAL_FINANCE_ARCHITECTURE.md. Próxima etapa: conclusão da PI-016.
+PI-016 CONCLUÍDA (Experience Layer & Architecture Preservation — Onda 10). 10 EWOs executadas. Experience Layer criada, integrada e consolidada. Dashboard como Hub Central. APPLICATION_STATES.md v2.0, PERSONAL_FINANCE_ARCHITECTURE.md, ADR-009. Próxima etapa: PI-017 (Arquitetura da Gestão Financeira).
 
 # Referências Obrigatórias
 
