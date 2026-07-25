@@ -196,7 +196,45 @@ Visitante
 
 Fluxos que exigem login. O layout `_authenticated` aplica verificação de sessão e renderiza `MobileNav`.
 
-### 4.1 Login → Carteira → Resumo
+### 4.1 Login → Dashboard (Hub Central)
+
+```
+Login
+  │
+  ▼
+  Home (/)
+  │
+  ├── ▶ MobileNav: ícone Dashboard
+  └── ▶ (usuário logado pode acessar diretamente)
+        │
+        ▼
+  Dashboard (/dashboard) — Hub Central
+        │
+        ├── ▶ Saudação personalizada ("Olá, {nome}")
+        │
+        ├── ▶ Acesso Rápido (atalhos para módulos)
+        │     ├── Carteira (/carteira)
+        │     ├── Análise (/analise)
+        │     ├── Dividendos (/dividendos)
+        │     ├── Mercado (/)
+        │     ├── Metas (/metas)
+        │     ├── Provisionador (/provisionador)
+        │     ├── Watchlist (/watchlist)
+        │     └── Comparador (/comparar)
+        │
+        ├── ▶ Sua Carteira
+        │     ├── KPIs (Patrimônio, Investido, Disponível, Evolução)
+        │     ├── Insights (intelligence layer)
+        │     ├── Patrimônio Consolidado
+        │     ├── Alocação por Classe (gráfico)
+        │     └── Evolução Patrimonial (gráfico)
+        │
+        └── ▶ Alertas e Notificações (preparado para futuras funcionalidades)
+              ├── Link para Rebalanceamento
+              └── Link para Cobertura
+```
+
+### 4.2 Login → Carteira → Resumo
 
 ```
 Login
@@ -694,6 +732,16 @@ Proventos (/carteira/proventos) ou (/carteira)
 | Menu Usuário | IRPF (`/irpf`) | Privado | Sim | Dropdown do usuário |
 | Menu Usuário | Carteira/Proventos | Privado | Sim | Dropdown do usuário |
 | MobileNav | Dashboard | Privado | Sim | Ícone Home |
+| Dashboard | Carteira (`/carteira`) | Privado | Sim | Quick Action (EWO-030) |
+| Dashboard | Análise (`/analise`) | Público | Não | Quick Action (EWO-030) |
+| Dashboard | Dividendos (`/dividendos`) | Público | Não | Quick Action (EWO-030) |
+| Dashboard | Mercado (`/`) | Público | Não | Quick Action (EWO-030) |
+| Dashboard | Metas (`/metas`) | Privado | Sim | Quick Action (EWO-030) |
+| Dashboard | Provisionador | Privado | Sim | Quick Action (EWO-030) |
+| Dashboard | Watchlist (`/watchlist`) | Público | Não | Quick Action (EWO-030) |
+| Dashboard | Comparador (`/comparar`) | Público | Não | Quick Action (EWO-030) |
+| Dashboard | Rebalanceamento | Privado | Sim | Link seção Alertas (EWO-030) |
+| Dashboard | Cobertura | Privado | Sim | Link seção Alertas (EWO-030) |
 | MobileNav | Carteira | Privado | Sim | Ícone Wallet |
 | MobileNav | Dividendos | Público | Não | Ícone PiggyBank |
 | MobileNav | Metas | Privado | Sim | Ícone Target |
@@ -748,6 +796,13 @@ A barra de busca no header poderia ser ativada por atalho de teclado (ex: `Ctrl+
 ---
 
 ## 9. Histórico
+
+### Versão 1.2 — 25/07/2026
+
+- EWO-030: Dashboard transformado em Hub Central.
+- Novo fluxo: Login → Dashboard (saudação, acesso rápido, carteira, alertas).
+- 10 novas entradas na matriz de navegação (Quick Actions + Alertas).
+- 8 atalhos de acesso rápido para módulos principais.
 
 ### Versão 1.1 — 25/07/2026
 

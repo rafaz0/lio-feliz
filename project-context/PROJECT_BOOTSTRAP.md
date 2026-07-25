@@ -8,7 +8,7 @@
 
 **Categoria:** Project Context
 
-**Última atualização:** 23/07/2026
+**Última atualização:** 25/07/2026
 
 ---
 
@@ -62,7 +62,7 @@ Execução
 
 ## Marco Atual
 
-PI-014 — Product Evolution & Module Unification (Em andamento — Onda 9 — Carteira e Análise migrados, arquitetura consolidada)
+PI-015 — Product Evolution & Module Unification (Concluída — Onda 9 — Fluxos de navegação mapeados, deep linking implementado, UX refinada, Dashboard como Hub)
 
 ## PI Atual
 
@@ -70,7 +70,7 @@ PI-014 — Product Evolution & Module Unification (DRAFT). PI-013 — Platform M
 
 ## PS Atual
 
-PS#064 — EWO-023: Consolidação da Arquitetura Modular (concluído)
+PS#065 — PI-015: Product Evolution & Module Unification (concluída)
 
 ## Dashboard Executivo
 
@@ -79,8 +79,8 @@ PS#064 — EWO-023: Consolidação da Arquitetura Modular (concluído)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#064
-Marco: PI-014 — Módulos Carteira + Análise (EWO-022/023)
+PS Atual: PS#065
+Marco: PI-015 — Product Evolution & Module Unification (concluída)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -92,7 +92,7 @@ Marco: PI-014 — Módulos Carteira + Análise (EWO-022/023)
 
 ## Objetivos Ativos
 
-PI-014 EM ELABORAÇÃO. Transição para evolução funcional do produto. Módulos: Mercado, Carteira, Proventos, Relatórios, Ferramentas, Configurações. Piloto: Módulo Carteira. Próxima etapa: ER-014 (Engineering Review).
+PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. 4 EWOs executadas: USER_FLOWS.md criado, 5 integrações entre módulos, UX refinada (ModuleTabs, Header, Breadcrumb, estados ativos), Dashboard transformado em Hub Central. Próxima etapa: definição da PI-016.
 
 ## DEC Ativas
 
@@ -108,7 +108,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-PI-014 em elaboração. Transição para evolução funcional. Próxima etapa: **ER-014 (Engineering Review)**. Após aprovação: EWO-021 (Módulo Carteira).
+PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Próxima etapa: **definição da PI-016**.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -138,11 +138,11 @@ PI-014 em elaboração. Transição para evolução funcional. Próxima etapa: *
 - **EWO-019 CONCLUÍDA** — Feature Completion (5 Slices: sync, notificações, confirmação)
 - **EWO-020 CONCLUÍDA** — Licensing & Access (4 Slices: fundação, integração, UX, closure)
 - **PI-013 CONCLUÍDA** — Platform Maturity & Intelligence (5 Blocos, 24 Slices, ~17 EWOs)
-- **PI-014 EM ELABORAÇÃO** — Product Evolution & Module Unification (Onda 9)
+- **PI-015 CONCLUÍDA** — Product Evolution & Module Unification (Onda 9)
 
 ### Próxima Frente de Engenharia
 
-PI-014 em elaboração. Transição para evolução funcional — módulos Carteira, Mercado, Proventos, Relatórios, Ferramentas, Configurações.
+PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Aguardando definição da PI-016.
 
 ### Documentação Prevista
 
@@ -173,8 +173,9 @@ PI-014 em elaboração. Transição para evolução funcional — módulos Carte
 | EWO-021          | Module Infrastructure Components       | ✅ Concluída |
 | EWO-022          | Migração do Módulo Análise             | ✅ Concluída |
 | MODULE_ARCHITECTURE.md | Guia oficial de arquitetura modular | ✅ Criado |
-| DEPLOY.md        | Documentação de deploy                 | ✅ Criado |
-| INFRASTRUCTURE.md | Documentação de infraestrutura        | ✅ Criado |
+| USER_FLOWS.md | Mapeamento de fluxos de navegação | ✅ Criado |
+| DEPLOY.md | Documentação de deploy | ✅ Criado |
+| INFRASTRUCTURE.md | Documentação de infraestrutura | ✅ Criado |
 
 ### Observações Relevantes
 

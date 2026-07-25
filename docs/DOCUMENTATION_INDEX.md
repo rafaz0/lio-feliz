@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.14
+**Versão da Documentação:** 2.15
 
 **Status:** APROVADO
 
-**Última atualização:** 25/07/2026
+**Última atualização:** 25/07/2026 (v2.15)
 
 ---
 
@@ -248,6 +248,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.15
+
+- **PI-015 CONCLUÍDA — Product Evolution & Module Unification.** 4 EWOs executadas (EWO-027 a EWO-030). Documento USER_FLOWS.md criado. 5 integrações entre módulos implementadas (Comparador→Carteira, Dividendos→Empresa, Ativo→Análise, Proventos→Provisionador, Dashboard como Hub). Refinamentos UX em ModuleTabs, ModuleHeader, ModuleBreadcrumb e SiteHeader. DOCUMENTATION_INDEX v2.15.
 
 ## Versão 2.14
 

@@ -8,7 +8,7 @@
 
 **Categoria:** Project Context
 
-**Última atualização:** 23/07/2026
+**Última atualização:** 25/07/2026
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. PI-014 em elaboração. Próxima etapa: ER-014 (Engineering Review).
 
@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-PI-014 EM ELABORAÇÃO (Product Evolution — Onda 9). Transição para evolução funcional do produto. Módulos: Mercado, Carteira, Proventos, Relatórios, Ferramentas, Configurações. Próxima etapa: ER-014 (Engineering Review).
+PI-015 CONCLUÍDA (Product Evolution & Module Unification — Onda 9). 4 EWOs executadas: fluxos mapeados (USER_FLOWS.md), deep linking entre módulos, UX refinada, Dashboard como Hub Central. Próxima etapa: definição da PI-016.
 
 # Referências Obrigatórias
 
