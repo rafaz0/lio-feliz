@@ -10,8 +10,24 @@ import type {
   RegisterInput,
 } from "@/presentation/shared/types/auth";
 
+function isLocal(): boolean {
+  if (typeof window === "undefined") return false;
+  const h = window.location.hostname;
+  return h === "localhost" || h === "127.0.0.1";
+}
+
+const DEV_USER: AuthUser = {
+  id: "dev-user-0000",
+  email: "dev@localhost",
+  displayName: "Desenvolvedor",
+  avatarUrl: null,
+};
+
 function mapSession(session: Session | null): AuthSession {
   if (!session?.user) {
+    if (isLocal()) {
+      return { user: DEV_USER, expiresAt: null, isAuthenticated: true };
+    }
     return { user: null, expiresAt: null, isAuthenticated: false };
   }
   const user: AuthUser = {
