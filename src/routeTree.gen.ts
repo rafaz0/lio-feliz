@@ -39,12 +39,15 @@ import { Route as AuthenticatedIrpfIndexRouteImport } from './routes/_authentica
 import { Route as AuthenticatedCarteiraIndexRouteImport } from './routes/_authenticated/carteira.index'
 import { Route as AuthenticatedPortfolioPortfolioIdRouteImport } from './routes/_authenticated/portfolio.$portfolioId'
 import { Route as AuthenticatedCarteiraRentabilidadeRouteImport } from './routes/_authenticated/carteira.rentabilidade'
+import { Route as AuthenticatedCarteiraRebalanceamentoRouteImport } from './routes/_authenticated/carteira.rebalanceamento'
 import { Route as AuthenticatedCarteiraProventosRouteImport } from './routes/_authenticated/carteira.proventos'
 import { Route as AuthenticatedCarteiraPatrimonioRouteImport } from './routes/_authenticated/carteira.patrimonio'
 import { Route as AuthenticatedCarteiraOperacoesRouteImport } from './routes/_authenticated/carteira.operacoes'
 import { Route as AuthenticatedCarteiraMetasRouteImport } from './routes/_authenticated/carteira.metas'
 import { Route as AuthenticatedCarteiraLancamentosRouteImport } from './routes/_authenticated/carteira.lancamentos'
 import { Route as AuthenticatedCarteiraIrpfRouteImport } from './routes/_authenticated/carteira.irpf'
+import { Route as AuthenticatedCarteiraHistoricoRouteImport } from './routes/_authenticated/carteira.historico'
+import { Route as AuthenticatedCarteiraConfiguracoesRouteImport } from './routes/_authenticated/carteira.configuracoes'
 import { Route as AuthenticatedCarteiraCoberturaRouteImport } from './routes/_authenticated/carteira.cobertura'
 import { Route as AuthenticatedCarteiraAnaliseRouteImport } from './routes/_authenticated/carteira.analise'
 import { Route as AuthenticatedPortfolioPortfolioIdTaxRouteImport } from './routes/_authenticated/portfolio.$portfolioId.tax'
@@ -207,6 +210,12 @@ const AuthenticatedCarteiraRentabilidadeRoute =
     path: '/rentabilidade',
     getParentRoute: () => AuthenticatedCarteiraRoute,
   } as any)
+const AuthenticatedCarteiraRebalanceamentoRoute =
+  AuthenticatedCarteiraRebalanceamentoRouteImport.update({
+    id: '/rebalanceamento',
+    path: '/rebalanceamento',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
 const AuthenticatedCarteiraProventosRoute =
   AuthenticatedCarteiraProventosRouteImport.update({
     id: '/proventos',
@@ -241,6 +250,18 @@ const AuthenticatedCarteiraIrpfRoute =
   AuthenticatedCarteiraIrpfRouteImport.update({
     id: '/irpf',
     path: '/irpf',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
+const AuthenticatedCarteiraHistoricoRoute =
+  AuthenticatedCarteiraHistoricoRouteImport.update({
+    id: '/historico',
+    path: '/historico',
+    getParentRoute: () => AuthenticatedCarteiraRoute,
+  } as any)
+const AuthenticatedCarteiraConfiguracoesRoute =
+  AuthenticatedCarteiraConfiguracoesRouteImport.update({
+    id: '/configuracoes',
+    path: '/configuracoes',
     getParentRoute: () => AuthenticatedCarteiraRoute,
   } as any)
 const AuthenticatedCarteiraCoberturaRoute =
@@ -320,12 +341,15 @@ export interface FileRoutesByFullPath {
   '/watchlist/': typeof WatchlistIndexRoute
   '/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
+  '/carteira/configuracoes': typeof AuthenticatedCarteiraConfiguracoesRoute
+  '/carteira/historico': typeof AuthenticatedCarteiraHistoricoRoute
   '/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
   '/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
   '/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
   '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
+  '/carteira/rebalanceamento': typeof AuthenticatedCarteiraRebalanceamentoRoute
   '/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
   '/carteira/': typeof AuthenticatedCarteiraIndexRoute
@@ -364,12 +388,15 @@ export interface FileRoutesByTo {
   '/watchlist': typeof WatchlistIndexRoute
   '/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
+  '/carteira/configuracoes': typeof AuthenticatedCarteiraConfiguracoesRoute
+  '/carteira/historico': typeof AuthenticatedCarteiraHistoricoRoute
   '/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
   '/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
   '/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
   '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
+  '/carteira/rebalanceamento': typeof AuthenticatedCarteiraRebalanceamentoRoute
   '/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
   '/carteira': typeof AuthenticatedCarteiraIndexRoute
@@ -411,12 +438,15 @@ export interface FileRoutesById {
   '/watchlist/': typeof WatchlistIndexRoute
   '/_authenticated/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/_authenticated/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
+  '/_authenticated/carteira/configuracoes': typeof AuthenticatedCarteiraConfiguracoesRoute
+  '/_authenticated/carteira/historico': typeof AuthenticatedCarteiraHistoricoRoute
   '/_authenticated/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
   '/_authenticated/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
   '/_authenticated/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
   '/_authenticated/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/_authenticated/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/_authenticated/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
+  '/_authenticated/carteira/rebalanceamento': typeof AuthenticatedCarteiraRebalanceamentoRoute
   '/_authenticated/carteira/rentabilidade': typeof AuthenticatedCarteiraRentabilidadeRoute
   '/_authenticated/portfolio/$portfolioId': typeof AuthenticatedPortfolioPortfolioIdRouteWithChildren
   '/_authenticated/carteira/': typeof AuthenticatedCarteiraIndexRoute
@@ -458,12 +488,15 @@ export interface FileRouteTypes {
     | '/watchlist/'
     | '/carteira/analise'
     | '/carteira/cobertura'
+    | '/carteira/configuracoes'
+    | '/carteira/historico'
     | '/carteira/irpf'
     | '/carteira/lancamentos'
     | '/carteira/metas'
     | '/carteira/operacoes'
     | '/carteira/patrimonio'
     | '/carteira/proventos'
+    | '/carteira/rebalanceamento'
     | '/carteira/rentabilidade'
     | '/portfolio/$portfolioId'
     | '/carteira/'
@@ -502,12 +535,15 @@ export interface FileRouteTypes {
     | '/watchlist'
     | '/carteira/analise'
     | '/carteira/cobertura'
+    | '/carteira/configuracoes'
+    | '/carteira/historico'
     | '/carteira/irpf'
     | '/carteira/lancamentos'
     | '/carteira/metas'
     | '/carteira/operacoes'
     | '/carteira/patrimonio'
     | '/carteira/proventos'
+    | '/carteira/rebalanceamento'
     | '/carteira/rentabilidade'
     | '/portfolio/$portfolioId'
     | '/carteira'
@@ -548,12 +584,15 @@ export interface FileRouteTypes {
     | '/watchlist/'
     | '/_authenticated/carteira/analise'
     | '/_authenticated/carteira/cobertura'
+    | '/_authenticated/carteira/configuracoes'
+    | '/_authenticated/carteira/historico'
     | '/_authenticated/carteira/irpf'
     | '/_authenticated/carteira/lancamentos'
     | '/_authenticated/carteira/metas'
     | '/_authenticated/carteira/operacoes'
     | '/_authenticated/carteira/patrimonio'
     | '/_authenticated/carteira/proventos'
+    | '/_authenticated/carteira/rebalanceamento'
     | '/_authenticated/carteira/rentabilidade'
     | '/_authenticated/portfolio/$portfolioId'
     | '/_authenticated/carteira/'
@@ -800,6 +839,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCarteiraRentabilidadeRouteImport
       parentRoute: typeof AuthenticatedCarteiraRoute
     }
+    '/_authenticated/carteira/rebalanceamento': {
+      id: '/_authenticated/carteira/rebalanceamento'
+      path: '/rebalanceamento'
+      fullPath: '/carteira/rebalanceamento'
+      preLoaderRoute: typeof AuthenticatedCarteiraRebalanceamentoRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
     '/_authenticated/carteira/proventos': {
       id: '/_authenticated/carteira/proventos'
       path: '/proventos'
@@ -840,6 +886,20 @@ declare module '@tanstack/react-router' {
       path: '/irpf'
       fullPath: '/carteira/irpf'
       preLoaderRoute: typeof AuthenticatedCarteiraIrpfRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
+    '/_authenticated/carteira/historico': {
+      id: '/_authenticated/carteira/historico'
+      path: '/historico'
+      fullPath: '/carteira/historico'
+      preLoaderRoute: typeof AuthenticatedCarteiraHistoricoRouteImport
+      parentRoute: typeof AuthenticatedCarteiraRoute
+    }
+    '/_authenticated/carteira/configuracoes': {
+      id: '/_authenticated/carteira/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/carteira/configuracoes'
+      preLoaderRoute: typeof AuthenticatedCarteiraConfiguracoesRouteImport
       parentRoute: typeof AuthenticatedCarteiraRoute
     }
     '/_authenticated/carteira/cobertura': {
@@ -904,12 +964,15 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedCarteiraRouteChildren {
   AuthenticatedCarteiraAnaliseRoute: typeof AuthenticatedCarteiraAnaliseRoute
   AuthenticatedCarteiraCoberturaRoute: typeof AuthenticatedCarteiraCoberturaRoute
+  AuthenticatedCarteiraConfiguracoesRoute: typeof AuthenticatedCarteiraConfiguracoesRoute
+  AuthenticatedCarteiraHistoricoRoute: typeof AuthenticatedCarteiraHistoricoRoute
   AuthenticatedCarteiraIrpfRoute: typeof AuthenticatedCarteiraIrpfRoute
   AuthenticatedCarteiraLancamentosRoute: typeof AuthenticatedCarteiraLancamentosRoute
   AuthenticatedCarteiraMetasRoute: typeof AuthenticatedCarteiraMetasRoute
   AuthenticatedCarteiraOperacoesRoute: typeof AuthenticatedCarteiraOperacoesRoute
   AuthenticatedCarteiraPatrimonioRoute: typeof AuthenticatedCarteiraPatrimonioRoute
   AuthenticatedCarteiraProventosRoute: typeof AuthenticatedCarteiraProventosRoute
+  AuthenticatedCarteiraRebalanceamentoRoute: typeof AuthenticatedCarteiraRebalanceamentoRoute
   AuthenticatedCarteiraRentabilidadeRoute: typeof AuthenticatedCarteiraRentabilidadeRoute
   AuthenticatedCarteiraIndexRoute: typeof AuthenticatedCarteiraIndexRoute
 }
@@ -917,12 +980,17 @@ interface AuthenticatedCarteiraRouteChildren {
 const AuthenticatedCarteiraRouteChildren: AuthenticatedCarteiraRouteChildren = {
   AuthenticatedCarteiraAnaliseRoute: AuthenticatedCarteiraAnaliseRoute,
   AuthenticatedCarteiraCoberturaRoute: AuthenticatedCarteiraCoberturaRoute,
+  AuthenticatedCarteiraConfiguracoesRoute:
+    AuthenticatedCarteiraConfiguracoesRoute,
+  AuthenticatedCarteiraHistoricoRoute: AuthenticatedCarteiraHistoricoRoute,
   AuthenticatedCarteiraIrpfRoute: AuthenticatedCarteiraIrpfRoute,
   AuthenticatedCarteiraLancamentosRoute: AuthenticatedCarteiraLancamentosRoute,
   AuthenticatedCarteiraMetasRoute: AuthenticatedCarteiraMetasRoute,
   AuthenticatedCarteiraOperacoesRoute: AuthenticatedCarteiraOperacoesRoute,
   AuthenticatedCarteiraPatrimonioRoute: AuthenticatedCarteiraPatrimonioRoute,
   AuthenticatedCarteiraProventosRoute: AuthenticatedCarteiraProventosRoute,
+  AuthenticatedCarteiraRebalanceamentoRoute:
+    AuthenticatedCarteiraRebalanceamentoRoute,
   AuthenticatedCarteiraRentabilidadeRoute:
     AuthenticatedCarteiraRentabilidadeRoute,
   AuthenticatedCarteiraIndexRoute: AuthenticatedCarteiraIndexRoute,
