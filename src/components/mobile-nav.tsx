@@ -4,7 +4,7 @@ import { BarChart3, Home, PiggyBank, Target, Wallet } from "lucide-react";
 const NAV_ITEMS = [
   { to: "/dashboard", icon: Home, label: "Dashboard" },
   { to: "/carteira", icon: Wallet, label: "Carteira" },
-  { to: "/carteira/proventos", icon: PiggyBank, label: "Proventos" },
+  { to: "/proventos", icon: PiggyBank, label: "Proventos" },
   { to: "/metas", icon: Target, label: "Metas" },
   { to: "/carteira/analise", icon: BarChart3, label: "Análise" },
 ];

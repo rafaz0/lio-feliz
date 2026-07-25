@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SetoresRouteImport } from './routes/setores'
 import { Route as RankingsRouteImport } from './routes/rankings'
+import { Route as ProventosRouteImport } from './routes/proventos'
 import { Route as NoticiasRouteImport } from './routes/noticias'
 import { Route as FiisRouteImport } from './routes/fiis'
 import { Route as DividendosRouteImport } from './routes/dividendos'
@@ -22,7 +23,12 @@ import { Route as AnaliseRouteImport } from './routes/analise'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WatchlistIndexRouteImport } from './routes/watchlist.index'
+import { Route as ProventosIndexRouteImport } from './routes/proventos.index'
 import { Route as AnaliseIndexRouteImport } from './routes/analise.index'
+import { Route as ProventosRecebidosRouteImport } from './routes/proventos.recebidos'
+import { Route as ProventosProvisionadorRouteImport } from './routes/proventos.provisionador'
+import { Route as ProventosCoberturaRouteImport } from './routes/proventos.cobertura'
+import { Route as ProventosCalendarioRouteImport } from './routes/proventos.calendario'
 import { Route as FiiTickerRouteImport } from './routes/fii.$ticker'
 import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api.stripe-webhook'
@@ -74,6 +80,11 @@ const SetoresRoute = SetoresRouteImport.update({
 const RankingsRoute = RankingsRouteImport.update({
   id: '/rankings',
   path: '/rankings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProventosRoute = ProventosRouteImport.update({
+  id: '/proventos',
+  path: '/proventos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NoticiasRoute = NoticiasRouteImport.update({
@@ -130,10 +141,35 @@ const WatchlistIndexRoute = WatchlistIndexRouteImport.update({
   path: '/watchlist/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProventosIndexRoute = ProventosIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProventosRoute,
+} as any)
 const AnaliseIndexRoute = AnaliseIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AnaliseRoute,
+} as any)
+const ProventosRecebidosRoute = ProventosRecebidosRouteImport.update({
+  id: '/recebidos',
+  path: '/recebidos',
+  getParentRoute: () => ProventosRoute,
+} as any)
+const ProventosProvisionadorRoute = ProventosProvisionadorRouteImport.update({
+  id: '/provisionador',
+  path: '/provisionador',
+  getParentRoute: () => ProventosRoute,
+} as any)
+const ProventosCoberturaRoute = ProventosCoberturaRouteImport.update({
+  id: '/cobertura',
+  path: '/cobertura',
+  getParentRoute: () => ProventosRoute,
+} as any)
+const ProventosCalendarioRoute = ProventosCalendarioRouteImport.update({
+  id: '/calendario',
+  path: '/calendario',
+  getParentRoute: () => ProventosRoute,
 } as any)
 const FiiTickerRoute = FiiTickerRouteImport.update({
   id: '/fii/$ticker',
@@ -377,6 +413,7 @@ export interface FileRoutesByFullPath {
   '/dividendos': typeof DividendosRoute
   '/fiis': typeof FiisRoute
   '/noticias': typeof NoticiasRoute
+  '/proventos': typeof ProventosRouteWithChildren
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
   '/forgot-password': typeof _authForgotPasswordRoute
@@ -400,7 +437,12 @@ export interface FileRoutesByFullPath {
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
+  '/proventos/calendario': typeof ProventosCalendarioRoute
+  '/proventos/cobertura': typeof ProventosCoberturaRoute
+  '/proventos/provisionador': typeof ProventosProvisionadorRoute
+  '/proventos/recebidos': typeof ProventosRecebidosRoute
   '/analise/': typeof AnaliseIndexRoute
+  '/proventos/': typeof ProventosIndexRoute
   '/watchlist/': typeof WatchlistIndexRoute
   '/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
@@ -455,7 +497,12 @@ export interface FileRoutesByTo {
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
+  '/proventos/calendario': typeof ProventosCalendarioRoute
+  '/proventos/cobertura': typeof ProventosCoberturaRoute
+  '/proventos/provisionador': typeof ProventosProvisionadorRoute
+  '/proventos/recebidos': typeof ProventosRecebidosRoute
   '/analise': typeof AnaliseIndexRoute
+  '/proventos': typeof ProventosIndexRoute
   '/watchlist': typeof WatchlistIndexRoute
   '/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
@@ -491,6 +538,7 @@ export interface FileRoutesById {
   '/dividendos': typeof DividendosRoute
   '/fiis': typeof FiisRoute
   '/noticias': typeof NoticiasRoute
+  '/proventos': typeof ProventosRouteWithChildren
   '/rankings': typeof RankingsRoute
   '/setores': typeof SetoresRoute
   '/__auth/forgot-password': typeof _authForgotPasswordRoute
@@ -514,7 +562,12 @@ export interface FileRoutesById {
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
+  '/proventos/calendario': typeof ProventosCalendarioRoute
+  '/proventos/cobertura': typeof ProventosCoberturaRoute
+  '/proventos/provisionador': typeof ProventosProvisionadorRoute
+  '/proventos/recebidos': typeof ProventosRecebidosRoute
   '/analise/': typeof AnaliseIndexRoute
+  '/proventos/': typeof ProventosIndexRoute
   '/watchlist/': typeof WatchlistIndexRoute
   '/_authenticated/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/_authenticated/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
@@ -550,6 +603,7 @@ export interface FileRouteTypes {
     | '/dividendos'
     | '/fiis'
     | '/noticias'
+    | '/proventos'
     | '/rankings'
     | '/setores'
     | '/forgot-password'
@@ -573,7 +627,12 @@ export interface FileRouteTypes {
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
+    | '/proventos/calendario'
+    | '/proventos/cobertura'
+    | '/proventos/provisionador'
+    | '/proventos/recebidos'
     | '/analise/'
+    | '/proventos/'
     | '/watchlist/'
     | '/carteira/analise'
     | '/carteira/cobertura'
@@ -628,7 +687,12 @@ export interface FileRouteTypes {
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
+    | '/proventos/calendario'
+    | '/proventos/cobertura'
+    | '/proventos/provisionador'
+    | '/proventos/recebidos'
     | '/analise'
+    | '/proventos'
     | '/watchlist'
     | '/carteira/analise'
     | '/carteira/cobertura'
@@ -663,6 +727,7 @@ export interface FileRouteTypes {
     | '/dividendos'
     | '/fiis'
     | '/noticias'
+    | '/proventos'
     | '/rankings'
     | '/setores'
     | '/__auth/forgot-password'
@@ -686,7 +751,12 @@ export interface FileRouteTypes {
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
+    | '/proventos/calendario'
+    | '/proventos/cobertura'
+    | '/proventos/provisionador'
+    | '/proventos/recebidos'
     | '/analise/'
+    | '/proventos/'
     | '/watchlist/'
     | '/_authenticated/carteira/analise'
     | '/_authenticated/carteira/cobertura'
@@ -722,6 +792,7 @@ export interface RootRouteChildren {
   DividendosRoute: typeof DividendosRoute
   FiisRoute: typeof FiisRoute
   NoticiasRoute: typeof NoticiasRoute
+  ProventosRoute: typeof ProventosRouteWithChildren
   RankingsRoute: typeof RankingsRoute
   SetoresRoute: typeof SetoresRoute
   _authForgotPasswordRoute: typeof _authForgotPasswordRoute
@@ -748,6 +819,13 @@ declare module '@tanstack/react-router' {
       path: '/rankings'
       fullPath: '/rankings'
       preLoaderRoute: typeof RankingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proventos': {
+      id: '/proventos'
+      path: '/proventos'
+      fullPath: '/proventos'
+      preLoaderRoute: typeof ProventosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/noticias': {
@@ -827,12 +905,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WatchlistIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/proventos/': {
+      id: '/proventos/'
+      path: '/'
+      fullPath: '/proventos/'
+      preLoaderRoute: typeof ProventosIndexRouteImport
+      parentRoute: typeof ProventosRoute
+    }
     '/analise/': {
       id: '/analise/'
       path: '/'
       fullPath: '/analise/'
       preLoaderRoute: typeof AnaliseIndexRouteImport
       parentRoute: typeof AnaliseRoute
+    }
+    '/proventos/recebidos': {
+      id: '/proventos/recebidos'
+      path: '/recebidos'
+      fullPath: '/proventos/recebidos'
+      preLoaderRoute: typeof ProventosRecebidosRouteImport
+      parentRoute: typeof ProventosRoute
+    }
+    '/proventos/provisionador': {
+      id: '/proventos/provisionador'
+      path: '/provisionador'
+      fullPath: '/proventos/provisionador'
+      preLoaderRoute: typeof ProventosProvisionadorRouteImport
+      parentRoute: typeof ProventosRoute
+    }
+    '/proventos/cobertura': {
+      id: '/proventos/cobertura'
+      path: '/cobertura'
+      fullPath: '/proventos/cobertura'
+      preLoaderRoute: typeof ProventosCoberturaRouteImport
+      parentRoute: typeof ProventosRoute
+    }
+    '/proventos/calendario': {
+      id: '/proventos/calendario'
+      path: '/calendario'
+      fullPath: '/proventos/calendario'
+      preLoaderRoute: typeof ProventosCalendarioRouteImport
+      parentRoute: typeof ProventosRoute
     }
     '/fii/$ticker': {
       id: '/fii/$ticker'
@@ -1254,6 +1367,26 @@ const AnaliseRouteChildren: AnaliseRouteChildren = {
 const AnaliseRouteWithChildren =
   AnaliseRoute._addFileChildren(AnaliseRouteChildren)
 
+interface ProventosRouteChildren {
+  ProventosCalendarioRoute: typeof ProventosCalendarioRoute
+  ProventosCoberturaRoute: typeof ProventosCoberturaRoute
+  ProventosProvisionadorRoute: typeof ProventosProvisionadorRoute
+  ProventosRecebidosRoute: typeof ProventosRecebidosRoute
+  ProventosIndexRoute: typeof ProventosIndexRoute
+}
+
+const ProventosRouteChildren: ProventosRouteChildren = {
+  ProventosCalendarioRoute: ProventosCalendarioRoute,
+  ProventosCoberturaRoute: ProventosCoberturaRoute,
+  ProventosProvisionadorRoute: ProventosProvisionadorRoute,
+  ProventosRecebidosRoute: ProventosRecebidosRoute,
+  ProventosIndexRoute: ProventosIndexRoute,
+}
+
+const ProventosRouteWithChildren = ProventosRoute._addFileChildren(
+  ProventosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
@@ -1265,6 +1398,7 @@ const rootRouteChildren: RootRouteChildren = {
   DividendosRoute: DividendosRoute,
   FiisRoute: FiisRoute,
   NoticiasRoute: NoticiasRoute,
+  ProventosRoute: ProventosRouteWithChildren,
   RankingsRoute: RankingsRoute,
   SetoresRoute: SetoresRoute,
   _authForgotPasswordRoute: _authForgotPasswordRoute,
