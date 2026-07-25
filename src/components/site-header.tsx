@@ -176,80 +176,13 @@ export function SiteHeader() {
           >
             Dividendos
           </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="gap-1.5 text-muted-foreground hover:text-foreground"
-              >
-                <BarChart3 className="size-4" /> Análise
-                <ChevronDown className="size-3" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-44">
-              <DropdownMenuItem asChild>
-                <Link to="/fiis" className="flex items-center gap-2">
-                  <Sparkles className="size-4" /> FIIs
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/rankings" className="flex items-center gap-2">
-                  <TrendingUp className="size-4" /> Rankings
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/setores" className="flex items-center gap-2">
-                  <BarChart3 className="size-4" /> Setores
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/comparar" className="flex items-center gap-2">
-                  <FileText className="size-4" /> Comparar
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/watchlist" className="flex items-center gap-2">
-                  <Sparkles className="size-4" /> Watchlist
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/calculadoras" className="flex items-center gap-2">
-                  <Sparkles className="size-4" /> Calculadoras
-                </Link>
-              </DropdownMenuItem>
-              {user && (
-                <>
-                  <DropdownMenuItem asChild>
-                    <Link to="/provisionador" className="flex items-center gap-2">
-                      <Sparkles className="size-4" /> Provisionador
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link to="/metas" className="flex items-center gap-2">
-                      <Sparkles className="size-4" /> Metas
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link to="/carteira/cobertura" className="flex items-center gap-2">
-                      <Sparkles className="size-4" /> Cobertura
-                    </Link>
-                  </DropdownMenuItem>
-                </>
-              )}
-              <DropdownMenuItem asChild>
-                <Link to="/carteiras-recomendadas" className="flex items-center gap-2">
-                  <Sparkles className="size-4" /> Recomendadas
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/noticias" className="flex items-center gap-2">
-                  <Search className="size-4" /> Notícias
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Link
+            to="/analise"
+            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
+            activeOptions={{ exact: false }}
+          >
+            Análise
+          </Link>
         </nav>
 
         <div className="relative ml-auto w-full max-w-[140px] md:max-w-[180px]">

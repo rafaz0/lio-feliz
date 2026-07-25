@@ -18,13 +18,22 @@ import { Route as CompararRouteImport } from './routes/comparar'
 import { Route as CarteirasRecomendadasRouteImport } from './routes/carteiras-recomendadas'
 import { Route as CalculadorasRouteImport } from './routes/calculadoras'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AnaliseRouteImport } from './routes/analise'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WatchlistIndexRouteImport } from './routes/watchlist.index'
+import { Route as AnaliseIndexRouteImport } from './routes/analise.index'
 import { Route as FiiTickerRouteImport } from './routes/fii.$ticker'
 import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api.stripe-webhook'
 import { Route as ApiHealthRouteImport } from './routes/api.health'
+import { Route as AnaliseWatchlistRouteImport } from './routes/analise.watchlist'
+import { Route as AnaliseSetoresRouteImport } from './routes/analise.setores'
+import { Route as AnaliseRankingsRouteImport } from './routes/analise.rankings'
+import { Route as AnaliseNoticiasRouteImport } from './routes/analise.noticias'
+import { Route as AnaliseFiisRouteImport } from './routes/analise.fiis'
+import { Route as AnaliseCompararRouteImport } from './routes/analise.comparar'
+import { Route as AnaliseCalculadorasRouteImport } from './routes/analise.calculadoras'
 import { Route as AuthenticatedSyncRouteImport } from './routes/_authenticated/sync'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedProvisionadorRouteImport } from './routes/_authenticated/provisionador'
@@ -102,6 +111,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnaliseRoute = AnaliseRouteImport.update({
+  id: '/analise',
+  path: '/analise',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -115,6 +129,11 @@ const WatchlistIndexRoute = WatchlistIndexRouteImport.update({
   id: '/watchlist/',
   path: '/watchlist/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AnaliseIndexRoute = AnaliseIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AnaliseRoute,
 } as any)
 const FiiTickerRoute = FiiTickerRouteImport.update({
   id: '/fii/$ticker',
@@ -135,6 +154,41 @@ const ApiHealthRoute = ApiHealthRouteImport.update({
   id: '/api/health',
   path: '/api/health',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AnaliseWatchlistRoute = AnaliseWatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
+  getParentRoute: () => AnaliseRoute,
+} as any)
+const AnaliseSetoresRoute = AnaliseSetoresRouteImport.update({
+  id: '/setores',
+  path: '/setores',
+  getParentRoute: () => AnaliseRoute,
+} as any)
+const AnaliseRankingsRoute = AnaliseRankingsRouteImport.update({
+  id: '/rankings',
+  path: '/rankings',
+  getParentRoute: () => AnaliseRoute,
+} as any)
+const AnaliseNoticiasRoute = AnaliseNoticiasRouteImport.update({
+  id: '/noticias',
+  path: '/noticias',
+  getParentRoute: () => AnaliseRoute,
+} as any)
+const AnaliseFiisRoute = AnaliseFiisRouteImport.update({
+  id: '/fiis',
+  path: '/fiis',
+  getParentRoute: () => AnaliseRoute,
+} as any)
+const AnaliseCompararRoute = AnaliseCompararRouteImport.update({
+  id: '/comparar',
+  path: '/comparar',
+  getParentRoute: () => AnaliseRoute,
+} as any)
+const AnaliseCalculadorasRoute = AnaliseCalculadorasRouteImport.update({
+  id: '/calculadoras',
+  path: '/calculadoras',
+  getParentRoute: () => AnaliseRoute,
 } as any)
 const AuthenticatedSyncRoute = AuthenticatedSyncRouteImport.update({
   id: '/sync',
@@ -315,6 +369,7 @@ const AuthenticatedPortfolioPortfolioIdDividendsRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analise': typeof AnaliseRouteWithChildren
   '/auth': typeof AuthRoute
   '/calculadoras': typeof CalculadorasRoute
   '/carteiras-recomendadas': typeof CarteirasRecomendadasRoute
@@ -334,10 +389,18 @@ export interface FileRoutesByFullPath {
   '/provisionador': typeof AuthenticatedProvisionadorRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sync': typeof AuthenticatedSyncRoute
+  '/analise/calculadoras': typeof AnaliseCalculadorasRoute
+  '/analise/comparar': typeof AnaliseCompararRoute
+  '/analise/fiis': typeof AnaliseFiisRoute
+  '/analise/noticias': typeof AnaliseNoticiasRoute
+  '/analise/rankings': typeof AnaliseRankingsRoute
+  '/analise/setores': typeof AnaliseSetoresRoute
+  '/analise/watchlist': typeof AnaliseWatchlistRoute
   '/api/health': typeof ApiHealthRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
+  '/analise/': typeof AnaliseIndexRoute
   '/watchlist/': typeof WatchlistIndexRoute
   '/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
@@ -381,10 +444,18 @@ export interface FileRoutesByTo {
   '/provisionador': typeof AuthenticatedProvisionadorRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sync': typeof AuthenticatedSyncRoute
+  '/analise/calculadoras': typeof AnaliseCalculadorasRoute
+  '/analise/comparar': typeof AnaliseCompararRoute
+  '/analise/fiis': typeof AnaliseFiisRoute
+  '/analise/noticias': typeof AnaliseNoticiasRoute
+  '/analise/rankings': typeof AnaliseRankingsRoute
+  '/analise/setores': typeof AnaliseSetoresRoute
+  '/analise/watchlist': typeof AnaliseWatchlistRoute
   '/api/health': typeof ApiHealthRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
+  '/analise': typeof AnaliseIndexRoute
   '/watchlist': typeof WatchlistIndexRoute
   '/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
@@ -412,6 +483,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/analise': typeof AnaliseRouteWithChildren
   '/auth': typeof AuthRoute
   '/calculadoras': typeof CalculadorasRoute
   '/carteiras-recomendadas': typeof CarteirasRecomendadasRoute
@@ -431,10 +503,18 @@ export interface FileRoutesById {
   '/_authenticated/provisionador': typeof AuthenticatedProvisionadorRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/sync': typeof AuthenticatedSyncRoute
+  '/analise/calculadoras': typeof AnaliseCalculadorasRoute
+  '/analise/comparar': typeof AnaliseCompararRoute
+  '/analise/fiis': typeof AnaliseFiisRoute
+  '/analise/noticias': typeof AnaliseNoticiasRoute
+  '/analise/rankings': typeof AnaliseRankingsRoute
+  '/analise/setores': typeof AnaliseSetoresRoute
+  '/analise/watchlist': typeof AnaliseWatchlistRoute
   '/api/health': typeof ApiHealthRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
   '/fii/$ticker': typeof FiiTickerRoute
+  '/analise/': typeof AnaliseIndexRoute
   '/watchlist/': typeof WatchlistIndexRoute
   '/_authenticated/carteira/analise': typeof AuthenticatedCarteiraAnaliseRoute
   '/_authenticated/carteira/cobertura': typeof AuthenticatedCarteiraCoberturaRoute
@@ -462,6 +542,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analise'
     | '/auth'
     | '/calculadoras'
     | '/carteiras-recomendadas'
@@ -481,10 +562,18 @@ export interface FileRouteTypes {
     | '/provisionador'
     | '/settings'
     | '/sync'
+    | '/analise/calculadoras'
+    | '/analise/comparar'
+    | '/analise/fiis'
+    | '/analise/noticias'
+    | '/analise/rankings'
+    | '/analise/setores'
+    | '/analise/watchlist'
     | '/api/health'
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
+    | '/analise/'
     | '/watchlist/'
     | '/carteira/analise'
     | '/carteira/cobertura'
@@ -528,10 +617,18 @@ export interface FileRouteTypes {
     | '/provisionador'
     | '/settings'
     | '/sync'
+    | '/analise/calculadoras'
+    | '/analise/comparar'
+    | '/analise/fiis'
+    | '/analise/noticias'
+    | '/analise/rankings'
+    | '/analise/setores'
+    | '/analise/watchlist'
     | '/api/health'
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
+    | '/analise'
     | '/watchlist'
     | '/carteira/analise'
     | '/carteira/cobertura'
@@ -558,6 +655,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/analise'
     | '/auth'
     | '/calculadoras'
     | '/carteiras-recomendadas'
@@ -577,10 +675,18 @@ export interface FileRouteTypes {
     | '/_authenticated/provisionador'
     | '/_authenticated/settings'
     | '/_authenticated/sync'
+    | '/analise/calculadoras'
+    | '/analise/comparar'
+    | '/analise/fiis'
+    | '/analise/noticias'
+    | '/analise/rankings'
+    | '/analise/setores'
+    | '/analise/watchlist'
     | '/api/health'
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
     | '/fii/$ticker'
+    | '/analise/'
     | '/watchlist/'
     | '/_authenticated/carteira/analise'
     | '/_authenticated/carteira/cobertura'
@@ -608,6 +714,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AnaliseRoute: typeof AnaliseRouteWithChildren
   AuthRoute: typeof AuthRoute
   CalculadorasRoute: typeof CalculadorasRoute
   CarteirasRecomendadasRoute: typeof CarteirasRecomendadasRoute
@@ -692,6 +799,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analise': {
+      id: '/analise'
+      path: '/analise'
+      fullPath: '/analise'
+      preLoaderRoute: typeof AnaliseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -712,6 +826,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/watchlist/'
       preLoaderRoute: typeof WatchlistIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/analise/': {
+      id: '/analise/'
+      path: '/'
+      fullPath: '/analise/'
+      preLoaderRoute: typeof AnaliseIndexRouteImport
+      parentRoute: typeof AnaliseRoute
     }
     '/fii/$ticker': {
       id: '/fii/$ticker'
@@ -740,6 +861,55 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/health'
       preLoaderRoute: typeof ApiHealthRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/analise/watchlist': {
+      id: '/analise/watchlist'
+      path: '/watchlist'
+      fullPath: '/analise/watchlist'
+      preLoaderRoute: typeof AnaliseWatchlistRouteImport
+      parentRoute: typeof AnaliseRoute
+    }
+    '/analise/setores': {
+      id: '/analise/setores'
+      path: '/setores'
+      fullPath: '/analise/setores'
+      preLoaderRoute: typeof AnaliseSetoresRouteImport
+      parentRoute: typeof AnaliseRoute
+    }
+    '/analise/rankings': {
+      id: '/analise/rankings'
+      path: '/rankings'
+      fullPath: '/analise/rankings'
+      preLoaderRoute: typeof AnaliseRankingsRouteImport
+      parentRoute: typeof AnaliseRoute
+    }
+    '/analise/noticias': {
+      id: '/analise/noticias'
+      path: '/noticias'
+      fullPath: '/analise/noticias'
+      preLoaderRoute: typeof AnaliseNoticiasRouteImport
+      parentRoute: typeof AnaliseRoute
+    }
+    '/analise/fiis': {
+      id: '/analise/fiis'
+      path: '/fiis'
+      fullPath: '/analise/fiis'
+      preLoaderRoute: typeof AnaliseFiisRouteImport
+      parentRoute: typeof AnaliseRoute
+    }
+    '/analise/comparar': {
+      id: '/analise/comparar'
+      path: '/comparar'
+      fullPath: '/analise/comparar'
+      preLoaderRoute: typeof AnaliseCompararRouteImport
+      parentRoute: typeof AnaliseRoute
+    }
+    '/analise/calculadoras': {
+      id: '/analise/calculadoras'
+      path: '/calculadoras'
+      fullPath: '/analise/calculadoras'
+      preLoaderRoute: typeof AnaliseCalculadorasRouteImport
+      parentRoute: typeof AnaliseRoute
     }
     '/_authenticated/sync': {
       id: '/_authenticated/sync'
@@ -1059,9 +1229,35 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface AnaliseRouteChildren {
+  AnaliseCalculadorasRoute: typeof AnaliseCalculadorasRoute
+  AnaliseCompararRoute: typeof AnaliseCompararRoute
+  AnaliseFiisRoute: typeof AnaliseFiisRoute
+  AnaliseNoticiasRoute: typeof AnaliseNoticiasRoute
+  AnaliseRankingsRoute: typeof AnaliseRankingsRoute
+  AnaliseSetoresRoute: typeof AnaliseSetoresRoute
+  AnaliseWatchlistRoute: typeof AnaliseWatchlistRoute
+  AnaliseIndexRoute: typeof AnaliseIndexRoute
+}
+
+const AnaliseRouteChildren: AnaliseRouteChildren = {
+  AnaliseCalculadorasRoute: AnaliseCalculadorasRoute,
+  AnaliseCompararRoute: AnaliseCompararRoute,
+  AnaliseFiisRoute: AnaliseFiisRoute,
+  AnaliseNoticiasRoute: AnaliseNoticiasRoute,
+  AnaliseRankingsRoute: AnaliseRankingsRoute,
+  AnaliseSetoresRoute: AnaliseSetoresRoute,
+  AnaliseWatchlistRoute: AnaliseWatchlistRoute,
+  AnaliseIndexRoute: AnaliseIndexRoute,
+}
+
+const AnaliseRouteWithChildren =
+  AnaliseRoute._addFileChildren(AnaliseRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AnaliseRoute: AnaliseRouteWithChildren,
   AuthRoute: AuthRoute,
   CalculadorasRoute: CalculadorasRoute,
   CarteirasRecomendadasRoute: CarteirasRecomendadasRoute,
