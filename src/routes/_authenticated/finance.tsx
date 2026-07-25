@@ -1,13 +1,10 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { Building2, Wallet, TrendingUp, ArrowDownUp } from "lucide-react";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { Building2, Wallet, TrendingUp, ArrowDownUp, TrendingDown } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { ModuleLayout } from "@/components/module-layout";
 import type { ModuleTab } from "@/components/module-tabs";
 
 export const Route = createFileRoute("/_authenticated/finance")({
-  beforeLoad: () => {
-    throw redirect({ to: "/_authenticated/finance/" });
-  },
   component: FinanceModule,
 });
 
@@ -23,6 +20,11 @@ const TABS: ModuleTab[] = [
     label: "Receitas",
     to: "/_authenticated/finance/receitas",
     icon: <TrendingUp className="size-4" />,
+  },
+  {
+    label: "Despesas",
+    to: "/_authenticated/finance/despesas",
+    icon: <TrendingDown className="size-4" />,
   },
 ];
 
