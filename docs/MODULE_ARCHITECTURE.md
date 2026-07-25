@@ -292,7 +292,37 @@ Cada módulo deve ter exatamente uma entrada no menu superior (link direto, sem 
 
 ---
 
-## 9. Histórico
+## 9. Experience Layer — Componentes de Experiência
+
+A biblioteca `src/components/experience/` contém componentes reutilizáveis de UX que enriquecem os módulos com informações contextuais e ações rápidas.
+
+### Componentes Disponíveis
+
+| Componente | Arquivo | Finalidade | Props principais |
+|-----------|---------|------------|------------------|
+| `ContextPanel` | `context-panel.tsx` | Painel lateral com seções de informação contextual | `sections`, `title` |
+| `QuickActions` | `quick-actions.tsx` | Grade de atalhos para navegação | `items`, `columns` |
+| `RelatedLinks` | `related-links.tsx` | Lista de links relacionados | `items`, `title` |
+| `RecentActivity` | `recent-activity.tsx` | Timeline de atividades recentes | `items`, `maxItems` |
+| `SmartHints` | `smart-hints.tsx` | Dicas/banners contextuais dispensáveis | `hints`, `dismissible` |
+
+### Regras de Uso (R-EXP)
+
+### R-EXP-001 — Composição antes de duplicação
+
+Sempre verificar `src/components/experience/` antes de criar novos padrões de UX inline. Se o componente atender à necessidade, reutilizá-lo.
+
+### R-EXP-002 — Dados estáticos como preparação
+
+Os componentes aceitam props simples. Dados dinâmicos (via queries/queries) devem ser preparados no módulo consumidor e passados como props. Nenhum componente da Experience Layer faz fetching próprio.
+
+### R-EXP-003 — Compatibilidade com ModuleLayout
+
+Todos os componentes são compatíveis com `ModuleLayout`, `ModuleSection` e `Card`. Podem ser aninhados dentro de qualquer container visual existente.
+
+---
+
+## 10. Histórico
 
 ### Versão 1.0
 
