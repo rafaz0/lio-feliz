@@ -10,7 +10,7 @@
 
 **Status:** APROVADO
 
-**Última atualização:** 09/07/2026
+**Última atualização:** 25/07/2026
 
 ---
 
@@ -39,6 +39,7 @@ ADR-005_MINIMUM_USER_ACTIONS.md
 ADR-006_COMMERCIAL_PRODUCT.md
 ADR-007_AUTOMATION_FIRST.md
 ADR-008_BACKLOG_GOVERNANCE.md
+ADR-009_PERSONAL_FINANCE_SEPARATION.md
 ```
 
 ---
@@ -55,6 +56,7 @@ ADR-008_BACKLOG_GOVERNANCE.md
 | ADR-006 | Produto Comercial                  | ✅ Aprovado |
 | ADR-007 | Automação em Primeiro Lugar        | ✅ Aprovado |
 | ADR-008 | Governança do Backlog              | ✅ Aprovado |
+| ADR-009 | Separação Carteira/Gestão Financeira | ✅ Aprovado |
 
 ---
 

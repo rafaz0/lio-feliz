@@ -8,7 +8,7 @@
 
 **Categoria:** Project Context
 
-**Última atualização:** 25/07/2026
+**Última atualização:** 25/07/2026 (v2.71)
 
 ---
 
@@ -70,7 +70,7 @@ PI-014 — Product Evolution & Module Unification (DRAFT). PI-013 — Platform M
 
 ## PS Atual
 
-PS#065 — PI-015: Product Evolution & Module Unification (concluída)
+PS#066 — PI-016: Experience Layer & Architecture Preservation (em andamento)
 
 ## Dashboard Executivo
 
@@ -80,7 +80,7 @@ PS#065 — PI-015: Product Evolution & Module Unification (concluída)
 Projeto: Lio Feliz
 Modo: Execução
 PS Atual: PS#065
-Marco: PI-015 — Product Evolution & Module Unification (concluída)
+Marco: PI-016 — Experience Layer & Architecture Preservation (em andamento)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -92,7 +92,7 @@ Marco: PI-015 — Product Evolution & Module Unification (concluída)
 
 ## Objetivos Ativos
 
-PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. 4 EWOs executadas: USER_FLOWS.md criado, 5 integrações entre módulos, UX refinada (ModuleTabs, Header, Breadcrumb, estados ativos), Dashboard transformado em Hub Central. Próxima etapa: definição da PI-016.
+PI-016 EM ELABORAÇÃO. Experience Layer & Architecture Preservation. 5 EWOs em execução (EWO-031 a EWO-036). Experience Layer criada e integrada ao Dashboard e páginas de Ativo/FII. Dados mock substituídos por dados reais. Documentação da Gestão Financeira Integrada (PERSONAL_FINANCE_ARCHITECTURE.md) e ADR-009. Próxima etapa: conclusão da PI-016.
 
 ## DEC Ativas
 
@@ -142,7 +142,7 @@ PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Próxima e
 
 ### Próxima Frente de Engenharia
 
-PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Aguardando definição da PI-016.
+PI-016 EM ELABORAÇÃO. Experience Layer & Architecture Preservation. Aguardando conclusão das EWOs restantes.
 
 ### Documentação Prevista
 
@@ -174,6 +174,7 @@ PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Aguardando
 | EWO-022          | Migração do Módulo Análise             | ✅ Concluída |
 | MODULE_ARCHITECTURE.md | Guia oficial de arquitetura modular | ✅ Criado |
 | USER_FLOWS.md | Mapeamento de fluxos de navegação | ✅ Criado |
+| PERSONAL_FINANCE_ARCHITECTURE.md | Arquitetura da Gestão Financeira | ✅ Criado |
 | DEPLOY.md | Documentação de deploy | ✅ Criado |
 | INFRASTRUCTURE.md | Documentação de infraestrutura | ✅ Criado |
 

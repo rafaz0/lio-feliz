@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.15
+**Versão da Documentação:** 2.16
 
 **Status:** APROVADO
 
-**Última atualização:** 25/07/2026 (v2.15)
+**Última atualização:** 25/07/2026 (v2.16)
 
 ---
 
@@ -116,6 +116,7 @@ ADR-005_MINIMUM_USER_ACTIONS.md ✅
 ADR-006_COMMERCIAL_PRODUCT.md ✅
 ADR-007_AUTOMATION_FIRST.md ✅
 ADR-008_BACKLOG_GOVERNANCE.md ✅
+ADR-009_PERSONAL_FINANCE_SEPARATION.md ✅
 
 ---
 
@@ -171,7 +172,13 @@ Engineering Work Order para a Onda 2 (Renda Fixa 09, Internacional 10). 7 Slices
 
 ✅ USER_FLOWS.md
 
-Mapeamento oficial dos fluxos de navegação da plataforma. 7 fluxos públicos, 15 fluxos privados, 11 integrações entre módulos, matriz de navegação com 34 entradas, 10 oportunidades futuras.
+Mapeamento oficial dos fluxos de navegação da plataforma. 7 fluxos públicos, 15 fluxos privados, 11 integrações entre módulos, matriz de navegação com 34 entradas, 10 oportunidades futuras registradas.
+
+---
+
+✅ PERSONAL_FINANCE_ARCHITECTURE.md
+
+Arquitetura do módulo de Gestão Financeira Integrada. Separação de responsabilidades entre Carteira e Finanças Pessoais. 6 princípios arquiteturais (R-PF-001 a R-PF-006). Roadmap PI-017/PI-018/PI-019.
 
 ---
 
@@ -248,6 +255,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.16
+
+- **EWO-036 CONCLUÍDA — Preservação Arquitetural: Gestão Financeira Integrada.** Documento PERSONAL_FINANCE_ARCHITECTURE.md criado com arquitetura do novo domínio. ADR-009 aprovado (Separação Carteira/Gestão Financeira). Roadmap PI-017/PI-018/PI-019 definido. DOCUMENTATION_INDEX v2.16.
 
 ## Versão 2.15
 
