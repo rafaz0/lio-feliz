@@ -87,7 +87,7 @@ function CarteiraModule() {
         <ModuleLayout
           title="Carteira"
           description="Posição consolidada, proventos, patrimônio e rentabilidade."
-          breadcrumbs={[{ label: "Carteira", to: "/_authenticated/carteira" }]}
+          breadcrumbs={[{ label: "Carteira", to: "/carteira" }]}
           tabs={TABS}
         >
           <Outlet />
