@@ -1,6 +1,18 @@
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { FileText, LineChart, LogOut, Menu, Search, TrendingUp, User, X } from "lucide-react";
+import {
+  BarChart3,
+  ChevronDown,
+  FileText,
+  LineChart,
+  LogOut,
+  Menu,
+  Search,
+  Sparkles,
+  TrendingUp,
+  User,
+  X,
+} from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/use-session";
 import { Button } from "@/components/ui/button";
