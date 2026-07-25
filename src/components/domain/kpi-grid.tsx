@@ -15,9 +15,5 @@ const GRID_COLS = {
 };
 
 export function KPIGrid({ children, cols = 4, className }: KPIGridProps) {
-  return (
-    <div className={cn("grid gap-3", GRID_COLS[cols], className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn("grid gap-3", GRID_COLS[cols], className)}>{children}</div>;
 }

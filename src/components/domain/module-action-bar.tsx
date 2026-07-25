@@ -10,7 +10,12 @@ interface ModuleActionBarProps {
   className?: string;
 }
 
-export function ModuleActionBar({ backTo, backLabel = "Voltar", children, className }: ModuleActionBarProps) {
+export function ModuleActionBar({
+  backTo,
+  backLabel = "Voltar",
+  children,
+  className,
+}: ModuleActionBarProps) {
   return (
     <div className={cn("flex flex-wrap items-center justify-between gap-3", className)}>
       {backTo ? (

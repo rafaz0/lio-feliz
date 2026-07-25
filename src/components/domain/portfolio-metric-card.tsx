@@ -20,7 +20,15 @@ const TREND_COLORS: Record<MetricTrend, string> = {
   neutral: "text-foreground",
 };
 
-export function PortfolioMetricCard({ label, value, trend, hint, icon, className, secondaryValue }: PortfolioMetricCardProps) {
+export function PortfolioMetricCard({
+  label,
+  value,
+  trend,
+  hint,
+  icon,
+  className,
+  secondaryValue,
+}: PortfolioMetricCardProps) {
   return (
     <Card className={cn("", className)}>
       <CardHeader className="pb-2">
@@ -33,9 +41,7 @@ export function PortfolioMetricCard({ label, value, trend, hint, icon, className
         <p className={cn("text-2xl font-semibold tabular-nums", trend && TREND_COLORS[trend])}>
           {value}
         </p>
-        {secondaryValue && (
-          <p className="mt-0.5 text-xs text-muted-foreground">{secondaryValue}</p>
-        )}
+        {secondaryValue && <p className="mt-0.5 text-xs text-muted-foreground">{secondaryValue}</p>}
         {hint && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
       </CardContent>
     </Card>
