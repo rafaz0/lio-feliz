@@ -40,6 +40,7 @@ ADR-006_COMMERCIAL_PRODUCT.md
 ADR-007_AUTOMATION_FIRST.md
 ADR-008_BACKLOG_GOVERNANCE.md
 ADR-009_PERSONAL_FINANCE_SEPARATION.md
+ADR-017-001_INTEGRATION_CARTEIRA_FINANCE.md
 ADR-017-002_FEATURE_FLAGS_AND_FINANCE_INTEGRATION_CONFIG.md
 ```
 
@@ -58,6 +59,7 @@ ADR-017-002_FEATURE_FLAGS_AND_FINANCE_INTEGRATION_CONFIG.md
 | ADR-007 | Automação em Primeiro Lugar        | ✅ Aprovado |
 | ADR-008 | Governança do Backlog              | ✅ Aprovado |
 | ADR-009 | Separação Carteira/Gestão Financeira | ✅ Aprovado |
+| ADR-017-001 | Integração Carteira e Gestão Financeira | ✅ Aprovado |
 | ADR-017-002 | Feature Flags e FinanceIntegrationConfig | ✅ Aprovado |
 
 ---
