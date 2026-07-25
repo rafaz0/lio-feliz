@@ -43,6 +43,7 @@ ADR-009_PERSONAL_FINANCE_SEPARATION.md
 ADR-017-001_INTEGRATION_CARTEIRA_FINANCE.md
 ADR-017-002_FEATURE_FLAGS_AND_FINANCE_INTEGRATION_CONFIG.md
 ADR-018-001_DEMO_MODE.md
+ADR-018-002_ADMIN_PROFILE.md
 ```
 
 ---
@@ -63,6 +64,7 @@ ADR-018-001_DEMO_MODE.md
 | ADR-017-001 | Integração Carteira e Gestão Financeira | ✅ Aprovado |
 | ADR-017-002 | Feature Flags e FinanceIntegrationConfig | ✅ Aprovado |
 | ADR-018-001 | Arquitetura do Modo Demo | ✅ Aprovado |
+| ADR-018-002 | Arquitetura do Perfil Administrador | ✅ Aprovado |
 
 ---
 
