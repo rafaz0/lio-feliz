@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { BarChart3, Building2, Plus, Search, TrendingUp, X } from "lucide-react";
+import { BarChart3, Building2, Plus, Search, TrendingUp, Wallet, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { SiteHeader } from "@/components/site-header";
@@ -133,9 +133,16 @@ function CompararPage() {
       <SiteHeader />
 
       <main className="mx-auto max-w-[1400px] px-4 py-8">
-        <div className="mb-6 flex items-center gap-3">
-          <BarChart3 className="size-6 text-primary" />
-          <h1 className="text-2xl font-bold tracking-tight">Comparador de Ativos</h1>
+        <div className="mb-6 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <BarChart3 className="size-6 text-primary" />
+            <h1 className="text-2xl font-bold tracking-tight">Comparador de Ativos</h1>
+          </div>
+          <Button variant="outline" size="sm" asChild className="gap-1.5">
+            <Link to="/carteira">
+              <Wallet className="size-3.5" /> Minha Carteira
+            </Link>
+          </Button>
         </div>
 
         <div className="mb-6 flex items-center gap-1.5 rounded-lg border border-border bg-card p-1.5 w-fit">
@@ -171,7 +178,13 @@ function CompararPage() {
                   key={a.ticker}
                   className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary"
                 >
-                  {a.ticker}
+                  <Link
+                    to={mode === "fiis" ? "/fii/$ticker" : "/ativo/$ticker"}
+                    params={{ ticker: a.ticker }}
+                    className="hover:text-primary-foreground/80 transition"
+                  >
+                    {a.ticker}
+                  </Link>
                   <button onClick={() => removeTicker(a.ticker)} className="hover:text-destructive">
                     <X className="size-3.5" />
                   </button>
@@ -229,7 +242,13 @@ function CompararPage() {
                       (a: any) =>
                         a && (
                           <th key={a.ticker} className="px-4 py-3 text-right font-medium">
-                            {a.ticker}
+                            <Link
+                              to={mode === "fiis" ? "/fii/$ticker" : "/ativo/$ticker"}
+                              params={{ ticker: a.ticker }}
+                              className="hover:text-primary transition"
+                            >
+                              {a.ticker}
+                            </Link>
                           </th>
                         ),
                     )}
@@ -308,7 +327,13 @@ function CompararPage() {
                           return (
                             <div key={a.ticker}>
                               <div className="flex items-center justify-between text-xs mb-1">
-                                <span className="font-semibold">{a.ticker}</span>
+                                <Link
+                                  to={mode === "fiis" ? "/fii/$ticker" : "/ativo/$ticker"}
+                                  params={{ ticker: a.ticker }}
+                                  className="font-semibold hover:text-primary transition"
+                                >
+                                  {a.ticker}
+                                </Link>
                                 <span className="tabular text-muted-foreground">{values[idx]}</span>
                               </div>
                               <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">

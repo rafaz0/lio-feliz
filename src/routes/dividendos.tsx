@@ -208,7 +208,15 @@ function DividendosPage() {
                               </Link>
                             )}
                           </td>
-                          <td className="px-4 py-2.5 text-muted-foreground">{d.name}</td>
+                          <td className="px-4 py-2.5">
+                            <Link
+                              to={d.assetType === "fii" ? "/fii/$ticker" : "/ativo/$ticker"}
+                              params={{ ticker: d.ticker }}
+                              className="text-muted-foreground hover:text-primary transition"
+                            >
+                              {d.name}
+                            </Link>
+                          </td>
                           <td className="px-4 py-2.5">
                             <span
                               className={

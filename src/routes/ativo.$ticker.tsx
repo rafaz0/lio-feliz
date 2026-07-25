@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Info, Plus } from "lucide-react";
+import { ArrowLeft, BarChart3, Info, Plus } from "lucide-react";
 import {
   Area,
   Bar,
@@ -616,6 +616,11 @@ function AssetPage() {
             >
               <Star className={"size-4 " + (isWatching(asset.ticker) ? "fill-current" : "")} />
               {isWatching(asset.ticker) ? "Remover" : "Monitorar"}
+            </Button>
+            <Button asChild size="lg" variant="secondary" className="gap-2">
+              <Link to="/analise">
+                <BarChart3 className="size-4" /> Análise
+              </Link>
             </Button>
             {user ? (
               <AddOperationDialog

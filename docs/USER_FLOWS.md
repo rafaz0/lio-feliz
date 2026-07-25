@@ -532,26 +532,36 @@ Mercado (/) — tabela de ativos
 ```
 Dividendos (/dividendos)
   │
-  └── ▶ Clique no ticker do provento
+  ├── ▶ Clique no ticker (coluna "Ativo")
+  │     │
+  │     ▼
+  │   Página do Ativo (/ativo/$ticker) ou FII (/fii/$ticker)
+  │
+  └── ▶ Clique no nome da empresa (coluna "Empresa")
         │
         ▼
-  Página do Ativo (/ativo/$ticker)
+  Página do Ativo (/ativo/$ticker) ou FII (/fii/$ticker)
 ```
 
-**Status:** ⚠️ Parcial — link existe, mas pode ser melhorado com tooltip/contexto
+**Status:** ✅ Implementado (EWO-028) — nome da empresa também é clicável, link direto para página do ativo
 
 ### 6.5 Empresa → Análise
 
 ```
 Página do Ativo (/ativo/$ticker)
   │
-  └── ▶ Link "Ver análises" ou "Comparar"
+  ├── ▶ Botão "Análise" no header do ativo
+  │     │
+  │     ▼
+  │   Módulo Análise (/analise) — visão geral
+  │
+  └── ▶ Link "Comparar" (quando disponível)
         │
         ▼
-  Análise (/analise) ou Comparador (/comparar)
+  Comparador (/comparar)
 ```
 
-**Status:** ⚠️ A melhorar — link direto para análise do ativo específico na tela de análise
+**Status:** ✅ Implementado (EWO-028) — botão "Análise" no cabeçalho da página do ativo
 
 ### 6.6 Análise → Comparador
 
@@ -571,13 +581,17 @@ Análise (/analise)
 ```
 Comparador (/comparar)
   │
-  └── ▶ "Adicionar à carteira" ou "Ver posição"
+  ├── ▶ Botão "Minha Carteira" no header
+  │     │
+  │     ▼
+  │   Carteira (/carteira)
+  │
+  └── ▶ Ticker clicável → Página do Ativo (/ativo/$ticker)
         │
-        ▼
-  Carteira (/carteira) — se o ativo já estiver na carteira
+        └── ▶ "Adicionar à carteira" na página do ativo
 ```
 
-**Status:** ❌ Não implementado — o comparador não possui integração direta com a carteira
+**Status:** ✅ Implementado (EWO-028) — botão "Minha Carteira" no header do comparador + tickers clicáveis para página de detalhe
 
 ### 6.8 Watchlist → Ativo
 
@@ -610,13 +624,13 @@ Calculadoras (/calculadoras)
 ```
 Carteira (/carteira) — aba Proventos
   │
-  └── ▶ Link "Provisionador completo"
+  └── ▶ Botão "Provisionador completo"
         │
         ▼
   Provisionador (/provisionador)
 ```
 
-**Status:** ⚠️ Parcial — link existe no menu, mas não há navegação direta da aba Proventos para o provisionador
+**Status:** ✅ Implementado (EWO-028) — botão "Provisionador completo" na aba Proventos
 
 ### 6.11 Proventos → IRPF
 
@@ -671,7 +685,11 @@ Proventos (/carteira/proventos) ou (/carteira)
 | Carteira (`/carteira`) | Configurações | Privado | Sim | Aba do módulo |
 | Carteira (posição) | Ativo (`/ativo/$ticker`) | Privado→Público | Não | Click no ticker da posição |
 | Ativo (`/ativo/$ticker`) | Comparador (`/comparar`) | Público | Não | Botão "Comparar" |
-| Dividendos (`/dividendos`) | Ativo (`/ativo/$ticker`) | Público | Não | Click no ticker |
+| Ativo (`/ativo/$ticker`) | Análise (`/analise`) | Público | Não | Botão "Análise" no header (EWO-028) |
+| Comparador (`/comparar`) | Carteira (`/carteira`) | Privado | Sim | Botão "Minha Carteira" (EWO-028) |
+| Comparador (`/comparar`) | Ativo (`/ativo/$ticker`) | Público | Não | Ticker clicável na tabela e cards (EWO-028) |
+| Dividendos (`/dividendos`) | Ativo (`/ativo/$ticker`) | Público | Não | Click no ticker ou nome da empresa |
+| Proventos Carteira | Provisionador | Privado | Sim | Botão "Provisionador completo" (EWO-028) |
 | Watchlist (`/watchlist`) | Ativo (`/ativo/$ticker`) | Público | Não | Click no ticker |
 | Menu Usuário | IRPF (`/irpf`) | Privado | Sim | Dropdown do usuário |
 | Menu Usuário | Carteira/Proventos | Privado | Sim | Dropdown do usuário |
@@ -730,6 +748,15 @@ A barra de busca no header poderia ser ativada por atalho de teclado (ex: `Ctrl+
 ---
 
 ## 9. Histórico
+
+### Versão 1.1 — 25/07/2026
+
+- EWO-028: Status de integrações atualizados com as implementações.
+- Comparador → Carteira: ✅ Implementado (botão "Minha Carteira" + tickers clicáveis).
+- Dividendos → Empresa: ✅ Implementado (nome da empresa também clicável).
+- Ativo → Análise: ✅ Implementado (botão "Análise" no header do ativo).
+- Proventos → Provisionador: ✅ Implementado (botão "Provisionador completo").
+- Matriz de navegação expandida com 5 novas entradas.
 
 ### Versão 1.0 — 25/07/2026
 

@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
-import { Calendar, PiggyBank, ShieldCheck, TrendingUp, Wallet } from "lucide-react";
+import { Calendar, ExternalLink, PiggyBank, ShieldCheck, TrendingUp, Wallet } from "lucide-react";
 import {
   Area,
   AreaChart,
@@ -20,6 +20,7 @@ import { listOperations } from "@/lib/operations.functions";
 import { getRealProjections, type RealProjection } from "@/lib/data-functions";
 import { ASSETS_BY_TICKER } from "@/lib/mock-data";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -239,6 +240,14 @@ export function ProventosContent() {
         </div>
       </section>
 
+      <section className="flex items-center justify-end">
+        <Button variant="outline" size="sm" asChild className="gap-1.5">
+          <Link to="/provisionador">
+            <ExternalLink className="size-3.5" /> Provisionador completo
+          </Link>
+        </Button>
+      </section>
+
       {/* Coverage */}
       <section className="rounded-lg border border-border bg-card p-5">
         <div className="flex flex-wrap items-center gap-4">
@@ -423,7 +432,13 @@ export function ProventosContent() {
               {byTicker.map((t) => (
                 <tr key={t.ticker} className="border-t border-border">
                   <td className="px-2 py-1.5">
-                    <div className="font-semibold">{t.ticker}</div>
+                    <Link
+                      to="/ativo/$ticker"
+                      params={{ ticker: t.ticker }}
+                      className="font-semibold hover:text-primary"
+                    >
+                      {t.ticker}
+                    </Link>
                     <div className="truncate text-xs text-muted-foreground">{t.name}</div>
                   </td>
                   <td className="tabular px-2 py-1.5 text-right text-muted-foreground">
@@ -461,7 +476,13 @@ export function ProventosContent() {
               {historico.map((h, i) => (
                 <tr key={`${h.ticker}-${h.paidAt}-${i}`} className="border-t border-border">
                   <td className="px-2 py-1.5">
-                    <div className="font-semibold">{h.ticker}</div>
+                    <Link
+                      to="/ativo/$ticker"
+                      params={{ ticker: h.ticker }}
+                      className="font-semibold hover:text-primary"
+                    >
+                      {h.ticker}
+                    </Link>
                     <div className="truncate text-xs text-muted-foreground">{h.name}</div>
                   </td>
                   <td className="tabular px-2 py-1.5 text-right text-muted-foreground">
