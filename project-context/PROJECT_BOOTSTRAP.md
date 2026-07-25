@@ -8,7 +8,7 @@
 
 **Categoria:** Project Context
 
-**Última atualização:** 25/07/2026 (v2.71)
+**Última atualização:** 25/07/2026 (v2.72)
 
 ---
 
@@ -175,6 +175,7 @@ PI-016 EM ELABORAÇÃO. Experience Layer & Architecture Preservation. Aguardando
 | MODULE_ARCHITECTURE.md | Guia oficial de arquitetura modular | ✅ Criado |
 | USER_FLOWS.md | Mapeamento de fluxos de navegação | ✅ Criado |
 | PERSONAL_FINANCE_ARCHITECTURE.md | Arquitetura da Gestão Financeira | ✅ Criado |
+| APPLICATION_STATES.md | Estados operacionais da aplicação | ✅ Criado |
 | DEPLOY.md | Documentação de deploy | ✅ Criado |
 | INFRASTRUCTURE.md | Documentação de infraestrutura | ✅ Criado |
 

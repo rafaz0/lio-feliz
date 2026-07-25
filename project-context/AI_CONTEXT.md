@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-PI-016 EM ELABORAÇÃO (Experience Layer & Architecture Preservation — Onda 10). Experience Layer criada e integrada ao Dashboard, Ativo e FII. Dados mock substituídos por dados reais. Documento PERSONAL_FINANCE_ARCHITECTURE.md e ADR-009 criados. Próxima etapa: conclusão da PI-016.
+PI-016 EM ELABORAÇÃO (Experience Layer & Architecture Preservation — Onda 10). Experience Layer criada e integrada. Dashboard oficializado como Hub Central. Documentos: APPLICATION_STATES.md, PERSONAL_FINANCE_ARCHITECTURE.md. Próxima etapa: conclusão da PI-016.
 
 # Referências Obrigatórias
 

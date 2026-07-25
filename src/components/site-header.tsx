@@ -156,6 +156,15 @@ export function SiteHeader() {
 
         {/* Desktop nav — outside Sheet so DropdownMenu is not inside Dialog context */}
         <nav className="hidden items-center gap-1 text-base text-muted-foreground md:flex">
+          {user && (
+            <Link
+              to="/dashboard"
+              className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+              activeOptions={{ exact: false }}
+            >
+              Dashboard
+            </Link>
+          )}
           <Link
             to="/"
             className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"

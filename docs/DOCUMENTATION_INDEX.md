@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.16
+**Versão da Documentação:** 2.17
 
 **Status:** APROVADO
 
-**Última atualização:** 25/07/2026 (v2.16)
+**Última atualização:** 25/07/2026 (v2.17)
 
 ---
 
@@ -182,6 +182,12 @@ Arquitetura do módulo de Gestão Financeira Integrada. Separação de responsab
 
 ---
 
+✅ APPLICATION_STATES.md
+
+Documentação dos estados operacionais da plataforma: Visitante, Usuário Autenticado, Desenvolvedor, Produção. Diferenças entre localhost e produção. Comportamentos DEV_USER/DEV_STORE/DEV_MODE.
+
+---
+
 🔴 PI-010.md (DRAFT v1.0)
 
 Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada). Estende PI-008 (PA-008/R-001..R-007) e PI-009 (PA-009/R-008..R-010). 4 novas restrições (R-011..R-014: Backtest Determinístico, Alertas com Consentimento, Comparação Read-Only, Exportação Assíncrona Auditável). 3 novos Anexos Técnicos previstos (`07_BACKTEST_ALGORITMOS.md`, `08_ALERTAS_EVENTOS.md`, `09_EXPORTACAO_FORMATOS.md`). 6 riscos com mitigações. Seções 11 e 12 com critérios explícitos para a futura ER-010 e para as futuras EWO-009/EWO-010. **Dependência O2**: confirmar EWO-007 antes de abrir EWO-009.
@@ -255,6 +261,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.17
+
+- **EWO-037 CONCLUÍDA — Consolidação da Experiência de Produção.** Dashboard oficializado como Hub Central. Dashboard adicionado ao SiteHeader. Documento APPLICATION_STATES.md criado com 4 estados operacionais. DOCUMENTATION_INDEX v2.17.
 
 ## Versão 2.16
 
