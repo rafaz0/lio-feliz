@@ -1,7 +1,5 @@
-import { createFileRoute, Outlet, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 import {
-  BarChart3,
-  CandlestickChart,
   ClipboardList,
   Coins,
   History,
