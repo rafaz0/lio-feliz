@@ -147,6 +147,9 @@ export function SiteHeader() {
                     <MobileNavLink to="/provisionador" onClick={closeMobile}>
                       Provisionador
                     </MobileNavLink>
+                    <MobileNavLink to="/_authenticated/finance" onClick={closeMobile}>
+                      Finanças
+                    </MobileNavLink>
                   </div>
                 )}
               </nav>
@@ -192,6 +195,15 @@ export function SiteHeader() {
           >
             Análise
           </Link>
+          {user && (
+            <Link
+              to="/_authenticated/finance"
+              className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+              activeOptions={{ exact: false }}
+            >
+              Finanças
+            </Link>
+          )}
         </nav>
 
         <div className="relative ml-auto w-full max-w-[140px] md:max-w-[180px]">
