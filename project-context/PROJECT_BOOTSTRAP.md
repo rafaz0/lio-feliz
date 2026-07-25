@@ -62,7 +62,7 @@ Execução
 
 ## Marco Atual
 
-PI-016 — Experience Layer & Architecture Preservation (Concluída — Onda 10 — 10 EWOs, Experience Layer, Dashboard Hub, PI-016 encerrada)
+PI-017 — Arquitetura da Gestão Financeira (Concluída — Onda 11 — 5 EWOs, 6 módulos, 2 ADRs, PI-017 encerrada)
 
 ## PI Atual
 
@@ -70,7 +70,7 @@ PI-016 — Experience Layer & Architecture Preservation (COMPLETED). PI-015 — 
 
 ## PS Atual
 
-PS#067 — PI-016: Experience Layer & Architecture Preservation (concluída)
+PS#068 — PI-017: Arquitetura da Gestão Financeira (concluída)
 
 ## Dashboard Executivo
 
@@ -79,8 +79,8 @@ PS#067 — PI-016: Experience Layer & Architecture Preservation (concluída)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#067
-Marco: PI-016 — Experience Layer & Architecture Preservation (concluída)
+PS Atual: PS#068
+Marco: PI-017 — Arquitetura da Gestão Financeira (concluída)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -92,7 +92,7 @@ Marco: PI-016 — Experience Layer & Architecture Preservation (concluída)
 
 ## Objetivos Ativos
 
-PI-017 EM ELABORAÇÃO (Arquitetura da Gestão Financeira — Onda 11). PI-017.md em DRAFT. Definição de bounded contexts, módulos, modelo conceitual, integração opcional com Carteira, feature flags. Próxima etapa: ER-017 (Engineering Review).
+PI-017 CONCLUÍDA (Arquitetura da Gestão Financeira — Onda 11). 5 EWOs executadas (EWO-041 a EWO-045). 6 módulos implementados: Contas, Caixa, Receitas, Despesas, Dívidas, Patrimônio Global. Integração opcional com Carteira estabelecida. 2 ADRs produzidos (ADR-017-001, ADR-017-002). Próxima etapa: definição da PI-018.
 
 ## DEC Ativas
 
@@ -108,7 +108,7 @@ Nenhuma.
 
 ## Próxima Etapa
 
-PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Próxima etapa: **definição da PI-016**.
+PI-017 CONCLUÍDA. Gestão Financeira implementada. Próxima etapa: **definição da PI-018**.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
 **GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
@@ -142,7 +142,7 @@ PI-015 CONCLUÍDA. Product Evolution & Module Unification finalizada. Próxima e
 
 ### Próxima Frente de Engenharia
 
-PI-017 EM ELABORAÇÃO. Arquitetura da Gestão Financeira (Onda 11). PI-017.md em DRAFT. Próxima etapa: ER-017 (Engineering Review).
+PI-017 CONCLUÍDA. Arquitetura da Gestão Financeira (Onda 11). 5 EWOs executadas. Próxima etapa: definição da PI-018.
 
 ### Documentação Prevista
 

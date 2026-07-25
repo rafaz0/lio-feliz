@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.19
+**Versão da Documentação:** 2.20
 
 **Status:** APROVADO
 
-**Última atualização:** 25/07/2026 (v2.19)
+**Última atualização:** 25/07/2026 (v2.20)
 
 ---
 
@@ -117,6 +117,8 @@ ADR-006_COMMERCIAL_PRODUCT.md ✅
 ADR-007_AUTOMATION_FIRST.md ✅
 ADR-008_BACKLOG_GOVERNANCE.md ✅
 ADR-009_PERSONAL_FINANCE_SEPARATION.md ✅
+ADR-017-001_INTEGRATION_CARTEIRA_FINANCE.md ✅
+ADR-017-002_FEATURE_FLAGS_AND_FINANCE_INTEGRATION_CONFIG.md ✅
 
 ---
 
@@ -190,7 +192,19 @@ Documentação dos estados operacionais: Visitante, Demo, Usuário, Desenvolvedo
 
 🔴 PI-010.md (DRAFT v1.0)
 
+---
+
+✅ PI-017.md (COMPLETED)
+
+Arquitetura da Gestão Financeira. 8 princípios R-PF, 5 bounded contexts, 6 módulos, 5 EWOs, integração opcional com Carteira.
+
 Domain Enrichment & Investor Tooling (Ondas 4 & 5). Módulos 14-18 (Backtests, Alertas, Comparação Avançada, Educação, Exportação Avançada). Estende PI-008 (PA-008/R-001..R-007) e PI-009 (PA-009/R-008..R-010). 4 novas restrições (R-011..R-014: Backtest Determinístico, Alertas com Consentimento, Comparação Read-Only, Exportação Assíncrona Auditável). 3 novos Anexos Técnicos previstos (`07_BACKTEST_ALGORITMOS.md`, `08_ALERTAS_EVENTOS.md`, `09_EXPORTACAO_FORMATOS.md`). 6 riscos com mitigações. Seções 11 e 12 com critérios explícitos para a futura ER-010 e para as futuras EWO-009/EWO-010. **Dependência O2**: confirmar EWO-007 antes de abrir EWO-009.
+
+✅ ER-017.md 🟢 (APPROVED)
+
+Engineering Review da PI-017 (Gestão Financeira). 8 critérios avaliados. Veredito APROVADO.
+
+---
 
 🔴 ER-010.md 🟢 (APPROVED)
 
@@ -219,6 +233,12 @@ Platform Completion & Production Readiness (Onda 7). 3 Blocos: A (Completude UI 
 🔴 ER-012.md 🟢 (APPROVED)
 
 Engineering Review da PI-012: 8 critérios avaliados, 3 NCs baixas (NC-012-001, NC-012-002, NC-012-003), 2 recomendações. Veredito 🟢 APROVADO PARA IMPLEMENTAÇÃO. PI-012 promovida DRAFT → APPROVED.
+
+✅ PI-017_ENGINEERING_CLOSURE.md 🟢 (FECHADO)
+
+Engineering Closure oficial da PI-017. 5 EWOs, 2 ADRs, 6 módulos, qualidade verificada.
+
+---
 
 🔴 EWO-013.md 🟢 (APPROVED)
 
@@ -261,6 +281,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.20
+
+- **PI-017 CONCLUÍDA — Arquitetura da Gestão Financeira.** 5 EWOs executadas (EWO-041 a EWO-045). 6 módulos: Contas, Caixa, Receitas, Despesas, Dívidas, Patrimônio Global. 2 ADRs (ADR-017-001, ADR-017-002). Engineering Closure registrado. Próxima etapa: definição da PI-018. DOCUMENTATION_INDEX v2.20.
 
 ## Versão 2.19
 

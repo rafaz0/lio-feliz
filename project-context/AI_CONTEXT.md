@@ -28,7 +28,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-PI-017 EM ELABORAÇÃO (Arquitetura da Gestão Financeira — Onda 11). PI-017.md em DRAFT. Definição de bounded contexts, módulos, integração opcional com Carteira. Próxima etapa: ER-017 (Engineering Review).
+PI-017 CONCLUÍDA (Arquitetura da Gestão Financeira — Onda 11). 5 EWOs, 6 módulos, 2 ADRs. Gestão Financeira implementada. Próxima etapa: definição da PI-018.
 
 # Referências Obrigatórias
 
