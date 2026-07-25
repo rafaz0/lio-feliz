@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, BarChart3, Info, Plus } from "lucide-react";
+import { ArrowLeft, BarChart3, CalendarDays, Info, Plus, Target, TrendingUp } from "lucide-react";
 import {
   Area,
   Bar,
@@ -35,6 +35,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatDate } from "@/lib/format";
 import { grahamRating, bazinPriceTeto, avgAnnualYield } from "@/lib/valuation";
 import { computeScorecard, ratingLabel, ratingColor } from "@/lib/scorecard";
+import { ContextPanel, SmartHints, RelatedLinks } from "@/components/experience";
 
 export const Route = createFileRoute("/ativo/$ticker")({
   loader: async ({ params }) => {
@@ -1302,6 +1303,144 @@ function AssetPage() {
             </div>
           </section>
         )}
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_320px]">
+          <div className="space-y-6">
+            <SmartHints
+              hints={[
+                {
+                  id: "a1",
+                  title: "Acompanhe os proventos",
+                  description: `Confira o calendário de dividendos de ${asset.ticker} e planeje seus recebimentos.`,
+                  type: "tip",
+                  action: {
+                    label: "Ver dividendos",
+                    onClick: () => (window.location.href = "/dividendos"),
+                  },
+                },
+                {
+                  id: "a2",
+                  title: "Compare com similares",
+                  description: "Veja como este ativo se compara com outros do mesmo setor.",
+                  type: "info",
+                  action: {
+                    label: "Comparar",
+                    onClick: () => (window.location.href = "/comparar"),
+                  },
+                },
+              ]}
+            />
+            <RelatedLinks
+              title="Navegação relacionada"
+              items={[
+                { label: "Carteira", to: "/carteira", description: "Ver posição consolidada" },
+                { label: "Análise", to: "/analise", description: "FIIs, rankings e setores" },
+                { label: "Comparador", to: "/comparar", description: "Comparar com outros ativos" },
+                { label: "Dividendos", to: "/dividendos", description: "Calendário de proventos" },
+              ]}
+            />
+          </div>
+          <aside>
+            <ContextPanel
+              title={`${asset.ticker} — Resumo`}
+              sections={[
+                {
+                  title: "Informações",
+                  icon: <BarChart3 className="size-3" />,
+                  content: (
+                    <div className="space-y-1 text-sm">
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Empresa</span>
+                        <span className="font-medium truncate max-w-[160px] text-right">
+                          {asset.name}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Setor</span>
+                        <span className="font-medium">{asset.sector}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Cotação</span>
+                        <span className="font-medium">{formatBRL(currentPrice)}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">DY médio (5y)</span>
+                        <span className="font-medium">
+                          {avgYield5y ? `${(avgYield5y * 100).toFixed(2)}%` : "—"}
+                        </span>
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  title: "Pontuação",
+                  icon: <Target className="size-3" />,
+                  content: (
+                    <div className="space-y-1 text-sm">
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Scorecard</span>
+                        <span className="font-medium">{scorecardScore.total.toFixed(0)}/100</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Rating</span>
+                        <span className={`font-medium ${ratingColor(scorecardScore.total)}`}>
+                          {ratingLabel(scorecardScore.total)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Preço teto (Bazin)</span>
+                        <span className="font-medium">
+                          {bazinTeto ? formatBRL(bazinTeto) : "—"}
+                        </span>
+                      </div>
+                      {graham.discount !== null && (
+                        <div className="flex items-center justify-between">
+                          <span className="text-muted-foreground">Desconto Graham</span>
+                          <span
+                            className={`font-medium ${graham.discount >= 0 ? "text-emerald-500" : "text-rose-500"}`}
+                          >
+                            {graham.discount >= 0 ? "+" : ""}
+                            {(graham.discount * 100).toFixed(0)}%
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  ),
+                },
+                {
+                  title: "Próximos proventos",
+                  icon: <CalendarDays className="size-3" />,
+                  content: (
+                    <div className="space-y-1 text-xs">
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Último dividendo</span>
+                        <span>
+                          {asset.dividends.length > 0
+                            ? formatBRL(asset.dividends[asset.dividends.length - 1].amount)
+                            : "—"}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">CAGR dividendos</span>
+                        <span
+                          className={
+                            dividendCagrFromHistory !== null && dividendCagrFromHistory >= 0
+                              ? "text-emerald-500"
+                              : "text-rose-500"
+                          }
+                        >
+                          {dividendCagrFromHistory !== null
+                            ? `${dividendCagrFromHistory >= 0 ? "+" : ""}${(dividendCagrFromHistory * 100).toFixed(1)}%`
+                            : "—"}
+                        </span>
+                      </div>
+                    </div>
+                  ),
+                },
+              ]}
+            />
+          </aside>
+        </section>
       </main>
     </div>
   );

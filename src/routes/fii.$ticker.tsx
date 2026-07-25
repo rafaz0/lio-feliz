@@ -34,6 +34,7 @@ import { getQuotes } from "@/lib/quotes.functions";
 import { Button } from "@/components/ui/button";
 import { calcAll } from "@/lib/technical-indicators";
 import { formatBRL, formatDate, formatNumber } from "@/lib/format";
+import { ContextPanel, SmartHints, RelatedLinks } from "@/components/experience";
 
 export const Route = createFileRoute("/fii/$ticker")({
   loader: ({ params }) => {
@@ -665,6 +666,127 @@ function FiiPage() {
         <section className="mt-8 rounded-lg border border-border bg-card p-6">
           <h2 className="text-sm font-semibold">Sobre {fii.ticker}</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{fii.description}</p>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_320px]">
+          <div className="space-y-6">
+            <SmartHints
+              hints={[
+                {
+                  id: "f1",
+                  title: "Acompanhe os rendimentos",
+                  description: `Confira o histórico completo de dividendos de ${fii.ticker}.`,
+                  type: "tip",
+                },
+                {
+                  id: "f2",
+                  title: "Compare com outros FIIs",
+                  description: "Veja como este fundo se compara com outros do mesmo segmento.",
+                  type: "info",
+                  action: {
+                    label: "Comparar",
+                    onClick: () => (window.location.href = "/comparar"),
+                  },
+                },
+              ]}
+            />
+            <RelatedLinks
+              title="Navegação relacionada"
+              items={[
+                { label: "Análise", to: "/analise", description: "FIIs, rankings e setores" },
+                {
+                  label: "Comparador",
+                  to: "/comparar",
+                  description: "Comparar fundos imobiliários",
+                },
+                { label: "Dividendos", to: "/dividendos", description: "Calendário de proventos" },
+                { label: "Carteira", to: "/carteira", description: "Ver posição consolidada" },
+              ]}
+            />
+          </div>
+          <aside>
+            <ContextPanel
+              title={`${fii.ticker} — Resumo`}
+              sections={[
+                {
+                  title: "Informações",
+                  icon: <BarChart3 className="size-3" />,
+                  content: (
+                    <div className="space-y-1 text-sm">
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">FII</span>
+                        <span className="font-medium truncate max-w-[160px] text-right">
+                          {fii.name}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Segmento</span>
+                        <span className="font-medium">{fii.segment}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Cotação</span>
+                        <span className="font-medium">{formatBRL(currentPrice)}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">DY</span>
+                        <span className="font-medium text-emerald-500">{fii.dy.toFixed(2)}%</span>
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  title: "Indicadores",
+                  icon: <TrendingUp className="size-3" />,
+                  content: (
+                    <div className="space-y-1 text-sm">
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">P/VP</span>
+                        <span className="font-medium">{fii.pvp.toFixed(2)}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Cap Rate</span>
+                        <span className="font-medium">
+                          {fii.capRate > 0 ? `${fii.capRate.toFixed(1)}%` : "—"}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Vacância</span>
+                        <span className="font-medium">{fii.vacancy.toFixed(1)}%</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Cotistas</span>
+                        <span className="font-medium">{formatNumber(fii.shareholders)}</span>
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  title: "Liquidez",
+                  icon: <DollarSign className="size-3" />,
+                  content: (
+                    <div className="space-y-1 text-sm">
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Liquidez diária</span>
+                        <span className="font-medium">
+                          {fii.dailyLiquidity >= 1_000_000
+                            ? `R$${(fii.dailyLiquidity / 1_000_000).toFixed(1)}M`
+                            : `R$${(fii.dailyLiquidity / 1_000).toFixed(0)}K`}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-muted-foreground">Último rendimento</span>
+                        <span className="font-medium">
+                          {fii.dividendHistory.length > 0
+                            ? formatBRL(fii.dividendHistory[fii.dividendHistory.length - 1].amount)
+                            : "—"}
+                        </span>
+                      </div>
+                    </div>
+                  ),
+                },
+              ]}
+            />
+          </aside>
         </section>
       </main>
     </div>
