@@ -2,11 +2,11 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { BarChart3, Home, PiggyBank, Target, Wallet } from "lucide-react";
 
 const NAV_ITEMS = [
-  { to: "/_authenticated/dashboard", icon: Home, label: "Dashboard" },
-  { to: "/_authenticated/carteira", icon: Wallet, label: "Carteira" },
-  { to: "/_authenticated/carteira/proventos", icon: PiggyBank, label: "Proventos" },
-  { to: "/_authenticated/metas", icon: Target, label: "Metas" },
-  { to: "/_authenticated/carteira/analise", icon: BarChart3, label: "Análise" },
+  { to: "/dashboard", icon: Home, label: "Dashboard" },
+  { to: "/carteira", icon: Wallet, label: "Carteira" },
+  { to: "/carteira/proventos", icon: PiggyBank, label: "Proventos" },
+  { to: "/metas", icon: Target, label: "Metas" },
+  { to: "/carteira/analise", icon: BarChart3, label: "Análise" },
 ];
 
 export function MobileNav() {

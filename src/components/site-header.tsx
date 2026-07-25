@@ -164,7 +164,7 @@ export function SiteHeader() {
             Mercado
           </Link>
           <Link
-            to="/_authenticated/carteira"
+            to="/carteira"
             className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
             activeOptions={{ exact: false }}
           >

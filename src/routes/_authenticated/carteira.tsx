@@ -29,52 +29,52 @@ export const Route = createFileRoute("/_authenticated/carteira")({
 });
 
 const TABS: ModuleTab[] = [
-  { label: "Resumo", to: "/_authenticated/carteira", icon: <LayoutDashboard className="size-4" /> },
+  { label: "Resumo", to: "/carteira", icon: <LayoutDashboard className="size-4" /> },
   {
     label: "Patrimônio",
-    to: "/_authenticated/carteira/patrimonio",
+    to: "/carteira/patrimonio",
     icon: <Wallet className="size-4" />,
   },
   {
     label: "Proventos",
-    to: "/_authenticated/carteira/proventos",
+    to: "/carteira/proventos",
     icon: <Coins className="size-4" />,
   },
   {
     label: "Rentabilidade",
-    to: "/_authenticated/carteira/rentabilidade",
+    to: "/carteira/rentabilidade",
     icon: <LineChart className="size-4" />,
   },
   {
     label: "Cobertura",
-    to: "/_authenticated/carteira/cobertura",
+    to: "/carteira/cobertura",
     icon: <ShieldCheck className="size-4" />,
   },
   {
     label: "Análises",
-    to: "/_authenticated/carteira/analise",
+    to: "/carteira/analise",
     icon: <Sparkles className="size-4" />,
   },
   {
     label: "Movimentações",
-    to: "/_authenticated/carteira/lancamentos",
+    to: "/carteira/lancamentos",
     icon: <ClipboardList className="size-4" />,
   },
-  { label: "Metas", to: "/_authenticated/carteira/metas", icon: <Target className="size-4" /> },
-  { label: "IRPF", to: "/_authenticated/carteira/irpf", icon: <Receipt className="size-4" /> },
+  { label: "Metas", to: "/carteira/metas", icon: <Target className="size-4" /> },
+  { label: "IRPF", to: "/carteira/irpf", icon: <Receipt className="size-4" /> },
   {
     label: "Rebalanceamento",
-    to: "/_authenticated/carteira/rebalanceamento",
+    to: "/carteira/rebalanceamento",
     icon: <BarChart3 className="size-4" />,
   },
   {
     label: "Histórico",
-    to: "/_authenticated/carteira/historico",
+    to: "/carteira/historico",
     icon: <History className="size-4" />,
   },
   {
     label: "Configurações",
-    to: "/_authenticated/carteira/configuracoes",
+    to: "/carteira/configuracoes",
     icon: <Settings className="size-4" />,
   },
 ];
