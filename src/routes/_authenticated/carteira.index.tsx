@@ -18,6 +18,8 @@ import {
 } from "recharts";
 import { AlertTriangle, DollarSign, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
+import { KPIGrid } from "@/components/domain/kpi-grid";
+import { InsightPanel } from "@/components/domain/insight-panel";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
@@ -216,7 +218,7 @@ function PortfolioOverview() {
 
   return (
     <div className="space-y-6">
-      <section className="grid gap-3 md:grid-cols-5">
+      <KPIGrid cols={5}>
         <KpiCard label="Patrimônio" value={formatBRL(portfolio.totalValue)} />
         <KpiCard label="Investido" value={formatBRL(portfolio.totalInvested)} muted />
         <KpiCard
@@ -237,42 +239,48 @@ function PortfolioOverview() {
         {totalDividends > 0 && (
           <KpiCard label="Proventos" value={formatBRL(totalDividends)} tone="positive" />
         )}
-      </section>
+      </KPIGrid>
 
       {riskMetrics && (
-        <section className="grid gap-3 md:grid-cols-4">
-          <KpiCard
-            label="Volatilidade (anual)"
-            value={`${(riskMetrics.volatility * 100).toFixed(1)}%`}
-          />
-          <KpiCard
-            label="Drawdown máx."
-            value={`${(riskMetrics.maxDrawdown * 100).toFixed(1)}%`}
-            tone="negative"
-          />
-          {riskMetrics.beta !== null && (
+        <InsightPanel title="Métricas de Risco">
+          <KPIGrid cols={4}>
             <KpiCard
-              label="Beta (vs IBOV)"
-              value={riskMetrics.beta.toFixed(2)}
-              tone={
-                riskMetrics.beta < 1 ? "positive" : riskMetrics.beta > 1.2 ? "negative" : undefined
-              }
+              label="Volatilidade (anual)"
+              value={`${(riskMetrics.volatility * 100).toFixed(1)}%`}
             />
-          )}
-          {riskMetrics.sharpe !== null && (
             <KpiCard
-              label="Índice Sharpe"
-              value={riskMetrics.sharpe.toFixed(2)}
-              tone={
-                riskMetrics.sharpe >= 0.5
-                  ? "positive"
-                  : riskMetrics.sharpe < 0
-                    ? "negative"
-                    : undefined
-              }
+              label="Drawdown máx."
+              value={`${(riskMetrics.maxDrawdown * 100).toFixed(1)}%`}
+              tone="negative"
             />
-          )}
-        </section>
+            {riskMetrics.beta !== null && (
+              <KpiCard
+                label="Beta (vs IBOV)"
+                value={riskMetrics.beta.toFixed(2)}
+                tone={
+                  riskMetrics.beta < 1
+                    ? "positive"
+                    : riskMetrics.beta > 1.2
+                      ? "negative"
+                      : undefined
+                }
+              />
+            )}
+            {riskMetrics.sharpe !== null && (
+              <KpiCard
+                label="Índice Sharpe"
+                value={riskMetrics.sharpe.toFixed(2)}
+                tone={
+                  riskMetrics.sharpe >= 0.5
+                    ? "positive"
+                    : riskMetrics.sharpe < 0
+                      ? "negative"
+                      : undefined
+                }
+              />
+            )}
+          </KPIGrid>
+        </InsightPanel>
       )}
 
       <section className="flex flex-wrap items-center gap-3">
