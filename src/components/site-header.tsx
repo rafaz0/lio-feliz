@@ -158,27 +158,27 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-1 text-base text-muted-foreground md:flex">
           <Link
             to="/"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
+            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
             activeOptions={{ exact: true }}
           >
             Mercado
           </Link>
           <Link
             to="/carteira"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
+            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
             activeOptions={{ exact: false }}
           >
             Carteira
           </Link>
           <Link
             to="/dividendos"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
+            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
           >
             Dividendos
           </Link>
           <Link
             to="/analise"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:text-foreground"
+            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
             activeOptions={{ exact: false }}
           >
             Análise
@@ -320,7 +320,7 @@ function MobileNavLink({
     <Link
       to={to as any}
       onClick={onClick}
-      className="flex rounded-lg px-3 py-2 text-sm transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary [&.active]:font-semibold [&.active]:text-foreground"
+      className="flex rounded-lg px-3 py-2 text-sm transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
       activeOptions={{ exact: to === "/" }}
     >
       {children}

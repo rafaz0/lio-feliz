@@ -12,7 +12,7 @@ interface ModuleBreadcrumbProps {
 
 export function ModuleBreadcrumb({ items }: ModuleBreadcrumbProps) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-4">
+    <nav aria-label="Breadcrumb">
       <ol className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground sm:gap-2">
         <li>
           <Link to="/" className="transition hover:text-foreground" aria-label="Início">

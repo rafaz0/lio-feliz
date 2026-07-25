@@ -17,7 +17,7 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
 
   return (
     <nav
-      className={cn("flex gap-1 overflow-x-auto rounded-lg bg-muted p-1", className)}
+      className={cn("flex gap-0.5 overflow-x-auto rounded-lg bg-muted p-0.5", className)}
       role="tablist"
     >
       {tabs.map((tab) => {
@@ -29,7 +29,7 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
             role="tab"
             aria-selected={isActive}
             className={cn(
-              "inline-flex items-center gap-1.5 whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all",
+              "inline-flex items-center gap-1.5 whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium transition-all",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isActive
                 ? "bg-background text-foreground shadow-sm"
@@ -37,10 +37,8 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
             )}
           >
             {tab.icon}
-            <span className="hidden sm:inline">{tab.label}</span>
-            <span className="sm:hidden">
-              {tab.label.length > 8 ? tab.label.slice(0, 6) + "…" : tab.label}
-            </span>
+            <span className="hidden sm:inline truncate max-w-[120px]">{tab.label}</span>
+            <span className="sm:hidden truncate max-w-[72px]">{tab.label}</span>
           </Link>
         );
       })}
