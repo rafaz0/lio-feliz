@@ -4,9 +4,11 @@ import { AlocacaoChart } from "./AlocacaoChart";
 import { EvolucaoChart } from "./EvolucaoChart";
 import { DashboardLoading } from "./DashboardLoading";
 import { DashboardError } from "./DashboardError";
+import { DashboardEmpty } from "./DashboardEmpty";
 import { useDashboardQuery } from "../hooks/use-dashboard-query";
 import { InsightCard, InsightSection } from "@/presentation/features/intelligence";
 import { useDashboardInsights } from "@/presentation/features/intelligence/hooks/use-dashboard-insights";
+import type { NotFoundError } from "@/application/errors/application-error";
 
 interface DashboardViewProps {
   portfolioId: string;
@@ -20,13 +22,18 @@ export function DashboardView({ portfolioId }: DashboardViewProps) {
     return <DashboardLoading />;
   }
 
+  const isNotFound =
+    isError &&
+    error &&
+    "resourceType" in error &&
+    (error as NotFoundError).resourceType === "Portfolio";
+
+  if (isNotFound || (!isLoading && !viewModel && !isError)) {
+    return <DashboardEmpty />;
+  }
+
   if (isError || !viewModel) {
-    return (
-      <DashboardError
-        message={error?.message ?? "Não foi possível carregar o dashboard."}
-        onRetry={refetch}
-      />
-    );
+    return <DashboardError message={"Não foi possível carregar o dashboard."} onRetry={refetch} />;
   }
 
   const patrimonioInsights = insights.filter((i) => i.category === "patrimonio");

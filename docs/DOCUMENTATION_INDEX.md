@@ -6,11 +6,11 @@
 
 **Documento:** DOCUMENTATION_INDEX.md
 
-**Versão da Documentação:** 2.17
+**Versão da Documentação:** 2.18
 
 **Status:** APROVADO
 
-**Última atualização:** 25/07/2026 (v2.17)
+**Última atualização:** 25/07/2026 (v2.18)
 
 ---
 
@@ -261,6 +261,10 @@ Sempre que um documento for removido:
 Este arquivo representa a estrutura oficial da documentação.
 
 ---
+
+## Versão 2.18
+
+- **EWO-039 CONCLUÍDA — Robustez do Dashboard.** Dashboard resiliente com 4 estados de funcionamento (A-D). DashboardEmpty criado para novos usuários. NotFoundError tratado como empty state, não como erro. Regra R-DB-001 documentada. DOCUMENTATION_INDEX v2.18.
 
 ## Versão 2.17
 

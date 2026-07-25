@@ -8,7 +8,7 @@
 
 **Categoria:** Project Context
 
-**Última atualização:** 25/07/2026 (v2.72)
+**Última atualização:** 25/07/2026 (v2.73)
 
 ---
 
@@ -92,7 +92,7 @@ Marco: PI-016 — Experience Layer & Architecture Preservation (em andamento)
 
 ## Objetivos Ativos
 
-PI-016 EM ELABORAÇÃO. Experience Layer & Architecture Preservation. 5 EWOs em execução (EWO-031 a EWO-036). Experience Layer criada e integrada ao Dashboard e páginas de Ativo/FII. Dados mock substituídos por dados reais. Documentação da Gestão Financeira Integrada (PERSONAL_FINANCE_ARCHITECTURE.md) e ADR-009. Próxima etapa: conclusão da PI-016.
+PI-016 EM ELABORAÇÃO. Experience Layer & Architecture Preservation. 9 EWOs em execução (EWO-031 a EWO-039). Experience Layer criada e integrada. Dashboard robusto com 4 estados de funcionamento. Documentação: APPLICATION_STATES.md, PERSONAL_FINANCE_ARCHITECTURE.md, ADR-009. Próxima etapa: conclusão da PI-016.
 
 ## DEC Ativas
 

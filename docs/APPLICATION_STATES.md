@@ -126,7 +126,39 @@ Ativado quando:
 
 ---
 
-## 5. Produção
+## 5. Dashboard — Estados de Funcionamento
+
+O Dashboard (`/dashboard`) é o Hub Central da área autenticada. Ele opera em 4 estados:
+
+### Estado A — Carteira ativa
+
+Usuário possui operações registradas e projeções disponíveis.
+
+**Comportamento:** Dashboard completo com KPIs, gráficos, insights e atalhos.
+
+### Estado B — Usuário autenticado sem carteira
+
+Usuário nunca registrou operações e não possui portfólio no banco.
+
+**Comportamento:** `DashboardEmpty` — mensagem "Bem-vindo ao Dashboard" com ações sugeridas (Criar carteira, Explorar mercado).
+
+**Componente:** `src/presentation/features/dashboard/components/DashboardEmpty.tsx`
+
+### Estado C — Carteira vazia (sem operações)
+
+Usuário possui portfólio mas nenhuma operação de compra/venda.
+
+**Comportamento:** Indicadores zerados. `ContextPanel` exibe "Ativos: 0", "Operações: 0". `RecentActivity` exibe lista vazia. `SmartHints` exibe fallback "Explore o mercado".
+
+### Estado D — Modo desenvolvedor sem carteira
+
+`DEV_USER` (`dev-user-0000`) sem dados no `DEV_STORE`.
+
+**Comportamento:** Mesmo do Estado B — `DashboardEmpty` com ações sugeridas.
+
+---
+
+## 6. Produção
 
 ### Comportamento esperado
 
@@ -159,7 +191,26 @@ DEV_MODE=false  # Produção — usa Supabase real
 
 ---
 
-## 6. Histórico
+### Regra de Tratamento de Erros (R-DB-001)
+
+Nenhum erro interno deve ser exibido diretamente ao usuário no Dashboard.
+
+| Erro | Tratamento | Componente |
+|------|-----------|------------|
+| `NotFoundError("Portfolio")` | Estado B (empty state) | `DashboardEmpty` |
+| `NotFoundError("Historico")` | Estado C (indicadores zerados) | `DashboardView` fallback |
+| Erro de rede / servidor | `DashboardError` com mensagem genérica | `DashboardError` |
+| Qualquer outro erro | `DashboardError` — mensagem sempre "Não foi possível carregar o dashboard." | `DashboardError` |
+
+---
+
+## 7. Histórico
+
+### Versão 1.1 — 25/07/2026
+
+- Adicionada seção 5: Dashboard com 4 estados de funcionamento (A-D).
+- Adicionada regra R-DB-001: tratamento de erros internos no Dashboard.
+- Documentação dos componentes `DashboardEmpty`, `DashboardError`, `DashboardView`.
 
 ### Versão 1.0 — 25/07/2026
 

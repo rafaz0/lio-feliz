@@ -5,6 +5,7 @@ export { AlocacaoChart } from "./components/AlocacaoChart";
 export { EvolucaoChart } from "./components/EvolucaoChart";
 export { DashboardLoading } from "./components/DashboardLoading";
 export { DashboardError } from "./components/DashboardError";
+export { DashboardEmpty } from "./components/DashboardEmpty";
 export { useDashboardQuery } from "./hooks/use-dashboard-query";
 export { usePatrimonioQuery } from "./hooks/use-patrimonio-query";
 export { useHistoricoQuery } from "./hooks/use-historico-query";
