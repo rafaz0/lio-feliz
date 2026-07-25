@@ -2,7 +2,7 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.69
+**Versão:** 2.70
 
 **Status:** APROVADO
 
@@ -62,7 +62,7 @@ Execução
 
 ## Marco Atual
 
-PI-014 — Product Evolution & Module Unification (Em andamento — Onda 9)
+PI-014 — Product Evolution & Module Unification (Em andamento — Onda 9 — Carteira e Análise migrados, arquitetura consolidada)
 
 ## PI Atual
 
@@ -70,7 +70,7 @@ PI-014 — Product Evolution & Module Unification (DRAFT). PI-013 — Platform M
 
 ## PS Atual
 
-PS#063 — EWO-020 Slice 4: Engineering Closure (concluído)
+PS#064 — EWO-023: Consolidação da Arquitetura Modular (concluído)
 
 ## Dashboard Executivo
 
@@ -79,8 +79,8 @@ PS#063 — EWO-020 Slice 4: Engineering Closure (concluído)
 
 Projeto: Lio Feliz
 Modo: Execução
-PS Atual: PS#063
-Marco: EWO-020 (Licensing & Access — Concluído)
+PS Atual: PS#064
+Marco: PI-014 — Módulos Carteira + Análise (EWO-022/023)
 
 🏛 Governanca    [██████████]  100%
 🏗 Arquitetura   [██████████]  100%
@@ -171,6 +171,8 @@ PI-014 em elaboração. Transição para evolução funcional — módulos Carte
 | PI-013           | Platform Maturity & Intelligence      | ✅ CONCLUÍDA |
 | PI-014           | Product Evolution & Module Unification | ▶️ Em elaboração |
 | EWO-021          | Module Infrastructure Components       | ✅ Concluída |
+| EWO-022          | Migração do Módulo Análise             | ✅ Concluída |
+| MODULE_ARCHITECTURE.md | Guia oficial de arquitetura modular | ✅ Criado |
 | DEPLOY.md        | Documentação de deploy                 | ✅ Criado |
 | INFRASTRUCTURE.md | Documentação de infraestrutura        | ✅ Criado |
 
@@ -196,6 +198,8 @@ PI-014 em elaboração. Transição para evolução funcional — módulos Carte
 - **EWO-018 CONCLUÍDA** — Bloco C da PI-013 (Intelligence Layer), 4 Slices, 3 commits, 10 arquivos, 0 Core Domain alterados
 - **EWO-019 CONCLUÍDA** — Bloco D da PI-013 (Feature Completion), 5 Slices, 4 commits, 4 novos componentes
 - **EWO-020 CONCLUÍDA** — Bloco E da PI-013 (Licensing & Access), 4 Slices, 3 commits, 7 novos componentes
+- **EWO-021 CONCLUÍDA** — Infraestrutura de módulos (ModuleLayout, ModuleTabs, ModuleBreadcrumb)
+- **EWO-022 CONCLUÍDA** — Módulo Análise migrado (7 abas, dropdown removido)
 - **PI-013 CONCLUÍDA** — 5 Blocos, 24 Slices, ~17 EWOs (EWO-016 a EWO-020)
 - **Plataforma oficial: Vercel** (ADR-013-001) — Cloudflare Workers substituída
 - **Stack oficial:** GitHub (código) + Supabase (banco) + Vercel (host) + Sentry (monitoramento)
