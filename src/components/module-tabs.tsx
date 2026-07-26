@@ -19,9 +19,13 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
 
   return (
     <nav
-      className={cn("flex gap-0.5 overflow-x-auto rounded-lg bg-muted p-0.5", className)}
+      className={cn(
+        "flex gap-0.5 overflow-x-auto rounded-lg bg-muted p-0.5",
+        "[&::-webkit-scrollbar]:hidden",
+        className,
+      )}
       role="tablist"
-      style={{ scrollbarWidth: "thin" }}
+      style={{ scrollbarWidth: "none" }}
     >
       {tabs.map((tab) => {
         const isActive = location.pathname === tab.to || location.pathname.startsWith(tab.to + "/");
