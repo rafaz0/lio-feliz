@@ -187,6 +187,15 @@
   }
 }
 
+/* Hide scrollbar on tab navigation — keeps scrolling functional, bar invisivel */
+nav[role="tablist"] {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+nav[role="tablist"]::-webkit-scrollbar {
+  display: none;
+}
+
 @utility tabular {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
