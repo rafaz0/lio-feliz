@@ -337,16 +337,16 @@ function DashboardPage() {
       <SiteHeader />
 
       <main className="mx-auto max-w-[1400px] px-4 py-6">
-        <div className="mb-6">
+        <div className="mb-8">
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-bold tracking-tight">Olá, {displayName}</h1>
+            <h1 className="text-3xl font-bold tracking-tight">Olá, {displayName}</h1>
             {isDemoSession() && <DemoBadge />}
           </div>
-          <p className="mt-0.5 text-sm text-muted-foreground">
+          <p className="mt-1 text-sm text-muted-foreground">
             Visão consolidada do seu patrimônio e acesso rápido aos módulos.
           </p>
           {isDemoSession() && (
-            <div className="mt-3 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-2 text-xs text-amber-600">
+            <div className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-2 text-xs text-amber-600">
               Você está usando uma conta demonstrativa. Os dados não serão salvos.{" "}
               <a href="/register" className="font-medium underline hover:no-underline">
                 Crie sua conta gratuita
@@ -359,7 +359,7 @@ function DashboardPage() {
         <ModuleSection
           title="Acesso rápido"
           description="Navegue pelos principais módulos da plataforma"
-          className="mb-6"
+          className="mb-8"
         >
           <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
             {QUICK_ACTIONS.map((action) => {
@@ -386,14 +386,9 @@ function DashboardPage() {
           </div>
         </ModuleSection>
 
-        <div className="mb-6 grid gap-6 lg:grid-cols-[1fr_320px]">
-          <div className="min-w-0">
-            <ModuleSection
-              title="Sua carteira"
-              description="Indicadores e evolução do seu patrimônio"
-            >
-              <DashboardView portfolioId={portfolioId} />
-            </ModuleSection>
+        <div className="mb-8 grid gap-6 lg:grid-cols-[1fr_300px]">
+          <div className="min-w-0 space-y-6">
+            <DashboardView portfolioId={portfolioId} />
           </div>
 
           <aside className="space-y-4">
@@ -410,7 +405,7 @@ function DashboardPage() {
         <ModuleSection
           title="Sugestões"
           description="Recomendações para sua carteira"
-          className="mb-6"
+          className="mb-8"
         >
           <SmartHints hints={hints} />
         </ModuleSection>

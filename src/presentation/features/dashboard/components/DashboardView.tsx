@@ -40,7 +40,7 @@ export function DashboardView({ portfolioId }: DashboardViewProps) {
   const rentabilidadeInsights = insights.filter((i) => i.category === "rentabilidade");
 
   return (
-    <section data-testid="dashboard-view" aria-label="Dashboard" className="grid gap-4">
+    <section data-testid="dashboard-view" aria-label="Dashboard" className="space-y-5">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {viewModel.kpis.map((kpi) => (
           <KpiCard key={kpi.label} kpi={kpi} />
@@ -48,9 +48,12 @@ export function DashboardView({ portfolioId }: DashboardViewProps) {
       </div>
 
       {insights.length > 0 && (
-        <div className="space-y-3 rounded-lg border border-border bg-card p-4">
-          <h3 className="text-sm font-semibold text-foreground">Insights</h3>
-          <div className="grid gap-2 md:grid-cols-2">
+        <div className="space-y-3 rounded-xl border bg-card p-5">
+          <div className="flex items-center gap-2">
+            <div className="h-1 w-8 rounded-full bg-primary" />
+            <h3 className="text-sm font-semibold">Insights</h3>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
             {patrimonioInsights.map((insight) => (
               <InsightCard key={insight.id} insight={insight} />
             ))}
@@ -63,7 +66,7 @@ export function DashboardView({ portfolioId }: DashboardViewProps) {
 
       <PatrimonioConsolidado viewModel={viewModel} />
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2">
         <AlocacaoChart alocacao={viewModel.alocacao} />
         <EvolucaoChart evolucao={viewModel.evolucao} />
       </div>
