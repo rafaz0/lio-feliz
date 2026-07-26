@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { KpiCard } from "./KpiCard";
 import { PatrimonioConsolidado } from "./PatrimonioConsolidado";
 import { AlocacaoChart } from "./AlocacaoChart";
@@ -8,6 +9,7 @@ import { DashboardEmpty } from "./DashboardEmpty";
 import { useDashboardQuery } from "../hooks/use-dashboard-query";
 import { InsightCard, InsightSection } from "@/presentation/features/intelligence";
 import { useDashboardInsights } from "@/presentation/features/intelligence/hooks/use-dashboard-insights";
+import { useTimeRange, getCutoffDate, getTimeRangeById } from "@/presentation/shared/components/ui";
 import type { NotFoundError } from "@/application/errors/application-error";
 
 interface DashboardViewProps {
@@ -17,6 +19,18 @@ interface DashboardViewProps {
 export function DashboardView({ portfolioId }: DashboardViewProps) {
   const { viewModel, isLoading, isError, error, refetch } = useDashboardQuery(portfolioId);
   const insights = useDashboardInsights(viewModel);
+  const { selected, setRange } = useTimeRange();
+
+  const filteredEvolucao = useMemo(() => {
+    if (!viewModel) return [];
+    const cutoff = getCutoffDate(getTimeRangeById(selected));
+    if (!cutoff) return viewModel.evolucao;
+    return viewModel.evolucao.filter((p) => {
+      const [d, m, y] = p.data.split("/").map(Number);
+      const date = new Date(y, (m ?? 1) - 1, d ?? 1);
+      return date >= cutoff;
+    });
+  }, [viewModel, selected]);
 
   if (isLoading) {
     return <DashboardLoading />;
@@ -68,7 +82,11 @@ export function DashboardView({ portfolioId }: DashboardViewProps) {
 
       <div className="grid gap-5 lg:grid-cols-2">
         <AlocacaoChart alocacao={viewModel.alocacao} />
-        <EvolucaoChart evolucao={viewModel.evolucao} />
+        <EvolucaoChart
+          evolucao={filteredEvolucao}
+          selectedRange={selected}
+          onRangeChange={setRange}
+        />
       </div>
     </section>
   );

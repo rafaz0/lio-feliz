@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
@@ -6,10 +6,14 @@ import {
   type ChartConfig,
 } from "@/components/ui/chart";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { TimeRangeSelector } from "@/presentation/shared/components/ui";
+import type { TimeRangeId } from "@/presentation/shared/components/ui";
 import type { EvolucaoPontoViewModel } from "../types/dashboard.view-model";
 
 interface EvolucaoChartProps {
   evolucao: EvolucaoPontoViewModel[];
+  selectedRange: TimeRangeId;
+  onRangeChange: (id: TimeRangeId) => void;
 }
 
 const chartConfig = {
@@ -17,11 +21,12 @@ const chartConfig = {
   patrimonioInvestido: { label: "Investido" },
 } satisfies ChartConfig;
 
-export function EvolucaoChart({ evolucao }: EvolucaoChartProps) {
+export function EvolucaoChart({ evolucao, selectedRange, onRangeChange }: EvolucaoChartProps) {
   return (
     <Card data-testid="evolucao-chart">
-      <CardHeader>
-        <CardTitle>Evolução Patrimonial</CardTitle>
+      <CardHeader className="flex-row items-center justify-between">
+        <div className="text-sm font-semibold">Evolução Patrimonial</div>
+        <TimeRangeSelector selected={selectedRange} onSelect={onRangeChange} />
       </CardHeader>
       <CardContent>
         {evolucao.length === 0 ? (
