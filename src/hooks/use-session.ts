@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
+import { isDemoSession, getDemoSession } from "@/seed/demo-session";
 
 const DEV_USER = {
   id: "dev-user-0000",
@@ -31,6 +32,19 @@ export function useSession() {
         setSession(data.session);
       } else if (isLocal()) {
         setSession({ user: DEV_USER } as unknown as Session);
+      } else if (isDemoSession()) {
+        const demo = getDemoSession();
+        setSession({
+          user: {
+            id: demo?.sessionId ?? "demo-user",
+            email: "demo@localhost",
+            user_metadata: { display_name: "Modo Demo" },
+            app_metadata: {},
+            aud: "authenticated",
+            created_at: new Date().toISOString(),
+            role: "authenticated",
+          },
+        } as unknown as Session);
       }
       setLoading(false);
     });

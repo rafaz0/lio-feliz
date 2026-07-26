@@ -14,10 +14,9 @@ import {
   X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { clearDemoSession } from "@/seed/demo-session";
+import { clearDemoSession, isDemoSession } from "@/seed/demo-session";
 import { useSession } from "@/hooks/use-session";
 import { DemoBadge } from "@/components/demo-badge";
-import { isDemoSession } from "@/seed/demo-session";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -311,15 +310,23 @@ export function SiteHeader() {
                     Sessão demonstrativa
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link to="/register" className="flex items-center gap-2">
-                      <User className="size-4" /> Criar Conta
-                    </Link>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      clearDemoSession();
+                      window.location.href = "/register";
+                    }}
+                    className="gap-2"
+                  >
+                    <User className="size-4" /> Criar Conta
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link to="/login" className="flex items-center gap-2">
-                      <LogOut className="size-4" /> Entrar
-                    </Link>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      clearDemoSession();
+                      window.location.href = "/login";
+                    }}
+                    className="gap-2"
+                  >
+                    <LogOut className="size-4" /> Entrar
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
@@ -333,7 +340,7 @@ export function SiteHeader() {
           <>
             <ThemeToggle />
             <Button asChild size="sm">
-              <Link to="/auth">Entrar</Link>
+              <Link to="/login">Entrar</Link>
             </Button>
           </>
         )}

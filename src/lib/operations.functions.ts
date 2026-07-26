@@ -4,6 +4,7 @@ import { requireAuth } from "@/integrations/supabase/auth-middleware-prod";
 import type { AssetType, Currency, Operation, OperationSide } from "./portfolio";
 import { inferAssetType } from "./portfolio";
 import { fetchYahooDividends, fetchBRAPIDividends, fetchBRAPIStockDividends } from "./yahoo.server";
+import { DEMO_OPERATIONS } from "@/seed/demo-operations";
 
 const assetTypeSchema = z.enum([
   "stock",
@@ -66,7 +67,12 @@ export const listOperations = createServerFn({ method: "GET" })
     const demoSessionId = (context as any).demoSessionId as string | undefined;
 
     if (demoSessionId) {
-      return DEMO_STORES.get(demoSessionId) ?? [];
+      let store = DEMO_STORES.get(demoSessionId);
+      if (!store) {
+        store = DEMO_OPERATIONS.map((op) => ({ ...op }));
+        DEMO_STORES.set(demoSessionId, store);
+      }
+      return store;
     }
 
     if (process.env.DEV_MODE === "true") return DEV_STORE;
