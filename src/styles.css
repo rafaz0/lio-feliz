@@ -187,6 +187,11 @@
   }
 }
 
+/* Garantir que html nunca tenha scroll horizontal — CSS direto, nao via React className */
+html {
+  overflow-x: hidden;
+}
+
 /* Hide scrollbar on tab navigation — keeps scrolling functional, bar invisivel */
 nav[role="tablist"] {
   -ms-overflow-style: none;
