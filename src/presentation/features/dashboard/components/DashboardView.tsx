@@ -25,7 +25,10 @@ export function DashboardView({ portfolioId, viewModelOverride }: DashboardViewP
     error,
     refetch,
   } = useDashboardQuery(portfolioId);
-  const viewModel = viewModelOverride ?? queryViewModel;
+
+  const hasOverride = viewModelOverride !== undefined && viewModelOverride !== null;
+  const viewModel = hasOverride ? (viewModelOverride as DashboardViewModel) : queryViewModel;
+
   const insights = useDashboardInsights(viewModel);
   const { selected, setRange } = useTimeRange();
 
@@ -40,10 +43,9 @@ export function DashboardView({ portfolioId, viewModelOverride }: DashboardViewP
     });
   }, [viewModel, selected]);
 
-  /* Quando viewModelOverride é fornecido (ex: dados via consolidatePortfolio),
-     ignoramos os estados de loading/empty do dispatcher para evitar conflito
-     entre a fonte de dados operacional e a consulta via Supabase. */
-  if (viewModelOverride === undefined) {
+  // Quando ha dados operacionais (viewModelOverride valido), exibir imediatamente
+  // sem depender dos estados de loading/empty do dispatcher (Supabase).
+  if (!hasOverride) {
     if (isLoading) return <DashboardLoading />;
 
     const isNotFound =
@@ -61,6 +63,12 @@ export function DashboardView({ portfolioId, viewModelOverride }: DashboardViewP
         <DashboardError message={"Não foi possível carregar o dashboard."} onRetry={refetch} />
       );
     }
+  }
+
+  // Guarda final: viewModel pode ser null se override era null e queryViewModel
+  // ainda esta undefined (primeira renderizacao antes da query completar).
+  if (!viewModel) {
+    return <DashboardEmpty />;
   }
 
   const patrimonioInsights = insights.filter((i) => i.category === "patrimonio");
