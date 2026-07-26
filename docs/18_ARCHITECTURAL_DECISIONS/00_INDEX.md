@@ -44,6 +44,7 @@ ADR-017-001_INTEGRATION_CARTEIRA_FINANCE.md
 ADR-017-002_FEATURE_FLAGS_AND_FINANCE_INTEGRATION_CONFIG.md
 ADR-018-001_DEMO_MODE.md
 ADR-018-002_ADMIN_PROFILE.md
+ADR-019-001_SUBSCRIPTIONS_AND_MONETIZATION.md
 ```
 
 ---
@@ -65,6 +66,7 @@ ADR-018-002_ADMIN_PROFILE.md
 | ADR-017-002 | Feature Flags e FinanceIntegrationConfig | ✅ Aprovado |
 | ADR-018-001 | Arquitetura do Modo Demo | ✅ Aprovado |
 | ADR-018-002 | Arquitetura do Perfil Administrador | ✅ Aprovado |
+| ADR-019-001 | Sistema de Assinaturas e Monetização | ✅ Aprovado |
 
 ---
 
