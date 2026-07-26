@@ -26,6 +26,7 @@ export function getTimeRangeById(id: TimeRangeId): TimeRangeOption {
 export function getCutoffDate(range: TimeRangeOption): Date | null {
   if (range.months === null) return null;
   const date = new Date();
-  date.setMonth(date.getMonth() - range.months);
+  date.setUTCMonth(date.getUTCMonth() - range.months);
+  date.setUTCHours(0, 0, 0, 0);
   return date;
 }

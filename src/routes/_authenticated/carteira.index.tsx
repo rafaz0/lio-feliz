@@ -208,13 +208,12 @@ function PortfolioOverview() {
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
   const filteredHistory = useMemo(() => {
-    if (!ops || ops.length === 0) return [];
-    const tempPortfolio = consolidatePortfolio(ops, priceOverrides, exchangeRates);
-    const tempHistory = buildPortfolioHistory(ops ?? [], priceOverrides, exchangeRates);
+    if (history.length === 0) return [];
     const cutoff = getCutoffDate(getTimeRangeById(selected));
-    if (!cutoff) return tempHistory;
-    return tempHistory.filter((h) => new Date(h.date) >= cutoff);
-  }, [ops, priceOverrides, exchangeRates, selected]);
+    if (!cutoff) return history;
+    const cutoffStr = cutoff.toISOString().slice(0, 10);
+    return history.filter((h) => h.date >= cutoffStr);
+  }, [history, selected]);
 
   if (isLoading) {
     return (

@@ -28,7 +28,7 @@ export function buildPortfolioHistory(
   const uniqueDates = [...new Set(weeks)].sort();
 
   for (const date of uniqueDates) {
-    const opsUpToDate = sorted.filter((o) => o.traded_at <= date);
+    const opsUpToDate = sorted.filter((o) => o.traded_at.slice(0, 10) <= date);
     const byTicker = calcPositions(opsUpToDate);
     const rates = exchangeRates ?? {};
     let totalValue = 0;
