@@ -38,6 +38,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatQty, formatDate } from "@/lib/format";
 import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
+import { KpiCard } from "@/components/kpi-card";
 
 export const Route = createFileRoute("/_authenticated/carteira/")({
   errorComponent: RouteErrorBoundary,
@@ -304,57 +305,51 @@ function PortfolioOverview() {
   };
 
   return (
-    <div className="space-y-5">
-      {/* Resumo Geral */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="grid flex-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-lg border bg-card p-4">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              Patrimônio
-            </p>
-            <p className="mt-0.5 text-xl font-bold tracking-tight financial">
-              {portfolio.totalValue > 1_000_000
+    <div className="space-y-6">
+      {/* KPI Strip — elementos mais importantes da tela */}
+      <div className="flex items-start justify-between gap-4">
+        <div className="grid flex-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <KpiCard
+            label="Patrimônio"
+            value={
+              portfolio.totalValue > 1_000_000
                 ? formatBRLCompact(portfolio.totalValue)
-                : formatBRL(portfolio.totalValue)}
-            </p>
-          </div>
-          <div className="rounded-lg border bg-card p-4">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              Investido
-            </p>
-            <p className="mt-0.5 text-lg font-semibold tracking-tight financial text-muted-foreground">
-              {portfolio.totalInvested > 1_000_000
+                : formatBRL(portfolio.totalValue)
+            }
+            dominant
+          />
+          <KpiCard
+            label="Investido"
+            value={
+              portfolio.totalInvested > 1_000_000
                 ? formatBRLCompact(portfolio.totalInvested)
-                : formatBRL(portfolio.totalInvested)}
-            </p>
-          </div>
-          <div className="rounded-lg border bg-card p-4">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              Resultado
-            </p>
-            <p
-              className={`mt-0.5 text-lg font-bold tracking-tight financial ${portfolio.totalPnl >= 0 ? "text-positive" : "text-negative"}`}
-            >
-              {portfolio.totalPnl > 1_000_000 || portfolio.totalPnl < -1_000_000
+                : formatBRL(portfolio.totalInvested)
+            }
+            muted
+          />
+          <KpiCard
+            label="Resultado"
+            value={
+              portfolio.totalPnl > 1_000_000 || portfolio.totalPnl < -1_000_000
                 ? formatBRLCompact(portfolio.totalPnl)
-                : formatBRL(portfolio.totalPnl)}
-            </p>
-          </div>
-          <div className="rounded-lg border bg-card p-4">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              Rentabilidade
-            </p>
-            <p className="mt-0.5 text-lg font-bold tracking-tight">
-              {portfolio.totalInvested > 0 ? (
-                <DeltaPct value={portfolio.totalPnlPct} className="text-lg font-bold" />
+                : formatBRL(portfolio.totalPnl)
+            }
+            tone={portfolio.totalPnl >= 0 ? "positive" : "negative"}
+          />
+          <KpiCard
+            label="Rentabilidade"
+            value={
+              portfolio.totalInvested > 0 ? (
+                <DeltaPct value={portfolio.totalPnlPct} className="text-2xl font-bold" />
               ) : (
                 "—"
-              )}
-            </p>
-          </div>
+              )
+            }
+            tone={portfolio.totalPnlPct >= 0 ? "positive" : "negative"}
+          />
         </div>
         {quotesUpdatedAt && (
-          <div className="flex items-center gap-1.5 pt-1 text-[10px] text-muted-foreground">
+          <div className="flex shrink-0 items-center gap-1.5 pt-1 text-[10px] text-muted-foreground">
             <button
               onClick={() => queryClient.invalidateQueries({ queryKey: ["quotes"] })}
               disabled={quotesQuery.isFetching || tickers.length === 0}
@@ -379,7 +374,7 @@ function PortfolioOverview() {
         {quotesError && <span className="text-[10px] text-negative">Falha: {quotesError}</span>}
       </div>
 
-      {/* Ações */}
+      {/* Ações rápidas */}
       <div className="flex flex-wrap items-center gap-2">
         <AddOperationDialog
           trigger={
@@ -399,16 +394,24 @@ function PortfolioOverview() {
         </Button>
       </div>
 
+      {/* Gráfico de evolução — protagonista */}
       {history.length > 1 && (
-        <section className="rounded-lg border bg-card p-5">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="size-4 text-primary" />
-              <h2 className="text-sm font-semibold">Evolução patrimonial</h2>
+        <section className="rounded-lg border bg-card p-6">
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
+                <TrendingUp className="size-4 text-primary" />
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold">Evolução patrimonial</h2>
+                <p className="text-xs text-muted-foreground">
+                  Patrimônio acumulado vs total investido ao longo do tempo
+                </p>
+              </div>
             </div>
             <TimeRangeSelector selected={selected} onSelect={setRange} />
           </div>
-          <div className="h-56 w-full">
+          <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={filteredHistory} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
                 <defs>
@@ -472,17 +475,17 @@ function PortfolioOverview() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-3 flex items-center justify-center gap-6 text-xs text-muted-foreground">
+          <div className="mt-4 flex items-center justify-center gap-8 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5">
               <span
-                className="inline-block size-2.5 rounded-sm"
+                className="inline-block size-3 rounded-sm"
                 style={{ background: "var(--color-primary)" }}
               />
               Patrimônio
             </span>
             <span className="flex items-center gap-1.5">
               <span
-                className="inline-block size-2.5 rounded-sm"
+                className="inline-block size-3 rounded-sm"
                 style={{ background: "var(--color-chart-2)" }}
               />
               Total investido
@@ -507,8 +510,8 @@ function PortfolioOverview() {
           }
         />
       ) : (
-        <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
-          <div className="space-y-4">
+        <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
+          <div className="space-y-5">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-sm font-semibold">Posições</h2>
@@ -673,10 +676,10 @@ function PortfolioOverview() {
             })()}
           </div>
 
-          <div className="space-y-4">
-            <div className="rounded-lg border border-border bg-card p-5">
+          <div className="space-y-5">
+            <div className="rounded-lg border bg-card p-5">
               <h2 className="text-sm font-semibold">Alocação por classe</h2>
-              <div className="mt-2 h-40">
+              <div className="mt-3 h-40">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -726,9 +729,9 @@ function PortfolioOverview() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-lg border border-border bg-card p-5">
+            <div className="rounded-lg border bg-card p-5">
               <h2 className="text-sm font-semibold">Alocação por setor</h2>
-              <div className="mt-2 h-56">
+              <div className="mt-3 h-56">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -775,28 +778,28 @@ function PortfolioOverview() {
               </ul>
             </div>
             {riskMetrics && (
-              <div className="rounded-lg border bg-card p-4">
+              <div className="rounded-lg border bg-card p-5">
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                   Métricas de Risco
                 </h3>
-                <div className="mt-3 grid grid-cols-2 gap-3">
+                <div className="mt-4 grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-[10px] text-muted-foreground">Volatilidade (anual)</p>
-                    <p className="mt-0.5 text-sm font-semibold tabular">
+                    <p className="text-[11px] text-muted-foreground">Volatilidade (anual)</p>
+                    <p className="mt-1 text-base font-semibold tabular">
                       {(riskMetrics.volatility * 100).toFixed(1)}%
                     </p>
                   </div>
                   <div>
-                    <p className="text-[10px] text-muted-foreground">Drawdown máx.</p>
-                    <p className="mt-0.5 text-sm font-semibold tabular text-negative">
+                    <p className="text-[11px] text-muted-foreground">Drawdown máx.</p>
+                    <p className="mt-1 text-base font-semibold tabular text-negative">
                       {(riskMetrics.maxDrawdown * 100).toFixed(1)}%
                     </p>
                   </div>
                   {riskMetrics.beta !== null && (
                     <div>
-                      <p className="text-[10px] text-muted-foreground">Beta (vs IBOV)</p>
+                      <p className="text-[11px] text-muted-foreground">Beta (vs IBOV)</p>
                       <p
-                        className={`mt-0.5 text-sm font-semibold tabular ${riskMetrics.beta < 1 ? "text-positive" : riskMetrics.beta > 1.2 ? "text-negative" : ""}`}
+                        className={`mt-1 text-base font-semibold tabular ${riskMetrics.beta < 1 ? "text-positive" : riskMetrics.beta > 1.2 ? "text-negative" : ""}`}
                       >
                         {riskMetrics.beta.toFixed(2)}
                       </p>
@@ -804,9 +807,9 @@ function PortfolioOverview() {
                   )}
                   {riskMetrics.sharpe !== null && (
                     <div>
-                      <p className="text-[10px] text-muted-foreground">Índice Sharpe</p>
+                      <p className="text-[11px] text-muted-foreground">Índice Sharpe</p>
                       <p
-                        className={`mt-0.5 text-sm font-semibold tabular ${riskMetrics.sharpe >= 0.5 ? "text-positive" : riskMetrics.sharpe < 0 ? "text-negative" : ""}`}
+                        className={`mt-1 text-base font-semibold tabular ${riskMetrics.sharpe >= 0.5 ? "text-positive" : riskMetrics.sharpe < 0 ? "text-negative" : ""}`}
                       >
                         {riskMetrics.sharpe.toFixed(2)}
                       </p>
@@ -815,45 +818,13 @@ function PortfolioOverview() {
                 </div>
               </div>
             )}
-            <p className="flex items-start gap-1.5 text-[10px] text-muted-foreground">
+            <p className="flex items-start gap-1.5 text-[11px] text-muted-foreground">
               <Info className="mt-0.5 size-3 shrink-0" />
               Cotações: BRAPI · CoinGecko · Yahoo Finance. Valores em BRL.
             </p>
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-function KpiCard({
-  label,
-  value,
-  tone,
-  muted,
-}: {
-  label: string;
-  value: React.ReactNode;
-  tone?: "positive" | "negative";
-  muted?: boolean;
-}) {
-  return (
-    <div className="rounded-lg border border-border bg-card p-4">
-      <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
-      <div
-        className={
-          "tabular mt-2 text-2xl font-bold " +
-          (tone === "positive"
-            ? "text-positive"
-            : tone === "negative"
-              ? "text-negative"
-              : muted
-                ? "text-muted-foreground"
-                : "")
-        }
-      >
-        {value}
-      </div>
     </div>
   );
 }

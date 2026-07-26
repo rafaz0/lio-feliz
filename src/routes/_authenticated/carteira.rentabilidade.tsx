@@ -21,6 +21,7 @@ import { buildPortfolioHistory } from "@/lib/portfolio";
 import { formatDate, formatBRL } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { KpiCard } from "@/components/kpi-card";
 
 export const Route = createFileRoute("/_authenticated/carteira/rentabilidade")({
   head: () => ({
@@ -277,7 +278,7 @@ function RentabilidadePage() {
       </div>
 
       {metrics && (
-        <section className="grid gap-3 sm:grid-cols-4">
+        <section className="grid gap-4 sm:grid-cols-4">
           <KpiCard
             label="Retorno da carteira"
             value={`${metrics.portReturn >= 0 ? "+" : ""}${metrics.portReturn.toFixed(2)}%`}
@@ -335,10 +336,15 @@ function RentabilidadePage() {
         })}
       </div>
 
-      <section className="rounded-lg border border-border bg-card p-5">
-        <div className="mb-4 flex items-center gap-2">
-          <LineChartIcon className="size-4 text-chart-4" />
-          <h2 className="text-sm font-semibold">Evolução do Patrimônio (base 1000)</h2>
+      <section className="rounded-lg border bg-card p-6">
+        <div className="mb-5 flex items-center gap-2.5">
+          <div className="flex size-8 items-center justify-center rounded-lg bg-chart-4/10">
+            <LineChartIcon className="size-4 text-chart-4" />
+          </div>
+          <div>
+            <h2 className="text-sm font-semibold">Evolução do Patrimônio (base 1000)</h2>
+            <p className="text-xs text-muted-foreground">Comparação com benchmarks do mercado</p>
+          </div>
         </div>
         <div className="h-64 w-full">
           {chartData && chartData.length > 1 ? (
@@ -470,10 +476,15 @@ function RentabilidadePage() {
 
       {/* Monthly returns */}
       {monthlyReturns.length > 0 && (
-        <section className="rounded-lg border border-border bg-card p-5">
-          <div className="mb-4 flex items-center gap-2">
-            <BarChart3 className="size-4 text-chart-2" />
-            <h2 className="text-sm font-semibold">Retorno Mensal (%)</h2>
+        <section className="rounded-lg border bg-card p-6">
+          <div className="mb-5 flex items-center gap-2.5">
+            <div className="flex size-8 items-center justify-center rounded-lg bg-chart-2/10">
+              <BarChart3 className="size-4 text-chart-2" />
+            </div>
+            <div>
+              <h2 className="text-sm font-semibold">Retorno Mensal (%)</h2>
+              <p className="text-xs text-muted-foreground">Performance mensal vs benchmarks</p>
+            </div>
           </div>
           <div className="h-48 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -563,7 +574,7 @@ function RentabilidadePage() {
       )}
 
       {metrics && (
-        <section className="grid gap-3 sm:grid-cols-4">
+        <section className="grid gap-4 sm:grid-cols-4">
           <KpiCard
             label="Volatilidade (anual)"
             value={`${(metrics.volatility * 100).toFixed(1)}%`}
@@ -614,23 +625,4 @@ function RentabilidadePage() {
   );
 }
 
-function KpiCard({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: React.ReactNode;
-  tone?: "positive" | "negative";
-}) {
-  return (
-    <div className="rounded-lg border border-border bg-card p-4">
-      <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
-      <div
-        className={`tabular mt-2 text-2xl font-bold ${tone === "positive" ? "text-positive" : tone === "negative" ? "text-negative" : ""}`}
-      >
-        {value}
-      </div>
-    </div>
-  );
-}
+

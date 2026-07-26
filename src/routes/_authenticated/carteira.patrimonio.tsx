@@ -23,6 +23,7 @@ import { formatBRL, formatDate } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/empty-state";
 import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
+import { KpiCard } from "@/components/kpi-card";
 
 export const Route = createFileRoute("/_authenticated/carteira/patrimonio")({
   errorComponent: RouteErrorBoundary,
@@ -136,8 +137,8 @@ function PatrimonioPage() {
 
   return (
     <div className="space-y-6">
-      <section className="grid gap-3 sm:grid-cols-3">
-        <KpiCard label="Patrimônio total" value={formatBRL(portfolio.totalValue)} />
+      <section className="grid gap-4 sm:grid-cols-3">
+        <KpiCard label="Patrimônio total" value={formatBRL(portfolio.totalValue)} dominant />
         <KpiCard label="Total investido" value={formatBRL(portfolio.totalInvested)} muted />
         <KpiCard
           label="Lucro / Prejuízo"
@@ -158,12 +159,19 @@ function PatrimonioPage() {
       )}
 
       {history.length > 1 && (
-        <section className="rounded-lg border border-border bg-card p-5">
-          <div className="mb-4 flex items-center gap-2">
-            <TrendingUp className="size-4 text-primary" />
-            <h2 className="text-sm font-semibold">Evolução patrimonial</h2>
+        <section className="rounded-lg border bg-card p-6">
+          <div className="mb-5 flex items-center gap-2.5">
+            <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
+              <TrendingUp className="size-4 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-sm font-semibold">Evolução patrimonial</h2>
+              <p className="text-xs text-muted-foreground">
+                Patrimônio total vs total investido ao longo do tempo
+              </p>
+            </div>
           </div>
-          <div className="h-64 w-full">
+          <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={history} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
                 <defs>
@@ -227,17 +235,17 @@ function PatrimonioPage() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-3 flex items-center justify-center gap-6 text-xs text-muted-foreground">
+          <div className="mt-4 flex items-center justify-center gap-8 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5">
               <span
-                className="inline-block size-2.5 rounded-sm"
+                className="inline-block size-3 rounded-sm"
                 style={{ background: "var(--color-primary)" }}
               />
               Patrimônio
             </span>
             <span className="flex items-center gap-1.5">
               <span
-                className="inline-block size-2.5 rounded-sm"
+                className="inline-block size-3 rounded-sm"
                 style={{ background: "var(--color-chart-2)" }}
               />
               Total investido
@@ -247,8 +255,8 @@ function PatrimonioPage() {
       )}
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="rounded-lg border border-border bg-card p-5">
-          <div className="mb-3 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        <section className="rounded-lg border bg-card p-5">
+          <div className="mb-4 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
             <PieChartIcon className="size-3.5" /> Alocação por classe
           </div>
           <div className="h-52">
@@ -302,8 +310,8 @@ function PatrimonioPage() {
           </ul>
         </section>
 
-        <section className="rounded-lg border border-border bg-card p-5">
-          <div className="mb-3 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        <section className="rounded-lg border bg-card p-5">
+          <div className="mb-4 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
             <PieChartIcon className="size-3.5" /> Alocação por setor
           </div>
           <div className="h-52">
@@ -365,25 +373,4 @@ function PatrimonioPage() {
   );
 }
 
-function KpiCard({
-  label,
-  value,
-  tone,
-  muted,
-}: {
-  label: string;
-  value: React.ReactNode;
-  tone?: "positive" | "negative";
-  muted?: boolean;
-}) {
-  return (
-    <div className="rounded-lg border border-border bg-card p-4">
-      <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
-      <div
-        className={`tabular mt-2 text-2xl font-bold ${tone === "positive" ? "text-positive" : tone === "negative" ? "text-negative" : muted ? "text-muted-foreground" : ""}`}
-      >
-        {value}
-      </div>
-    </div>
-  );
-}
+
