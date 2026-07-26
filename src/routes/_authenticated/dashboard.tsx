@@ -62,7 +62,7 @@ const QUICK_ACTIONS: (QuickActionItem & { premium?: boolean })[] = [
     icon: CalendarDays,
     description: "Calendário de proventos",
   },
-  { label: "Mercado", to: "/", icon: TrendingUp, description: "Cotações e índices" },
+  { label: "Início", to: "/", icon: TrendingUp, description: "Cotações e índices" },
   { label: "Metas", to: "/metas", icon: Target, description: "Metas financeiras", premium: true },
   {
     label: "Provisionador",

@@ -493,7 +493,7 @@ function HomePage() {
         <div className="mx-auto max-w-[1400px] px-4">
           <div className="mb-4 flex flex-wrap justify-center gap-6">
             <Link to="/" className="hover:text-foreground">
-              Mercado
+              Início
             </Link>
             <Link to="/fiis" className="hover:text-foreground">
               FIIs
