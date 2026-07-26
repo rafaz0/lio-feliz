@@ -2,13 +2,13 @@
 
 **Projeto:** Lio Feliz
 
-**Versão:** 1.1
+**Versão:** 1.2
 
 **Status:** APROVADO
 
 **Categoria:** Project Context / Governança
 
-**Última atualização:** 22/07/2026
+**Última atualização:** 26/07/2026
 
 ---
 
@@ -160,4 +160,52 @@ Este procedimento consolida e reforça as regras GOV-006 (Materialização Obrig
 
 ---
 
-> **Fim do PROMPT_MASTER.md v1.1** — Instituído pela GOV-P013. GOV-P014-001 e GOV-P014-002 incorporados.
+## 5. Diretrizes Completas nos Prompts (GOV-P015-003)
+
+O OpenCode **não possui acesso ao histórico das conversas do ChatGPT**.
+
+Por este motivo, todo prompt de implementação deverá conter contexto suficiente para que a tarefa possa ser executada corretamente de forma independente.
+
+### O que não é
+
+Não se trata de ensinar programação ao OpenCode — trata-se de fornecer todas as diretrizes arquiteturais necessárias para evitar interpretações incorretas.
+
+### Informações obrigatórias
+
+Sempre que aplicável, os prompts deverão informar:
+
+- **Objetivo** — o que precisa ser feito;
+- **Escopo** — incluído e excluído;
+- **Restrições** — regras que não podem ser violadas;
+- **Documentos arquiteturais envolvidos** — PIs, ERs, ADRs, EWOs relevantes;
+- **Decisões já aprovadas** — resumo das decisões arquiteturais que impactam a tarefa;
+- **Compatibilidade esperada** — módulos e camadas que não podem ser alterados;
+- **Critérios de validação** — como verificar se a implementação está correta;
+- **Formato esperado do relatório final** — template ou estrutura obrigatória.
+
+### Regra
+
+Nunca assumir que o OpenCode conhece decisões tomadas em conversas anteriores. Se a implementação depender de decisões já aprovadas, essas decisões devem estar resumidas no próprio prompt.
+
+---
+
+## 6. Responsabilidade do ChatGPT na Geração de Prompts (GOV-P015-004)
+
+O ChatGPT é o único responsável pela completude dos prompts enviados ao OpenCode.
+
+### Obrigações
+
+- Gerar prompts completos e autossuficientes.
+- Nunca assumir que o OpenCode conhece decisões tomadas em conversas anteriores.
+- Sempre que uma implementação depender de decisões já aprovadas, resumi-las explicitamente no prompt.
+- Incluir contexto arquitetural suficiente para execução independente.
+
+### O que não fazer
+
+- Não enviar prompts ambíguos ou incompletos esperando que o OpenCode "descubra" o contexto.
+- Não omitir restrições críticas assumindo que estão implícitas.
+- Não delegar decisões arquiteturais ao modelo executor.
+
+---
+
+> **Fim do PROMPT_MASTER.md v1.2** — Instituído pela GOV-P013. GOV-P014-001, GOV-P014-002 e GOV-P015-003/004 incorporados.

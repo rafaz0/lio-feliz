@@ -386,6 +386,39 @@ Push não pode ser confirmado → GitHub não pode ser sincronizado. Push
 confirmado + GitHub sincronizado → Working Tree deve estar limpa. HEAD
 deve estar registrado quando o ciclo de sincronização foi concluído.
 
+## Validação Obrigatória Pré-Commit (GOV-P015-001)
+
+Antes de realizar qualquer commit, executar obrigatoriamente a sequência do workflow **quality-gates** do GitHub Actions:
+
+- [ ] Validação executada na ordem exata do workflow oficial
+- [ ] Lint aprovado (0 erros)
+- [ ] Testes aprovados (sem regressões)
+- [ ] Build aprovado (npm run build sem erros)
+- [ ] Causa raiz corrigida caso qualquer etapa tenha falhado
+- [ ] Commit realizado apenas após aprovação completa da sequência
+
+## Conteúdo Obrigatório dos Relatórios Finais (GOV-P015-002)
+
+Todo relatório final deve conter confirmação explícita destes itens:
+
+- [ ] Validação executada (qual sequência foi utilizada)
+- [ ] Lint informado (erros/warnings)
+- [ ] Testes informados (passaram/falharam)
+- [ ] Build informado (aprovado/falhou)
+- [ ] Sincronização com GitHub confirmada (commit + push)
+- [ ] Working Tree limpa confirmada
+- [ ] Itens não executados informados explicitamente com justificativa
+
+## Pipeline Contínuo de Engenharia (GOV-018) → Fluxo Recomendado (GOV-P015-006)
+
+Antes de iniciar a implementação, verificar o fluxo recomendado:
+
+- [ ] Prompt analisado integralmente
+- [ ] Documentação citada foi verificada
+- [ ] Possíveis impactos identificados
+- [ ] Implementação iniciada somente após análise completa
+- [ ] Comportamento implícito não assumido quando existe documentação oficial
+
 ## Checklist Obrigatório de Encerramento (GOV-004)
 
 Ao final de toda implementação, slice ou engineering review, verificar:
@@ -489,6 +522,10 @@ Seção obrigatória ao final de toda Engineering Review:
 ---
 
 # Histórico
+
+### Versão 1.44
+
+GOV-P015 — Fortalecimento da Governança Operacional. Novas seções: Validação Obrigatória Pré-Commit, Conteúdo Obrigatório dos Relatórios Finais, Pipeline → Fluxo Recomendado. Compatibilidade com PROJECT_BOOTSTRAP.md v2.71.
 
 ### Versão 1.43
 

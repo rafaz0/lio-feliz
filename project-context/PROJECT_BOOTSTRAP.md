@@ -2,13 +2,13 @@
 
 **Documento:** PROJECT_BOOTSTRAP.md
 
-**Versão:** 2.70
+**Versão:** 2.71
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 25/07/2026 (v2.74)
+**Última atualização:** 26/07/2026 (v2.75)
 
 ---
 
@@ -813,6 +813,85 @@ PIs:      X de Y materializadas (%)
 | I-004     | Visão executiva, apresentações              | Fechamento de PI                |
 
 Os indicadores complementam a metodologia Slice First existente, sem substituí-la.
+
+---
+
+## Fortalecimento da Governança Operacional (GOV-P015)
+
+Institui seis procedimentos operacionais obrigatórios para eliminar divergências entre ChatGPT e OpenCode e tornar o processo independente da memória de qualquer conversa.
+
+### Procedimento 1 — Validação Obrigatória Antes do Commit
+
+Toda implementação deverá executar exatamente a mesma sequência utilizada pelo workflow **quality-gates** do GitHub Actions antes de qualquer commit.
+
+**Regras:**
+
+- A ordem das validações deve ser preservada conforme definida no workflow oficial do projeto (`.github/workflows/ci-cd.yml`).
+- Nenhum commit poderá ser realizado antes da aprovação completa dessa sequência.
+- Caso qualquer etapa falhe, a implementação deverá ser interrompida até que a causa raiz seja corrigida.
+- Esta documentação não fixa comandos específicos — a sequência oficial é sempre definida pelo workflow do projeto.
+
+### Procedimento 2 — Relatórios Obrigatórios
+
+Todo relatório final deverá confirmar explicitamente:
+
+- validação executada;
+- lint;
+- testes;
+- build;
+- sincronização com GitHub;
+- Working Tree limpa.
+
+Caso algum item não tenha sido executado, isso deverá ser informado explicitamente no relatório.
+
+### Procedimento 3 — Diretrizes Completas nos Prompts
+
+O OpenCode **não possui acesso ao histórico das conversas do ChatGPT**.
+
+Por este motivo, todo prompt de implementação deverá conter contexto suficiente para que a tarefa possa ser executada corretamente de forma independente.
+
+**O objetivo não é ensinar programação ao OpenCode.** O objetivo é fornecer todas as diretrizes arquiteturais necessárias para evitar interpretações incorretas.
+
+Sempre que aplicável, os prompts deverão informar:
+
+- objetivo da implementação;
+- escopo;
+- restrições;
+- documentos arquiteturais envolvidos;
+- decisões já aprovadas;
+- compatibilidade esperada;
+- critérios de validação;
+- formato esperado do relatório final.
+
+### Procedimento 4 — Responsabilidade do ChatGPT
+
+O ChatGPT deverá gerar prompts completos.
+
+Não deverá assumir que o OpenCode conhece decisões tomadas em conversas anteriores.
+
+Sempre que uma implementação depender de decisões já aprovadas, essas decisões deverão ser resumidas no próprio prompt.
+
+### Procedimento 5 — Responsabilidade do OpenCode
+
+Antes de implementar qualquer alteração, o OpenCode deverá:
+
+- analisar integralmente o prompt;
+- verificar documentação citada;
+- identificar possíveis impactos;
+- somente então iniciar a implementação.
+
+Não deverá assumir comportamento implícito quando existir documentação oficial disponível.
+
+### Procedimento 6 — Fluxo Recomendado de Implementação
+
+1. Analisar o prompt.
+2. Ler a documentação referenciada.
+3. Identificar impactos.
+4. Implementar.
+5. Executar a validação equivalente ao workflow quality-gates.
+6. Corrigir eventuais falhas.
+7. Somente então realizar commit e push.
+8. Gerar o relatório final.
 
 ---
 
