@@ -35,6 +35,12 @@ export function FeatureGate({
             <p className="mt-2 text-sm text-muted-foreground">
               Esta funcionalidade esta disponivel em planos superiores.
             </p>
+            <a
+              href="/assinaturas"
+              className="mt-3 inline-flex items-center gap-1 rounded-md bg-foreground px-3 py-1.5 text-xs font-medium text-background hover:opacity-90"
+            >
+              Conhecer os Planos
+            </a>
           </div>
         </div>
       )}

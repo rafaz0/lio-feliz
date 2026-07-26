@@ -147,6 +147,9 @@ export function SiteHeader() {
                     <MobileNavLink to="/_authenticated/carteira" onClick={closeMobile}>
                       Carteira
                     </MobileNavLink>
+                    <MobileNavLink to="/assinaturas" onClick={closeMobile}>
+                      Meu Plano
+                    </MobileNavLink>
                     <MobileNavLink to="/metas" onClick={closeMobile}>
                       Metas
                     </MobileNavLink>
@@ -172,6 +175,15 @@ export function SiteHeader() {
               activeOptions={{ exact: false }}
             >
               Dashboard
+            </Link>
+          )}
+          {user && (
+            <Link
+              to="/assinaturas"
+              className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+              activeOptions={{ exact: false }}
+            >
+              Meu Plano
             </Link>
           )}
           <Link
