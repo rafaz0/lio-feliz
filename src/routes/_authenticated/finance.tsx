@@ -42,6 +42,13 @@ function FinanceModule() {
           breadcrumbs={[{ label: "Gestão Financeira", to: "/finance" }]}
           tabs={TABS}
         >
+          <div className="mb-4 flex items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-700 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300">
+            <PremiumBadge size="sm" />
+            <span>Gestão financeira completa disponível em planos Basic e Premium.</span>
+            <a href="/assinaturas" className="ml-auto font-medium underline hover:no-underline">
+              Ver planos
+            </a>
+          </div>
           <Outlet />
         </ModuleLayout>
       </div>

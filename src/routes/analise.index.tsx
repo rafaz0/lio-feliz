@@ -10,6 +10,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { ModuleSection } from "@/components/module-section";
+import { PremiumBadge } from "@/presentation/features/subscriptions";
 
 export const Route = createFileRoute("/analise/")({
   head: () => [{ title: "Análise — Investidor Pro" }],
@@ -18,8 +19,20 @@ export const Route = createFileRoute("/analise/")({
 
 const LINKS = [
   { to: "/analise/fiis", icon: Building2, label: "FIIs", desc: "Fundos Imobiliários" },
-  { to: "/analise/rankings", icon: Medal, label: "Rankings", desc: "DY, P/L, Graham" },
-  { to: "/analise/setores", icon: BarChart3, label: "Setores", desc: "Análise por setor" },
+  {
+    to: "/analise/rankings",
+    icon: Medal,
+    label: "Rankings",
+    desc: "DY, P/L, Graham",
+    premium: true,
+  },
+  {
+    to: "/analise/setores",
+    icon: BarChart3,
+    label: "Setores",
+    desc: "Análise por setor",
+    premium: true,
+  },
   { to: "/analise/comparar", icon: FileText, label: "Comparador", desc: "Compare ativos" },
   { to: "/analise/watchlist", icon: Star, label: "Watchlist", desc: "Monitore ativos" },
   {
@@ -27,6 +40,7 @@ const LINKS = [
     icon: Calculator,
     label: "Calculadoras",
     desc: "Juros, DCF, Preço Teto",
+    premium: true,
   },
   { to: "/analise/noticias", icon: Newspaper, label: "Notícias", desc: "Fatos relevantes" },
 ];
@@ -38,7 +52,7 @@ function AnaliseIndexPage() {
       description="Escolha uma ferramenta para começar."
     >
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {LINKS.map((item) => (
+        {LINKS.map((item: (typeof LINKS)[number]) => (
           <Link
             key={item.to}
             to={item.to}
@@ -46,7 +60,10 @@ function AnaliseIndexPage() {
           >
             <item.icon className="size-5 text-muted-foreground" />
             <div className="flex-1">
-              <div className="text-sm font-semibold">{item.label}</div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm font-semibold">{item.label}</span>
+                {"premium" in item && item.premium && <PremiumBadge size="sm" />}
+              </div>
               <div className="text-xs text-muted-foreground">{item.desc}</div>
             </div>
             <ArrowRight className="size-4 text-muted-foreground" />

@@ -31,7 +31,7 @@ import type { RelatedLinkItem } from "@/components/experience";
 import type { RecentActivityItem } from "@/components/experience";
 import type { SmartHint } from "@/components/experience";
 import { DashboardView } from "@/presentation/features/dashboard";
-import { SeuPlanoCard } from "@/presentation/features/subscriptions";
+import { SeuPlanoCard, PremiumBadge } from "@/presentation/features/subscriptions";
 import { useAuth } from "@/presentation/features/auth";
 import { useDashboardQuery } from "@/presentation/features/dashboard/hooks/use-dashboard-query";
 import { useDashboardInsights } from "@/presentation/features/intelligence";
@@ -49,9 +49,15 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
   notFoundComponent: () => <NotFoundState />,
 });
 
-const QUICK_ACTIONS: QuickActionItem[] = [
+const QUICK_ACTIONS: (QuickActionItem & { premium?: boolean })[] = [
   { label: "Carteira", to: "/carteira", icon: Wallet, description: "Posição consolidada" },
-  { label: "Análise", to: "/analise", icon: BarChart3, description: "FIIs, rankings e setores" },
+  {
+    label: "Análise",
+    to: "/analise",
+    icon: BarChart3,
+    description: "FIIs, rankings e setores",
+    premium: true,
+  },
   {
     label: "Dividendos",
     to: "/dividendos",
@@ -59,22 +65,24 @@ const QUICK_ACTIONS: QuickActionItem[] = [
     description: "Calendário de proventos",
   },
   { label: "Mercado", to: "/", icon: TrendingUp, description: "Cotações e índices" },
-  { label: "Metas", to: "/metas", icon: Target, description: "Metas financeiras" },
+  { label: "Metas", to: "/metas", icon: Target, description: "Metas financeiras", premium: true },
   {
     label: "Provisionador",
     to: "/provisionador",
     icon: PiggyBank,
     description: "Projeção de dividendos",
+    premium: true,
   },
   { label: "Watchlist", to: "/watchlist", icon: Star, description: "Ativos monitorados" },
   { label: "Comparador", to: "/comparar", icon: Calculator, description: "Comparar ativos" },
 ];
 
-const RELATED_LINKS: RelatedLinkItem[] = [
+const RELATED_LINKS: (RelatedLinkItem & { premium?: boolean })[] = [
   {
     label: "Rebalanceamento",
     to: "/carteira/rebalanceamento",
     description: "Ajustar alocação da carteira",
+    premium: true,
   },
   {
     label: "Cobertura",
@@ -353,7 +361,29 @@ function DashboardPage() {
           description="Navegue pelos principais módulos da plataforma"
           className="mb-6"
         >
-          <QuickActions items={QUICK_ACTIONS} columns={4} />
+          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+            {QUICK_ACTIONS.map((action) => {
+              const Icon = action.icon;
+              return (
+                <a
+                  key={action.to}
+                  href={action.to}
+                  className="flex items-center gap-3 rounded-lg border p-3 transition hover:bg-secondary"
+                >
+                  <div className="shrink-0 rounded-md bg-primary/10 p-2 text-primary">
+                    <Icon className="size-4" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-sm font-medium">{action.label}</span>
+                      {action.premium && <PremiumBadge size="sm" />}
+                    </div>
+                    <p className="truncate text-xs text-muted-foreground">{action.description}</p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
         </ModuleSection>
 
         <div className="mb-6 grid gap-6 lg:grid-cols-[1fr_320px]">
@@ -386,7 +416,23 @@ function DashboardPage() {
         </ModuleSection>
 
         <ModuleSection title="Navegação relacionada" description="Acesse outras funcionalidades">
-          <RelatedLinks items={RELATED_LINKS} />
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {RELATED_LINKS.map((link) => (
+              <a
+                key={link.to}
+                href={link.to}
+                className="flex items-center gap-3 rounded-lg border p-3 transition hover:bg-secondary"
+              >
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm font-medium">{link.label}</span>
+                    {link.premium && <PremiumBadge size="sm" />}
+                  </div>
+                  <p className="truncate text-xs text-muted-foreground">{link.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         </ModuleSection>
       </main>
     </div>
