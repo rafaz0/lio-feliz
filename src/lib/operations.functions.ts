@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireAuth } from "@/integrations/supabase/auth-middleware-prod";
 import type { AssetType, Currency, Operation, OperationSide } from "./portfolio";
 import { inferAssetType } from "./portfolio";
 import { fetchYahooDividends, fetchBRAPIDividends, fetchBRAPIStockDividends } from "./yahoo.server";
@@ -61,7 +61,7 @@ export function isDemoMode(): boolean {
 }
 
 export const listOperations = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAuth])
   .handler(async ({ context }): Promise<Operation[]> => {
     if (process.env.DEV_MODE === "true") return DEV_STORE;
 
@@ -93,7 +93,7 @@ export const listOperations = createServerFn({ method: "GET" })
   });
 
 export const createOperation = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAuth])
   .validator(operationInput)
   .handler(async ({ data, context }) => {
     const asset_type: AssetType = data.asset_type ?? inferAssetType(data.ticker);
@@ -141,7 +141,7 @@ export const createOperation = createServerFn({ method: "POST" })
   });
 
 export const deleteOperation = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAuth])
   .validator(z.object({ id: z.string().uuid() }))
   .handler(async ({ data, context }) => {
     if (process.env.DEV_MODE === "true") {
@@ -159,7 +159,7 @@ export const deleteOperation = createServerFn({ method: "POST" })
   });
 
 export const syncPendingDividends = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireAuth])
   .handler(async ({ context }) => {
     const ops =
       process.env.DEV_MODE === "true"

@@ -10,7 +10,7 @@ function OperationsPage() {
   const del = useServerFn(deleteOperation);
   const qc = useQueryClient();
 
-  const { data: ops, isLoading } = useQuery({
+  const { data: ops, isLoading, isError } = useQuery({
     queryKey: ["operations"],
     queryFn: () => list(),
   });
@@ -47,6 +47,10 @@ function OperationsPage() {
           {[...Array(4)].map((_, i) => (
             <Skeleton key={i} className="h-12" />
           ))}
+        </div>
+      ) : isError ? (
+        <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-6 text-center">
+          <p className="text-sm text-destructive">Erro ao carregar operações.</p>
         </div>
       ) : !ops || ops.length === 0 ? (
         <div className="rounded-lg border border-dashed border-border bg-card p-10 text-center">

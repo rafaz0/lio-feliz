@@ -9,7 +9,7 @@ import type {
   PasswordRecoveryInput,
   RegisterInput,
 } from "@/presentation/shared/types/auth";
-import { isDemoSession, getDemoSession } from "@/seed/demo-session";
+import { isDemoSession, getDemoSession, clearDemoSession } from "@/seed/demo-session";
 
 function isLocal(): boolean {
   if (typeof window === "undefined") return false;
@@ -98,6 +98,8 @@ export class SupabaseAuthService implements AuthService {
 
   async signOut(): Promise<void> {
     await supabase.auth.signOut();
+    clearDemoSession();
+    document.cookie = "lio-auth-token=; path=/; max-age=0; SameSite=Lax; Secure";
   }
 
   async recoverPassword(input: PasswordRecoveryInput): Promise<AuthResult> {

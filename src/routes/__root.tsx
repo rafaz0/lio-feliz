@@ -133,11 +133,28 @@ function RootComponent() {
   const router = useRouter();
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
-      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+    const syncTokenToCookie = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session?.access_token) {
+        document.cookie = `lio-auth-token=${data.session.access_token}; path=/; max-age=3600; SameSite=Lax; Secure`;
+      }
+    };
+
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED" && event !== "TOKEN_REFRESHED") return;
+
+      if (session?.access_token) {
+        document.cookie = `lio-auth-token=${session.access_token}; path=/; max-age=3600; SameSite=Lax; Secure`;
+      } else {
+        document.cookie = "lio-auth-token=; path=/; max-age=0; SameSite=Lax; Secure";
+      }
+
       router.invalidate();
       if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
     });
+
+    syncTokenToCookie();
+
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
 

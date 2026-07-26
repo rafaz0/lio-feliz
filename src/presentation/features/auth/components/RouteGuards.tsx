@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
+import { useRouter } from "@tanstack/react-router";
 import { useAuth } from "../hooks/use-auth";
 import { AuthLoading } from "./AuthLoading";
 
@@ -10,9 +11,17 @@ interface AuthenticatedRouteProps {
 
 export function AuthenticatedRoute({
   children,
+  redirectTo = "/login",
   fallback = <AuthLoading label="Verificando autenticação..." />,
 }: AuthenticatedRouteProps) {
   const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.navigate({ to: redirectTo, replace: true });
+    }
+  }, [isLoading, isAuthenticated, redirectTo, router]);
 
   if (isLoading) return <>{fallback}</>;
   if (!isAuthenticated) return null;
@@ -21,10 +30,18 @@ export function AuthenticatedRoute({
 
 interface GuestRouteProps {
   children: ReactNode;
+  redirectTo?: string;
 }
 
-export function GuestRoute({ children }: GuestRouteProps) {
+export function GuestRoute({ children, redirectTo = "/dashboard" }: GuestRouteProps) {
   const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.navigate({ to: redirectTo, replace: true });
+    }
+  }, [isLoading, isAuthenticated, redirectTo, router]);
 
   if (isLoading) return <AuthLoading label="Verificando autenticação..." />;
   if (isAuthenticated) return null;

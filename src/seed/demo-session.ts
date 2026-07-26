@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const DEMO_SESSION_KEY = "lio_demo_session";
 const DEMO_EXPIRY_KEY = "lio_demo_expires";
+const DEMO_EXPIRED_FLAG = "lio_demo_expired";
 
 export interface DemoSession {
   sessionId: string;
@@ -15,9 +16,23 @@ export function isDemoSession(): boolean {
   if (!sessionId || !expires) return false;
   if (Date.now() > Number(expires)) {
     clearDemoSession();
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(DEMO_EXPIRED_FLAG, "true");
+    }
     return false;
   }
   return true;
+}
+
+export function wasDemoSessionExpired(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.localStorage.getItem(DEMO_EXPIRED_FLAG) === "true";
+}
+
+export function clearDemoExpiredFlag(): void {
+  if (typeof window !== "undefined") {
+    window.localStorage.removeItem(DEMO_EXPIRED_FLAG);
+  }
 }
 
 export function createDemoSession(): DemoSession {

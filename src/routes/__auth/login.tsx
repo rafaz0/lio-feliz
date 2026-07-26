@@ -1,10 +1,16 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
-import { Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Sparkles, TimerOff } from "lucide-react";
 import { AuthLayout } from "@/presentation/shared/components/layout/AuthLayout";
 import { GuestRoute } from "@/presentation/features/auth";
 import { LoginForm } from "@/presentation/features/auth";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { createDemoSession } from "@/seed/demo-session";
+import {
+  createDemoSession,
+  wasDemoSessionExpired,
+  clearDemoExpiredFlag,
+} from "@/seed/demo-session";
 
 export const Route = createFileRoute("/__auth/login")({
   component: LoginPage,
@@ -12,6 +18,14 @@ export const Route = createFileRoute("/__auth/login")({
 
 function LoginPage() {
   const router = useRouter();
+  const [expiredBanner, setExpiredBanner] = useState(false);
+
+  useEffect(() => {
+    if (wasDemoSessionExpired()) {
+      setExpiredBanner(true);
+      clearDemoExpiredFlag();
+    }
+  }, []);
 
   function startDemo() {
     createDemoSession();
@@ -22,6 +36,14 @@ function LoginPage() {
   return (
     <GuestRoute>
       <AuthLayout title="Entrar" description="Acesse sua conta do Lio Feliz">
+        {expiredBanner && (
+          <Alert className="mb-4 border-amber-500/50 bg-amber-500/5 text-amber-600 [&>svg]:text-amber-500">
+            <TimerOff className="size-4" />
+            <AlertDescription>
+              Sua sessão demo expirou. Crie uma nova ou faça login para continuar.
+            </AlertDescription>
+          </Alert>
+        )}
         <LoginForm onSuccess={() => void (window.location.href = "/dashboard")} />
         <div className="mt-4 flex flex-col items-center gap-3">
           <div className="flex w-full items-center gap-2 text-xs text-muted-foreground">

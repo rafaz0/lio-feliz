@@ -14,6 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { clearDemoSession } from "@/seed/demo-session";
 import { useSession } from "@/hooks/use-session";
 import { DemoBadge } from "@/components/demo-badge";
 import { isDemoSession } from "@/seed/demo-session";
@@ -54,6 +55,8 @@ export function SiteHeader() {
 
   async function signOut() {
     await supabase.auth.signOut();
+    clearDemoSession();
+    document.cookie = "lio-auth-token=; path=/; max-age=0; SameSite=Lax; Secure";
     await router.invalidate();
     navigate({ to: "/", replace: true });
   }

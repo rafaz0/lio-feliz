@@ -76,7 +76,7 @@ function PortfolioOverview() {
   const list = useServerFn(listOperations);
   const fetchQuotes = useServerFn(getQuotes);
   const queryClient = useQueryClient();
-  const { data: ops, isLoading } = useQuery({
+  const { data: ops, isLoading, isError } = useQuery({
     queryKey: ["operations"],
     queryFn: () => list(),
   });
@@ -191,12 +191,20 @@ function PortfolioOverview() {
     return { volatility, maxDrawdown, beta, sharpe };
   }, [history, benchmarkChartData]);
 
-  if (isLoading || !ops) {
+  if (isLoading) {
     return (
       <div className="grid gap-4 md:grid-cols-4">
         {[...Array(4)].map((_, i) => (
           <Skeleton key={i} className="h-24" />
         ))}
+      </div>
+    );
+  }
+
+  if (isError || !ops) {
+    return (
+      <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-6 text-center">
+        <p className="text-sm text-destructive">Erro ao carregar operações. Tente novamente.</p>
       </div>
     );
   }
