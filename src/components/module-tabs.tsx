@@ -1,6 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { PremiumBadge } from "@/presentation/features/subscriptions";
 
 export interface ModuleTab {
   label: string;
@@ -32,7 +31,7 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
             role="tab"
             aria-selected={isActive}
             className={cn(
-              "inline-flex items-center gap-1.5 whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium transition-all",
+              "inline-flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-1.5 text-sm font-medium transition-all",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isActive
                 ? "bg-background text-foreground shadow-sm"
@@ -40,9 +39,8 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
             )}
           >
             {tab.icon}
-            <span className="hidden sm:inline truncate max-w-[120px]">{tab.label}</span>
-            <span className="sm:hidden truncate max-w-[72px]">{tab.label}</span>
-            {tab.premium && <PremiumBadge size="sm" />}
+            <span className="hidden sm:inline truncate max-w-[100px]">{tab.label}</span>
+            <span className="sm:hidden truncate max-w-[64px]">{tab.label}</span>
           </Link>
         );
       })}

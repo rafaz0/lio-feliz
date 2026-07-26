@@ -5,7 +5,7 @@ import { ModuleActionBar } from "@/components/domain/module-action-bar";
 import { EmptyModuleState } from "@/components/domain/empty-module-state";
 
 export const Route = createFileRoute("/_authenticated/carteira/historico")({
-  head: () => [{ title: "Histórico — Investidor Pro" }],
+  head: () => ({ meta: [{ title: "Histórico — Investidor Pro" }] }),
   component: HistoricoPage,
 });
 

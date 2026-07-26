@@ -5,7 +5,7 @@ import { ModuleActionBar } from "@/components/domain/module-action-bar";
 import { EmptyModuleState } from "@/components/domain/empty-module-state";
 
 export const Route = createFileRoute("/_authenticated/carteira/configuracoes")({
-  head: () => [{ title: "Configurações — Investidor Pro" }],
+  head: () => ({ meta: [{ title: "Configurações — Investidor Pro" }] }),
   component: ConfiguracoesPage,
 });
 

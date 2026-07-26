@@ -187,8 +187,8 @@
   }
 }
 
-/* Garantir que html nunca tenha scroll horizontal — CSS direto, nao via React className */
-html {
+/* Impedir scroll horizontal na pagina sem truncar conteudo */
+body {
   overflow-x: hidden;
 }
 
