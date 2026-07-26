@@ -9,6 +9,7 @@ import type {
   PasswordRecoveryInput,
   RegisterInput,
 } from "@/presentation/shared/types/auth";
+import { isDemoSession, getDemoSession } from "@/seed/demo-session";
 
 function isLocal(): boolean {
   if (typeof window === "undefined") return false;
@@ -23,10 +24,25 @@ const DEV_USER: AuthUser = {
   avatarUrl: null,
 };
 
+const DEMO_USER: AuthUser = {
+  id: "demo-user",
+  email: "demo@localhost",
+  displayName: "Modo Demo",
+  avatarUrl: null,
+};
+
 function mapSession(session: Session | null): AuthSession {
   if (!session?.user) {
     if (isLocal()) {
       return { user: DEV_USER, expiresAt: null, isAuthenticated: true };
+    }
+    if (isDemoSession()) {
+      const demo = getDemoSession();
+      return {
+        user: { ...DEMO_USER, id: demo?.sessionId ?? "demo-user" },
+        expiresAt: demo?.expiresAt ?? null,
+        isAuthenticated: true,
+      };
     }
     return { user: null, expiresAt: null, isAuthenticated: false };
   }
