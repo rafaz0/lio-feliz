@@ -37,6 +37,8 @@ import { NotificationPanel } from "@/components/notification-panel";
 import { useAlertsQuery, useConfirmAlertMutation } from "@/presentation/features/alerts";
 import { useSyncStatus } from "@/presentation/features/sync/hooks/use-sync-status";
 import { PlanBadge } from "@/presentation/features/licensing";
+import { SubscriptionStatusBadge } from "@/presentation/features/subscriptions";
+import { useSubscriptionQuery } from "@/presentation/features/subscriptions";
 
 export function SiteHeader() {
   const navigate = useNavigate();
@@ -257,6 +259,7 @@ export function SiteHeader() {
 
         {user && !isDemoSession() ? (
           <>
+            <HeaderSubscriptionStatus userId={user?.id ?? "dev-user-0000"} />
             <SyncIndicatorConnected userId={user?.id ?? "dev-user-0000"} />
             <NotificationPanelWrapper userId={user?.id ?? "dev-user-0000"} />
             <ThemeToggle />
@@ -371,6 +374,22 @@ function NotificationPanelWrapper({ userId }: { userId: string }) {
       isLoading={isLoading}
       onConfirm={(alertId) => confirmMutation.mutate(alertId)}
     />
+  );
+}
+
+function HeaderSubscriptionStatus({ userId }: { userId: string }) {
+  const { data: sub } = useSubscriptionQuery(userId);
+
+  if (!sub) return null;
+
+  return (
+    <a
+      href="/assinaturas"
+      className="hidden items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition hover:bg-secondary md:flex"
+    >
+      <span>{sub.planName}</span>
+      <SubscriptionStatusBadge status={sub.status} isActive={sub.isActive} />
+    </a>
   );
 }
 

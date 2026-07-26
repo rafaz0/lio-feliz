@@ -11,6 +11,7 @@ import {
 import { SiteHeader } from "@/components/site-header";
 import { ModuleLayout } from "@/components/module-layout";
 import type { ModuleTab } from "@/components/module-tabs";
+import { PremiumBadge } from "@/presentation/features/subscriptions";
 
 export const Route = createFileRoute("/_authenticated/finance")({
   component: FinanceModule,

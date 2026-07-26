@@ -1,10 +1,12 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
+import { PremiumBadge } from "@/presentation/features/subscriptions";
 
 export interface ModuleTab {
   label: string;
   to: string;
   icon?: React.ReactNode;
+  premium?: boolean;
 }
 
 interface ModuleTabsProps {
@@ -39,6 +41,7 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
             {tab.icon}
             <span className="hidden sm:inline truncate max-w-[120px]">{tab.label}</span>
             <span className="sm:hidden truncate max-w-[72px]">{tab.label}</span>
+            {tab.premium && <PremiumBadge size="sm" />}
           </Link>
         );
       })}

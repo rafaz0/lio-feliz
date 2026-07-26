@@ -16,6 +16,7 @@ import {
 import { SiteHeader } from "@/components/site-header";
 import { ModuleLayout } from "@/components/module-layout";
 import type { ModuleTab } from "@/components/module-tabs";
+import { PremiumBadge } from "@/presentation/features/subscriptions";
 
 export const Route = createFileRoute("/_authenticated/carteira")({
   head: () => ({
@@ -54,18 +55,20 @@ const TABS: ModuleTab[] = [
     label: "Análises",
     to: "/carteira/analise",
     icon: <Sparkles className="size-4" />,
+    premium: true,
   },
   {
     label: "Movimentações",
     to: "/carteira/lancamentos",
     icon: <ClipboardList className="size-4" />,
   },
-  { label: "Metas", to: "/carteira/metas", icon: <Target className="size-4" /> },
+  { label: "Metas", to: "/carteira/metas", icon: <Target className="size-4" />, premium: true },
   { label: "IRPF", to: "/carteira/irpf", icon: <Receipt className="size-4" /> },
   {
     label: "Rebalanceamento",
     to: "/carteira/rebalanceamento",
     icon: <BarChart3 className="size-4" />,
+    premium: true,
   },
   {
     label: "Histórico",

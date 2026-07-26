@@ -31,6 +31,7 @@ import type { RelatedLinkItem } from "@/components/experience";
 import type { RecentActivityItem } from "@/components/experience";
 import type { SmartHint } from "@/components/experience";
 import { DashboardView } from "@/presentation/features/dashboard";
+import { SeuPlanoCard } from "@/presentation/features/subscriptions";
 import { useAuth } from "@/presentation/features/auth";
 import { useDashboardQuery } from "@/presentation/features/dashboard/hooks/use-dashboard-query";
 import { useDashboardInsights } from "@/presentation/features/intelligence";
@@ -366,6 +367,8 @@ function DashboardPage() {
           </div>
 
           <aside className="space-y-4">
+            <SeuPlanoCard userId={user?.id ?? "dev-user-0000"} />
+
             {contextSections.length > 0 && (
               <ContextPanel title="Resumo rápido" sections={contextSections} />
             )}

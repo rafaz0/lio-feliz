@@ -4,6 +4,8 @@ export { PremiumBadge } from "./components/PremiumBadge";
 export { PlanComparison } from "./components/PlanComparison";
 export { SubscriptionHistory } from "./components/SubscriptionHistory";
 export { SubscriptionTimeline } from "./components/SubscriptionTimeline";
+export { SubscriptionStatusBadge } from "./components/SubscriptionStatusBadge";
+export { SeuPlanoCard } from "./components/SeuPlanoCard";
 export { usePlansQuery, useSubscriptionQuery } from "./hooks/use-subscriptions-query";
 export {
   useSubscribeMutation,
