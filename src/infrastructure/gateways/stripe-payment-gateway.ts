@@ -1,66 +1,20 @@
 import type { IPaymentGateway, PaymentResult } from "@/application/gateways/payment-gateway";
 
+/** Placeholder — Stripe nao esta integrado. */
 export class StripePaymentGateway implements IPaymentGateway {
-  constructor(private readonly stripeSecretKey: string) {}
+  constructor(_stripeSecretKey?: string) {}
 
-  async charge(subscriptionId: string, amount: number): Promise<PaymentResult> {
-    try {
-      const response = await fetch("https://api.stripe.com/v1/payment_intents", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${this.stripeSecretKey}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          amount: String(Math.round(amount * 100)),
-          currency: "brl",
-          metadata: { subscriptionId },
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        return {
-          success: false,
-          transactionId: "",
-          status: "FAILED",
-          error: data.error?.message ?? "Falha ao processar pagamento",
-        };
-      }
-
-      return {
-        success: true,
-        transactionId: data.id,
-        status: "PAID",
-      };
-    } catch (err) {
-      return {
-        success: false,
-        transactionId: "",
-        status: "FAILED",
-        error: err instanceof Error ? err.message : "Erro inesperado no gateway",
-      };
-    }
+  async charge(_subscriptionId: string, _amount: number): Promise<PaymentResult> {
+    throw new Error(
+      "StripePaymentGateway: Not Implemented. Use PAYMENT_GATEWAY_PROVIDER=mock para ambiente de desenvolvimento.",
+    );
   }
 
-  async cancel(subscriptionId: string): Promise<void> {
-    await fetch(`https://api.stripe.com/v1/subscriptions/${subscriptionId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${this.stripeSecretKey}`,
-      },
-    });
+  async cancel(_subscriptionId: string): Promise<void> {
+    throw new Error("StripePaymentGateway: Not Implemented.");
   }
 
-  async refund(chargeId: string): Promise<void> {
-    await fetch("https://api.stripe.com/v1/refunds", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${this.stripeSecretKey}`,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({ payment_intent: chargeId }),
-    });
+  async refund(_chargeId: string): Promise<void> {
+    throw new Error("StripePaymentGateway: Not Implemented.");
   }
 }

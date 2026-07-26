@@ -7,4 +7,7 @@ export { DataGatewayRouter } from "./data-gateway-router";
 export { StripePaymentGateway } from "./stripe-payment-gateway";
 export { FakePaymentGateway } from "./fake-payment-gateway";
 export { MockPaymentGateway } from "./mock-payment-gateway";
+export { MercadoPagoPaymentGateway } from "./mercado-pago-payment-gateway";
+export { PaymentGatewayFactory } from "./payment-gateway-factory";
 export type { MockBehavior, MockTransaction } from "./mock-payment-gateway";
+export type { GatewayProvider } from "./payment-gateway-factory";

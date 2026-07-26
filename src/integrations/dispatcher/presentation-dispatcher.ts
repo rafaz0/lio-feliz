@@ -196,6 +196,7 @@ interface PresentationDispatcherDeps {
   backtestRepository?: IBacktestRepository;
   alertRepository?: IAlertRepository;
   exportTemplateRepository?: IExportTemplateRepository;
+  paymentGateway?: import("@/application/gateways/payment-gateway").IPaymentGateway;
 }
 
 /**
@@ -227,6 +228,7 @@ export function createPresentationDispatcher({
   backtestRepository,
   alertRepository,
   exportTemplateRepository,
+  paymentGateway,
 }: PresentationDispatcherDeps): IDispatcher {
   const dispatcher = new DispatcherImpl();
   const syncOrchestration = new SyncOrchestrationService();
@@ -542,7 +544,7 @@ export function createPresentationDispatcher({
     );
 
     dispatcher.RegisterCommand("AssinarPlanoCommand", (command) =>
-      new AssinarPlanoService(subscriptionRepository, notificationPort).Execute(
+      new AssinarPlanoService(subscriptionRepository, notificationPort, paymentGateway).Execute(
         command as AssinarPlanoCommand,
       ),
     );

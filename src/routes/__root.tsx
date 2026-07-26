@@ -27,6 +27,7 @@ import { DataGatewayRouter } from "@/infrastructure/gateways/data-gateway-router
 import { ImportInterpreter } from "@/infrastructure/interpreters/import-interpreter";
 import { FakeSubscriptionRepository } from "@/infrastructure/fakes/fake-subscription-repository";
 import { Plan, PlanId, DEFAULT_CAPABILITIES } from "@/core/domain/subscriptions";
+import { PaymentGatewayFactory } from "@/infrastructure/gateways/payment-gateway-factory";
 
 function NotFoundComponent() {
   return (
@@ -178,6 +179,8 @@ function RootComponent() {
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
 
+  const paymentGatewayFactory = new PaymentGatewayFactory();
+
   const subscriptionRepo = (() => {
     const repo = new FakeSubscriptionRepository();
     repo.savePlan(
@@ -223,6 +226,7 @@ function RootComponent() {
     financialGoalRepository: new SupabaseFinancialGoalRepository(supabase),
     fixedIncomeRepository: new SupabaseFixedIncomeRepository(supabase),
     subscriptionRepository: subscriptionRepo,
+    paymentGateway: paymentGatewayFactory.create("mock"),
   });
 
   return (
