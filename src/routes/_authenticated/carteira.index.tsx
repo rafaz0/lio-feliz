@@ -7,8 +7,6 @@ import {
   AreaChart,
   CartesianGrid,
   Cell,
-  Line,
-  LineChart,
   Pie,
   PieChart,
   ResponsiveContainer,
@@ -16,11 +14,18 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { AlertTriangle, DollarSign, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
+import { AlertTriangle, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
 import { KPIGrid } from "@/components/domain/kpi-grid";
 import { InsightPanel } from "@/components/domain/insight-panel";
-import { ExpandableSection, ExpandableSectionGroup } from "@/presentation/shared/components/ui";
+import {
+  ExpandableSection,
+  ExpandableSectionGroup,
+  TimeRangeSelector,
+  useTimeRange,
+  getCutoffDate,
+  getTimeRangeById,
+} from "@/presentation/shared/components/ui";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
@@ -196,6 +201,17 @@ function PortfolioOverview() {
     return { volatility, maxDrawdown, beta, sharpe };
   }, [history, benchmarkChartData]);
 
+  const { selected, setRange } = useTimeRange();
+
+  const filteredHistory = useMemo(() => {
+    if (!ops || ops.length === 0) return [];
+    const tempPortfolio = consolidatePortfolio(ops, priceOverrides, exchangeRates);
+    const tempHistory = buildPortfolioHistory(ops ?? [], priceOverrides, exchangeRates);
+    const cutoff = getCutoffDate(getTimeRangeById(selected));
+    if (!cutoff) return tempHistory;
+    return tempHistory.filter((h) => new Date(h.date) >= cutoff);
+  }, [ops, priceOverrides, exchangeRates, selected]);
+
   if (isLoading) {
     return (
       <div className="grid gap-4 md:grid-cols-4">
@@ -231,28 +247,46 @@ function PortfolioOverview() {
 
   return (
     <div className="space-y-6">
-      <KPIGrid cols={5}>
-        <KpiCard label="Patrimônio" value={formatBRL(portfolio.totalValue)} />
-        <KpiCard label="Investido" value={formatBRL(portfolio.totalInvested)} muted />
-        <KpiCard
-          label="Lucro / Prejuízo"
-          value={formatBRL(portfolio.totalPnl)}
-          tone={portfolio.totalPnl >= 0 ? "positive" : "negative"}
-        />
-        <KpiCard
-          label="Rentabilidade"
-          value={
-            portfolio.totalInvested > 0 ? (
-              <DeltaPct value={portfolio.totalPnlPct} className="text-2xl" />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-xl border bg-card p-5 shadow-sm">
+          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Patrimônio
+          </p>
+          <p className="mt-1 text-2xl font-bold tracking-tight financial">
+            {formatBRL(portfolio.totalValue)}
+          </p>
+        </div>
+        <div className="rounded-xl border bg-card p-5 shadow-sm">
+          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Investido
+          </p>
+          <p className="mt-1 text-2xl font-bold tracking-tight financial text-muted-foreground">
+            {formatBRL(portfolio.totalInvested)}
+          </p>
+        </div>
+        <div className="rounded-xl border bg-card p-5 shadow-sm">
+          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Resultado
+          </p>
+          <p
+            className={`mt-1 text-2xl font-bold tracking-tight financial ${portfolio.totalPnl >= 0 ? "text-positive" : "text-negative"}`}
+          >
+            {formatBRL(portfolio.totalPnl)}
+          </p>
+        </div>
+        <div className="rounded-xl border bg-card p-5 shadow-sm">
+          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Rentabilidade
+          </p>
+          <p className="mt-1 text-2xl font-bold tracking-tight">
+            {portfolio.totalInvested > 0 ? (
+              <DeltaPct value={portfolio.totalPnlPct} className="text-2xl font-bold" />
             ) : (
               "—"
-            )
-          }
-        />
-        {totalDividends > 0 && (
-          <KpiCard label="Proventos" value={formatBRL(totalDividends)} tone="positive" />
-        )}
-      </KPIGrid>
+            )}
+          </p>
+        </div>
+      </div>
 
       {riskMetrics && (
         <InsightPanel title="Métricas de Risco">
@@ -340,14 +374,17 @@ function PortfolioOverview() {
       </section>
 
       {history.length > 1 && (
-        <section className="rounded-lg border border-border bg-card p-5">
-          <div className="mb-4 flex items-center gap-2">
-            <TrendingUp className="size-4 text-primary" />
-            <h2 className="text-sm font-semibold">Evolução patrimonial</h2>
+        <section className="rounded-lg border bg-card p-5">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="size-4 text-primary" />
+              <h2 className="text-sm font-semibold">Evolução patrimonial</h2>
+            </div>
+            <TimeRangeSelector selected={selected} onSelect={setRange} />
           </div>
           <div className="h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={history} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
+              <AreaChart data={filteredHistory} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
                 <defs>
                   <linearGradient id="portfolioFill" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="var(--color-primary)" stopOpacity={0.3} />
@@ -424,174 +461,6 @@ function PortfolioOverview() {
               />
               Total investido
             </span>
-          </div>
-        </section>
-      )}
-
-      {benchmarkChartData && benchmarkChartData.length > 1 && (
-        <section className="rounded-lg border border-border bg-card p-5">
-          <div className="mb-4 flex items-center gap-2">
-            <LineChart className="size-4 text-chart-4" />
-            <h2 className="text-sm font-semibold">Rentabilidade vs. Mercado</h2>
-          </div>
-          <p className="mb-3 text-xs text-muted-foreground">
-            Base 1000 — comparação da sua carteira com os principais índices
-          </p>
-          <div className="h-56 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={benchmarkChartData}
-                margin={{ left: 8, right: 8, top: 8, bottom: 0 }}
-              >
-                <CartesianGrid
-                  stroke="var(--color-border)"
-                  strokeDasharray="3 3"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="date"
-                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
-                  tickFormatter={(d: string) => {
-                    const [y, m] = d.split("-");
-                    return `${m}/${y.slice(2)}`;
-                  }}
-                  interval="preserveStartEnd"
-                  minTickGap={40}
-                  stroke="var(--color-border)"
-                />
-                <YAxis
-                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
-                  domain={["dataMin - 50", "dataMax + 50"]}
-                  tickFormatter={(v: number) => v.toFixed(0)}
-                  width={50}
-                  stroke="var(--color-border)"
-                />
-                <Tooltip
-                  contentStyle={{
-                    background: "var(--color-popover)",
-                    border: "1px solid var(--color-border)",
-                    borderRadius: 6,
-                    fontSize: 12,
-                  }}
-                  labelFormatter={(l: string) => formatDate(l)}
-                  formatter={(v: number, name: string) => {
-                    const labels: Record<string, string> = {
-                      portfolio: "Carteira",
-                      ibov: "IBOV",
-                      idiv: "IDIV",
-                      ifix: "IFIX",
-                    };
-                    return [`${v.toFixed(1)}`, labels[name] ?? name];
-                  }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="portfolio"
-                  stroke="var(--color-primary)"
-                  strokeWidth={2}
-                  dot={false}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="ibov"
-                  stroke="var(--color-chart-3)"
-                  strokeWidth={1.5}
-                  dot={false}
-                  strokeDasharray="4 3"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="idiv"
-                  stroke="var(--color-positive)"
-                  strokeWidth={1.5}
-                  dot={false}
-                  strokeDasharray="4 3"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="ifix"
-                  stroke="var(--color-chart-4)"
-                  strokeWidth={1.5}
-                  dot={false}
-                  strokeDasharray="4 3"
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
-            <span className="flex items-center gap-1.5">
-              <span
-                className="inline-block size-2.5 rounded-sm"
-                style={{ background: "var(--color-primary)" }}
-              />
-              Carteira
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span
-                className="inline-block size-2.5 rounded-sm"
-                style={{ background: "var(--color-chart-3)" }}
-              />
-              IBOV
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span
-                className="inline-block size-2.5 rounded-sm"
-                style={{ background: "var(--color-positive)" }}
-              />
-              IDIV
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span
-                className="inline-block size-2.5 rounded-sm"
-                style={{ background: "var(--color-chart-4)" }}
-              />
-              IFIX
-            </span>
-          </div>
-        </section>
-      )}
-
-      {totalDividends > 0 && (
-        <section className="rounded-lg border border-border bg-card">
-          <div className="border-b border-border bg-surface-2 px-4 py-3">
-            <div className="flex items-center gap-2">
-              <DollarSign className="size-4 text-positive" />
-              <h2 className="text-sm font-semibold">Proventos Recebidos</h2>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Dividendos e JCP registrados nas operações
-            </p>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[500px] text-sm">
-              <thead className="bg-card text-xs uppercase text-muted-foreground">
-                <tr>
-                  <th className="px-4 py-2.5 text-left font-medium">Ativo</th>
-                  <th className="px-4 py-2.5 text-right font-medium">Proventos</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(dividendsByTicker)
-                  .filter(([, total]) => total > 0)
-                  .sort(([, a], [, b]) => b - a)
-                  .map(([ticker, total]) => (
-                    <tr key={ticker} className="border-t border-border hover:bg-surface">
-                      <td className="px-4 py-2.5">
-                        <Link
-                          to="/ativo/$ticker"
-                          params={{ ticker }}
-                          className="font-semibold hover:text-primary"
-                        >
-                          {ticker}
-                        </Link>
-                      </td>
-                      <td className="tabular px-4 py-2.5 text-right font-medium text-positive">
-                        {formatBRL(total)}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
           </div>
         </section>
       )}
