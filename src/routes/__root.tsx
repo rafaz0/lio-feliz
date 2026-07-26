@@ -25,6 +25,12 @@ import { SupabaseFixedIncomeRepository } from "@/infrastructure/repositories/sup
 import { InProcessEventPublisher } from "@/infrastructure/publishers/in-process-event-publisher";
 import { DataGatewayRouter } from "@/infrastructure/gateways/data-gateway-router";
 import { ImportInterpreter } from "@/infrastructure/interpreters/import-interpreter";
+import { FakeSubscriptionRepository } from "@/infrastructure/fakes/fake-subscription-repository";
+import {
+  Plan,
+  PlanId,
+  DEFAULT_CAPABILITIES,
+} from "@/core/domain/subscriptions";
 
 function NotFoundComponent() {
   return (
@@ -176,6 +182,14 @@ function RootComponent() {
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
 
+  const subscriptionRepo = (() => {
+    const repo = new FakeSubscriptionRepository();
+    repo.savePlan(Plan.create({ id: PlanId.create("free"), name: "Free", tier: "FREE", monthlyPrice: 0, description: "Acesso basico a plataforma", capabilities: DEFAULT_CAPABILITIES.FREE }));
+    repo.savePlan(Plan.create({ id: PlanId.create("basic"), name: "Basic", tier: "BASIC", monthlyPrice: 1990, description: "Recursos avancados para investidores", capabilities: DEFAULT_CAPABILITIES.BASIC }));
+    repo.savePlan(Plan.create({ id: PlanId.create("premium"), name: "Premium", tier: "PREMIUM", monthlyPrice: 4990, description: "Acesso completo com todos os recursos", capabilities: DEFAULT_CAPABILITIES.PREMIUM }));
+    return repo;
+  })();
+
   const dispatcher = createPresentationDispatcher({
     projectionRepository: new SupabaseProjectionRepository(supabase),
     portfolioRepository: new SupabasePortfolioRepository(supabase),
@@ -185,6 +199,7 @@ function RootComponent() {
     importInterpreter: new ImportInterpreter(),
     financialGoalRepository: new SupabaseFinancialGoalRepository(supabase),
     fixedIncomeRepository: new SupabaseFixedIncomeRepository(supabase),
+    subscriptionRepository: subscriptionRepo,
   });
 
   return (

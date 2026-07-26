@@ -38,5 +38,5 @@ export class BillingCycleId extends EntityId {
 
 export type PlanTier = "FREE" | "BASIC" | "PREMIUM";
 export type AccessLevel = "read" | "write" | "admin";
-export type SubscriptionStatus = "ACTIVE" | "CANCELLED" | "EXPIRED";
+export type SubscriptionStatus = "TRIAL" | "ACTIVE" | "CANCELLED" | "PAST_DUE" | "EXPIRED";
 export type BillingStatus = "PENDING" | "PAID" | "FAILED";

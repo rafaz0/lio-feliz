@@ -1,5 +1,15 @@
 export { Plan, type PlanProps } from "./plan";
-export { Subscription, type SubscriptionProps } from "./subscription";
+export {
+  Subscription,
+  SubscriptionActivated,
+  SubscriptionTrialStarted,
+  SubscriptionCancelled,
+  SubscriptionExpired,
+  SubscriptionRenewed,
+  SubscriptionUpgraded,
+  SubscriptionDowngraded,
+  type SubscriptionProps,
+} from "./subscription";
 export { BillingCycle, type BillingCycleProps } from "./billing-cycle";
 export { AuthorizationService, DEFAULT_CAPABILITIES } from "./authorization-service";
 export { BillingSimulator } from "./billing-simulator";
