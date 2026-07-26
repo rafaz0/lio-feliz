@@ -214,15 +214,16 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
     // Demo sessions skip sync — seed data already includes dividend operations
     if (demoSessionId) return { ok: true, count: 0, details: [] };
 
-    const ops = process.env.DEV_MODE === "true"
-      ? [...DEV_STORE]
-      : await (async () => {
-          const { data } = await context.supabase
-            .from("portfolio_operations")
-            .select("*")
-            .order("traded_at");
-          return (data ?? []) as Operation[];
-        })();
+    const ops =
+      process.env.DEV_MODE === "true"
+        ? [...DEV_STORE]
+        : await (async () => {
+            const { data } = await context.supabase
+              .from("portfolio_operations")
+              .select("*")
+              .order("traded_at");
+            return (data ?? []) as Operation[];
+          })();
 
     const tickers = new Set<string>();
     for (const op of ops) {

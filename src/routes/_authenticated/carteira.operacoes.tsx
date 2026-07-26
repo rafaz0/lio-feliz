@@ -10,7 +10,11 @@ function OperationsPage() {
   const del = useServerFn(deleteOperation);
   const qc = useQueryClient();
 
-  const { data: ops, isLoading, isError } = useQuery({
+  const {
+    data: ops,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["operations"],
     queryFn: () => list(),
   });

@@ -48,95 +48,93 @@ function parseCookies(cookieHeader: string | null): Record<string, string> {
  *
  * Provides context: { supabase, userId, claims, demoSessionId }
  */
-export const requireAuth = createMiddleware({ type: "function" }).server(
-  async ({ next }) => {
-    const SUPABASE_URL = process.env.SUPABASE_URL;
-    const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY;
-    const DEV_MODE = process.env.DEV_MODE === "true";
+export const requireAuth = createMiddleware({ type: "function" }).server(async ({ next }) => {
+  const SUPABASE_URL = process.env.SUPABASE_URL;
+  const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY;
+  const DEV_MODE = process.env.DEV_MODE === "true";
 
-    if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-      const missing = [
-        ...(!SUPABASE_URL ? ["SUPABASE_URL"] : []),
-        ...(!SUPABASE_PUBLISHABLE_KEY ? ["SUPABASE_PUBLISHABLE_KEY"] : []),
-      ].join(", ");
-      throw new Error(`Missing Supabase environment variable(s): ${missing}.`);
-    }
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    const missing = [
+      ...(!SUPABASE_URL ? ["SUPABASE_URL"] : []),
+      ...(!SUPABASE_PUBLISHABLE_KEY ? ["SUPABASE_PUBLISHABLE_KEY"] : []),
+    ].join(", ");
+    throw new Error(`Missing Supabase environment variable(s): ${missing}.`);
+  }
 
-    const request = getRequest();
-    let demoSessionId = "";
+  const request = getRequest();
+  let demoSessionId = "";
 
-    // Check demo session cookie first (works in all environments, no Supabase needed)
-    if (request) {
-      const cookies = parseCookies(request.headers.get("cookie"));
-      demoSessionId = cookies["lio_demo_session"] ?? "";
-      if (demoSessionId && demoSessionId.startsWith("demo-")) {
-        return next({
-          context: {
-            supabase: createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-              global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
-            }),
-            userId: demoSessionId,
-            claims: { sub: demoSessionId },
-            demoSessionId,
-          } as any,
-        });
-      }
-    }
-
-    // DEV_MODE bypass
-    if (DEV_MODE) {
+  // Check demo session cookie first (works in all environments, no Supabase needed)
+  if (request) {
+    const cookies = parseCookies(request.headers.get("cookie"));
+    demoSessionId = cookies["lio_demo_session"] ?? "";
+    if (demoSessionId && demoSessionId.startsWith("demo-")) {
       return next({
         context: {
           supabase: createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
             global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
           }),
-          userId: "dev-user-0000",
-          claims: { sub: "dev-user-0000" },
+          userId: demoSessionId,
+          claims: { sub: demoSessionId },
+          demoSessionId,
         } as any,
       });
     }
+  }
 
-    // Extract token from Authorization header or cookie
-    let token = "";
+  // DEV_MODE bypass
+  if (DEV_MODE) {
+    return next({
+      context: {
+        supabase: createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+          global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
+        }),
+        userId: "dev-user-0000",
+        claims: { sub: "dev-user-0000" },
+      } as any,
+    });
+  }
 
-    if (request) {
-      const authHeader = request.headers.get("authorization") ?? "";
-      if (authHeader.startsWith("Bearer ")) {
-        token = authHeader.replace("Bearer ", "");
-      }
+  // Extract token from Authorization header or cookie
+  let token = "";
 
-      if (!token) {
-        const cookies = parseCookies(request.headers.get("cookie"));
-        token = cookies["lio-auth-token"] ?? "";
-      }
+  if (request) {
+    const authHeader = request.headers.get("authorization") ?? "";
+    if (authHeader.startsWith("Bearer ")) {
+      token = authHeader.replace("Bearer ", "");
     }
 
     if (!token) {
-      throw new Error("Unauthorized: No authentication token provided");
+      const cookies = parseCookies(request.headers.get("cookie"));
+      token = cookies["lio-auth-token"] ?? "";
     }
+  }
 
-    if (token.split(".").length !== 3) {
-      throw new Error("Unauthorized: Invalid token format");
-    }
+  if (!token) {
+    throw new Error("Unauthorized: No authentication token provided");
+  }
 
-    const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-      global: {
-        fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
-        headers: { Authorization: `Bearer ${token}` },
-      },
-      auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-    });
+  if (token.split(".").length !== 3) {
+    throw new Error("Unauthorized: Invalid token format");
+  }
 
-    const { data, error } = await supabase.auth.getClaims(token);
-    if (error || !data?.claims) {
-      throw new Error("Unauthorized: Invalid or expired token");
-    }
-    if (!data.claims.sub) {
-      throw new Error("Unauthorized: No user ID found in token claims");
-    }
+  const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    global: {
+      fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
+      headers: { Authorization: `Bearer ${token}` },
+    },
+    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+  });
 
-    return next({
-      context: { supabase, userId: data.claims.sub, claims: { sub: data.claims.sub } } as any,
-    });
-  },
-);
+  const { data, error } = await supabase.auth.getClaims(token);
+  if (error || !data?.claims) {
+    throw new Error("Unauthorized: Invalid or expired token");
+  }
+  if (!data.claims.sub) {
+    throw new Error("Unauthorized: No user ID found in token claims");
+  }
+
+  return next({
+    context: { supabase, userId: data.claims.sub, claims: { sub: data.claims.sub } } as any,
+  });
+});

@@ -18,7 +18,7 @@ export function AuthenticatedRoute({
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (!isLoading && !isAuthenticated && router) {
       router.navigate({ to: redirectTo, replace: true });
     }
   }, [isLoading, isAuthenticated, redirectTo, router]);
@@ -38,7 +38,7 @@ export function GuestRoute({ children, redirectTo = "/dashboard" }: GuestRoutePr
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && isAuthenticated) {
+    if (!isLoading && isAuthenticated && router) {
       router.navigate({ to: redirectTo, replace: true });
     }
   }, [isLoading, isAuthenticated, redirectTo, router]);

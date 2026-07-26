@@ -16,7 +16,11 @@ export function OperationsContent() {
   const syncDivs = useServerFn(syncPendingDividends);
   const qc = useQueryClient();
 
-  const { data: ops, isLoading, isError } = useQuery({
+  const {
+    data: ops,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["operations"],
     queryFn: () => list(),
   });

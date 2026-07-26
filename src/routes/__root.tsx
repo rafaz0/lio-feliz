@@ -142,7 +142,13 @@ function RootComponent() {
     };
 
     const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED" && event !== "TOKEN_REFRESHED") return;
+      if (
+        event !== "SIGNED_IN" &&
+        event !== "SIGNED_OUT" &&
+        event !== "USER_UPDATED" &&
+        event !== "TOKEN_REFRESHED"
+      )
+        return;
 
       if (session?.access_token) {
         document.cookie = `lio-auth-token=${session.access_token}; path=/; max-age=3600; SameSite=Lax; Secure`;

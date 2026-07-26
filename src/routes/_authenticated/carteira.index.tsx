@@ -76,7 +76,11 @@ function PortfolioOverview() {
   const list = useServerFn(listOperations);
   const fetchQuotes = useServerFn(getQuotes);
   const queryClient = useQueryClient();
-  const { data: ops, isLoading, isError } = useQuery({
+  const {
+    data: ops,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["operations"],
     queryFn: () => list(),
   });

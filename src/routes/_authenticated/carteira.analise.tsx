@@ -228,13 +228,27 @@ function AnalisePage() {
                 label="Volatilidade (anual)"
                 value={`${(riskMetrics.volatility * 100).toFixed(1)}%`}
                 icon={<TrendingUp className="size-3.5" />}
-                tone={riskMetrics.volatility < 0.2 ? "positive" : riskMetrics.volatility > 0.35 ? "negative" : "default"}
+                tone={
+                  riskMetrics.volatility < 0.2
+                    ? "positive"
+                    : riskMetrics.volatility > 0.35
+                      ? "negative"
+                      : "default"
+                }
               />
               <MetricCard
                 label="Índice Sharpe"
                 value={riskMetrics.sharpe !== null ? riskMetrics.sharpe.toFixed(2) : "—"}
                 icon={<Activity className="size-3.5" />}
-                tone={riskMetrics.sharpe !== null ? (riskMetrics.sharpe >= 0.5 ? "positive" : riskMetrics.sharpe < 0 ? "negative" : "default") : "default"}
+                tone={
+                  riskMetrics.sharpe !== null
+                    ? riskMetrics.sharpe >= 0.5
+                      ? "positive"
+                      : riskMetrics.sharpe < 0
+                        ? "negative"
+                        : "default"
+                    : "default"
+                }
               />
               <MetricCard
                 label="Drawdown Máximo"
@@ -246,7 +260,15 @@ function AnalisePage() {
                 label="Beta (vs IBOV)"
                 value={riskMetrics.beta !== null ? riskMetrics.beta.toFixed(2) : "—"}
                 icon={<ShieldAlert className="size-3.5" />}
-                tone={riskMetrics.beta !== null ? (riskMetrics.beta < 1 ? "positive" : riskMetrics.beta > 1.2 ? "negative" : "default") : "default"}
+                tone={
+                  riskMetrics.beta !== null
+                    ? riskMetrics.beta < 1
+                      ? "positive"
+                      : riskMetrics.beta > 1.2
+                        ? "negative"
+                        : "default"
+                    : "default"
+                }
               />
             </section>
           )}
@@ -259,14 +281,21 @@ function AnalisePage() {
                 </div>
                 <div className="h-56 w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={drawdownSeries} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
+                    <AreaChart
+                      data={drawdownSeries}
+                      margin={{ left: 8, right: 8, top: 8, bottom: 0 }}
+                    >
                       <defs>
                         <linearGradient id="ddFill" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stopColor="var(--color-negative)" stopOpacity={0.3} />
                           <stop offset="100%" stopColor="var(--color-negative)" stopOpacity={0} />
                         </linearGradient>
                       </defs>
-                      <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                      <CartesianGrid
+                        stroke="var(--color-border)"
+                        strokeDasharray="3 3"
+                        vertical={false}
+                      />
                       <XAxis
                         dataKey="date"
                         tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -286,11 +315,23 @@ function AnalisePage() {
                         stroke="var(--color-border)"
                       />
                       <Tooltip
-                        contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                        contentStyle={{
+                          background: "var(--color-popover)",
+                          border: "1px solid var(--color-border)",
+                          borderRadius: 6,
+                          fontSize: 12,
+                        }}
                         labelFormatter={(l: string) => formatDate(l)}
                         formatter={(v: number) => [`${v.toFixed(2)}%`, "Drawdown"]}
                       />
-                      <Area type="monotone" dataKey="drawdown" stroke="var(--color-negative)" strokeWidth={1.5} fill="url(#ddFill)" dot={false} />
+                      <Area
+                        type="monotone"
+                        dataKey="drawdown"
+                        stroke="var(--color-negative)"
+                        strokeWidth={1.5}
+                        fill="url(#ddFill)"
+                        dot={false}
+                      />
                     </AreaChart>
                   </ResponsiveContainer>
                 </div>
@@ -304,8 +345,15 @@ function AnalisePage() {
                 </div>
                 <div className="h-56 w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={benchmarkChartData} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
-                      <CartesianGrid stroke="var(--color-border)" strokeDasharray="3 3" vertical={false} />
+                    <LineChart
+                      data={benchmarkChartData}
+                      margin={{ left: 8, right: 8, top: 8, bottom: 0 }}
+                    >
+                      <CartesianGrid
+                        stroke="var(--color-border)"
+                        strokeDasharray="3 3"
+                        vertical={false}
+                      />
                       <XAxis
                         dataKey="date"
                         tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
@@ -317,17 +365,44 @@ function AnalisePage() {
                         minTickGap={40}
                         stroke="var(--color-border)"
                       />
-                      <YAxis tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }} tickFormatter={(v: number) => v.toFixed(0)} width={50} stroke="var(--color-border)" />
+                      <YAxis
+                        tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
+                        tickFormatter={(v: number) => v.toFixed(0)}
+                        width={50}
+                        stroke="var(--color-border)"
+                      />
                       <Tooltip
-                        contentStyle={{ background: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 6, fontSize: 12 }}
+                        contentStyle={{
+                          background: "var(--color-popover)",
+                          border: "1px solid var(--color-border)",
+                          borderRadius: 6,
+                          fontSize: 12,
+                        }}
                         labelFormatter={(l: string) => formatDate(l)}
                         formatter={(v: number, name: string) => {
-                          const labels: Record<string, string> = { portfolio: "Carteira", ibov: "IBOV", idiv: "IDIV" };
+                          const labels: Record<string, string> = {
+                            portfolio: "Carteira",
+                            ibov: "IBOV",
+                            idiv: "IDIV",
+                          };
                           return [`${v.toFixed(1)}`, labels[name] ?? name];
                         }}
                       />
-                      <Line type="monotone" dataKey="portfolio" stroke="var(--color-primary)" strokeWidth={2} dot={false} />
-                      <Line type="monotone" dataKey="ibov" stroke="var(--color-chart-3)" strokeWidth={1.5} dot={false} strokeDasharray="4 3" />
+                      <Line
+                        type="monotone"
+                        dataKey="portfolio"
+                        stroke="var(--color-primary)"
+                        strokeWidth={2}
+                        dot={false}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="ibov"
+                        stroke="var(--color-chart-3)"
+                        strokeWidth={1.5}
+                        dot={false}
+                        strokeDasharray="4 3"
+                      />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -356,7 +431,9 @@ function AnalisePage() {
                         <tr key={t.name} className="border-t border-border">
                           <td className="px-2 py-1 font-medium">{t.name}</td>
                           <td className="tabular px-2 py-1 text-right">{formatBRL(t.value)}</td>
-                          <td className="tabular px-2 py-1 text-right text-muted-foreground">{(t.pct * 100).toFixed(1)}%</td>
+                          <td className="tabular px-2 py-1 text-right text-muted-foreground">
+                            {(t.pct * 100).toFixed(1)}%
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -377,7 +454,9 @@ function AnalisePage() {
                         <tr key={s.name} className="border-t border-border">
                           <td className="px-2 py-1 font-medium">{s.name}</td>
                           <td className="tabular px-2 py-1 text-right">{formatBRL(s.value)}</td>
-                          <td className="tabular px-2 py-1 text-right text-muted-foreground">{(s.pct * 100).toFixed(1)}%</td>
+                          <td className="tabular px-2 py-1 text-right text-muted-foreground">
+                            {(s.pct * 100).toFixed(1)}%
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -396,7 +475,10 @@ function AnalisePage() {
                 {riskMetrics.volatility > 0.3 && (
                   <li className="flex items-start gap-2 text-rose-600">
                     <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-rose-500" />
-                    Volatilidade elevada ({riskMetrics.volatility > 0.4 ? "muito acima" : "acima"} da média de mercado. Considere diversificar.
+                    Volatilidade elevada ({riskMetrics.volatility > 0.4
+                      ? "muito acima"
+                      : "acima"}{" "}
+                    da média de mercado. Considere diversificar.
                   </li>
                 )}
                 {riskMetrics.sharpe !== null && riskMetrics.sharpe < 0 && (
@@ -414,7 +496,8 @@ function AnalisePage() {
                 {riskMetrics.maxDrawdown > 0.25 && (
                   <li className="flex items-start gap-2 text-rose-600">
                     <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-rose-500" />
-                    Drawdown máximo de {(riskMetrics.maxDrawdown * 100).toFixed(0)}% — recovery pode levar meses.
+                    Drawdown máximo de {(riskMetrics.maxDrawdown * 100).toFixed(0)}% — recovery pode
+                    levar meses.
                   </li>
                 )}
                 {riskMetrics.beta !== null && riskMetrics.beta < 0.8 && (
@@ -429,12 +512,15 @@ function AnalisePage() {
                     Beta acima de 1.2: carteira amplifica movimentos do IBOV.
                   </li>
                 )}
-                {riskMetrics.volatility <= 0.3 && riskMetrics.sharpe !== null && riskMetrics.sharpe >= 0 && riskMetrics.maxDrawdown <= 0.25 && (
-                  <li className="flex items-start gap-2 text-emerald-600">
-                    <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-emerald-500" />
-                    Perfil de risco controlado. Acompanhe periodicamente para manter o equilíbrio.
-                  </li>
-                )}
+                {riskMetrics.volatility <= 0.3 &&
+                  riskMetrics.sharpe !== null &&
+                  riskMetrics.sharpe >= 0 &&
+                  riskMetrics.maxDrawdown <= 0.25 && (
+                    <li className="flex items-start gap-2 text-emerald-600">
+                      <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-emerald-500" />
+                      Perfil de risco controlado. Acompanhe periodicamente para manter o equilíbrio.
+                    </li>
+                  )}
               </ul>
             </section>
           )}
@@ -463,11 +549,7 @@ function MetricCard({
       <div
         className={
           "tabular mt-2 text-2xl font-bold " +
-          (tone === "positive"
-            ? "text-positive"
-            : tone === "negative"
-              ? "text-negative"
-              : "")
+          (tone === "positive" ? "text-positive" : tone === "negative" ? "text-negative" : "")
         }
       >
         {value}
