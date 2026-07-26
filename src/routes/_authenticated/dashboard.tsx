@@ -327,7 +327,7 @@ function DashboardPage() {
       portfolioId,
       periodo: { inicio: new Date(0), fim: new Date() },
       pontos: history.map((h) => ({
-        data: new Date(h.date),
+        data: new Date(h.date + "T12:00:00"),
         patrimonioTotal: h.value,
         patrimonioInvestido: h.invested,
       })),

@@ -36,10 +36,16 @@ export function DashboardView({ portfolioId, viewModelOverride }: DashboardViewP
     if (!viewModel) return [];
     const cutoff = getCutoffDate(getTimeRangeById(selected));
     if (!cutoff) return viewModel.evolucao;
+    const y = cutoff.getFullYear();
+    const m = String(cutoff.getMonth() + 1).padStart(2, "0");
+    const d = String(cutoff.getDate()).padStart(2, "0");
+    const cutoffStr = `${y}-${m}-${d}`;
     return viewModel.evolucao.filter((p) => {
-      const [d, m, y] = p.data.split("/").map(Number);
-      const date = new Date(y, (m ?? 1) - 1, d ?? 1);
-      return date >= cutoff;
+      const parts = p.data.split("/");
+      if (parts.length !== 3) return true;
+      const [pd, pm, py] = parts;
+      const dateStr = `${py}-${pm}-${pd}`;
+      return dateStr >= cutoffStr;
     });
   }, [viewModel, selected]);
 
