@@ -18,15 +18,12 @@ import { useSession } from "@/hooks/use-session";
 import { DemoBadge } from "@/components/demo-badge";
 import { isDemoSession } from "@/seed/demo-session";
 import { SiteHeader } from "@/components/site-header";
-import { ModuleSection } from "@/components/module-section";
 import {
   ContextPanel,
-  QuickActions,
-  RelatedLinks,
+  RelatedLinks as RelatedLinksComponent,
   RecentActivity,
   SmartHints,
 } from "@/components/experience";
-import type { QuickActionItem } from "@/components/experience";
 import type { RelatedLinkItem } from "@/components/experience";
 import type { RecentActivityItem } from "@/components/experience";
 import type { SmartHint } from "@/components/experience";
@@ -336,99 +333,102 @@ function DashboardPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
 
-      <main className="mx-auto max-w-[1400px] px-4 py-6">
-        <div className="mb-8">
-          <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold tracking-tight">Olá, {displayName}</h1>
-            {isDemoSession() && <DemoBadge />}
-          </div>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Visão consolidada do seu patrimônio e acesso rápido aos módulos.
-          </p>
-          {isDemoSession() && (
-            <div className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-2 text-xs text-amber-600">
-              Você está usando uma conta demonstrativa. Os dados não serão salvos.{" "}
-              <a href="/register" className="font-medium underline hover:no-underline">
-                Crie sua conta gratuita
-              </a>{" "}
-              para manter seus dados.
+      <main className="mx-auto max-w-[1200px] px-4 py-6">
+        {/* Nível 1: Cabeçalho compacto */}
+        <div className="mb-6 flex items-start justify-between">
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-2xl font-bold tracking-tight">Olá, {displayName}</h1>
+              {isDemoSession() && <DemoBadge />}
             </div>
-          )}
+            <p className="mt-0.5 text-sm text-muted-foreground">
+              Visão consolidada do seu patrimônio
+            </p>
+          </div>
+          <SeuPlanoCard userId={user?.id ?? "dev-user-0000"} />
         </div>
 
-        <ModuleSection
-          title="Acesso rápido"
-          description="Navegue pelos principais módulos da plataforma"
-          className="mb-8"
-        >
-          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+        {isDemoSession() && (
+          <div className="mb-6 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-2 text-xs text-amber-600">
+            Você está usando uma conta demonstrativa. Os dados não serão salvos.{" "}
+            <a href="/register" className="font-medium underline hover:no-underline">
+              Crie sua conta gratuita
+            </a>{" "}
+            para manter seus dados.
+          </div>
+        )}
+
+        {/* Nível 2: KPIs + Gráficos — área principal */}
+        <div className="mb-8 space-y-5">
+          <DashboardView portfolioId={portfolioId} />
+        </div>
+
+        {/* Nível 3: Informações complementares */}
+        <div className="mb-8 grid gap-5 lg:grid-cols-2">
+          {contextSections.length > 0 && (
+            <div className="rounded-xl border bg-card p-4">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Resumo da Carteira
+              </h3>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {contextSections.map((section, idx) => (
+                  <div key={idx}>
+                    <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-foreground">
+                      {section.icon}
+                      {section.title}
+                    </div>
+                    {section.content}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <RecentActivity title="Atividades recentes" items={recentItems} maxItems={5} />
+        </div>
+
+        {/* Navegação rápida — toolbar horizontal */}
+        <div className="mb-8">
+          <div className="flex flex-wrap gap-1.5">
             {QUICK_ACTIONS.map((action) => {
               const Icon = action.icon;
               return (
                 <a
                   key={action.to}
                   href={action.to}
-                  className="flex items-center gap-3 rounded-lg border p-3 transition hover:bg-secondary"
+                  className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition hover:bg-secondary"
                 >
-                  <div className="shrink-0 rounded-md bg-primary/10 p-2 text-primary">
-                    <Icon className="size-4" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-sm font-medium">{action.label}</span>
-                      {action.premium && <PremiumBadge size="sm" />}
-                    </div>
-                    <p className="truncate text-xs text-muted-foreground">{action.description}</p>
-                  </div>
+                  <Icon className="size-3.5" />
+                  {action.label}
+                  {action.premium && <PremiumBadge size="sm" />}
                 </a>
               );
             })}
           </div>
-        </ModuleSection>
-
-        <div className="mb-8 grid gap-6 lg:grid-cols-[1fr_300px]">
-          <div className="min-w-0 space-y-6">
-            <DashboardView portfolioId={portfolioId} />
-          </div>
-
-          <aside className="space-y-4">
-            <SeuPlanoCard userId={user?.id ?? "dev-user-0000"} />
-
-            {contextSections.length > 0 && (
-              <ContextPanel title="Resumo rápido" sections={contextSections} />
-            )}
-
-            <RecentActivity title="Atividades recentes" items={recentItems} maxItems={5} />
-          </aside>
         </div>
 
-        <ModuleSection
-          title="Sugestões"
-          description="Recomendações para sua carteira"
-          className="mb-8"
-        >
+        {/* Sugestões + Links Relacionados */}
+        <div className="mb-8">
           <SmartHints hints={hints} />
-        </ModuleSection>
+        </div>
 
-        <ModuleSection title="Navegação relacionada" description="Acesse outras funcionalidades">
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            Navegação relacionada
+          </h3>
+          <div className="flex flex-wrap gap-1.5">
             {RELATED_LINKS.map((link) => (
               <a
                 key={link.to}
                 href={link.to}
-                className="flex items-center gap-3 rounded-lg border p-3 transition hover:bg-secondary"
+                className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition hover:bg-secondary"
               >
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-medium">{link.label}</span>
-                    {link.premium && <PremiumBadge size="sm" />}
-                  </div>
-                  <p className="truncate text-xs text-muted-foreground">{link.description}</p>
-                </div>
+                {link.label}
+                {link.premium && <PremiumBadge size="sm" />}
               </a>
             ))}
           </div>
-        </ModuleSection>
+        </div>
       </main>
     </div>
   );
