@@ -8,6 +8,7 @@ import { SubscriptionStatusBadge } from "./SubscriptionStatusBadge";
 import { SubscriptionHistory } from "./SubscriptionHistory";
 import { SubscriptionTimeline } from "./SubscriptionTimeline";
 import { PlanComparison } from "./PlanComparison";
+import { DevPaymentControls } from "./DevPaymentControls";
 
 interface SubscriptionsPageProps {
   userId: string;
@@ -139,6 +140,8 @@ export function SubscriptionsPage({ userId }: SubscriptionsPageProps) {
       {tab === "comparacao" && <PlanComparison userId={userId} />}
       {tab === "historico" && <SubscriptionHistory userId={userId} />}
       {tab === "eventos" && <SubscriptionTimeline userId={userId} />}
+
+      {import.meta.env.DEV && <DevPaymentControls userId={userId} />}
     </div>
   );
 }

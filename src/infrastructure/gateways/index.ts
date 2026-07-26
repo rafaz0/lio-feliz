@@ -6,3 +6,5 @@ export { DataGatewayFactory } from "./data-gateway-factory";
 export { DataGatewayRouter } from "./data-gateway-router";
 export { StripePaymentGateway } from "./stripe-payment-gateway";
 export { FakePaymentGateway } from "./fake-payment-gateway";
+export { MockPaymentGateway } from "./mock-payment-gateway";
+export type { MockBehavior, MockTransaction } from "./mock-payment-gateway";
