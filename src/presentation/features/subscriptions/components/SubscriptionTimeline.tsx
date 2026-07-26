@@ -31,11 +31,15 @@ export function SubscriptionTimeline({ userId }: SubscriptionTimelineProps) {
   });
 
   if (isLoading) {
-    return <div className="py-4 text-center text-sm text-muted-foreground">Carregando eventos...</div>;
+    return (
+      <div className="py-4 text-center text-sm text-muted-foreground">Carregando eventos...</div>
+    );
   }
 
   if (!data || data.eventos.length === 0) {
-    return <div className="py-4 text-center text-sm text-muted-foreground">Nenhum evento futuro.</div>;
+    return (
+      <div className="py-4 text-center text-sm text-muted-foreground">Nenhum evento futuro.</div>
+    );
   }
 
   return (

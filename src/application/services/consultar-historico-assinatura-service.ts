@@ -31,7 +31,9 @@ export class ConsultarHistoricoAssinaturaService implements IApplicationService<
 > {
   constructor(private readonly subscriptionRepo: ISubscriptionRepository) {}
 
-  async Execute(query: ConsultarHistoricoAssinaturaQuery): Promise<HistoricoCompletoDto | ApplicationError> {
+  async Execute(
+    query: ConsultarHistoricoAssinaturaQuery,
+  ): Promise<HistoricoCompletoDto | ApplicationError> {
     const subscriptions = await this.subscriptionRepo.findSubscriptionsByUser(query.userId);
 
     const subDtos: HistoricoAssinaturaDto[] = [];

@@ -46,14 +46,14 @@ Visitante → clica "Experimentar" → sessão demo criada em memória
 
 ### Regras da Decisão (R-DEMO)
 
-| Regra | Descrição |
-|-------|-----------|
-| **R-DEMO-001** — Sessão volátil | Nenhum dado do modo Demo persiste além da sessão. Sem Supabase, sem localStorage permanente. |
-| **R-DEMO-002** — Escrita simulada | Operações de escrita (criar operação, registrar receita, etc.) são aceitas mas não persistem. Ao recarregar a página, os dados voltam ao estado seed original. |
-| **R-DEMO-003** — Isolamento total | Sessões demo são independentes entre si. Nenhuma sessão demo acessa dados de outra ou de usuários reais. |
-| **R-DEMO-004** — Sem autenticação | O modo Demo não exige cadastro no Supabase. A identidade do usuário é gerada localmente (UUID volátil). |
-| **R-DEMO-005** — Expiração obrigatória | Toda sessão demo expira automaticamente após período configurado (padrão: 30min inatividade, 24h total). |
-| **R-DEMO-006** — Indicador visual | A interface deve exibir um badge ou indicador visual informando que o usuário está em modo Demo. |
+| Regra                                  | Descrição                                                                                                                                                      |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **R-DEMO-001** — Sessão volátil        | Nenhum dado do modo Demo persiste além da sessão. Sem Supabase, sem localStorage permanente.                                                                   |
+| **R-DEMO-002** — Escrita simulada      | Operações de escrita (criar operação, registrar receita, etc.) são aceitas mas não persistem. Ao recarregar a página, os dados voltam ao estado seed original. |
+| **R-DEMO-003** — Isolamento total      | Sessões demo são independentes entre si. Nenhuma sessão demo acessa dados de outra ou de usuários reais.                                                       |
+| **R-DEMO-004** — Sem autenticação      | O modo Demo não exige cadastro no Supabase. A identidade do usuário é gerada localmente (UUID volátil).                                                        |
+| **R-DEMO-005** — Expiração obrigatória | Toda sessão demo expira automaticamente após período configurado (padrão: 30min inatividade, 24h total).                                                       |
+| **R-DEMO-006** — Indicador visual      | A interface deve exibir um badge ou indicador visual informando que o usuário está em modo Demo.                                                               |
 
 ---
 
@@ -147,13 +147,13 @@ Ao recarregar a página, o estado do `DEV_STORE` é perdido (memória volátil).
 
 ## Persistência
 
-| Aspecto | Comportamento |
-|---------|---------------|
-| Armazenamento | Memória volátil (variáveis em processo Node.js) |
-| Banco de dados | Nenhuma chamada ao Supabase é feita |
-| localStorage | Apenas para controle de sessão (demo session ID) |
-| Duração | Enquanto a sessão estiver ativa + janela do navegador aberta |
-| Descarte | Ao expirar ou fazer logout |
+| Aspecto        | Comportamento                                                |
+| -------------- | ------------------------------------------------------------ |
+| Armazenamento  | Memória volátil (variáveis em processo Node.js)              |
+| Banco de dados | Nenhuma chamada ao Supabase é feita                          |
+| localStorage   | Apenas para controle de sessão (demo session ID)             |
+| Duração        | Enquanto a sessão estiver ativa + janela do navegador aberta |
+| Descarte       | Ao expirar ou fazer logout                                   |
 
 ---
 
@@ -171,12 +171,12 @@ Resolução:
   Ambiente → Perfil → Configuração do usuário → Permissão final
 ```
 
-| Flag | Modo Demo | Modo Dev | Produção |
-|------|-----------|----------|----------|
-| DEMO_MODE | ✅ Ativa | ❌ | ❌ |
-| DEV_MODE | ❌ | ✅ Ativa | ❌ |
-| ADMIN_ENABLED | ❌ | ❌ | Condicional |
-| FINANCE_INTEGRATION | Simulada | Condicional | Condicional |
+| Flag                | Modo Demo | Modo Dev    | Produção    |
+| ------------------- | --------- | ----------- | ----------- |
+| DEMO_MODE           | ✅ Ativa  | ❌          | ❌          |
+| DEV_MODE            | ❌        | ✅ Ativa    | ❌          |
+| ADMIN_ENABLED       | ❌        | ❌          | Condicional |
+| FINANCE_INTEGRATION | Simulada  | Condicional | Condicional |
 
 ---
 
@@ -186,11 +186,11 @@ Resolução:
 
 Quando o Modo Demo está ativo, a interface deve exibir:
 
-| Elemento | Localização | Descrição |
-|----------|-------------|-----------|
-| Badge "Demo" | SiteHeader (ao lado do nome) | Amarelo/âmbar, texto "Demo" |
-| Aviso "Sessão Demo" | Topo do Dashboard | "Você está usando uma conta demonstrativa. Seus dados não serão salvos." |
-| Botão "Criar conta" | Header e Dashboard | Destacado, substitui "Entrar" |
+| Elemento            | Localização                  | Descrição                                                                |
+| ------------------- | ---------------------------- | ------------------------------------------------------------------------ |
+| Badge "Demo"        | SiteHeader (ao lado do nome) | Amarelo/âmbar, texto "Demo"                                              |
+| Aviso "Sessão Demo" | Topo do Dashboard            | "Você está usando uma conta demonstrativa. Seus dados não serão salvos." |
+| Botão "Criar conta" | Header e Dashboard           | Destacado, substitui "Entrar"                                            |
 
 ### Comportamento da Navegação
 
@@ -203,28 +203,28 @@ Quando o Modo Demo está ativo, a interface deve exibir:
 
 ## Segurança
 
-| Requisito | Mecanismo |
-|-----------|-----------|
-| Sem acesso a dados reais | Sessão demo usa DEV_STORE isolado por sessionId. Nenhuma query ao Supabase. |
-| Sem persistência | Operações de escrita usam DEV_STORE volátil. Nenhuma chamada a `supabase.from(...).insert()` |
-| Isolamento entre sessões | Cada sessão demo tem seu próprio DEV_STORE (Map keyed by sessionId) |
-| Expiração forçada | Timer de inatividade (30min) e expiração absoluta (24h) |
+| Requisito                | Mecanismo                                                                                    |
+| ------------------------ | -------------------------------------------------------------------------------------------- |
+| Sem acesso a dados reais | Sessão demo usa DEV_STORE isolado por sessionId. Nenhuma query ao Supabase.                  |
+| Sem persistência         | Operações de escrita usam DEV_STORE volátil. Nenhuma chamada a `supabase.from(...).insert()` |
+| Isolamento entre sessões | Cada sessão demo tem seu próprio DEV_STORE (Map keyed by sessionId)                          |
+| Expiração forçada        | Timer de inatividade (30min) e expiração absoluta (24h)                                      |
 
 ---
 
 ## Compatibilidade
 
-| Componente | Compatibilidade |
-|------------|----------------|
-| **PI-001 a PI-018** | ✅ Nenhuma alteração |
-| **ER-018** | ✅ ADR formaliza decisão validada |
-| **ADR-017-001** | ✅ Integração Carteira/GF simulada no modo Demo |
-| **ADR-017-002** | ✅ Feature flags respeitadas. DEMO_MODE é extensão natural |
-| **Dashboard Hub** | ✅ Dashboard demo com dados seed |
-| **Experience Layer** | ✅ Componentes reutilizados sem modificação |
-| **Gestão Financeira** | ✅ Dados demo de GF incluídos |
-| **ModuleLayout / ModuleTabs** | ✅ Navegação inalterada |
-| **DEV_STORE** | ✅ Mecanismo existente estendido para múltiplas sessões |
+| Componente                    | Compatibilidade                                            |
+| ----------------------------- | ---------------------------------------------------------- |
+| **PI-001 a PI-018**           | ✅ Nenhuma alteração                                       |
+| **ER-018**                    | ✅ ADR formaliza decisão validada                          |
+| **ADR-017-001**               | ✅ Integração Carteira/GF simulada no modo Demo            |
+| **ADR-017-002**               | ✅ Feature flags respeitadas. DEMO_MODE é extensão natural |
+| **Dashboard Hub**             | ✅ Dashboard demo com dados seed                           |
+| **Experience Layer**          | ✅ Componentes reutilizados sem modificação                |
+| **Gestão Financeira**         | ✅ Dados demo de GF incluídos                              |
+| **ModuleLayout / ModuleTabs** | ✅ Navegação inalterada                                    |
+| **DEV_STORE**                 | ✅ Mecanismo existente estendido para múltiplas sessões    |
 
 ---
 

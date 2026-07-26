@@ -12,11 +12,11 @@
 
 ### Módulos Implementados
 
-| Módulo | Rota | Natureza | Abas |
-|--------|------|----------|------|
-| Carteira | `/carteira` | Privada (autenticada) | Resumo, Patrimônio, Proventos, Rentabilidade, Cobertura, Análises, Movimentações, Metas, IRPF, Rebalanceamento, Histórico, Configurações |
-| Análise | `/analise` | Pública | FIIs, Rankings, Setores, Comparador, Watchlist, Calculadoras, Notícias |
-| Proventos | `/proventos` | **Mista** (pública + privada) | Calendário, Recebidos, Provisionador, Cobertura |
+| Módulo    | Rota         | Natureza                      | Abas                                                                                                                                     |
+| --------- | ------------ | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Carteira  | `/carteira`  | Privada (autenticada)         | Resumo, Patrimônio, Proventos, Rentabilidade, Cobertura, Análises, Movimentações, Metas, IRPF, Rebalanceamento, Histórico, Configurações |
+| Análise   | `/analise`   | Pública                       | FIIs, Rankings, Setores, Comparador, Watchlist, Calculadoras, Notícias                                                                   |
+| Proventos | `/proventos` | **Mista** (pública + privada) | Calendário, Recebidos, Provisionador, Cobertura                                                                                          |
 
 ### Problema Identificado
 
@@ -34,20 +34,20 @@ Isso gera:
 
 ### Funcionalidades Públicas (Mercado)
 
-| Funcionalidade | Rota Atual | Natureza |
-|---------------|-----------|----------|
-| Calendário de Dividendos | `/dividendos` | Pública |
-| Rankings de Dividend Yield | `/rankings` | Pública |
-| Detalhe do Ativo (DY, histórico) | `/ativo/$ticker` | Pública |
+| Funcionalidade                   | Rota Atual       | Natureza |
+| -------------------------------- | ---------------- | -------- |
+| Calendário de Dividendos         | `/dividendos`    | Pública  |
+| Rankings de Dividend Yield       | `/rankings`      | Pública  |
+| Detalhe do Ativo (DY, histórico) | `/ativo/$ticker` | Pública  |
 
 ### Funcionalidades Privadas (Carteira do Usuário)
 
-| Funcionalidade | Rota Atual | Natureza |
-|---------------|-----------|----------|
-| Proventos Recebidos | `/carteira/proventos` | Privada |
-| Provisionador | `/provisionador` | Privada |
-| Cobertura de Despesas | `/carteira/cobertura` | Privada |
-| Metas de Dividendos | `/metas` | Privada |
+| Funcionalidade        | Rota Atual            | Natureza |
+| --------------------- | --------------------- | -------- |
+| Proventos Recebidos   | `/carteira/proventos` | Privada  |
+| Provisionador         | `/provisionador`      | Privada  |
+| Cobertura de Despesas | `/carteira/cobertura` | Privada  |
+| Metas de Dividendos   | `/metas`              | Privada  |
 
 ---
 
@@ -55,20 +55,20 @@ Isso gera:
 
 ### Módulos Públicos (sem autenticação)
 
-| Módulo | Rotas | Conteúdo |
-|--------|-------|----------|
-| Mercado | `/` | Busca de ativos, índices, maiores altas/baixas |
-| Dividendos | `/dividendos` | **Calendário de dividendos do mercado** (público) |
-| Análise | `/analise` | FIIs, Rankings, Setores, Comparador, Watchlist, Calculadoras, Notícias |
-| Ferramentas | *(a definir)* | Calculadoras, Carteiras Recomendadas |
+| Módulo      | Rotas         | Conteúdo                                                               |
+| ----------- | ------------- | ---------------------------------------------------------------------- |
+| Mercado     | `/`           | Busca de ativos, índices, maiores altas/baixas                         |
+| Dividendos  | `/dividendos` | **Calendário de dividendos do mercado** (público)                      |
+| Análise     | `/analise`    | FIIs, Rankings, Setores, Comparador, Watchlist, Calculadoras, Notícias |
+| Ferramentas | _(a definir)_ | Calculadoras, Carteiras Recomendadas                                   |
 
 ### Módulos Privados (autenticados)
 
-| Módulo | Rotas | Conteúdo |
-|--------|-------|----------|
-| Carteira | `/carteira` | Resumo, Patrimônio, Rentabilidade, **Proventos**, Cobertura, Análises, Movimentações, Metas, IRPF, Rebalanceamento, Histórico, Configurações |
-| Metas | `/metas` | Metas financeiras (standalone) |
-| Provisionador | `/provisionador` | Provisionador de dividendos (standalone) |
+| Módulo        | Rotas            | Conteúdo                                                                                                                                     |
+| ------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Carteira      | `/carteira`      | Resumo, Patrimônio, Rentabilidade, **Proventos**, Cobertura, Análises, Movimentações, Metas, IRPF, Rebalanceamento, Histórico, Configurações |
+| Metas         | `/metas`         | Metas financeiras (standalone)                                                                                                               |
+| Provisionador | `/provisionador` | Provisionador de dividendos (standalone)                                                                                                     |
 
 ### Decisão Arquitetural
 
@@ -89,12 +89,12 @@ A Carteira permanece como o módulo de referência da aplicação (único módul
 
 ### Técnicos
 
-| Item | Impacto |
-|------|---------|
-| Rotas `/proventos/*` | Podem ser removidas ou redirecionadas |
-| SiteHeader | "Proventos" → "Dividendos" (link direto a `/dividendos`) |
-| MobileNav | Ajuste do link |
-| Nenhuma alteração em ModuleLayout ou componentes base | ✅ Nenhuma |
+| Item                                                  | Impacto                                                  |
+| ----------------------------------------------------- | -------------------------------------------------------- |
+| Rotas `/proventos/*`                                  | Podem ser removidas ou redirecionadas                    |
+| SiteHeader                                            | "Proventos" → "Dividendos" (link direto a `/dividendos`) |
+| MobileNav                                             | Ajuste do link                                           |
+| Nenhuma alteração em ModuleLayout ou componentes base | ✅ Nenhuma                                               |
 
 ### Arquiteturais
 
@@ -138,11 +138,11 @@ A Carteira permanece como o módulo de referência da aplicação (único módul
 
 ## 6. ADR-014-003 — Separação Público-Privado
 
-| Campo | Valor |
-|-------|-------|
-| Contexto | Módulo Proventos misturava conteúdo público (calendário de dividendos) com funcionalidades privadas (proventos recebidos, provisionador, cobertura). |
-| Decisão | Manter separação clara entre módulos públicos (Mercado, Dividendos, Análise) e privados (Carteira). Nenhum módulo deve misturar os dois níveis de autenticação. |
-| Consequências | Carteira centraliza todo conteúdo privado. Dividendos permanece público. MobileNav reflete a separação. |
+| Campo         | Valor                                                                                                                                                           |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Contexto      | Módulo Proventos misturava conteúdo público (calendário de dividendos) com funcionalidades privadas (proventos recebidos, provisionador, cobertura).            |
+| Decisão       | Manter separação clara entre módulos públicos (Mercado, Dividendos, Análise) e privados (Carteira). Nenhum módulo deve misturar os dois níveis de autenticação. |
+| Consequências | Carteira centraliza todo conteúdo privado. Dividendos permanece público. MobileNav reflete a separação.                                                         |
 
 ---
 

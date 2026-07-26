@@ -39,7 +39,9 @@ export function PlanComparison({ userId }: PlanComparisonProps) {
           <table className="w-full border-collapse text-sm" data-testid="comparison-table">
             <thead>
               <tr className="border-b">
-                <th className="py-3 pr-4 text-left font-medium text-muted-foreground">Funcionalidade</th>
+                <th className="py-3 pr-4 text-left font-medium text-muted-foreground">
+                  Funcionalidade
+                </th>
                 {data.planos.map((p) => (
                   <th key={p.id} className="px-3 py-3 text-center font-semibold">
                     <div>{p.name}</div>

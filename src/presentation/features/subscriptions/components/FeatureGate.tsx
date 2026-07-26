@@ -10,7 +10,13 @@ interface FeatureGateProps {
   children: ReactNode;
 }
 
-export function FeatureGate({ featureId, userId, fallback, showUpgrade = true, children }: FeatureGateProps) {
+export function FeatureGate({
+  featureId,
+  userId,
+  fallback,
+  showUpgrade = true,
+  children,
+}: FeatureGateProps) {
   const { data: allowed, isLoading } = useFeatureAccess(userId, featureId);
 
   if (isLoading) return null;
@@ -21,9 +27,7 @@ export function FeatureGate({ featureId, userId, fallback, showUpgrade = true, c
 
   return (
     <div className="relative">
-      <div className="pointer-events-none select-none opacity-30">
-        {children}
-      </div>
+      <div className="pointer-events-none select-none opacity-30">{children}</div>
       {showUpgrade && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="rounded-lg border bg-background/90 p-4 text-center shadow-lg">

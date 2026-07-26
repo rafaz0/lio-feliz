@@ -52,8 +52,13 @@ export function SubscriptionsPage({ userId }: SubscriptionsPageProps) {
                 Plano atual: <strong>{subscription.planName}</strong>
               </p>
               <div className="mt-1 flex items-center gap-2">
-                <SubscriptionStatusBadge status={subscription.status} isActive={subscription.isActive} />
-                <span className="text-xs text-muted-foreground">Desde {subscription.startDate}</span>
+                <SubscriptionStatusBadge
+                  status={subscription.status}
+                  isActive={subscription.isActive}
+                />
+                <span className="text-xs text-muted-foreground">
+                  Desde {subscription.startDate}
+                </span>
               </div>
             </div>
             {subscription.isActive && (

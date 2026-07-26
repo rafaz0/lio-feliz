@@ -94,17 +94,17 @@ Em versões futuras, a sincronização automática poderá ser ativada via `Fina
 
 ## Ownership
 
-| Informação | Dono | Acesso pela Gestão Financeira |
-|-----------|------|-------------------------------|
-| Ativos (ações, FIIs, ETFs) | Carteira | Leitura (via repositório) |
-| Operações (compra/venda) | Carteira | Leitura (via integração) |
-| Proventos (dividendos, JCP) | Carteira | Leitura (via integração) |
-| Contas bancárias | Gestão Financeira | Escrita própria |
-| Caixa (saldo disponível) | Gestão Financeira | Escrita própria + sincronizada |
-| Receitas | Gestão Financeira | Escrita própria |
-| Despesas | Gestão Financeira | Escrita própria |
-| Dívidas e financiamentos | Gestão Financeira | Escrita própria |
-| Patrimônio Global | Gestão Financeira (cálculo) | Leitura da Carteira + dados próprios |
+| Informação                  | Dono                        | Acesso pela Gestão Financeira        |
+| --------------------------- | --------------------------- | ------------------------------------ |
+| Ativos (ações, FIIs, ETFs)  | Carteira                    | Leitura (via repositório)            |
+| Operações (compra/venda)    | Carteira                    | Leitura (via integração)             |
+| Proventos (dividendos, JCP) | Carteira                    | Leitura (via integração)             |
+| Contas bancárias            | Gestão Financeira           | Escrita própria                      |
+| Caixa (saldo disponível)    | Gestão Financeira           | Escrita própria + sincronizada       |
+| Receitas                    | Gestão Financeira           | Escrita própria                      |
+| Despesas                    | Gestão Financeira           | Escrita própria                      |
+| Dívidas e financiamentos    | Gestão Financeira           | Escrita própria                      |
+| Patrimônio Global           | Gestão Financeira (cálculo) | Leitura da Carteira + dados próprios |
 
 ---
 
@@ -134,34 +134,34 @@ Em versões futuras, a sincronização automática poderá ser ativada via `Fina
 
 A integração expõe os seguintes pontos de extensão (eventos arquiteturais):
 
-| Evento | Gatilho | Ação na Gestão Financeira |
-|--------|---------|---------------------------|
-| `onBuyOperation` | Compra de ativo | Débito do Caixa (se origem informada) |
-| `onSellOperation` | Venda de ativo | Crédito do Caixa |
-| `onDividendReceived` | Provento recebido | Crédito do Caixa |
-| `syncPortfolioToGlobalWealth` | Solicitação explícita | Atualiza Patrimônio Global |
+| Evento                        | Gatilho               | Ação na Gestão Financeira             |
+| ----------------------------- | --------------------- | ------------------------------------- |
+| `onBuyOperation`              | Compra de ativo       | Débito do Caixa (se origem informada) |
+| `onSellOperation`             | Venda de ativo        | Crédito do Caixa                      |
+| `onDividendReceived`          | Provento recebido     | Crédito do Caixa                      |
+| `syncPortfolioToGlobalWealth` | Solicitação explícita | Atualiza Patrimônio Global            |
 
 ---
 
 ## Resolução de Conflitos
 
-| Cenário | Estratégia |
-|---------|------------|
-| Saldo do Caixa insuficiente para compra | Aviso ao usuário. A compra é registrada na Carteira mesmo assim (R-PF-003). A sincronização do Caixa falha mas não bloqueia a operação. |
-| Duplicidade de sincronização | Operações sincronizadas possuem identificador único (`operationId`). A Gestão Financeira ignora operações já processadas (idempotência). |
-| Exclusão de operação na Carteira | A sincronização registra uma movimentação de estorno na Gestão Financeira. |
+| Cenário                                 | Estratégia                                                                                                                               |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Saldo do Caixa insuficiente para compra | Aviso ao usuário. A compra é registrada na Carteira mesmo assim (R-PF-003). A sincronização do Caixa falha mas não bloqueia a operação.  |
+| Duplicidade de sincronização            | Operações sincronizadas possuem identificador único (`operationId`). A Gestão Financeira ignora operações já processadas (idempotência). |
+| Exclusão de operação na Carteira        | A sincronização registra uma movimentação de estorno na Gestão Financeira.                                                               |
 
 ---
 
 ## Impacto Arquitetural
 
-| Camada | Impacto |
-|--------|---------|
-| **DDD** | Nenhum. A mediação respeita bounded contexts. |
-| **Clean Architecture** | Nenhum. `FinanceIntegrationService` é um service de Application Layer. |
-| **CQRS** | Nenhum. A integração usa commands (onBuyOperation, etc.) — compatível com CQRS. |
-| **Experience Layer** | Nenhum. A Experience Layer não é alterada. |
-| **FinanceIntegrationConfig** | ADR-017-002 respeitado. A integração só ativa quando `enabled = true`. |
+| Camada                       | Impacto                                                                         |
+| ---------------------------- | ------------------------------------------------------------------------------- |
+| **DDD**                      | Nenhum. A mediação respeita bounded contexts.                                   |
+| **Clean Architecture**       | Nenhum. `FinanceIntegrationService` é um service de Application Layer.          |
+| **CQRS**                     | Nenhum. A integração usa commands (onBuyOperation, etc.) — compatível com CQRS. |
+| **Experience Layer**         | Nenhum. A Experience Layer não é alterada.                                      |
+| **FinanceIntegrationConfig** | ADR-017-002 respeitado. A integração só ativa quando `enabled = true`.          |
 
 ### Componentes Preservados
 
@@ -172,10 +172,10 @@ A integração expõe os seguintes pontos de extensão (eventos arquiteturais):
 
 ### Componentes Novos (previstos para EWO-043)
 
-| Componente | Tipo |
-|-----------|------|
-| `IFinanceIntegrationService` | Interface |
-| `FinanceIntegrationService` | Implementação concreta |
+| Componente                      | Tipo                         |
+| ------------------------------- | ---------------------------- |
+| `IFinanceIntegrationService`    | Interface                    |
+| `FinanceIntegrationService`     | Implementação concreta       |
 | `NullFinanceIntegrationService` | No-op para quando desativado |
 
 ---

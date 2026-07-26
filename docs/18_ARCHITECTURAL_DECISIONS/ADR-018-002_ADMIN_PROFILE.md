@@ -38,12 +38,12 @@ O Administrador **não** é um domínio de negócio. É um perfil operacional da
 
 ### Regras da Decisão (R-ADMIN)
 
-| Regra | Descrição |
-|-------|-----------|
-| **R-ADMIN-001** — Perfil operacional | Administrador é um perfil, não um domínio. Não possui entidades, VOs ou repositórios próprios. |
-| **R-ADMIN-002** — Acesso por role | O perfil é determinado por uma role `admin` no Supabase Auth (ou campo equivalente em `user_metadata`). |
-| **R-ADMIN-003** — Leitura global | Administrador pode ler dados de qualquer usuário, mas não pode modificá-los sem autorização explícita. |
-| **R-ADMIN-004** — Sem auto-cadastro | Não é possível tornar-se administrador pela interface. A role deve ser atribuída via banco ou console Supabase. |
+| Regra                                   | Descrição                                                                                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **R-ADMIN-001** — Perfil operacional    | Administrador é um perfil, não um domínio. Não possui entidades, VOs ou repositórios próprios.                           |
+| **R-ADMIN-002** — Acesso por role       | O perfil é determinado por uma role `admin` no Supabase Auth (ou campo equivalente em `user_metadata`).                  |
+| **R-ADMIN-003** — Leitura global        | Administrador pode ler dados de qualquer usuário, mas não pode modificá-los sem autorização explícita.                   |
+| **R-ADMIN-004** — Sem auto-cadastro     | Não é possível tornar-se administrador pela interface. A role deve ser atribuída via banco ou console Supabase.          |
 | **R-ADMIN-005** — Isolamento preservado | O Administrador acessa os mesmos repositórios dos demais perfis. O filtro por `userId` é removido quando a role é admin. |
 
 ---
@@ -52,26 +52,26 @@ O Administrador **não** é um domínio de negócio. É um perfil operacional da
 
 ### Permissões Administrativas vs. Comuns
 
-| Ação | Usuário comum | Administrador |
-|------|---------------|---------------|
-| Ler próprios dados | ✅ | ✅ |
-| Ler dados de qualquer usuário | ❌ | ✅ |
-| Criar/alterar próprios dados | ✅ | ✅ |
-| Criar/alterar dados de outros | ❌ | ❌ (apenas suporte) |
-| Gerenciar planos | ❌ | ✅ |
-| Visualizar logs do sistema | ❌ | ✅ |
-| Configurar flags globais | ❌ | ✅ |
-| Acessar `/admin` | ❌ | ✅ |
-| Elevar privilégio | ❌ | ❌ |
+| Ação                          | Usuário comum | Administrador       |
+| ----------------------------- | ------------- | ------------------- |
+| Ler próprios dados            | ✅            | ✅                  |
+| Ler dados de qualquer usuário | ❌            | ✅                  |
+| Criar/alterar próprios dados  | ✅            | ✅                  |
+| Criar/alterar dados de outros | ❌            | ❌ (apenas suporte) |
+| Gerenciar planos              | ❌            | ✅                  |
+| Visualizar logs do sistema    | ❌            | ✅                  |
+| Configurar flags globais      | ❌            | ✅                  |
+| Acessar `/admin`              | ❌            | ✅                  |
+| Elevar privilégio             | ❌            | ❌                  |
 
 ### Módulos Administrativos
 
-| Módulo | Descrição | Leitura | Escrita |
-|--------|-----------|---------|---------|
-| **Usuários** | Listar, visualizar, buscar | ✅ | ❌ |
-| **Planos** | Gerenciar planos e assinaturas | ✅ | ✅ |
-| **Logs** | Visualizar logs do sistema | ✅ | ❌ |
-| **Configurações** | Flags globais, taxas, limites | ✅ | ✅ |
+| Módulo            | Descrição                      | Leitura | Escrita |
+| ----------------- | ------------------------------ | ------- | ------- |
+| **Usuários**      | Listar, visualizar, buscar     | ✅      | ❌      |
+| **Planos**        | Gerenciar planos e assinaturas | ✅      | ✅      |
+| **Logs**          | Visualizar logs do sistema     | ✅      | ❌      |
+| **Configurações** | Flags globais, taxas, limites  | ✅      | ✅      |
 
 ---
 
@@ -99,13 +99,13 @@ O Administrador **não compete** com os demais perfis. Ele é um Usuário comum 
 
 ### Rota /admin
 
-| Aspecto | Comportamento |
-|---------|---------------|
-| URL | `/admin` (rota filha de `_authenticated`) |
-| Visibilidade | Apenas para usuários com role `admin` |
-| Ocultação | Usuários não-admin não veem o link. Acesso direto por URL redireciona para 404 ou Dashboard. |
-| Header | Link "Admin" visível apenas para administradores |
-| Layout | ModuleLayout com tabs administrativas |
+| Aspecto      | Comportamento                                                                                |
+| ------------ | -------------------------------------------------------------------------------------------- |
+| URL          | `/admin` (rota filha de `_authenticated`)                                                    |
+| Visibilidade | Apenas para usuários com role `admin`                                                        |
+| Ocultação    | Usuários não-admin não veem o link. Acesso direto por URL redireciona para 404 ou Dashboard. |
+| Header       | Link "Admin" visível apenas para administradores                                             |
+| Layout       | ModuleLayout com tabs administrativas                                                        |
 
 ### Estrutura de Rotas (conceitual)
 
@@ -131,12 +131,12 @@ A rota `/admin` é protegida por:
 
 ### Mecanismos de Proteção
 
-| Camada | Mecanismo | Descrição |
-|--------|-----------|-----------|
-| **Rota** | `beforeLoad` | Verifica role antes de carregar o componente |
-| **Componente** | `AdminRoute` | Wrapper que redireciona se não for admin |
-| **API** | Server function middleware | Verifica role antes de executar queries |
-| **URL** | Proteção em 3 camadas | Acesso direto a `/admin` sem role redireciona |
+| Camada         | Mecanismo                  | Descrição                                     |
+| -------------- | -------------------------- | --------------------------------------------- |
+| **Rota**       | `beforeLoad`               | Verifica role antes de carregar o componente  |
+| **Componente** | `AdminRoute`               | Wrapper que redireciona se não for admin      |
+| **API**        | Server function middleware | Verifica role antes de executar queries       |
+| **URL**        | Proteção em 3 camadas      | Acesso direto a `/admin` sem role redireciona |
 
 ### Fluxo de Autenticação
 
@@ -155,12 +155,12 @@ Usuário faz login (fluxo existente)
 
 ### Prevenção de Elevação de Privilégio
 
-| Cenário | Comportamento |
-|---------|---------------|
-| Usuário tenta acessar `/admin` sem role | Redirecionado para Dashboard (via `beforeLoad`) |
-| Usuário tenta chamar server function admin sem role | Erro `AuthorizationError` |
+| Cenário                                                     | Comportamento                                      |
+| ----------------------------------------------------------- | -------------------------------------------------- |
+| Usuário tenta acessar `/admin` sem role                     | Redirecionado para Dashboard (via `beforeLoad`)    |
+| Usuário tenta chamar server function admin sem role         | Erro `AuthorizationError`                          |
 | Usuário tenta modificar `user_metadata.role` pela interface | Impossível — alteração apenas via Supabase console |
-| Sessão demo tenta acessar `/admin` | Redirecionado para Home (demo não tem role admin) |
+| Sessão demo tenta acessar `/admin`                          | Redirecionado para Home (demo não tem role admin)  |
 
 ---
 
@@ -173,16 +173,16 @@ A flag `ADMIN_ENABLED` controla a disponibilidade do módulo administrativo:
 ```typescript
 // Integrada ao sistema de feature flags (ADR-017-002)
 interface AdminConfig {
-  enabled: boolean;           // ADMIN_ENABLED
-  auditLogging: boolean;      // Logs de auditoria
-  userManagement: boolean;    // Gestão de usuários
+  enabled: boolean; // ADMIN_ENABLED
+  auditLogging: boolean; // Logs de auditoria
+  userManagement: boolean; // Gestão de usuários
 }
 ```
 
-| Estado | Comportamento |
-|--------|---------------|
+| Estado                    | Comportamento                                                                                 |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
 | `enabled: false` (padrão) | Rota `/admin` retorna 404. Link admin oculto. Server functions administrativas retornam erro. |
-| `enabled: true` | Painel admin acessível para usuários com role `admin`. |
+| `enabled: true`           | Painel admin acessível para usuários com role `admin`.                                        |
 
 ### Hierarquia de Flags
 
@@ -198,15 +198,15 @@ ADMIN_ENABLED (ambiente)
 
 ## Compatibilidade
 
-| Documento | Compatibilidade |
-|-----------|----------------|
-| **PI-001 a PI-018** | ✅ Nenhuma alteração |
-| **ER-018** | ✅ ADR formaliza decisão validada (R02) |
-| **ADR-017-001** | ✅ Integração preservada |
-| **ADR-017-002** | ✅ Feature flags expandidas (ADMIN_ENABLED) |
-| **ADR-018-001** | ✅ Perfil Admin não conflita com Demo |
-| **APPLICATION_STATES.md** | ✅ Perfil Admin documentado |
-| **USER_FLOWS.md** | ✅ Fluxos de navegação não alterados |
+| Documento                 | Compatibilidade                             |
+| ------------------------- | ------------------------------------------- |
+| **PI-001 a PI-018**       | ✅ Nenhuma alteração                        |
+| **ER-018**                | ✅ ADR formaliza decisão validada (R02)     |
+| **ADR-017-001**           | ✅ Integração preservada                    |
+| **ADR-017-002**           | ✅ Feature flags expandidas (ADMIN_ENABLED) |
+| **ADR-018-001**           | ✅ Perfil Admin não conflita com Demo       |
+| **APPLICATION_STATES.md** | ✅ Perfil Admin documentado                 |
+| **USER_FLOWS.md**         | ✅ Fluxos de navegação não alterados        |
 
 ---
 

@@ -19,7 +19,9 @@ export class ConsultarProximosEventosService implements IApplicationService<
 > {
   constructor(private readonly subscriptionRepo: ISubscriptionRepository) {}
 
-  async Execute(query: ConsultarProximosEventosQuery): Promise<ProximosEventosDto | ApplicationError> {
+  async Execute(
+    query: ConsultarProximosEventosQuery,
+  ): Promise<ProximosEventosDto | ApplicationError> {
     const subs = await this.subscriptionRepo.findSubscriptionsByUser(query.userId);
     const eventos: ProximoEventoDto[] = [];
 

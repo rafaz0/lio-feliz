@@ -14,7 +14,8 @@ export class RenovarAssinaturaService implements IApplicationService<
   async Execute(command: RenovarAssinaturaCommand): Promise<AssinaturaDto | ApplicationError> {
     const sub = await this.subscriptionRepo.findSubscriptionById(command.subscriptionId);
     if (!sub) return new NotFoundError("Subscription", command.subscriptionId);
-    if (!sub.isActive) return new ValidationError("SUBSCRIPTION_NOT_ACTIVE", "Assinatura nao esta ativa");
+    if (!sub.isActive)
+      return new ValidationError("SUBSCRIPTION_NOT_ACTIVE", "Assinatura nao esta ativa");
 
     const renewed = sub.renew(1);
     await this.subscriptionRepo.saveSubscription(renewed);

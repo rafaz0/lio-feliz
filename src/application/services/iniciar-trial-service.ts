@@ -18,7 +18,10 @@ export class IniciarTrialService implements IApplicationService<
 
     const existing = await this.subscriptionRepo.findSubscriptionsByUser(command.userId);
     if (existing.some((s) => s.isActive || s.isTrial)) {
-      return new ValidationError("ALREADY_ACTIVE", "Usuario ja possui assinatura ativa ou em trial");
+      return new ValidationError(
+        "ALREADY_ACTIVE",
+        "Usuario ja possui assinatura ativa ou em trial",
+      );
     }
 
     const plan = await this.subscriptionRepo.findPlanById(command.planId);

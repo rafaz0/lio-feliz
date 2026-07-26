@@ -109,14 +109,14 @@ Planos, features e limites são dados de configuração (tabelas), não código.
 
 ### Regras da Decisão (R-SUB)
 
-| Regra | Descrição |
-|-------|-----------|
-| **R-SUB-001** — Subscription domínio independente | Subscription não conhece PaymentGateway. Billing não conhece Subscription diretamente — apenas via interfaces. |
-| **R-SUB-002** — Billing por interface | Nenhum código de domínio depende de um gateway concreto. A implementação do gateway é injetada na Application Layer. |
-| **R-SUB-003** — Feature Gate centralizado | `canAccess()` é o único ponto de verificação de acesso premium. Nenhum módulo faz essa verificação diretamente. |
-| **R-SUB-004** — Trial sem plano especial | Trial usa o plano Pro, mas com `billingEnabled = false`. No término, pode ativar cobrança ou fazer downgrade. |
-| **R-SUB-005** — Dados preservados no downgrade | Nenhuma operação deDELETE é executada durante downgrade ou cancelamento. Apenas o acesso é restrito. |
-| **R-SUB-006** — Notificações em eventos | Mudanças de estado da Subscription emitem eventos (SubscriptionActivated, SubscriptionCanceled, etc.) para outros contextos via InProcessEventPublisher. |
+| Regra                                             | Descrição                                                                                                                                                |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **R-SUB-001** — Subscription domínio independente | Subscription não conhece PaymentGateway. Billing não conhece Subscription diretamente — apenas via interfaces.                                           |
+| **R-SUB-002** — Billing por interface             | Nenhum código de domínio depende de um gateway concreto. A implementação do gateway é injetada na Application Layer.                                     |
+| **R-SUB-003** — Feature Gate centralizado         | `canAccess()` é o único ponto de verificação de acesso premium. Nenhum módulo faz essa verificação diretamente.                                          |
+| **R-SUB-004** — Trial sem plano especial          | Trial usa o plano Pro, mas com `billingEnabled = false`. No término, pode ativar cobrança ou fazer downgrade.                                            |
+| **R-SUB-005** — Dados preservados no downgrade    | Nenhuma operação deDELETE é executada durante downgrade ou cancelamento. Apenas o acesso é restrito.                                                     |
+| **R-SUB-006** — Notificações em eventos           | Mudanças de estado da Subscription emitem eventos (SubscriptionActivated, SubscriptionCanceled, etc.) para outros contextos via InProcessEventPublisher. |
 
 ---
 
@@ -124,67 +124,67 @@ Planos, features e limites são dados de configuração (tabelas), não código.
 
 ### Subscription
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Sim — tabela `subscription_subscriptions` |
-| **O que faz** | Gerencia ciclo de vida (ativação, renovação, cancelamento, expiração). |
-| **O que não faz** | Não processa pagamentos. Não define planos. Não verifica limites. |
+| Aspecto            | Responsabilidade                                                       |
+| ------------------ | ---------------------------------------------------------------------- |
+| **Dono dos dados** | Sim — tabela `subscription_subscriptions`                              |
+| **O que faz**      | Gerencia ciclo de vida (ativação, renovação, cancelamento, expiração). |
+| **O que não faz**  | Não processa pagamentos. Não define planos. Não verifica limites.      |
 
 ### Billing
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Sim — tabelas `billing_invoices`, `billing_transactions` |
-| **O que faz** | Gera faturas, registra transações, comunica-se com gateways. |
-| **O que não faz** | Não gerencia ciclo de vida da assinatura. Não define planos. |
+| Aspecto            | Responsabilidade                                             |
+| ------------------ | ------------------------------------------------------------ |
+| **Dono dos dados** | Sim — tabelas `billing_invoices`, `billing_transactions`     |
+| **O que faz**      | Gera faturas, registra transações, comunica-se com gateways. |
+| **O que não faz**  | Não gerencia ciclo de vida da assinatura. Não define planos. |
 
 ### Payment Gateway
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Não — apenas processa pagamentos |
-| **O que faz** | Cria checkout, processa webhooks, cancela assinatura no provedor. |
-| **O que não faz** | Não armazena dados de faturamento. Não gerencia planos. |
+| Aspecto            | Responsabilidade                                                  |
+| ------------------ | ----------------------------------------------------------------- |
+| **Dono dos dados** | Não — apenas processa pagamentos                                  |
+| **O que faz**      | Cria checkout, processa webhooks, cancela assinatura no provedor. |
+| **O que não faz**  | Não armazena dados de faturamento. Não gerencia planos.           |
 
 ### Feature Gate
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Lê de `commercial_*` + `subscription_*` |
-| **O que faz** | Verifica se um usuário tem acesso a uma feature com base no plano ativo. |
-| **O que não faz** | Não gerencia assinaturas. Não processa pagamentos. |
+| Aspecto            | Responsabilidade                                                         |
+| ------------------ | ------------------------------------------------------------------------ |
+| **Dono dos dados** | Lê de `commercial_*` + `subscription_*`                                  |
+| **O que faz**      | Verifica se um usuário tem acesso a uma feature com base no plano ativo. |
+| **O que não faz**  | Não gerencia assinaturas. Não processa pagamentos.                       |
 
 ### Plano
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
+| Aspecto            | Responsabilidade                                                                    |
+| ------------------ | ----------------------------------------------------------------------------------- |
 | **Dono dos dados** | Sim — tabelas `commercial_plans`, `commercial_features`, `commercial_plan_features` |
-| **O que faz** | Define features disponíveis e limites quantitativos. |
-| **O que não faz** | Não gerencia assinaturas. Não processa pagamentos. |
+| **O que faz**      | Define features disponíveis e limites quantitativos.                                |
+| **O que não faz**  | Não gerencia assinaturas. Não processa pagamentos.                                  |
 
 ### Dashboard
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Não — apenas consome |
-| **O que faz** | Exibe plano atual, data de renovação, limites de uso. |
-| **O que não faz** | Não modifica assinaturas. Não processa pagamentos. |
+| Aspecto            | Responsabilidade                                      |
+| ------------------ | ----------------------------------------------------- |
+| **Dono dos dados** | Não — apenas consome                                  |
+| **O que faz**      | Exibe plano atual, data de renovação, limites de uso. |
+| **O que não faz**  | Não modifica assinaturas. Não processa pagamentos.    |
 
 ### Carteira
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Sim (dados da carteira) |
-| **O que faz** | Expõe número de ativos para verificação de limites do plano. |
-| **O que não faz** | Não conhece planos ou assinaturas. |
+| Aspecto            | Responsabilidade                                             |
+| ------------------ | ------------------------------------------------------------ |
+| **Dono dos dados** | Sim (dados da carteira)                                      |
+| **O que faz**      | Expõe número de ativos para verificação de limites do plano. |
+| **O que não faz**  | Não conhece planos ou assinaturas.                           |
 
 ### Gestão Financeira
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Sim (dados financeiros) |
-| **O que faz** | Expõe dados para verificação de limites (quando GF é feature premium). |
-| **O que não faz** | Não conhece planos ou assinaturas. |
+| Aspecto            | Responsabilidade                                                       |
+| ------------------ | ---------------------------------------------------------------------- |
+| **Dono dos dados** | Sim (dados financeiros)                                                |
+| **O que faz**      | Expõe dados para verificação de limites (quando GF é feature premium). |
+| **O que não faz**  | Não conhece planos ou assinaturas.                                     |
 
 ---
 
@@ -349,15 +349,15 @@ Usuário tenta acessar recurso premium:
 
 ## Compatibilidade
 
-| Documento | Compatibilidade |
-|-----------|----------------|
-| **PI-019** | ✅ ADR formaliza a arquitetura definida na PI-019, seções 4 a 13. |
-| **ER-019** | ✅ ADR atende à recomendação R01 (criar ADR-019-001 antes da EWO-048). |
-| **ADR-017-001** | ✅ Integração Carteira/GF preservada. Planos não alteram o mecanismo de integração. |
-| **ADR-017-002** | ✅ Feature flags expandidas com PREMIUM_FEATURES, FREE_PLAN_LIMITS, BILLING_ENABLED. R-FF-001 a R-FF-006 mantidas. |
-| **ADR-018-001** | ✅ Modo Demo ignora planos — recursos demo são fixos e não dependem de assinatura. |
-| **ADR-018-002** | ✅ Perfil Admin mantido. Administradores têm acesso total independentemente do plano. |
-| **PI-001 a PI-018** | ✅ Nenhuma decisão arquitetural existente é alterada ou invalidada. |
+| Documento           | Compatibilidade                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **PI-019**          | ✅ ADR formaliza a arquitetura definida na PI-019, seções 4 a 13.                                                  |
+| **ER-019**          | ✅ ADR atende à recomendação R01 (criar ADR-019-001 antes da EWO-048).                                             |
+| **ADR-017-001**     | ✅ Integração Carteira/GF preservada. Planos não alteram o mecanismo de integração.                                |
+| **ADR-017-002**     | ✅ Feature flags expandidas com PREMIUM_FEATURES, FREE_PLAN_LIMITS, BILLING_ENABLED. R-FF-001 a R-FF-006 mantidas. |
+| **ADR-018-001**     | ✅ Modo Demo ignora planos — recursos demo são fixos e não dependem de assinatura.                                 |
+| **ADR-018-002**     | ✅ Perfil Admin mantido. Administradores têm acesso total independentemente do plano.                              |
+| **PI-001 a PI-018** | ✅ Nenhuma decisão arquitetural existente é alterada ou invalidada.                                                |
 
 ---
 

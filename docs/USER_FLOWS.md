@@ -687,65 +687,65 @@ Proventos (/carteira/proventos) ou (/carteira)
 
 ## 7. Matriz de Navegação
 
-| Origem | Destino | Tipo | Auth | Observações |
-|--------|---------|------|------|-------------|
-| Home (`/`) | Ativo (`/ativo/$ticker`) | Público | Não | Click na tabela, busca, ou hero |
-| Home (`/`) | FII (`/fii/$ticker`) | Público | Não | Via `/fiis` ou link direto |
-| Home (`/`) | Dividendos (`/dividendos`) | Público | Não | Menu principal ou grid |
-| Home (`/`) | Análise (`/analise`) | Público | Não | Menu principal |
-| Home (`/`) | Watchlist (`/watchlist`) | Público | Não | Grid de links rápidos |
-| Home (`/`) | Rankings (`/rankings`) | Público | Não | Grid ou menu móvel |
-| Home (`/`) | Setores (`/setores`) | Público | Não | Grid ou menu móvel |
-| Home (`/`) | Comparador (`/comparar`) | Público | Não | Grid ou menu |
-| Home (`/`) | Calculadoras (`/calculadoras`) | Público | Não | Grid ou footer |
-| Home (`/`) | Carteiras Recomendadas | Público | Não | Grid ou footer |
-| Home (`/`) | Notícias (`/noticias`) | Público | Não | Grid ou footer |
-| Home (`/`) | Login (`/auth`) | Público | Não | Header "Entrar" |
-| Home (`/`) | Carteira (`/carteira`) | Privado | Sim | Menu principal, grid, MobileNav |
-| Home (`/`) | Metas (`/metas`) | Privado | Sim | Grid (se logado) |
-| Home (`/`) | Provisionador | Privado | Sim | Grid (se logado) |
-| Home (`/`) | Dashboard (`/dashboard`) | Privado | Sim | MobileNav |
-| Análise (`/analise`) | FIIs (`/analise/fiis`) | Público | Não | Aba do módulo |
-| Análise (`/analise`) | Rankings (`/analise/rankings`) | Público | Não | Aba do módulo |
-| Análise (`/analise`) | Comparar (`/analise/comparar`) | Público | Não | Aba do módulo |
-| Análise (`/analise`) | Calculadoras | Público | Não | Aba do módulo |
-| Análise (`/analise`) | Watchlist (`/analise/watchlist`) | Público | Não | Aba do módulo |
-| Carteira (`/carteira`) | Resumo (`/carteira/`) | Privado | Sim | Aba índice do módulo |
-| Carteira (`/carteira`) | Lançamentos | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | Rentabilidade | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | Patrimônio | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | Análise | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | Cobertura | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | Proventos | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | Metas | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | IRPF | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | Rebalanceamento | Privado | Sim | Aba do módulo |
-| Carteira (`/carteira`) | Configurações | Privado | Sim | Aba do módulo |
-| Carteira (posição) | Ativo (`/ativo/$ticker`) | Privado→Público | Não | Click no ticker da posição |
-| Ativo (`/ativo/$ticker`) | Comparador (`/comparar`) | Público | Não | Botão "Comparar" |
-| Ativo (`/ativo/$ticker`) | Análise (`/analise`) | Público | Não | Botão "Análise" no header (EWO-028) |
-| Comparador (`/comparar`) | Carteira (`/carteira`) | Privado | Sim | Botão "Minha Carteira" (EWO-028) |
-| Comparador (`/comparar`) | Ativo (`/ativo/$ticker`) | Público | Não | Ticker clicável na tabela e cards (EWO-028) |
-| Dividendos (`/dividendos`) | Ativo (`/ativo/$ticker`) | Público | Não | Click no ticker ou nome da empresa |
-| Proventos Carteira | Provisionador | Privado | Sim | Botão "Provisionador completo" (EWO-028) |
-| Watchlist (`/watchlist`) | Ativo (`/ativo/$ticker`) | Público | Não | Click no ticker |
-| Menu Usuário | IRPF (`/irpf`) | Privado | Sim | Dropdown do usuário |
-| Menu Usuário | Carteira/Proventos | Privado | Sim | Dropdown do usuário |
-| MobileNav | Dashboard | Privado | Sim | Ícone Home |
-| Dashboard | Carteira (`/carteira`) | Privado | Sim | Quick Action (EWO-030) |
-| Dashboard | Análise (`/analise`) | Público | Não | Quick Action (EWO-030) |
-| Dashboard | Dividendos (`/dividendos`) | Público | Não | Quick Action (EWO-030) |
-| Dashboard | Mercado (`/`) | Público | Não | Quick Action (EWO-030) |
-| Dashboard | Metas (`/metas`) | Privado | Sim | Quick Action (EWO-030) |
-| Dashboard | Provisionador | Privado | Sim | Quick Action (EWO-030) |
-| Dashboard | Watchlist (`/watchlist`) | Público | Não | Quick Action (EWO-030) |
-| Dashboard | Comparador (`/comparar`) | Público | Não | Quick Action (EWO-030) |
-| Dashboard | Rebalanceamento | Privado | Sim | Link seção Alertas (EWO-030) |
-| Dashboard | Cobertura | Privado | Sim | Link seção Alertas (EWO-030) |
-| MobileNav | Carteira | Privado | Sim | Ícone Wallet |
-| MobileNav | Dividendos | Público | Não | Ícone PiggyBank |
-| MobileNav | Metas | Privado | Sim | Ícone Target |
-| MobileNav | Análise | Privado | Sim | Ícone BarChart3 |
+| Origem                     | Destino                          | Tipo            | Auth | Observações                                 |
+| -------------------------- | -------------------------------- | --------------- | ---- | ------------------------------------------- |
+| Home (`/`)                 | Ativo (`/ativo/$ticker`)         | Público         | Não  | Click na tabela, busca, ou hero             |
+| Home (`/`)                 | FII (`/fii/$ticker`)             | Público         | Não  | Via `/fiis` ou link direto                  |
+| Home (`/`)                 | Dividendos (`/dividendos`)       | Público         | Não  | Menu principal ou grid                      |
+| Home (`/`)                 | Análise (`/analise`)             | Público         | Não  | Menu principal                              |
+| Home (`/`)                 | Watchlist (`/watchlist`)         | Público         | Não  | Grid de links rápidos                       |
+| Home (`/`)                 | Rankings (`/rankings`)           | Público         | Não  | Grid ou menu móvel                          |
+| Home (`/`)                 | Setores (`/setores`)             | Público         | Não  | Grid ou menu móvel                          |
+| Home (`/`)                 | Comparador (`/comparar`)         | Público         | Não  | Grid ou menu                                |
+| Home (`/`)                 | Calculadoras (`/calculadoras`)   | Público         | Não  | Grid ou footer                              |
+| Home (`/`)                 | Carteiras Recomendadas           | Público         | Não  | Grid ou footer                              |
+| Home (`/`)                 | Notícias (`/noticias`)           | Público         | Não  | Grid ou footer                              |
+| Home (`/`)                 | Login (`/auth`)                  | Público         | Não  | Header "Entrar"                             |
+| Home (`/`)                 | Carteira (`/carteira`)           | Privado         | Sim  | Menu principal, grid, MobileNav             |
+| Home (`/`)                 | Metas (`/metas`)                 | Privado         | Sim  | Grid (se logado)                            |
+| Home (`/`)                 | Provisionador                    | Privado         | Sim  | Grid (se logado)                            |
+| Home (`/`)                 | Dashboard (`/dashboard`)         | Privado         | Sim  | MobileNav                                   |
+| Análise (`/analise`)       | FIIs (`/analise/fiis`)           | Público         | Não  | Aba do módulo                               |
+| Análise (`/analise`)       | Rankings (`/analise/rankings`)   | Público         | Não  | Aba do módulo                               |
+| Análise (`/analise`)       | Comparar (`/analise/comparar`)   | Público         | Não  | Aba do módulo                               |
+| Análise (`/analise`)       | Calculadoras                     | Público         | Não  | Aba do módulo                               |
+| Análise (`/analise`)       | Watchlist (`/analise/watchlist`) | Público         | Não  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Resumo (`/carteira/`)            | Privado         | Sim  | Aba índice do módulo                        |
+| Carteira (`/carteira`)     | Lançamentos                      | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Rentabilidade                    | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Patrimônio                       | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Análise                          | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Cobertura                        | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Proventos                        | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Metas                            | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | IRPF                             | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Rebalanceamento                  | Privado         | Sim  | Aba do módulo                               |
+| Carteira (`/carteira`)     | Configurações                    | Privado         | Sim  | Aba do módulo                               |
+| Carteira (posição)         | Ativo (`/ativo/$ticker`)         | Privado→Público | Não  | Click no ticker da posição                  |
+| Ativo (`/ativo/$ticker`)   | Comparador (`/comparar`)         | Público         | Não  | Botão "Comparar"                            |
+| Ativo (`/ativo/$ticker`)   | Análise (`/analise`)             | Público         | Não  | Botão "Análise" no header (EWO-028)         |
+| Comparador (`/comparar`)   | Carteira (`/carteira`)           | Privado         | Sim  | Botão "Minha Carteira" (EWO-028)            |
+| Comparador (`/comparar`)   | Ativo (`/ativo/$ticker`)         | Público         | Não  | Ticker clicável na tabela e cards (EWO-028) |
+| Dividendos (`/dividendos`) | Ativo (`/ativo/$ticker`)         | Público         | Não  | Click no ticker ou nome da empresa          |
+| Proventos Carteira         | Provisionador                    | Privado         | Sim  | Botão "Provisionador completo" (EWO-028)    |
+| Watchlist (`/watchlist`)   | Ativo (`/ativo/$ticker`)         | Público         | Não  | Click no ticker                             |
+| Menu Usuário               | IRPF (`/irpf`)                   | Privado         | Sim  | Dropdown do usuário                         |
+| Menu Usuário               | Carteira/Proventos               | Privado         | Sim  | Dropdown do usuário                         |
+| MobileNav                  | Dashboard                        | Privado         | Sim  | Ícone Home                                  |
+| Dashboard                  | Carteira (`/carteira`)           | Privado         | Sim  | Quick Action (EWO-030)                      |
+| Dashboard                  | Análise (`/analise`)             | Público         | Não  | Quick Action (EWO-030)                      |
+| Dashboard                  | Dividendos (`/dividendos`)       | Público         | Não  | Quick Action (EWO-030)                      |
+| Dashboard                  | Mercado (`/`)                    | Público         | Não  | Quick Action (EWO-030)                      |
+| Dashboard                  | Metas (`/metas`)                 | Privado         | Sim  | Quick Action (EWO-030)                      |
+| Dashboard                  | Provisionador                    | Privado         | Sim  | Quick Action (EWO-030)                      |
+| Dashboard                  | Watchlist (`/watchlist`)         | Público         | Não  | Quick Action (EWO-030)                      |
+| Dashboard                  | Comparador (`/comparar`)         | Público         | Não  | Quick Action (EWO-030)                      |
+| Dashboard                  | Rebalanceamento                  | Privado         | Sim  | Link seção Alertas (EWO-030)                |
+| Dashboard                  | Cobertura                        | Privado         | Sim  | Link seção Alertas (EWO-030)                |
+| MobileNav                  | Carteira                         | Privado         | Sim  | Ícone Wallet                                |
+| MobileNav                  | Dividendos                       | Público         | Não  | Ícone PiggyBank                             |
+| MobileNav                  | Metas                            | Privado         | Sim  | Ícone Target                                |
+| MobileNav                  | Análise                          | Privado         | Sim  | Ícone BarChart3                             |
 
 ---
 

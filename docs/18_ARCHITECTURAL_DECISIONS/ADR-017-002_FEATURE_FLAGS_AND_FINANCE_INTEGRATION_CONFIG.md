@@ -39,14 +39,14 @@ Adicionalmente, o projeto não possuía uma política formal para utilização d
 
 Estabelecer os seguintes princípios oficiais para utilização de Feature Flags no projeto Lio Feliz:
 
-| Regra | Descrição |
-|-------|-----------|
-| **R-FF-001** — Ativação Opcional | Toda funcionalidade controlada por Feature Flag deve ser opcional para o usuário. O estado padrão é "desativado". |
-| **R-FF-002** — Isolamento entre Domínios | Quando uma Feature Flag está desativada, o domínio correspondente não deve impactar nenhum outro domínio. Zero acoplamento, zero overhead. |
-| **R-FF-003** — Compatibilidade Retroativa | A desativação de uma Feature Flag deve restaurar o comportamento exato anterior à sua introdução. Nenhuma funcionalidade existente pode ser afetada. |
-| **R-FF-004** — Configuração Centralizada | Toda Feature Flag deve ser acessível através de um ponto único de configuração, permitindo auditoria e gerenciamento centralizados. |
-| **R-FF-005** — Previsibilidade | O comportamento do sistema para qualquer combinação de flags deve ser determinístico e documentado. |
-| **R-FF-006** — Evolução sem Quebra | A adição de novas flags ou propriedades não pode quebrar contratos existentes. Utilizar interfaces extensíveis (objetos de configuração) em vez de booleanos isolados. |
+| Regra                                     | Descrição                                                                                                                                                              |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **R-FF-001** — Ativação Opcional          | Toda funcionalidade controlada por Feature Flag deve ser opcional para o usuário. O estado padrão é "desativado".                                                      |
+| **R-FF-002** — Isolamento entre Domínios  | Quando uma Feature Flag está desativada, o domínio correspondente não deve impactar nenhum outro domínio. Zero acoplamento, zero overhead.                             |
+| **R-FF-003** — Compatibilidade Retroativa | A desativação de uma Feature Flag deve restaurar o comportamento exato anterior à sua introdução. Nenhuma funcionalidade existente pode ser afetada.                   |
+| **R-FF-004** — Configuração Centralizada  | Toda Feature Flag deve ser acessível através de um ponto único de configuração, permitindo auditoria e gerenciamento centralizados.                                    |
+| **R-FF-005** — Previsibilidade            | O comportamento do sistema para qualquer combinação de flags deve ser determinístico e documentado.                                                                    |
+| **R-FF-006** — Evolução sem Quebra        | A adição de novas flags ou propriedades não pode quebrar contratos existentes. Utilizar interfaces extensíveis (objetos de configuração) em vez de booleanos isolados. |
 
 ### Decisão 2: FinanceIntegrationConfig
 
@@ -54,23 +54,23 @@ Utilizar um objeto de configuração tipado em vez de um booleano simples:
 
 ```typescript
 interface FinanceIntegrationConfig {
-  enabled: boolean;               // Gestão Financeira ativada/desativada
-  autoSync: boolean;              // Sincronização automática entre domínios
-  includeInvestments: boolean;    // Incluir carteira no cálculo do PL
+  enabled: boolean; // Gestão Financeira ativada/desativada
+  autoSync: boolean; // Sincronização automática entre domínios
+  includeInvestments: boolean; // Incluir carteira no cálculo do PL
   defaultIncomeSource: IncomeSource; // Origem padrão para compras
 }
 ```
 
 ### Justificativa Técnica
 
-| Aspecto | Booleano simples | Objeto de configuração |
-|---------|-----------------|----------------------|
-| **Escalabilidade** | Cada nova opção requer nova flag isolada | Propriedades adicionadas sem quebrar interface |
-| **Extensibilidade** | N booleanos = N parâmetros distintos | Um objeto com N propriedades |
-| **Manutenção** | Lógica espalhada (cada flag lida separadamente) | Lógica centralizada no objeto |
-| **Clareza** | `if (enabled)` não revela intenção | Propriedades nomeadas (`autoSync`, `includeInvestments`) |
-| **Testabilidade** | Múltiplas combinações de booleanos soltos | Um objeto mockável |
-| **Evolução** | Adicionar flag = mudar assinatura de funções | Adicionar propriedade opcional = sem breaking change |
+| Aspecto             | Booleano simples                                | Objeto de configuração                                   |
+| ------------------- | ----------------------------------------------- | -------------------------------------------------------- |
+| **Escalabilidade**  | Cada nova opção requer nova flag isolada        | Propriedades adicionadas sem quebrar interface           |
+| **Extensibilidade** | N booleanos = N parâmetros distintos            | Um objeto com N propriedades                             |
+| **Manutenção**      | Lógica espalhada (cada flag lida separadamente) | Lógica centralizada no objeto                            |
+| **Clareza**         | `if (enabled)` não revela intenção              | Propriedades nomeadas (`autoSync`, `includeInvestments`) |
+| **Testabilidade**   | Múltiplas combinações de booleanos soltos       | Um objeto mockável                                       |
+| **Evolução**        | Adicionar flag = mudar assinatura de funções    | Adicionar propriedade opcional = sem breaking change     |
 
 ### Regras da Decisão
 
@@ -89,6 +89,7 @@ interface FinanceIntegrationConfig {
 Manter a abordagem original do `PERSONAL_FINANCE_ARCHITECTURE.md`.
 
 **Rejeitada** porque:
+
 - Não permite controle granular de comportamento.
 - Cada nova opção exigiria uma nova flag paralela.
 - Dificulta a evolução sem quebra de contrato.
@@ -99,6 +100,7 @@ Manter a abordagem original do `PERSONAL_FINANCE_ARCHITECTURE.md`.
 Interface tipada com propriedades nomeadas.
 
 **Escolhida** porque:
+
 - Extensível sem breaking changes.
 - Comunica claramente as opções disponíveis.
 - Centraliza a lógica de configuração.
@@ -109,6 +111,7 @@ Interface tipada com propriedades nomeadas.
 Criar um microsserviço ou módulo de configuração dedicado.
 
 **Rejeitada** porque:
+
 - Overhead desnecessário para o porte do projeto.
 - A complexidade adicional não se justifica para o número atual de flags.
 - O objeto de configuração atende aos requisitos com simplicidade.

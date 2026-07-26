@@ -126,17 +126,17 @@ provedor não requer alteração em nenhum módulo de domínio.
 
 ### Regras da Decisão (R-PGW)
 
-| Regra | Descrição |
-|-------|-----------|
-| **R-PGW-001** — Gateway como interface | PaymentGateway é interface na Application Layer. Domínio não conhece gateway. |
-| **R-PGW-002** — Billing orquestrador | BillingService orquestra cobrança. Gateway executa comunicação externa. |
-| **R-PGW-003** — Gateway por configuração | `PAYMENT_GATEWAY_PROVIDER` define o provedor ativo. Sem condicionais em código de orquestração. |
-| **R-PGW-004** — Idempotência obrigatória | `gatewayTransactionId` é a chave de idempotência. Nenhuma confirmação é processada sem deduplicação. |
-| **R-PGW-005** — Transações imutáveis | Transações são append-only. Nenhuma transação é alterada — apenas criadas com novo status. |
-| **R-PGW-006** — Webhook validado por provedor | Cada implementação de gateway valida seus próprios webhooks. |
-| **R-PGW-007** — Renovação assíncrona | Renovações recorrentes usam fila/scheduler. Checkouts de primeira assinatura são síncronos. |
-| **R-PGW-008** — Subscription não conhece transações | Subscription reage apenas a comandos de BillingService. Sem dependência de PaymentGateway. |
-| **R-PGW-009** — Reembolso preserva histórico | Reembolso é transação de valor negativo. Dados originais não são alterados. |
+| Regra                                               | Descrição                                                                                            |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **R-PGW-001** — Gateway como interface              | PaymentGateway é interface na Application Layer. Domínio não conhece gateway.                        |
+| **R-PGW-002** — Billing orquestrador                | BillingService orquestra cobrança. Gateway executa comunicação externa.                              |
+| **R-PGW-003** — Gateway por configuração            | `PAYMENT_GATEWAY_PROVIDER` define o provedor ativo. Sem condicionais em código de orquestração.      |
+| **R-PGW-004** — Idempotência obrigatória            | `gatewayTransactionId` é a chave de idempotência. Nenhuma confirmação é processada sem deduplicação. |
+| **R-PGW-005** — Transações imutáveis                | Transações são append-only. Nenhuma transação é alterada — apenas criadas com novo status.           |
+| **R-PGW-006** — Webhook validado por provedor       | Cada implementação de gateway valida seus próprios webhooks.                                         |
+| **R-PGW-007** — Renovação assíncrona                | Renovações recorrentes usam fila/scheduler. Checkouts de primeira assinatura são síncronos.          |
+| **R-PGW-008** — Subscription não conhece transações | Subscription reage apenas a comandos de BillingService. Sem dependência de PaymentGateway.           |
+| **R-PGW-009** — Reembolso preserva histórico        | Reembolso é transação de valor negativo. Dados originais não são alterados.                          |
 
 ---
 
@@ -144,59 +144,59 @@ provedor não requer alteração em nenhum módulo de domínio.
 
 ### Billing
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Sim — tabelas `billing_invoices`, `billing_transactions`, `billing_webhook_logs` |
-| **O que faz** | Orquestra cobrança: cria faturas, chama gateway, registra transações, gerencia retry e períodos de carência. |
-| **O que não faz** | Não implementa comunicação direta com provedores externos. Não gerencia ciclo de vida da assinatura. |
+| Aspecto            | Responsabilidade                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------ |
+| **Dono dos dados** | Sim — tabelas `billing_invoices`, `billing_transactions`, `billing_webhook_logs`                             |
+| **O que faz**      | Orquestra cobrança: cria faturas, chama gateway, registra transações, gerencia retry e períodos de carência. |
+| **O que não faz**  | Não implementa comunicação direta com provedores externos. Não gerencia ciclo de vida da assinatura.         |
 
 ### Payment Gateway
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Não — apenas media comunicação com provedor externo |
-| **O que faz** | Implementa a interface `PaymentGateway`: criação de checkout, processamento de webhook, cancelamento externo, consulta de status. |
-| **O que não faz** | Não orquestra cobrança. Não gerencia faturas. Não define regras de negócio. |
+| Aspecto            | Responsabilidade                                                                                                                  |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Dono dos dados** | Não — apenas media comunicação com provedor externo                                                                               |
+| **O que faz**      | Implementa a interface `PaymentGateway`: criação de checkout, processamento de webhook, cancelamento externo, consulta de status. |
+| **O que não faz**  | Não orquestra cobrança. Não gerencia faturas. Não define regras de negócio.                                                       |
 
 ### Webhook Handler
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Não — registra logs em `billing_webhook_logs` |
-| **O que faz** | Recebe webhooks, roteia para o handler do provedor correto, valida autenticidade, aplica idempotência, invoca BillingService. |
-| **O que não faz** | Não processa lógica de negócio. Não modifica assinaturas diretamente. |
+| Aspecto            | Responsabilidade                                                                                                              |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| **Dono dos dados** | Não — registra logs em `billing_webhook_logs`                                                                                 |
+| **O que faz**      | Recebe webhooks, roteia para o handler do provedor correto, valida autenticidade, aplica idempotência, invoca BillingService. |
+| **O que não faz**  | Não processa lógica de negócio. Não modifica assinaturas diretamente.                                                         |
 
 ### Subscription
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Sim — `subscription_subscriptions` |
-| **O que faz** | Gerencia ciclo de vida da assinatura. Recebe comandos de BillingService (activate, renew, cancel, expire). |
-| **O que não faz** | Não conhece transações. Não conhece gateway. |
+| Aspecto            | Responsabilidade                                                                                           |
+| ------------------ | ---------------------------------------------------------------------------------------------------------- |
+| **Dono dos dados** | Sim — `subscription_subscriptions`                                                                         |
+| **O que faz**      | Gerencia ciclo de vida da assinatura. Recebe comandos de BillingService (activate, renew, cancel, expire). |
+| **O que não faz**  | Não conhece transações. Não conhece gateway.                                                               |
 
 ### Plano
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Sim — `commercial_plans`, `commercial_prices` |
-| **O que faz** | Define preço, ciclo de cobrança e moeda. |
-| **O que não faz** | Não processa pagamentos. Não gerencia assinaturas. |
+| Aspecto            | Responsabilidade                                   |
+| ------------------ | -------------------------------------------------- |
+| **Dono dos dados** | Sim — `commercial_plans`, `commercial_prices`      |
+| **O que faz**      | Define preço, ciclo de cobrança e moeda.           |
+| **O que não faz**  | Não processa pagamentos. Não gerencia assinaturas. |
 
 ### Feature Gate
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Lê de `commercial_*` + `subscription_*` |
-| **O que faz** | Verifica acesso a recursos premium. Independe do gateway. |
-| **O que não faz** | Não conhece pagamentos ou transações. |
+| Aspecto            | Responsabilidade                                          |
+| ------------------ | --------------------------------------------------------- |
+| **Dono dos dados** | Lê de `commercial_*` + `subscription_*`                   |
+| **O que faz**      | Verifica acesso a recursos premium. Independe do gateway. |
+| **O que não faz**  | Não conhece pagamentos ou transações.                     |
 
 ### Dashboard
 
-| Aspecto | Responsabilidade |
-|---------|-----------------|
-| **Dono dos dados** | Não — apenas consome |
-| **O que faz** | Exibe status de pagamento, próxima cobrança, método de pagamento, histórico de faturas. |
-| **O que não faz** | Não modifica assinaturas. Não processa pagamentos. |
+| Aspecto            | Responsabilidade                                                                        |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| **Dono dos dados** | Não — apenas consome                                                                    |
+| **O que faz**      | Exibe status de pagamento, próxima cobrança, método de pagamento, histórico de faturas. |
+| **O que não faz**  | Não modifica assinaturas. Não processa pagamentos.                                      |
 
 ---
 
@@ -355,15 +355,15 @@ Mudança de plano com impacto no valor
 
 ## Compatibilidade
 
-| Documento | Compatibilidade |
-|-----------|----------------|
-| **PI-019** | ✅ ADR detalha a arquitetura do contexto de Billing definido na PI-019, seções 4, 5, 7, 8 e 13. |
-| **ER-019** | ✅ ADR atende à recomendação R03 (formalizar interfaces de gateway antes da EWO-051). |
+| Documento       | Compatibilidade                                                                                                 |
+| --------------- | --------------------------------------------------------------------------------------------------------------- |
+| **PI-019**      | ✅ ADR detalha a arquitetura do contexto de Billing definido na PI-019, seções 4, 5, 7, 8 e 13.                 |
+| **ER-019**      | ✅ ADR atende à recomendação R03 (formalizar interfaces de gateway antes da EWO-051).                           |
 | **ADR-019-001** | ✅ Interface PaymentGateway (Decisão 3 do ADR-019-001) refinada em 10 decisões. R-SUB-001 e R-SUB-002 mantidas. |
-| **ADR-017-001** | ✅ Integração Carteira/GF preservada. Gateway não conhece domínios financeiros. |
-| **ADR-017-002** | ✅ Feature flags BILLING_ENABLED, PAYMENT_GATEWAY_PROVIDER estendidas. R-FF-001 a R-FF-006 mantidas. |
-| **ADR-018-001** | ✅ Modo Demo ignora gateway — BillingSimulator permanece como fallback em sessões demo. |
-| **ADR-018-002** | ✅ Perfil Admin mantido. Administradores podem reembolsar independentemente do gateway ativo. |
+| **ADR-017-001** | ✅ Integração Carteira/GF preservada. Gateway não conhece domínios financeiros.                                 |
+| **ADR-017-002** | ✅ Feature flags BILLING_ENABLED, PAYMENT_GATEWAY_PROVIDER estendidas. R-FF-001 a R-FF-006 mantidas.            |
+| **ADR-018-001** | ✅ Modo Demo ignora gateway — BillingSimulator permanece como fallback em sessões demo.                         |
+| **ADR-018-002** | ✅ Perfil Admin mantido. Administradores podem reembolsar independentemente do gateway ativo.                   |
 
 ---
 

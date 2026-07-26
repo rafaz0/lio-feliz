@@ -12,14 +12,14 @@
 
 ## Stack de Infraestrutura Oficial
 
-| Componente | Plataforma | Finalidade |
-|-----------|-----------|------------|
-| Código-fonte | **GitHub** | Versionamento, CI/CD quality gates |
-| Banco de dados | **Supabase** | PostgreSQL, Auth, Storage, RLS |
-| Hospedagem | **Vercel** | SSR (TanStack Start), CDN, SSL, deploy automatizado |
-| Monitoramento | **Sentry** | Error tracking, performance (opcional) |
-| APIs de dados | **BRAPI** | Cotações B3 em tempo real |
-| Pagamentos | **Stripe** | Gateway de pagamento (opcional, ver ADR-012-001) |
+| Componente     | Plataforma   | Finalidade                                          |
+| -------------- | ------------ | --------------------------------------------------- |
+| Código-fonte   | **GitHub**   | Versionamento, CI/CD quality gates                  |
+| Banco de dados | **Supabase** | PostgreSQL, Auth, Storage, RLS                      |
+| Hospedagem     | **Vercel**   | SSR (TanStack Start), CDN, SSL, deploy automatizado |
+| Monitoramento  | **Sentry**   | Error tracking, performance (opcional)              |
+| APIs de dados  | **BRAPI**    | Cotações B3 em tempo real                           |
+| Pagamentos     | **Stripe**   | Gateway de pagamento (opcional, ver ADR-012-001)    |
 
 > **Lovable** foi a plataforma de origem do projeto e permanece como ferramenta de desenvolvimento e preview, mas **não faz parte da infraestrutura oficial de produção**. O build e deploy oficiais são gerenciados exclusivamente por GitHub + Vercel.
 
@@ -29,11 +29,11 @@
 
 ### Projeto
 
-| Atributo | Valor |
-|----------|-------|
-| Project ID | `shllrynjuqtkdvmjjrqj` |
-| URL | `https://c--d9eeb228-0d67-489c-90e4-4386bd0d3438-prod.lovable.cloud` |
-| Região | us-east-1 (default) |
+| Atributo   | Valor                                                                |
+| ---------- | -------------------------------------------------------------------- |
+| Project ID | `shllrynjuqtkdvmjjrqj`                                               |
+| URL        | `https://c--d9eeb228-0d67-489c-90e4-4386bd0d3438-prod.lovable.cloud` |
+| Região     | us-east-1 (default)                                                  |
 
 > **Nota:** A URL atual é um proxy Lovable. Para produção, recomenda-se usar a URL direta do Supabase Dashboard (`https://shllrynjuqtkdvmjjrqj.supabase.co`).
 
@@ -74,11 +74,13 @@ DEV_MODE=true
 #### Pré-requisitos
 
 1. CLI do Supabase instalada:
+
    ```bash
    npm install -g supabase
    ```
 
 2. Acesso ao projeto (token de acesso):
+
    ```bash
    supabase login
    ```
@@ -98,11 +100,11 @@ O comando acima aplica todas as migrations em `supabase/migrations/` na ordem cr
 
 #### Ordem de Execução
 
-| Ordem | Migration | Descrição |
-|-------|-----------|-----------|
-| 1 | `20260704151014_...` | Schema base: profiles, portfolio_operations, triggers, auto-create profile |
-| 2 | `20260704151048_...` | Segurança: revoga EXECUTE de handle_new_user() de papéis públicos |
-| 3 | `20260706120000_...` | Extensão: asset_type, currency, api_import para operation_source |
+| Ordem | Migration            | Descrição                                                                  |
+| ----- | -------------------- | -------------------------------------------------------------------------- |
+| 1     | `20260704151014_...` | Schema base: profiles, portfolio_operations, triggers, auto-create profile |
+| 2     | `20260704151048_...` | Segurança: revoga EXECUTE de handle_new_user() de papéis públicos          |
+| 3     | `20260706120000_...` | Extensão: asset_type, currency, api_import para operation_source           |
 
 #### Verificação Pós-Bootstrap
 
@@ -125,11 +127,11 @@ SELECT relname, relrowsecurity FROM pg_class
 
 #### Resumo
 
-| Arquivo | Linhas | Status | Observação |
-|---------|--------|--------|------------|
-| `20260704151014_...sql` | 88 | ✅ Válida | Schema base completo |
-| `20260704151048_...sql` | 2 | ✅ Válida | Segurança — revoga EXECUTE |
-| `20260706120000_...sql` | 20 | ⚠️ Válida, com ressalvas | Ver abaixo |
+| Arquivo                 | Linhas | Status                   | Observação                 |
+| ----------------------- | ------ | ------------------------ | -------------------------- |
+| `20260704151014_...sql` | 88     | ✅ Válida                | Schema base completo       |
+| `20260704151048_...sql` | 2      | ✅ Válida                | Segurança — revoga EXECUTE |
+| `20260706120000_...sql` | 20     | ⚠️ Válida, com ressalvas | Ver abaixo                 |
 
 #### Observações sobre Migrations
 
@@ -198,14 +200,14 @@ supabase db push
 
 ### Status Atual
 
-| Item | Valor |
-|------|-------|
-| Migrations existentes | 3 (schema Lovable inicial) |
-| Tabelas cobertas | 2 (`profiles`, `portfolio_operations`) |
-| Tabelas necessárias (código) | 34 |
-| Views necessárias | 4 |
-| Tabelas a criar | **32** |
-| Enums a criar/estender | 2+ |
+| Item                         | Valor                                  |
+| ---------------------------- | -------------------------------------- |
+| Migrations existentes        | 3 (schema Lovable inicial)             |
+| Tabelas cobertas             | 2 (`profiles`, `portfolio_operations`) |
+| Tabelas necessárias (código) | 34                                     |
+| Views necessárias            | 4                                      |
+| Tabelas a criar              | **32**                                 |
+| Enums a criar/estender       | 2+                                     |
 
 ### Catálogo Completo de Tabelas
 
@@ -213,17 +215,17 @@ Legenda: ✅ = já existe na migration | ⬜ = precisa criar | 🔧 = precisa al
 
 #### Grupo 1 — Schema Base (já existe, inalterado)
 
-| Tabela | Padrão | Status | Descrição |
-|--------|--------|--------|-----------|
-| `profiles` | Normalizada | ✅ | Perfis de usuário (trigger on auth.users) |
-| `portfolio_operations` | Normalizada | ✅ | Operações de compra/venda |
+| Tabela                 | Padrão      | Status | Descrição                                 |
+| ---------------------- | ----------- | ------ | ----------------------------------------- |
+| `profiles`             | Normalizada | ✅     | Perfis de usuário (trigger on auth.users) |
+| `portfolio_operations` | Normalizada | ✅     | Operações de compra/venda                 |
 
 #### Grupo 2 — Assinaturas e Planos (normalizadas)
 
-| Tabela | Padrão | Status | Upsert Key | Descrição |
-|--------|--------|--------|------------|-----------|
-| `assinaturas` | Normalizada | ⬜ | `usuario_id` | Assinaturas de usuário |
-| `planos` | Normalizada | ⬜ | (nenhum) | Planos disponíveis |
+| Tabela        | Padrão      | Status | Upsert Key   | Descrição              |
+| ------------- | ----------- | ------ | ------------ | ---------------------- |
+| `assinaturas` | Normalizada | ⬜     | `usuario_id` | Assinaturas de usuário |
+| `planos`      | Normalizada | ⬜     | (nenhum)     | Planos disponíveis     |
 
 **Colunas de `assinaturas`:** `usuario_id TEXT PK, plano TEXT, data_ativacao TIMESTAMPTZ, data_expiracao TIMESTAMPTZ, recursos_liberados JSONB`
 
@@ -231,12 +233,12 @@ Legenda: ✅ = já existe na migration | ⬜ = precisa criar | 🔧 = precisa al
 
 #### Grupo 3 — Modelo Patrimonial (normalizadas)
 
-| Tabela | Padrão | Status | Upsert Key | Descrição |
-|--------|--------|--------|------------|-----------|
-| `assets` | Normalizada | ⬜ | `id` | Catálogo de ativos |
-| `declaracoes_fiscais` | Normalizada | ⬜ | `id` | Declarações fiscais anuais |
-| `metas_financeiras` | Normalizada | ⬜ | `usuario_id, meta_id` | Metas financeiras dos usuários |
-| `estrategias_configuracao` | Normalizada | ⬜ | `usuario_id` | Estratégia de alocação do usuário |
+| Tabela                     | Padrão      | Status | Upsert Key            | Descrição                         |
+| -------------------------- | ----------- | ------ | --------------------- | --------------------------------- |
+| `assets`                   | Normalizada | ⬜     | `id`                  | Catálogo de ativos                |
+| `declaracoes_fiscais`      | Normalizada | ⬜     | `id`                  | Declarações fiscais anuais        |
+| `metas_financeiras`        | Normalizada | ⬜     | `usuario_id, meta_id` | Metas financeiras dos usuários    |
+| `estrategias_configuracao` | Normalizada | ⬜     | `usuario_id`          | Estratégia de alocação do usuário |
 
 **Colunas de `assets`:** `id UUID PK, ticker TEXT UNIQUE, name TEXT, asset_type TEXT, is_active BOOLEAN, created_at TIMESTAMPTZ, updated_at TIMESTAMPTZ`
 
@@ -248,82 +250,82 @@ Legenda: ✅ = já existe na migration | ⬜ = precisa criar | 🔧 = precisa al
 
 #### Grupo 4 — Tabelas JSONB (id + dados + updated_at)
 
-| Tabela | Upsert Key | Colunas Extras | Descrição |
-|--------|------------|---------------|-----------|
-| `portfolios` | `id` | `usuario_id TEXT` | Carteiras de investimento |
-| `investor_profiles` | `id` | — | Perfis de investidor |
-| `investor_questionnaires` | `id` | — | Questionários de risco |
-| `investor_risk_results` | `id` | — | Resultados de risco |
-| `fixed_income` | `id` | — | Renda fixa |
-| `financial_goals` | `id` | — | Metas financeiras (JSONB) |
-| `foreign_assets` | `id` | — | Ativos internacionais |
-| `exchange_rates` | `id` | — | Taxas de câmbio |
-| `report_executions` | `id` | — | Execuções de relatório |
-| `report_schedules` | `id` | — | Agendamentos de relatório |
-| `glossary_terms` | `id` | — | Termos do glossário |
-| `tooltips` | `id` | — | Tooltips educacionais |
-| `learning_paths` | `id` | — | Trilhas de aprendizado |
-| `alert_rules` | `id` | — | Regras de alerta |
-| `alerts` | `dedup_key` | `dedup_key TEXT` | Alertas gerados |
-| `alert_deliveries` | `id` | — | Entregas de alerta |
-| `strategies` | `id` | — | Estratégias de backtest |
-| `backtests` | `id` | — | Execuções de backtest |
-| `simulation_results` | `id` | — | Resultados de simulação |
-| `backtest_snapshots` | `id` | — | Snapshots de backtest |
-| `comparison_sets` | `id` | — | Conjuntos de comparação |
-| `scorecards` | `id` | — | Scorecards |
-| `export_templates` | `id` | — | Templates de exportação |
-| `export_jobs` | `id` | — | Jobs de exportação |
-| `integrations` | `id` | — | Configurações de integração |
-| `sync_logs` | `id` | — | Logs de sincronização |
-| `import_jobs` | `id` | — | Jobs de importação |
+| Tabela                    | Upsert Key  | Colunas Extras    | Descrição                   |
+| ------------------------- | ----------- | ----------------- | --------------------------- |
+| `portfolios`              | `id`        | `usuario_id TEXT` | Carteiras de investimento   |
+| `investor_profiles`       | `id`        | —                 | Perfis de investidor        |
+| `investor_questionnaires` | `id`        | —                 | Questionários de risco      |
+| `investor_risk_results`   | `id`        | —                 | Resultados de risco         |
+| `fixed_income`            | `id`        | —                 | Renda fixa                  |
+| `financial_goals`         | `id`        | —                 | Metas financeiras (JSONB)   |
+| `foreign_assets`          | `id`        | —                 | Ativos internacionais       |
+| `exchange_rates`          | `id`        | —                 | Taxas de câmbio             |
+| `report_executions`       | `id`        | —                 | Execuções de relatório      |
+| `report_schedules`        | `id`        | —                 | Agendamentos de relatório   |
+| `glossary_terms`          | `id`        | —                 | Termos do glossário         |
+| `tooltips`                | `id`        | —                 | Tooltips educacionais       |
+| `learning_paths`          | `id`        | —                 | Trilhas de aprendizado      |
+| `alert_rules`             | `id`        | —                 | Regras de alerta            |
+| `alerts`                  | `dedup_key` | `dedup_key TEXT`  | Alertas gerados             |
+| `alert_deliveries`        | `id`        | —                 | Entregas de alerta          |
+| `strategies`              | `id`        | —                 | Estratégias de backtest     |
+| `backtests`               | `id`        | —                 | Execuções de backtest       |
+| `simulation_results`      | `id`        | —                 | Resultados de simulação     |
+| `backtest_snapshots`      | `id`        | —                 | Snapshots de backtest       |
+| `comparison_sets`         | `id`        | —                 | Conjuntos de comparação     |
+| `scorecards`              | `id`        | —                 | Scorecards                  |
+| `export_templates`        | `id`        | —                 | Templates de exportação     |
+| `export_jobs`             | `id`        | —                 | Jobs de exportação          |
+| `integrations`            | `id`        | —                 | Configurações de integração |
+| `sync_logs`               | `id`        | —                 | Logs de sincronização       |
+| `import_jobs`             | `id`        | —                 | Jobs de importação          |
 
 > **Schema padrão JSONB:** `id UUID PK DEFAULT gen_random_uuid(), dados JSONB NOT NULL, updated_at TIMESTAMPTZ DEFAULT now()`. Tabelas com `usuario_id` ou `dedup_key` adicionam coluna extra.
 
 #### Grupo 5 — Views (derivadas de tabelas existentes)
 
-| View | Descrição | Dados |
-|------|-----------|-------|
+| View            | Descrição                            | Dados                                                         |
+| --------------- | ------------------------------------ | ------------------------------------------------------------- |
 | `vw_patrimonio` | Patrimônio consolidado por portfolio | portfolio_id, patrimonio_total, investido, alocação, evolução |
-| `vw_posicoes` | Posições detalhadas por portfolio | ticker, quantidade, preço médio, valor total, rentabilidade |
-| `vw_historico` | Histórico patrimonial | data, patrimonio_total, investido |
-| `vw_proventos` | Proventos recebidos | ticker, tipo, valor, data_pagamento |
+| `vw_posicoes`   | Posições detalhadas por portfolio    | ticker, quantidade, preço médio, valor total, rentabilidade   |
+| `vw_historico`  | Histórico patrimonial                | data, patrimonio_total, investido                             |
+| `vw_proventos`  | Proventos recebidos                  | ticker, tipo, valor, data_pagamento                           |
 
 ### Enums
 
-| Enum | Valores Atuais | Valores Necessários | Status |
-|------|---------------|--------------------|--------|
-| `operation_side` | `buy, sell` | `buy, sell` | ✅ Ok |
-| `operation_source` | `manual, b3_import, pluggy, api_import` | `manual, b3_import, api_import` | ⚠️ `pluggy` não usado |
-| (novo) `asset_type_v2` | — | `stock, fii, bdr, etf, fixed_income, crypto, etf_internacional, stock_us, reit, other` | ⬜ Criar |
-| (novo) `subscription_status` | — | `ACTIVE, CANCELLED, EXPIRED` | ⬜ Criar |
-| (novo) `billing_status` | — | `PENDING, PAID, FAILED` | ⬜ Criar |
+| Enum                         | Valores Atuais                          | Valores Necessários                                                                    | Status                |
+| ---------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------- | --------------------- |
+| `operation_side`             | `buy, sell`                             | `buy, sell`                                                                            | ✅ Ok                 |
+| `operation_source`           | `manual, b3_import, pluggy, api_import` | `manual, b3_import, api_import`                                                        | ⚠️ `pluggy` não usado |
+| (novo) `asset_type_v2`       | —                                       | `stock, fii, bdr, etf, fixed_income, crypto, etf_internacional, stock_us, reit, other` | ⬜ Criar              |
+| (novo) `subscription_status` | —                                       | `ACTIVE, CANCELLED, EXPIRED`                                                           | ⬜ Criar              |
+| (novo) `billing_status`      | —                                       | `PENDING, PAID, FAILED`                                                                | ⬜ Criar              |
 
 ### Políticas RLS Necessárias
 
-| Tabela | Política | Regra |
-|--------|----------|-------|
-| Todas as tabelas com `usuario_id` | SELECT | `auth.uid() = usuario_id` |
-| Todas as tabelas com `usuario_id` | INSERT | `auth.uid() = usuario_id` |
-| Todas as tabelas com `usuario_id` | UPDATE | `auth.uid() = usuario_id` |
-| Todas as tabelas com `usuario_id` | DELETE | `auth.uid() = usuario_id` |
-| Tabelas JSONB sem `usuario_id` | SELECT | via `dados->>'userId'` ou similar |
+| Tabela                            | Política | Regra                             |
+| --------------------------------- | -------- | --------------------------------- |
+| Todas as tabelas com `usuario_id` | SELECT   | `auth.uid() = usuario_id`         |
+| Todas as tabelas com `usuario_id` | INSERT   | `auth.uid() = usuario_id`         |
+| Todas as tabelas com `usuario_id` | UPDATE   | `auth.uid() = usuario_id`         |
+| Todas as tabelas com `usuario_id` | DELETE   | `auth.uid() = usuario_id`         |
+| Tabelas JSONB sem `usuario_id`    | SELECT   | via `dados->>'userId'` ou similar |
 
 ### Índices Recomendados
 
-| Tabela | Índice | Tipo |
-|--------|--------|------|
-| `portfolio_operations` | `(user_id, ticker)` | B-tree (já existe) |
-| `portfolio_operations` | `(user_id, traded_at DESC)` | B-tree (já existe) |
-| `portsfolios` | `(dados->>'userId')` | GIN/btree |
-| `financial_goals` | `(dados->>'category')` | GIN/btree |
-| `financial_goals` | `(dados->>'status')` | GIN/btree |
-| `alerts` | `(dedup_key)` | UNIQUE (já existe via upsert) |
-| `alerts` | `(dados->>'userId')` | GIN/btree |
-| `alert_rules` | `(dados->>'userId')` | GIN/btree |
-| `import_jobs` | `(status)` | B-tree |
-| `import_jobs` | `(metadata->>'usuarioId')` | GIN/btree |
-| `declaracoes_fiscais` | `(portfolio_id, ano)` | B-tree |
+| Tabela                 | Índice                      | Tipo                          |
+| ---------------------- | --------------------------- | ----------------------------- |
+| `portfolio_operations` | `(user_id, ticker)`         | B-tree (já existe)            |
+| `portfolio_operations` | `(user_id, traded_at DESC)` | B-tree (já existe)            |
+| `portsfolios`          | `(dados->>'userId')`        | GIN/btree                     |
+| `financial_goals`      | `(dados->>'category')`      | GIN/btree                     |
+| `financial_goals`      | `(dados->>'status')`        | GIN/btree                     |
+| `alerts`               | `(dedup_key)`               | UNIQUE (já existe via upsert) |
+| `alerts`               | `(dados->>'userId')`        | GIN/btree                     |
+| `alert_rules`          | `(dados->>'userId')`        | GIN/btree                     |
+| `import_jobs`          | `(status)`                  | B-tree                        |
+| `import_jobs`          | `(metadata->>'usuarioId')`  | GIN/btree                     |
+| `declaracoes_fiscais`  | `(portfolio_id, ano)`       | B-tree                        |
 
 ### Estratégia de Migração Incremental
 
@@ -370,28 +372,28 @@ Ordem proposta (respeitando dependências):
 
 ### Dependências Entre Migrations
 
-| Migration | Depende de | Motivo |
-|-----------|-----------|--------|
-| `integrations` | Nenhuma | Tabela isolada |
-| `sync_logs` | `integrations` | FK lógica via `integrationId` |
-| `import_jobs` | Nenhuma | Tabela isolada |
-| `alerts` | `alert_rules` | FK lógica via `ruleId` |
-| `alert_deliveries` | `alerts` | FK lógica via `alertId` |
-| `scorecards` | `comparison_sets` | FK lógica via `comparisonSetId` |
-| `backtests` | `strategies` | FK lógica via `strategyId` |
-| `simulation_results` | `backtests` | FK lógica via `backtestId` |
-| `backtest_snapshots` | `backtests` | FK lógica via `snapshotId` |
-| `declaracoes_fiscais` | `portfolios` | FK via `portfolio_id` |
+| Migration             | Depende de        | Motivo                          |
+| --------------------- | ----------------- | ------------------------------- |
+| `integrations`        | Nenhuma           | Tabela isolada                  |
+| `sync_logs`           | `integrations`    | FK lógica via `integrationId`   |
+| `import_jobs`         | Nenhuma           | Tabela isolada                  |
+| `alerts`              | `alert_rules`     | FK lógica via `ruleId`          |
+| `alert_deliveries`    | `alerts`          | FK lógica via `alertId`         |
+| `scorecards`          | `comparison_sets` | FK lógica via `comparisonSetId` |
+| `backtests`           | `strategies`      | FK lógica via `strategyId`      |
+| `simulation_results`  | `backtests`       | FK lógica via `backtestId`      |
+| `backtest_snapshots`  | `backtests`       | FK lógica via `snapshotId`      |
+| `declaracoes_fiscais` | `portfolios`      | FK via `portfolio_id`           |
 
 > Nota: As FKs são lógicas (valores em JSONB), não constraints físicas. A ordem acima é recomendada para clareza, não imposta pelo banco.
 
 ### Correções Necessárias em Migrações Existentes
 
-| Migration | Problema | Correção Recomendada |
-|-----------|----------|---------------------|
+| Migration                       | Problema                                                                                             | Correção Recomendada                       |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | `20260706120000_add_asset_type` | CHECK constraint usa `'international'` mas domínio usa `'etf_internacional'`, `'stock_us'`, `'reit'` | Remover CHECK e usar constraint atualizada |
-| `20260706120000_add_asset_type` | Segundo UPDATE é redundante (`asset_type = 'stock'` onde já é `'stock'`) | Remover linha redundante |
-| `operation_source` ENUM | `'pluggy'` não é mais usado | Remover ou ignorar |
+| `20260706120000_add_asset_type` | Segundo UPDATE é redundante (`asset_type = 'stock'` onde já é `'stock'`)                             | Remover linha redundante                   |
+| `operation_source` ENUM         | `'pluggy'` não é mais usado                                                                          | Remover ou ignorar                         |
 
 ---
 

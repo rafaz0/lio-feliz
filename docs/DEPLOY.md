@@ -34,25 +34,25 @@ Todas as variáveis devem ser configuradas no Vercel Dashboard (Settings → Env
 
 ### Obrigatórias
 
-| Variável | Descrição | Origem |
-|----------|-----------|--------|
-| `NITRO_PRESET` | **`vercel`** — define o preset do Nitro para Vercel | Fixo (configurar no Vercel Dashboard) |
-| `SUPABASE_URL` | URL do projeto Supabase | Supabase Dashboard → Settings → API |
-| `SUPABASE_PUBLISHABLE_KEY` | Chave anônima do Supabase | Supabase Dashboard → Settings → API |
-| `BRAPI_TOKEN` | Token da API BRAPI | [brapi.dev](https://brapi.dev) → Dashboard |
-| `DEV_MODE` | `false` em produção | Sempre `false` em produção |
+| Variável                   | Descrição                                           | Origem                                     |
+| -------------------------- | --------------------------------------------------- | ------------------------------------------ |
+| `NITRO_PRESET`             | **`vercel`** — define o preset do Nitro para Vercel | Fixo (configurar no Vercel Dashboard)      |
+| `SUPABASE_URL`             | URL do projeto Supabase                             | Supabase Dashboard → Settings → API        |
+| `SUPABASE_PUBLISHABLE_KEY` | Chave anônima do Supabase                           | Supabase Dashboard → Settings → API        |
+| `BRAPI_TOKEN`              | Token da API BRAPI                                  | [brapi.dev](https://brapi.dev) → Dashboard |
+| `DEV_MODE`                 | `false` em produção                                 | Sempre `false` em produção                 |
 
 ### Opcionais
 
-| Variável | Descrição | Origem |
-|----------|-----------|--------|
+| Variável     | Descrição                        | Origem                                          |
+| ------------ | -------------------------------- | ----------------------------------------------- |
 | `SENTRY_DSN` | DSN do Sentry para monitoramento | Sentry Dashboard → Settings → Client Keys (DSN) |
 
 ### Stripe (para ambiente com pagamentos reais)
 
-| Variável | Descrição |
-|----------|-----------|
-| `STRIPE_SECRET_KEY` | Chave secreta do Stripe (começa com `sk_live_` ou `sk_test_`) |
+| Variável                             | Descrição                                                        |
+| ------------------------------------ | ---------------------------------------------------------------- |
+| `STRIPE_SECRET_KEY`                  | Chave secreta do Stripe (começa com `sk_live_` ou `sk_test_`)    |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Chave publicável do Stripe (começa com `pk_live_` ou `pk_test_`) |
 
 ---
@@ -63,12 +63,12 @@ O build usa o **Nitro** como engine de server-side. O preset determina o formato
 
 ### Comportamento
 
-| Ambiente | Preset | Configuração |
-|----------|--------|-------------|
-| **Local (dev)** | `cloudflare-module` | Default do `@lovable.dev/vite-tanstack-config`. `npm run dev` funciona normalmente. |
-| **Lovable sandbox** | `cloudflare-module` | Forçado pelo Lovable. Output em `dist/`. |
-| **Vercel (produção)** | `vercel` | Definido via `NITRO_PRESET=vercel` nas env vars do Vercel Dashboard. |
-| **Build local para Vercel** | `vercel` | `$env:NITRO_PRESET='vercel'; npm run build` (PowerShell) |
+| Ambiente                    | Preset              | Configuração                                                                        |
+| --------------------------- | ------------------- | ----------------------------------------------------------------------------------- |
+| **Local (dev)**             | `cloudflare-module` | Default do `@lovable.dev/vite-tanstack-config`. `npm run dev` funciona normalmente. |
+| **Lovable sandbox**         | `cloudflare-module` | Forçado pelo Lovable. Output em `dist/`.                                            |
+| **Vercel (produção)**       | `vercel`            | Definido via `NITRO_PRESET=vercel` nas env vars do Vercel Dashboard.                |
+| **Build local para Vercel** | `vercel`            | `$env:NITRO_PRESET='vercel'; npm run build` (PowerShell)                            |
 
 ### Sobre o Nitro Preset
 
@@ -94,13 +94,13 @@ Nitro v3 suporta auto-detecção do ambiente (`NITRO_PRESET`). Ao definir `NITRO
 
 A Vercel detectará automaticamente o `vercel.json` na raiz. Configurações:
 
-| Campo | Valor |
-|-------|-------|
-| **Build Command** | `npm run build` |
-| **Output Directory** | `dist` |
-| **Install Command** | `npm install` |
-| **Framework** | `null` (TanStack Start, detecção automática) |
-| **Regions** | `gru1` (São Paulo) |
+| Campo                | Valor                                        |
+| -------------------- | -------------------------------------------- |
+| **Build Command**    | `npm run build`                              |
+| **Output Directory** | `dist`                                       |
+| **Install Command**  | `npm install`                                |
+| **Framework**        | `null` (TanStack Start, detecção automática) |
+| **Regions**          | `gru1` (São Paulo)                           |
 
 ### 3. Configurar Variáveis de Ambiente
 

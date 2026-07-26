@@ -146,38 +146,38 @@ PI-018 EM ELABORAÇÃO. Plataforma de Demonstração, Perfis de Usuário e Ambie
 
 ### Documentação Prevista
 
-| Documento        | Finalidade                            | Status       |
-| ---------------- | ------------------------------------- | ------------ |
-| PI-004           | Arquitetura do Domínio Patrimonial    | ✅ Concluído |
-| ER-004           | Engineering Review da PI-004          | ✅ Aprovada  |
-| EWO-002          | Implementação do Domínio Patrimonial  | ✅ Concluída |
-| EWO-002-COVERAGE | Relatório de Cobertura Arquitetural   | ✅ Concluído |
-| PI-005           | Application Layer                     | ✅ Concluída |
-| ER-005           | Engineering Review da PI-005          | ✅ Aprovada  |
-| EWO-003          | Implementação da Application Layer    | ✅ Concluída |
-| PI-006           | Infrastructure Layer                  | ✅ Concluída |
-| ER-006           | Engineering Review da PI-006          | ✅ Aprovada  |
-| EWO-004          | Implementação da Infrastructure Layer | ✅ Concluída |
-| PI-012           | Platform Completion & Production Readiness | ✅ Aprovada |
-| ER-012           | Engineering Review da PI-012          | ✅ Aprovada  |
-| EWO-015          | Implementação da Comercialização (Bloco C) | ✅ Concluída |
-| PI-013           | Platform Maturity & Intelligence (Onda 8) | ✅ Aprovada |
-| ER-013           | Engineering Review da PI-013          | ✅ Aprovada  |
-| EWO-016          | Production Deployment (Bloco A)       | ✅ Concluída |
-| EWO-017          | UX Excellence (Bloco B)               | ✅ Concluída |
-| EWO-018          | Intelligence Layer (Bloco C)          | ✅ Concluída |
-| EWO-019          | Feature Completion (Bloco D)          | ✅ Concluída |
-| EWO-020          | Licensing & Access (Bloco E)          | ✅ Concluída |
-| PI-013           | Platform Maturity & Intelligence      | ✅ CONCLUÍDA |
-| PI-014           | Product Evolution & Module Unification | ▶️ Em elaboração |
-| EWO-021          | Module Infrastructure Components       | ✅ Concluída |
-| EWO-022          | Migração do Módulo Análise             | ✅ Concluída |
-| MODULE_ARCHITECTURE.md | Guia oficial de arquitetura modular | ✅ Criado |
-| USER_FLOWS.md | Mapeamento de fluxos de navegação | ✅ Criado |
-| PERSONAL_FINANCE_ARCHITECTURE.md | Arquitetura da Gestão Financeira | ✅ Criado |
-| APPLICATION_STATES.md | Estados operacionais da aplicação | ✅ Criado |
-| DEPLOY.md | Documentação de deploy | ✅ Criado |
-| INFRASTRUCTURE.md | Documentação de infraestrutura | ✅ Criado |
+| Documento                        | Finalidade                                 | Status           |
+| -------------------------------- | ------------------------------------------ | ---------------- |
+| PI-004                           | Arquitetura do Domínio Patrimonial         | ✅ Concluído     |
+| ER-004                           | Engineering Review da PI-004               | ✅ Aprovada      |
+| EWO-002                          | Implementação do Domínio Patrimonial       | ✅ Concluída     |
+| EWO-002-COVERAGE                 | Relatório de Cobertura Arquitetural        | ✅ Concluído     |
+| PI-005                           | Application Layer                          | ✅ Concluída     |
+| ER-005                           | Engineering Review da PI-005               | ✅ Aprovada      |
+| EWO-003                          | Implementação da Application Layer         | ✅ Concluída     |
+| PI-006                           | Infrastructure Layer                       | ✅ Concluída     |
+| ER-006                           | Engineering Review da PI-006               | ✅ Aprovada      |
+| EWO-004                          | Implementação da Infrastructure Layer      | ✅ Concluída     |
+| PI-012                           | Platform Completion & Production Readiness | ✅ Aprovada      |
+| ER-012                           | Engineering Review da PI-012               | ✅ Aprovada      |
+| EWO-015                          | Implementação da Comercialização (Bloco C) | ✅ Concluída     |
+| PI-013                           | Platform Maturity & Intelligence (Onda 8)  | ✅ Aprovada      |
+| ER-013                           | Engineering Review da PI-013               | ✅ Aprovada      |
+| EWO-016                          | Production Deployment (Bloco A)            | ✅ Concluída     |
+| EWO-017                          | UX Excellence (Bloco B)                    | ✅ Concluída     |
+| EWO-018                          | Intelligence Layer (Bloco C)               | ✅ Concluída     |
+| EWO-019                          | Feature Completion (Bloco D)               | ✅ Concluída     |
+| EWO-020                          | Licensing & Access (Bloco E)               | ✅ Concluída     |
+| PI-013                           | Platform Maturity & Intelligence           | ✅ CONCLUÍDA     |
+| PI-014                           | Product Evolution & Module Unification     | ▶️ Em elaboração |
+| EWO-021                          | Module Infrastructure Components           | ✅ Concluída     |
+| EWO-022                          | Migração do Módulo Análise                 | ✅ Concluída     |
+| MODULE_ARCHITECTURE.md           | Guia oficial de arquitetura modular        | ✅ Criado        |
+| USER_FLOWS.md                    | Mapeamento de fluxos de navegação          | ✅ Criado        |
+| PERSONAL_FINANCE_ARCHITECTURE.md | Arquitetura da Gestão Financeira           | ✅ Criado        |
+| APPLICATION_STATES.md            | Estados operacionais da aplicação          | ✅ Criado        |
+| DEPLOY.md                        | Documentação de deploy                     | ✅ Criado        |
+| INFRASTRUCTURE.md                | Documentação de infraestrutura             | ✅ Criado        |
 
 ### Observações Relevantes
 
@@ -955,13 +955,13 @@ Após a definição da plataforma oficial:
 
 ### Pendências Oficiais
 
-| ID | Descrição | Prioridade |
-|----|-----------|------------|
-| TD-DEPLOY-001 | Definir plataforma oficial de hospedagem | Alta |
-| TD-DEPLOY-002 | Configurar deploy automático na plataforma escolhida | Alta |
-| TD-DEPLOY-003 | Configurar secrets/credenciais no repositório GitHub | Alta |
-| TD-DEPLOY-004 | Remover configuração provisória do Cloudflare Workers | Média |
-| TD-E2E-INFRA-001 | Configurar ambiente para testes E2E (Supabase) | Média |
+| ID               | Descrição                                             | Prioridade |
+| ---------------- | ----------------------------------------------------- | ---------- |
+| TD-DEPLOY-001    | Definir plataforma oficial de hospedagem              | Alta       |
+| TD-DEPLOY-002    | Configurar deploy automático na plataforma escolhida  | Alta       |
+| TD-DEPLOY-003    | Configurar secrets/credenciais no repositório GitHub  | Alta       |
+| TD-DEPLOY-004    | Remover configuração provisória do Cloudflare Workers | Média      |
+| TD-E2E-INFRA-001 | Configurar ambiente para testes E2E (Supabase)        | Média      |
 
 ---
 
@@ -1286,18 +1286,18 @@ O relatório final deverá reproduzir este checklist com o status de cada item.
 
 Uma EWO somente poderá ser considerada concluída quando atender **todos** os critérios abaixo:
 
-| # | Critério | Descrição |
-|---|----------|-----------|
-| 1 | Build | `npm run build` — sem erros |
-| 2 | Lint | `npm run lint` — 0 erros |
-| 3 | Testes | `npx vitest run` — sem regressões |
-| 4 | Push | `git push` — confirmado no remoto |
-| 5 | Working Tree | `git status` — limpa |
-| 6 | Validação funcional | Comportamento verificado nos cenários aplicáveis |
-| 7 | Confirmação visual | Quando aplicável, inspeção visual da interface |
-| 8 | Documentação | Documentos pertinentes atualizados |
-| 9 | Relatório | Relatório final emitido conforme padrão |
-| 10 | HEAD | Hash do commit registrado |
+| #   | Critério            | Descrição                                        |
+| --- | ------------------- | ------------------------------------------------ |
+| 1   | Build               | `npm run build` — sem erros                      |
+| 2   | Lint                | `npm run lint` — 0 erros                         |
+| 3   | Testes              | `npx vitest run` — sem regressões                |
+| 4   | Push                | `git push` — confirmado no remoto                |
+| 5   | Working Tree        | `git status` — limpa                             |
+| 6   | Validação funcional | Comportamento verificado nos cenários aplicáveis |
+| 7   | Confirmação visual  | Quando aplicável, inspeção visual da interface   |
+| 8   | Documentação        | Documentos pertinentes atualizados               |
+| 9   | Relatório           | Relatório final emitido conforme padrão          |
+| 10  | HEAD                | Hash do commit registrado                        |
 
 Nenhum critério pode ser suprimido. Se qualquer critério não for atendido, a EWO permanece com status **Pendente de Encerramento**.
 

@@ -51,6 +51,7 @@ Criar um novo domínio denominado **Gestão Financeira**, completamente independ
 Adicionar contas, receitas e despesas como sub-módulos da Carteira.
 
 **Rejeitada** porque:
+
 - Mistura responsabilidades de investimento com finanças pessoais.
 - Aumenta a complexidade do módulo Carteira.
 - Obriga todos os usuários a terem dados financeiros mesmo que não queiram.
@@ -60,6 +61,7 @@ Adicionar contas, receitas e despesas como sub-módulos da Carteira.
 Manter dois bounded contexts separados com integração opcional.
 
 **Escolhida** porque:
+
 - Preserva a simplicidade e foco da Carteira.
 - Permite evolução independente.
 - Usuários escolhem se querem ou não a funcionalidade.
@@ -70,6 +72,7 @@ Manter dois bounded contexts separados com integração opcional.
 Criar os componentes dentro da Carteira mas escondê-los por configuração.
 
 **Rejeitada** porque:
+
 - Código financeiro misturado com código de investimentos.
 - Dificulta manutenção e testes.
 - Maior risco de regressão na Carteira.

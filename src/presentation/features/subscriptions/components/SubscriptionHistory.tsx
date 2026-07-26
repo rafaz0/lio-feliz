@@ -19,16 +19,37 @@ export function SubscriptionHistory({ userId }: SubscriptionHistoryProps) {
         userId,
       } as IQuery);
       if (r instanceof Error) throw r;
-      return r as { subscriptions: Array<{ subscriptionId: string; planName: string; status: string; startDate: string; endDate: string | null }>; billingCycles: Array<{ id: string; periodStart: string; periodEnd: string; amount: number; status: string }> };
+      return r as {
+        subscriptions: Array<{
+          subscriptionId: string;
+          planName: string;
+          status: string;
+          startDate: string;
+          endDate: string | null;
+        }>;
+        billingCycles: Array<{
+          id: string;
+          periodStart: string;
+          periodEnd: string;
+          amount: number;
+          status: string;
+        }>;
+      };
     },
   });
 
   if (isLoading) {
-    return <div className="py-4 text-center text-sm text-muted-foreground">Carregando historico...</div>;
+    return (
+      <div className="py-4 text-center text-sm text-muted-foreground">Carregando historico...</div>
+    );
   }
 
   if (!data || data.subscriptions.length === 0) {
-    return <div className="py-4 text-center text-sm text-muted-foreground">Nenhum historico encontrado.</div>;
+    return (
+      <div className="py-4 text-center text-sm text-muted-foreground">
+        Nenhum historico encontrado.
+      </div>
+    );
   }
 
   return (
@@ -53,9 +74,13 @@ export function SubscriptionHistory({ userId }: SubscriptionHistoryProps) {
           <h4 className="mb-2 text-sm font-medium">Ciclos de Faturamento</h4>
           <div className="space-y-1">
             {data.billingCycles.map((c) => (
-              <div key={c.id} className="flex items-center justify-between rounded border px-3 py-2 text-xs">
+              <div
+                key={c.id}
+                className="flex items-center justify-between rounded border px-3 py-2 text-xs"
+              >
                 <span>
-                  {new Date(c.periodStart).toLocaleDateString("pt-BR")} — {new Date(c.periodEnd).toLocaleDateString("pt-BR")}
+                  {new Date(c.periodStart).toLocaleDateString("pt-BR")} —{" "}
+                  {new Date(c.periodEnd).toLocaleDateString("pt-BR")}
                 </span>
                 <span className={c.status === "PAID" ? "text-green-600" : "text-red-600"}>
                   {c.status}

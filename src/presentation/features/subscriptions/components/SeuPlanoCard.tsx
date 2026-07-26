@@ -31,23 +31,14 @@ export function SeuPlanoCard({ userId }: SeuPlanoCardProps) {
       <div className="mt-2 flex items-center gap-2">
         <span className="text-lg font-semibold">{planName}</span>
         {sub ? (
-          <SubscriptionStatusBadge
-            status={sub.status}
-            isActive={sub.isActive}
-          />
+          <SubscriptionStatusBadge status={sub.status} isActive={sub.isActive} />
         ) : (
           <SubscriptionStatusBadge status="FREE" />
         )}
       </div>
-      {sub && (
-        <p className="mt-1 text-xs text-muted-foreground">
-          Desde {sub.startDate}
-        </p>
-      )}
+      {sub && <p className="mt-1 text-xs text-muted-foreground">Desde {sub.startDate}</p>}
       {isFree && (
-        <p className="mt-1 text-xs text-muted-foreground">
-          Plano gratuito com recursos basicos.
-        </p>
+        <p className="mt-1 text-xs text-muted-foreground">Plano gratuito com recursos basicos.</p>
       )}
       <a
         href="/assinaturas"

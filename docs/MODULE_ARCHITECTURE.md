@@ -25,10 +25,10 @@ Um módulo funcional representa uma área temática da aplicação. Diferente do
 
 ### Módulos Implementados
 
-| Módulo | Rota | Abas | Referência |
-|--------|------|------|------------|
-| Carteira | `/carteira` | 12 abas | ✅ Piloto |
-| Análise | `/analise` | 7 abas | ✅ Segundo módulo |
+| Módulo   | Rota        | Abas    | Referência        |
+| -------- | ----------- | ------- | ----------------- |
+| Carteira | `/carteira` | 12 abas | ✅ Piloto         |
+| Análise  | `/analise`  | 7 abas  | ✅ Segundo módulo |
 
 ---
 
@@ -82,16 +82,18 @@ Menu Superior (link direto)
 **Responsabilidade:** Layout padrão de página-módulo. Compõe breadcrumb, header, tabs e conteúdo.
 
 **Props:**
-| Prop | Tipo | Obrigatório | Descrição |
-|------|------|-------------|-----------|
-| `title` | `string` | Sim | Título do módulo |
-| `description` | `string` | Não | Descrição exibida abaixo do título |
-| `breadcrumbs` | `BreadcrumbItem[]` | Sim | Itens do breadcrumb |
-| `tabs` | `ModuleTab[]` | Não | Abas de navegação interna |
-| `action` | `ReactNode` | Não | Elemento de ação no header |
-| `children` | `ReactNode` | Sim | Conteúdo (Outlet ou seções) |
+
+| Prop          | Tipo               | Obrigatório | Descrição                          |
+| ------------- | ------------------ | ----------- | ---------------------------------- |
+| `title`       | `string`           | Sim         | Título do módulo                   |
+| `description` | `string`           | Não         | Descrição exibida abaixo do título |
+| `breadcrumbs` | `BreadcrumbItem[]` | Sim         | Itens do breadcrumb                |
+| `tabs`        | `ModuleTab[]`      | Não         | Abas de navegação interna          |
+| `action`      | `ReactNode`        | Não         | Elemento de ação no header         |
+| `children`    | `ReactNode`        | Sim         | Conteúdo (Outlet ou seções)        |
 
 **Uso:**
+
 ```tsx
 <ModuleLayout
   title="Carteira"
@@ -116,6 +118,7 @@ Menu Superior (link direto)
 **Responsabilidade:** Navegação contextual com ícone Home + links + último item inativo.
 
 **Regras:**
+
 - Primeiro item é sempre o link "Início" (`/`)
 - Itens intermediários são links clicáveis
 - O último item é texto não-clicável
@@ -127,6 +130,7 @@ Menu Superior (link direto)
 **Responsabilidade:** Navegação interna do módulo via abas. Utiliza `useLocation()` do TanStack Router para determinar aba ativa.
 
 **Regras:**
+
 - Abas usam `Link` do TanStack Router para navegação
 - Aba ativa é destacada com `bg-background text-foreground shadow-sm`
 - Suporta `aria-selected` e `role="tablist"` para acessibilidade
@@ -182,13 +186,13 @@ src/routes/
 
 ### Nomenclatura
 
-| Item | Padrão | Exemplo |
-|------|--------|---------|
-| Rota principal | `[module].tsx` | `carteira.tsx` |
-| Rota índice | `[module].index.tsx` | `carteira.index.tsx` |
-| Sub-página | `[module].[subpage].tsx` | `carteira.patrimonio.tsx` |
-| Componente do módulo | PascalCase | `ModuleLayout`, `ModuleTabs` |
-| Tab label | Curto, descritivo | "Patrimônio", não "Visão Patrimonial Completa" |
+| Item                 | Padrão                   | Exemplo                                        |
+| -------------------- | ------------------------ | ---------------------------------------------- |
+| Rota principal       | `[module].tsx`           | `carteira.tsx`                                 |
+| Rota índice          | `[module].index.tsx`     | `carteira.index.tsx`                           |
+| Sub-página           | `[module].[subpage].tsx` | `carteira.patrimonio.tsx`                      |
+| Componente do módulo | PascalCase               | `ModuleLayout`, `ModuleTabs`                   |
+| Tab label            | Curto, descritivo        | "Patrimônio", não "Visão Patrimonial Completa" |
 
 ### Organização
 
@@ -226,7 +230,9 @@ Quando uma sub-página ainda não possui implementação completa:
     <h3 className="text-sm font-medium text-foreground">Título</h3>
     <p className="mt-1 max-w-xs text-xs text-muted-foreground">Descrição do placeholder.</p>
     <Button asChild variant="outline" size="sm" className="mt-4 gap-1.5">
-      <Link to="/rota-existente"><ExternalLink className="size-3.5" /> Versão completa</Link>
+      <Link to="/rota-existente">
+        <ExternalLink className="size-3.5" /> Versão completa
+      </Link>
     </Button>
   </div>
 </ModuleSection>
@@ -298,13 +304,13 @@ A biblioteca `src/components/experience/` contém componentes reutilizáveis de 
 
 ### Componentes Disponíveis
 
-| Componente | Arquivo | Finalidade | Props principais |
-|-----------|---------|------------|------------------|
-| `ContextPanel` | `context-panel.tsx` | Painel lateral com seções de informação contextual | `sections`, `title` |
-| `QuickActions` | `quick-actions.tsx` | Grade de atalhos para navegação | `items`, `columns` |
-| `RelatedLinks` | `related-links.tsx` | Lista de links relacionados | `items`, `title` |
-| `RecentActivity` | `recent-activity.tsx` | Timeline de atividades recentes | `items`, `maxItems` |
-| `SmartHints` | `smart-hints.tsx` | Dicas/banners contextuais dispensáveis | `hints`, `dismissible` |
+| Componente       | Arquivo               | Finalidade                                         | Props principais       |
+| ---------------- | --------------------- | -------------------------------------------------- | ---------------------- |
+| `ContextPanel`   | `context-panel.tsx`   | Painel lateral com seções de informação contextual | `sections`, `title`    |
+| `QuickActions`   | `quick-actions.tsx`   | Grade de atalhos para navegação                    | `items`, `columns`     |
+| `RelatedLinks`   | `related-links.tsx`   | Lista de links relacionados                        | `items`, `title`       |
+| `RecentActivity` | `recent-activity.tsx` | Timeline de atividades recentes                    | `items`, `maxItems`    |
+| `SmartHints`     | `smart-hints.tsx`     | Dicas/banners contextuais dispensáveis             | `hints`, `dismissible` |
 
 ### Regras de Uso (R-EXP)
 

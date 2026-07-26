@@ -11,6 +11,7 @@
 **PI:** PI-016
 
 **Documentos relacionados:**
+
 - `ADR-009` — Decisão arquitetural de separação Carteira / Gestão Financeira
 - `USER_FLOWS.md` — Fluxos de navegação da plataforma
 - `APPLICATION_STATES.md` — Estados operacionais (Dashboard, Visitante, Demo, etc.)
@@ -34,29 +35,29 @@ Ele atua como um **domínio superior** que engloba e contextualiza os investimen
 
 ### Carteira (Domínio Existente)
 
-| Área | Descrição |
-|------|-----------|
-| Investimentos | Posição consolidada de ativos (ações, FIIs, BDRs, ETFs, stocks) |
-| Proventos | Dividendos, JCP, rendimentos recebidos e projetados |
-| Rentabilidade | Retorno vs. benchmarks (IBOV, IDIV, IFIX) |
-| IRPF | Apuração mensal de imposto de renda |
-| Rebalanceamento | Ajuste de alocação por classe/setor |
-| Cobertura | Cobertura de proventos sobre despesas |
-| Metas de investimento | Metas patrimoniais da carteira |
+| Área                  | Descrição                                                       |
+| --------------------- | --------------------------------------------------------------- |
+| Investimentos         | Posição consolidada de ativos (ações, FIIs, BDRs, ETFs, stocks) |
+| Proventos             | Dividendos, JCP, rendimentos recebidos e projetados             |
+| Rentabilidade         | Retorno vs. benchmarks (IBOV, IDIV, IFIX)                       |
+| IRPF                  | Apuração mensal de imposto de renda                             |
+| Rebalanceamento       | Ajuste de alocação por classe/setor                             |
+| Cobertura             | Cobertura de proventos sobre despesas                           |
+| Metas de investimento | Metas patrimoniais da carteira                                  |
 
 ### Gestão Financeira (Novo Domínio)
 
-| Área | Descrição |
-|------|-----------|
-| Contas bancárias | Múltiplas contas, saldos, instituições |
-| Caixa | Saldo disponível para movimentação |
-| Receitas | Salários, freelas, rendimentos externos |
-| Despesas | Categorizadas por tipo, fixas vs. variáveis |
-| Fluxo de caixa | Entradas vs. saídas mensais |
-| Dívidas | Cartão de crédito, empréstimos, parcelamentos |
-| Financiamentos | Casa, carro, etc. com saldo devedor e parcelas |
-| Patrimônio líquido | Ativos - Passivos (visão consolidada) |
-| Patrimônio global | Carteira + Imóveis + Caixa + Outros ativos |
+| Área               | Descrição                                      |
+| ------------------ | ---------------------------------------------- |
+| Contas bancárias   | Múltiplas contas, saldos, instituições         |
+| Caixa              | Saldo disponível para movimentação             |
+| Receitas           | Salários, freelas, rendimentos externos        |
+| Despesas           | Categorizadas por tipo, fixas vs. variáveis    |
+| Fluxo de caixa     | Entradas vs. saídas mensais                    |
+| Dívidas            | Cartão de crédito, empréstimos, parcelamentos  |
+| Financiamentos     | Casa, carro, etc. com saldo devedor e parcelas |
+| Patrimônio líquido | Ativos - Passivos (visão consolidada)          |
+| Patrimônio global  | Carteira + Imóveis + Caixa + Outros ativos     |
 
 ---
 
@@ -93,19 +94,19 @@ Ativar Gestão Financeira Integrada
 
 ### Comportamento
 
-| Estado | Efeito |
-|--------|--------|
-| **Desativada** (padrão) | Nenhuma funcionalidade da Carteira muda. A Gestão Financeira não aparece na navegação. |
-| **Ativada** | A Carteira poderá sincronizar dados com o Patrimônio Global. Origens de recursos ficam disponíveis nas operações. O Dashboard exibe visão consolidada. |
+| Estado                  | Efeito                                                                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Desativada** (padrão) | Nenhuma funcionalidade da Carteira muda. A Gestão Financeira não aparece na navegação.                                                                 |
+| **Ativada**             | A Carteira poderá sincronizar dados com o Patrimônio Global. Origens de recursos ficam disponíveis nas operações. O Dashboard exibe visão consolidada. |
 
 ### Flag de Configuração
 
 ```typescript
 interface FinanceIntegrationConfig {
-  enabled: boolean;               // Ativado/desativado
-  autoSync: boolean;              // Sincronizar automaticamente
-  includeInvestments: boolean;    // Incluir carteira no PL
-  defaultIncomeSource: string;    // Origem padrão para compras
+  enabled: boolean; // Ativado/desativado
+  autoSync: boolean; // Sincronizar automaticamente
+  includeInvestments: boolean; // Incluir carteira no PL
+  defaultIncomeSource: string; // Origem padrão para compras
 }
 ```
 
@@ -154,17 +155,18 @@ Toda operação de compra na Carteira **poderá** informar a origem do recurso u
 
 ### Origens Suportadas
 
-| Origem | Descrição |
-|--------|-----------|
-| `caixa` | Saldo disponível na Gestão Financeira |
-| `conta_bancaria` | Transferência de conta bancária específica |
-| `venda_ativo` | Recurso proveniente de venda de outro ativo |
-| `receita_externa` | Aporte externo (salário, freela, etc.) |
-| `outro` | Origem não categorizada |
+| Origem            | Descrição                                   |
+| ----------------- | ------------------------------------------- |
+| `caixa`           | Saldo disponível na Gestão Financeira       |
+| `conta_bancaria`  | Transferência de conta bancária específica  |
+| `venda_ativo`     | Recurso proveniente de venda de outro ativo |
+| `receita_externa` | Aporte externo (salário, freela, etc.)      |
+| `outro`           | Origem não categorizada                     |
 
 ### Rastreabilidade
 
 A origem do recurso permitirá:
+
 - Rastrear para onde o dinheiro foi (compra de ativos)
 - Rastrear de onde o dinheiro veio (venda de ativos, receitas)
 - Calcular fluxo de caixa consolidado (entradas vs. saídas)
@@ -176,17 +178,17 @@ A origem do recurso permitirá:
 
 ### Indicadores Previstos
 
-| Indicador | Fórmula | Fonte |
-|-----------|---------|-------|
-| Patrimônio líquido | Ativos totais - Passivos totais | Gestão Financeira + Carteira |
-| Patrimônio bruto | Soma de todos os ativos | Gestão Financeira + Carteira |
-| Patrimônio investido | Total aplicado na Carteira | Carteira |
-| Caixa | Saldo disponível | Gestão Financeira |
-| Renda fixa | Total em renda fixa | Carteira + Gestão Financeira |
-| Renda variável | Total em ações, FIIs, stocks | Carteira |
-| Imóveis | Valor estimado de imóveis | Gestão Financeira |
-| Financiamentos | Saldo devedor total | Gestão Financeira |
-| Passivos | Dívidas + financiamentos | Gestão Financeira |
+| Indicador            | Fórmula                         | Fonte                        |
+| -------------------- | ------------------------------- | ---------------------------- |
+| Patrimônio líquido   | Ativos totais - Passivos totais | Gestão Financeira + Carteira |
+| Patrimônio bruto     | Soma de todos os ativos         | Gestão Financeira + Carteira |
+| Patrimônio investido | Total aplicado na Carteira      | Carteira                     |
+| Caixa                | Saldo disponível                | Gestão Financeira            |
+| Renda fixa           | Total em renda fixa             | Carteira + Gestão Financeira |
+| Renda variável       | Total em ações, FIIs, stocks    | Carteira                     |
+| Imóveis              | Valor estimado de imóveis       | Gestão Financeira            |
+| Financiamentos       | Saldo devedor total             | Gestão Financeira            |
+| Passivos             | Dívidas + financiamentos        | Gestão Financeira            |
 
 ### Cálculo do Patrimônio Líquido
 

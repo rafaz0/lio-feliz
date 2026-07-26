@@ -28,21 +28,21 @@ Com esta EWO, a **PI-017 encontra-se integralmente materializada**.
 
 ## 2. Módulos Entregues
 
-| Módulo | EWOs | Domain | Application | Infrastructure | Presentation |
-|--------|------|--------|-------------|---------------|-------------|
-| Contas + Caixa | EWO-041 | ✅ BankAccount, CashTransaction, AccountType, TransactionType, BankAccountId, TransactionId | ✅ 5 services, 3 commands, 2 queries | ✅ FakeBankAccountRepository, FakeCashTransactionRepository | ✅ Resumo, Contas, Movimentações |
-| Receitas + Despesas | EWO-042 | ✅ IncomeEntry, ExpenseEntry, IncomeCategory, ExpenseCategory, IncomeId, ExpenseId | ✅ 4 services, 2 commands, 2 queries | ✅ FakeIncomeRepository, FakeExpenseRepository | ✅ Receitas, Despesas |
-| Integração Carteira | EWO-043 | ✅ FinanceIntegrationConfig, SyncOperationEvent | ✅ FinanceIntegrationService, NullFinanceIntegrationService, IFinanceIntegrationService | — | — |
-| Dívidas | EWO-044 | ✅ Debt, DebtType, DebtId | ✅ 2 services, 1 command, 1 query | ✅ FakeDebtRepository | ✅ Dívidas |
-| Patrimônio Global | EWO-045 | — (apenas tipos de visão) | ✅ GetGlobalWealthService, GlobalWealthDto | — | ✅ Patrimônio |
+| Módulo              | EWOs    | Domain                                                                                      | Application                                                                             | Infrastructure                                              | Presentation                     |
+| ------------------- | ------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------- |
+| Contas + Caixa      | EWO-041 | ✅ BankAccount, CashTransaction, AccountType, TransactionType, BankAccountId, TransactionId | ✅ 5 services, 3 commands, 2 queries                                                    | ✅ FakeBankAccountRepository, FakeCashTransactionRepository | ✅ Resumo, Contas, Movimentações |
+| Receitas + Despesas | EWO-042 | ✅ IncomeEntry, ExpenseEntry, IncomeCategory, ExpenseCategory, IncomeId, ExpenseId          | ✅ 4 services, 2 commands, 2 queries                                                    | ✅ FakeIncomeRepository, FakeExpenseRepository              | ✅ Receitas, Despesas            |
+| Integração Carteira | EWO-043 | ✅ FinanceIntegrationConfig, SyncOperationEvent                                             | ✅ FinanceIntegrationService, NullFinanceIntegrationService, IFinanceIntegrationService | —                                                           | —                                |
+| Dívidas             | EWO-044 | ✅ Debt, DebtType, DebtId                                                                   | ✅ 2 services, 1 command, 1 query                                                       | ✅ FakeDebtRepository                                       | ✅ Dívidas                       |
+| Patrimônio Global   | EWO-045 | — (apenas tipos de visão)                                                                   | ✅ GetGlobalWealthService, GlobalWealthDto                                              | —                                                           | ✅ Patrimônio                    |
 
 ---
 
 ## 3. ADRs Produzidos
 
-| ADR | Decisão | Status |
-|-----|---------|--------|
-| ADR-017-001 | Arquitetura de Integração entre Carteira e Gestão Financeira | ✅ Criado |
+| ADR         | Decisão                                                           | Status    |
+| ----------- | ----------------------------------------------------------------- | --------- |
+| ADR-017-001 | Arquitetura de Integração entre Carteira e Gestão Financeira      | ✅ Criado |
 | ADR-017-002 | Política Arquitetural de Feature Flags e FinanceIntegrationConfig | ✅ Criado |
 
 ### Regras Institucionalizadas
@@ -56,24 +56,24 @@ Com esta EWO, a **PI-017 encontra-se integralmente materializada**.
 
 ## 4. Qualidade
 
-| Aspecto | Resultado |
-|---------|-----------|
-| Lint | 0 errors |
-| Testes | 139 suites, 1091 testes, 0 regressões |
-| Build | ✅ Green |
+| Aspecto                | Resultado                                               |
+| ---------------------- | ------------------------------------------------------- |
+| Lint                   | 0 errors                                                |
+| Testes                 | 139 suites, 1091 testes, 0 regressões                   |
+| Build                  | ✅ Green                                                |
 | Cobertura arquitetural | 4 camadas × 5 módulos = 20 camadas/modulo implementadas |
 
 ---
 
 ## 5. Decisões Arquiteturais Relevantes
 
-| Decisão | Justificativa |
-|---------|---------------|
-| IncomeEntry/ExpenseEntry como entidades separadas | Propriedades diferentes (recurrence, dueDate, paidAt) — não cabiam em CashTransaction |
-| Debt como entidade separada | outstandingBalance, monthlyPayment, interestRate — propriedades exclusivas |
-| FinanceIntegrationConfig como objeto (não booleano) | Extensibilidade futura sem breaking changes (ADR-017-002) |
-| FinanceIntegrationService com Null variant | Zero overhead quando feature flag desativada (ADR-017-001) |
-| GetGlobalWealthService como agregador (não proprietário) | Nenhum dado duplicado — apenas leitura dos repositórios existentes |
+| Decisão                                                  | Justificativa                                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| IncomeEntry/ExpenseEntry como entidades separadas        | Propriedades diferentes (recurrence, dueDate, paidAt) — não cabiam em CashTransaction |
+| Debt como entidade separada                              | outstandingBalance, monthlyPayment, interestRate — propriedades exclusivas            |
+| FinanceIntegrationConfig como objeto (não booleano)      | Extensibilidade futura sem breaking changes (ADR-017-002)                             |
+| FinanceIntegrationService com Null variant               | Zero overhead quando feature flag desativada (ADR-017-001)                            |
+| GetGlobalWealthService como agregador (não proprietário) | Nenhum dado duplicado — apenas leitura dos repositórios existentes                    |
 
 ---
 
