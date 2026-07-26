@@ -10,14 +10,7 @@ interface KpiCardProps {
   className?: string;
 }
 
-export function KpiCard({
-  label,
-  value,
-  tone,
-  muted,
-  dominant,
-  className,
-}: KpiCardProps) {
+export function KpiCard({ label, value, tone, muted, dominant, className }: KpiCardProps) {
   return (
     <div
       className={cn(

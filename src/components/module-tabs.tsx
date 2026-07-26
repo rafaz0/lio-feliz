@@ -19,10 +19,7 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
 
   return (
     <nav
-      className={cn(
-        "flex gap-0.5 overflow-x-auto rounded-lg bg-muted p-0.5",
-        className,
-      )}
+      className={cn("flex gap-0.5 overflow-x-auto rounded-lg bg-muted p-0.5", className)}
       role="tablist"
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
     >

@@ -372,5 +372,3 @@ function PatrimonioPage() {
     </div>
   );
 }
-
-
