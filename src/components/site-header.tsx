@@ -76,9 +76,9 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-2 px-4 text-base md:gap-4">
-        <Link to="/" className="flex items-center gap-2 text-base font-semibold tracking-tight">
-          <LineChart className="size-5 text-primary" />
+      <div className="mx-auto flex h-12 max-w-[1400px] items-center gap-1.5 px-3 text-sm md:gap-3 md:px-4">
+        <Link to="/" className="flex items-center gap-1.5 text-sm font-semibold tracking-tight">
+          <LineChart className="size-4 text-primary" />
           <span>Investidor Pro</span>
         </Link>
 
@@ -167,11 +167,11 @@ export function SiteHeader() {
         </Sheet>
 
         {/* Desktop nav — outside Sheet so DropdownMenu is not inside Dialog context */}
-        <nav className="hidden items-center gap-1 text-base text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-0.5 text-sm text-muted-foreground md:flex">
           {user && (
             <Link
               to="/dashboard"
-              className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+              className="rounded px-2 py-1 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
               activeOptions={{ exact: false }}
             >
               Dashboard
@@ -180,7 +180,7 @@ export function SiteHeader() {
           {user && (
             <Link
               to="/assinaturas"
-              className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+              className="rounded px-2 py-1 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
               activeOptions={{ exact: false }}
             >
               Meu Plano
@@ -188,27 +188,27 @@ export function SiteHeader() {
           )}
           <Link
             to="/"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+            className="rounded px-2 py-1 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
             activeOptions={{ exact: true }}
           >
             Mercado
           </Link>
           <Link
             to="/carteira"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+            className="rounded px-2 py-1 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
             activeOptions={{ exact: false }}
           >
             Carteira
           </Link>
           <Link
             to="/dividendos"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+            className="rounded px-2 py-1 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
           >
             Dividendos
           </Link>
           <Link
             to="/analise"
-            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+            className="rounded px-2 py-1 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
             activeOptions={{ exact: false }}
           >
             Análise
@@ -216,7 +216,7 @@ export function SiteHeader() {
           {user && (
             <Link
               to="/finance"
-              className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+              className="rounded px-2 py-1 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
               activeOptions={{ exact: false }}
             >
               Finanças
@@ -224,8 +224,8 @@ export function SiteHeader() {
           )}
         </nav>
 
-        <div className="relative ml-auto w-full max-w-[140px] md:max-w-[180px]">
-          <Search className="pointer-events-none absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
+        <div className="relative ml-auto w-full max-w-[120px] md:max-w-[150px]">
+          <Search className="pointer-events-none absolute left-2 top-2 size-3.5 text-muted-foreground" />
           <Input
             value={q}
             onChange={(e) => setQ(e.target.value)}
@@ -235,7 +235,7 @@ export function SiteHeader() {
             }}
             placeholder="Buscar ticker (PETR4, VALE3…)"
             autoComplete="off"
-            className="h-9 pl-8 uppercase placeholder:normal-case"
+            className="h-8 pl-7 text-xs uppercase placeholder:normal-case"
           />
           {q.trim() && matches.length > 0 && (
             <div className="absolute inset-x-0 top-11 z-50 overflow-hidden rounded-md border border-border bg-popover shadow-lg">

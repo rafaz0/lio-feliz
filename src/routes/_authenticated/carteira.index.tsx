@@ -338,15 +338,14 @@ function PortfolioOverview() {
             </Button>
           }
         />
-        <Button
-          variant="outline"
-          className="gap-2"
+        <button
           onClick={() => queryClient.invalidateQueries({ queryKey: ["quotes"] })}
           disabled={quotesQuery.isFetching || tickers.length === 0}
+          className="rounded-md border p-1.5 text-muted-foreground transition hover:bg-secondary hover:text-foreground disabled:opacity-50"
+          title="Atualizar cotações"
         >
-          <RefreshCw className={"size-4 " + (quotesQuery.isFetching ? "animate-spin" : "")} />
-          Atualizar cotações
-        </Button>
+          <RefreshCw className={"size-3.5 " + (quotesQuery.isFetching ? "animate-spin" : "")} />
+        </button>
         <Button variant="outline" asChild className="gap-2">
           <Link to="/irpf">
             <AlertTriangle className="size-4" /> IRPF
