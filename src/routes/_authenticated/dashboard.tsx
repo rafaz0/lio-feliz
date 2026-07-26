@@ -18,16 +18,12 @@ import { useSession } from "@/hooks/use-session";
 import { DemoBadge } from "@/components/demo-badge";
 import { isDemoSession } from "@/seed/demo-session";
 import { SiteHeader } from "@/components/site-header";
-import {
-  ContextPanel,
-  RelatedLinks as RelatedLinksComponent,
-  RecentActivity,
-  SmartHints,
-} from "@/components/experience";
+import { ContextPanel, RecentActivity, SmartHints } from "@/components/experience";
+import type { QuickActionItem } from "@/components/experience";
 import type { RelatedLinkItem } from "@/components/experience";
 import type { RecentActivityItem } from "@/components/experience";
 import type { SmartHint } from "@/components/experience";
-import { DashboardView } from "@/presentation/features/dashboard";
+import { DashboardView, useDashboardQuery } from "@/presentation/features/dashboard";
 import {
   toDashboardViewModel,
   type DashboardViewModel,
