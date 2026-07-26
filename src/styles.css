@@ -53,7 +53,9 @@
 
 /* Default (dark) — this app is dark-first, always dark. */
 :root {
-  --radius: 0.5rem;
+  --radius: 0.625rem;
+  --gap-section: 2rem;
+  --gap-card: 1rem;
 
   --background: oklch(0.16 0.012 250);
   --foreground: oklch(0.96 0.005 250);
@@ -188,4 +190,13 @@
 @utility tabular {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
+}
+
+/* --- Financial number typography --- */
+@utility financial {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings:
+    "tnum" on,
+    "zero" on;
+  letter-spacing: -0.02em;
 }
