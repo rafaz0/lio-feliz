@@ -119,6 +119,8 @@ import type { CancelarAssinaturaCommand } from "@/application/commands/cancelar-
 import type { RenovarAssinaturaCommand } from "@/application/commands/renovar-assinatura";
 import type { AlterarPlanoCommand } from "@/application/commands/alterar-plano";
 import type { IniciarTrialCommand } from "@/application/commands/iniciar-trial";
+import { CheckoutService } from "@/application/services/checkout-service";
+import type { IniciarCheckoutCommand } from "@/application/commands/iniciar-checkout";
 import type { VerificarAcessoCommand } from "@/application/commands/verificar-acesso";
 import { ResponderQuestionarioService } from "@/application/services/responder-questionario-service";
 import { CalcularPerfilService } from "@/application/services/calcular-perfil-service";
@@ -554,6 +556,14 @@ export function createPresentationDispatcher({
         command as CancelarAssinaturaCommand,
       ),
     );
+
+    if (paymentGateway) {
+      const checkoutService = new CheckoutService(subscriptionRepository, paymentGateway);
+
+      dispatcher.RegisterCommand("IniciarCheckoutCommand", (command) =>
+        checkoutService.Execute(command as IniciarCheckoutCommand),
+      );
+    }
 
     dispatcher.RegisterCommand("VerificarAcessoCommand", (command) =>
       new VerificarAcessoService(subscriptionRepository).Execute(command as VerificarAcessoCommand),

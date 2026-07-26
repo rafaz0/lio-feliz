@@ -18,6 +18,7 @@ export type {
 } from "./metas";
 export type { ConfiguracoesDto } from "./configuracoes";
 export type { AssinaturaAtualizadaDto } from "./assinatura";
+export type { CheckoutDto, CheckoutStatus } from "./checkout";
 export type { DadosExportadosDto } from "./exportacao";
 export type { EstrategiaConfiguradaDto } from "./estrategia";
 export type { RebalanceamentoExecutadoDto } from "./rebalanceamento-executado";

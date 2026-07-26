@@ -283,6 +283,7 @@ export type {
   ComparacaoPlanosDto,
   FeatureDto,
   PlanoComparacaoDto,
+  CheckoutDto,
   InvestidorPerfilCompletoDto,
   InvestorProfileDto,
   RiskResultDto,
