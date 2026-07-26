@@ -7,6 +7,9 @@ export { SubscriptionTimeline } from "./components/SubscriptionTimeline";
 export { SubscriptionStatusBadge } from "./components/SubscriptionStatusBadge";
 export { SeuPlanoCard } from "./components/SeuPlanoCard";
 export { DevPaymentControls } from "./components/DevPaymentControls";
+export { PlanDetailCard } from "./components/PlanDetailCard";
+export { SubscriptionActions } from "./components/SubscriptionActions";
+export { CancelConfirmDialog } from "./components/CancelConfirmDialog";
 export { usePlansQuery, useSubscriptionQuery } from "./hooks/use-subscriptions-query";
 export {
   useSubscribeMutation,
