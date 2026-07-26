@@ -14,7 +14,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { AlertTriangle, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
+import { AlertTriangle, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
 import { KPIGrid } from "@/components/domain/kpi-grid";
 import { InsightPanel } from "@/components/domain/insight-panel";
