@@ -28,9 +28,14 @@ import type { RelatedLinkItem } from "@/components/experience";
 import type { RecentActivityItem } from "@/components/experience";
 import type { SmartHint } from "@/components/experience";
 import { DashboardView } from "@/presentation/features/dashboard";
+import {
+  toDashboardViewModel,
+  type DashboardViewModel,
+} from "@/presentation/features/dashboard/types/dashboard.view-model";
+import type { PatrimonioDto, AlocacaoDto } from "@/application/dtos";
+import type { HistoricoPatrimonialDto } from "@/application/dtos/historico";
 import { SeuPlanoCard, PremiumBadge } from "@/presentation/features/subscriptions";
 import { useAuth } from "@/presentation/features/auth";
-import { useDashboardQuery } from "@/presentation/features/dashboard/hooks/use-dashboard-query";
 import { useDashboardInsights } from "@/presentation/features/intelligence";
 import type { InsightViewModel } from "@/presentation/features/intelligence/types/intelligence.types";
 import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
@@ -302,8 +307,36 @@ function DashboardPage() {
     lastDividend,
   ]);
 
+  const viewModelFromPortfolio = useMemo<DashboardViewModel | null>(() => {
+    if (!portfolio) return null;
+    const patrimonio: PatrimonioDto = {
+      patrimonioTotal: portfolio.totalValue,
+      patrimonioInvestido: portfolio.totalInvested,
+      saldoDisponivel: 0,
+      moeda: "BRL",
+      dataReferencia: new Date(),
+      evolucaoMensal: portfolio.totalInvested > 0 ? portfolio.totalPnlPct : 0,
+      alocacao: portfolio.typeAllocation.map((t) => ({
+        classe: t.type,
+        valor: t.value,
+        percentual: t.pct,
+      })),
+    };
+    const historico: HistoricoPatrimonialDto = {
+      portfolioId,
+      periodo: { inicio: new Date(0), fim: new Date() },
+      pontos: history.map((h) => ({
+        data: new Date(h.date),
+        patrimonioTotal: h.value,
+        patrimonioInvestido: h.invested,
+      })),
+    };
+    return toDashboardViewModel(patrimonio, historico);
+  }, [portfolio, portfolioId, history]);
+
   const { viewModel } = useDashboardQuery(portfolioId);
-  const insights = useDashboardInsights(viewModel ?? null);
+  const viewModelToUse = viewModelFromPortfolio ?? viewModel;
+  const insights = useDashboardInsights(viewModelToUse ?? null);
   const navigate = useMemo(() => (to: string) => router.navigate({ to }), [router]);
 
   const hints: SmartHint[] = useMemo(() => {
@@ -360,7 +393,7 @@ function DashboardPage() {
 
         {/* Nível 2: KPIs + Gráficos — área principal */}
         <div className="mb-8 space-y-5">
-          <DashboardView portfolioId={portfolioId} />
+          <DashboardView portfolioId={portfolioId} viewModelOverride={viewModelFromPortfolio} />
         </div>
 
         {/* Nível 3: Informações complementares */}

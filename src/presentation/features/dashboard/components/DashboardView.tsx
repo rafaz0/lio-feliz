@@ -14,10 +14,18 @@ import type { NotFoundError } from "@/application/errors/application-error";
 
 interface DashboardViewProps {
   portfolioId: string;
+  viewModelOverride?: DashboardViewModel | null;
 }
 
-export function DashboardView({ portfolioId }: DashboardViewProps) {
-  const { viewModel, isLoading, isError, error, refetch } = useDashboardQuery(portfolioId);
+export function DashboardView({ portfolioId, viewModelOverride }: DashboardViewProps) {
+  const {
+    viewModel: queryViewModel,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useDashboardQuery(portfolioId);
+  const viewModel = viewModelOverride ?? queryViewModel;
   const insights = useDashboardInsights(viewModel);
   const { selected, setRange } = useTimeRange();
 
