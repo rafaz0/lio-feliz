@@ -51,7 +51,7 @@ function usePositions() {
 }
 
 export function ProventosContent() {
-  const { tickers, isLoading } = usePositions();
+  const { ops, tickers, isLoading } = usePositions();
   const fetchProj = useServerFn(getRealProjections);
 
   const projQuery = useQuery({
@@ -60,7 +60,36 @@ export function ProventosContent() {
     enabled: tickers.length > 0,
     staleTime: 3_600_000,
   });
-  const projections: RealProjection[] = projQuery.data ?? [];
+  const apiProjections: RealProjection[] = projQuery.data ?? [];
+
+  // Fallback: when BRAPI/Yahoo projections are unavailable, use the user's
+  // manually registered dividend operations to build a basic projection set.
+  const projections = useMemo<RealProjection[]>(() => {
+    if (apiProjections.length > 0) return apiProjections;
+    if (!ops) return [];
+    const dividendOps = ops.filter((o) => o.side === "dividend");
+    if (dividendOps.length === 0) return [];
+    const byTicker: Record<string, { ticker: string; name: string; total: number; lastDate: string }> = {};
+    for (const op of dividendOps) {
+      const cur = byTicker[op.ticker] ?? {
+        ticker: op.ticker,
+        name: op.ticker,
+        total: 0,
+        lastDate: op.traded_at.slice(0, 10),
+      };
+      cur.total += op.quantity * op.price;
+      if (op.traded_at.slice(0, 10) > cur.lastDate) cur.lastDate = op.traded_at.slice(0, 10);
+      byTicker[op.ticker] = cur;
+    }
+    return Object.values(byTicker).map((entry) => ({
+      ticker: entry.ticker,
+      name: entry.ticker,
+      amount: entry.total,
+      paymentDate: entry.lastDate,
+      declaredDate: entry.lastDate,
+      type: "dividendo" as const,
+    }));
+  }, [apiProjections, ops]);
   const [cutoffDays, setCutoffDays] = useState(90);
   const [despesas, setDespesas] = useState<number>(0);
 

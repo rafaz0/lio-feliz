@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
@@ -56,6 +56,11 @@ export function OperationsContent() {
     }
   }, [isLoading, ops]);
 
+  const tradeOps = useMemo(() => {
+    if (!ops) return ops;
+    return ops.filter((o) => o.side === "buy" || o.side === "sell");
+  }, [ops]);
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -95,7 +100,7 @@ export function OperationsContent() {
         <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-6 text-center">
           <p className="text-sm text-destructive">Erro ao carregar operações.</p>
         </div>
-      ) : !ops || ops.length === 0 ? (
+      ) : !tradeOps || tradeOps.length === 0 ? (
         <div className="rounded-lg border border-dashed border-border bg-card p-10 text-center">
           <p className="text-sm text-muted-foreground">Nenhuma operação registrada ainda.</p>
         </div>
@@ -116,7 +121,7 @@ export function OperationsContent() {
                 </tr>
               </thead>
               <tbody>
-                {ops.map((o) => (
+                {tradeOps.map((o) => (
                   <tr key={o.id} className="border-t border-border hover:bg-surface">
                     <td className="px-4 py-2.5 text-muted-foreground">{formatDate(o.traded_at)}</td>
                     <td className="px-4 py-2.5">
@@ -130,27 +135,15 @@ export function OperationsContent() {
                     </td>
                     <td className="px-4 py-2.5">
                       <span
-                        className={
-                          "rounded px-2 py-0.5 text-xs font-medium " +
-                          (o.side === "buy"
-                            ? "bg-positive/15 text-positive"
-                            : o.side === "sell"
-                              ? "bg-negative/15 text-negative"
-                              : o.side === "dividend"
-                                ? "bg-chart-3/15 text-chart-3"
-                                : "bg-chart-5/15 text-chart-5")
-                        }
-                      >
-                        {o.side === "buy"
-                          ? "Compra"
-                          : o.side === "sell"
-                            ? "Venda"
-                            : o.side === "dividend"
-                              ? o.metadata?.tipo_provento === "jcp"
-                                ? "JCP"
-                                : "Dividendo"
-                              : "Bonificação"}
-                      </span>
+                         className={
+                           "rounded px-2 py-0.5 text-xs font-medium " +
+                           (o.side === "buy"
+                             ? "bg-positive/15 text-positive"
+                             : "bg-negative/15 text-negative")
+                         }
+                       >
+                         {o.side === "buy" ? "Compra" : "Venda"}
+                       </span>
                     </td>
                     <td className="tabular px-4 py-2.5 text-right">{formatQty(o.quantity)}</td>
                     <td className="tabular px-4 py-2.5 text-right">

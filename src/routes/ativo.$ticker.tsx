@@ -1,6 +1,23 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, BarChart3, CalendarDays, Info, Plus, Target, TrendingUp } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import {
+  Activity,
+  ArrowLeft,
+  BarChart3,
+  CalendarDays,
+  ChartArea,
+  Clock,
+  Database,
+  HelpCircle,
+  Info,
+  Plus,
+  Star,
+  Target,
+  TrendingUp,
+  Waves,
+} from "lucide-react";
 import {
   Area,
   Bar,
@@ -1379,12 +1396,12 @@ function AssetPage() {
                     <div className="space-y-1 text-sm">
                       <div className="flex items-center justify-between">
                         <span className="text-muted-foreground">Scorecard</span>
-                        <span className="font-medium">{scorecardScore.total.toFixed(0)}/100</span>
+                        <span className="font-medium">{scorecardScore.score.toFixed(0)}/100</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-muted-foreground">Rating</span>
-                        <span className={`font-medium ${ratingColor(scorecardScore.total)}`}>
-                          {ratingLabel(scorecardScore.total)}
+                        <span className={`font-medium ${ratingColor(scorecardScore.rating)}`}>
+                          {ratingLabel(scorecardScore.rating)}
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
