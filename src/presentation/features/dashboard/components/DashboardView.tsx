@@ -40,22 +40,27 @@ export function DashboardView({ portfolioId, viewModelOverride }: DashboardViewP
     });
   }, [viewModel, selected]);
 
-  if (isLoading) {
-    return <DashboardLoading />;
-  }
+  /* Quando viewModelOverride é fornecido (ex: dados via consolidatePortfolio),
+     ignoramos os estados de loading/empty do dispatcher para evitar conflito
+     entre a fonte de dados operacional e a consulta via Supabase. */
+  if (viewModelOverride === undefined) {
+    if (isLoading) return <DashboardLoading />;
 
-  const isNotFound =
-    isError &&
-    error &&
-    "resourceType" in error &&
-    (error as NotFoundError).resourceType === "Portfolio";
+    const isNotFound =
+      isError &&
+      error &&
+      "resourceType" in error &&
+      (error as NotFoundError).resourceType === "Portfolio";
 
-  if (isNotFound || (!isLoading && !viewModel && !isError)) {
-    return <DashboardEmpty />;
-  }
+    if (isNotFound || (!isLoading && !queryViewModel && !isError)) {
+      return <DashboardEmpty />;
+    }
 
-  if (isError || !viewModel) {
-    return <DashboardError message={"Não foi possível carregar o dashboard."} onRetry={refetch} />;
+    if (isError || !queryViewModel) {
+      return (
+        <DashboardError message={"Não foi possível carregar o dashboard."} onRetry={refetch} />
+      );
+    }
   }
 
   const patrimonioInsights = insights.filter((i) => i.category === "patrimonio");
