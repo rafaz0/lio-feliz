@@ -38,14 +38,15 @@ function parseCookies(cookieHeader: string | null): Record<string, string> {
 }
 
 /**
- * Custom auth middleware that supports both Authorization header and cookie-based auth.
+ * Custom auth middleware with demo session detection.
  *
  * Auth resolution order:
- *   1. Authorization header (Bearer token) — API clients, SSR
- *   2. `lio-auth-token` cookie — browser-based auth fallback (standard deployment)
- *   3. DEV_MODE=true — dev bypass (local development)
+ *   1. `lio_demo_session` cookie → demo mode (no Supabase needed)
+ *   2. Authorization header (Bearer token) — API clients, SSR
+ *   3. `lio-auth-token` cookie — browser-based auth fallback
+ *   4. DEV_MODE=true — dev bypass (local development)
  *
- * Provides context: { supabase, userId, claims }
+ * Provides context: { supabase, userId, claims, demoSessionId }
  */
 export const requireAuth = createMiddleware({ type: "function" }).server(
   async ({ next }) => {
@@ -59,6 +60,27 @@ export const requireAuth = createMiddleware({ type: "function" }).server(
         ...(!SUPABASE_PUBLISHABLE_KEY ? ["SUPABASE_PUBLISHABLE_KEY"] : []),
       ].join(", ");
       throw new Error(`Missing Supabase environment variable(s): ${missing}.`);
+    }
+
+    const request = getRequest();
+    let demoSessionId = "";
+
+    // Check demo session cookie first (works in all environments, no Supabase needed)
+    if (request) {
+      const cookies = parseCookies(request.headers.get("cookie"));
+      demoSessionId = cookies["lio_demo_session"] ?? "";
+      if (demoSessionId && demoSessionId.startsWith("demo-")) {
+        return next({
+          context: {
+            supabase: createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+              global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
+            }),
+            userId: demoSessionId,
+            claims: { sub: demoSessionId },
+            demoSessionId,
+          } as any,
+        });
+      }
     }
 
     // DEV_MODE bypass
@@ -76,7 +98,6 @@ export const requireAuth = createMiddleware({ type: "function" }).server(
 
     // Extract token from Authorization header or cookie
     let token = "";
-    const request = getRequest();
 
     if (request) {
       const authHeader = request.headers.get("authorization") ?? "";

@@ -63,6 +63,12 @@ export function isDemoMode(): boolean {
 export const listOperations = createServerFn({ method: "GET" })
   .middleware([requireAuth])
   .handler(async ({ context }): Promise<Operation[]> => {
+    const demoSessionId = (context as any).demoSessionId as string | undefined;
+
+    if (demoSessionId) {
+      return DEMO_STORES.get(demoSessionId) ?? [];
+    }
+
     if (process.env.DEV_MODE === "true") return DEV_STORE;
 
     const { data, error } = await context.supabase
@@ -98,6 +104,31 @@ export const createOperation = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     const asset_type: AssetType = data.asset_type ?? inferAssetType(data.ticker);
     const currency: Currency = data.currency ?? "BRL";
+    const demoSessionId = (context as any).demoSessionId as string | undefined;
+
+    if (demoSessionId) {
+      const store = DEMO_STORES.get(demoSessionId);
+      if (store) {
+        store.unshift({
+          id: crypto.randomUUID(),
+          ticker: data.ticker,
+          asset_type,
+          currency,
+          side: data.side,
+          quantity: data.quantity,
+          price: data.price,
+          fee: data.fee ?? 0,
+          irrf: data.irrf ?? 0,
+          other_costs: data.other_costs ?? 0,
+          metadata: (data.metadata ?? null) as Operation["metadata"],
+          traded_at: data.traded_at,
+          source: "manual",
+          notes: data.notes ?? null,
+          created_at: new Date().toISOString(),
+        });
+      }
+      return { ok: true };
+    }
 
     if (process.env.DEV_MODE === "true") {
       DEV_STORE.unshift({
@@ -144,6 +175,17 @@ export const deleteOperation = createServerFn({ method: "POST" })
   .middleware([requireAuth])
   .validator(z.object({ id: z.string().uuid() }))
   .handler(async ({ data, context }) => {
+    const demoSessionId = (context as any).demoSessionId as string | undefined;
+
+    if (demoSessionId) {
+      const store = DEMO_STORES.get(demoSessionId);
+      if (store) {
+        const idx = store.findIndex((o) => o.id === data.id);
+        if (idx >= 0) store.splice(idx, 1);
+      }
+      return { ok: true };
+    }
+
     if (process.env.DEV_MODE === "true") {
       const idx = DEV_STORE.findIndex((o) => o.id === data.id);
       if (idx >= 0) DEV_STORE.splice(idx, 1);
@@ -161,16 +203,20 @@ export const deleteOperation = createServerFn({ method: "POST" })
 export const syncPendingDividends = createServerFn({ method: "POST" })
   .middleware([requireAuth])
   .handler(async ({ context }) => {
-    const ops =
-      process.env.DEV_MODE === "true"
-        ? [...DEV_STORE]
-        : await (async () => {
-            const { data } = await context.supabase
-              .from("portfolio_operations")
-              .select("*")
-              .order("traded_at");
-            return (data ?? []) as Operation[];
-          })();
+    const demoSessionId = (context as any).demoSessionId as string | undefined;
+
+    // Demo sessions skip sync — seed data already includes dividend operations
+    if (demoSessionId) return { ok: true, count: 0, details: [] };
+
+    const ops = process.env.DEV_MODE === "true"
+      ? [...DEV_STORE]
+      : await (async () => {
+          const { data } = await context.supabase
+            .from("portfolio_operations")
+            .select("*")
+            .order("traded_at");
+          return (data ?? []) as Operation[];
+        })();
 
     const tickers = new Set<string>();
     for (const op of ops) {

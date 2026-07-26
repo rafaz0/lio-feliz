@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { Sparkles, TimerOff } from "lucide-react";
 import { AuthLayout } from "@/presentation/shared/components/layout/AuthLayout";
 import { GuestRoute } from "@/presentation/features/auth";
@@ -11,6 +12,7 @@ import {
   wasDemoSessionExpired,
   clearDemoExpiredFlag,
 } from "@/seed/demo-session";
+import { initDemoSessionStore } from "@/seed/demo-server";
 
 export const Route = createFileRoute("/__auth/login")({
   component: LoginPage,
@@ -19,6 +21,8 @@ export const Route = createFileRoute("/__auth/login")({
 function LoginPage() {
   const router = useRouter();
   const [expiredBanner, setExpiredBanner] = useState(false);
+  const [demoPending, setDemoPending] = useState(false);
+  const seedStore = useServerFn(initDemoSessionStore);
 
   useEffect(() => {
     if (wasDemoSessionExpired()) {
@@ -27,8 +31,14 @@ function LoginPage() {
     }
   }, []);
 
-  function startDemo() {
-    createDemoSession();
+  async function startDemo() {
+    setDemoPending(true);
+    const { sessionId } = createDemoSession();
+    try {
+      await seedStore({ data: { sessionId } });
+    } catch {
+      // Seed is best-effort; demo still works with empty store
+    }
     router.invalidate();
     window.location.href = "/dashboard";
   }
@@ -51,8 +61,8 @@ function LoginPage() {
             <span>ou</span>
             <span className="h-px flex-1 bg-border" />
           </div>
-          <Button variant="outline" className="w-full gap-2" onClick={startDemo}>
-            <Sparkles className="size-4" /> Experimentar sem cadastro
+          <Button variant="outline" className="w-full gap-2" onClick={startDemo} disabled={demoPending}>
+            <Sparkles className="size-4" /> {demoPending ? "Preparando..." : "Experimentar sem cadastro"}
           </Button>
         </div>
         <p className="mt-4 text-center text-sm text-muted-foreground">

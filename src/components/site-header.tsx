@@ -256,7 +256,7 @@ export function SiteHeader() {
           )}
         </div>
 
-        {user ? (
+        {user && !isDemoSession() ? (
           <>
             <SyncIndicatorConnected userId={user?.id ?? "dev-user-0000"} />
             <NotificationPanelWrapper userId={user?.id ?? "dev-user-0000"} />
@@ -267,7 +267,6 @@ export function SiteHeader() {
                   <span className="grid size-7 place-items-center rounded-full bg-primary/15 text-primary">
                     <User className="size-4" />
                   </span>
-                  {isDemoSession() && <DemoBadge />}
                   <span className="hidden text-sm md:inline">
                     {user.user_metadata?.display_name ?? user.email?.split("@")[0]}
                   </span>
@@ -295,6 +294,40 @@ export function SiteHeader() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+          </>
+        ) : user && isDemoSession() ? (
+          <>
+            <ThemeToggle />
+            <div className="flex items-center gap-2">
+              <DemoBadge />
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="gap-1">
+                    <span className="hidden text-sm md:inline">Modo Demo</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-52">
+                  <DropdownMenuLabel className="text-xs text-muted-foreground">
+                    Sessão demonstrativa
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/register" className="flex items-center gap-2">
+                      <User className="size-4" /> Criar Conta
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/login" className="flex items-center gap-2">
+                      <LogOut className="size-4" /> Entrar
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive">
+                    <LogOut className="size-4" /> Sair da Demonstração
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </>
         ) : (
           <>

@@ -9,6 +9,15 @@ export interface DemoSession {
   expiresAt: number;
 }
 
+function setDemoCookie(sessionId: string, expiresAt: number): void {
+  const maxAge = Math.round((expiresAt - Date.now()) / 1000);
+  document.cookie = `lio_demo_session=${sessionId}; path=/; max-age=${maxAge}; SameSite=Lax`;
+}
+
+function removeDemoCookie(): void {
+  document.cookie = "lio_demo_session=; path=/; max-age=0; SameSite=Lax";
+}
+
 export function isDemoSession(): boolean {
   if (typeof window === "undefined") return false;
   const sessionId = window.localStorage.getItem(DEMO_SESSION_KEY);
@@ -41,6 +50,7 @@ export function createDemoSession(): DemoSession {
   if (typeof window !== "undefined") {
     window.localStorage.setItem(DEMO_SESSION_KEY, sessionId);
     window.localStorage.setItem(DEMO_EXPIRY_KEY, String(expiresAt));
+    setDemoCookie(sessionId, expiresAt);
   }
   return { sessionId, expiresAt };
 }
@@ -49,6 +59,8 @@ export function clearDemoSession(): void {
   if (typeof window !== "undefined") {
     window.localStorage.removeItem(DEMO_SESSION_KEY);
     window.localStorage.removeItem(DEMO_EXPIRY_KEY);
+    window.localStorage.removeItem(DEMO_EXPIRED_FLAG);
+    removeDemoCookie();
   }
 }
 

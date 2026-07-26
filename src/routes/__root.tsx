@@ -16,6 +16,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "@/presentation/app/root";
 import { SupabaseAuthService } from "@/integrations/supabase/auth-service";
 import { createPresentationDispatcher } from "@/integrations/dispatcher/presentation-dispatcher";
+import { isDemoSession, getDemoSession } from "@/seed/demo-session";
 import { SupabaseProjectionRepository } from "@/infrastructure/repositories/supabase-projection-repository";
 import { SupabasePortfolioRepository } from "@/infrastructure/repositories/supabase-portfolio-repository";
 import { SupabaseConfigurationRepository } from "@/infrastructure/repositories/supabase-configuration-repository";
@@ -153,7 +154,18 @@ function RootComponent() {
       if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
     });
 
+    const syncDemoSessionCookie = () => {
+      if (isDemoSession()) {
+        const demo = getDemoSession();
+        if (demo) {
+          const maxAge = Math.round((demo.expiresAt - Date.now()) / 1000);
+          document.cookie = `lio_demo_session=${demo.sessionId}; path=/; max-age=${maxAge}; SameSite=Lax`;
+        }
+      }
+    };
+
     syncTokenToCookie();
+    syncDemoSessionCookie();
 
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
