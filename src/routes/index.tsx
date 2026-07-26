@@ -12,6 +12,7 @@ import {
   Newspaper,
   PiggyBank,
   Search,
+  Sparkles,
   Star,
   Target,
   TrendingUp,
@@ -30,6 +31,8 @@ import { MARKET_INDICES, formatIndexValue } from "@/lib/market-indices";
 import { getQuotes } from "@/lib/quotes.functions";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
 import { useSession } from "@/hooks/use-session";
+import { InsightCard } from "@/presentation/features/intelligence";
+import type { InsightViewModel } from "@/presentation/features/intelligence";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -98,6 +101,67 @@ function HomePage() {
       <SiteHeader />
 
       <main className="mx-auto max-w-[1400px] px-4 py-10">
+        {/* Secao A — Insights (logado) / Conversao (visitante) */}
+        {user ? (
+          <section className="mb-8 space-y-3">
+            <div className="flex items-center gap-2">
+              <Sparkles className="size-4 text-primary" />
+              <h2 className="text-sm font-semibold">Seus insights</h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <InsightCard
+                insight={{
+                  id: "home-patrimonio",
+                  severity: "highlight",
+                  category: "patrimonio",
+                  title: "Acompanhe seu patrimônio",
+                  description: "Veja a evolução do seu patrimonio, rentabilidade e alocação no Dashboard.",
+                  trend: "up",
+                }}
+              />
+              <InsightCard
+                insight={{
+                  id: "home-proventos",
+                  severity: "info",
+                  category: "proventos",
+                  title: "Proventos recebidos",
+                  description: "Confira seus dividendos e JCP registrados, com projeções para os próximos meses.",
+                  trend: "neutral",
+                }}
+              />
+              <InsightCard
+                insight={{
+                  id: "home-irpf",
+                  severity: "info",
+                  category: "geral",
+                  title: "IRPF mensal",
+                  description: "Acompanhe a apuração mensal do Imposto de Renda sobre suas operações.",
+                  trend: "neutral",
+                }}
+              />
+            </div>
+          </section>
+        ) : (
+          <section className="mb-8 rounded-lg border border-primary/20 bg-primary/5 p-6">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="max-w-xl">
+                <h2 className="text-lg font-semibold">Insights personalizados para sua carteira</h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Assim que você conectar sua carteira, mostramos aqui insights como:
+                  &ldquo;Seu patrimônio cresceu <strong>X%</strong> este mês&rdquo; ou
+                  &ldquo;Você tem <strong>R$ Y</strong> em proventos previstos essa semana&rdquo;.
+                </p>
+              </div>
+              <Button asChild size="default">
+                <Link to="/register" className="gap-2">
+                  Criar conta grátis <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </div>
+          </section>
+        )}
+
+        {/* Secao B — Mercado: indices, panorama, altas/baixas, tabela de ativos */}
         <section className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg border border-border bg-card px-5 py-3 text-sm">
           {MARKET_INDICES.map((idx) => (
             <div key={idx.ticker} className="flex items-baseline gap-2">
