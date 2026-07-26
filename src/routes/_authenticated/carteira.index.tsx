@@ -18,8 +18,7 @@ import {
 } from "recharts";
 import { AlertTriangle, DollarSign, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
-import { KPIGrid } from "@/components/domain/kpi-grid";
-import { InsightPanel } from "@/components/domain/insight-panel";
+import { ExpandableSection, ExpandableSectionGroup } from "@/presentation/shared/components/ui";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
@@ -612,106 +611,140 @@ function PortfolioOverview() {
         />
       ) : (
         <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-          <div className="overflow-hidden rounded-lg border border-border bg-card">
-            <div className="border-b border-border bg-surface-2 px-4 py-3">
-              <h2 className="text-sm font-semibold">Posições</h2>
-              <p className="text-xs text-muted-foreground">
-                Ordenadas por valor · cotações: BRAPI / CoinGecko / Yahoo
-              </p>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-sm font-semibold">Posições</h2>
+                <p className="text-xs text-muted-foreground">
+                  {portfolio.positions.length} ativos · cotações: BRAPI / CoinGecko / Yahoo
+                </p>
+              </div>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[720px] text-sm">
-                <thead className="bg-card text-xs uppercase text-muted-foreground">
-                  <tr>
-                    <th className="px-4 py-2.5 text-left font-medium">Ativo</th>
-                    <th className="px-4 py-2.5 text-right font-medium">Qtd</th>
-                    <th className="px-4 py-2.5 text-right font-medium">PM</th>
-                    <th className="px-4 py-2.5 text-right font-medium">Preço</th>
-                    <th className="px-4 py-2.5 text-right font-medium">Valor (BRL)</th>
-                    <th className="px-4 py-2.5 text-right font-medium">P/L</th>
-                    <th className="px-4 py-2.5 text-right font-medium">%</th>
-                    <th className="px-4 py-2.5 text-right font-medium">Peso</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {portfolio.positions.map((p) => {
-                    const isRf = p.asset_type === "fixed_income";
-                    return (
-                      <tr key={p.ticker} className="border-t border-border hover:bg-surface">
-                        <td className="px-4 py-2.5">
-                          <div className="flex items-baseline gap-1.5">
-                            <Link
-                              to="/ativo/$ticker"
-                              params={{ ticker: p.ticker }}
-                              className="font-semibold hover:text-primary"
-                            >
-                              {p.ticker}
-                            </Link>
-                            {p.currency !== "BRL" && (
-                              <span className="rounded bg-muted px-1 py-0.5 text-[10px] font-medium uppercase text-muted-foreground">
-                                {p.currency}
-                              </span>
-                            )}
-                            {isRf && (
-                              <span className="rounded bg-chart-3/10 px-1 py-0.5 text-[10px] font-medium text-chart-3">
-                                RF
-                              </span>
-                            )}
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            {p.currency !== "BRL"
-                              ? `${p.sector} · ${formatBRL(p.brlValue)}`
-                              : isRf
-                                ? `Renda Fixa · ${formatBRL(p.invested)}`
-                                : p.sector}
-                          </div>
-                        </td>
-                        <td className="tabular px-4 py-2.5 text-right">
-                          {isRf ? "—" : formatQty(p.quantity)}
-                        </td>
-                        <td className="tabular px-4 py-2.5 text-right">
-                          {isRf
-                            ? "—"
-                            : p.currency !== "BRL"
-                              ? `$${p.avgPrice.toFixed(2)}`
-                              : formatBRL(p.avgPrice)}
-                        </td>
-                        <td className="tabular px-4 py-2.5 text-right">
-                          {isRf
-                            ? "—"
-                            : p.currency !== "BRL"
-                              ? `$${p.currentPrice.toFixed(2)}`
-                              : formatBRL(p.currentPrice)}
-                        </td>
-                        <td className="tabular px-4 py-2.5 text-right font-medium">
-                          {formatBRL(p.currentValue)}
-                          {p.currency !== "BRL" && (
-                            <div className="text-[11px] text-muted-foreground">
-                              ${(p.brlValue / (exchangeRates?.USD ?? 1)).toFixed(2)}
-                            </div>
-                          )}
-                        </td>
-                        <td className="tabular px-4 py-2.5 text-right">
-                          <span className={p.pnl >= 0 ? "text-positive" : "text-negative"}>
-                            {formatBRL(p.pnl)}
-                          </span>
-                        </td>
-                        <td className="px-4 py-2.5 text-right">
-                          {isRf ? (
-                            <span className="text-muted-foreground">—</span>
-                          ) : (
-                            <DeltaPct value={p.pnlPct} />
-                          )}
-                        </td>
-                        <td className="tabular px-4 py-2.5 text-right text-muted-foreground">
-                          {p.weight.toFixed(1)}%
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+
+            {(() => {
+              const groups = portfolio.typeAllocation
+                .filter((t) => t.value > 0)
+                .map((type) => {
+                  const typePositions = portfolio.positions
+                    .filter((p) => p.asset_type === type.type)
+                    .sort((a, b) => b.currentValue - a.currentValue);
+                  return { ...type, positions: typePositions };
+                })
+                .filter((g) => g.positions.length > 0);
+
+              return (
+                <ExpandableSectionGroup mode="multiple" className="divide-y">
+                  {groups.map((group) => (
+                    <ExpandableSection
+                      key={group.type}
+                      title={TYPE_LABELS[group.type] ?? group.type}
+                      subtitle={`${formatBRL(group.value)} · ${(group.pct * 100).toFixed(1)}% do patrimônio`}
+                      count={group.positions.length}
+                      defaultOpen={group.positions.length <= 6}
+                    >
+                      <div className="overflow-x-auto">
+                        <table className="w-full min-w-[660px] text-sm">
+                          <thead className="text-xs uppercase text-muted-foreground">
+                            <tr>
+                              <th className="pr-4 pb-2 text-left font-medium">Ativo</th>
+                              <th className="px-3 pb-2 text-right font-medium">Qtd</th>
+                              <th className="px-3 pb-2 text-right font-medium">PM</th>
+                              <th className="px-3 pb-2 text-right font-medium">Preço</th>
+                              <th className="px-3 pb-2 text-right font-medium">Valor (BRL)</th>
+                              <th className="px-3 pb-2 text-right font-medium">P/L</th>
+                              <th className="px-3 pb-2 text-right font-medium">%</th>
+                              <th className="pl-3 pb-2 text-right font-medium">Peso</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {group.positions.map((p) => {
+                              const isRf = p.asset_type === "fixed_income";
+                              return (
+                                <tr
+                                  key={p.ticker}
+                                  className="border-t border-border hover:bg-surface"
+                                >
+                                  <td className="pr-4 py-2.5">
+                                    <div className="flex items-baseline gap-1.5">
+                                      <Link
+                                        to="/ativo/$ticker"
+                                        params={{ ticker: p.ticker }}
+                                        className="font-semibold hover:text-primary"
+                                      >
+                                        {p.ticker}
+                                      </Link>
+                                      {p.currency !== "BRL" && (
+                                        <span className="rounded bg-muted px-1 py-0.5 text-[10px] font-medium uppercase text-muted-foreground">
+                                          {p.currency}
+                                        </span>
+                                      )}
+                                      {isRf && (
+                                        <span className="rounded bg-chart-3/10 px-1 py-0.5 text-[10px] font-medium text-chart-3">
+                                          RF
+                                        </span>
+                                      )}
+                                    </div>
+                                    <div className="text-xs text-muted-foreground">
+                                      {p.currency !== "BRL"
+                                        ? `${p.sector} · ${formatBRL(p.brlValue)}`
+                                        : isRf
+                                          ? `Renda Fixa · ${formatBRL(p.invested)}`
+                                          : p.sector}
+                                    </div>
+                                  </td>
+                                  <td className="tabular px-3 py-2.5 text-right">
+                                    {isRf ? "—" : formatQty(p.quantity)}
+                                  </td>
+                                  <td className="tabular px-3 py-2.5 text-right">
+                                    {isRf
+                                      ? "—"
+                                      : p.currency !== "BRL"
+                                        ? `$${p.avgPrice.toFixed(2)}`
+                                        : formatBRL(p.avgPrice)}
+                                  </td>
+                                  <td className="tabular px-3 py-2.5 text-right">
+                                    {isRf
+                                      ? "—"
+                                      : p.currency !== "BRL"
+                                        ? `$${p.currentPrice.toFixed(2)}`
+                                        : formatBRL(p.currentPrice)}
+                                  </td>
+                                  <td className="tabular px-3 py-2.5 text-right font-medium">
+                                    {formatBRL(p.currentValue)}
+                                    {p.currency !== "BRL" && (
+                                      <div className="text-[11px] text-muted-foreground">
+                                        ${(p.brlValue / (exchangeRates?.USD ?? 1)).toFixed(2)}
+                                      </div>
+                                    )}
+                                  </td>
+                                  <td className="tabular px-3 py-2.5 text-right">
+                                    <span
+                                      className={p.pnl >= 0 ? "text-positive" : "text-negative"}
+                                    >
+                                      {formatBRL(p.pnl)}
+                                    </span>
+                                  </td>
+                                  <td className="px-3 py-2.5 text-right">
+                                    {isRf ? (
+                                      <span className="text-muted-foreground">—</span>
+                                    ) : (
+                                      <DeltaPct value={p.pnlPct} />
+                                    )}
+                                  </td>
+                                  <td className="tabular pl-3 py-2.5 text-right text-muted-foreground">
+                                    {p.weight.toFixed(1)}%
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </ExpandableSection>
+                  ))}
+                </ExpandableSectionGroup>
+              );
+            })()}
           </div>
 
           <div className="space-y-4">
