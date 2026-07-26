@@ -103,12 +103,22 @@ import { VerificarAcessoService } from "@/application/services/verificar-acesso-
 import { ObterPlanoAtivoService } from "@/application/services/obter-plano-ativo-service";
 import { ListarPlanosService } from "@/application/services/listar-planos-service";
 import { CompararPlanosService } from "@/application/services/comparar-planos-service";
+import { RenovarAssinaturaService } from "@/application/services/renovar-assinatura-service";
+import { AlterarPlanoService } from "@/application/services/alterar-plano-service";
+import { IniciarTrialService } from "@/application/services/iniciar-trial-service";
+import { ConsultarHistoricoAssinaturaService } from "@/application/services/consultar-historico-assinatura-service";
+import { ConsultarProximosEventosService } from "@/application/services/consultar-proximos-eventos-service";
 import type { INotificationPort } from "@/application/ports/notification-port";
 import type { ObterPlanoAtivoQuery } from "@/application/queries/obter-plano-ativo";
 import type { ListarPlanosQuery } from "@/application/queries/listar-planos";
 import type { CompararPlanosQuery } from "@/application/queries/comparar-planos";
+import type { ConsultarHistoricoAssinaturaQuery } from "@/application/queries/consultar-historico-assinatura";
+import type { ConsultarProximosEventosQuery } from "@/application/queries/consultar-proximos-eventos";
 import type { AssinarPlanoCommand } from "@/application/commands/assinar-plano";
 import type { CancelarAssinaturaCommand } from "@/application/commands/cancelar-assinatura";
+import type { RenovarAssinaturaCommand } from "@/application/commands/renovar-assinatura";
+import type { AlterarPlanoCommand } from "@/application/commands/alterar-plano";
+import type { IniciarTrialCommand } from "@/application/commands/iniciar-trial";
 import type { VerificarAcessoCommand } from "@/application/commands/verificar-acesso";
 import { ResponderQuestionarioService } from "@/application/services/responder-questionario-service";
 import { CalcularPerfilService } from "@/application/services/calcular-perfil-service";
@@ -545,6 +555,32 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterCommand("VerificarAcessoCommand", (command) =>
       new VerificarAcessoService(subscriptionRepository).Execute(command as VerificarAcessoCommand),
+    );
+
+    dispatcher.RegisterCommand("RenovarAssinaturaCommand", (command) =>
+      new RenovarAssinaturaService(subscriptionRepository).Execute(
+        command as RenovarAssinaturaCommand,
+      ),
+    );
+
+    dispatcher.RegisterCommand("AlterarPlanoCommand", (command) =>
+      new AlterarPlanoService(subscriptionRepository).Execute(command as AlterarPlanoCommand),
+    );
+
+    dispatcher.RegisterCommand("IniciarTrialCommand", (command) =>
+      new IniciarTrialService(subscriptionRepository).Execute(command as IniciarTrialCommand),
+    );
+
+    dispatcher.RegisterQuery("ConsultarHistoricoAssinaturaQuery", (query) =>
+      new ConsultarHistoricoAssinaturaService(subscriptionRepository).Execute(
+        query as ConsultarHistoricoAssinaturaQuery,
+      ),
+    );
+
+    dispatcher.RegisterQuery("ConsultarProximosEventosQuery", (query) =>
+      new ConsultarProximosEventosService(subscriptionRepository).Execute(
+        query as ConsultarProximosEventosQuery,
+      ),
     );
   }
 

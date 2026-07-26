@@ -2,6 +2,8 @@ export { SubscriptionsPage } from "./components/SubscriptionsPage";
 export { FeatureGate } from "./components/FeatureGate";
 export { PremiumBadge } from "./components/PremiumBadge";
 export { PlanComparison } from "./components/PlanComparison";
+export { SubscriptionHistory } from "./components/SubscriptionHistory";
+export { SubscriptionTimeline } from "./components/SubscriptionTimeline";
 export { usePlansQuery, useSubscriptionQuery } from "./hooks/use-subscriptions-query";
 export {
   useSubscribeMutation,
