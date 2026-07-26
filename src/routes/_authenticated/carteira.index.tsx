@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -24,6 +24,7 @@ import {
   useTimeRange,
   getCutoffDate,
   getTimeRangeById,
+  FiiSegmentBadge,
 } from "@/presentation/shared/components/ui";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
@@ -35,7 +36,7 @@ import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { DeltaPct } from "@/components/delta-pct";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { formatBRL, formatQty, formatDate } from "@/lib/format";
+import { formatBRL, formatBRLCompact, formatQty, formatDate } from "@/lib/format";
 import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
 
 export const Route = createFileRoute("/_authenticated/carteira/")({
@@ -202,6 +203,9 @@ function PortfolioOverview() {
 
   const { selected, setRange } = useTimeRange();
 
+  const [sortCol, setSortCol] = useState<string>("Valor");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
+
   const filteredHistory = useMemo(() => {
     if (!ops || ops.length === 0) return [];
     const tempPortfolio = consolidatePortfolio(ops, priceOverrides, exchangeRates);
@@ -244,6 +248,61 @@ function PortfolioOverview() {
   const quotesError = quotesQuery.data?.error;
   const liveCount = Object.keys(quotesData).length;
 
+  const toggleSort = (col: string) => {
+    if (sortCol === col) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    else {
+      setSortCol(col);
+      setSortDir("desc");
+    }
+  };
+
+  const getSortedPositions = (positions: typeof portfolio.positions) => {
+    return [...positions].sort((a, b) => {
+      const dir = sortDir === "asc" ? 1 : -1;
+      switch (sortCol) {
+        case "Ativo":
+          return dir * a.ticker.localeCompare(b.ticker);
+        case "Qtd":
+          return dir * (a.quantity - b.quantity);
+        case "Valor":
+          return dir * (a.currentValue - b.currentValue);
+        case "P/L":
+          return dir * (a.pnl - b.pnl);
+        case "%":
+          return dir * (a.pnlPct - b.pnlPct);
+        case "Peso":
+          return dir * (a.weight - b.weight);
+        default:
+          return dir * (a.currentValue - b.currentValue);
+      }
+    });
+  };
+
+  const SortHeader = ({
+    col,
+    children,
+    align,
+  }: {
+    col: string;
+    children: React.ReactNode;
+    align?: string;
+  }) => {
+    const active = sortCol === col;
+    return (
+      <th
+        className={`cursor-pointer select-none pb-2 text-${align ?? "left"} font-medium hover:text-foreground ${align === "right" ? "px-3" : "pr-4"}`}
+        onClick={() => toggleSort(col)}
+      >
+        <span className="inline-flex items-center gap-1">
+          {children}
+          <span className="text-[9px] opacity-30">
+            {active ? (sortDir === "asc" ? "▲" : "▼") : "▽"}
+          </span>
+        </span>
+      </th>
+    );
+  };
+
   return (
     <div className="space-y-5">
       {/* Resumo Geral */}
@@ -254,7 +313,9 @@ function PortfolioOverview() {
               Patrimônio
             </p>
             <p className="mt-0.5 text-xl font-bold tracking-tight financial">
-              {formatBRL(portfolio.totalValue)}
+              {portfolio.totalValue > 1_000_000
+                ? formatBRLCompact(portfolio.totalValue)
+                : formatBRL(portfolio.totalValue)}
             </p>
           </div>
           <div className="rounded-lg border bg-card p-4">
@@ -262,7 +323,9 @@ function PortfolioOverview() {
               Investido
             </p>
             <p className="mt-0.5 text-lg font-semibold tracking-tight financial text-muted-foreground">
-              {formatBRL(portfolio.totalInvested)}
+              {portfolio.totalInvested > 1_000_000
+                ? formatBRLCompact(portfolio.totalInvested)
+                : formatBRL(portfolio.totalInvested)}
             </p>
           </div>
           <div className="rounded-lg border bg-card p-4">
@@ -272,7 +335,9 @@ function PortfolioOverview() {
             <p
               className={`mt-0.5 text-lg font-bold tracking-tight financial ${portfolio.totalPnl >= 0 ? "text-positive" : "text-negative"}`}
             >
-              {formatBRL(portfolio.totalPnl)}
+              {portfolio.totalPnl > 1_000_000 || portfolio.totalPnl < -1_000_000
+                ? formatBRLCompact(portfolio.totalPnl)
+                : formatBRL(portfolio.totalPnl)}
             </p>
           </div>
           <div className="rounded-lg border bg-card p-4">
@@ -457,9 +522,9 @@ function PortfolioOverview() {
               const groups = portfolio.typeAllocation
                 .filter((t) => t.value > 0)
                 .map((type) => {
-                  const typePositions = portfolio.positions
-                    .filter((p) => p.asset_type === type.type)
-                    .sort((a, b) => b.currentValue - a.currentValue);
+                  const typePositions = getSortedPositions(
+                    portfolio.positions.filter((p) => p.asset_type === type.type),
+                  );
                   return { ...type, positions: typePositions };
                 })
                 .filter((g) => g.positions.length > 0);
@@ -478,14 +543,25 @@ function PortfolioOverview() {
                         <table className="w-full text-sm">
                           <thead className="text-xs uppercase text-muted-foreground">
                             <tr>
-                              <th className="pr-4 pb-2 text-left font-medium">Ativo</th>
-                              <th className="px-3 pb-2 text-right font-medium">Qtd</th>
+                              <SortHeader col="Ativo">Ativo</SortHeader>
+                              <SortHeader col="Qtd" align="right">
+                                Qtd
+                              </SortHeader>
                               <th className="px-3 pb-2 text-right font-medium">PM</th>
                               <th className="px-3 pb-2 text-right font-medium">Preço</th>
-                              <th className="px-3 pb-2 text-right font-medium">Valor (BRL)</th>
-                              <th className="px-3 pb-2 text-right font-medium">P/L</th>
-                              <th className="px-3 pb-2 text-right font-medium">%</th>
-                              <th className="pl-3 pb-2 text-right font-medium">Peso</th>
+                              <SortHeader col="Valor" align="right">
+                                Valor
+                              </SortHeader>
+                              <SortHeader col="P/L" align="right">
+                                P/L
+                              </SortHeader>
+                              <SortHeader col="%" align="right">
+                                %
+                              </SortHeader>
+                              <SortHeader col="Peso" align="right">
+                                Peso
+                              </SortHeader>
+                              <th className="pl-3 pb-2 text-right font-medium">DY</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -515,13 +591,18 @@ function PortfolioOverview() {
                                           RF
                                         </span>
                                       )}
+                                      {p.asset_type === "fii" && (
+                                        <FiiSegmentBadge segment={p.sector} />
+                                      )}
                                     </div>
                                     <div className="text-xs text-muted-foreground">
                                       {p.currency !== "BRL"
-                                        ? `${p.sector} · ${formatBRL(p.brlValue)}`
+                                        ? `${formatBRL(p.brlValue)}`
                                         : isRf
                                           ? `Renda Fixa · ${formatBRL(p.invested)}`
-                                          : p.sector}
+                                          : p.asset_type === "fii"
+                                            ? ""
+                                            : p.sector}
                                     </div>
                                   </td>
                                   <td className="tabular px-3 py-2.5 text-right">
@@ -542,7 +623,9 @@ function PortfolioOverview() {
                                         : formatBRL(p.currentPrice)}
                                   </td>
                                   <td className="tabular px-3 py-2.5 text-right font-medium">
-                                    {formatBRL(p.currentValue)}
+                                    {p.currentValue > 1_000_000
+                                      ? formatBRLCompact(p.currentValue)
+                                      : formatBRL(p.currentValue)}
                                     {p.currency !== "BRL" && (
                                       <div className="text-[11px] text-muted-foreground">
                                         ${(p.brlValue / (exchangeRates?.USD ?? 1)).toFixed(2)}
@@ -565,6 +648,17 @@ function PortfolioOverview() {
                                   </td>
                                   <td className="tabular pl-3 py-2.5 text-right text-muted-foreground">
                                     {p.weight.toFixed(1)}%
+                                  </td>
+                                  <td className="tabular pl-3 py-2.5 text-right text-xs">
+                                    {(() => {
+                                      const divTotal = dividendsByTicker[p.ticker];
+                                      if (!divTotal || p.currentValue <= 0)
+                                        return <span className="text-muted-foreground">—</span>;
+                                      const dy = (divTotal / p.currentValue) * 100;
+                                      return (
+                                        <span className="text-positive">{dy.toFixed(1)}%</span>
+                                      );
+                                    })()}
                                   </td>
                                 </tr>
                               );

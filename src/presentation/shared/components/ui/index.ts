@@ -1,3 +1,4 @@
+export { FiiSegmentBadge } from "./FiiSegmentBadge";
 export { ExpandableSection } from "./ExpandableSection";
 export type { ExpandableSectionProps } from "./ExpandableSection";
 export { ExpandableSectionGroup } from "./ExpandableSectionGroup";
