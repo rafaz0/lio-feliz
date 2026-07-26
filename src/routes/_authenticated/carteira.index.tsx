@@ -16,8 +16,7 @@ import {
 } from "recharts";
 import { AlertTriangle, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
-import { KPIGrid } from "@/components/domain/kpi-grid";
-import { InsightPanel } from "@/components/domain/insight-panel";
+
 import {
   ExpandableSection,
   ExpandableSectionGroup,
@@ -246,131 +245,94 @@ function PortfolioOverview() {
   const liveCount = Object.keys(quotesData).length;
 
   return (
-    <div className="space-y-6">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-xl border bg-card p-5 shadow-sm">
-          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            Patrimônio
-          </p>
-          <p className="mt-1 text-2xl font-bold tracking-tight financial">
-            {formatBRL(portfolio.totalValue)}
-          </p>
+    <div className="space-y-5">
+      {/* Resumo Geral */}
+      <div className="flex items-start justify-between gap-3">
+        <div className="grid flex-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-lg border bg-card p-4">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Patrimônio
+            </p>
+            <p className="mt-0.5 text-xl font-bold tracking-tight financial">
+              {formatBRL(portfolio.totalValue)}
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Investido
+            </p>
+            <p className="mt-0.5 text-lg font-semibold tracking-tight financial text-muted-foreground">
+              {formatBRL(portfolio.totalInvested)}
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Resultado
+            </p>
+            <p
+              className={`mt-0.5 text-lg font-bold tracking-tight financial ${portfolio.totalPnl >= 0 ? "text-positive" : "text-negative"}`}
+            >
+              {formatBRL(portfolio.totalPnl)}
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Rentabilidade
+            </p>
+            <p className="mt-0.5 text-lg font-bold tracking-tight">
+              {portfolio.totalInvested > 0 ? (
+                <DeltaPct value={portfolio.totalPnlPct} className="text-lg font-bold" />
+              ) : (
+                "—"
+              )}
+            </p>
+          </div>
         </div>
-        <div className="rounded-xl border bg-card p-5 shadow-sm">
-          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            Investido
-          </p>
-          <p className="mt-1 text-2xl font-bold tracking-tight financial text-muted-foreground">
-            {formatBRL(portfolio.totalInvested)}
-          </p>
-        </div>
-        <div className="rounded-xl border bg-card p-5 shadow-sm">
-          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            Resultado
-          </p>
-          <p
-            className={`mt-1 text-2xl font-bold tracking-tight financial ${portfolio.totalPnl >= 0 ? "text-positive" : "text-negative"}`}
-          >
-            {formatBRL(portfolio.totalPnl)}
-          </p>
-        </div>
-        <div className="rounded-xl border bg-card p-5 shadow-sm">
-          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            Rentabilidade
-          </p>
-          <p className="mt-1 text-2xl font-bold tracking-tight">
-            {portfolio.totalInvested > 0 ? (
-              <DeltaPct value={portfolio.totalPnlPct} className="text-2xl font-bold" />
-            ) : (
-              "—"
+        {quotesUpdatedAt && (
+          <div className="flex items-center gap-1.5 pt-1 text-[10px] text-muted-foreground">
+            <button
+              onClick={() => queryClient.invalidateQueries({ queryKey: ["quotes"] })}
+              disabled={quotesQuery.isFetching || tickers.length === 0}
+              className="rounded p-0.5 transition hover:bg-secondary disabled:opacity-50"
+              title="Atualizar cotações"
+            >
+              <RefreshCw className={"size-3 " + (quotesQuery.isFetching ? "animate-spin" : "")} />
+            </button>
+            <span>
+              {new Date(quotesUpdatedAt).toLocaleTimeString("pt-BR", {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </span>
+            {liveCount > 0 && (
+              <span>
+                · {liveCount}/{tickers.length}
+              </span>
             )}
-          </p>
-        </div>
+          </div>
+        )}
+        {quotesError && <span className="text-[10px] text-negative">Falha: {quotesError}</span>}
       </div>
 
-      {riskMetrics && (
-        <InsightPanel title="Métricas de Risco">
-          <KPIGrid cols={4}>
-            <KpiCard
-              label="Volatilidade (anual)"
-              value={`${(riskMetrics.volatility * 100).toFixed(1)}%`}
-            />
-            <KpiCard
-              label="Drawdown máx."
-              value={`${(riskMetrics.maxDrawdown * 100).toFixed(1)}%`}
-              tone="negative"
-            />
-            {riskMetrics.beta !== null && (
-              <KpiCard
-                label="Beta (vs IBOV)"
-                value={riskMetrics.beta.toFixed(2)}
-                tone={
-                  riskMetrics.beta < 1
-                    ? "positive"
-                    : riskMetrics.beta > 1.2
-                      ? "negative"
-                      : undefined
-                }
-              />
-            )}
-            {riskMetrics.sharpe !== null && (
-              <KpiCard
-                label="Índice Sharpe"
-                value={riskMetrics.sharpe.toFixed(2)}
-                tone={
-                  riskMetrics.sharpe >= 0.5
-                    ? "positive"
-                    : riskMetrics.sharpe < 0
-                      ? "negative"
-                      : undefined
-                }
-              />
-            )}
-          </KPIGrid>
-        </InsightPanel>
-      )}
-
-      <section className="flex flex-wrap items-center gap-3">
+      {/* Ações */}
+      <div className="flex flex-wrap items-center gap-2">
         <AddOperationDialog
           trigger={
-            <Button className="gap-2">
-              <Plus className="size-4" /> Nova operação
+            <Button size="sm" className="gap-1.5">
+              <Plus className="size-3.5" /> Nova operação
             </Button>
           }
         />
-        <button
-          onClick={() => queryClient.invalidateQueries({ queryKey: ["quotes"] })}
-          disabled={quotesQuery.isFetching || tickers.length === 0}
-          className="rounded-md border p-1.5 text-muted-foreground transition hover:bg-secondary hover:text-foreground disabled:opacity-50"
-          title="Atualizar cotações"
-        >
-          <RefreshCw className={"size-3.5 " + (quotesQuery.isFetching ? "animate-spin" : "")} />
-        </button>
-        <Button variant="outline" asChild className="gap-2">
+        <Button size="sm" variant="outline" asChild className="gap-1.5">
           <Link to="/irpf">
-            <AlertTriangle className="size-4" /> IRPF
+            <AlertTriangle className="size-3.5" /> IRPF
           </Link>
         </Button>
-        <Button variant="outline" disabled className="gap-2">
-          <Wallet className="size-4" /> Sincronizar com B3
-          <span className="rounded bg-secondary px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">
-            em breve
-          </span>
+        <Button size="sm" variant="outline" disabled className="gap-1.5">
+          <Wallet className="size-3.5" /> Sincronizar B3
+          <span className="rounded bg-secondary px-1 py-0.5 text-[8px] uppercase">em breve</span>
         </Button>
-        {quotesUpdatedAt && (
-          <span className="text-xs text-muted-foreground">
-            Cotações atualizadas às{" "}
-            {new Date(quotesUpdatedAt).toLocaleTimeString("pt-BR", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-            {liveCount > 0 && ` · ${liveCount}/${tickers.length} ao vivo`}
-          </span>
-        )}
-        {quotesError && (
-          <span className="text-xs text-negative">Falha nas cotações: {quotesError}</span>
-        )}
-      </section>
+      </div>
 
       {history.length > 1 && (
         <section className="rounded-lg border bg-card p-5">
@@ -480,7 +442,7 @@ function PortfolioOverview() {
           }
         />
       ) : (
-        <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
+        <div className="grid gap-5 lg:grid-cols-[2fr_1fr]">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
@@ -513,7 +475,7 @@ function PortfolioOverview() {
                       defaultOpen={group.positions.length <= 6}
                     >
                       <div className="overflow-x-auto">
-                        <table className="w-full min-w-[660px] text-sm">
+                        <table className="w-full text-sm">
                           <thead className="text-xs uppercase text-muted-foreground">
                             <tr>
                               <th className="pr-4 pb-2 text-left font-medium">Ativo</th>
@@ -718,10 +680,50 @@ function PortfolioOverview() {
                 ))}
               </ul>
             </div>
-            <p className="flex items-start gap-2 text-xs text-muted-foreground">
-              <Info className="mt-0.5 size-3.5 shrink-0" />
-              Cotações: BRAPI (B3) · CoinGecko (cripto) · Yahoo Finance (internacional). Valores em
-              BRL convertidos pela cotação do dia.
+            {riskMetrics && (
+              <div className="rounded-lg border bg-card p-4">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Métricas de Risco
+                </h3>
+                <div className="mt-3 grid grid-cols-2 gap-3">
+                  <div>
+                    <p className="text-[10px] text-muted-foreground">Volatilidade (anual)</p>
+                    <p className="mt-0.5 text-sm font-semibold tabular">
+                      {(riskMetrics.volatility * 100).toFixed(1)}%
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted-foreground">Drawdown máx.</p>
+                    <p className="mt-0.5 text-sm font-semibold tabular text-negative">
+                      {(riskMetrics.maxDrawdown * 100).toFixed(1)}%
+                    </p>
+                  </div>
+                  {riskMetrics.beta !== null && (
+                    <div>
+                      <p className="text-[10px] text-muted-foreground">Beta (vs IBOV)</p>
+                      <p
+                        className={`mt-0.5 text-sm font-semibold tabular ${riskMetrics.beta < 1 ? "text-positive" : riskMetrics.beta > 1.2 ? "text-negative" : ""}`}
+                      >
+                        {riskMetrics.beta.toFixed(2)}
+                      </p>
+                    </div>
+                  )}
+                  {riskMetrics.sharpe !== null && (
+                    <div>
+                      <p className="text-[10px] text-muted-foreground">Índice Sharpe</p>
+                      <p
+                        className={`mt-0.5 text-sm font-semibold tabular ${riskMetrics.sharpe >= 0.5 ? "text-positive" : riskMetrics.sharpe < 0 ? "text-negative" : ""}`}
+                      >
+                        {riskMetrics.sharpe.toFixed(2)}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+            <p className="flex items-start gap-1.5 text-[10px] text-muted-foreground">
+              <Info className="mt-0.5 size-3 shrink-0" />
+              Cotações: BRAPI · CoinGecko · Yahoo Finance. Valores em BRL.
             </p>
           </div>
         </div>
