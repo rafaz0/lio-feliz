@@ -233,7 +233,7 @@ function RentabilidadePage() {
       idivReturn,
       ifixReturn,
     };
-  }, [history, chartData]);
+  }, [filteredHistory, chartData, portBase]);
 
   if (isLoading || !ops) {
     return (
@@ -624,5 +624,3 @@ function RentabilidadePage() {
     </div>
   );
 }
-
-
