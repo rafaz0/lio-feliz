@@ -186,7 +186,13 @@ export function SiteHeader() {
               Meu Plano
             </Link>
           )}
-          {/* "Mercado" removido — o logo "Investidor Pro" já aponta para / */}
+          <Link
+            to="/"
+            className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
+            activeOptions={{ exact: true }}
+          >
+            Mercado
+          </Link>
           <Link
             to="/carteira"
             className="rounded px-3 py-1.5 transition hover:bg-secondary hover:text-foreground [&.active]:bg-secondary/60 [&.active]:font-semibold [&.active]:text-foreground"
