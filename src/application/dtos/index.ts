@@ -70,7 +70,7 @@ export type { ComparacaoDto, ScorecardDto, ComparisonSetDto } from "./comparacao
 export type { GlossaryTermDto, TooltipDto, LearningPathDto, GlossarySearchDto } from "./education";
 export type { ExportTemplateDto, ExportJobDto, ExportJobListDto } from "./exportacao-avancada";
 export type { AtivosInternacionaisDto, TaxaCambioDto } from "./internacional";
-export type { PlanoDetalhadoDto, AssinaturaDto, AcessoDto } from "./assinatura";
+export type { PlanoDetalhadoDto, AssinaturaDto, AcessoDto, ComparacaoPlanosDto, FeatureDto, PlanoComparacaoDto } from "./assinatura";
 export type {
   InvestidorPerfilCompletoDto,
   InvestorProfileDto,

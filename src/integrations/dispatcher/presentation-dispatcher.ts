@@ -102,9 +102,11 @@ import { CancelarAssinaturaService } from "@/application/services/cancelar-assin
 import { VerificarAcessoService } from "@/application/services/verificar-acesso-service";
 import { ObterPlanoAtivoService } from "@/application/services/obter-plano-ativo-service";
 import { ListarPlanosService } from "@/application/services/listar-planos-service";
+import { CompararPlanosService } from "@/application/services/comparar-planos-service";
 import type { INotificationPort } from "@/application/ports/notification-port";
 import type { ObterPlanoAtivoQuery } from "@/application/queries/obter-plano-ativo";
 import type { ListarPlanosQuery } from "@/application/queries/listar-planos";
+import type { CompararPlanosQuery } from "@/application/queries/comparar-planos";
 import type { AssinarPlanoCommand } from "@/application/commands/assinar-plano";
 import type { CancelarAssinaturaCommand } from "@/application/commands/cancelar-assinatura";
 import type { VerificarAcessoCommand } from "@/application/commands/verificar-acesso";
@@ -523,6 +525,10 @@ export function createPresentationDispatcher({
 
     dispatcher.RegisterQuery("ObterPlanoAtivoQuery", (query) =>
       new ObterPlanoAtivoService(subscriptionRepository).Execute(query as ObterPlanoAtivoQuery),
+    );
+
+    dispatcher.RegisterQuery("CompararPlanosQuery", (query) =>
+      new CompararPlanosService(subscriptionRepository).Execute(query as CompararPlanosQuery),
     );
 
     dispatcher.RegisterCommand("AssinarPlanoCommand", (command) =>
