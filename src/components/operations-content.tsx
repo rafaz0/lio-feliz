@@ -6,6 +6,7 @@ import { Plus, RefreshCw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { deleteOperation, listOperations, syncPendingDividends } from "@/lib/operations.functions";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatDate, formatQty } from "@/lib/format";
@@ -117,6 +118,7 @@ export function OperationsContent() {
                   <th className="px-4 py-2.5 text-right font-medium">Preço</th>
                   <th className="px-4 py-2.5 text-right font-medium">Total</th>
                   <th className="px-4 py-2.5 text-left font-medium">Origem</th>
+                  <th className="px-4 py-2.5 text-left font-medium">Tipo</th>
                   <th className="w-10 px-2 py-2.5"></th>
                 </tr>
               </thead>
@@ -152,8 +154,29 @@ export function OperationsContent() {
                     <td className="tabular px-4 py-2.5 text-right font-medium">
                       {o.side === "bonus" ? "—" : formatBRL(o.quantity * o.price)}
                     </td>
-                    <td className="px-4 py-2.5 text-xs uppercase tracking-wider text-muted-foreground">
-                      {o.source === "manual" ? "manual" : o.source}
+                    <td className="px-4 py-2.5">
+                      {o.metadata?.auto_sync || o.source !== "manual" ? (
+                        <Badge variant="secondary" className="text-[10px]">
+                          Auto
+                        </Badge>
+                      ) : (
+                        <Badge variant="outline" className="text-[10px]">
+                          Manual
+                        </Badge>
+                      )}
+                    </td>
+                    <td className="px-4 py-2.5">
+                      {o.side === "dividend" && o.metadata?.tipo_provento ? (
+                        <Badge variant="outline" className="text-[10px] uppercase">
+                          {String(o.metadata.tipo_provento)}
+                        </Badge>
+                      ) : o.side === "bonus" ? (
+                        <Badge variant="outline" className="text-[10px]">
+                          Bonif
+                        </Badge>
+                      ) : (
+                        <span className="text-xs text-muted-foreground">—</span>
+                      )}
                     </td>
                     <td className="px-2 py-2.5 text-right">
                       <Button

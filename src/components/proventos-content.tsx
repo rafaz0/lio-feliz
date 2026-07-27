@@ -20,6 +20,7 @@ import { listOperations } from "@/lib/operations.functions";
 import { getRealProjections, type RealProjection } from "@/lib/data-functions";
 import { ASSETS_BY_TICKER } from "@/lib/mock-data";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -491,12 +492,22 @@ export function ProventosContent() {
                     <div className="tabular font-medium text-positive">
                       {formatBRLCompact(p.amount)}
                     </div>
-                    <div className="flex items-center gap-2 text-[10px] text-muted-foreground tabular">
-                      {p.type === "fii" ? "FII" : "Ação"}
-                      {" · "}
-                      <span className={p.status === "declared" ? "text-chart-5 font-medium" : ""}>
-                        {p.status === "declared" ? "declarado" : "projetado"}
-                      </span>
+                    <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground tabular">
+                      <Badge variant="secondary" className="text-[9px] px-1.5 py-0">
+                        {p.type === "fii" ? "FII" : "Ação"}
+                      </Badge>
+                      {p.status === "declared" ? (
+                        <Badge
+                          variant="outline"
+                          className="text-[9px] px-1.5 py-0 text-chart-5 border-chart-5/30"
+                        >
+                          Declarado
+                        </Badge>
+                      ) : (
+                        <Badge variant="outline" className="text-[9px] px-1.5 py-0">
+                          Projetado
+                        </Badge>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -581,7 +592,11 @@ export function ProventosContent() {
                   <td className="tabular px-2 py-1.5 text-right text-muted-foreground">
                     {new Date(h.paidAt).toLocaleDateString("pt-BR")}
                   </td>
-                  <td className="tabular px-2 py-1.5 text-right text-muted-foreground">{h.type}</td>
+                  <td className="px-2 py-1.5 text-right">
+                    <Badge variant="outline" className="text-[10px] uppercase">
+                      {h.type === "jcp" ? "JCP" : "Dividendo"}
+                    </Badge>
+                  </td>
                   <td className="tabular px-2 py-1.5 text-right font-medium text-positive">
                     {formatBRL(h.amount)}
                   </td>
