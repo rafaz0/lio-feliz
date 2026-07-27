@@ -26,6 +26,10 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
   };
 }
 
+function sanitizeSupabaseUrl(url: string): string {
+  return url.replace(/\/rest\/v1\/?$/, "");
+}
+
 function parseCookies(cookieHeader: string | null): Record<string, string> {
   if (!cookieHeader) return {};
   return Object.fromEntries(
@@ -71,9 +75,13 @@ export const requireAuth = createMiddleware({ type: "function" }).server(async (
     if (demoSessionId && demoSessionId.startsWith("demo-")) {
       return next({
         context: {
-          supabase: createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-            global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
-          }),
+          supabase: createClient<Database>(
+            sanitizeSupabaseUrl(SUPABASE_URL),
+            SUPABASE_PUBLISHABLE_KEY,
+            {
+              global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
+            },
+          ),
           userId: demoSessionId,
           claims: { sub: demoSessionId },
           demoSessionId,
@@ -86,9 +94,13 @@ export const requireAuth = createMiddleware({ type: "function" }).server(async (
   if (DEV_MODE) {
     return next({
       context: {
-        supabase: createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-          global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
-        }),
+        supabase: createClient<Database>(
+          sanitizeSupabaseUrl(SUPABASE_URL),
+          SUPABASE_PUBLISHABLE_KEY,
+          {
+            global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
+          },
+        ),
         userId: "dev-user-0000",
         claims: { sub: "dev-user-0000" },
       } as any,
@@ -118,13 +130,17 @@ export const requireAuth = createMiddleware({ type: "function" }).server(async (
     throw new Error("Unauthorized: Invalid token format");
   }
 
-  const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-    global: {
-      fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
-      headers: { Authorization: `Bearer ${token}` },
+  const supabase = createClient<Database>(
+    sanitizeSupabaseUrl(SUPABASE_URL),
+    SUPABASE_PUBLISHABLE_KEY,
+    {
+      global: {
+        fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
+        headers: { Authorization: `Bearer ${token}` },
+      },
+      auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
     },
-    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-  });
+  );
 
   const { data, error } = await supabase.auth.getClaims(token);
   if (error || !data?.claims) {

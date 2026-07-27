@@ -52,7 +52,8 @@ export const requireSupabaseAuth = createMiddleware({ type: "function" }).server
     const token = authHeader.startsWith("Bearer ") ? authHeader.replace("Bearer ", "") : "";
 
     let userId = "dev-user-0000";
-    let supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+    const baseUrl = SUPABASE_URL.replace(/\/rest\/v1\/?$/, "");
+    let supabase = createClient<Database>(baseUrl, SUPABASE_PUBLISHABLE_KEY);
 
     if (!DEV_MODE) {
       if (!authHeader) throw new Error("Unauthorized: No authorization header provided");
@@ -61,7 +62,7 @@ export const requireSupabaseAuth = createMiddleware({ type: "function" }).server
       if (!token) throw new Error("Unauthorized: No token provided");
       if (token.split(".").length !== 3) throw new Error("Unauthorized: Invalid token");
 
-      supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+      supabase = createClient<Database>(baseUrl, SUPABASE_PUBLISHABLE_KEY, {
         global: {
           fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
           headers: { Authorization: `Bearer ${token}` },

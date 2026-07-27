@@ -45,7 +45,9 @@ function createSupabaseClient() {
     throw new Error(message);
   }
 
-  return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  const baseUrl = SUPABASE_URL.replace(/\/rest\/v1\/?$/, "");
+
+  return createClient<Database>(baseUrl, SUPABASE_PUBLISHABLE_KEY, {
     global: {
       fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
     },
