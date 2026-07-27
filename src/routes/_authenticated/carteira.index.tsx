@@ -252,7 +252,7 @@ function PortfolioOverview() {
   const allocationPositions = portfolio.typeAllocation.map((t, i) => ({
     classe: TYPE_LABELS[t.type] ?? t.type,
     valor: formatBRL(t.value),
-    percentual: t.pct * 100,
+    percentual: t.pct,
     fill: CHART_COLORS[i % CHART_COLORS.length],
   }));
 
@@ -550,7 +550,7 @@ function PortfolioOverview() {
                     <ExpandableSection
                       key={group.type}
                       title={TYPE_LABELS[group.type] ?? group.type}
-                      subtitle={`${formatBRL(group.value)} · ${(group.pct * 100).toFixed(1)}% do patrimônio`}
+                      subtitle={`${formatBRL(group.value)} · ${group.pct.toFixed(1)}% do patrimônio`}
                       count={group.positions.length}
                       defaultOpen={group.positions.length <= 6}
                     >
