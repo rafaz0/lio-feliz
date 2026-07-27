@@ -16,6 +16,7 @@ import {
 } from "recharts";
 import { AlertTriangle, Info, Plus, RefreshCw, TrendingUp, Wallet } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
+import { PortfolioTable } from "@/presentation/features/portfolio/components/PortfolioTable";
 
 import {
   ExpandableSection,
@@ -247,6 +248,15 @@ function PortfolioOverview() {
     dividendsByTicker[op.ticker] = (dividendsByTicker[op.ticker] ?? 0) + total;
     totalDividends += total;
   }
+
+  const allocationPositions = portfolio.typeAllocation.map((t, i) => ({
+    classe: TYPE_LABELS[t.type] ?? t.type,
+    valor: formatBRL(t.value),
+    percentual: t.pct * 100,
+    fill: CHART_COLORS[i % CHART_COLORS.length],
+  }));
+
+  const idealPct = allocationPositions.length > 0 ? 100 / allocationPositions.length : 0;
   const quotesUpdatedAt = Object.values(quotesData)[0]?.updatedAt;
   const quotesError = quotesQuery.data?.error;
   const liveCount = Object.keys(quotesData).length;
@@ -730,6 +740,9 @@ function PortfolioOverview() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-4">
+                <PortfolioTable positions={allocationPositions} idealPct={idealPct} />
+              </div>
             </div>
             <div className="rounded-lg border bg-card p-5">
               <h2 className="text-sm font-semibold">Alocação por setor</h2>
