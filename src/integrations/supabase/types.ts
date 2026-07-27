@@ -76,7 +76,64 @@ export type Database = {
       };
     };
     Views: {
-      [_ in never]: never;
+      vw_patrimonio: {
+        Row: {
+          portfolio_id: string;
+          patrimonio_total: number;
+          patrimonio_investido: number;
+          saldo_disponivel: number;
+          moeda: string;
+          data_referencia: string;
+          alocacao: Json;
+          evolucao_mensal: number;
+        };
+        Insert: Record<string, never>;
+        Update: Record<string, never>;
+        Relationships: [];
+      };
+      vw_historico: {
+        Row: {
+          portfolio_id: string;
+          data: string;
+          patrimonio_total: number;
+          patrimonio_investido: number;
+        };
+        Insert: Record<string, never>;
+        Update: Record<string, never>;
+        Relationships: [];
+      };
+      vw_posicoes: {
+        Row: {
+          portfolio_id: string;
+          asset_id: string;
+          ticker: string;
+          nome: string;
+          classe: string;
+          quantidade: number;
+          preco_medio: number;
+          valor_total: number;
+          valorizacao: number;
+          rentabilidade_total: number;
+          rentabilidade_periodo: number;
+        };
+        Insert: Record<string, never>;
+        Update: Record<string, never>;
+        Relationships: [];
+      };
+      vw_proventos: {
+        Row: {
+          portfolio_id: string;
+          asset_id: string;
+          ticker: string;
+          tipo: string;
+          valor: number;
+          data_pagamento: string;
+          data_base: string;
+        };
+        Insert: Record<string, never>;
+        Update: Record<string, never>;
+        Relationships: [];
+      };
     };
     Functions: {
       [_ in never]: never;
