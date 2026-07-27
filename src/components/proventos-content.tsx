@@ -138,48 +138,6 @@ export function ProventosContent() {
   const coveragePct = coverageFactor !== null ? Math.min(coverageFactor * 100, 999) : null;
   const upcomingTotal = upcoming.reduce((s, p) => s + p.amount, 0);
 
-  // Monthly chart data (bars + cumulative line)
-  const monthlyChart = useMemo(() => {
-    const groups: Record<string, number> = {};
-    const start = new Date(now);
-    start.setDate(1);
-    const months = Math.max(Math.ceil(cutoffDays / 30), 12);
-    for (let i = 0; i < months; i++) {
-      const d = new Date(start);
-      d.setMonth(start.getMonth() + i);
-      const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-      groups[k] = 0;
-    }
-    for (const p of projections) {
-      const pd = new Date(p.paymentDate);
-      if (pd < now) continue;
-      const k = `${pd.getFullYear()}-${String(pd.getMonth() + 1).padStart(2, "0")}`;
-      if (k in groups) groups[k] = (groups[k] ?? 0) + p.amount;
-    }
-    let cumulative = 0;
-    return Object.entries(groups)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([month, amount]) => {
-        cumulative += amount;
-        return {
-          month,
-          amount: Math.round(amount * 100) / 100,
-          cumulative: Math.round(cumulative * 100) / 100,
-        };
-      });
-  }, [projections, cutoffDays, now]);
-
-  // Top assets
-  const byTicker = useMemo(() => {
-    const map: Record<string, { ticker: string; name: string; total: number; count: number }> = {};
-    for (const p of upcoming) {
-      if (!map[p.ticker]) map[p.ticker] = { ticker: p.ticker, name: p.name, total: 0, count: 0 };
-      map[p.ticker].total += p.amount;
-      map[p.ticker].count++;
-    }
-    return Object.values(map).sort((a, b) => b.total - a.total);
-  }, [upcoming]);
-
   // Historical dividends from known assets
   const historico = useMemo(() => {
     const items: { ticker: string; name: string; paidAt: string; amount: number; type: string }[] =
@@ -201,6 +159,61 @@ export function ProventosContent() {
     return items.sort((a, b) => b.paidAt.localeCompare(a.paidAt)).slice(0, 20);
   }, [tickers]);
 
+  const totalHistorico = historico.reduce((s, h) => s + h.amount, 0);
+
+  // Monthly chart data (bars + cumulative line)
+  const monthlyChart = useMemo(() => {
+    const projGroups: Record<string, number> = {};
+    const histGroups: Record<string, number> = {};
+    const start = new Date(now);
+    start.setDate(1);
+    const months = Math.max(Math.ceil(cutoffDays / 30), 12);
+    for (let i = 0; i < months; i++) {
+      const d = new Date(start);
+      d.setMonth(start.getMonth() + i);
+      const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+      projGroups[k] = 0;
+      histGroups[k] = 0;
+    }
+    // Projected (a receber)
+    for (const p of projections) {
+      const pd = new Date(p.paymentDate);
+      if (pd < now) continue;
+      const k = `${pd.getFullYear()}-${String(pd.getMonth() + 1).padStart(2, "0")}`;
+      if (k in projGroups) projGroups[k] = (projGroups[k] ?? 0) + p.amount;
+    }
+    // Historical (recebido)
+    for (const h of historico) {
+      const hd = new Date(h.paidAt);
+      const k = `${hd.getFullYear()}-${String(hd.getMonth() + 1).padStart(2, "0")}`;
+      if (k in histGroups) histGroups[k] = (histGroups[k] ?? 0) + h.amount;
+    }
+    let cumulative = 0;
+    return Object.entries(projGroups)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([month, proj]) => {
+        const hist = histGroups[month] ?? 0;
+        cumulative += proj;
+        return {
+          month,
+          projetado: Math.round(proj * 100) / 100,
+          recebido: Math.round(hist * 100) / 100,
+          cumulative: Math.round(cumulative * 100) / 100,
+        };
+      });
+  }, [projections, historico, cutoffDays, now]);
+
+  // Top assets
+  const byTicker = useMemo(() => {
+    const map: Record<string, { ticker: string; name: string; total: number; count: number }> = {};
+    for (const p of upcoming) {
+      if (!map[p.ticker]) map[p.ticker] = { ticker: p.ticker, name: p.name, total: 0, count: 0 };
+      map[p.ticker].total += p.amount;
+      map[p.ticker].count++;
+    }
+    return Object.values(map).sort((a, b) => b.total - a.total);
+  }, [upcoming]);
+
   if (isLoading) {
     return (
       <div className="space-y-4">
@@ -218,7 +231,7 @@ export function ProventosContent() {
   return (
     <div className="space-y-6">
       {/* KPI Cards */}
-      <section className="grid gap-3 sm:grid-cols-4">
+      <section className="grid gap-3 sm:grid-cols-5">
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
             <TrendingUp className="size-3.5" /> Ativos em carteira
@@ -236,12 +249,23 @@ export function ProventosContent() {
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
-            <Calendar className="size-3.5" /> Próximos pagamentos
+            <Calendar className="size-3.5" /> Total a Receber
           </div>
-          <div className="tabular mt-2 text-2xl font-bold">{upcoming.length}</div>
+          <div className="tabular mt-2 text-2xl font-bold text-chart-5">
+            {formatBRLCompact(upcomingTotal)}
+          </div>
           <div className="text-[10px] text-muted-foreground">
-            {cutoffDays === 365 ? "em 12 meses" : `em ${cutoffDays} dias`}
+            {upcoming.length} pagamento{upcoming.length !== 1 ? "s" : ""} em {cutoffDays === 365 ? "12 meses" : `até ${cutoffDays} dias`}
           </div>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
+            <Wallet className="size-3.5" /> Recebido (últimos)
+          </div>
+          <div className="tabular mt-2 text-2xl font-bold text-positive">
+            {formatBRLCompact(totalHistorico)}
+          </div>
+          <div className="text-[10px] text-muted-foreground">últimos {historico.length} registros</div>
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
@@ -327,13 +351,31 @@ export function ProventosContent() {
           <div className="mb-3 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
             <TrendingUp className="size-3.5" /> Proventos mensais
           </div>
+          <div className="flex flex-wrap gap-4 mb-3 text-xs">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: "var(--color-chart-5)" }} />
+              A Receber
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: "var(--color-positive)" }} />
+              Recebido
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-0.5 w-4" style={{ backgroundColor: "var(--color-chart-1)" }} />
+              Acumulado (projetado)
+            </span>
+          </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={monthlyChart} margin={{ left: 8, right: 8, top: 8, bottom: 0 }}>
                 <defs>
-                  <linearGradient id="provBarFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="var(--color-positive)" stopOpacity={0.8} />
-                    <stop offset="100%" stopColor="var(--color-positive)" stopOpacity={0.3} />
+                  <linearGradient id="provReceberFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="var(--color-chart-5)" stopOpacity={0.8} />
+                    <stop offset="100%" stopColor="var(--color-chart-5)" stopOpacity={0.3} />
+                  </linearGradient>
+                  <linearGradient id="provRecebidoFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="var(--color-positive)" stopOpacity={0.6} />
+                    <stop offset="100%" stopColor="var(--color-positive)" stopOpacity={0.15} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid
@@ -368,15 +410,25 @@ export function ProventosContent() {
                     borderRadius: 6,
                     fontSize: 12,
                   }}
-                  formatter={(v: number, name: string) => [
-                    formatBRL(v),
-                    name === "cumulative" ? "Acumulado" : "Proventos",
-                  ]}
+                  formatter={(v: number, name: string) => {
+                    const labels: Record<string, string> = {
+                      projetado: "A Receber",
+                      recebido: "Recebido",
+                      cumulative: "Acumulado",
+                    };
+                    return [formatBRL(v), labels[name] ?? name];
+                  }}
                 />
                 <Bar
                   yAxisId="left"
-                  dataKey="amount"
-                  fill="url(#provBarFill)"
+                  dataKey="recebido"
+                  fill="url(#provRecebidoFill)"
+                  radius={[3, 3, 0, 0]}
+                />
+                <Bar
+                  yAxisId="left"
+                  dataKey="projetado"
+                  fill="url(#provReceberFill)"
                   radius={[3, 3, 0, 0]}
                 />
                 <Line

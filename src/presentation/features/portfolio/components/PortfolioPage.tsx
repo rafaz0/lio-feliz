@@ -21,6 +21,7 @@ export function PortfolioPage({ portfolioId }: PortfolioPageProps) {
   const [ativoSelecionado, setAtivoSelecionado] = useState<string | null>(null);
 
   const classes = useMemo(() => positions.map((p) => p.classe), [positions]);
+  const idealPct = useMemo(() => positions.length > 0 ? 100 / positions.length : 0, [positions]);
 
   const visiveis = useMemo(() => {
     const termo = filtro.trim().toLowerCase();
@@ -61,6 +62,7 @@ export function PortfolioPage({ portfolioId }: PortfolioPageProps) {
             positions={visiveis}
             onSelectAtivo={setAtivoSelecionado}
             selectedClasse={classeSelecionada}
+            idealPct={idealPct}
           />
           <div className="grid gap-3 sm:grid-cols-2">
             {visiveis.map((position) => (

@@ -31,8 +31,14 @@ import { MARKET_INDICES, formatIndexValue } from "@/lib/market-indices";
 import { getQuotes } from "@/lib/quotes.functions";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
 import { useSession } from "@/hooks/use-session";
-import { InsightCard } from "@/presentation/features/intelligence";
-import type { InsightViewModel } from "@/presentation/features/intelligence";
+import { InsightCard, InsightSection, useAllInsights } from "@/presentation/features/intelligence";
+import { useDashboardQuery } from "@/presentation/features/dashboard";
+
+const SEVERITY_ORDER: Record<string, number> = {
+  highlight: 0,
+  attention: 1,
+  info: 2,
+};
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -56,8 +62,22 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const { list } = Route.useLoaderData();
-  const { user } = useSession();
+  const { user, loading: sessionLoading } = useSession();
   const [search, setSearch] = useState("");
+  const portfolioId = user?.id ?? "";
+  const {
+    viewModel: dashboard,
+    isLoading: dashboardLoading,
+  } = useDashboardQuery(portfolioId);
+
+  const allInsights = useAllInsights({ dashboard: user ? dashboard : null });
+  const topInsights = useMemo(() => {
+    if (allInsights.length === 0) return allInsights;
+    return [...allInsights]
+      .sort((a, b) => (SEVERITY_ORDER[a.severity] ?? 99) - (SEVERITY_ORDER[b.severity] ?? 99))
+      .slice(0, 3);
+  }, [allInsights]);
+  const insightsReady = !!(user && !dashboardLoading);
 
   const fetchQuotes = useServerFn(getQuotes);
   const mockTickers = ASSETS.map((a) => a.ticker);
@@ -102,45 +122,31 @@ function HomePage() {
 
       <main className="mx-auto max-w-[1400px] px-4 py-10">
         {/* Secao A — Insights (logado) / Conversao (visitante) */}
-        {user ? (
+        {sessionLoading ? (
           <section className="mb-8 space-y-3">
             <div className="flex items-center gap-2">
               <Sparkles className="size-4 text-primary" />
               <h2 className="text-sm font-semibold">Seus insights</h2>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              <InsightCard
-                insight={{
-                  id: "home-patrimonio",
-                  severity: "highlight",
-                  category: "patrimonio",
-                  title: "Acompanhe seu patrimônio",
-                  description: "Veja a evolução do seu patrimonio, rentabilidade e alocação no Dashboard.",
-                  trend: "up",
-                }}
-              />
-              <InsightCard
-                insight={{
-                  id: "home-proventos",
-                  severity: "info",
-                  category: "proventos",
-                  title: "Proventos recebidos",
-                  description: "Confira seus dividendos e JCP registrados, com projeções para os próximos meses.",
-                  trend: "neutral",
-                }}
-              />
-              <InsightCard
-                insight={{
-                  id: "home-irpf",
-                  severity: "info",
-                  category: "geral",
-                  title: "IRPF mensal",
-                  description: "Acompanhe a apuração mensal do Imposto de Renda sobre suas operações.",
-                  trend: "neutral",
-                }}
-              />
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="h-28 animate-pulse rounded-lg border bg-card" />
+              ))}
             </div>
           </section>
+        ) : user ? (
+          <InsightSection
+            title="Seus insights"
+            icon={<Sparkles className="size-4 text-primary" />}
+            isEmpty={insightsReady ? topInsights.length === 0 : false}
+            emptyMessage="Você ainda não tem dados suficientes na carteira para gerar insights. Cadastre suas operações para começar."
+          >
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {topInsights.map((insight) => (
+                <InsightCard key={insight.id} insight={insight} />
+              ))}
+            </div>
+          </InsightSection>
         ) : (
           <section className="mb-8 rounded-lg border border-primary/20 bg-primary/5 p-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
