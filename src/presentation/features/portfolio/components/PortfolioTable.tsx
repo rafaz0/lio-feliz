@@ -14,7 +14,12 @@ interface PortfolioTableProps {
   idealPct?: number;
 }
 
-export function PortfolioTable({ positions, onSelectAtivo, selectedClasse, idealPct }: PortfolioTableProps) {
+export function PortfolioTable({
+  positions,
+  onSelectAtivo,
+  selectedClasse,
+  idealPct,
+}: PortfolioTableProps) {
   const [filtro, setFiltro] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("valor");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
@@ -102,7 +107,8 @@ export function PortfolioTable({ positions, onSelectAtivo, selectedClasse, ideal
                       </span>
                     </TooltipTrigger>
                     <TooltipContent side="top" className="max-w-[220px] text-xs leading-relaxed">
-                      Sugestão baseada em divisão igualitária entre as classes. Ainda não é personalizável — futuramente você poderá definir seu próprio % alvo.
+                      Sugestão baseada em divisão igualitária entre as classes. Ainda não é
+                      personalizável — futuramente você poderá definir seu próprio % alvo.
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

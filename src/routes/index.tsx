@@ -65,10 +65,7 @@ function HomePage() {
   const { user, loading: sessionLoading } = useSession();
   const [search, setSearch] = useState("");
   const portfolioId = user?.id ?? "";
-  const {
-    viewModel: dashboard,
-    isLoading: dashboardLoading,
-  } = useDashboardQuery(portfolioId);
+  const { viewModel: dashboard, isLoading: dashboardLoading } = useDashboardQuery(portfolioId);
 
   const allInsights = useAllInsights({ dashboard: user ? dashboard : null });
   const topInsights = useMemo(() => {
@@ -153,9 +150,9 @@ function HomePage() {
               <div className="max-w-xl">
                 <h2 className="text-lg font-semibold">Insights personalizados para sua carteira</h2>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Assim que você conectar sua carteira, mostramos aqui insights como:
-                  &ldquo;Seu patrimônio cresceu <strong>X%</strong> este mês&rdquo; ou
-                  &ldquo;Você tem <strong>R$ Y</strong> em proventos previstos essa semana&rdquo;.
+                  Assim que você conectar sua carteira, mostramos aqui insights como: &ldquo;Seu
+                  patrimônio cresceu <strong>X%</strong> este mês&rdquo; ou &ldquo;Você tem{" "}
+                  <strong>R$ Y</strong> em proventos previstos essa semana&rdquo;.
                 </p>
               </div>
               <Button asChild size="default">

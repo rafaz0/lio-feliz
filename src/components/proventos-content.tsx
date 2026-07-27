@@ -69,7 +69,10 @@ export function ProventosContent() {
     if (!ops) return [];
     const dividendOps = ops.filter((o) => o.side === "dividend");
     if (dividendOps.length === 0) return [];
-    const byTicker: Record<string, { ticker: string; name: string; total: number; lastDate: string }> = {};
+    const byTicker: Record<
+      string,
+      { ticker: string; name: string; total: number; lastDate: string }
+    > = {};
     for (const op of dividendOps) {
       const cur = byTicker[op.ticker] ?? {
         ticker: op.ticker,
@@ -255,7 +258,8 @@ export function ProventosContent() {
             {formatBRLCompact(upcomingTotal)}
           </div>
           <div className="text-[10px] text-muted-foreground">
-            {upcoming.length} pagamento{upcoming.length !== 1 ? "s" : ""} em {cutoffDays === 365 ? "12 meses" : `até ${cutoffDays} dias`}
+            {upcoming.length} pagamento{upcoming.length !== 1 ? "s" : ""} em{" "}
+            {cutoffDays === 365 ? "12 meses" : `até ${cutoffDays} dias`}
           </div>
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
@@ -265,7 +269,9 @@ export function ProventosContent() {
           <div className="tabular mt-2 text-2xl font-bold text-positive">
             {formatBRLCompact(totalHistorico)}
           </div>
-          <div className="text-[10px] text-muted-foreground">últimos {historico.length} registros</div>
+          <div className="text-[10px] text-muted-foreground">
+            últimos {historico.length} registros
+          </div>
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
@@ -353,11 +359,17 @@ export function ProventosContent() {
           </div>
           <div className="flex flex-wrap gap-4 mb-3 text-xs">
             <span className="inline-flex items-center gap-1.5">
-              <span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: "var(--color-chart-5)" }} />
+              <span
+                className="h-2.5 w-2.5 rounded-sm"
+                style={{ backgroundColor: "var(--color-chart-5)" }}
+              />
               A Receber
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: "var(--color-positive)" }} />
+              <span
+                className="h-2.5 w-2.5 rounded-sm"
+                style={{ backgroundColor: "var(--color-positive)" }}
+              />
               Recebido
             </span>
             <span className="inline-flex items-center gap-1.5">

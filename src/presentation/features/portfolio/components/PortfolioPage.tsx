@@ -21,7 +21,7 @@ export function PortfolioPage({ portfolioId }: PortfolioPageProps) {
   const [ativoSelecionado, setAtivoSelecionado] = useState<string | null>(null);
 
   const classes = useMemo(() => positions.map((p) => p.classe), [positions]);
-  const idealPct = useMemo(() => positions.length > 0 ? 100 / positions.length : 0, [positions]);
+  const idealPct = useMemo(() => (positions.length > 0 ? 100 / positions.length : 0), [positions]);
 
   const visiveis = useMemo(() => {
     const termo = filtro.trim().toLowerCase();

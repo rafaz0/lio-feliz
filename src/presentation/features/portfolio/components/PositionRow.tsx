@@ -53,7 +53,8 @@ export function PositionRow({ position, onSelect, isSelected, idealPct = 0 }: Po
                   </button>
                 </TooltipTrigger>
                 <TooltipContent side="top" className="max-w-[220px] text-xs leading-relaxed">
-                  Diferença entre o % atual e a distribuição igualitária sugerida (não personalizável).
+                  Diferença entre o % atual e a distribuição igualitária sugerida (não
+                  personalizável).
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

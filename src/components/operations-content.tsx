@@ -135,15 +135,15 @@ export function OperationsContent() {
                     </td>
                     <td className="px-4 py-2.5">
                       <span
-                         className={
-                           "rounded px-2 py-0.5 text-xs font-medium " +
-                           (o.side === "buy"
-                             ? "bg-positive/15 text-positive"
-                             : "bg-negative/15 text-negative")
-                         }
-                       >
-                         {o.side === "buy" ? "Compra" : "Venda"}
-                       </span>
+                        className={
+                          "rounded px-2 py-0.5 text-xs font-medium " +
+                          (o.side === "buy"
+                            ? "bg-positive/15 text-positive"
+                            : "bg-negative/15 text-negative")
+                        }
+                      >
+                        {o.side === "buy" ? "Compra" : "Venda"}
+                      </span>
                     </td>
                     <td className="tabular px-4 py-2.5 text-right">{formatQty(o.quantity)}</td>
                     <td className="tabular px-4 py-2.5 text-right">
