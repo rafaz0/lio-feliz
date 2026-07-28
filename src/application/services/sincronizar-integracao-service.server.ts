@@ -7,6 +7,7 @@ import type { ApplicationError } from "@/application/errors/application-error";
 import { SyncLog } from "@/core/domain/integrations";
 import type { SyncOrchestrationService } from "@/core/domain/integrations";
 import { ConnectionFailedError } from "@/core/domain/integrations";
+import { testYahooConnection } from "@/lib/integration-tests.server";
 
 const RETRY_BACKOFF = [60_000, 300_000, 900_000];
 
@@ -78,18 +79,12 @@ export class SincronizarIntegracaoService implements IApplicationService<
     let recordsProcessed = 0;
 
     switch (provider) {
-      case "BRAPI":
-      case "YAHOO_FINANCE": {
+      case "BRAPI": {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 10000);
 
         try {
-          const url =
-            provider === "BRAPI"
-              ? "https://brapi.dev/api/quote/list"
-              : "https://query1.finance.yahoo.com/v8/finance/chart/PETR4.SA";
-
-          const response = await fetch(url, {
+          const response = await fetch("https://brapi.dev/api/quote/list", {
             signal: controller.signal,
             headers: { "Content-Type": "application/json" },
           });
@@ -102,7 +97,7 @@ export class SincronizarIntegracaoService implements IApplicationService<
           }
 
           const data = await response.json();
-          recordsProcessed = data?.stocks?.length ?? data?.chart?.result?.length ?? 0;
+          recordsProcessed = data?.stocks?.length ?? 0;
         } catch (err) {
           if (err instanceof DOMException && err.name === "AbortError") {
             throw new ConnectionFailedError(command.integrationId, "Timeout após 10s");
@@ -114,6 +109,25 @@ export class SincronizarIntegracaoService implements IApplicationService<
           );
         } finally {
           clearTimeout(timeout);
+        }
+        break;
+      }
+      case "YAHOO_FINANCE": {
+        try {
+          const result = await testYahooConnection();
+          if (!result.ok) {
+            throw new ConnectionFailedError(
+              command.integrationId,
+              "Falha ao conectar com Yahoo Finance",
+            );
+          }
+          recordsProcessed = result.recordsCount;
+        } catch (err) {
+          if (err instanceof ConnectionFailedError) throw err;
+          throw new ConnectionFailedError(
+            command.integrationId,
+            err instanceof Error ? err.message : "Falha na conexão",
+          );
         }
         break;
       }

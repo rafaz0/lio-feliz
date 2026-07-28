@@ -1,4 +1,4 @@
-import { computeDividendCAGR, type AnnualDividends } from "./yahoo.server";
+import { computeDividendCAGR, type AnnualDividends } from "./dividend-cagr";
 
 export interface ScorecardInputs {
   currentPrice: number;

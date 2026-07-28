@@ -3,8 +3,25 @@ import { z } from "zod";
 import { requireAuth } from "@/integrations/supabase/auth-middleware-prod";
 import type { AssetType, Currency, Operation, OperationSide } from "./portfolio";
 import { inferAssetType } from "./portfolio";
-import { fetchYahooDividends, fetchBRAPIDividends, fetchBRAPIStockDividends } from "./yahoo.server";
+import type {
+  fetchYahooDividends,
+  fetchBRAPIDividends,
+  fetchBRAPIStockDividends,
+} from "./yahoo.server";
 import { DEMO_OPERATIONS } from "@/seed/demo-operations";
+
+async function getYahooDividends() {
+  const m = await import("./yahoo.server");
+  return m.fetchYahooDividends;
+}
+async function getBRAPIDividends() {
+  const m = await import("./yahoo.server");
+  return m.fetchBRAPIDividends;
+}
+async function getBRAPIStockDividends() {
+  const m = await import("./yahoo.server");
+  return m.fetchBRAPIStockDividends;
+}
 
 const assetTypeSchema = z.enum([
   "stock",
@@ -270,8 +287,13 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
         asset_type === "bdr" ||
         asset_type === "etf";
       const divs = isBR
-        ? ((await fetchBRAPIDividends(ticker)) ?? (await fetchYahooDividends(ticker)))
-        : await fetchYahooDividends(ticker);
+        ? ((await (await getBRAPIDividends())(ticker)) ??
+          (await (
+            await getYahooDividends()
+          )(ticker)))
+        : await (
+            await getYahooDividends()
+          )(ticker);
 
       if (divs) {
         for (const div of divs) {
@@ -334,7 +356,7 @@ export const syncPendingDividends = createServerFn({ method: "POST" })
 
       // --- Bonuses & Splits ---
       if (isBR) {
-        const stockDivs = await fetchBRAPIStockDividends(ticker);
+        const stockDivs = await (await getBRAPIStockDividends())(ticker);
         if (stockDivs) {
           for (const sd of stockDivs) {
             if (existingBonusLabels.has(sd.paidAt)) continue;

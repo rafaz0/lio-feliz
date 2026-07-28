@@ -74,7 +74,7 @@ import { ExportarRelatorioService } from "@/application/services/exportar-relato
 import { ObterHistoricoImportacaoService } from "@/application/services/obter-historico-importacao-service";
 import { ObterModelosExportacaoService } from "@/application/services/obter-modelos-exportacao-service";
 import { ConfigurarIntegracaoService } from "@/application/services/configurar-integracao-service";
-import { SincronizarIntegracaoService } from "@/application/services/sincronizar-integracao-service";
+import { SincronizarIntegracaoService } from "@/application/services/sincronizar-integracao-service.server";
 import { ObterIntegracoesService } from "@/application/services/obter-integracoes-service";
 import { ObterStatusSincronizacaoService } from "@/application/services/obter-status-sincronizacao-service";
 import type { ImportarDadosCommand } from "@/application/commands/importar-dados";
