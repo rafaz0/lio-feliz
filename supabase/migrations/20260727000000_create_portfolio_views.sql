@@ -33,7 +33,7 @@ sell_cost AS (
 alocacao AS (
   SELECT
     o.user_id,
-    COALESCE(ao.classe, o.asset_type) AS classe,
+    ao.classe AS classe,
     SUM(o.price * o.quantity) AS valor,
     CASE WHEN SUM(o.price * o.quantity) > 0 THEN 1.0 ELSE 0 END AS percentual
   FROM public.portfolio_operations o
