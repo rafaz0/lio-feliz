@@ -82,12 +82,24 @@ GROUP BY COALESCE(b.user_id, s.user_id), b.total_invested, s.total_sold;
 
 -- vw_historico: daily portfolio values (snapshot from operations)
 CREATE OR REPLACE VIEW public.vw_historico AS
+WITH valor_por_operacao AS (
+  SELECT
+    user_id,
+    traded_at,
+    CASE
+      WHEN side = 'buy'  THEN price * quantity
+      WHEN side = 'sell' THEN -(price * quantity)
+      ELSE 0
+    END AS valor_liquido,
+    CASE WHEN side IN ('buy','sell') THEN price * quantity ELSE 0 END AS capital_movimentado
+  FROM public.portfolio_operations
+)
 SELECT
   user_id AS portfolio_id,
   traded_at::text AS data,
-  SUM(price * quantity) OVER (PARTITION BY user_id ORDER BY traded_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS patrimonio_total,
-  SUM(CASE WHEN side = 'buy' THEN price * quantity ELSE 0 END) OVER (PARTITION BY user_id ORDER BY traded_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS patrimonio_investido
-FROM public.portfolio_operations
+  SUM(capital_movimentado) OVER (PARTITION BY user_id ORDER BY traded_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS patrimonio_total,
+  SUM(CASE WHEN valor_liquido > 0 THEN valor_liquido ELSE 0 END) OVER (PARTITION BY user_id ORDER BY traded_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS patrimonio_investido
+FROM valor_por_operacao
 ORDER BY user_id, traded_at;
 
 -- vw_posicoes: current positions per ticker
@@ -153,11 +165,8 @@ FROM public.portfolio_operations
 WHERE side = 'dividend';
 
 -- Grant access to authenticated users
-ALTER VIEW public.vw_patrimonio OWNER TO authenticated;
-ALTER VIEW public.vw_historico OWNER TO authenticated;
-ALTER VIEW public.vw_posicoes OWNER TO authenticated;
-ALTER VIEW public.vw_proventos OWNER TO authenticated;
-
+-- RLS on the underlying portfolio_operations table ensures each user
+-- sees only their own rows when querying these views.
 GRANT SELECT ON public.vw_patrimonio TO authenticated;
 GRANT SELECT ON public.vw_historico TO authenticated;
 GRANT SELECT ON public.vw_posicoes TO authenticated;
