@@ -141,7 +141,7 @@ export function SiteHeader() {
                     <p className="px-3 py-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       Carteira
                     </p>
-                    <MobileNavLink to="/_authenticated/carteira" onClick={closeMobile}>
+                    <MobileNavLink to="/carteira" onClick={closeMobile}>
                       Carteira
                     </MobileNavLink>
                     <MobileNavLink to="/assinaturas" onClick={closeMobile}>
