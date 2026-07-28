@@ -45,7 +45,7 @@ export function clearDemoExpiredFlag(): void {
 }
 
 export function createDemoSession(): DemoSession {
-  const sessionId = `demo-${crypto.randomUUID()}`;
+  const sessionId = crypto.randomUUID();
   const expiresAt = Date.now() + 30 * 60 * 1000; // 30 min
   if (typeof window !== "undefined") {
     window.localStorage.setItem(DEMO_SESSION_KEY, sessionId);

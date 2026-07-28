@@ -36,7 +36,7 @@ export function useSession() {
         const demo = getDemoSession();
         setSession({
           user: {
-            id: demo?.sessionId ?? "demo-user",
+            id: demo?.sessionId ?? crypto.randomUUID(),
             email: "demo@localhost",
             user_metadata: { display_name: "Modo Demo" },
             app_metadata: {},

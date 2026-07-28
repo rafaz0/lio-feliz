@@ -72,7 +72,7 @@ export const requireAuth = createMiddleware({ type: "function" }).server(async (
   if (request) {
     const cookies = parseCookies(request.headers.get("cookie"));
     demoSessionId = cookies["lio_demo_session"] ?? "";
-    if (demoSessionId && demoSessionId.startsWith("demo-")) {
+    if (demoSessionId) {
       return next({
         context: {
           supabase: createClient<Database>(
