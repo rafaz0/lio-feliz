@@ -40,7 +40,11 @@ export function ModuleTabs({ tabs, className }: ModuleTabsProps) {
           >
             {tab.icon}
             <span className="hidden sm:inline truncate max-w-[100px]">{tab.label}</span>
-            <span className="sm:hidden truncate max-w-[64px]">{tab.label}</span>
+            {tab.icon ? (
+              <span className="sm:hidden sr-only">{tab.label}</span>
+            ) : (
+              <span className="sm:hidden truncate max-w-[64px]">{tab.label}</span>
+            )}
           </Link>
         );
       })}
