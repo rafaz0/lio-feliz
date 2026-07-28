@@ -1,7 +1,3 @@
--- Extend operation_side enum to match application model
-ALTER TYPE public.operation_side ADD VALUE IF NOT EXISTS 'dividend';
-ALTER TYPE public.operation_side ADD VALUE IF NOT EXISTS 'bonus';
-
 -- Add missing columns to portfolio_operations if not present
 ALTER TABLE public.portfolio_operations ADD COLUMN IF NOT EXISTS fee numeric(18,4) NOT NULL DEFAULT 0;
 ALTER TABLE public.portfolio_operations ADD COLUMN IF NOT EXISTS irrf numeric(18,4) NOT NULL DEFAULT 0;
