@@ -132,9 +132,6 @@ export function SiteHeader() {
                   <MobileNavLink to="/carteiras-recomendadas" onClick={closeMobile}>
                     Carteiras Recomendadas
                   </MobileNavLink>
-                  <MobileNavLink to="/noticias" onClick={closeMobile}>
-                    Notícias
-                  </MobileNavLink>
                 </div>
                 {user && (
                   <div className="mt-4 space-y-1 border-t border-border pt-4">
