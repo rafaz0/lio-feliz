@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
   Activity,
+  AlertTriangle,
   ArrowLeft,
   BarChart3,
   CalendarDays,
@@ -37,6 +38,7 @@ import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/hooks/use-session";
 import { getAssetData, getFinancialStatements } from "@/lib/data-functions";
+import type { AssetFundamentals } from "@/lib/mock-data";
 import {
   fetchYahooNews,
   type FinancialStatements,
@@ -335,6 +337,24 @@ function computeRiskMetrics(history: { close: number }[]) {
   return { volatility: annualizedVol * 100, sharpe, maxDrawdown: maxDD * 100 };
 }
 
+function hasFundamentals(f: AssetFundamentals): boolean {
+  return f.pl !== 0 || f.pvp !== 0 || f.dy !== 0 || f.roe !== 0 || f.lpa !== 0 || f.vpa !== 0;
+}
+
+const NO_DATA = "—";
+
+function fmtPct(v: number): string {
+  return v === 0 ? NO_DATA : `${v.toFixed(1)}%`;
+}
+
+function fmtNum(v: number, decimals = 1): string {
+  return v === 0 ? NO_DATA : v.toFixed(decimals);
+}
+
+function fmtBRLval(v: number): string {
+  return v === 0 ? NO_DATA : formatBRL(v);
+}
+
 function TickerNotFound() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -503,64 +523,67 @@ function AssetPage() {
     ],
   );
 
+  const f = asset.fundamentals;
+  const limitedData = !hasFundamentals(f);
+
   const indicators = [
     {
       label: "P/L",
-      value: asset.fundamentals.pl.toFixed(1),
+      value: fmtNum(f.pl, 1),
       tooltip:
         "Preço sobre Lucro. Indica quantos anos de lucro são necessários para pagar o preço atual da ação. Um P/L baixo pode sugerir ação subvalorizada; um P/L alto pode indicar expectativa de crescimento futuro. Compare com empresas do mesmo setor.",
     },
     {
       label: "P/VP",
-      value: asset.fundamentals.pvp.toFixed(2),
+      value: fmtNum(f.pvp, 2),
       tooltip:
         "Preço sobre Valor Patrimonial. Compara o valor de mercado da empresa com seu patrimônio líquido contábil. P/VP < 1 pode indicar ação negociada abaixo do valor contábil; P/VP > 1 é comum em empresas com bons retornos. Bancos e seguradoras costumam usar este indicador.",
     },
     {
       label: "DY",
-      value: `${asset.fundamentals.dy.toFixed(2)}%`,
+      value: fmtPct(f.dy),
       tooltip:
         "Dividend Yield (Rendimento de Dividendos). Mostra quanto a empresa pagou em dividendos nos últimos 12 meses em relação ao preço da ação. Para investidores de longo prazo, um DY consistente e crescente é desejável. Atenção: DY muito alto pode ser insustentável.",
     },
     {
       label: "ROE",
-      value: `${asset.fundamentals.roe.toFixed(1)}%`,
+      value: fmtPct(f.roe),
       tooltip:
         "Return on Equity (Retorno sobre Patrimônio Líquido). Mede a capacidade da empresa de gerar lucro com o capital dos acionistas. ROE alto e consistente indica gestão eficiente. ROE > 15% é geralmente considerado bom, mas deve-se avaliar junto com o endividamento.",
     },
     {
       label: "ROIC",
-      value: `${asset.fundamentals.roic.toFixed(1)}%`,
+      value: fmtPct(f.roic),
       tooltip:
         "Return on Invested Capital (Retorno sobre Capital Investido). Mede o retorno gerado sobre todo o capital investido na empresa (próprio + dívida). É um dos indicadores mais importantes para avaliar a eficiência real da empresa. ROIC consistentemente acima do custo de capital indica vantagem competitiva.",
     },
     {
       label: "Margem Líquida",
-      value: `${asset.fundamentals.margemLiquida.toFixed(1)}%`,
+      value: fmtPct(f.margemLiquida),
       tooltip:
         "Margem Líquida. Mostra qual percentual da receita se transforma em lucro líquido. Margens altas indicam poder de precificação e eficiência operacional. Compare com o histórico da própria empresa e com concorrentes do setor.",
     },
     {
       label: "Dív. Líq./EBITDA",
-      value: asset.fundamentals.divLiquidaEbitda.toFixed(2),
+      value: fmtNum(f.divLiquidaEbitda, 2),
       tooltip:
         "Dívida Líquida sobre EBITDA. Mede o nível de alavancagem da empresa: quantos anos de geração de caixa operacional (EBITDA) seriam necessários para pagar toda a dívida líquida. Valores abaixo de 2x são considerados confortáveis; acima de 3x pode indicar risco financeiro elevado.",
     },
     {
       label: "LPA",
-      value: formatBRL(asset.fundamentals.lpa),
+      value: fmtBRLval(f.lpa),
       tooltip:
         "Lucro por Ação. É o lucro líquido da empresa dividido pelo número de ações em circulação. Indica quanto de lucro cada ação representa. Use o LPA para calcular o P/L e acompanhar o crescimento dos lucros ao longo do tempo.",
     },
     {
       label: "VPA",
-      value: formatBRL(asset.fundamentals.vpa),
+      value: fmtBRLval(f.vpa),
       tooltip:
         "Valor Patrimonial por Ação. É o patrimônio líquido dividido pelo número de ações. Representa o valor contábil de cada ação. Use o VPA para calcular o P/VP e avaliar se a ação está cara ou barata em relação ao seu valor contábil.",
     },
     {
       label: "Valor de mercado",
-      value: formatBRLCompact(asset.fundamentals.marketCap),
+      value: f.marketCap === 0 ? NO_DATA : formatBRLCompact(f.marketCap),
       tooltip:
         "Market Cap (Valor de Mercado). É o valor total da empresa na bolsa (preço da ação × número de ações). Empresas maiores tendem a ser mais estáveis; empresas menores podem ter mais potencial de crescimento, mas com maior risco. Também chamado de capitalização de mercado.",
     },
@@ -603,6 +626,20 @@ function AssetPage() {
                 <Database className="size-2.5" />
                 {asset.isRealData ? "dados reais" : "dados mock"}
               </span>
+              {limitedData && (
+                <UiTooltip>
+                  <TooltipTrigger asChild>
+                    <span className="inline-flex cursor-help items-center gap-1 rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium uppercase text-amber-500">
+                      <AlertTriangle className="size-2.5" />
+                      Dados limitados
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="max-w-[240px] text-xs leading-relaxed">
+                    Este ativo não possui dados fundamentalistas completos em nossa cobertura.
+                    Apenas cotação e alguns indicadores estão disponíveis.
+                  </TooltipContent>
+                </UiTooltip>
+              )}
             </div>
             <p className="mt-1 text-muted-foreground">{asset.name}</p>
           </div>
@@ -1396,13 +1433,23 @@ function AssetPage() {
                     <div className="space-y-1 text-sm">
                       <div className="flex items-center justify-between">
                         <span className="text-muted-foreground">Scorecard</span>
-                        <span className="font-medium">{scorecardScore.score.toFixed(0)}/100</span>
+                        {limitedData ? (
+                          <span className="font-medium text-muted-foreground">—</span>
+                        ) : (
+                          <span className="font-medium">{scorecardScore.score.toFixed(0)}/100</span>
+                        )}
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-muted-foreground">Rating</span>
-                        <span className={`font-medium ${ratingColor(scorecardScore.rating)}`}>
-                          {ratingLabel(scorecardScore.rating)}
-                        </span>
+                        {limitedData ? (
+                          <span className="font-medium text-muted-foreground">
+                            Sem dados suficientes
+                          </span>
+                        ) : (
+                          <span className={`font-medium ${ratingColor(scorecardScore.rating)}`}>
+                            {ratingLabel(scorecardScore.rating)}
+                          </span>
+                        )}
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-muted-foreground">Preço teto (Bazin)</span>
