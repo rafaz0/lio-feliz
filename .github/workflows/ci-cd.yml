@@ -3,6 +3,11 @@
 # GitHub Actions é responsável APENAS pelos quality gates (lint, tests, build).
 # O deploy oficial é feito pela integração GitHub ↔ Vercel.
 # Consulte docs/DEPLOY.md para detalhes.
+#
+# NOTA: O projeto usa bun como gerenciador de pacotes (bun.lock, bunfig.toml).
+# O package-lock.json não é versionado — foi removido porque o npm ci falhava
+# quando o lockfile ficava dessincronizado após bun add/update.
+# Consulte AGENTS.md e .gitignore para detalhes.
 
 name: quality-gates
 
@@ -23,20 +28,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint
+        run: bun run lint
 
       - name: Unit tests
-        run: npx vitest run
+        run: bun test
 
       - name: Build
-        run: npm run build
+        run: bun run build

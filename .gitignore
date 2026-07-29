@@ -37,6 +37,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# Generated lockfiles (projeto usa bun.lock — package-lock.json e gerado
+# acidentalmente por npm install e causa falha no CI se versionado)
+package-lock.json
+
 # Opencode local cache (gerado por travamento do LM Studio — não versionar)
 .opencode/node_modules/
 
