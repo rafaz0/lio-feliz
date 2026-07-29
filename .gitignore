@@ -59,3 +59,4 @@ node_modules_backup/
 .dist-clone/
 .bun-tmp/
 .runvite.bat
+PROMPT_*
