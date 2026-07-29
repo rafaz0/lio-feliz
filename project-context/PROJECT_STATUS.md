@@ -122,7 +122,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 
 ### Versão 2.24
 
-- **Pendência de plataforma de hospedagem registrada** — CI/CD pipeline operacional (lint, vitest, build). Deploy definido como provisório (Cloudflare Workers), dependente de definição oficial da plataforma. Pendências TD-DEPLOY-001 a 004 e TD-E2E-INFRA-001 registradas no PROJECT_BOOTSTRAP.md v2.60. SECRET\_CLOUDFLARE\_API\_TOKEN não configurado (não crítico — deploy é responsabilidade futura). DOCUMENTATION_INDEX v2.11, PROJECT_STATUS v2.24.
+- **Pendência de plataforma de hospedagem registrada** — CI/CD pipeline operacional (lint, vitest, build). Deploy definido como provisório (Cloudflare Workers), dependente de definição oficial da plataforma. Pendências TD-DEPLOY-001 a 004 e TD-E2E-INFRA-001 registradas no PROJECT_BOOTSTRAP.md v2.60. SECRET_CLOUDFLARE_API_TOKEN não configurado (não crítico — deploy é responsabilidade futura). DOCUMENTATION_INDEX v2.11, PROJECT_STATUS v2.24.
 
 ### Versão 2.23
 

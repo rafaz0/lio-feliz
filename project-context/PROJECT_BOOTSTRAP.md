@@ -111,7 +111,7 @@ Nenhuma.
 PI-018 EM ELABORAÇÃO. Plataforma de Demonstração, Perfis de Usuário e Ambientes (Onda 12). Próxima etapa: **ER-018 (Engineering Review)**.
 
 **GOV-020 ativo — Project Map institucionalizado. IA-042: uso obrigatório do 20_PROJECT_MAP.md como documento de visão macro.
-**GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.****
+**GOV-021 ativo — Especificação Funcional (21_FUNCTIONAL_SPECIFICATION.md) institucionalizada como fonte canônica do comportamento esperado do produto.\*\*\*\*
 
 ## Engineering Outlook
 

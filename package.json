@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "supabase:types": "supabase gen types typescript --local > src/integrations/supabase/types.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

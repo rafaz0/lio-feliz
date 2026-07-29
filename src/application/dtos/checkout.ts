@@ -1,7 +1,12 @@
 import type { TipoCheckout } from "@/application/commands/iniciar-checkout";
 
 export type CheckoutStatus =
-  "CREATED" | "WAITING_PAYMENT" | "APPROVED" | "DECLINED" | "CANCELLED" | "EXPIRED";
+  | "CREATED"
+  | "WAITING_PAYMENT"
+  | "APPROVED"
+  | "DECLINED"
+  | "CANCELLED"
+  | "EXPIRED";
 
 export interface CheckoutDto {
   readonly checkoutId: string;

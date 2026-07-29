@@ -351,12 +351,12 @@ Branch `main` em `rafaz0/lio-feliz`, commit `8f7f5e5`:
 
 ## Tipos de operação suportados
 
-| side     | Descrição         | quantity        | price          | Efeito no portfolio          |
-| -------- | ----------------- | --------------- | -------------- | ---------------------------- |
-| buy      | Compra            | cotas compradas | preço por cota | +qty, +custo                 |
-| sell     | Venda             | cotas vendidas  | preço por cota | -qty, -custo (proporcional)  |
-| dividend | Dividendo/JCP     | cotas na data   | valor por cota | -custo (total = qty * price) |
-| bonus    | Bonificação/Split | cotas bônus     | 0              | +qty, sem custo              |
+| side     | Descrição         | quantity        | price          | Efeito no portfolio           |
+| -------- | ----------------- | --------------- | -------------- | ----------------------------- |
+| buy      | Compra            | cotas compradas | preço por cota | +qty, +custo                  |
+| sell     | Venda             | cotas vendidas  | preço por cota | -qty, -custo (proporcional)   |
+| dividend | Dividendo/JCP     | cotas na data   | valor por cota | -custo (total = qty \* price) |
+| bonus    | Bonificação/Split | cotas bônus     | 0              | +qty, sem custo               |
 
 ## Contas do usuário (se precisar logar)
 

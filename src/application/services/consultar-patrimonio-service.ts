@@ -29,11 +29,13 @@ export class ConsultarPatrimonioService implements IApplicationService<
       saldoDisponivel: projection.saldoDisponivel,
       moeda: projection.moeda,
       dataReferencia: projection.dataReferencia,
-      alocacao: projection.alocacao.map((a): AlocacaoDto => ({
-        classe: a.classe,
-        valor: a.valor,
-        percentual: a.percentual,
-      })),
+      alocacao: projection.alocacao.map(
+        (a): AlocacaoDto => ({
+          classe: a.classe,
+          valor: a.valor,
+          percentual: a.percentual,
+        }),
+      ),
       evolucaoMensal: projection.evolucaoMensal,
     };
   }

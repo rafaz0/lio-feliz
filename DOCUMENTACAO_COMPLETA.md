@@ -153,8 +153,7 @@ CriaÃ§Ã£o do Working Draft.
 
 ---
 
-Fonte: docs/ENGINEERING_ROADMAP.md
----
+## Fonte: docs/ENGINEERING_ROADMAP.md
 
 # ENGINEERING_ROADMAP.md
 
@@ -351,8 +350,7 @@ CriaÃ§Ã£o inicial do Engineering Roadmap.
 
 ---
 
-Fonte: docs/ENGINEERING_RULES.md
----
+## Fonte: docs/ENGINEERING_RULES.md
 
 # ENGINEERING_RULES.md
 
@@ -513,8 +511,7 @@ CriaÃ§Ã£o inicial das Engineering Rules.
 
 ---
 
-Fonte: docs/ENGINEERING_WORKFLOW.md
----
+## Fonte: docs/ENGINEERING_WORKFLOW.md
 
 # ENGINEERING_WORKFLOW.md
 
@@ -750,8 +747,7 @@ CriaÃ§Ã£o inicial do fluxo operacional da Engenharia.
 
 ---
 
-Fonte: docs/IMPLEMENTATION_PLAN_PS030.md
----
+## Fonte: docs/IMPLEMENTATION_PLAN_PS030.md
 
 # IMPLEMENTATION_PLAN_PS030.md
 
@@ -1013,8 +1009,7 @@ CriaÃ§Ã£o inicial do plano operacional do PS#030.
 
 ---
 
-Fonte: docs/06_BUSINESS_RULES/03_TRANSACTION_INTERPRETATION.md
----
+## Fonte: docs/06_BUSINESS_RULES/03_TRANSACTION_INTERPRETATION.md
 
 # Lio Feliz - DocumentaÃ§Ã£o Oficial
 
@@ -1510,8 +1505,7 @@ As seguintes hipÃ³teses permanecem em aberto e nÃ£o representam decisÃµes 
 
 ---
 
-Fonte: docs/TRACE_TRANSACTION.md
----
+## Fonte: docs/TRACE_TRANSACTION.md
 
 # Trace Transaction
 
@@ -2083,8 +2077,7 @@ O Trace Transaction atua como mecanismo transversal de explicabilidade e rastrea
 
 ---
 
-Fonte: docs/TRACE_TRANSACTION_ARCHITECTURE.md
----
+## Fonte: docs/TRACE_TRANSACTION_ARCHITECTURE.md
 
 # Trace Transaction Architecture
 
@@ -2339,8 +2332,7 @@ Este Ã­ndice registra a estrutura aprovada para futura expansÃ£o do document
 
 ---
 
-Fonte: docs/04_PORTFOLIO_LEDGER.md
----
+## Fonte: docs/04_PORTFOLIO_LEDGER.md
 
 # Portfolio Ledger
 
@@ -2876,8 +2868,7 @@ Estados patrimoniais passados devem ser passÃ­veis de reconstruÃ§Ã£o a par
 
 ---
 
-Fonte: docs/05_PORTFOLIO_ENGINE.md
----
+## Fonte: docs/05_PORTFOLIO_ENGINE.md
 
 # Portfolio Engine
 
@@ -3220,8 +3211,7 @@ Suas responsabilidades pertencem a outros componentes da arquitetura.
 
 ---
 
-Fonte: docs/PORTFOLIO_ENGINE_ARCHITECTURE.md
----
+## Fonte: docs/PORTFOLIO_ENGINE_ARCHITECTURE.md
 
 # Portfolio Engine Architecture
 
@@ -3417,8 +3407,7 @@ O Working Draft oficial do Portfolio Engine deverÃ¡ respeitar os conceitos, pr
 
 ---
 
-Fonte: docs/PROJECT_PROGRESS_PANEL.md
----
+## Fonte: docs/PROJECT_PROGRESS_PANEL.md
 
 # Project Progress Panel â€” Lio Feliz
 
@@ -3606,8 +3595,7 @@ O painel deverÃ¡ ser atualizado sempre que:
 
 ---
 
-Fonte: docs/DOCUMENTATION_INDEX.md
----
+## Fonte: docs/DOCUMENTATION_INDEX.md
 
 # Lio Feliz - DocumentaÃ§Ã£o Oficial
 
@@ -3747,8 +3735,7 @@ Registro oficial de alteraÃ§Ãµes.
 
 ðŸŸ¡ 11_AI_INSTRUCTIONS.md
 
-InstruÃ§Ãµes especÃ­ficas para InteligÃªncias Artificiais.
----
+## InstruÃ§Ãµes especÃ­ficas para InteligÃªncias Artificiais.
 
 ðŸŸ¡ 13_DECISIONS.md
 
@@ -4008,8 +3995,7 @@ Este arquivo representa a estrutura oficial da documentaÃ§Ã£o.
 
 ---
 
-Fonte: docs/PROJECT_STATE.md
----
+## Fonte: docs/PROJECT_STATE.md
 
 # Lio Feliz - DocumentaÃ§Ã£o Oficial
 

@@ -270,7 +270,7 @@ Novas funcionalidades deverão ser adicionadas seguindo a metodologia definida n
 | Technical Annex           | `07_TECHNICAL_ANNEXES/02_CORPORATE_ACTION_ENGINE.md` ✅, `07_TECHNICAL_ANNEXES/05_ENGINE_ORCHESTRATOR.md` ✅ |
 | ADR                       | ADR-005, ADR-007                                                                                             |
 | Status da Documentação    | ✅ Documentada                                                                                               |
-| Status do Desenvolvimento | 🏗 Em desenvolvimento                                                                                         |
+| Status do Desenvolvimento | 🏗 Em desenvolvimento                                                                                        |
 
 ---
 

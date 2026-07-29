@@ -57,7 +57,7 @@
 | Supabase Server Client           | `src/integrations/supabase/client.server.ts` | Compatível            | KEEP         |
 | Supabase Types                   | `src/integrations/supabase/types.ts`         | Compatível            | KEEP         |
 | **Dedicated Ledger Abstraction** | ❌ **Não existe**                            | **Ausente**           | **REFACTOR** |
-| Consultas diretas em rotas       | Múltiplas rotas _authenticated/              | Violação arquitetural | REFACTOR     |
+| Consultas diretas em rotas       | Múltiplas rotas \_authenticated/             | Violação arquitetural | REFACTOR     |
 
 ### Engine Layer
 
@@ -117,7 +117,7 @@
 | Rankings              | `src/routes/rankings.tsx`                              | Aceitável         | KEEP     |
 | Compare               | `src/routes/comparar.tsx`                              | Aceitável         | KEEP     |
 | Watchlist             | `src/routes/watchlist.index.tsx`                       | Aceitável         | KEEP     |
-| Redirect routes       | Múltiplos (carteira.*, metas, irpf)                    | Ruído             | KEEP     |
+| Redirect routes       | Múltiplos (carteira.\*, metas, irpf)                   | Ruído             | KEEP     |
 
 ---
 

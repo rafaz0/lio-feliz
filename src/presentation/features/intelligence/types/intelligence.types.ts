@@ -1,7 +1,13 @@
 export type InsightSeverity = "info" | "attention" | "highlight";
 
 export type InsightCategory =
-  "proventos" | "patrimonio" | "rentabilidade" | "rebalanceamento" | "meta" | "cobertura" | "geral";
+  | "proventos"
+  | "patrimonio"
+  | "rentabilidade"
+  | "rebalanceamento"
+  | "meta"
+  | "cobertura"
+  | "geral";
 
 export interface InsightViewModel {
   readonly id: string;

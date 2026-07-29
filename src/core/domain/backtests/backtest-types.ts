@@ -62,7 +62,15 @@ export class SnapshotId extends EntityId {
 export type BacktestStatus = "PENDING" | "RUNNING" | "COMPLETED" | "FAILED";
 
 export type AssetType =
-  "stock" | "fii" | "bdr" | "etf" | "crypto" | "stock_us" | "reit" | "etf_internacional" | "other";
+  | "stock"
+  | "fii"
+  | "bdr"
+  | "etf"
+  | "crypto"
+  | "stock_us"
+  | "reit"
+  | "etf_internacional"
+  | "other";
 
 export type BenchmarkType = "indice" | "etf" | "cdi";
 

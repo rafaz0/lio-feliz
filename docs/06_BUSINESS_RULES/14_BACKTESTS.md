@@ -127,7 +127,7 @@ Snapshot dos dados históricos usados na simulação.
 ### 3.6 `MonthlyReturn` (Value Object)
 
 | Atributo          | Tipo     |
-| ----------------- | -------- |
+| ----------------- | -------- | ------------------------- |
 | `month`           | `string` | Mês no formato "YYYY-MM"  |
 | `strategyReturn`  | `number` | Retorno da estratégia (%) |
 | `benchmarkReturn` | `number` | Retorno do benchmark (%)  |

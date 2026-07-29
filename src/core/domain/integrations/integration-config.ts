@@ -11,7 +11,11 @@ export class IntegrationConfigId extends EntityId {
 }
 
 export type IntegrationProvider =
-  "BRAPI" | "YAHOO_FINANCE" | "BANCO_INTER" | "XP_INVESTIMENTOS" | "CUSTOM";
+  | "BRAPI"
+  | "YAHOO_FINANCE"
+  | "BANCO_INTER"
+  | "XP_INVESTIMENTOS"
+  | "CUSTOM";
 export type IntegrationAuthType = "API_KEY" | "OAUTH2" | "BASIC_AUTH" | "NONE";
 export type IntegrationStatus = "ACTIVE" | "INACTIVE" | "ERROR" | "PENDING";
 

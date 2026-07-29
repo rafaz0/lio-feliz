@@ -43,6 +43,11 @@ export class LearningPathId extends EntityId {
 }
 
 export type TermCategory =
-  "CONCEITO" | "TIPO_ATIVO" | "INDICADOR" | "ESTRATEGIA" | "TRIBUTACAO" | "MERCADO";
+  | "CONCEITO"
+  | "TIPO_ATIVO"
+  | "INDICADOR"
+  | "ESTRATEGIA"
+  | "TRIBUTACAO"
+  | "MERCADO";
 
 export type DifficultyLevel = "BASIC" | "INTERMEDIATE" | "ADVANCED";

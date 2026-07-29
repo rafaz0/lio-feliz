@@ -75,7 +75,11 @@ Status agregado de uma conexão, calculado a partir dos logs.
 
 ```ts
 export type IntegrationProvider =
-  "BRAPI" | "YAHOO_FINANCE" | "BANCO_INTER" | "XP_INVESTIMENTOS" | "CUSTOM";
+  | "BRAPI"
+  | "YAHOO_FINANCE"
+  | "BANCO_INTER"
+  | "XP_INVESTIMENTOS"
+  | "CUSTOM";
 ```
 
 ### 3.5 `IntegrationAuthType` (Value Object)

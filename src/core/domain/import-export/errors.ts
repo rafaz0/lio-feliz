@@ -8,7 +8,14 @@ export interface ImportError {
 }
 
 export type ImportSource =
-  "BRAPI" | "BANC00XXXX" | "XP_INVEST" | "YAHOO_BR" | "LOCAL" | "CSV" | "EXCEL" | "JSON";
+  | "BRAPI"
+  | "BANC00XXXX"
+  | "XP_INVEST"
+  | "YAHOO_BR"
+  | "LOCAL"
+  | "CSV"
+  | "EXCEL"
+  | "JSON";
 
 export const IMPORT_SOURCES: ImportSource[] = [
   "BRAPI",

@@ -21,7 +21,7 @@ acompanhar o cronograma de pagamentos de juros e amortizações e projetar o ret
 | `productType`    | Descrição                          | Isenção IR | Regime de Juros          |
 | ---------------- | ---------------------------------- | ---------- | ------------------------ |
 | `TESOURO_DIRETO` | Tesouro Selic, Prefixado, IPCA+    | Não        | Pre/Pos conforme subtipo |
-| `CDB`            | Certificado de Depósito Bancário   | Não*       | Pre/Pos                  |
+| `CDB`            | Certificado de Depósito Bancário   | Não\*      | Pre/Pos                  |
 | `LCI`            | Letra de Crédito Imobiliário       | Sim        | Pre/Pos                  |
 | `LCA`            | Letra de Crédito do Agronegócio    | Sim        | Pre/Pos                  |
 | `PREFIXADO`      | Título prefixado genérico          | Não        | Pre                      |
