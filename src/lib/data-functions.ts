@@ -228,26 +228,110 @@ export const getAssetData = createServerFn({ method: "GET" })
       return { ...mockAsset, isRealData: false };
     }
 
-    // Unknown ticker: try BRAPI v2 for basic info
+    // Unknown ticker: try BRAPI v2 for basic info + fundamentals
     try {
-      const res = await brapiFetch(`/tickers?search=${ticker}&limit=1`);
-      if (res.ok) {
-        const json = (await res.json()) as { results?: V2TickerItem[] };
-        const item = json.results?.[0];
-        if (item && item.symbol === ticker) {
-          return {
-            ticker: item.symbol,
-            name: item.longName ?? item.name ?? item.symbol,
-            sector: (item.sector as Sector) ?? "Outros",
-            price: item.quote?.lastPrice ?? 0,
-            changeDayPct: item.quote?.changePercent ?? 0,
-            description: "",
-            fundamentals: { ...EMPTY_FUNDS },
-            history: [],
-            dividends: [],
-            isRealData: true,
-          };
+      const [tickerRes, quoteRes] = await Promise.all([
+        brapiFetch(`/tickers?search=${ticker}&limit=1`).catch(() => null),
+        brapiFetch(`/stocks/quote?symbols=${ticker}&fundamental=true`).catch(() => null),
+      ]);
+
+      let name = ticker;
+      let sector: Sector = "Outros" as Sector;
+      let price = 0;
+      let changeDayPct = 0;
+      let fundamentals = { ...EMPTY_FUNDS };
+      let history: { date: string; close: number }[] = [];
+      let dividends: Dividend[] = [];
+
+      if (quoteRes && quoteRes.ok) {
+        const qJson = (await quoteRes.json()) as {
+          results?: Array<{
+            symbol: string;
+            regularMarketPrice?: number;
+            regularMarketChangePercent?: number;
+            longName?: string;
+            shortName?: string;
+            sector?: string;
+            fundamental?: {
+              priceEarning?: number;
+              priceBook?: number;
+              dividendYield?: number;
+              returnOnEquity?: number;
+              returnOnInvestedCapital?: number;
+              profitMargin?: number;
+              debtToEbitda?: number;
+              payout?: number;
+              earningsPerShare?: number;
+              bookValue?: number;
+              marketCap?: number;
+            };
+          }>;
+        };
+        const q = qJson.results?.[0];
+        if (q && q.symbol === ticker) {
+          name = q.longName ?? q.shortName ?? name;
+          price = q.regularMarketPrice ?? 0;
+          changeDayPct = q.regularMarketChangePercent ?? 0;
+          if (q.sector) sector = q.sector as Sector;
+          const f = q.fundamental;
+          if (f) {
+            fundamentals = {
+              pl: f.priceEarning ?? 0,
+              pvp: f.priceBook ?? 0,
+              dy: f.dividendYield != null ? f.dividendYield * 100 : 0,
+              roe: f.returnOnEquity != null ? f.returnOnEquity * 100 : 0,
+              roic: f.returnOnInvestedCapital != null ? f.returnOnInvestedCapital * 100 : 0,
+              margemLiquida: f.profitMargin != null ? f.profitMargin * 100 : 0,
+              divLiquidaEbitda: f.debtToEbitda ?? 0,
+              lpa: f.earningsPerShare ?? 0,
+              vpa: f.bookValue ?? 0,
+              marketCap: f.marketCap ?? 0,
+              evEbitda: 0,
+              payout: f.payout != null ? f.payout * 100 : 0,
+              psr: 0,
+              dividendCagr: 0,
+            };
+          }
         }
+      }
+
+      if (!price && tickerRes && tickerRes.ok) {
+        const tJson = (await tickerRes.json()) as { results?: V2TickerItem[] };
+        const item = tJson.results?.[0];
+        if (item && item.symbol === ticker) {
+          name = item.longName ?? item.name ?? name;
+          sector = (item.sector as Sector) ?? sector;
+          price = item.quote?.lastPrice ?? 0;
+          changeDayPct = item.quote?.changePercent ?? 0;
+        }
+      }
+
+      if (price || name !== ticker) {
+        try {
+          const histData = await fetchYahooHistory(ticker);
+          if (histData) history = histData;
+          const divData = await fetchYahooDividends(ticker);
+          if (divData)
+            dividends = divData.map((d) => ({
+              paidAt: d.paidAt,
+              type: "Dividendo" as const,
+              amount: d.amount,
+            }));
+        } catch {
+          // chart/dividends are optional
+        }
+        return {
+          ticker,
+          name,
+          sector,
+          price,
+          changeDayPct,
+          description: "",
+          fundamentals,
+          history,
+          dividends,
+          isRealData: true,
+        };
       }
     } catch {
       // ignore
