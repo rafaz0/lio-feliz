@@ -4,7 +4,7 @@ import { ModuleSection } from "@/components/module-section";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/analise/watchlist")({
-  head: () => [{ title: "Watchlist — Investidor Pro" }],
+  head: () => ({ meta: [{ title: "Watchlist — Investidor Pro" }] }),
   component: () => (
     <ModuleSection title="Watchlist" description="Monitore seus ativos favoritos.">
       <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-card px-6 py-16 text-center">

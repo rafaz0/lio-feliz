@@ -12,7 +12,7 @@ export const Route = createFileRoute("/_authenticated/carteira/historico")({
 function HistoricoPage() {
   return (
     <div className="space-y-6">
-      <ModuleActionBar backTo="/_authenticated/carteira" backLabel="Voltar para Carteira" />
+      <ModuleActionBar backTo="/carteira" backLabel="Voltar para Carteira" />
       <ModuleSection
         title="Histórico"
         description="Visualize o histórico completo de operações e eventos da sua carteira."

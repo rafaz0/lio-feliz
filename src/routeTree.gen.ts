@@ -60,7 +60,6 @@ import { Route as AuthenticatedCarteiraRentabilidadeRouteImport } from './routes
 import { Route as AuthenticatedCarteiraRebalanceamentoRouteImport } from './routes/_authenticated/carteira.rebalanceamento'
 import { Route as AuthenticatedCarteiraProventosRouteImport } from './routes/_authenticated/carteira.proventos'
 import { Route as AuthenticatedCarteiraPatrimonioRouteImport } from './routes/_authenticated/carteira.patrimonio'
-import { Route as AuthenticatedCarteiraOperacoesRouteImport } from './routes/_authenticated/carteira.operacoes'
 import { Route as AuthenticatedCarteiraMetasRouteImport } from './routes/_authenticated/carteira.metas'
 import { Route as AuthenticatedCarteiraLancamentosRouteImport } from './routes/_authenticated/carteira.lancamentos'
 import { Route as AuthenticatedCarteiraIrpfRouteImport } from './routes/_authenticated/carteira.irpf'
@@ -344,12 +343,6 @@ const AuthenticatedCarteiraPatrimonioRoute =
     path: '/patrimonio',
     getParentRoute: () => AuthenticatedCarteiraRoute,
   } as any)
-const AuthenticatedCarteiraOperacoesRoute =
-  AuthenticatedCarteiraOperacoesRouteImport.update({
-    id: '/operacoes',
-    path: '/operacoes',
-    getParentRoute: () => AuthenticatedCarteiraRoute,
-  } as any)
 const AuthenticatedCarteiraMetasRoute =
   AuthenticatedCarteiraMetasRouteImport.update({
     id: '/metas',
@@ -473,7 +466,6 @@ export interface FileRoutesByFullPath {
   '/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
   '/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
   '/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
-  '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
   '/carteira/rebalanceamento': typeof AuthenticatedCarteiraRebalanceamentoRoute
@@ -536,7 +528,6 @@ export interface FileRoutesByTo {
   '/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
   '/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
   '/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
-  '/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
   '/carteira/rebalanceamento': typeof AuthenticatedCarteiraRebalanceamentoRoute
@@ -604,7 +595,6 @@ export interface FileRoutesById {
   '/_authenticated/carteira/irpf': typeof AuthenticatedCarteiraIrpfRoute
   '/_authenticated/carteira/lancamentos': typeof AuthenticatedCarteiraLancamentosRoute
   '/_authenticated/carteira/metas': typeof AuthenticatedCarteiraMetasRoute
-  '/_authenticated/carteira/operacoes': typeof AuthenticatedCarteiraOperacoesRoute
   '/_authenticated/carteira/patrimonio': typeof AuthenticatedCarteiraPatrimonioRoute
   '/_authenticated/carteira/proventos': typeof AuthenticatedCarteiraProventosRoute
   '/_authenticated/carteira/rebalanceamento': typeof AuthenticatedCarteiraRebalanceamentoRoute
@@ -672,7 +662,6 @@ export interface FileRouteTypes {
     | '/carteira/irpf'
     | '/carteira/lancamentos'
     | '/carteira/metas'
-    | '/carteira/operacoes'
     | '/carteira/patrimonio'
     | '/carteira/proventos'
     | '/carteira/rebalanceamento'
@@ -735,7 +724,6 @@ export interface FileRouteTypes {
     | '/carteira/irpf'
     | '/carteira/lancamentos'
     | '/carteira/metas'
-    | '/carteira/operacoes'
     | '/carteira/patrimonio'
     | '/carteira/proventos'
     | '/carteira/rebalanceamento'
@@ -802,7 +790,6 @@ export interface FileRouteTypes {
     | '/_authenticated/carteira/irpf'
     | '/_authenticated/carteira/lancamentos'
     | '/_authenticated/carteira/metas'
-    | '/_authenticated/carteira/operacoes'
     | '/_authenticated/carteira/patrimonio'
     | '/_authenticated/carteira/proventos'
     | '/_authenticated/carteira/rebalanceamento'
@@ -1207,13 +1194,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCarteiraPatrimonioRouteImport
       parentRoute: typeof AuthenticatedCarteiraRoute
     }
-    '/_authenticated/carteira/operacoes': {
-      id: '/_authenticated/carteira/operacoes'
-      path: '/operacoes'
-      fullPath: '/carteira/operacoes'
-      preLoaderRoute: typeof AuthenticatedCarteiraOperacoesRouteImport
-      parentRoute: typeof AuthenticatedCarteiraRoute
-    }
     '/_authenticated/carteira/metas': {
       id: '/_authenticated/carteira/metas'
       path: '/metas'
@@ -1316,7 +1296,6 @@ interface AuthenticatedCarteiraRouteChildren {
   AuthenticatedCarteiraIrpfRoute: typeof AuthenticatedCarteiraIrpfRoute
   AuthenticatedCarteiraLancamentosRoute: typeof AuthenticatedCarteiraLancamentosRoute
   AuthenticatedCarteiraMetasRoute: typeof AuthenticatedCarteiraMetasRoute
-  AuthenticatedCarteiraOperacoesRoute: typeof AuthenticatedCarteiraOperacoesRoute
   AuthenticatedCarteiraPatrimonioRoute: typeof AuthenticatedCarteiraPatrimonioRoute
   AuthenticatedCarteiraProventosRoute: typeof AuthenticatedCarteiraProventosRoute
   AuthenticatedCarteiraRebalanceamentoRoute: typeof AuthenticatedCarteiraRebalanceamentoRoute
@@ -1333,7 +1312,6 @@ const AuthenticatedCarteiraRouteChildren: AuthenticatedCarteiraRouteChildren = {
   AuthenticatedCarteiraIrpfRoute: AuthenticatedCarteiraIrpfRoute,
   AuthenticatedCarteiraLancamentosRoute: AuthenticatedCarteiraLancamentosRoute,
   AuthenticatedCarteiraMetasRoute: AuthenticatedCarteiraMetasRoute,
-  AuthenticatedCarteiraOperacoesRoute: AuthenticatedCarteiraOperacoesRoute,
   AuthenticatedCarteiraPatrimonioRoute: AuthenticatedCarteiraPatrimonioRoute,
   AuthenticatedCarteiraProventosRoute: AuthenticatedCarteiraProventosRoute,
   AuthenticatedCarteiraRebalanceamentoRoute:

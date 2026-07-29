@@ -4,7 +4,7 @@ import { ModuleSection } from "@/components/module-section";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/analise/comparar")({
-  head: () => [{ title: "Comparador — Investidor Pro" }],
+  head: () => ({ meta: [{ title: "Comparador — Investidor Pro" }] }),
   component: () => (
     <ModuleSection title="Comparador" description="Compare ativos lado a lado.">
       <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-card px-6 py-16 text-center">

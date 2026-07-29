@@ -4,7 +4,7 @@ import { ModuleSection } from "@/components/module-section";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/analise/rankings")({
-  head: () => [{ title: "Rankings — Investidor Pro" }],
+  head: () => ({ meta: [{ title: "Rankings — Investidor Pro" }] }),
   component: () => (
     <ModuleSection title="Rankings" description="DY, P/L, Graham, Bazin e mais.">
       <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-card px-6 py-16 text-center">

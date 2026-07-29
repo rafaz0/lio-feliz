@@ -366,6 +366,7 @@ export function setCache(key: string, data: unknown): void {
 export interface AnnualDividends {
   year: number;
   totalPerShare: number;
+  count: number;
   yieldPct: number | null;
   priceAtYearEnd: number | null;
 }
@@ -374,10 +375,11 @@ export function aggregateAnnualDividends(
   dividends: { paidAt: string; amount: number }[],
   history: { date: string; close: number }[],
 ): AnnualDividends[] {
-  const byYear = new Map<number, number>();
+  const byYear = new Map<number, { total: number; count: number }>();
   for (const d of dividends) {
     const y = Number(d.paidAt.slice(0, 4));
-    byYear.set(y, (byYear.get(y) ?? 0) + d.amount);
+    const prev = byYear.get(y) ?? { total: 0, count: 0 };
+    byYear.set(y, { total: prev.total + d.amount, count: prev.count + 1 });
   }
   const priceAtYearEnd = (year: number): number | null => {
     let last: number | null = null;
@@ -387,10 +389,16 @@ export function aggregateAnnualDividends(
     return last;
   };
   return Array.from(byYear.entries())
-    .map(([year, totalPerShare]) => {
+    .map(([year, data]) => {
       const priceEoy = priceAtYearEnd(year);
-      const yieldPct = priceEoy && priceEoy > 0 ? (totalPerShare / priceEoy) * 100 : null;
-      return { year, totalPerShare, yieldPct, priceAtYearEnd: priceEoy };
+      const yieldPct = priceEoy && priceEoy > 0 ? (data.total / priceEoy) * 100 : null;
+      return {
+        year,
+        totalPerShare: data.total,
+        count: data.count,
+        yieldPct,
+        priceAtYearEnd: priceEoy,
+      };
     })
     .sort((a, b) => a.year - b.year);
 }

@@ -147,10 +147,7 @@ function CoberturaPage() {
           <ShieldCheck className="size-6 text-primary" />
           <h1 className="text-2xl font-bold tracking-tight">Cobertura de despesas</h1>
         </div>
-        <Link
-          to="/_authenticated/carteira"
-          className="text-xs text-muted-foreground hover:text-foreground"
-        >
+        <Link to="/carteira" className="text-xs text-muted-foreground hover:text-foreground">
           ← Voltar
         </Link>
       </div>

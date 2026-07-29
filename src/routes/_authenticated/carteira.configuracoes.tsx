@@ -12,7 +12,7 @@ export const Route = createFileRoute("/_authenticated/carteira/configuracoes")({
 function ConfiguracoesPage() {
   return (
     <div className="space-y-6">
-      <ModuleActionBar backTo="/_authenticated/carteira" backLabel="Voltar para Carteira" />
+      <ModuleActionBar backTo="/carteira" backLabel="Voltar para Carteira" />
       <ModuleSection
         title="Configurações da Carteira"
         description="Gerencie as configurações específicas da sua carteira de investimentos."

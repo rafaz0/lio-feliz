@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/analise/fiis")({
-  head: () => [{ title: "FIIs — Investidor Pro" }],
+  head: () => ({ meta: [{ title: "FIIs — Investidor Pro" }] }),
   component: () => (
     <ModuleSection title="Fundos Imobiliários" description="Análise completa de FIIs.">
       <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-card px-6 py-16 text-center">

@@ -13,7 +13,7 @@ import { ModuleSection } from "@/components/module-section";
 import { PremiumBadge } from "@/presentation/features/subscriptions";
 
 export const Route = createFileRoute("/analise/")({
-  head: () => [{ title: "Análise — Investidor Pro" }],
+  head: () => ({ meta: [{ title: "Análise — Investidor Pro" }] }),
   component: AnaliseIndexPage,
 });
 

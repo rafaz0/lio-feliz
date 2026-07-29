@@ -1,12 +1,11 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
-import { Plus, RefreshCw, Trash2 } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
-import { deleteOperation, listOperations, syncPendingDividends } from "@/lib/operations.functions";
+import { deleteOperation, listOperations } from "@/lib/operations.functions";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatDate, formatQty } from "@/lib/format";
@@ -14,7 +13,6 @@ import { formatBRL, formatDate, formatQty } from "@/lib/format";
 export function OperationsContent() {
   const list = useServerFn(listOperations);
   const del = useServerFn(deleteOperation);
-  const syncDivs = useServerFn(syncPendingDividends);
   const qc = useQueryClient();
 
   const {
@@ -35,28 +33,6 @@ export function OperationsContent() {
     onError: (e: Error) => toast.error(e.message),
   });
 
-  const syncMut = useMutation({
-    mutationFn: () => syncDivs(),
-    onSuccess: (r) => {
-      if (r.count > 0) {
-        toast.success(`${r.count} provento(s) sincronizado(s)`);
-      } else {
-        toast.info("Nenhum provento novo encontrado");
-      }
-      qc.invalidateQueries({ queryKey: ["operations"] });
-      qc.invalidateQueries({ queryKey: ["portfolio"] });
-    },
-    onError: (e: Error) => toast.error(e.message),
-  });
-
-  const autoSynced = useRef(false);
-  useEffect(() => {
-    if (!isLoading && ops && !autoSynced.current) {
-      autoSynced.current = true;
-      syncMut.mutate();
-    }
-  }, [isLoading, ops]);
-
   const tradeOps = useMemo(() => {
     if (!ops) return ops;
     return ops.filter((o) => o.side === "buy" || o.side === "sell");
@@ -71,24 +47,13 @@ export function OperationsContent() {
             Todas as compras e vendas registradas na sua conta.
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            className="gap-2"
-            onClick={() => syncMut.mutate()}
-            disabled={syncMut.isPending}
-          >
-            <RefreshCw className={"size-4 " + (syncMut.isPending ? "animate-spin" : "")} />
-            Sincronizar proventos
-          </Button>
-          <AddOperationDialog
-            trigger={
-              <Button className="gap-2">
-                <Plus className="size-4" /> Nova operação
-              </Button>
-            }
-          />
-        </div>
+        <AddOperationDialog
+          trigger={
+            <Button className="gap-2">
+              <Plus className="size-4" /> Nova operação
+            </Button>
+          }
+        />
       </div>
 
       {isLoading ? (
@@ -118,7 +83,6 @@ export function OperationsContent() {
                   <th className="px-4 py-2.5 text-right font-medium">Preço</th>
                   <th className="px-4 py-2.5 text-right font-medium">Total</th>
                   <th className="px-4 py-2.5 text-left font-medium">Origem</th>
-                  <th className="px-4 py-2.5 text-left font-medium">Tipo</th>
                   <th className="w-10 px-2 py-2.5"></th>
                 </tr>
               </thead>
@@ -156,26 +120,13 @@ export function OperationsContent() {
                     </td>
                     <td className="px-4 py-2.5">
                       {o.metadata?.auto_sync || o.source !== "manual" ? (
-                        <Badge variant="secondary" className="text-[10px]">
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
                           Auto
-                        </Badge>
+                        </span>
                       ) : (
-                        <Badge variant="outline" className="text-[10px]">
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
                           Manual
-                        </Badge>
-                      )}
-                    </td>
-                    <td className="px-4 py-2.5">
-                      {o.side === "dividend" && o.metadata?.tipo_provento ? (
-                        <Badge variant="outline" className="text-[10px] uppercase">
-                          {String(o.metadata.tipo_provento)}
-                        </Badge>
-                      ) : o.side === "bonus" ? (
-                        <Badge variant="outline" className="text-[10px]">
-                          Bonif
-                        </Badge>
-                      ) : (
-                        <span className="text-xs text-muted-foreground">—</span>
+                        </span>
                       )}
                     </td>
                     <td className="px-2 py-2.5 text-right">

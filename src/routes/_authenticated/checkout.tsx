@@ -16,10 +16,7 @@ function CheckoutPage() {
 
   return (
     <main className="container mx-auto p-4 py-6">
-      <CheckoutForm
-        userId={userId}
-        onSuccess={() => navigate({ to: "/_authenticated/dashboard" })}
-      />
+      <CheckoutForm userId={userId} onSuccess={() => navigate({ to: "/dashboard" })} />
     </main>
   );
 }
