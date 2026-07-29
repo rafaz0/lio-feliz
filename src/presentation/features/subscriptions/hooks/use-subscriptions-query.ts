@@ -25,6 +25,7 @@ export function usePlansQuery() {
       if (r instanceof Error) throw r;
       return r;
     },
+    staleTime: 300_000,
     select: (data): PlanViewModel[] => toPlanViewModels(data),
   });
 }
@@ -42,6 +43,7 @@ export function useSubscriptionQuery(userId: string) {
       if (r instanceof Error) throw r;
       return r;
     },
+    staleTime: 300_000,
     select: (data): SubscriptionViewModel | null => (data ? toSubscriptionViewModel(data) : null),
   });
 }

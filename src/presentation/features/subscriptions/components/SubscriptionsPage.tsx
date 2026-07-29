@@ -4,6 +4,7 @@ import { useSubscribeMutation } from "../hooks/use-subscriptions-mutation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatcher } from "@/presentation/shared/hooks/use-dispatcher";
 import type { ICommand } from "@/application/types";
+import { Skeleton } from "@/components/ui/skeleton";
 import { SubscriptionStatusBadge } from "./SubscriptionStatusBadge";
 import { PremiumBadge } from "./PremiumBadge";
 import { SubscriptionHistory } from "./SubscriptionHistory";
@@ -67,11 +68,20 @@ export function SubscriptionsPage({ userId }: SubscriptionsPageProps) {
 
   if (plansLoading || subLoading) {
     return (
-      <div
-        data-testid="subscriptions-loading"
-        className="py-8 text-center text-sm text-muted-foreground"
-      >
-        Carregando planos...
+      <div data-testid="subscriptions-loading" className="space-y-6">
+        <Skeleton className="h-7 w-48" />
+        <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
+          <div className="space-y-4">
+            <Skeleton className="h-40 rounded-lg" />
+            <Skeleton className="h-20 rounded-lg" />
+          </div>
+          <Skeleton className="h-32 rounded-lg" />
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <Skeleton key={i} className="h-64 rounded-lg" />
+          ))}
+        </div>
       </div>
     );
   }
