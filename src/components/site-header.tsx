@@ -31,7 +31,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { SyncIndicator } from "@/components/sync-indicator";
 import { NotificationPanel } from "@/components/notification-panel";
 import { useAlertsQuery, useConfirmAlertMutation } from "@/presentation/features/alerts";
@@ -93,7 +93,7 @@ export function SiteHeader() {
           <SheetContent side="left" className="w-72 p-0">
             <div className="flex h-full flex-col">
               <div className="flex items-center justify-between border-b border-border px-4 py-3">
-                <span className="font-semibold">Navegação</span>
+                <SheetTitle className="text-sm font-semibold">Navegação</SheetTitle>
                 <Button variant="ghost" size="icon" onClick={closeMobile}>
                   <X className="size-5" />
                 </Button>

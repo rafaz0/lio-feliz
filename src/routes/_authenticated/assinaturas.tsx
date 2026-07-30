@@ -1,6 +1,8 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { useSession } from "@/hooks/use-session";
 import { SiteHeader } from "@/components/site-header";
 import { SubscriptionsPage } from "@/presentation/features/subscriptions";
+import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
 
 export const Route = createFileRoute("/_authenticated/assinaturas")({
   head: () => ({
@@ -13,10 +15,23 @@ export const Route = createFileRoute("/_authenticated/assinaturas")({
     ],
   }),
   component: AssinaturasRouteComponent,
+  errorComponent: RouteErrorBoundary,
+  notFoundComponent: () => <NotFoundState />,
 });
 
 function AssinaturasRouteComponent() {
-  const { user } = useRouter().state.location.state as { user?: { id: string } };
+  const { user, loading } = useSession();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background text-foreground">
+        <SiteHeader />
+        <main className="mx-auto max-w-[1000px] px-4 py-8 text-center text-sm text-muted-foreground">
+          Carregando...
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">

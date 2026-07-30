@@ -33,7 +33,7 @@ function ReceitasPage() {
 
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-card">
-      <div className="overflow-x-auto">
+      <div className="scroll-shadow">
         <table className="w-full min-w-[600px] text-sm">
           <thead className="bg-surface-2 text-xs uppercase text-muted-foreground">
             <tr>

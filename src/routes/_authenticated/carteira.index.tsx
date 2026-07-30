@@ -554,7 +554,7 @@ function PortfolioOverview() {
                       count={group.positions.length}
                       defaultOpen={group.positions.length <= 6}
                     >
-                      <div className="overflow-x-auto">
+                      <div className="scroll-shadow">
                         <table className="w-full text-sm">
                           <thead className="text-xs uppercase text-muted-foreground">
                             <tr>

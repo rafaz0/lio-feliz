@@ -87,7 +87,7 @@ function SetoresPage() {
           <h1 className="text-2xl font-bold tracking-tight">Setores</h1>
         </div>
 
-        <div className="overflow-x-auto rounded-lg border border-border bg-card">
+        <div className="scroll-shadow rounded-lg border border-border bg-card">
           <table className="w-full text-sm">
             <thead className="bg-surface-2 text-xs uppercase tracking-wider text-muted-foreground">
               <tr>

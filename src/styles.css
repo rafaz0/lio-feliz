@@ -214,3 +214,16 @@ nav[role="tablist"]::-webkit-scrollbar {
     "zero" on;
   letter-spacing: -0.02em;
 }
+
+/* Scrollable table container — subtle shadow on right edge indicates overflow */
+@utility scroll-shadow {
+  overflow-x: auto;
+  background:
+    linear-gradient(to right, transparent, transparent 97%),
+    radial-gradient(farthest-side at 100% 50%, hsl(var(--border)) 0%, transparent 100%);
+  background-attachment: local, scroll;
+  background-repeat: no-repeat;
+  background-size:
+    100% 100%,
+    12px 100%;
+}

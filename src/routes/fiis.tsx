@@ -109,7 +109,7 @@ function FiisPage() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-lg border border-border bg-card">
+        <div className="scroll-shadow rounded-lg border border-border bg-card">
           <table className="w-full text-sm">
             <thead className="bg-surface-2 text-xs uppercase text-muted-foreground">
               <tr>
