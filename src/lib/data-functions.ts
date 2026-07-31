@@ -763,62 +763,67 @@ export const getRealProjections = createServerFn({ method: "POST" })
     if (tickers.length === 0) return [];
 
     const now = new Date();
-    const projections: RealProjection[] = [];
-    const done = new Set<string>();
+    const uniqueTickers = Array.from(new Set(tickers));
 
-    for (const ticker of tickers) {
-      if (done.has(ticker)) continue;
-      done.add(ticker);
-      const isFii = FIIS.some((f) => f.ticker === ticker);
-      const mockAsset = ASSETS_BY_TICKER[ticker];
-      const mockFii = FIIS.find((f) => f.ticker === ticker);
-      let dividends: { paidAt: string; amount: number }[] | null = null;
+    const perTicker = await Promise.all(
+      uniqueTickers.map(async (ticker): Promise<RealProjection[]> => {
+        const isFii = FIIS.some((f) => f.ticker === ticker);
+        const mockAsset = ASSETS_BY_TICKER[ticker];
+        const mockFii = FIIS.find((f) => f.ticker === ticker);
+        let dividends: { paidAt: string; amount: number }[] | null = null;
 
-      try {
-        const yahooDivs = await fetchYahooDividends(ticker);
-        if (yahooDivs && yahooDivs.length > 0) dividends = yahooDivs;
-      } catch {
-        // fall through to mock
-      }
-
-      if (!dividends || dividends.length === 0) {
-        if (isFii && mockFii) {
-          dividends = mockFii.dividendHistory.map((d) => ({ paidAt: d.paidAt, amount: d.amount }));
-        } else if (mockAsset) {
-          dividends = mockAsset.dividends.map((d) => ({ paidAt: d.paidAt, amount: d.amount }));
+        try {
+          const yahooDivs = await fetchYahooDividends(ticker);
+          if (yahooDivs && yahooDivs.length > 0) dividends = yahooDivs;
+        } catch {
+          // fall through to mock
         }
-      }
 
-      if (!dividends || dividends.length === 0) continue;
+        if (!dividends || dividends.length === 0) {
+          if (isFii && mockFii) {
+            dividends = mockFii.dividendHistory.map((d) => ({
+              paidAt: d.paidAt,
+              amount: d.amount,
+            }));
+          } else if (mockAsset) {
+            dividends = mockAsset.dividends.map((d) => ({ paidAt: d.paidAt, amount: d.amount }));
+          }
+        }
 
-      const avgAmount = dividends.reduce((s, d) => s + d.amount, 0) / dividends.length;
-      const name = mockFii?.name ?? mockAsset?.name ?? ticker;
-      const sector = mockFii?.segment ?? mockAsset?.sector ?? "Outros";
-      const periods = isFii ? 6 : 4;
-      const monthsPerPeriod = isFii ? 1 : 3;
+        if (!dividends || dividends.length === 0) return [];
 
-      for (let i = 1; i <= periods; i++) {
-        const payDate = addMonths(now, i * monthsPerPeriod);
-        const exDate = new Date(payDate);
-        exDate.setDate(exDate.getDate() - (isFii ? 2 : 3));
-        const variation = avgAmount * (0.85 + Math.random() * 0.3);
-        const amount = Number(variation.toFixed(2));
-        const status: "declared" | "projected" =
-          isFii && i <= 2 ? "declared" : i === 1 ? "declared" : "projected";
-        projections.push({
-          ticker,
-          name,
-          sector,
-          type: isFii ? "fii" : "stock",
-          amount,
-          exDate: exDate.toISOString().slice(0, 10),
-          paymentDate: payDate.toISOString().slice(0, 10),
-          status,
-          avgAmount: Number(avgAmount.toFixed(2)),
-        });
-      }
-    }
+        const avgAmount = dividends.reduce((s, d) => s + d.amount, 0) / dividends.length;
+        const name = mockFii?.name ?? mockAsset?.name ?? ticker;
+        const sector = mockFii?.segment ?? mockAsset?.sector ?? "Outros";
+        const periods = isFii ? 6 : 4;
+        const monthsPerPeriod = isFii ? 1 : 3;
 
+        const tickerProjections: RealProjection[] = [];
+        for (let i = 1; i <= periods; i++) {
+          const payDate = addMonths(now, i * monthsPerPeriod);
+          const exDate = new Date(payDate);
+          exDate.setDate(exDate.getDate() - (isFii ? 2 : 3));
+          const variation = avgAmount * (0.85 + Math.random() * 0.3);
+          const amount = Number(variation.toFixed(2));
+          const status: "declared" | "projected" =
+            isFii && i <= 2 ? "declared" : i === 1 ? "declared" : "projected";
+          tickerProjections.push({
+            ticker,
+            name,
+            sector,
+            type: isFii ? "fii" : "stock",
+            amount,
+            exDate: exDate.toISOString().slice(0, 10),
+            paymentDate: payDate.toISOString().slice(0, 10),
+            status,
+            avgAmount: Number(avgAmount.toFixed(2)),
+          });
+        }
+        return tickerProjections;
+      }),
+    );
+
+    const projections = perTicker.flat();
     projections.sort((a, b) => a.paymentDate.localeCompare(b.paymentDate));
     return projections;
   });
