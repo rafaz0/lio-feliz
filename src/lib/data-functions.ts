@@ -11,6 +11,13 @@ import {
   type FinancialStatements,
 } from "./yahoo.server";
 import {
+  fetchBolsaiStockFundamentals,
+  fetchBolsaiFiiFundamentals,
+  isFiiTicker,
+  type BolsaiStockFundamentals,
+  type BolsaiFiiFundamentals,
+} from "./bolsai.server";
+import {
   ASSETS,
   ASSETS_BY_TICKER,
   type Asset,
@@ -93,6 +100,54 @@ const EMPTY_FUNDS: AssetFundamentals = {
   psr: 0,
   dividendCagr: 0,
 };
+
+function bolsaiStockToFundamentals(b: BolsaiStockFundamentals): AssetFundamentals {
+  return {
+    pl: b.pl ?? 0,
+    pvp: b.pvp ?? 0,
+    dy: 0,
+    roe: b.roe ?? 0,
+    roic: b.roic ?? 0,
+    margemLiquida: b.net_margin ?? 0,
+    divLiquidaEbitda: b.net_debt_ebitda ?? 0,
+    lpa: b.lpa ?? 0,
+    vpa: b.vpa ?? 0,
+    marketCap: b.market_cap ?? 0,
+    evEbitda: b.ev_ebitda ?? 0,
+    payout: 0,
+    psr: b.p_sr ?? 0,
+    dividendCagr: b.cagr_earnings_5y ?? 0,
+  };
+}
+
+function bolsaiFiiToFundamentals(b: BolsaiFiiFundamentals): AssetFundamentals {
+  return {
+    pl: 0,
+    pvp: b.pvp ?? 0,
+    dy: b.dividend_yield_ttm ?? 0,
+    roe: 0,
+    roic: 0,
+    margemLiquida: 0,
+    divLiquidaEbitda: 0,
+    lpa: 0,
+    vpa: b.book_value_per_share ?? 0,
+    marketCap: b.net_asset_value ?? 0,
+    evEbitda: 0,
+    payout: 0,
+    psr: 0,
+    dividendCagr: 0,
+  };
+}
+
+function computeDyFromDividends(dividends: Dividend[], price: number, months = 12): number {
+  if (!price || price <= 0 || dividends.length === 0) return 0;
+  const cutoff = new Date();
+  cutoff.setMonth(cutoff.getMonth() - months);
+  const recent = dividends.filter((d) => new Date(d.paidAt) >= cutoff);
+  if (recent.length === 0) return 0;
+  const total = recent.reduce((s, d) => s + d.amount, 0);
+  return (total / price) * 100;
+}
 
 function brapiFetch(path: string, init?: RequestInit): Promise<Response> {
   const token = process.env.BRAPI_TOKEN;
@@ -217,6 +272,33 @@ export const getAssetData = createServerFn({ method: "GET" })
           psr: yahooFunds.psr ?? mf.psr,
           dividendCagr: yahooFunds.dividendCagr || mf.dividendCagr,
         },
+        history: yahooHistory ?? mockAsset?.history ?? [],
+        dividends: yahooDividends ?? mockAsset?.dividends ?? [],
+        isRealData: true,
+      };
+    }
+
+    // bolsai: fonte principal de indicadores fundamentalistas
+    const isFii = isFiiTicker(ticker);
+    const bolsaiStock = isFii ? null : await fetchBolsaiStockFundamentals(ticker).catch(() => null);
+    const bolsaiFii = isFii ? await fetchBolsaiFiiFundamentals(ticker).catch(() => null) : null;
+
+    if (bolsaiStock || bolsaiFii) {
+      const price = (bolsaiStock?.close_price ?? bolsaiFii?.close_price) || mockAsset?.price || 0;
+      const name = bolsaiStock?.name || bolsaiFii?.name || mockAsset?.name || ticker;
+      const sector = (bolsaiFii?.segment as Sector) || mockAsset?.sector || ("Outros" as Sector);
+      const baseFunds = bolsaiStock
+        ? bolsaiStockToFundamentals(bolsaiStock)
+        : bolsaiFiiToFundamentals(bolsaiFii!);
+      const dy = isFii ? baseFunds.dy : computeDyFromDividends(yahooDividends ?? [], price);
+      return {
+        ticker,
+        name,
+        sector,
+        price,
+        changeDayPct: mockAsset?.changeDayPct ?? 0,
+        description: mockAsset?.description ?? "",
+        fundamentals: { ...baseFunds, dy },
         history: yahooHistory ?? mockAsset?.history ?? [],
         dividends: yahooDividends ?? mockAsset?.dividends ?? [],
         isRealData: true,
