@@ -2,19 +2,18 @@ import type { ObterPlanoAtivoQuery } from "@/application/queries/obter-plano-ati
 import type { AssinaturaDto } from "@/application/dtos/assinatura";
 import type { IApplicationService } from "@/application/application-service";
 import type { ISubscriptionRepository } from "@/application/ports/subscription-repository";
-import { NotFoundError } from "@/application/errors/application-error";
 import type { ApplicationError } from "@/application/errors/application-error";
 
 export class ObterPlanoAtivoService implements IApplicationService<
   ObterPlanoAtivoQuery,
-  AssinaturaDto
+  AssinaturaDto | null
 > {
   constructor(private readonly subscriptionRepo: ISubscriptionRepository) {}
 
-  async Execute(query: ObterPlanoAtivoQuery): Promise<AssinaturaDto | ApplicationError> {
+  async Execute(query: ObterPlanoAtivoQuery): Promise<AssinaturaDto | null | ApplicationError> {
     const subscriptions = await this.subscriptionRepo.findSubscriptionsByUser(query.userId);
     const active = subscriptions.find((s) => s.isActive);
-    if (!active) return new NotFoundError("Subscription", query.userId);
+    if (!active) return null;
 
     const plan = await this.subscriptionRepo.findPlanById(active.planId);
 

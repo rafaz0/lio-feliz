@@ -30,6 +30,7 @@ export function SubscriptionActions({
         userId,
       } as unknown as IQuery);
       if (subQuery instanceof Error) throw subQuery;
+      if (!subQuery) throw new Error("Nenhuma assinatura ativa encontrada.");
       const sub = subQuery as { id: string };
       const r = await dispatcher.DispatchCommand({
         type: "IniciarCheckoutCommand",
@@ -83,6 +84,7 @@ export function SubscriptionActions({
         userId,
       } as unknown as IQuery);
       if (subQuery instanceof Error) throw subQuery;
+      if (!subQuery) throw new Error("Nenhuma assinatura ativa encontrada.");
       const sub = subQuery as { id: string };
       const r = await dispatcher.DispatchCommand({
         type: "IniciarCheckoutCommand",

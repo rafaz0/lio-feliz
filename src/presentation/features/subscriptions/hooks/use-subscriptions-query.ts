@@ -18,6 +18,7 @@ export function usePlansQuery() {
   const dispatcher = useDispatcher();
   return useQuery({
     queryKey: SUBSCRIPTION_QUERY_KEYS.planos(),
+    retry: false,
     queryFn: async (): Promise<PlanoDetalhadoDto[]> => {
       const r = await dispatcher.DispatchQuery<PlanoDetalhadoDto[]>({
         type: "ListarPlanosQuery",
@@ -35,8 +36,9 @@ export function useSubscriptionQuery(userId: string) {
   return useQuery({
     queryKey: SUBSCRIPTION_QUERY_KEYS.ativa(userId),
     enabled: Boolean(userId),
-    queryFn: async (): Promise<AssinaturaDto> => {
-      const r = await dispatcher.DispatchQuery<AssinaturaDto>({
+    retry: false,
+    queryFn: async (): Promise<AssinaturaDto | null> => {
+      const r = await dispatcher.DispatchQuery<AssinaturaDto | null>({
         type: "ObterPlanoAtivoQuery",
         userId,
       } as IQuery);
