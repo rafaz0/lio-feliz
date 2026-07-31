@@ -20,18 +20,7 @@ export const Route = createFileRoute("/_authenticated/assinaturas")({
 });
 
 function AssinaturasRouteComponent() {
-  const { user, loading } = useSession();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background text-foreground">
-        <SiteHeader />
-        <main className="mx-auto max-w-[1000px] px-4 py-8 text-center text-sm text-muted-foreground">
-          Carregando...
-        </main>
-      </div>
-    );
-  }
+  const { user } = useSession();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
