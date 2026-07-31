@@ -2,6 +2,7 @@ import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   BarChart3,
+  Bell,
   ChevronDown,
   FileText,
   LineChart,
@@ -151,6 +152,12 @@ export function SiteHeader() {
                     <MobileNavLink to="/provisionador" onClick={closeMobile}>
                       Provisionador
                     </MobileNavLink>
+                    <MobileNavLink to="/backtests" onClick={closeMobile}>
+                      Backtests
+                    </MobileNavLink>
+                    <MobileNavLink to="/alertas" onClick={closeMobile}>
+                      Alertas
+                    </MobileNavLink>
                   </div>
                 )}
               </nav>
@@ -276,6 +283,16 @@ export function SiteHeader() {
                 <DropdownMenuItem asChild>
                   <Link to="/irpf" className="flex items-center gap-2">
                     <FileText className="size-4" /> IRPF
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/backtests" className="flex items-center gap-2">
+                    <BarChart3 className="size-4" /> Backtests
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/alertas" className="flex items-center gap-2">
+                    <Bell className="size-4" /> Alertas
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />

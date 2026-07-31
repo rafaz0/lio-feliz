@@ -42,7 +42,9 @@ import { Route as AuthenticatedFinanceRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCheckoutRouteImport } from './routes/_authenticated/checkout'
 import { Route as AuthenticatedCarteiraRouteImport } from './routes/_authenticated/carteira'
+import { Route as AuthenticatedBacktestsRouteImport } from './routes/_authenticated/backtests'
 import { Route as AuthenticatedAssinaturasRouteImport } from './routes/_authenticated/assinaturas'
+import { Route as AuthenticatedAlertasRouteImport } from './routes/_authenticated/alertas'
 import { Route as _authRegisterRouteImport } from './routes/__auth/register'
 import { Route as _authLoginRouteImport } from './routes/__auth/login'
 import { Route as _authForgotPasswordRouteImport } from './routes/__auth/forgot-password'
@@ -239,12 +241,22 @@ const AuthenticatedCarteiraRoute = AuthenticatedCarteiraRouteImport.update({
   path: '/carteira',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedBacktestsRoute = AuthenticatedBacktestsRouteImport.update({
+  id: '/backtests',
+  path: '/backtests',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAssinaturasRoute =
   AuthenticatedAssinaturasRouteImport.update({
     id: '/assinaturas',
     path: '/assinaturas',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAlertasRoute = AuthenticatedAlertasRouteImport.update({
+  id: '/alertas',
+  path: '/alertas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const _authRegisterRoute = _authRegisterRouteImport.update({
   id: '/__auth/register',
   path: '/register',
@@ -437,7 +449,9 @@ export interface FileRoutesByFullPath {
   '/forgot-password': typeof _authForgotPasswordRoute
   '/login': typeof _authLoginRoute
   '/register': typeof _authRegisterRoute
+  '/alertas': typeof AuthenticatedAlertasRoute
   '/assinaturas': typeof AuthenticatedAssinaturasRoute
+  '/backtests': typeof AuthenticatedBacktestsRoute
   '/carteira': typeof AuthenticatedCarteiraRouteWithChildren
   '/checkout': typeof AuthenticatedCheckoutRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -501,7 +515,9 @@ export interface FileRoutesByTo {
   '/forgot-password': typeof _authForgotPasswordRoute
   '/login': typeof _authLoginRoute
   '/register': typeof _authRegisterRoute
+  '/alertas': typeof AuthenticatedAlertasRoute
   '/assinaturas': typeof AuthenticatedAssinaturasRoute
+  '/backtests': typeof AuthenticatedBacktestsRoute
   '/checkout': typeof AuthenticatedCheckoutRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/metas': typeof AuthenticatedMetasRoute
@@ -566,7 +582,9 @@ export interface FileRoutesById {
   '/__auth/forgot-password': typeof _authForgotPasswordRoute
   '/__auth/login': typeof _authLoginRoute
   '/__auth/register': typeof _authRegisterRoute
+  '/_authenticated/alertas': typeof AuthenticatedAlertasRoute
   '/_authenticated/assinaturas': typeof AuthenticatedAssinaturasRoute
+  '/_authenticated/backtests': typeof AuthenticatedBacktestsRoute
   '/_authenticated/carteira': typeof AuthenticatedCarteiraRouteWithChildren
   '/_authenticated/checkout': typeof AuthenticatedCheckoutRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
@@ -633,7 +651,9 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/register'
+    | '/alertas'
     | '/assinaturas'
+    | '/backtests'
     | '/carteira'
     | '/checkout'
     | '/dashboard'
@@ -697,7 +717,9 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/register'
+    | '/alertas'
     | '/assinaturas'
+    | '/backtests'
     | '/checkout'
     | '/dashboard'
     | '/metas'
@@ -761,7 +783,9 @@ export interface FileRouteTypes {
     | '/__auth/forgot-password'
     | '/__auth/login'
     | '/__auth/register'
+    | '/_authenticated/alertas'
     | '/_authenticated/assinaturas'
+    | '/_authenticated/backtests'
     | '/_authenticated/carteira'
     | '/_authenticated/checkout'
     | '/_authenticated/dashboard'
@@ -1068,11 +1092,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCarteiraRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/backtests': {
+      id: '/_authenticated/backtests'
+      path: '/backtests'
+      fullPath: '/backtests'
+      preLoaderRoute: typeof AuthenticatedBacktestsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/assinaturas': {
       id: '/_authenticated/assinaturas'
       path: '/assinaturas'
       fullPath: '/assinaturas'
       preLoaderRoute: typeof AuthenticatedAssinaturasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/alertas': {
+      id: '/_authenticated/alertas'
+      path: '/alertas'
+      fullPath: '/alertas'
+      preLoaderRoute: typeof AuthenticatedAlertasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/__auth/register': {
@@ -1381,7 +1419,9 @@ const AuthenticatedPortfolioPortfolioIdRouteWithChildren =
   )
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAlertasRoute: typeof AuthenticatedAlertasRoute
   AuthenticatedAssinaturasRoute: typeof AuthenticatedAssinaturasRoute
+  AuthenticatedBacktestsRoute: typeof AuthenticatedBacktestsRoute
   AuthenticatedCarteiraRoute: typeof AuthenticatedCarteiraRouteWithChildren
   AuthenticatedCheckoutRoute: typeof AuthenticatedCheckoutRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
@@ -1395,7 +1435,9 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAlertasRoute: AuthenticatedAlertasRoute,
   AuthenticatedAssinaturasRoute: AuthenticatedAssinaturasRoute,
+  AuthenticatedBacktestsRoute: AuthenticatedBacktestsRoute,
   AuthenticatedCarteiraRoute: AuthenticatedCarteiraRouteWithChildren,
   AuthenticatedCheckoutRoute: AuthenticatedCheckoutRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
