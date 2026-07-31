@@ -4,26 +4,27 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.26
+**Versão:** 2.27
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 21/07/2026
+**Última atualização:** 31/07/2026
 
 ---
 
 ## Objetivo
 
-Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22) da PI-011. Onda 6 (Bloco A) está fechada. Onda 6 (Bloco B) inicia.
+Reconciliar o status do projeto com o código real, após período (27-31/07) em que correções táticas de produção foram feitas sem atualizar a documentação. Ver `AI_CONTEXT.md` v2.04 para o resumo completo do "Objetivo Atual" e a lacuna de governança PI-014→PI-018 (EWOs concluídas sem a PI pai aprovada — decisão consciente de não reconstruir retroativamente).
 
 ## Detalhes Importantes
 
-- **EWO-011 🟢 FECHADA** — Bloco A (Assinaturas 19, Perfil 20) concluído.
-- **EWO-012 (APPROVED)** — Bloco B (Onboarding 21, Personalização 22). 7 Slices. 0 novos ports criados.
-- ADR-011-002 e ADR-011-003 executados nesta EWO.
-- DOCUMENTATION_INDEX v1.95, PROJECT_STATUS v2.08.
+- **EWO-013 (Backtests 14 + Alertas 15, Presentation Layer) — 🟢 CONCLUÍDA em 31/07/2026.** Componentes já existiam prontos desde antes; faltava só plugar em rotas. Criadas `/backtests` e `/alertas`, adicionadas aos menus. Verificado rodando a app.
+- **EWO-014 (CI/CD, E2E, Observabilidade) — já implementada no código**, fechamento formal pendente (não urgente).
+- **EWO-003 (migração portfólio legado) — rascunho, aguardando decisão do Rafael.** Risco fiscal descartado.
+- `PROJECT_STATE.md` (raiz e `docs/`) marcados como desatualizados/não oficiais — este arquivo e `AI_CONTEXT.md` são a fonte real.
+- DOCUMENTATION_INDEX v2.13 (não verificado se segue atual — recomenda-se checar na próxima sessão).
 
 ## Estado Atual do Trabalho
 
@@ -73,8 +74,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 
 ### Próximo passo
 
-1. **Gate de Entrada EWO-012** — Baseline Lock (PI-011 + ER-011 + EWO-012).
-2. **Iniciar EWO-012 Slice 1** — Onboarding 21 (Business Rules + Core Domain).
+Decisão pendente do Rafael entre duas frentes (ver `AI_CONTEXT.md` v2.04 para detalhes):
+
+1. **Aprovar e iniciar a EWO-003** — migração do portfólio legado (`src/lib/portfolio/`) para o novo domínio. Risco fiscal já descartado. Rascunho em `architecture-lab/EWO-003.md`.
+2. **Definir a próxima PI a partir de PI-017/018/019** — todas em DRAFT, nenhuma EWO criada ainda (são as únicas frentes genuinamente não iniciadas, ao contrário de EWO-013/014/021 que tinham código pronto sem status formal atualizado).
 
 ## Arquivos Relevantes
 
@@ -101,7 +104,7 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 - `docs/EWO-010_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure da Onda 5
 - `docs/EWO-011_ENGINEERING_CLOSURE.md`: v1.0 🟢 — Engineering Closure do Bloco A
 - `docs/DOCUMENTATION_INDEX.md`: v2.13 (reflete EWO-015 Slice 1)
-- `project-context/PROJECT_STATUS.md`: v2.26 (reflete EWO-015 Slice 1)
+- `project-context/PROJECT_STATUS.md`: v2.27 (reflete EWO-013/014/021 e a lacuna PI-014→PI-018)
 - `project-context/PROJECT_BOOTSTRAP.md`: v2.59 (GOV-P015)
 - `project-context/AI_OPERATION_CHECKLIST.md`: v1.45 (GOV-P015)
 - `project-context/PROMPT_MASTER.md`: v1.0 (APPROVED) — Matriz de Seleção de Modelos, Prompt Operacional, Fluxo ChatGPT (GOV-P013)
@@ -111,6 +114,10 @@ Registrar a criação da EWO-012 (Bloco B — Onboarding 21, Personalização 22
 ---
 
 ## Histórico
+
+### Versão 2.27
+
+**Reconciliação de documentação (31/07/2026).** Este arquivo estava parado desde ~21/07 (v2.26, "EWO-015 Slice 1"), mas o código já tinha avançado até EWO-021 (todas CONCLUÍDAS/FECHADAS conforme seus próprios `architecture-lab/EWO-0XX.md`), com exceção de EWO-013 (concluída nesta sessão — rotas de Backtests/Alertas plugadas) e EWO-014 (já implementada no código: CI/CD, Playwright, Sentry — só falta fechamento formal). Identificada e documentada uma lacuna de governança: EWOs foram concluídas com a PI pai ainda em DRAFT (ex: EWO-021 concluída, PI-014 nunca aprovada) — o OpenCode parou de gerar ERs em algum ponto mas continuou implementando. Decisão do Rafael: não reconstruir esse rastro retroativamente, tratar o status de cada EWO + presença real do código como fonte de verdade. `PROJECT_STATE.md` (raiz e `docs/`) marcados como desatualizados, redirecionando para este arquivo e `AI_CONTEXT.md`.
 
 ### Versão 2.26
 

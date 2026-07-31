@@ -2,19 +2,21 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 2.01
+**Versão:** 2.04
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 25/07/2026 (v2.03)
+**Última atualização:** 31/07/2026 (v2.04)
 
-> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. PI-014 em elaboração. Próxima etapa: ER-014 (Engineering Review).
+> **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. Ver "Objetivo Atual" abaixo para o estado real mais recente — o rastro formal PI → ER → EWO tem lacunas conhecidas entre PI-014 e PI-018 (ver nota abaixo).
 
 ---
 
 **Aviso:** Este documento contém apenas identidade, estado operacional, objetivo atual e referências obrigatórias. Consulte `PROJECT_BOOTSTRAP.md` para o Runtime Operacional completo (regras, templates, rituais, fluxos). O Runtime é autossuficiente — não é necessário consultar `DEVELOPMENT_METHODOLOGY.md` para executar operações.
+
+**⚠️ Lacuna de governança conhecida (não tentar reconstruir retroativamente — decisão já tomada pelo Rafael):** Em algum ponto entre a PI-013 e a PI-018, o OpenCode parou de criar os documentos de ER (Engineering Review) mesmo continuando a seguir as diretrizes e implementar via EWO. Resultado: existem EWOs marcadas `CONCLUÍDO` (ex: EWO-021) cuja PI pai ainda está em `DRAFT` (ex: PI-014), porque a aprovação formal nunca foi registrada — mas a implementação em si aconteceu. **Trate o status de cada `architecture-lab/EWO-0XX.md` e a presença real do código como fonte de verdade sobre "o que foi feito"; não confie apenas no status da PI/ER para isso.**
 
 ---
 
@@ -28,7 +30,15 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 # Objetivo Atual
 
-PI-018 EM ELABORAÇÃO (Plataforma de Demonstração, Perfis de Usuário e Ambientes — Onda 12). PI-018.md em DRAFT. 5 perfis, 3 modos. Próxima etapa: ER-018 (Engineering Review).
+**Estado real verificado em 31/07/2026** (reconciliado direto com o código, não só com os documentos de planejamento):
+
+- **EWO-013 (Presentation Layer — Backtests 14, Alertas 15) — 🟢 CONCLUÍDA hoje.** Os componentes já existiam prontos (`src/presentation/features/backtests`, `.../alerts`) mas não estavam plugados em nenhuma rota. Criadas `/backtests` e `/alertas` (`_authenticated`), adicionadas ao menu mobile e desktop. Verificado rodando a app — ambas renderizam corretamente (gate de plano Free/Basic funcionando).
+- **EWO-014 (CI/CD, testes E2E, observabilidade) — já implementada no código**, mas nunca teve o fechamento formal registrado. Confirmado: `.github/workflows/ci-cd.yml`, `e2e/*.spec.ts` (Playwright), `src/lib/observability/` (Sentry) todos presentes. Falta apenas: alguém revisar e marcar como `CONCLUÍDO`/criar o Engineering Closure, se fizer sentido formalizar.
+- **EWO-003 (migração do portfólio legado para o novo domínio) — em rascunho, aguardando decisão do Rafael.** O risco fiscal urgente (custo reduzido por dividendo afetando IRPF) já foi descartado — não afeta cálculo de imposto. A decisão de aprovar/iniciar as slices (Application Service, History Calculator, migração de 11 arquivos de frontend) ainda não foi tomada.
+- **PI-017, PI-018, PI-019 — DRAFT, sem nenhuma EWO criada.** Essas são genuinamente as únicas frentes "não iniciadas" (diferente de EWO-013/014/021, que tinham código pronto sem status formal).
+- Entre 27/07 e 31/07 houve uma sequência de correções táticas de produção não ligadas a nenhuma PI/EWO formal: performance da aba "Meu Plano" (causa raiz: `ObterPlanoAtivoService` retornando `NotFoundError`), integração Bolsai como fonte principal de indicadores, congelamento dos módulos Finance/Notícias no menu, correções de UI mobile, remoção do modo demo do login. Ver `git log` para o histórico completo — não há PROMPT_*.md correspondente pra essas (foram direto, sem handoff formal pro OpenCode).
+
+**Próximo passo em aberto:** decidir entre (a) aprovar e iniciar a EWO-003 (migração do portfólio), ou (b) definir a próxima frente a partir de PI-017/018/019.
 
 # Referências Obrigatórias
 
@@ -44,6 +54,10 @@ PI-018 EM ELABORAÇÃO (Plataforma de Demonstração, Perfis de Usuário e Ambie
 ---
 
 # Histórico
+
+### Versão 2.04
+
+**Reconciliação de documentação (31/07/2026).** "Objetivo Atual" estava desatualizado e continha uma contradição interna (nota de continuidade citava PI-014/ER-014, seção abaixo citava PI-018/ER-018). Reconciliado com o código real: EWO-013 concluída nesta sessão (rotas de Backtests/Alertas plugadas), EWO-014 confirmada já implementada no código (falta só fechamento formal), EWO-003 confirmada em rascunho aguardando decisão. Documentada a lacuna de governança PI-014→PI-018 (EWOs concluídas com PI pai em draft) como conhecida e intencionalmente não reconstruída. `PROJECT_STATE.md` (raiz) e `docs/PROJECT_STATE.md` marcados como desatualizados/não oficiais, apontando para este documento e para `PROJECT_STATUS.md`.
 
 ### Versão 2.00
 

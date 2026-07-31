@@ -1,5 +1,12 @@
 # PROJECT_STATE.md
 
+> ⚠️ **DESATUALIZADO E NÃO OFICIAL.** Este arquivo não faz parte da estrutura documental do projeto (ver `project-context/README.md`) e parou de ser atualizado em 23/07/2026. Para o estado real e atual do projeto, consulte:
+>
+> - `project-context/AI_CONTEXT.md` — objetivo atual, estado operacional (ler primeiro)
+> - `project-context/PROJECT_STATUS.md` — estado completo e histórico detalhado
+>
+> Mantido apenas como registro histórico. Não confiar no conteúdo abaixo para decisões.
+
 # Project State - Lio Feliz
 
 ## Current Status (as of 20/07/2026)

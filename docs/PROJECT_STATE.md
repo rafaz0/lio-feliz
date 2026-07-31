@@ -12,6 +12,8 @@
 
 **Última atualização:** 19/07/2026
 
+> ⚠️ **DESATUALIZADO.** Parou de ser sincronizado em 19/07/2026 (ficou congelado em torno de EWO-004/PI-007). Para o estado real e atual do projeto, consulte `project-context/AI_CONTEXT.md` (objetivo atual) e `project-context/PROJECT_STATUS.md` (histórico completo). Mantido como registro histórico do estado da documentação naquela data.
+
 ---
 
 # Consolidação nº 1
