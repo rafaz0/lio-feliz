@@ -643,7 +643,7 @@ function AssetPage() {
             </div>
             <p className="mt-1 text-muted-foreground">{asset.name}</p>
           </div>
-          <div className="flex items-end gap-6">
+          <div className="flex flex-wrap items-end gap-x-6 gap-y-4">
             <div>
               <div className="text-xs uppercase tracking-wider text-muted-foreground">Cotação</div>
               <div className="tabular mt-1 text-3xl font-bold">{formatBRL(currentPrice)}</div>

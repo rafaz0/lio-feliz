@@ -59,40 +59,42 @@ function DetailedView({ portfolio: p }: { portfolio: RecommendedPortfolio }) {
       </div>
 
       <div className="overflow-hidden rounded-lg border border-border">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-border bg-surface-2 text-xs uppercase text-muted-foreground">
-              <th className="px-4 py-2.5 text-left font-medium">#</th>
-              <th className="px-4 py-2.5 text-left font-medium">Ticker</th>
-              <th className="px-4 py-2.5 text-left font-medium">Empresa</th>
-              <th className="px-4 py-2.5 text-right font-medium">Peso</th>
-              <th className="px-4 py-2.5 text-right font-medium">DY</th>
-              <th className="px-4 py-2.5 text-right font-medium">P/L</th>
-            </tr>
-          </thead>
-          <tbody>
-            {p.holdings.map((h, i) => (
-              <tr key={h.ticker} className="border-b border-border last:border-0">
-                <td className="px-4 py-2.5 text-xs text-muted-foreground">{i + 1}</td>
-                <td className="px-4 py-2.5 font-medium">
-                  <Link
-                    to="/ativo/$ticker"
-                    params={{ ticker: h.ticker }}
-                    className="flex items-center gap-1 hover:text-primary"
-                  >
-                    {h.ticker} <ExternalLink className="size-3" />
-                  </Link>
-                </td>
-                <td className="px-4 py-2.5 text-muted-foreground">{h.name}</td>
-                <td className="px-4 py-2.5 text-right tabular-nums">{h.weight}%</td>
-                <td className="px-4 py-2.5 text-right tabular-nums text-green-600">
-                  {h.dy.toFixed(1)}%
-                </td>
-                <td className="px-4 py-2.5 text-right tabular-nums">{h.pl.toFixed(1)}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[560px] text-sm">
+            <thead>
+              <tr className="border-b border-border bg-surface-2 text-xs uppercase text-muted-foreground">
+                <th className="px-4 py-2.5 text-left font-medium">#</th>
+                <th className="px-4 py-2.5 text-left font-medium">Ticker</th>
+                <th className="px-4 py-2.5 text-left font-medium">Empresa</th>
+                <th className="px-4 py-2.5 text-right font-medium">Peso</th>
+                <th className="px-4 py-2.5 text-right font-medium">DY</th>
+                <th className="px-4 py-2.5 text-right font-medium">P/L</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {p.holdings.map((h, i) => (
+                <tr key={h.ticker} className="border-b border-border last:border-0">
+                  <td className="px-4 py-2.5 text-xs text-muted-foreground">{i + 1}</td>
+                  <td className="px-4 py-2.5 font-medium">
+                    <Link
+                      to="/ativo/$ticker"
+                      params={{ ticker: h.ticker }}
+                      className="flex items-center gap-1 hover:text-primary"
+                    >
+                      {h.ticker} <ExternalLink className="size-3" />
+                    </Link>
+                  </td>
+                  <td className="px-4 py-2.5 text-muted-foreground">{h.name}</td>
+                  <td className="px-4 py-2.5 text-right tabular-nums">{h.weight}%</td>
+                  <td className="px-4 py-2.5 text-right tabular-nums text-green-600">
+                    {h.dy.toFixed(1)}%
+                  </td>
+                  <td className="px-4 py-2.5 text-right tabular-nums">{h.pl.toFixed(1)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

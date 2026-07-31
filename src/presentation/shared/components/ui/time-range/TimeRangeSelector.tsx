@@ -17,7 +17,10 @@ export function TimeRangeSelector({
 }: TimeRangeSelectorProps) {
   return (
     <div
-      className={cn("inline-flex items-center gap-0.5 rounded-lg bg-muted p-0.5", className)}
+      className={cn(
+        "inline-flex min-w-0 max-w-full items-center gap-0.5 overflow-x-auto rounded-lg bg-muted p-0.5",
+        className,
+      )}
       role="radiogroup"
       aria-label="Selecionar período"
     >

@@ -23,7 +23,7 @@ const chartConfig = {
 
 export function EvolucaoChart({ evolucao, selectedRange, onRangeChange }: EvolucaoChartProps) {
   return (
-    <Card data-testid="evolucao-chart">
+    <Card data-testid="evolucao-chart" className="min-w-0">
       <CardHeader className="flex-row items-center justify-between">
         <div className="text-sm font-semibold">Evolução Patrimonial</div>
         <TimeRangeSelector selected={selectedRange} onSelect={onRangeChange} />
