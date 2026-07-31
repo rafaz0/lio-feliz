@@ -7,7 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useMemo, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -180,61 +180,65 @@ function RootComponent() {
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
 
-  const paymentGatewayFactory = new PaymentGatewayFactory();
+  const composition = useMemo(() => {
+    const paymentGatewayFactory = new PaymentGatewayFactory();
 
-  const subscriptionRepo = (() => {
-    const repo = new FakeSubscriptionRepository();
-    repo.savePlan(
-      Plan.create({
-        id: PlanId.create("free"),
-        name: "Free",
-        tier: "FREE",
-        monthlyPrice: 0,
-        description: "Acesso basico a plataforma",
-        capabilities: DEFAULT_CAPABILITIES.FREE,
-      }),
-    );
-    repo.savePlan(
-      Plan.create({
-        id: PlanId.create("basic"),
-        name: "Basic",
-        tier: "BASIC",
-        monthlyPrice: 1990,
-        description: "Recursos avancados para investidores",
-        capabilities: DEFAULT_CAPABILITIES.BASIC,
-      }),
-    );
-    repo.savePlan(
-      Plan.create({
-        id: PlanId.create("premium"),
-        name: "Premium",
-        tier: "PREMIUM",
-        monthlyPrice: 4990,
-        description: "Acesso completo com todos os recursos",
-        capabilities: DEFAULT_CAPABILITIES.PREMIUM,
-      }),
-    );
-    return repo;
-  })();
+    const subscriptionRepo = (() => {
+      const repo = new FakeSubscriptionRepository();
+      repo.savePlan(
+        Plan.create({
+          id: PlanId.create("free"),
+          name: "Free",
+          tier: "FREE",
+          monthlyPrice: 0,
+          description: "Acesso basico a plataforma",
+          capabilities: DEFAULT_CAPABILITIES.FREE,
+        }),
+      );
+      repo.savePlan(
+        Plan.create({
+          id: PlanId.create("basic"),
+          name: "Basic",
+          tier: "BASIC",
+          monthlyPrice: 1990,
+          description: "Recursos avancados para investidores",
+          capabilities: DEFAULT_CAPABILITIES.BASIC,
+        }),
+      );
+      repo.savePlan(
+        Plan.create({
+          id: PlanId.create("premium"),
+          name: "Premium",
+          tier: "PREMIUM",
+          monthlyPrice: 4990,
+          description: "Acesso completo com todos os recursos",
+          capabilities: DEFAULT_CAPABILITIES.PREMIUM,
+        }),
+      );
+      return repo;
+    })();
 
-  const dispatcher = createPresentationDispatcher({
-    projectionRepository: new SupabaseProjectionRepository(supabase),
-    portfolioRepository: new SupabasePortfolioRepository(supabase),
-    configurationRepository: new SupabaseConfigurationRepository(supabase),
-    eventPublisher: new InProcessEventPublisher(),
-    dataGateway: new DataGatewayRouter(),
-    importInterpreter: new ImportInterpreter(),
-    financialGoalRepository: new SupabaseFinancialGoalRepository(supabase),
-    fixedIncomeRepository: new SupabaseFixedIncomeRepository(supabase),
-    subscriptionRepository: subscriptionRepo,
-    paymentGateway: paymentGatewayFactory.create("mock"),
-  });
+    const dispatcher = createPresentationDispatcher({
+      projectionRepository: new SupabaseProjectionRepository(supabase),
+      portfolioRepository: new SupabasePortfolioRepository(supabase),
+      configurationRepository: new SupabaseConfigurationRepository(supabase),
+      eventPublisher: new InProcessEventPublisher(),
+      dataGateway: new DataGatewayRouter(),
+      importInterpreter: new ImportInterpreter(),
+      financialGoalRepository: new SupabaseFinancialGoalRepository(supabase),
+      fixedIncomeRepository: new SupabaseFixedIncomeRepository(supabase),
+      subscriptionRepository: subscriptionRepo,
+      paymentGateway: paymentGatewayFactory.create("mock"),
+    });
+
+    return { dispatcher, authService: new SupabaseAuthService() };
+  }, []);
 
   return (
     <Providers
       queryClient={queryClient}
-      authService={new SupabaseAuthService()}
-      dispatcher={dispatcher}
+      authService={composition.authService}
+      dispatcher={composition.dispatcher}
       defaultTheme="dark"
     >
       <Outlet />
