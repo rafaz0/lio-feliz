@@ -264,6 +264,7 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
   const [valorRf, setValorRf] = useState("");
   const [vencimento, setVencimento] = useState(addYears(new Date(), 1));
   const [liquidezDiaria, setLiquidezDiaria] = useState(true);
+  const [semVencimento, setSemVencimento] = useState(false);
 
   // Dividend-specific fields
   const [dividendType, setDividendType] = useState<"dividendo" | "jcp">("dividendo");
@@ -299,7 +300,6 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
       setOpen(false);
       resetForm();
     },
-    onSettled: () => setTradedAt(new Date()),
     onError: (e: Error) => toast.error(e.message),
   });
 
@@ -316,6 +316,7 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
     setValorRf("");
     setVencimento(addYears(new Date(), 1));
     setLiquidezDiaria(true);
+    setSemVencimento(false);
     setDividendType("dividendo");
     if (resetMode) setMode("operation");
     setSide("buy");
@@ -394,7 +395,7 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
           taxa: taxaIndexador || null,
           forma: forma,
           liquidez_diaria: liquidezDiaria,
-          data_vencimento: format(vencimento, "yyyy-MM-dd"),
+          data_vencimento: semVencimento ? null : format(vencimento, "yyyy-MM-dd"),
         },
         traded_at: format(tradedAt, "yyyy-MM-dd"),
       });
@@ -604,7 +605,13 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                 </div>
                 <div className="grid gap-2">
                   <Label>Data de vencimento</Label>
-                  <DatePicker value={vencimento} onChange={setVencimento} />
+                  {semVencimento ? (
+                    <div className="flex h-9 items-center rounded-md border border-dashed border-border px-3 text-sm text-muted-foreground">
+                      Sem vencimento
+                    </div>
+                  ) : (
+                    <DatePicker value={vencimento} onChange={setVencimento} />
+                  )}
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -615,6 +622,16 @@ export function AddOperationDialog({ trigger, defaultTicker, defaultPrice }: Pro
                 />
                 <Label htmlFor="liquidez" className="text-sm font-normal">
                   Liquidez diária
+                </Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="sem-vencimento"
+                  checked={semVencimento}
+                  onCheckedChange={(v) => setSemVencimento(v as boolean)}
+                />
+                <Label htmlFor="sem-vencimento" className="text-sm font-normal">
+                  Sem data de vencimento (ex: conta remunerada, CDB indexado sem prazo)
                 </Label>
               </div>
             </>
