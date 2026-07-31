@@ -121,7 +121,8 @@ function DashboardPage() {
   const { user } = useAuth();
   const { user: sessionUser } = useSession();
   const portfolioId = user?.id ?? "default-portfolio";
-  const displayName = sessionUser?.email?.split("@")[0] ?? "Investidor";
+  const displayName =
+    sessionUser?.user_metadata?.display_name ?? sessionUser?.email?.split("@")[0] ?? "Investidor";
 
   const list = useServerFn(listOperations);
   const fetchQuotes = useServerFn(getQuotes);

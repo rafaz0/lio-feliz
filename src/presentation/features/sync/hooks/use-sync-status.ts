@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { useSyncMutation } from "./use-sync-mutation";
 import type { SincronizacaoRealizadaDto } from "@/presentation/shared/types/application-layer";
 
@@ -14,7 +14,7 @@ export function useSyncStatus(usuarioId: string): SyncStatusResult {
   const { mutateAsync, isPending } = useSyncMutation();
   const [lastResult, setLastResult] = useState<SincronizacaoRealizadaDto | null>(null);
   const [hasError, setHasError] = useState(false);
-  const lastSyncAtRef = useRef<string | null>(null);
+  const [lastSyncAt, setLastSyncAt] = useState<string | null>(null);
 
   const triggerSync = useCallback(async () => {
     try {
@@ -24,14 +24,14 @@ export function useSyncStatus(usuarioId: string): SyncStatusResult {
         fonte: "manual",
       });
       setLastResult(result);
-      lastSyncAtRef.current = new Date().toISOString();
+      setLastSyncAt(new Date().toISOString());
     } catch {
       setHasError(true);
     }
   }, [usuarioId, mutateAsync]);
 
   return {
-    lastSyncAt: lastSyncAtRef.current,
+    lastSyncAt,
     isSyncing: isPending,
     hasError,
     lastResult,
