@@ -12,11 +12,12 @@ import {
 import { SiteHeader } from "@/components/site-header";
 import { ModuleLayout } from "@/components/module-layout";
 import type { ModuleTab } from "@/components/module-tabs";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/analise")({
   head: () => ({
     meta: [
-      { title: "Análise — Investidor Pro" },
+      { title: `Análise — ${APP_NAME}` },
       {
         name: "description",
         content: "FIIs, rankings, setores, comparador e mais ferramentas de análise.",

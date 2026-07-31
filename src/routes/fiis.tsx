@@ -6,11 +6,12 @@ import { FIIS, type FiiSegment } from "@/lib/fii-mock-data";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { formatBRL } from "@/lib/format";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/fiis")({
   head: () => ({
     meta: [
-      { title: "Fundos Imobiliários — Investidor Pro" },
+      { title: `Fundos Imobiliários — ${APP_NAME}` },
       {
         name: "description",
         content:

@@ -3,9 +3,10 @@ import { BarChart3 } from "lucide-react";
 import { ModuleSection } from "@/components/module-section";
 import { ModuleActionBar } from "@/components/domain/module-action-bar";
 import { EmptyModuleState } from "@/components/domain/empty-module-state";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/carteira/rebalanceamento")({
-  head: () => ({ meta: [{ title: "Rebalanceamento — Investidor Pro" }] }),
+  head: () => ({ meta: [{ title: `Rebalanceamento — ${APP_NAME}` }] }),
   component: RebalanceamentoPage,
 });
 

@@ -2,9 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Newspaper, ExternalLink } from "lucide-react";
 import { ModuleSection } from "@/components/module-section";
 import { Button } from "@/components/ui/button";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/analise/noticias")({
-  head: () => ({ meta: [{ title: "Notícias — Investidor Pro" }] }),
+  head: () => ({ meta: [{ title: `Notícias — ${APP_NAME}` }] }),
   component: () => (
     <ModuleSection title="Notícias" description="Fatos relevantes do mercado.">
       <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-card px-6 py-16 text-center">

@@ -22,13 +22,14 @@ import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
 import { formatBRL, formatDate } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/carteira/analise")({
   errorComponent: RouteErrorBoundary,
   notFoundComponent: () => <NotFoundState />,
   head: () => ({
     meta: [
-      { title: "Análise de Risco — Investidor Pro" },
+      { title: `Análise de Risco — ${APP_NAME}` },
       {
         name: "description",
         content:

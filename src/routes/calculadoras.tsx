@@ -6,11 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { formatBRL } from "@/lib/format";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/calculadoras")({
   head: () => ({
     meta: [
-      { title: "Calculadoras — Investidor Pro" },
+      { title: `Calculadoras — ${APP_NAME}` },
       {
         name: "description",
         content:

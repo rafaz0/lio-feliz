@@ -28,6 +28,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { ASSETS } from "@/lib/mock-data";
 import { getAssetList, type AssetLite } from "@/lib/data-functions";
 import { MARKET_INDICES, formatIndexValue } from "@/lib/market-indices";
+import { APP_NAME } from "@/lib/brand";
 import { getQuotes } from "@/lib/quotes.functions";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
 import { useSession } from "@/hooks/use-session";
@@ -49,7 +50,7 @@ export const Route = createFileRoute("/")({
     const count = loaderData?.list?.length ?? 0;
     return {
       meta: [
-        { title: "Investidor Pro — Análise de ações brasileiras" },
+        { title: `${APP_NAME} — Análise de ações brasileiras` },
         {
           name: "description",
           content: `Análise fundamentalista de ${count} ações da B3, cotações, dividendos e sua carteira consolidada.`,
@@ -532,7 +533,7 @@ function HomePage() {
               Carteira
             </Link>
           </div>
-          Investidor Pro · cotações atualizadas automaticamente a cada 5 minutos
+          {APP_NAME} · cotações atualizadas automaticamente a cada 5 minutos
           {quotesUpdatedAt
             ? ` · última atualização às ${new Date(quotesUpdatedAt).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}`
             : ""}{" "}

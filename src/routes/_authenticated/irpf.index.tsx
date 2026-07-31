@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { IrpfContent } from "@/components/irpf-content";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/irpf/")({
   head: () => ({
     meta: [
-      { title: "IRPF Helper — Investidor Pro" },
+      { title: `IRPF Helper — ${APP_NAME}` },
       {
         name: "description",
         content:

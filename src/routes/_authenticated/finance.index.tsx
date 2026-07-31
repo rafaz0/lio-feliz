@@ -5,11 +5,12 @@ import { ModuleSection } from "@/components/module-section";
 import { QuickActions, RelatedLinks } from "@/components/experience";
 import type { QuickActionItem } from "@/components/experience";
 import type { RelatedLinkItem } from "@/components/experience";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/finance/")({
   head: () => ({
     meta: [
-      { title: "Gestão Financeira — Investidor Pro" },
+      { title: `Gestão Financeira — ${APP_NAME}` },
       { name: "description", content: "Controle suas contas, receitas e despesas." },
       { name: "robots", content: "noindex" },
     ],

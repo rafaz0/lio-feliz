@@ -23,6 +23,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { searchTickers, type TickerSuggestion } from "@/lib/data-functions";
+import { APP_NAME } from "@/lib/brand";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -79,7 +80,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-12 max-w-[1400px] items-center gap-1.5 px-3 text-sm md:gap-3 md:px-4">
         <Link to="/" className="flex items-center gap-1.5 text-sm font-semibold tracking-tight">
           <LineChart className="size-4 text-primary" />
-          <span>Investidor Pro</span>
+          <span>{APP_NAME}</span>
         </Link>
 
         {/* Mobile hamburger trigger — wraps only trigger + content so

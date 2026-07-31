@@ -10,7 +10,7 @@
 
 ## 1. Objetivo
 
-Definir as regras de negócio do módulo **Integrações** do Investidor Pro. O módulo permite conectar-se a corretoras, bancos e plataformas externas (BRAPI, Yahoo Finance, Banco Inter, XP Investimentos) para sincronização automática de operações, proventos, cotações e posições. A integração pode ocorrer via API direta, OAuth ou importação de arquivo.
+Definir as regras de negócio do módulo **Integrações** do Investir Assim. O módulo permite conectar-se a corretoras, bancos e plataformas externas (BRAPI, Yahoo Finance, Banco Inter, XP Investimentos) para sincronização automática de operações, proventos, cotações e posições. A integração pode ocorrer via API direta, OAuth ou importação de arquivo.
 
 ---
 

@@ -3,12 +3,13 @@ import { ExternalLink, Newspaper } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { getFii } from "@/lib/fii-mock-data";
 import { fetchYahooNews, type YahooNewsItem } from "@/lib/yahoo.server";
+import { APP_NAME } from "@/lib/brand";
 
 const FALLBACK_NEWS: YahooNewsItem[] = [
   {
     title: "Petrobras aprova pagamento de R$ 15 bilhões em dividendos",
     summary: "",
-    source: "Investidor Pro",
+    source: APP_NAME,
     date: "",
     link: "",
     tickers: ["PETR4"],
@@ -16,7 +17,7 @@ const FALLBACK_NEWS: YahooNewsItem[] = [
   {
     title: "Vale anuncia investimento recorde de R$ 12 bilhões em 2026",
     summary: "",
-    source: "Investidor Pro",
+    source: APP_NAME,
     date: "",
     link: "",
     tickers: ["VALE3"],
@@ -24,7 +25,7 @@ const FALLBACK_NEWS: YahooNewsItem[] = [
   {
     title: "Banco Central mantém Selic em 14,75% ao ano",
     summary: "",
-    source: "Investidor Pro",
+    source: APP_NAME,
     date: "",
     link: "",
     tickers: [],
@@ -32,7 +33,7 @@ const FALLBACK_NEWS: YahooNewsItem[] = [
   {
     title: "IFIX sobe 0,8% com recuperação de FIIs de tijolo",
     summary: "",
-    source: "Investidor Pro",
+    source: APP_NAME,
     date: "",
     link: "",
     tickers: ["HGRE11", "RBRF11", "JSRE11"],
@@ -40,7 +41,7 @@ const FALLBACK_NEWS: YahooNewsItem[] = [
   {
     title: "WEG expande fábrica nos EUA para atender demanda",
     summary: "",
-    source: "Investidor Pro",
+    source: APP_NAME,
     date: "",
     link: "",
     tickers: ["WEGE3"],
@@ -48,7 +49,7 @@ const FALLBACK_NEWS: YahooNewsItem[] = [
   {
     title: "BTG Pactual projeta IBOV em 145 mil pontos no fim de 2026",
     summary: "",
-    source: "Investidor Pro",
+    source: APP_NAME,
     date: "",
     link: "",
     tickers: [],
@@ -56,7 +57,7 @@ const FALLBACK_NEWS: YahooNewsItem[] = [
   {
     title: "Magazine Luiza reporta crescimento de 12% no GMV do 2T26",
     summary: "",
-    source: "Investidor Pro",
+    source: APP_NAME,
     date: "",
     link: "",
     tickers: ["MGLU3"],
@@ -64,7 +65,7 @@ const FALLBACK_NEWS: YahooNewsItem[] = [
   {
     title: "Taesa é aprovada para novo leilão de transmissão",
     summary: "",
-    source: "Investidor Pro",
+    source: APP_NAME,
     date: "",
     link: "",
     tickers: ["TAEE11"],
@@ -97,7 +98,7 @@ export const Route = createFileRoute("/noticias")({
   },
   head: () => ({
     meta: [
-      { title: "Notícias — Investidor Pro" },
+      { title: `Notícias — ${APP_NAME}` },
       { name: "description", content: "Notícias do mercado financeiro brasileiro." },
     ],
   }),

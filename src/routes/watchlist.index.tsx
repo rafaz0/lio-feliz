@@ -12,6 +12,7 @@ import { useWatchlist } from "@/lib/watchlist";
 import { getAssetList, type AssetLite } from "@/lib/data-functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { formatBRL } from "@/lib/format";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/watchlist/")({
   loader: async () => {
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/watchlist/")({
   },
   head: () => ({
     meta: [
-      { title: "Watchlist — Investidor Pro" },
+      { title: `Watchlist — ${APP_NAME}` },
       { name: "description", content: "Monitore seus ativos favoritos da B3." },
     ],
   }),

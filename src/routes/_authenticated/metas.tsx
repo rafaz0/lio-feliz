@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { MetasContent } from "@/components/metas-content";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/metas")({
   head: () => ({
     meta: [
-      { title: "Metas de Dividendos — Investidor Pro" },
+      { title: `Metas de Dividendos — ${APP_NAME}` },
       {
         name: "description",
         content: "Defina sua meta de dividendos mensais e acompanhe o progresso.",

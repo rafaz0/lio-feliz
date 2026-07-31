@@ -10,7 +10,7 @@
 
 ## 1. Objetivo
 
-Definir as regras de negócio do módulo **Relatórios** do Investidor Pro. O módulo permite gerar, agendar, visualizar e exportar relatórios consolidados de carteira, proventos, rentabilidade e posição fiscal — consumindo exclusivamente as projeções materializadas pelo `IProjectionRepository` (PA-009-003 / R-010). Nenhum relatório recalcula regras de domínio; apenas formata e exporta.
+Definir as regras de negócio do módulo **Relatórios** do Investir Assim. O módulo permite gerar, agendar, visualizar e exportar relatórios consolidados de carteira, proventos, rentabilidade e posição fiscal — consumindo exclusivamente as projeções materializadas pelo `IProjectionRepository` (PA-009-003 / R-010). Nenhum relatório recalcula regras de domínio; apenas formata e exporta.
 
 ---
 

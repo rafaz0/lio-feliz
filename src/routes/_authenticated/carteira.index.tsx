@@ -40,13 +40,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { formatBRL, formatBRLCompact, formatQty, formatDate } from "@/lib/format";
 import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
 import { KpiCard } from "@/components/kpi-card";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/carteira/")({
   errorComponent: RouteErrorBoundary,
   notFoundComponent: () => <NotFoundState />,
   head: () => ({
     meta: [
-      { title: "Carteira — Investidor Pro" },
+      { title: `Carteira — ${APP_NAME}` },
       {
         name: "description",
         content:

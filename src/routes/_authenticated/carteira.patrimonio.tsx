@@ -24,13 +24,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/empty-state";
 import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
 import { KpiCard } from "@/components/kpi-card";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/carteira/patrimonio")({
   errorComponent: RouteErrorBoundary,
   notFoundComponent: () => <NotFoundState />,
   head: () => ({
     meta: [
-      { title: "Patrimônio — Investidor Pro" },
+      { title: `Patrimônio — ${APP_NAME}` },
       {
         name: "description",
         content: "Evolução patrimonial e alocação por classe e setor da sua carteira.",

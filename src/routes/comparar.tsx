@@ -10,6 +10,7 @@ import { getQuotes } from "@/lib/quotes.functions";
 import { formatBRL, formatBRLCompact, formatPctPlain } from "@/lib/format";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/comparar")({
   loader: async () => {
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/comparar")({
     const count = loaderData?.assets?.length ?? 0;
     return {
       meta: [
-        { title: "Comparador de Ativos — Investidor Pro" },
+        { title: `Comparador de Ativos — ${APP_NAME}` },
         {
           name: "description",
           content: `Compare ${count} ações brasileiras lado a lado: P/L, P/VP, DY, ROE e mais.`,

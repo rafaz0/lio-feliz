@@ -11,9 +11,10 @@ import {
 } from "lucide-react";
 import { ModuleSection } from "@/components/module-section";
 import { PremiumBadge } from "@/presentation/features/subscriptions";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/analise/")({
-  head: () => ({ meta: [{ title: "Análise — Investidor Pro" }] }),
+  head: () => ({ meta: [{ title: `Análise — ${APP_NAME}` }] }),
   component: AnaliseIndexPage,
 });
 

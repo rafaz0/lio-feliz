@@ -10,7 +10,7 @@
 
 ## 1. Objetivo
 
-Definir as regras de negócio do módulo de **Renda Fixa** do Investidor Pro. O módulo permite
+Definir as regras de negócio do módulo de **Renda Fixa** do Investir Assim. O módulo permite
 registrar títulos de renda fixa (Tesouro Direto, CDB, LCI, LCA, prefixados e pós-fixados),
 acompanhar o cronograma de pagamentos de juros e amortizações e projetar o retorno até o vencimento.
 

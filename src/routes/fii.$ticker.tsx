@@ -35,6 +35,7 @@ import { Button } from "@/components/ui/button";
 import { calcAll } from "@/lib/technical-indicators";
 import { formatBRL, formatDate, formatNumber } from "@/lib/format";
 import { ContextPanel, SmartHints, RelatedLinks } from "@/components/experience";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/fii/$ticker")({
   loader: ({ params }) => {
@@ -46,7 +47,7 @@ export const Route = createFileRoute("/fii/$ticker")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "FII não encontrado — Investidor Pro" },
+          { title: `FII não encontrado — ${APP_NAME}` },
           { name: "robots", content: "noindex" },
         ],
       };
@@ -54,7 +55,7 @@ export const Route = createFileRoute("/fii/$ticker")({
     const f = loaderData.fii;
     return {
       meta: [
-        { title: `${f.ticker} · ${f.name} — Investidor Pro` },
+        { title: `${f.ticker} · ${f.name} — ${APP_NAME}` },
         {
           name: "description",
           content: `${f.ticker} (${f.name}) — DY ${f.dy.toFixed(2)}%, P/VP ${f.pvp.toFixed(2)}, setor ${f.segment}.`,

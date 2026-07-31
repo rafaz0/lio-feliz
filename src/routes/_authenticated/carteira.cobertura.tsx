@@ -17,11 +17,12 @@ import { getRealProjections, type RealProjection } from "@/lib/data-functions";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/carteira/cobertura")({
   head: () => ({
     meta: [
-      { title: "Cobertura de Despesas — Investidor Pro" },
+      { title: `Cobertura de Despesas — ${APP_NAME}` },
       {
         name: "description",
         content: "Quanto os dividendos da sua carteira cobrem as suas despesas mensais projetadas.",

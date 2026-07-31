@@ -22,11 +22,12 @@ import { formatDate, formatBRL } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { KpiCard } from "@/components/kpi-card";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/carteira/rentabilidade")({
   head: () => ({
     meta: [
-      { title: "Rentabilidade — Investidor Pro" },
+      { title: `Rentabilidade — ${APP_NAME}` },
       {
         name: "description",
         content:

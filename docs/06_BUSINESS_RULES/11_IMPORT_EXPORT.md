@@ -10,7 +10,7 @@
 
 ## 1. Objetivo
 
-Definir as regras de negócio do módulo **Import/Export** do Investidor Pro. O módulo permite importar dados de operações e proventos de sistemas externos (Excel, CSV, sistemas bancários) para o catálogo local de operações, com validação, normalização de campos e suporte a múltiplos formatos. As operações importadas podem ser reconciliadas com lançamentos registrados, facilitando a correção automática.
+Definir as regras de negócio do módulo **Import/Export** do Investir Assim. O módulo permite importar dados de operações e proventos de sistemas externos (Excel, CSV, sistemas bancários) para o catálogo local de operações, com validação, normalização de campos e suporte a múltiplos formatos. As operações importadas podem ser reconciliadas com lançamentos registrados, facilitando a correção automática.
 
 ---
 

@@ -2,9 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { BarChart3, ExternalLink } from "lucide-react";
 import { ModuleSection } from "@/components/module-section";
 import { Button } from "@/components/ui/button";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/analise/setores")({
-  head: () => ({ meta: [{ title: "Setores — Investidor Pro" }] }),
+  head: () => ({ meta: [{ title: `Setores — ${APP_NAME}` }] }),
   component: () => (
     <ModuleSection title="Setores" description="Análise por setor da B3.">
       <p className="text-sm text-muted-foreground">

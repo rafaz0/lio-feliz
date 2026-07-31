@@ -4,6 +4,7 @@ import { Building2, TrendingUp, Medal, BarChart3, Search } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { getAssetList, type AssetLite } from "@/lib/data-functions";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/setores")({
   loader: async () => {
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/setores")({
   },
   head: () => ({
     meta: [
-      { title: "Setores — Investidor Pro" },
+      { title: `Setores — ${APP_NAME}` },
       {
         name: "description",
         content:

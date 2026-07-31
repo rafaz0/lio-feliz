@@ -55,6 +55,7 @@ import { formatBRL, formatBRLCompact, formatDate } from "@/lib/format";
 import { grahamRating, bazinPriceTeto, avgAnnualYield } from "@/lib/valuation";
 import { computeScorecard, ratingLabel, ratingColor } from "@/lib/scorecard";
 import { ContextPanel, SmartHints, RelatedLinks } from "@/components/experience";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/ativo/$ticker")({
   loader: async ({ params }) => {
@@ -67,7 +68,7 @@ export const Route = createFileRoute("/ativo/$ticker")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Ativo não encontrado — Investidor Pro" },
+          { title: `Ativo não encontrado — ${APP_NAME}` },
           { name: "robots", content: "noindex" },
         ],
       };
@@ -75,7 +76,7 @@ export const Route = createFileRoute("/ativo/$ticker")({
     const a = loaderData.asset;
     return {
       meta: [
-        { title: `${a.ticker} · ${a.name} — Investidor Pro` },
+        { title: `${a.ticker} · ${a.name} — ${APP_NAME}` },
         {
           name: "description",
           content: `Cotação, indicadores fundamentalistas e dividendos de ${a.ticker} (${a.name}). Setor: ${a.sector}.`,

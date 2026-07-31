@@ -28,6 +28,7 @@ import { ImportInterpreter } from "@/infrastructure/interpreters/import-interpre
 import { FakeSubscriptionRepository } from "@/infrastructure/fakes/fake-subscription-repository";
 import { Plan, PlanId, DEFAULT_CAPABILITIES } from "@/core/domain/subscriptions";
 import { PaymentGatewayFactory } from "@/infrastructure/gateways/payment-gateway-factory";
+import { APP_NAME } from "@/lib/brand";
 
 function NotFoundComponent() {
   return (
@@ -92,13 +93,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Investidor Pro — Análise fundamentalista e carteira" },
+      { title: `${APP_NAME} — Análise fundamentalista e carteira` },
       {
         name: "description",
         content:
           "Plataforma de análise fundamentalista de ações brasileiras e controle de carteira: indicadores, cotações, dividendos e rentabilidade em um só lugar.",
       },
-      { property: "og:title", content: "Investidor Pro — Análise fundamentalista e carteira" },
+      { property: "og:title", content: `${APP_NAME} — Análise fundamentalista e carteira` },
       {
         property: "og:description",
         content:

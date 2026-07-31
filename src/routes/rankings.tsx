@@ -11,6 +11,7 @@ import { getQuotes } from "@/lib/quotes.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/rankings")({
   loader: async () => {
@@ -21,7 +22,7 @@ export const Route = createFileRoute("/rankings")({
     const count = loaderData?.assets?.length ?? 0;
     return {
       meta: [
-        { title: "Rankings de Ações — Investidor Pro" },
+        { title: `Rankings de Ações — ${APP_NAME}` },
         {
           name: "description",
           content: `Rankings de ${count} ações brasileiras por Dividend Yield, P/L, Valor de Mercado, Graham e Bazin.`,

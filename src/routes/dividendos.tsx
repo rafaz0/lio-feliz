@@ -7,11 +7,12 @@ import { FIIS } from "@/lib/fii-mock-data";
 import { formatBRL, formatDate } from "@/lib/format";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/dividendos")({
   head: () => ({
     meta: [
-      { title: "Agenda de Dividendos — Investidor Pro" },
+      { title: `Agenda de Dividendos — ${APP_NAME}` },
       {
         name: "description",
         content:

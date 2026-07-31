@@ -4,11 +4,12 @@ import { ExternalLink } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { RECOMMENDED_PORTFOLIOS, type RecommendedPortfolio } from "@/lib/recommended-portfolios";
 import { formatBRL } from "@/lib/format";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/carteiras-recomendadas")({
   head: () => ({
     meta: [
-      { title: "Carteiras Recomendadas — Investidor Pro" },
+      { title: `Carteiras Recomendadas — ${APP_NAME}` },
       {
         name: "description",
         content: "Carteiras recomendadas de ações e FIIs para todos os perfis de investidor.",

@@ -20,11 +20,12 @@ import { useSession } from "@/hooks/use-session";
 import { listOperations } from "@/lib/operations.functions";
 import { getRealProjections } from "@/lib/data-functions";
 import { formatBRL, formatDate } from "@/lib/format";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/provisionador")({
   head: () => ({
     meta: [
-      { title: "Provisionador de Dividendos — Investidor Pro" },
+      { title: `Provisionador de Dividendos — ${APP_NAME}` },
       {
         name: "description",
         content: "Projete seus dividendos futuros com base no histórico e na sua carteira.",

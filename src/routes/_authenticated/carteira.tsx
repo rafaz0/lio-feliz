@@ -15,11 +15,12 @@ import {
 import { SiteHeader } from "@/components/site-header";
 import { ModuleLayout } from "@/components/module-layout";
 import type { ModuleTab } from "@/components/module-tabs";
+import { APP_NAME } from "@/lib/brand";
 
 export const Route = createFileRoute("/_authenticated/carteira")({
   head: () => ({
     meta: [
-      { title: "Minha carteira — Investidor Pro" },
+      { title: `Minha carteira — ${APP_NAME}` },
       { name: "description", content: "Sua posição consolidada, rentabilidade e alocação." },
       { name: "robots", content: "noindex" },
     ],
