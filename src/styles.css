@@ -215,15 +215,13 @@ nav[role="tablist"]::-webkit-scrollbar {
   letter-spacing: -0.02em;
 }
 
-/* Scrollable table container — subtle shadow on right edge indicates overflow */
+/* Scrollable table container — shadow on right edge indicates overflow */
 @utility scroll-shadow {
-  overflow-x: auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   background:
-    linear-gradient(to right, transparent, transparent 97%),
-    radial-gradient(farthest-side at 100% 50%, hsl(var(--border)) 0%, transparent 100%);
-  background-attachment: local, scroll;
+    linear-gradient(to right, hsl(var(--card) / 1) 90%, transparent 100%) local,
+    linear-gradient(to right, transparent, hsl(var(--border) / 0.4) 50%, transparent 100%) 100% 0 /
+      16px 100% scroll;
   background-repeat: no-repeat;
-  background-size:
-    100% 100%,
-    12px 100%;
 }
