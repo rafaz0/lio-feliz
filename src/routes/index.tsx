@@ -25,6 +25,15 @@ import { DeltaPct } from "@/components/delta-pct";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 import { ASSETS } from "@/lib/mock-data";
 import { getAssetList, type AssetLite } from "@/lib/data-functions";
 import { MARKET_INDICES, formatIndexValue } from "@/lib/market-indices";
@@ -40,6 +49,25 @@ const SEVERITY_ORDER: Record<string, number> = {
   attention: 1,
   info: 2,
 };
+
+function getPageNumbers(current: number, total: number): (number | "ellipsis")[] {
+  const delta = 1;
+  const range: number[] = [];
+  for (let i = Math.max(1, current - delta); i <= Math.min(total, current + delta); i++) {
+    range.push(i);
+  }
+  const pages: (number | "ellipsis")[] = [];
+  if (range[0] > 1) {
+    pages.push(1);
+    if (range[0] > 2) pages.push("ellipsis");
+  }
+  pages.push(...range);
+  if (range[range.length - 1] < total) {
+    if (range[range.length - 1] < total - 1) pages.push("ellipsis");
+    pages.push(total);
+  }
+  return pages;
+}
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -113,6 +141,19 @@ function HomePage() {
     if (!term) return assets;
     return assets.filter((a) => a.ticker.includes(term) || a.name.toUpperCase().includes(term));
   }, [assets, search]);
+
+  const ASSETS_PAGE_SIZE = 50;
+  const [assetsPage, setAssetsPage] = useState(0);
+  const totalAssetsPages = Math.max(1, Math.ceil(filteredAssets.length / ASSETS_PAGE_SIZE));
+  const currentAssetsPage = Math.min(assetsPage, totalAssetsPages - 1);
+  const pagedAssets = useMemo(
+    () =>
+      filteredAssets.slice(
+        currentAssetsPage * ASSETS_PAGE_SIZE,
+        (currentAssetsPage + 1) * ASSETS_PAGE_SIZE,
+      ),
+    [filteredAssets, currentAssetsPage],
+  );
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -266,7 +307,10 @@ function HomePage() {
               <Search className="pointer-events-none absolute left-2.5 top-2.5 size-3.5 text-muted-foreground" />
               <Input
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setAssetsPage(0);
+                }}
                 placeholder="Buscar ticker ou empresa..."
                 autoComplete="off"
                 className="h-8 pl-7 text-sm"
@@ -316,7 +360,7 @@ function HomePage() {
                 </tr>
               </thead>
               <tbody>
-                {filteredAssets.map((a) => (
+                {pagedAssets.map((a) => (
                   <tr
                     key={a.ticker}
                     className="border-t border-border transition hover:bg-surface focus-visible:bg-surface focus-visible:outline-none"
@@ -352,6 +396,64 @@ function HomePage() {
               </tbody>
             </table>
           </div>
+          {totalAssetsPages > 1 && (
+            <Pagination className="mt-4">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setAssetsPage((p) => Math.max(0, p - 1));
+                    }}
+                    aria-disabled={currentAssetsPage === 0}
+                    className={
+                      currentAssetsPage === 0 ? "pointer-events-none opacity-50" : undefined
+                    }
+                  >
+                    <span>Anterior</span>
+                  </PaginationPrevious>
+                </PaginationItem>
+                {getPageNumbers(currentAssetsPage + 1, totalAssetsPages).map((p, i) =>
+                  p === "ellipsis" ? (
+                    <PaginationItem key={`ellipsis-${i}`}>
+                      <PaginationEllipsis />
+                    </PaginationItem>
+                  ) : (
+                    <PaginationItem key={p}>
+                      <PaginationLink
+                        href="#"
+                        isActive={p === currentAssetsPage + 1}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setAssetsPage(p - 1);
+                        }}
+                      >
+                        {p}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ),
+                )}
+                <PaginationItem>
+                  <PaginationNext
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setAssetsPage((p) => Math.min(totalAssetsPages - 1, p + 1));
+                    }}
+                    aria-disabled={currentAssetsPage === totalAssetsPages - 1}
+                    className={
+                      currentAssetsPage === totalAssetsPages - 1
+                        ? "pointer-events-none opacity-50"
+                        : undefined
+                    }
+                  >
+                    <span>Próxima</span>
+                  </PaginationNext>
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          )}
         </section>
         <section className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
