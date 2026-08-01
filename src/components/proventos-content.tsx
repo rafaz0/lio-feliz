@@ -184,16 +184,34 @@ export function ProventosContent() {
 
   const totalHistorico = historico.reduce((s, h) => s + h.amount, 0);
 
-  // Monthly chart data (bars + cumulative line)
+  // Monthly chart data (bars + cumulative line).
+  // O intervalo cobre desde o mes do pagamento de provento mais antigo do
+  // historico real ate o fim da janela de projecao - nao so "daqui pra
+  // frente". Cortar o passado fazia o grafico descartar silenciosamente
+  // qualquer provento recebido antes de hoje, mesmo ele contando no
+  // "Total recebido" - os dois numeros pareciam contradizer um ao outro.
   const monthlyChart = useMemo(() => {
     const projGroups: Record<string, number> = {};
     const histGroups: Record<string, number> = {};
-    const start = new Date(now);
-    start.setDate(1);
-    const months = Math.max(Math.ceil(cutoffDays / 30), 12);
-    for (let i = 0; i < months; i++) {
-      const d = new Date(start);
-      d.setMonth(start.getMonth() + i);
+
+    const monthsAhead = Math.max(Math.ceil(cutoffDays / 30), 12);
+    const rangeEnd = new Date(now);
+    rangeEnd.setDate(1);
+    rangeEnd.setMonth(rangeEnd.getMonth() + monthsAhead);
+
+    const earliestPaidAt = historico.reduce<string | null>(
+      (min, h) => (min === null || h.paidAt < min ? h.paidAt : min),
+      null,
+    );
+    const rangeStart = earliestPaidAt
+      ? new Date(Number(earliestPaidAt.slice(0, 4)), Number(earliestPaidAt.slice(5, 7)) - 1, 1)
+      : (() => {
+          const d = new Date(now);
+          d.setDate(1);
+          return d;
+        })();
+
+    for (const d = new Date(rangeStart); d < rangeEnd; d.setMonth(d.getMonth() + 1)) {
       const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
       projGroups[k] = 0;
       histGroups[k] = 0;
@@ -205,16 +223,19 @@ export function ProventosContent() {
       const k = `${pd.getFullYear()}-${String(pd.getMonth() + 1).padStart(2, "0")}`;
       if (k in projGroups) projGroups[k] = (projGroups[k] ?? 0) + p.amount;
     }
-    // Historical (recebido)
+    // Historical (recebido) - cobre todo o historico real, nao so o futuro.
     for (const h of historico) {
       const hd = new Date(h.paidAt);
       const k = `${hd.getFullYear()}-${String(hd.getMonth() + 1).padStart(2, "0")}`;
       if (k in histGroups) histGroups[k] = (histGroups[k] ?? 0) + h.amount;
+      else histGroups[k] = h.amount;
     }
     let cumulative = 0;
-    return Object.entries(projGroups)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([month, proj]) => {
+    const allMonths = new Set([...Object.keys(projGroups), ...Object.keys(histGroups)]);
+    return Array.from(allMonths)
+      .sort((a, b) => a.localeCompare(b))
+      .map((month) => {
+        const proj = projGroups[month] ?? 0;
         const hist = histGroups[month] ?? 0;
         cumulative += proj;
         return {
