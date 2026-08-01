@@ -17,7 +17,7 @@ import {
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData, type BenchmarkPoint } from "@/lib/data-functions";
-import { buildPortfolioHistory } from "@/lib/portfolio";
+import { usePortfolioHistory } from "@/presentation/shared/hooks";
 import { formatDate, formatBRL } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -81,10 +81,7 @@ function RentabilidadePage() {
     return map;
   }, [quotesQuery.data]);
 
-  const history = useMemo(
-    () => buildPortfolioHistory(ops ?? [], priceOverrides),
-    [ops, priceOverrides],
-  );
+  const { history } = usePortfolioHistory(ops, priceOverrides);
 
   // Derived values (computed eagerly so useMemo order is stable before early returns)
   const firstDate = history[0]?.date;

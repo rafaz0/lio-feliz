@@ -32,6 +32,20 @@ export interface Operation {
   created_at: string;
 }
 
+export type HistoryOperation = Pick<
+  Operation,
+  | "ticker"
+  | "side"
+  | "quantity"
+  | "price"
+  | "fee"
+  | "irrf"
+  | "other_costs"
+  | "currency"
+  | "traded_at"
+  | "created_at"
+>;
+
 export interface Position {
   ticker: string;
   name: string;

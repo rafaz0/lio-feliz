@@ -28,12 +28,13 @@ import {
   customRangeToDates,
   FiiSegmentBadge,
 } from "@/presentation/shared/components/ui";
+import { usePortfolioHistory } from "@/presentation/shared/hooks";
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
 import { getExchangeRates } from "@/lib/exchange.server";
 
-import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
+import { consolidatePortfolio } from "@/lib/portfolio";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { DeltaPct } from "@/components/delta-pct";
 import { Button } from "@/components/ui/button";
@@ -127,10 +128,7 @@ function PortfolioOverview() {
     enabled: !!ops,
   });
 
-  const history = useMemo(
-    () => buildPortfolioHistory(ops ?? [], priceOverrides, exchangeRates),
-    [ops, priceOverrides, exchangeRates],
-  );
+  const { history } = usePortfolioHistory(ops, priceOverrides, exchangeRates);
 
   const benchmarkChartData = useMemo(() => {
     if (!benchmarkData || history.length < 2) return null;

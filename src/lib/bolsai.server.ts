@@ -119,3 +119,57 @@ export async function fetchBolsaiFiiFundamentals(
 export function isFiiTicker(ticker: string): boolean {
   return /^\w+11$/.test(ticker.toUpperCase());
 }
+
+export interface BolsaiPricePoint {
+  date: string;
+  close: number;
+}
+
+interface BolsaiHistoryPrice {
+  trade_date: string;
+  close?: number;
+  adjusted_close?: number;
+}
+
+async function fetchBolsaiHistory(
+  basePath: "/stocks" | "/fiis",
+  cachePrefix: string,
+  ticker: string,
+): Promise<BolsaiPricePoint[] | null> {
+  const key = `${cachePrefix}-${ticker}`;
+  const cached = getBolsaiCached<BolsaiPricePoint[]>(key);
+  if (cached) return cached;
+
+  try {
+    const res = await bolsaiFetch(`${basePath}/${encodeURIComponent(ticker)}/history?limit=5000`);
+    if (res.status === 404) return null;
+    if (res.status === 429) return null;
+    if (!res.ok) return null;
+    const json = (await res.json()) as { prices?: BolsaiHistoryPrice[] };
+    const points = (json.prices ?? [])
+      .map((p) => ({ date: p.trade_date, close: p.adjusted_close ?? p.close ?? 0 }))
+      .filter((p) => p.close > 0)
+      // API retorna do mais recente pro mais antigo; buildPortfolioHistory espera ordem crescente.
+      .sort((a, b) => a.date.localeCompare(b.date));
+    setBolsaiCache(key, points);
+    return points;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Historico de precos diarios reais (ajustados por splits/dividendos) de uma
+ * acao da B3, via bolsai. So cobre tickers da B3 - nao serve para ativos
+ * internacionais (ex: VT, stocks EUA).
+ */
+export function fetchBolsaiStockHistory(ticker: string): Promise<BolsaiPricePoint[] | null> {
+  return fetchBolsaiHistory("/stocks", "bolsai-stock-history", ticker);
+}
+
+/**
+ * Historico de precos diarios reais de um FII, via bolsai.
+ */
+export function fetchBolsaiFiiHistory(ticker: string): Promise<BolsaiPricePoint[] | null> {
+  return fetchBolsaiHistory("/fiis", "bolsai-fii-history", ticker);
+}

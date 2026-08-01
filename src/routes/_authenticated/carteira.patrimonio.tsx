@@ -18,7 +18,8 @@ import {
 import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getExchangeRates } from "@/lib/exchange.server";
-import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
+import { consolidatePortfolio } from "@/lib/portfolio";
+import { usePortfolioHistory } from "@/presentation/shared/hooks";
 import { formatBRL, formatDate } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/empty-state";
@@ -102,10 +103,7 @@ function PatrimonioPage() {
     () => consolidatePortfolio(ops ?? [], priceOverrides, exchangeRates),
     [ops, priceOverrides, exchangeRates],
   );
-  const history = useMemo(
-    () => buildPortfolioHistory(ops ?? [], priceOverrides, exchangeRates),
-    [ops, priceOverrides, exchangeRates],
-  );
+  const { history } = usePortfolioHistory(ops, priceOverrides, exchangeRates);
 
   if (isLoading || !ops) {
     return (

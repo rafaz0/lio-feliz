@@ -1,12 +1,21 @@
 import { ASSETS_BY_TICKER } from "@/lib/mock-data";
-import type { Operation, Currency, Position, PortfolioSummary, AssetType } from "./models";
+import type {
+  Operation,
+  Currency,
+  HistoryOperation,
+  Position,
+  PortfolioSummary,
+  AssetType,
+} from "./models";
 import { inferAssetType } from "./asset-types";
 
 function brl(value: number, currency: Currency, rates: Record<string, number>): number {
   return currency === "USD" ? value * (rates["USD"] ?? 1) : value;
 }
 
-export function calcPositions(ops: Operation[]): Map<string, { qty: number; totalCost: number }> {
+export function calcPositions(
+  ops: HistoryOperation[],
+): Map<string, { qty: number; totalCost: number }> {
   const byTicker = new Map<string, { qty: number; totalCost: number }>();
 
   for (const op of ops) {

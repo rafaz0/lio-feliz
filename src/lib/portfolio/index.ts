@@ -3,6 +3,7 @@ export type {
   Currency,
   OperationSide,
   Operation,
+  HistoryOperation,
   Position,
   PortfolioSummary,
   PortfolioHistoryPoint,

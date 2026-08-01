@@ -60,3 +60,6 @@ node_modules_backup/
 .bun-tmp/
 .runvite.bat
 PROMPT_*
+
+.vercel
+.env*

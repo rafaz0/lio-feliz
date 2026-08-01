@@ -123,6 +123,10 @@ export async function fetchYahooHistory(
   range = "1y",
   interval = "1wk",
 ): Promise<{ date: string; close: number }[] | null> {
+  const cacheKey = `history-${ticker}-${range}-${interval}`;
+  const cached = getCached<{ date: string; close: number }[]>(cacheKey);
+  if (cached) return cached;
+
   const symbol = toYahooSymbol(ticker);
   const url = `${YAHOO_BASE}/v8/finance/chart/${encodeURIComponent(symbol)}?range=${range}&interval=${interval}`;
 
@@ -132,6 +136,7 @@ export async function fetchYahooHistory(
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
         Accept: "application/json",
       },
+      signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) return null;
     const json = await res.json();
@@ -142,12 +147,14 @@ export async function fetchYahooHistory(
     const closes: number[] = result.indicators?.quote?.[0]?.close ?? [];
     const adjCloses: number[] = result.indicators?.adjclose?.[0]?.adjclose ?? [];
 
-    return timestamps
+    const points = timestamps
       .map((ts, i) => ({
         date: new Date(ts * 1000).toISOString().slice(0, 10),
         close: adjCloses[i] ?? closes[i] ?? 0,
       }))
       .filter((d) => d.close > 0);
+    setCache(cacheKey, points);
+    return points;
   } catch {
     return null;
   }

@@ -1,9 +1,8 @@
-import { getAsset } from "@/lib/mock-data";
-import type { Operation, Currency, PortfolioHistoryPoint } from "./models";
+import type { Currency, HistoryOperation, PortfolioHistoryPoint } from "./models";
 import { calcPositions } from "./consolidator";
 
-// asset.history vem ordenado do mais antigo para o mais recente. Precisamos
-// do preco mais recente que ainda seja <= date, entao percorremos de tras
+// history precisa vir ordenado do mais antigo para o mais recente. Buscamos
+// o preco mais recente que ainda seja <= date, entao percorremos de tras
 // pra frente (Array.prototype.find pega o PRIMEIRO da esquerda, que sempre
 // seria o mais antigo do historico - preco constante o tempo todo).
 function priceAsOf(history: { date: string; close: number }[], date: string): number | undefined {
@@ -14,9 +13,10 @@ function priceAsOf(history: { date: string; close: number }[], date: string): nu
 }
 
 export function buildPortfolioHistory(
-  ops: Operation[],
+  ops: HistoryOperation[],
   priceOverrides?: Record<string, number>,
   exchangeRates?: Record<string, number>,
+  histories?: Record<string, { date: string; close: number }[]>,
 ): PortfolioHistoryPoint[] {
   const sorted = [...ops].sort(
     (a, b) => a.traded_at.localeCompare(b.traded_at) || a.created_at.localeCompare(b.created_at),
@@ -48,7 +48,6 @@ export function buildPortfolioHistory(
 
     for (const [ticker, { qty, totalCost }] of byTicker.entries()) {
       if (qty <= 0) continue;
-      const asset = getAsset(ticker);
       // A cotacao ao vivo (priceOverrides) so faz sentido pro ponto mais
       // recente do grafico ("agora"). Antes ela era aplicada em TODOS os
       // pontos, entao o preco de hoje sobrescrevia o preco historico de
@@ -56,7 +55,7 @@ export function buildPortfolioHistory(
       // atual, so variando quando a quantidade mudava (compra/venda).
       const overridePrice = date === latestDate ? priceOverrides?.[ticker] : undefined;
       const avgPrice = qty > 0 ? totalCost / qty : 0;
-      const priceAtDate = asset ? (priceAsOf(asset.history, date) ?? asset.price) : null;
+      const priceAtDate = priceAsOf(histories?.[ticker] ?? [], date);
       const currentPrice =
         typeof overridePrice === "number" ? overridePrice : (priceAtDate ?? avgPrice);
       const first = sorted.find((o) => o.ticker === ticker);

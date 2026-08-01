@@ -18,7 +18,8 @@ import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
 import { getExchangeRates } from "@/lib/exchange.server";
-import { consolidatePortfolio, buildPortfolioHistory } from "@/lib/portfolio";
+import { consolidatePortfolio } from "@/lib/portfolio";
+import { usePortfolioHistory } from "@/presentation/shared/hooks";
 import { formatBRL, formatDate } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RouteErrorBoundary, NotFoundState } from "@/components/error-state";
@@ -84,10 +85,7 @@ function AnalisePage() {
     }
   }
 
-  const history = useMemo(
-    () => buildPortfolioHistory(ops ?? [], priceOverrides, exchangeRates),
-    [ops, priceOverrides, exchangeRates],
-  );
+  const { history } = usePortfolioHistory(ops, priceOverrides, exchangeRates);
 
   const portfolio = useMemo(
     () => (ops ? consolidatePortfolio(ops, priceOverrides, exchangeRates) : null),
