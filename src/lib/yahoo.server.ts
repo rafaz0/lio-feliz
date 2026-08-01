@@ -156,6 +156,10 @@ export async function fetchYahooHistory(
 export async function fetchYahooDividends(
   ticker: string,
 ): Promise<{ paidAt: string; amount: number }[] | null> {
+  const cacheKey = `dividends-${ticker}`;
+  const cached = getCached<{ paidAt: string; amount: number }[]>(cacheKey);
+  if (cached) return cached;
+
   const symbol = toYahooSymbol(ticker);
   const url = `${YAHOO_BASE}/v8/finance/chart/${encodeURIComponent(symbol)}?range=5y&interval=1mo&events=div`;
 
@@ -165,21 +169,33 @@ export async function fetchYahooDividends(
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
         Accept: "application/json",
       },
+      // Sem timeout, uma chamada lenta/travada do Yahoo prendia a pagina
+      // inteira (varios tickers em paralelo, cada um podendo pendurar).
+      signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) return null;
     const json = await res.json();
     const result = json?.chart?.result?.[0];
     if (!result) return null;
 
-    const timestamps: number[] = result.timestamp ?? [];
-    const amounts: number[] = result.indicators?.dividends?.[0]?.amount ?? [];
+    // A resposta real do Yahoo traz os dividendos em events.dividends, um
+    // objeto (nao array) indexado pelo timestamp da data ex, com {amount, date}
+    // - NAO em indicators.dividends (isso nao existe nessa resposta; indicators
+    // guarda dados de preco). O parsing antigo lia o campo errado e sempre
+    // retornava valor zero para tudo.
+    const dividendsMap: Record<string, { amount: number; date: number }> =
+      result.events?.dividends ?? {};
 
-    return timestamps
-      .map((ts, i) => ({
-        paidAt: new Date(ts * 1000).toISOString().slice(0, 10),
-        amount: amounts[i] ?? 0,
+    const dividends = Object.values(dividendsMap)
+      .map((d) => ({
+        paidAt: new Date(d.date * 1000).toISOString().slice(0, 10),
+        amount: d.amount,
       }))
-      .filter((d) => d.amount > 0);
+      .filter((d) => d.amount > 0)
+      .sort((a, b) => a.paidAt.localeCompare(b.paidAt));
+
+    setCache(cacheKey, dividends);
+    return dividends;
   } catch {
     return null;
   }

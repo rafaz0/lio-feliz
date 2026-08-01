@@ -17,8 +17,11 @@ import {
   YAxis,
 } from "recharts";
 import { listOperations } from "@/lib/operations.functions";
-import { getRealProjections, type RealProjection } from "@/lib/data-functions";
-import { ASSETS_BY_TICKER } from "@/lib/mock-data";
+import {
+  getRealProjections,
+  getReceivedDividends,
+  type RealProjection,
+} from "@/lib/data-functions";
 import { formatBRL, formatBRLCompact } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -62,6 +65,28 @@ export function ProventosContent() {
     staleTime: 3_600_000,
   });
   const apiProjections: RealProjection[] = projQuery.data ?? [];
+
+  // Historico real de proventos recebidos: cruza o historico de dividendos
+  // pagos pela empresa (Yahoo Finance) com a posicao que o usuario tinha em
+  // cada data de pagamento, derivada das proprias operacoes.
+  const fetchReceived = useServerFn(getReceivedDividends);
+  const receivedQuery = useQuery({
+    queryKey: ["proventos-recebidos", ops],
+    queryFn: () =>
+      fetchReceived({
+        data: {
+          operations: (ops ?? []).map((o) => ({
+            ticker: o.ticker,
+            side: o.side,
+            quantity: o.quantity,
+            traded_at: o.traded_at,
+          })),
+        },
+      }),
+    enabled: !!ops && ops.length > 0,
+    staleTime: 3_600_000,
+  });
+  const receivedDividends = receivedQuery.data ?? [];
 
   // Fallback: when BRAPI/Yahoo projections are unavailable, use the user's
   // manually registered dividend operations to build a basic projection set.
@@ -142,26 +167,20 @@ export function ProventosContent() {
   const coveragePct = coverageFactor !== null ? Math.min(coverageFactor * 100, 999) : null;
   const upcomingTotal = upcoming.reduce((s, p) => s + p.amount, 0);
 
-  // Historical dividends from known assets
+  // Historico real de proventos recebidos (Yahoo Finance cruzado com a
+  // posicao do usuario em cada data de pagamento) - todos os proventos,
+  // de todos os ativos que ja passaram pela carteira, sem limite.
   const historico = useMemo(() => {
-    const items: { ticker: string; name: string; paidAt: string; amount: number; type: string }[] =
-      [];
-    for (const t of tickers) {
-      const asset = ASSETS_BY_TICKER[t];
-      if (asset?.dividends) {
-        for (const d of asset.dividends) {
-          items.push({
-            ticker: t,
-            name: asset.name,
-            paidAt: d.paidAt,
-            amount: d.amount,
-            type: d.type,
-          });
-        }
-      }
-    }
-    return items.sort((a, b) => b.paidAt.localeCompare(a.paidAt)).slice(0, 20);
-  }, [tickers]);
+    return receivedDividends
+      .map((r) => ({
+        ticker: r.ticker,
+        name: r.name,
+        paidAt: r.paidAt,
+        amount: r.totalReceived,
+        type: "Dividendo",
+      }))
+      .sort((a, b) => b.paidAt.localeCompare(a.paidAt));
+  }, [receivedDividends]);
 
   const totalHistorico = historico.reduce((s, h) => s + h.amount, 0);
 
@@ -265,13 +284,13 @@ export function ProventosContent() {
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
-            <Wallet className="size-3.5" /> Recebido (últimos)
+            <Wallet className="size-3.5" /> Total recebido
           </div>
           <div className="tabular mt-2 text-2xl font-bold text-positive">
             {formatBRLCompact(totalHistorico)}
           </div>
           <div className="text-[10px] text-muted-foreground">
-            últimos {historico.length} registros
+            {historico.length} {historico.length === 1 ? "pagamento" : "pagamentos"} no histórico
           </div>
         </div>
         <div className="rounded-lg border border-border bg-card p-4">
@@ -565,7 +584,7 @@ export function ProventosContent() {
       {historico.length > 0 && (
         <section className="rounded-lg border border-border bg-card p-5">
           <div className="mb-3 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            <Wallet className="size-3.5" /> Proventos recebidos (últimos)
+            <Wallet className="size-3.5" /> Proventos recebidos (histórico completo)
           </div>
           <table className="w-full text-sm">
             <thead className="text-xs uppercase text-muted-foreground">

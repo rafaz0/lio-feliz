@@ -828,6 +828,94 @@ export const getRealProjections = createServerFn({ method: "POST" })
     return projections;
   });
 
+export interface ReceivedDividend {
+  ticker: string;
+  name: string;
+  paidAt: string;
+  amountPerShare: number;
+  quantityHeld: number;
+  totalReceived: number;
+}
+
+const receivedDividendsOperationSchema = z.object({
+  ticker: z.string().min(1).max(15),
+  side: z.enum(["buy", "sell", "dividend", "bonus"]),
+  quantity: z.number(),
+  traded_at: z.string(),
+});
+
+/**
+ * Reconstroi o historico real de dividendos recebidos: para cada ativo que
+ * o usuario ja teve em carteira, busca o historico real de proventos pagos
+ * (Yahoo Finance) e cruza com a posicao que o usuario tinha em cada data de
+ * pagamento (derivada das proprias operacoes de compra/venda). So entra na
+ * lista quando a posicao na data do pagamento era maior que zero.
+ */
+export const getReceivedDividends = createServerFn({ method: "POST" })
+  .validator(
+    z.object({
+      operations: z.array(receivedDividendsOperationSchema).max(2000),
+    }),
+  )
+  .handler(async ({ data }): Promise<ReceivedDividend[]> => {
+    const byTicker = new Map<
+      string,
+      { side: "buy" | "sell"; quantity: number; traded_at: string }[]
+    >();
+    for (const op of data.operations) {
+      if (op.side !== "buy" && op.side !== "sell") continue;
+      const list = byTicker.get(op.ticker) ?? [];
+      list.push({ side: op.side, quantity: op.quantity, traded_at: op.traded_at.slice(0, 10) });
+      byTicker.set(op.ticker, list);
+    }
+
+    const tickers = Array.from(byTicker.keys());
+    if (tickers.length === 0) return [];
+
+    const perTicker = await Promise.all(
+      tickers.map(async (ticker): Promise<ReceivedDividend[]> => {
+        let dividends: { paidAt: string; amount: number }[] | null = null;
+        try {
+          dividends = await fetchYahooDividends(ticker);
+        } catch {
+          dividends = null;
+        }
+        if (!dividends || dividends.length === 0) return [];
+
+        const ops = (byTicker.get(ticker) ?? []).sort((a, b) =>
+          a.traded_at.localeCompare(b.traded_at),
+        );
+        const mockAsset = ASSETS_BY_TICKER[ticker];
+        const mockFii = FIIS.find((f) => f.ticker === ticker);
+        const name = mockFii?.name ?? mockAsset?.name ?? ticker;
+
+        const received: ReceivedDividend[] = [];
+        for (const div of dividends) {
+          let qty = 0;
+          for (const op of ops) {
+            if (op.traded_at > div.paidAt) break;
+            qty += op.side === "buy" ? op.quantity : -op.quantity;
+          }
+          if (qty > 0 && div.amount > 0) {
+            received.push({
+              ticker,
+              name,
+              paidAt: div.paidAt,
+              amountPerShare: div.amount,
+              quantityHeld: qty,
+              totalReceived: Number((qty * div.amount).toFixed(2)),
+            });
+          }
+        }
+        return received;
+      }),
+    );
+
+    const flat = perTicker.flat();
+    flat.sort((a, b) => a.paidAt.localeCompare(b.paidAt));
+    return flat;
+  });
+
 export interface BenchmarkPoint {
   date: string;
   ibov: number;
