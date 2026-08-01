@@ -18,6 +18,7 @@ In the context of Lio Feliz, synchronization refers to the process of aligning d
 - Slice 3: 11 arquivos de frontend migrados; tipos movidos para `src/shared/types/portfolio.ts`; `inferAssetType` para `src/lib/asset-types.ts`; novo server function `src/lib/portfolio-history.functions.ts`
 - Slice 4: módulo legado mantido (barrel redireciona tipos; funções de cálculo preservadas como oráculo do teste de equivalência)
 - Testes: 1156 → 1171 passed (15 novos), build e lint verdes
+- Commit final: `beb6595`
 
 ### PS#012 Prompt A (Final) - 10/07/2026
 
