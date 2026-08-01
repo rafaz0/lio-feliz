@@ -1,4 +1,4 @@
-export type TimeRangeId = "1M" | "3M" | "6M" | "12M" | "2A" | "5A" | "10A" | "MAX" | "CUSTOM";
+export type TimeRangeId = "1M" | "6M" | "12M" | "5A" | "MAX" | "CUSTOM";
 
 export interface CustomMonthRange {
   /** 1-12 */
@@ -23,21 +23,25 @@ export interface TimeRangeOption {
   months: number | null;
 }
 
+// Reduzido de 8 pra 5 opcoes visiveis (Rafael achou o filtro poluido).
+// As granularidades removidas (3M, 2A, 10A) continuam acessiveis via
+// "Personalizado", so nao ficam mais como botao fixo.
 export const TIME_RANGE_OPTIONS: TimeRangeOption[] = [
   { id: "1M", label: "1M", months: 1 },
-  { id: "3M", label: "3M", months: 3 },
   { id: "6M", label: "6M", months: 6 },
-  { id: "12M", label: "12M", months: 12 },
-  { id: "2A", label: "2A", months: 24 },
+  { id: "12M", label: "1A", months: 12 },
   { id: "5A", label: "5A", months: 60 },
-  { id: "10A", label: "10A", months: 120 },
   { id: "MAX", label: "Máx", months: null },
 ];
 
 export const DEFAULT_TIME_RANGE: TimeRangeId = "12M";
 
 export function getTimeRangeById(id: TimeRangeId): TimeRangeOption {
-  return TIME_RANGE_OPTIONS.find((o) => o.id === id) ?? TIME_RANGE_OPTIONS[3];
+  return (
+    TIME_RANGE_OPTIONS.find((o) => o.id === id) ??
+    TIME_RANGE_OPTIONS.find((o) => o.id === DEFAULT_TIME_RANGE) ??
+    TIME_RANGE_OPTIONS[0]
+  );
 }
 
 export function getCutoffDate(range: TimeRangeOption): Date | null {
