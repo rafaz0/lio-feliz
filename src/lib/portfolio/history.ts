@@ -37,6 +37,7 @@ export function buildPortfolioHistory(
   weeks.push(today.toISOString().slice(0, 10));
 
   const uniqueDates = [...new Set(weeks)].sort();
+  const latestDate = uniqueDates[uniqueDates.length - 1];
 
   for (const date of uniqueDates) {
     const opsUpToDate = sorted.filter((o) => o.traded_at.slice(0, 10) <= date);
@@ -48,7 +49,12 @@ export function buildPortfolioHistory(
     for (const [ticker, { qty, totalCost }] of byTicker.entries()) {
       if (qty <= 0) continue;
       const asset = getAsset(ticker);
-      const overridePrice = priceOverrides?.[ticker];
+      // A cotacao ao vivo (priceOverrides) so faz sentido pro ponto mais
+      // recente do grafico ("agora"). Antes ela era aplicada em TODOS os
+      // pontos, entao o preco de hoje sobrescrevia o preco historico de
+      // qualquer data passada - a curva inteira ficava achatada no preco
+      // atual, so variando quando a quantidade mudava (compra/venda).
+      const overridePrice = date === latestDate ? priceOverrides?.[ticker] : undefined;
       const avgPrice = qty > 0 ? totalCost / qty : 0;
       const priceAtDate = asset ? (priceAsOf(asset.history, date) ?? asset.price) : null;
       const currentPrice =
