@@ -1,4 +1,21 @@
-export type TimeRangeId = "1M" | "3M" | "6M" | "12M" | "2A" | "5A" | "10A" | "MAX";
+export type TimeRangeId = "1M" | "3M" | "6M" | "12M" | "2A" | "5A" | "10A" | "MAX" | "CUSTOM";
+
+export interface CustomMonthRange {
+  /** 1-12 */
+  startMonth: number;
+  startYear: number;
+  /** 1-12 */
+  endMonth: number;
+  endYear: number;
+}
+
+/** Primeiro dia do mes inicial, ate o ultimo dia do mes final, formato ISO (yyyy-mm-dd). */
+export function customRangeToDates(range: CustomMonthRange): { from: string; to: string } {
+  const from = `${range.startYear}-${String(range.startMonth).padStart(2, "0")}-01`;
+  const lastDay = new Date(range.endYear, range.endMonth, 0).getDate();
+  const to = `${range.endYear}-${String(range.endMonth).padStart(2, "0")}-${String(lastDay).padStart(2, "0")}`;
+  return { from, to };
+}
 
 export interface TimeRangeOption {
   id: TimeRangeId;

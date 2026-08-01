@@ -25,6 +25,7 @@ import {
   useTimeRange,
   getCutoffDate,
   getTimeRangeById,
+  customRangeToDates,
   FiiSegmentBadge,
 } from "@/presentation/shared/components/ui";
 import { listOperations } from "@/lib/operations.functions";
@@ -204,13 +205,19 @@ function PortfolioOverview() {
     return { volatility, maxDrawdown, beta, sharpe };
   }, [history, benchmarkChartData]);
 
-  const { selected, setRange } = useTimeRange();
+  const { selected, setRange, customRange, setCustomRange } = useTimeRange();
 
   const [sortCol, setSortCol] = useState<string>("Valor");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
+  const earliestYear = history.length > 0 ? Number(history[0].date.slice(0, 4)) : undefined;
+
   const filteredHistory = useMemo(() => {
     if (history.length === 0) return [];
+    if (selected === "CUSTOM" && customRange) {
+      const { from, to } = customRangeToDates(customRange);
+      return history.filter((h) => h.date >= from && h.date <= to);
+    }
     const cutoff = getCutoffDate(getTimeRangeById(selected));
     if (!cutoff) return history;
     const y = cutoff.getFullYear();
@@ -218,7 +225,7 @@ function PortfolioOverview() {
     const d = String(cutoff.getDate()).padStart(2, "0");
     const cutoffStr = `${y}-${m}-${d}`;
     return history.filter((h) => h.date >= cutoffStr);
-  }, [history, selected]);
+  }, [history, selected, customRange]);
 
   if (isLoading) {
     return (
@@ -422,7 +429,13 @@ function PortfolioOverview() {
                 </p>
               </div>
             </div>
-            <TimeRangeSelector selected={selected} onSelect={setRange} />
+            <TimeRangeSelector
+              selected={selected}
+              onSelect={setRange}
+              customRange={customRange}
+              onSelectCustom={setCustomRange}
+              earliestYear={earliestYear}
+            />
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">

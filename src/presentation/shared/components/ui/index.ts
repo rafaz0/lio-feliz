@@ -10,5 +10,6 @@ export {
   DEFAULT_TIME_RANGE,
   getTimeRangeById,
   getCutoffDate,
+  customRangeToDates,
 } from "./time-range";
-export type { TimeRangeId, TimeRangeOption } from "./time-range";
+export type { TimeRangeId, TimeRangeOption, CustomMonthRange } from "./time-range";

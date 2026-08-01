@@ -2,6 +2,17 @@ import { getAsset } from "@/lib/mock-data";
 import type { Operation, Currency, PortfolioHistoryPoint } from "./models";
 import { calcPositions } from "./consolidator";
 
+// asset.history vem ordenado do mais antigo para o mais recente. Precisamos
+// do preco mais recente que ainda seja <= date, entao percorremos de tras
+// pra frente (Array.prototype.find pega o PRIMEIRO da esquerda, que sempre
+// seria o mais antigo do historico - preco constante o tempo todo).
+function priceAsOf(history: { date: string; close: number }[], date: string): number | undefined {
+  for (let i = history.length - 1; i >= 0; i--) {
+    if (history[i].date <= date) return history[i].close;
+  }
+  return undefined;
+}
+
 export function buildPortfolioHistory(
   ops: Operation[],
   priceOverrides?: Record<string, number>,
@@ -39,9 +50,7 @@ export function buildPortfolioHistory(
       const asset = getAsset(ticker);
       const overridePrice = priceOverrides?.[ticker];
       const avgPrice = qty > 0 ? totalCost / qty : 0;
-      const priceAtDate = asset
-        ? (asset.history.find((h) => h.date <= date)?.close ?? asset.price)
-        : null;
+      const priceAtDate = asset ? (priceAsOf(asset.history, date) ?? asset.price) : null;
       const currentPrice =
         typeof overridePrice === "number" ? overridePrice : (priceAtDate ?? avgPrice);
       const first = sorted.find((o) => o.ticker === ticker);
