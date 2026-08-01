@@ -12,7 +12,6 @@ export function CheckoutForm({ userId, onSuccess }: CheckoutFormProps) {
   const { data: plans, isLoading, isError, error } = useCheckoutPlansQuery();
   const checkout = useCheckoutMutation();
   const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
-  const [paymentMethodId] = useState("pm_card_visa");
 
   const handleSubscribe = async (planId: string) => {
     setSelectedPlanId(planId);
@@ -85,12 +84,6 @@ export function CheckoutForm({ userId, onSuccess }: CheckoutFormProps) {
           />
         ))}
       </div>
-
-      <div className="rounded-lg border p-4">
-        <h3 className="mb-2 text-sm font-medium">Dados de pagamento</h3>
-        <p className="text-xs text-muted-foreground">Método: {paymentMethodId}</p>
-        <p className="mt-1 text-xs text-muted-foreground">Cartão de crédito (simulado)</p>
-      </div>
     </div>
   );
 }
@@ -120,11 +113,16 @@ function PlanCard({ plan, onSelect, isLoading, disabled }: PlanCardProps) {
 
       <button
         onClick={onSelect}
-        disabled={disabled}
+        disabled={disabled || !plan.isFree}
         className="mt-auto rounded-md bg-foreground px-4 py-2 text-sm text-background disabled:opacity-50"
       >
-        {isLoading ? "Processando..." : plan.isFree ? "Gratuito" : "Assinar"}
+        {plan.isFree ? (isLoading ? "Processando..." : "Gratuito") : "Em breve"}
       </button>
+      {!plan.isFree && (
+        <p className="mt-2 text-center text-xs text-muted-foreground">
+          Pagamento ainda não disponível
+        </p>
+      )}
     </div>
   );
 }
