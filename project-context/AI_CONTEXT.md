@@ -2,13 +2,13 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 2.06
+**Versão:** 2.07
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 01/08/2026 (v2.06)
+**Última atualização:** 01/08/2026 (v2.07)
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. Ver "Objetivo Atual" abaixo para o estado real mais recente — o rastro formal PI → ER → EWO tem lacunas conhecidas entre PI-014 e PI-018 (ver nota abaixo).
 
@@ -33,7 +33,7 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 **Estado real verificado em 31/07/2026** (reconciliado direto com o código, não só com os documentos de planejamento):
 
 - **EWO-013 (Presentation Layer — Backtests 14, Alertas 15) — 🟢 CONCLUÍDA hoje.** Os componentes já existiam prontos (`src/presentation/features/backtests`, `.../alerts`) mas não estavam plugados em nenhuma rota. Criadas `/backtests` e `/alertas` (`_authenticated`), adicionadas ao menu mobile e desktop. Verificado rodando a app — ambas renderizam corretamente (gate de plano Free/Basic funcionando).
-- **EWO-014 (CI/CD, testes E2E, observabilidade) — já implementada no código**, mas nunca teve o fechamento formal registrado. Confirmado: `.github/workflows/ci-cd.yml`, `e2e/*.spec.ts` (Playwright), `src/lib/observability/` (Sentry) todos presentes. Falta apenas: alguém revisar e marcar como `CONCLUÍDO`/criar o Engineering Closure, se fizer sentido formalizar.
+- **EWO-014 (CI/CD, testes E2E, observabilidade) — auditada em 01/08/2026, SEM fechamento formal.** As 5 slices foram verificadas contra o código real: parcialmente implementadas (Slices 1-4 PARCIALMENTE CONCLUÍDAS, Slice 5 PENDENTE). Pendências reais: typecheck ausente no CI, `initSentry()` client nunca chamado, Playwright não roda em CI, code splitting ausente. Decisão do Rafael: se vira tarefa nova pra fechar as pendências ou fica em aberto.
 - **EWO-003 (migração do portfólio legado para o novo domínio) — 🟢 CONCLUÍDA hoje (01/08/2026).** As 4 slices foram executadas via `PROMPT_EWO003_EXECUCAO.md`: Slice 1 `ConsultarCarteiraService` (ex-`consolidatePortfolio`), Slice 2 `ObterEvolucaoCarteiraService` (ex-`buildPortfolioHistory`), Slice 3 migração dos arquivos de frontend para os services + tipos movidos para `src/shared/types/portfolio.ts`, Slice 4 avaliou a remoção do módulo legado. **Decisão da Slice 4:** o módulo legado `src/lib/portfolio/` NÃO foi removido — o barrel `@/lib/portfolio` permanece redirecionando tipos para shared e `inferAssetType` para `src/lib/asset-types.ts`, porque `operations.functions.ts`/`data-functions.ts` (fora de escopo) ainda o importam e o `legacy-equivalence.test.ts` (oráculo permanente) depende das funções de cálculo. **Desvio documentado:** os services foram nomeados `ConsultarCarteiraService`/`ObterEvolucaoCarteiraService` porque `consultar-posicao-service.ts` e `obter-historico-patrimonial-service.ts` já existiam (PI-005, interface diferente baseada em `IProjectionRepository`). Baseline de testes: 1171 passed (era 1156), 15 testes de integração novos, zero regressão numérica.
 - **PI-017, PI-018, PI-019 — DRAFT, sem nenhuma EWO criada.** Essas são genuinamente as únicas frentes "não iniciadas" (diferente de EWO-013/014/021, que tinham código pronto sem status formal).
 - Entre 27/07 e 31/07 houve uma sequência de correções táticas de produção não ligadas a nenhuma PI/EWO formal: performance da aba "Meu Plano" (causa raiz: `ObterPlanoAtivoService` retornando `NotFoundError`), integração Bolsai como fonte principal de indicadores, congelamento dos módulos Finance/Notícias no menu, correções de UI mobile, remoção do modo demo do login. Ver `git log` para o histórico completo — não há PROMPT_*.md correspondente pra essas (foram direto, sem handoff formal pro OpenCode).
@@ -55,6 +55,13 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 ---
 
 # Histórico
+
+### Versão 2.07
+
+**Tarefas pequenas (01/08/2026).** Três entregas independentes via `PROMPT_TAREFAS_PEQUENAS_01_08.md`:
+- **Tarefa A — Auditoria da EWO-014:** status das 5 slices atualizados com evidência do código real. Slices 1-4 marcadas PARCIALMENTE CONCLUÍDAS, Slice 5 PENDENTE. Pendências reais: typecheck ausente no CI (`ci-cd.yml` roda lint+test+build, sem `tsc --noEmit`); `initSentry()` client nunca é chamado (Sentry server OK, health OK, ErrorBoundary OK); Playwright não roda em CI + só 2 browsers + retries 1; code splitting ausente + bundle não verificado. Engineering Closure NÃO emitido.
+- **Tarefa B — Limpeza de referências ao Lovable no AGENTS.md:** bloco `LOVABLE:BEGIN/END` removido, "Supabase Auth via Lovable Cloud Auth" → "Supabase Auth", branch `main` descrita sem menção ao Lovable. `grep -i lovable AGENTS.md` → zero ocorrências.
+- **Tarefa C — Bug `dev-user-0000`:** substituído por UUID v4 fixo `f9ff10aa-beac-4f63-a7f5-d477ad5d0da0` em 13 ocorrências (src/ + docs/APPLICATION_STATES.md). Só afeta DEV_MODE local. Baseline: 1171 testes passando, build e lint verdes.
 
 ### Versão 2.06
 

@@ -13,7 +13,8 @@ function isLocalDev(): boolean {
 export const Route = createFileRoute("/_authenticated")({
   ssr: false,
   beforeLoad: async () => {
-    if (isLocalDev()) return { user: { id: "dev-user-0000", email: "dev@localhost" } };
+    if (isLocalDev())
+      return { user: { id: "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0", email: "dev@localhost" } };
 
     if (isDemoSession()) {
       const demo = getDemoSession();

@@ -10,6 +10,13 @@ In the context of Lio Feliz, synchronization refers to the process of aligning d
 
 ## Sync Events
 
+### Tarefas pequenas (A, B, C) - 01/08/2026
+
+- Tarefa A: Auditoria da EWO-014 concluída — slices 1-4 PARCIALMENTE CONCLUÍDAS, slice 5 PENDENTE (pendências: typecheck no CI, Sentry client, Playwright em CI, code splitting). Engineering Closure não emitido.
+- Tarefa B: Referências ao Lovable removidas de AGENTS.md (bloco LOVABLE, "Lovable Cloud Auth", branch main).
+- Tarefa C: `dev-user-0000` substituído por UUID v4 fixo `f9ff10aa-beac-4f63-a7f5-d477ad5d0da0` (13 ocorrências).
+- Testes: 1171 passed, build e lint verdes.
+
 ### EWO-003 - 01/08/2026
 
 - Execução da EWO-003 (migração do portfólio legado para o novo domínio) — Concluída

@@ -26,7 +26,7 @@ function AssinaturasRouteComponent() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <main className="mx-auto max-w-[1000px] px-4 py-8">
-        <SubscriptionsPage userId={user?.id ?? "dev-user-0000"} />
+        <SubscriptionsPage userId={user?.id ?? "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0"} />
       </main>
     </div>
   );

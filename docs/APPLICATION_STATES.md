@@ -127,7 +127,7 @@ Login → Dashboard → Carteira → Ativo → Análise
 
 | Comportamento     | Detalhe                                                    |
 | ----------------- | ---------------------------------------------------------- |
-| **DEV_USER**      | Usuário mock `dev-user-0000` bypassa autenticação Supabase |
+| **DEV_USER**      | Usuário mock `f9ff10aa-beac-4f63-a7f5-d477ad5d0da0` (UUID v4 fixo) bypassa autenticação Supabase |
 | **DEV_STORE**     | Operações armazenadas em memória volátil                   |
 | **Auth bypass**   | Middleware ignora sessão Supabase                          |
 | **Dados mock**    | Fallback para `mock-data.ts` e `fii-mock-data.ts`          |

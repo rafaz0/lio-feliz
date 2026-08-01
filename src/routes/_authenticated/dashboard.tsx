@@ -378,7 +378,7 @@ function DashboardPage() {
               Visão consolidada do seu patrimônio
             </p>
           </div>
-          <SeuPlanoCard userId={user?.id ?? "dev-user-0000"} />
+          <SeuPlanoCard userId={user?.id ?? "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0"} />
         </div>
 
         {isDemoSession() && (

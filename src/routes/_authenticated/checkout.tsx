@@ -12,7 +12,7 @@ export const Route = createFileRoute("/_authenticated/checkout")({
 function CheckoutPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const userId = user?.id ?? "dev-user-0000";
+  const userId = user?.id ?? "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0";
 
   return (
     <main className="container mx-auto p-4 py-6">

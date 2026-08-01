@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { isDemoSession, getDemoSession } from "@/seed/demo-session";
 
 const DEV_USER = {
-  id: "dev-user-0000",
+  id: "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0",
   email: "dev@localhost",
   user_metadata: { display_name: "Desenvolvedor" },
   app_metadata: {},

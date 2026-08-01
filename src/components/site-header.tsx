@@ -252,8 +252,8 @@ export function SiteHeader() {
 
         {user && !isDemoSession() ? (
           <>
-            <HeaderSubscriptionStatus userId={user?.id ?? "dev-user-0000"} />
-            <NotificationPanelWrapper userId={user?.id ?? "dev-user-0000"} />
+            <HeaderSubscriptionStatus userId={user?.id ?? "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0"} />
+            <NotificationPanelWrapper userId={user?.id ?? "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0"} />
             <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

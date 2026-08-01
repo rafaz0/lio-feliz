@@ -18,7 +18,7 @@ function isLocal(): boolean {
 }
 
 const DEV_USER: AuthUser = {
-  id: "dev-user-0000",
+  id: "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0",
   email: "dev@localhost",
   displayName: "Desenvolvedor",
   avatarUrl: null,

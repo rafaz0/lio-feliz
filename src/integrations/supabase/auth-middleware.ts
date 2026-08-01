@@ -51,7 +51,7 @@ export const requireSupabaseAuth = createMiddleware({ type: "function" }).server
     const authHeader = request?.headers?.get("authorization") ?? "";
     const token = authHeader.startsWith("Bearer ") ? authHeader.replace("Bearer ", "") : "";
 
-    let userId = "dev-user-0000";
+    let userId = "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0";
     const baseUrl = SUPABASE_URL.replace(/\/rest\/v1\/?$/, "");
     let supabase = createClient<Database>(baseUrl, SUPABASE_PUBLISHABLE_KEY);
 

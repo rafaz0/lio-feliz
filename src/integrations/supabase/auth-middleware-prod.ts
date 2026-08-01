@@ -101,8 +101,8 @@ export const requireAuth = createMiddleware({ type: "function" }).server(async (
             global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
           },
         ),
-        userId: "dev-user-0000",
-        claims: { sub: "dev-user-0000" },
+        userId: "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0",
+        claims: { sub: "f9ff10aa-beac-4f63-a7f5-d477ad5d0da0" },
       } as any,
     });
   }
