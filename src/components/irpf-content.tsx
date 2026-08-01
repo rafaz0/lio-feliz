@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { AlertTriangle, Download } from "lucide-react";
 import { listOperations } from "@/lib/operations.functions";
-import type { AssetType } from "@/lib/portfolio";
+import type { AssetType } from "@/shared/types/portfolio";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";

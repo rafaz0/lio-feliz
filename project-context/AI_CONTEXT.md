@@ -2,13 +2,13 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 2.05
+**Versão:** 2.06
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 01/08/2026 (v2.05)
+**Última atualização:** 01/08/2026 (v2.06)
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. Ver "Objetivo Atual" abaixo para o estado real mais recente — o rastro formal PI → ER → EWO tem lacunas conhecidas entre PI-014 e PI-018 (ver nota abaixo).
 
@@ -34,12 +34,12 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 - **EWO-013 (Presentation Layer — Backtests 14, Alertas 15) — 🟢 CONCLUÍDA hoje.** Os componentes já existiam prontos (`src/presentation/features/backtests`, `.../alerts`) mas não estavam plugados em nenhuma rota. Criadas `/backtests` e `/alertas` (`_authenticated`), adicionadas ao menu mobile e desktop. Verificado rodando a app — ambas renderizam corretamente (gate de plano Free/Basic funcionando).
 - **EWO-014 (CI/CD, testes E2E, observabilidade) — já implementada no código**, mas nunca teve o fechamento formal registrado. Confirmado: `.github/workflows/ci-cd.yml`, `e2e/*.spec.ts` (Playwright), `src/lib/observability/` (Sentry) todos presentes. Falta apenas: alguém revisar e marcar como `CONCLUÍDO`/criar o Engineering Closure, se fizer sentido formalizar.
-- **EWO-003 (migração do portfólio legado para o novo domínio) — em rascunho, aguardando decisão do Rafael.** O risco fiscal urgente (custo reduzido por dividendo afetando IRPF) já foi descartado — não afeta cálculo de imposto. A decisão de aprovar/iniciar as slices (Application Service, History Calculator, migração de 11 arquivos de frontend) ainda não foi tomada.
+- **EWO-003 (migração do portfólio legado para o novo domínio) — 🟢 CONCLUÍDA hoje (01/08/2026).** As 4 slices foram executadas via `PROMPT_EWO003_EXECUCAO.md`: Slice 1 `ConsultarCarteiraService` (ex-`consolidatePortfolio`), Slice 2 `ObterEvolucaoCarteiraService` (ex-`buildPortfolioHistory`), Slice 3 migração dos arquivos de frontend para os services + tipos movidos para `src/shared/types/portfolio.ts`, Slice 4 avaliou a remoção do módulo legado. **Decisão da Slice 4:** o módulo legado `src/lib/portfolio/` NÃO foi removido — o barrel `@/lib/portfolio` permanece redirecionando tipos para shared e `inferAssetType` para `src/lib/asset-types.ts`, porque `operations.functions.ts`/`data-functions.ts` (fora de escopo) ainda o importam e o `legacy-equivalence.test.ts` (oráculo permanente) depende das funções de cálculo. **Desvio documentado:** os services foram nomeados `ConsultarCarteiraService`/`ObterEvolucaoCarteiraService` porque `consultar-posicao-service.ts` e `obter-historico-patrimonial-service.ts` já existiam (PI-005, interface diferente baseada em `IProjectionRepository`). Baseline de testes: 1171 passed (era 1156), 15 testes de integração novos, zero regressão numérica.
 - **PI-017, PI-018, PI-019 — DRAFT, sem nenhuma EWO criada.** Essas são genuinamente as únicas frentes "não iniciadas" (diferente de EWO-013/014/021, que tinham código pronto sem status formal).
 - Entre 27/07 e 31/07 houve uma sequência de correções táticas de produção não ligadas a nenhuma PI/EWO formal: performance da aba "Meu Plano" (causa raiz: `ObterPlanoAtivoService` retornando `NotFoundError`), integração Bolsai como fonte principal de indicadores, congelamento dos módulos Finance/Notícias no menu, correções de UI mobile, remoção do modo demo do login. Ver `git log` para o histórico completo — não há PROMPT_*.md correspondente pra essas (foram direto, sem handoff formal pro OpenCode).
 - **01/08/2026 — correção tática de risco de negócio (não ligada a PI/EWO formal):** o gateway de pagamento é mock (aprova qualquer assinatura sem cobrar) e, desde a EWO-013, as rotas Pro (`/alertas`, `/backtests`) estão ao vivo — ou seja, qualquer visitante podia virar "Pro" de graça clicando em assinar. Mitigação rápida aplicada: botão "Assinar" desabilitado pra planos pagos em `CheckoutForm.tsx` (mostra "Em breve" em vez de processar), removido o bloco de "dados de pagamento simulado" que não fazia mais sentido sem fluxo de pagamento ativo. **Isso é só mitigação de frontend** — o endpoint/mutation de checkout ainda aceitaria a chamada se acionado diretamente (ex: via API), não é uma correção de backend. Resolver de verdade exige implementar o gateway real (Asaas, decisão já registrada) ou bloquear no backend também. Testes (`vitest run checkout`, 15 passando) e build verdes.
 
-**Próximo passo em aberto:** decidir entre (a) aprovar e iniciar a EWO-003 (migração do portfólio — já preparada como prompt autossuficiente em `PROMPT_EWO003_EXECUCAO.md` pra rodar via OpenCode), (b) definir a próxima frente a partir de PI-017/018/019, ou (c) resolver o pagamento real antes de qualquer divulgação pública mais ampla do produto (ver correção tática de 01/08/2026 acima — mitigação é só parcial).
+**Próximo passo em aberto:** (b) definir a próxima frente a partir de PI-017/018/019 (a EWO-003 foi concluída), ou (c) resolver o pagamento real antes de qualquer divulgação pública mais ampla do produto (ver correção tática de 01/08/2026 acima — mitigação é só parcial).
 
 # Referências Obrigatórias
 
@@ -55,6 +55,10 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 ---
 
 # Histórico
+
+### Versão 2.06
+
+**EWO-003 CONCLUÍDA (01/08/2026).** Migração do portfólio legado (`src/lib/portfolio/`) para o novo domínio executada via `PROMPT_EWO003_EXECUCAO.md`. Slices 1-4 implementadas: `ConsultarCarteiraService` (posições, substitui `consolidatePortfolio`), `ObterEvolucaoCarteiraService` (histórico semanal, substitui `buildPortfolioHistory`), mapper `Operation → FinancialEvent` em `src/application/mappers/`, tipos movidos para `src/shared/types/portfolio.ts`, `inferAssetType` movido para `src/lib/asset-types.ts`. 11 arquivos de frontend migrados (zero imports diretos de `@/lib/portfolio`). Slice 4: módulo legado mantido (barrel redireciona tipos; funções de cálculo preservadas como oráculo do `legacy-equivalence.test.ts`; `operations.functions.ts`/`data-functions.ts` fora de escopo dependem do barrel). Desvio documentado: nomes dos services distintos dos propostos na EWO-003 por conflito com services existentes da PI-005. Baseline de testes: 1156 → 1171 passed (15 testes de integração novos), build e lint verdes, 0 erros TS novos.
 
 ### Versão 2.05
 

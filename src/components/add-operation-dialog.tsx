@@ -6,7 +6,7 @@ import { ptBR } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { toast } from "sonner";
 import { createOperation } from "@/lib/operations.functions";
-import type { AssetType, Currency } from "@/lib/portfolio";
+import type { AssetType, Currency } from "@/shared/types/portfolio";
 
 const EXAMPLES: Record<AssetType, { ticker: string; name: string }[]> = {
   stock: [

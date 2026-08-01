@@ -34,7 +34,7 @@ import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
 import { getExchangeRates } from "@/lib/exchange.server";
 
-import { consolidatePortfolio } from "@/lib/portfolio";
+import { ConsultarCarteiraService } from "@/application/services/consultar-carteira-service";
 import { AddOperationDialog } from "@/components/add-operation-dialog";
 import { DeltaPct } from "@/components/delta-pct";
 import { Button } from "@/components/ui/button";
@@ -243,7 +243,7 @@ function PortfolioOverview() {
     );
   }
 
-  const portfolio = consolidatePortfolio(ops, priceOverrides, exchangeRates);
+  const portfolio = new ConsultarCarteiraService().execute(ops, priceOverrides, exchangeRates);
   const isEmpty = portfolio.positions.length === 0;
 
   const dividendsByTicker: Record<string, number> = {};

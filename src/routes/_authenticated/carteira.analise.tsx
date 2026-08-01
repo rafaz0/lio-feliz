@@ -18,7 +18,7 @@ import { listOperations } from "@/lib/operations.functions";
 import { getQuotes } from "@/lib/quotes.functions";
 import { getBenchmarkData } from "@/lib/data-functions";
 import { getExchangeRates } from "@/lib/exchange.server";
-import { consolidatePortfolio } from "@/lib/portfolio";
+import { ConsultarCarteiraService } from "@/application/services/consultar-carteira-service";
 import { usePortfolioHistory } from "@/presentation/shared/hooks";
 import { formatBRL, formatDate } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -88,7 +88,7 @@ function AnalisePage() {
   const { history } = usePortfolioHistory(ops, priceOverrides, exchangeRates);
 
   const portfolio = useMemo(
-    () => (ops ? consolidatePortfolio(ops, priceOverrides, exchangeRates) : null),
+    () => (ops ? new ConsultarCarteiraService().execute(ops, priceOverrides, exchangeRates) : null),
     [ops, priceOverrides, exchangeRates],
   );
 

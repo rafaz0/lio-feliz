@@ -1,5 +1,5 @@
-import type { AssetType } from "@/lib/portfolio";
-import { inferAssetType } from "@/lib/portfolio";
+import type { AssetType } from "@/shared/types/portfolio";
+import { inferAssetType } from "@/lib/asset-types";
 import { formatBRL } from "@/lib/format";
 
 export interface MonthSummary {

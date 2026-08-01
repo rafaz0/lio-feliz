@@ -1,4 +1,4 @@
-import type { Operation } from "@/lib/portfolio/models";
+import type { Operation } from "@/shared/types/portfolio";
 
 function monthsAgo(n: number): string {
   const d = new Date();

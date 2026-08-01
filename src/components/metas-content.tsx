@@ -18,7 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useSession } from "@/hooks/use-session";
 import { listOperations } from "@/lib/operations.functions";
 import { getRealProjections } from "@/lib/data-functions";
-import { consolidatePortfolio } from "@/lib/portfolio";
+import { ConsultarCarteiraService } from "@/application/services/consultar-carteira-service";
 import { getQuotes } from "@/lib/quotes.functions";
 import { useGoals } from "@/lib/goals";
 import { formatBRL, formatPctPlain } from "@/lib/format";
@@ -127,7 +127,7 @@ export function MetasContent() {
 
   const portfolio = useMemo(() => {
     if (!ops) return null;
-    return consolidatePortfolio(ops);
+    return new ConsultarCarteiraService().execute(ops);
   }, [ops]);
 
   const portfolioTickers = useMemo(() => {

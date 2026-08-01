@@ -1,4 +1,4 @@
-import type { Operation } from "@/lib/portfolio/models";
+import type { Operation } from "@/shared/types/portfolio";
 import { DEMO_OPERATIONS } from "./demo-operations";
 
 export interface DemoSessionStore {

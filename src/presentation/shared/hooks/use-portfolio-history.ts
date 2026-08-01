@@ -1,7 +1,7 @@
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
-import { getPortfolioHistory } from "@/lib/portfolio/history.server";
-import type { HistoryOperation, PortfolioHistoryPoint } from "@/lib/portfolio";
+import { getPortfolioHistory } from "@/lib/portfolio-history.functions";
+import type { HistoryOperation, PortfolioHistoryPoint } from "@/shared/types/portfolio";
 
 /**
  * Busca a evolucao real do patrimonio: preco historico vem do bolsai (B3) ou
