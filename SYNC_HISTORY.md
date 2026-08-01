@@ -16,6 +16,7 @@ In the context of Lio Feliz, synchronization refers to the process of aligning d
 - Tarefa B: Referências ao Lovable removidas de AGENTS.md (bloco LOVABLE, "Lovable Cloud Auth", branch main).
 - Tarefa C: `dev-user-0000` substituído por UUID v4 fixo `f9ff10aa-beac-4f63-a7f5-d477ad5d0da0` (13 ocorrências).
 - Testes: 1171 passed, build e lint verdes.
+- Commit final: `f564226`
 
 ### EWO-003 - 01/08/2026
 
