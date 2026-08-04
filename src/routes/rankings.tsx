@@ -4,6 +4,7 @@ import { Medal, TrendingUp, Building2, Filter, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { SiteHeader } from "@/components/site-header";
+import { RequireCapability } from "@/presentation/features/licensing";
 import { type Asset } from "@/lib/mock-data";
 import { FIIS, type Fii } from "@/lib/fii-mock-data";
 import { getAllAssets } from "@/lib/data-functions";
@@ -498,93 +499,95 @@ function RankingsPage() {
       <SiteHeader />
 
       <main className="mx-auto max-w-[1400px] px-4 py-8">
-        <div className="mb-6 flex items-center gap-3">
-          <Medal className="size-6 text-primary" />
-          <h1 className="text-2xl font-bold tracking-tight">Rankings</h1>
-        </div>
+        <RequireCapability capability="rankings:view" showUpgrade>
+          <div className="mb-6 flex items-center gap-3">
+            <Medal className="size-6 text-primary" />
+            <h1 className="text-2xl font-bold tracking-tight">Rankings</h1>
+          </div>
 
-        <div className="mb-6 flex items-center gap-1.5 rounded-lg border border-border bg-card p-1.5 w-fit">
-          <Button
-            variant={currentMode === "stocks" ? "default" : "ghost"}
-            size="sm"
-            onClick={() => setMode("stocks")}
-          >
-            <TrendingUp className="mr-1.5 size-3.5" /> Ações
-          </Button>
-          <Button
-            variant={currentMode === "fiis" ? "default" : "ghost"}
-            size="sm"
-            onClick={() => setMode("fiis")}
-          >
-            <Building2 className="mr-1.5 size-3.5" /> FIIs
-          </Button>
-        </div>
-
-        <AdvancedFilters
-          mode={currentMode}
-          sectors={availableSectors}
-          filters={filters}
-          onChange={setFilters}
-          resultCount={ranked.length}
-          open={showFilters}
-          onToggle={() => setShowFilters((v) => !v)}
-        />
-
-        <div className="mb-6 flex flex-wrap gap-1.5">
-          {currentTabs.map((t) => (
+          <div className="mb-6 flex items-center gap-1.5 rounded-lg border border-border bg-card p-1.5 w-fit">
             <Button
-              key={t.key}
-              variant={currentTab === t.key ? "default" : "outline"}
+              variant={currentMode === "stocks" ? "default" : "ghost"}
               size="sm"
-              onClick={() => {
-                if (currentMode === "stocks") setTab(t.key as RankTab);
-                else setFiiTab(t.key as FiiRankTab);
-              }}
+              onClick={() => setMode("stocks")}
             >
-              {t.label}
+              <TrendingUp className="mr-1.5 size-3.5" /> Ações
             </Button>
-          ))}
-        </div>
+            <Button
+              variant={currentMode === "fiis" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setMode("fiis")}
+            >
+              <Building2 className="mr-1.5 size-3.5" /> FIIs
+            </Button>
+          </div>
 
-        <div className="overflow-hidden rounded-lg border border-border bg-card">
-          <table className="w-full text-sm">
-            <thead className="bg-surface-2 text-xs uppercase text-muted-foreground">
-              <tr>
-                {columns.map((col: any) => (
-                  <th
-                    key={col.key}
-                    className={
-                      "px-4 py-2.5 text-left font-medium " +
-                      (col.width ?? "") +
-                      " " +
-                      (col.hide ?? "")
-                    }
-                  >
-                    {col.key}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {ranked.map((item: any, i: number) => (
-                <tr key={item.ticker} className="border-t border-border hover:bg-surface">
+          <AdvancedFilters
+            mode={currentMode}
+            sectors={availableSectors}
+            filters={filters}
+            onChange={setFilters}
+            resultCount={ranked.length}
+            open={showFilters}
+            onToggle={() => setShowFilters((v) => !v)}
+          />
+
+          <div className="mb-6 flex flex-wrap gap-1.5">
+            {currentTabs.map((t) => (
+              <Button
+                key={t.key}
+                variant={currentTab === t.key ? "default" : "outline"}
+                size="sm"
+                onClick={() => {
+                  if (currentMode === "stocks") setTab(t.key as RankTab);
+                  else setFiiTab(t.key as FiiRankTab);
+                }}
+              >
+                {t.label}
+              </Button>
+            ))}
+          </div>
+
+          <div className="overflow-hidden rounded-lg border border-border bg-card">
+            <table className="w-full text-sm">
+              <thead className="bg-surface-2 text-xs uppercase text-muted-foreground">
+                <tr>
                   {columns.map((col: any) => (
-                    <td
+                    <th
                       key={col.key}
                       className={
-                        "px-4 py-2.5 " +
-                        (typeof col.render(item, i) === "string" ? "tabular " : "") +
+                        "px-4 py-2.5 text-left font-medium " +
+                        (col.width ?? "") +
+                        " " +
                         (col.hide ?? "")
                       }
                     >
-                      {col.render(item, i)}
-                    </td>
+                      {col.key}
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {ranked.map((item: any, i: number) => (
+                  <tr key={item.ticker} className="border-t border-border hover:bg-surface">
+                    {columns.map((col: any) => (
+                      <td
+                        key={col.key}
+                        className={
+                          "px-4 py-2.5 " +
+                          (typeof col.render(item, i) === "string" ? "tabular " : "") +
+                          (col.hide ?? "")
+                        }
+                      >
+                        {col.render(item, i)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </RequireCapability>
       </main>
     </div>
   );

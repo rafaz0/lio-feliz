@@ -55,7 +55,6 @@ const QUICK_ACTIONS: (QuickActionItem & { premium?: boolean })[] = [
     to: "/analise",
     icon: BarChart3,
     description: "FIIs, rankings e setores",
-    premium: true,
   },
   {
     label: "Dividendos",

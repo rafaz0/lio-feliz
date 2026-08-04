@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { RequireCapability } from "@/presentation/features/licensing";
 import { formatBRL } from "@/lib/format";
 import { APP_NAME } from "@/lib/brand";
 
@@ -31,54 +32,56 @@ function CalculatorsPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <main className="mx-auto max-w-[900px] px-4 py-8">
-        <div className="mb-6 flex items-center gap-3">
-          <Calculator className="size-6 text-primary" />
-          <h1 className="text-2xl font-bold tracking-tight">Calculadoras</h1>
-        </div>
+        <RequireCapability capability="calculadoras:view" showUpgrade>
+          <div className="mb-6 flex items-center gap-3">
+            <Calculator className="size-6 text-primary" />
+            <h1 className="text-2xl font-bold tracking-tight">Calculadoras</h1>
+          </div>
 
-        <div className="mb-6 flex flex-wrap gap-2">
-          <Button
-            variant={tab === "compound" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setTab("compound")}
-          >
-            <PiggyBank className="mr-1.5 size-3.5" /> Juros Compostos
-          </Button>
-          <Button
-            variant={tab === "emergency" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setTab("emergency")}
-          >
-            <DollarSign className="mr-1.5 size-3.5" /> Reserva
-          </Button>
-          <Button
-            variant={tab === "dcf" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setTab("dcf")}
-          >
-            <TrendingUp className="mr-1.5 size-3.5" /> DCF
-          </Button>
-          <Button
-            variant={tab === "priceTarget" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setTab("priceTarget")}
-          >
-            <Target className="mr-1.5 size-3.5" /> Preço Teto
-          </Button>
-          <Button
-            variant={tab === "cdb" ? "default" : "outline"}
-            size="sm"
-            onClick={() => setTab("cdb")}
-          >
-            <Landmark className="mr-1.5 size-3.5" /> CDB
-          </Button>
-        </div>
+          <div className="mb-6 flex flex-wrap gap-2">
+            <Button
+              variant={tab === "compound" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setTab("compound")}
+            >
+              <PiggyBank className="mr-1.5 size-3.5" /> Juros Compostos
+            </Button>
+            <Button
+              variant={tab === "emergency" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setTab("emergency")}
+            >
+              <DollarSign className="mr-1.5 size-3.5" /> Reserva
+            </Button>
+            <Button
+              variant={tab === "dcf" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setTab("dcf")}
+            >
+              <TrendingUp className="mr-1.5 size-3.5" /> DCF
+            </Button>
+            <Button
+              variant={tab === "priceTarget" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setTab("priceTarget")}
+            >
+              <Target className="mr-1.5 size-3.5" /> Preço Teto
+            </Button>
+            <Button
+              variant={tab === "cdb" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setTab("cdb")}
+            >
+              <Landmark className="mr-1.5 size-3.5" /> CDB
+            </Button>
+          </div>
 
-        {tab === "compound" && <CompoundInterest />}
-        {tab === "emergency" && <EmergencyFund />}
-        {tab === "dcf" && <DcfCalculator />}
-        {tab === "priceTarget" && <PriceTarget />}
-        {tab === "cdb" && <CdbCalculator />}
+          {tab === "compound" && <CompoundInterest />}
+          {tab === "emergency" && <EmergencyFund />}
+          {tab === "dcf" && <DcfCalculator />}
+          {tab === "priceTarget" && <PriceTarget />}
+          {tab === "cdb" && <CdbCalculator />}
+        </RequireCapability>
       </main>
     </div>
   );

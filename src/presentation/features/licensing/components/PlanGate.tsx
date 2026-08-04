@@ -11,6 +11,12 @@ const CAPABILITY_LABELS: Record<string, { label: string; requiredTier: string }>
   "backtest:execute": { label: "Backtests", requiredTier: "BASIC" },
   "alertas:view": { label: "Alertas inteligentes", requiredTier: "BASIC" },
   "export:advanced": { label: "Exportação avançada", requiredTier: "BASIC" },
+  "metas:view": { label: "Metas de dividendos", requiredTier: "BASIC" },
+  "provisionador:view": { label: "Provisionador de dividendos", requiredTier: "BASIC" },
+  "rebalanceamento:view": { label: "Rebalanceamento de carteira", requiredTier: "BASIC" },
+  "rankings:view": { label: "Rankings", requiredTier: "BASIC" },
+  "setores:view": { label: "Análise por setor", requiredTier: "BASIC" },
+  "calculadoras:view": { label: "Calculadoras financeiras", requiredTier: "BASIC" },
 };
 
 const TIER_NAMES: Record<string, string> = {
