@@ -27,7 +27,7 @@ import { DataGatewayRouter } from "@/infrastructure/gateways/data-gateway-router
 import { ImportInterpreter } from "@/infrastructure/interpreters/import-interpreter";
 import { FakeSubscriptionRepository } from "@/infrastructure/fakes/fake-subscription-repository";
 import { Plan, PlanId, DEFAULT_CAPABILITIES } from "@/core/domain/subscriptions";
-import { PaymentGatewayFactory } from "@/infrastructure/gateways/payment-gateway-factory";
+import { MockPaymentGateway } from "@/infrastructure/gateways/mock-payment-gateway";
 import { APP_NAME } from "@/lib/brand";
 
 function NotFoundComponent() {
@@ -181,8 +181,6 @@ function RootComponent() {
   }, [router, queryClient]);
 
   const composition = useMemo(() => {
-    const paymentGatewayFactory = new PaymentGatewayFactory();
-
     const subscriptionRepo = (() => {
       const repo = new FakeSubscriptionRepository();
       repo.savePlan(
@@ -228,7 +226,7 @@ function RootComponent() {
       financialGoalRepository: new SupabaseFinancialGoalRepository(supabase),
       fixedIncomeRepository: new SupabaseFixedIncomeRepository(supabase),
       subscriptionRepository: subscriptionRepo,
-      paymentGateway: paymentGatewayFactory.create("mock"),
+      paymentGateway: new MockPaymentGateway(!import.meta.env.DEV),
     });
 
     return { dispatcher, authService: new SupabaseAuthService() };

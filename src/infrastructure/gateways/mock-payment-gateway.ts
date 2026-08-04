@@ -21,6 +21,9 @@ export class MockPaymentGateway implements IPaymentGateway {
   private behavior: MockBehavior = "approve";
   private failCount = 0;
 
+  // Sem gateway real ainda (Asaas nao implementado) - true recusa charge() com amount > 0.
+  constructor(private readonly blockNonZeroCharges = false) {}
+
   setBehavior(behavior: MockBehavior): void {
     this.behavior = behavior;
   }
@@ -39,6 +42,25 @@ export class MockPaymentGateway implements IPaymentGateway {
 
   async charge(subscriptionId: string, amount: number): Promise<PaymentResult> {
     const id = generateId();
+
+    if (this.blockNonZeroCharges && amount > 0) {
+      const txn: MockTransaction = {
+        id,
+        subscriptionId,
+        amount,
+        status: "FAILED",
+        createdAt: new Date(),
+        refundedAt: null,
+      };
+      this.transactions.set(id, txn);
+
+      return {
+        success: false,
+        transactionId: id,
+        status: "FAILED",
+        error: "Nenhum gateway de pagamento real configurado - cobranca recusada.",
+      };
+    }
 
     const shouldFail =
       this.behavior === "decline" ? true : this.behavior === "random" ? Math.random() < 0.4 : false;
