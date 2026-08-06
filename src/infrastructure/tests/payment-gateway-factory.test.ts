@@ -1,8 +1,10 @@
 import { describe, it, expect, beforeEach } from "vitest";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { PaymentGatewayFactory } from "@/infrastructure/gateways/payment-gateway-factory";
 import { MockPaymentGateway } from "@/infrastructure/gateways/mock-payment-gateway";
 import { StripePaymentGateway } from "@/infrastructure/gateways/stripe-payment-gateway";
 import { MercadoPagoPaymentGateway } from "@/infrastructure/gateways/mercado-pago-payment-gateway";
+import { AsaasPaymentGateway } from "@/infrastructure/gateways/asaas-payment-gateway";
 
 describe("PaymentGatewayFactory", () => {
   let factory: PaymentGatewayFactory;
@@ -75,5 +77,18 @@ describe("PaymentGatewayFactory", () => {
     const mock = factory.getMockGateway();
     expect(mock).toBeInstanceOf(MockPaymentGateway);
     expect(mock.getBehavior()).toBe("approve");
+  });
+
+  it("lanca erro ao pedir provider=asaas sem SupabaseClient no construtor", () => {
+    expect(() => factory.create("asaas")).toThrow(/SupabaseClient/);
+  });
+
+  it("retorna AsaasPaymentGateway para provider=asaas quando ha SupabaseClient", () => {
+    const fakeSupabase = {} as SupabaseClient;
+    const factoryComSupabase = new PaymentGatewayFactory(fakeSupabase);
+
+    const gateway = factoryComSupabase.create("asaas");
+
+    expect(gateway).toBeInstanceOf(AsaasPaymentGateway);
   });
 });

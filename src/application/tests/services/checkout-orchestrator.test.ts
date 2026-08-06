@@ -124,6 +124,44 @@ describe("CheckoutOrchestrator", () => {
     expect((result.error as ValidationError).code).toBe("PAYMENT_FAILED");
   });
 
+  it("keeps subscription as PENDING_PAYMENT when gateway charge is async (Pix)", async () => {
+    const plan = Plan.create({
+      id: PlanId.create("plan-premium"),
+      name: "Premium",
+      tier: "PREMIUM",
+      monthlyPrice: 29.9,
+      description: "Plano premium",
+      capabilities: ["read", "write"],
+    });
+
+    const repo = createRepo();
+    vi.mocked(repo.findPlanById!).mockResolvedValue(plan);
+    vi.mocked(repo.saveSubscription!).mockResolvedValue(undefined);
+
+    const gateway = createGateway();
+    vi.mocked(gateway.charge!).mockResolvedValue({
+      success: false,
+      transactionId: "asaas-sub-001",
+      status: "PENDING",
+    });
+
+    const assinarService = new AssinarPlanoService(repo, undefined, gateway);
+    const orchestrator = new CheckoutOrchestrator(assinarService);
+
+    const result = await orchestrator.execute({
+      userId: "user-001",
+      planId: "plan-premium",
+      paymentMethodId: "pix",
+    });
+
+    expect(result.success).toBe(true);
+    expect(result.subscription!.status).toBe("PENDING_PAYMENT");
+    expect(result.subscription!.isActive).toBe(false);
+    // Salvo duas vezes: criação (PENDING_PAYMENT) e nenhuma reativação —
+    // ativar de verdade é responsabilidade do webhook, não deste fluxo.
+    expect(repo.saveSubscription).toHaveBeenCalledTimes(1);
+  });
+
   it("returns error when input is invalid", async () => {
     const repo = createRepo();
 

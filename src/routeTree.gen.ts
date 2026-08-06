@@ -27,6 +27,7 @@ import { Route as FiiTickerRouteImport } from './routes/fii.$ticker'
 import { Route as AtivoTickerRouteImport } from './routes/ativo.$ticker'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api.stripe-webhook'
 import { Route as ApiHealthRouteImport } from './routes/api.health'
+import { Route as ApiAsaasWebhookRouteImport } from './routes/api.asaas-webhook'
 import { Route as AnaliseWatchlistRouteImport } from './routes/analise.watchlist'
 import { Route as AnaliseSetoresRouteImport } from './routes/analise.setores'
 import { Route as AnaliseRankingsRouteImport } from './routes/analise.rankings'
@@ -163,6 +164,11 @@ const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
 const ApiHealthRoute = ApiHealthRouteImport.update({
   id: '/api/health',
   path: '/api/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAsaasWebhookRoute = ApiAsaasWebhookRouteImport.update({
+  id: '/api/asaas-webhook',
+  path: '/api/asaas-webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnaliseWatchlistRoute = AnaliseWatchlistRouteImport.update({
@@ -467,6 +473,7 @@ export interface FileRoutesByFullPath {
   '/analise/rankings': typeof AnaliseRankingsRoute
   '/analise/setores': typeof AnaliseSetoresRoute
   '/analise/watchlist': typeof AnaliseWatchlistRoute
+  '/api/asaas-webhook': typeof ApiAsaasWebhookRoute
   '/api/health': typeof ApiHealthRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
@@ -531,6 +538,7 @@ export interface FileRoutesByTo {
   '/analise/rankings': typeof AnaliseRankingsRoute
   '/analise/setores': typeof AnaliseSetoresRoute
   '/analise/watchlist': typeof AnaliseWatchlistRoute
+  '/api/asaas-webhook': typeof ApiAsaasWebhookRoute
   '/api/health': typeof ApiHealthRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
@@ -600,6 +608,7 @@ export interface FileRoutesById {
   '/analise/rankings': typeof AnaliseRankingsRoute
   '/analise/setores': typeof AnaliseSetoresRoute
   '/analise/watchlist': typeof AnaliseWatchlistRoute
+  '/api/asaas-webhook': typeof ApiAsaasWebhookRoute
   '/api/health': typeof ApiHealthRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/ativo/$ticker': typeof AtivoTickerRoute
@@ -669,6 +678,7 @@ export interface FileRouteTypes {
     | '/analise/rankings'
     | '/analise/setores'
     | '/analise/watchlist'
+    | '/api/asaas-webhook'
     | '/api/health'
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
@@ -733,6 +743,7 @@ export interface FileRouteTypes {
     | '/analise/rankings'
     | '/analise/setores'
     | '/analise/watchlist'
+    | '/api/asaas-webhook'
     | '/api/health'
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
@@ -801,6 +812,7 @@ export interface FileRouteTypes {
     | '/analise/rankings'
     | '/analise/setores'
     | '/analise/watchlist'
+    | '/api/asaas-webhook'
     | '/api/health'
     | '/api/stripe-webhook'
     | '/ativo/$ticker'
@@ -852,6 +864,7 @@ export interface RootRouteChildren {
   _authForgotPasswordRoute: typeof _authForgotPasswordRoute
   _authLoginRoute: typeof _authLoginRoute
   _authRegisterRoute: typeof _authRegisterRoute
+  ApiAsaasWebhookRoute: typeof ApiAsaasWebhookRoute
   ApiHealthRoute: typeof ApiHealthRoute
   ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
   AtivoTickerRoute: typeof AtivoTickerRoute
@@ -985,6 +998,13 @@ declare module '@tanstack/react-router' {
       path: '/api/health'
       fullPath: '/api/health'
       preLoaderRoute: typeof ApiHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/asaas-webhook': {
+      id: '/api/asaas-webhook'
+      path: '/api/asaas-webhook'
+      fullPath: '/api/asaas-webhook'
+      preLoaderRoute: typeof ApiAsaasWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/analise/watchlist': {
@@ -1495,6 +1515,7 @@ const rootRouteChildren: RootRouteChildren = {
   _authForgotPasswordRoute: _authForgotPasswordRoute,
   _authLoginRoute: _authLoginRoute,
   _authRegisterRoute: _authRegisterRoute,
+  ApiAsaasWebhookRoute: ApiAsaasWebhookRoute,
   ApiHealthRoute: ApiHealthRoute,
   ApiStripeWebhookRoute: ApiStripeWebhookRoute,
   AtivoTickerRoute: AtivoTickerRoute,

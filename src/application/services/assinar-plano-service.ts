@@ -28,29 +28,39 @@ export class AssinarPlanoService implements IApplicationService<
     const plan = await this.subscriptionRepo.findPlanById(command.planId);
     if (!plan) return new NotFoundError("Plan", command.planId);
 
-    const subscription = Subscription.create({
+    let subscription = Subscription.create({
       id: SubscriptionId.generate(),
       planId: command.planId,
       userId: command.userId,
       startDate: new Date(),
       endDate: null,
-      status: "ACTIVE",
+      trialEndDate: null,
+      // Com gateway real, a cobrança pode ser assíncrona (ex: Pix via Asaas
+      // — confirmação só chega por webhook), então não ativa de antemão.
+      // Sem gateway (plano gratuito, billingSimulator), ativa direto.
+      status: this.paymentGateway ? "PENDING_PAYMENT" : "ACTIVE",
     });
 
     await this.subscriptionRepo.saveSubscription(subscription);
 
     if (this.paymentGateway) {
       const result = await this.paymentGateway.charge(subscription.id.value, plan.monthlyPrice);
-      if (!result.success) {
+      if (!result.success && result.status !== "PENDING") {
         const cancelled = subscription.cancel();
         await this.subscriptionRepo.saveSubscription(cancelled);
         return new ValidationError("PAYMENT_FAILED", result.error ?? "Falha no pagamento");
       }
+      if (result.status === "PAID") {
+        subscription = subscription.activate();
+        await this.subscriptionRepo.saveSubscription(subscription);
+      }
+      // status === "PENDING": fica PENDING_PAYMENT — o webhook do gateway
+      // ativa quando o pagamento for confirmado de verdade.
     } else {
       this.billingSimulator.simulateBilling(subscription, plan.monthlyPrice);
     }
 
-    if (this.notificationPort) {
+    if (this.notificationPort && subscription.isActive) {
       await this.notificationPort.Notificar(
         command.userId,
         "Assinatura Ativada",

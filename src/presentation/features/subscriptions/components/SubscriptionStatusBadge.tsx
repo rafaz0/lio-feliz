@@ -28,6 +28,10 @@ const STATUS_CONFIG: Record<string, { label: string; className: string }> = {
     label: "Expirado",
     className: "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400",
   },
+  PENDING_PAYMENT: {
+    label: "Aguardando pagamento",
+    className: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
+  },
 };
 
 export function SubscriptionStatusBadge({

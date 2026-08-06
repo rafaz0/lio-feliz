@@ -1,7 +1,7 @@
 export interface PaymentResult {
   success: boolean;
   transactionId: string;
-  status: "PAID" | "FAILED" | "REFUNDED";
+  status: "PAID" | "FAILED" | "REFUNDED" | "PENDING";
   error?: string;
 }
 
