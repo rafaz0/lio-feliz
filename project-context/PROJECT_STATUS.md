@@ -4,13 +4,15 @@
 
 **Documento:** PROJECT_STATUS.md
 
-**Versão:** 2.27
+**Versão:** 2.28
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 31/07/2026
+**Última atualização:** 06/08/2026
+
+**⚠️ Correção 06/08/2026:** a linha 80 abaixo ("PI-017/018/019 em DRAFT, nenhuma EWO criada") está **desatualizada e incorreta** — existem EWO-041 a EWO-069 implementadas no código (commits 25-26/07/2026) cobrindo as três PIs, incluindo um módulo de Gestão Financeira completo (órfão: sem link de menu, sem persistência Supabase) e o sistema de assinaturas/billing já em uso. Ver `AI_CONTEXT.md` v2.08, seção "⚠️ Lacuna de governança nova" para o detalhe verificado direto no `git log` e no código.
 
 ---
 

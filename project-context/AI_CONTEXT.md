@@ -2,13 +2,13 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 2.07
+**Versão:** 2.09
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 01/08/2026 (v2.07)
+**Última atualização:** 06/08/2026 (v2.09)
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. Ver "Objetivo Atual" abaixo para o estado real mais recente — o rastro formal PI → ER → EWO tem lacunas conhecidas entre PI-014 e PI-018 (ver nota abaixo).
 
@@ -17,6 +17,14 @@
 **Aviso:** Este documento contém apenas identidade, estado operacional, objetivo atual e referências obrigatórias. Consulte `PROJECT_BOOTSTRAP.md` para o Runtime Operacional completo (regras, templates, rituais, fluxos). O Runtime é autossuficiente — não é necessário consultar `DEVELOPMENT_METHODOLOGY.md` para executar operações.
 
 **⚠️ Lacuna de governança conhecida (não tentar reconstruir retroativamente — decisão já tomada pelo Rafael):** Em algum ponto entre a PI-013 e a PI-018, o OpenCode parou de criar os documentos de ER (Engineering Review) mesmo continuando a seguir as diretrizes e implementar via EWO. Resultado: existem EWOs marcadas `CONCLUÍDO` (ex: EWO-021) cuja PI pai ainda está em `DRAFT` (ex: PI-014), porque a aprovação formal nunca foi registrada — mas a implementação em si aconteceu. **Trate o status de cada `architecture-lab/EWO-0XX.md` e a presença real do código como fonte de verdade sobre "o que foi feito"; não confie apenas no status da PI/ER para isso.**
+
+**⚠️ Lacuna de governança nova, descoberta em 06/08/2026 (esta versão corrige uma afirmação falsa das versões 2.00–2.07 deste documento):** as versões anteriores afirmavam que PI-017/018/019 estavam "em DRAFT, sem nenhuma EWO criada" e eram "as únicas frentes genuinamente não iniciadas". **Isso é falso** — verificado direto no código e no `git log`, não apenas nos documentos. Existem pelo menos **EWO-041 a EWO-069** implementadas (commits de 25–26/07/2026, antes até da conclusão formal registrada da PI-013), cobrindo o escopo das três PIs:
+
+- **PI-017 (Gestão Financeira):** EWO-041 a EWO-045 implementadas por completo — Core Domain, Application e rotas reais (`/finance/contas`, `/finance/despesas`, `/finance/receitas`, `/finance/dividas`, `/finance/patrimonio`). Existe até `docs/PI-017_ENGINEERING_CLOSURE.md` marcado 🟢 FECHADO. **Porém a feature está órfã**: não há nenhum link para `/finance` em `src/components/site-header.tsx` nem `mobile-nav.tsx` (os arquivos reais de menu), e todo o backend usa repositórios **fake em memória** (`src/infrastructure/repositories/finance/fake-*.ts`) — nunca foi conectado ao Supabase. Ou seja: código pronto e "fechado" no papel, mas invisível e sem persistência real para qualquer usuário. Decisão pendente do Rafael: ativar (linkar no menu + implementar repositório Supabase) ou descartar.
+- **PI-019 (Comercial/Assinaturas):** EWO-047 a EWO-056 implementam exatamente o sistema de planos/billing/feature-gates/checkout que este documento já vinha descrevendo em outras seções (gateway mock, `RequireCapability`, `/assinaturas`, `/checkout`) — só que sem nunca ter sido associado à PI-019 aqui. Essa frente **não é "não iniciada"**; é o que já estava sendo corrigido e endurecido (ver mitigações de 04/08/2026 abaixo).
+- **PI-018 (Demo/Perfis/Ambientes):** EWO-046 (Modo Demo) implementada com ADR-018-001, depois estabilizada em vários commits — e mais tarde a entrada de "Modo Demo" foi removida da tela de login (commit `fb54740`, dentro do lote de correções táticas de 27–31/07 já registrado abaixo). Não investigado a fundo se o restante da infraestrutura de demo continua íntegra ou parcialmente morta.
+
+Nenhuma dessas ~29 EWOs (041–069) tem documento formal em `architecture-lab/EWO-0XX.md` nem Engineering Closure em `docs/` (exceto a própria PI-017). Não tentar reconstruir esses documentos retroativamente — mesma decisão já tomada para a lacuna anterior. **Ao ler "PI-017/018/019 em DRAFT" em qualquer documento antigo (`PROJECT_STATUS.md` v2.27 e anteriores, ou histórico deste arquivo abaixo de v2.08), tratar como desatualizado.**
 
 ---
 
@@ -39,7 +47,12 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 - Entre 27/07 e 31/07 houve uma sequência de correções táticas de produção não ligadas a nenhuma PI/EWO formal: performance da aba "Meu Plano" (causa raiz: `ObterPlanoAtivoService` retornando `NotFoundError`), integração Bolsai como fonte principal de indicadores, congelamento dos módulos Finance/Notícias no menu, correções de UI mobile, remoção do modo demo do login. Ver `git log` para o histórico completo — não há PROMPT_*.md correspondente pra essas (foram direto, sem handoff formal pro OpenCode).
 - **01/08/2026 — correção tática de risco de negócio (não ligada a PI/EWO formal):** o gateway de pagamento é mock (aprova qualquer assinatura sem cobrar) e, desde a EWO-013, as rotas Pro (`/alertas`, `/backtests`) estão ao vivo — ou seja, qualquer visitante podia virar "Pro" de graça clicando em assinar. Mitigação rápida aplicada: botão "Assinar" desabilitado pra planos pagos em `CheckoutForm.tsx` (mostra "Em breve" em vez de processar), removido o bloco de "dados de pagamento simulado" que não fazia mais sentido sem fluxo de pagamento ativo. **Isso é só mitigação de frontend** — o endpoint/mutation de checkout ainda aceitaria a chamada se acionado diretamente (ex: via API), não é uma correção de backend. Resolver de verdade exige implementar o gateway real (Asaas, decisão já registrada) ou bloquear no backend também. Testes (`vitest run checkout`, 15 passando) e build verdes.
 
-**Próximo passo em aberto:** (b) definir a próxima frente a partir de PI-017/018/019 (a EWO-003 foi concluída), ou (c) resolver o pagamento real antes de qualquer divulgação pública mais ampla do produto (ver correção tática de 01/08/2026 acima — mitigação é só parcial).
+**Achados de 04/08/2026 (correção de risco de negócio, ver histórico v2.08 abaixo para detalhe completo):** a mitigação do pagamento mock foi endurecida (`MockPaymentGateway.blockNonZeroCharges`, recusa cobrança > 0 fora de `DEV`) e descoberto que só 3 das 9 áreas com selo "PRO" tinham `<RequireCapability>` de verdade — corrigido nas 6 restantes (Metas, Provisionador, Rebalanceamento, Rankings, Setores, Calculadoras). **Confirmado visualmente pelo Rafael em produção em 06/08/2026: o bloqueio está funcionando.** Efeito colateral aceito: como o pagamento real (Asaas) ainda não existe e o mock está bloqueado em produção, hoje **nenhum usuário consegue virar Pro de verdade** — o produto não está vendável ainda, só protegido contra acesso gratuito indevido.
+
+**Próximo passo em aberto (revisado 06/08/2026, ver lacuna de governança nova acima):** três frentes candidatas, decisão do Rafael:
+(a) Resolver o pagamento real via Asaas — é o que desbloqueia o produto ser vendável de verdade (hoje ninguém consegue assinar um plano pago em produção).
+(b) Decidir o destino da Gestão Financeira órfã (PI-017) — ativar (linkar no menu + Supabase) ou descartar código morto.
+(c) PI-018/PI-019 não são mais candidatas a "próxima frente" — já têm implementação substancial (ver lacuna de governança acima); qualquer trabalho ali é continuação/correção, não início.
 
 # Referências Obrigatórias
 
@@ -55,6 +68,86 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 ---
 
 # Histórico
+
+### Versão 2.09
+
+**Fundação do pagamento real via Asaas — Fase 0 (06/08/2026).** Objetivo:
+destravar o item 1 das pendências (hoje ninguém consegue virar Pro de
+verdade em produção). Escopo desta fase: tudo que dá pra construir sem
+chave de API do Asaas (Rafael tem conta, ainda sem chave). Não é
+"pagamento funcionando" — é a fundação verificada por testes automatizados,
+sem nenhuma chamada de rede real ainda.
+
+**Construído:** `AsaasPaymentGateway` (usa a API de Assinaturas nativa do
+Asaas — `POST /v3/subscriptions` — que gera cada ciclo de cobrança sozinha,
+via Pix; `charge()` sempre retorna `PENDING`, confirmação só chega por
+webhook) + `asaas-client.server.ts` (wrapper HTTP server-only); webhook real
+`src/routes/api.asaas-webhook.ts` (valida header `asaas-access-token`,
+idempotente por `payment.id`, ativa/renova assinatura em
+`PAYMENT_RECEIVED`/`PAYMENT_CONFIRMED`, marca `PAST_DUE` em
+`PAYMENT_OVERDUE`) — substitui a ideia de usar o stub
+`api.stripe-webhook.ts` (nunca foi implementado de verdade, ficou como
+está); nova fronteira de servidor `src/lib/checkout.server.ts`
+(`createServerFn` com `requireAuth` — o `userId` agora vem da sessão real
+no servidor, não do que o navegador manda, fechando uma lacuna de segurança
+que existia desde sempre no fluxo antigo); `SupabaseSubscriptionRepository`
+reescrito do zero (antes implementava só 3 métodos de uma interface que já
+exige ~10 — o resto rodava sobre `FakeSubscriptionRepository`, em memória,
+recriado a cada carregamento de página, mesmo em produção); nova migration
+com as tabelas reais (`subscription_plans`, `subscriptions`,
+`billing_cycles`, `billing_webhook_events`) e RLS; `PaymentResult` ganhou o
+estado `PENDING`; `SubscriptionStatus` ganhou `PENDING_PAYMENT`
+(`AssinarPlanoService` não ativa mais a assinatura antes da confirmação
+real quando o gateway é assíncrono). Verificado: 1203 testes passando (1175
+→ 1203, 0 regressão), typecheck sem erro novo (331 pré-existentes antes e
+depois — nenhum deles em arquivo tocado aqui), lint limpo, build de
+produção verde. Nada commitado ainda.
+
+**Achado no caminho — `GerenciarAssinaturaService` não é código morto.**
+Investigação inicial (nesta mesma sessão, ver lacuna de governança de
+06/08/2026 acima) sugeria que os métodos antigos `ObterPlanoAtivo`/
+`Salvar`/`ListarPlanosDisponiveis` da interface `ISubscriptionRepository`
+(nomenclatura PT, tipos `Assinatura`/`PlanoDto`) eram vestígio de uma
+geração anterior sem uso real. Busca no código mostrou o contrário:
+`GerenciarAssinaturaService` (ativar/cancelar/alterar assinatura) usa esses
+métodos de verdade — só não está ligado a nenhuma UI (mais um caso do
+padrão "implementado mas inalcançável"). Em vez de apagar, o repositório
+novo implementa os dois grupos de métodos sobre as mesmas tabelas
+normalizadas (sem schema paralelo) — nenhum dos dois quebra.
+
+**Lacunas conhecidas, decisão pendente do Rafael:**
+1. **CPF/CNPJ é obrigatório pra criar cliente no Asaas** (confirmado na
+   documentação oficial) e não existe em lugar nenhum do app hoje — coluna
+   nova `profiles.cpf_cnpj` criada (nullable), mas nenhuma tela pede esse
+   dado ainda. Sem isso, `AsaasPaymentGateway.charge()` falha com erro
+   claro em vez de travar — mas ninguém consegue assinar de verdade até
+   existir um lugar pra coletar CPF (onboarding ou checkout).
+2. **Duas UIs de assinatura pagam, só uma foi migrada.** `/checkout`
+   (`CheckoutForm.tsx`) agora usa a fronteira de servidor nova. `/assinaturas`
+   (`SubscriptionsPage.tsx`, via `use-subscriptions-mutation.ts`) tem um
+   botão "Assinar" pra plano pago que **continua no caminho antigo**
+   (dispatcher client-side, `MockPaymentGateway` fixo em `__root.tsx`) — hoje
+   seguro (a mitigação de 04/08 bloqueia cobrança > 0 em produção), mas vai
+   ficar preso no mock mesmo depois do Asaas entrar em produção, a menos que
+   também seja migrado ou as duas telas sejam consolidadas em uma.
+3. **Migrations criadas, não aplicadas.** Sem Docker/Supabase local neste
+   ambiente — `supabase/migrations/20260806120000_create_subscriptions.sql`
+   e `..._add_cpf_cnpj_to_profiles.sql` existem no repo mas nunca rodaram
+   contra um banco real. `src/integrations/supabase/types.ts` (gerado via
+   `supabase:types`) também não reflete as tabelas novas — os repositórios
+   novos usam `SupabaseClient` sem o generic `Database` de propósito, pra
+   não travar no typecheck até isso ser regenerado.
+4. **Fase 1 (sandbox) e Fase 2 (produção) não começaram** — dependem da
+   chave de API do Asaas (sandbox exige conta separada da produção,
+   confirmado na documentação) e de decisão explícita do Rafael antes de
+   qualquer chamada de rede real acontecer.
+
+### Versão 2.08
+
+**Reconciliação de documentação (06/08/2026), pedida pelo Rafael.** Duas correções:
+
+1. **Confirmação visual em produção:** o Rafael logou de verdade no site publicado e confirmou que o bloqueio `RequireCapability` aplicado em 04/08/2026 (commit `0f1c9af`) está funcionando nas 6 áreas (Metas, Provisionador, Rebalanceamento, Rankings, Setores, Calculadoras) — item que estava pendente de verificação manual desde a mitigação.
+2. **Correção de uma afirmação falsa deste documento (presente desde a v2.00):** a alegação de que PI-017/018/019 estavam "em DRAFT, sem nenhuma EWO criada" foi verificada contra o `git log` e o código real e está **incorreta** — existem EWO-041 a EWO-069 implementadas (commits de 25–26/07/2026), incluindo o módulo de Gestão Financeira completo (PI-017, mas órfão: sem link no menu e sem persistência Supabase) e todo o sistema de assinaturas/billing/feature-gates (PI-019, que na verdade já era o sistema sendo corrigido nas seções acima deste próprio documento, só nunca associado à PI-019 aqui). Ver seção "⚠️ Lacuna de governança nova" no topo deste documento para o detalhe completo. `PROJECT_STATUS.md` v2.27 mantém a mesma afirmação errada — corrigir na próxima revisão desse arquivo.
 
 ### Versão 2.07
 
