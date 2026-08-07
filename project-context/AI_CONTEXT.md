@@ -2,13 +2,13 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 2.09
+**Versão:** 2.10
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 06/08/2026 (v2.09)
+**Última atualização:** 06/08/2026 (v2.10)
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. Ver "Objetivo Atual" abaixo para o estado real mais recente — o rastro formal PI → ER → EWO tem lacunas conhecidas entre PI-014 e PI-018 (ver nota abaixo).
 
@@ -68,6 +68,53 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 ---
 
 # Histórico
+
+### Versão 2.10
+
+**Fase 0 do Asaas testada de ponta a ponta em sandbox (06/08/2026) — funciona.**
+Rafael gerou a chave sandbox e a service_role key do Supabase; migrations
+aplicadas num banco real via SQL Editor; testado o checkout de verdade no
+navegador local, logado com a conta real (não DEV_MODE). Resultado: criou
+customer e subscription reais no Asaas sandbox, persistiu a assinatura como
+`PENDING_PAYMENT` (não ativou sozinho — webhook ainda não testado, correto
+por design), `gateway_customer_id`/`gateway_subscription_id` gravados.
+Verificado nos dois lados (Supabase REST + API do Asaas).
+
+**Bugs reais encontrados e corrigidos durante o teste** (só apareceram com
+banco de verdade, nenhum teste automatizado pegaria):
+1. CHECK constraint de `subscriptions.status` na migration não incluía
+   `PENDING_PAYMENT` (esquecido ao criar o valor no domínio TypeScript) —
+   nova migration `20260806124000_fix_subscriptions_status_check.sql`.
+2. **Achado à parte, não relacionado ao Asaas:** Security Advisor do
+   Supabase apontou 4 views (`vw_patrimonio`, `vw_historico`, `vw_posicoes`,
+   `vw_proventos`, da migration de 27/07) como `SECURITY DEFINER` — sem
+   `security_invoker`, qualquer usuário logado poderia ver dados de
+   **todos** os usuários através delas, ignorando RLS de
+   `portfolio_operations`. Crítico, mas impacto zero hoje (só 1 usuário
+   cadastrado). Corrigido — `20260806123000_fix_security_definer_views.sql`.
+3. **Chave do Asaas começa com `$`** (`$aact_hmlg_...`) — sem escapar como
+   `\$aact_...` no `.env`, o loader de variáveis de ambiente deste projeto
+   tenta expandir como referência a outra variável e a chave vira string
+   vazia. Aspas simples não resolvem, só o escape com barra invertida.
+   Documentado em `.env.example`.
+4. `DEV_MODE=true` bypassa auth no servidor, mas **duas cópias
+   independentes** de uma função `isLocal()` (`src/hooks/use-session.ts` e
+   `src/integrations/supabase/auth-service.ts`) fazem o navegador se
+   autenticar sozinho como usuário fake sempre que o hostname é
+   `localhost`, **independente** da env var do servidor — mesmo padrão de
+   duplicação já visto noutras partes do projeto. Para testar com usuário
+   real localmente foi preciso desativar as duas temporariamente (revertido
+   depois do teste).
+
+**Ainda pendente antes de abrir para usuários reais:** registrar uma chave
+Pix na conta sandbox do Asaas (sem isso, `billingType: "PIX"` cai
+silenciosamente para BOLETO — comportamento documentado do Asaas, não bug
+nosso); testar o webhook (precisa de URL pública, não dá em localhost);
+UI de checkout ainda mostra "Em breve" pros planos pagos (Fase 1, não
+revertida a decisão de manter assim — mensagem de sucesso atual também
+está incorreta pro fluxo assíncrono, "já está ativo" quando na verdade fica
+`PENDING_PAYMENT`); CPF ainda não tem tela de coleta (setado manualmente
+via SQL só pro teste).
 
 ### Versão 2.09
 
