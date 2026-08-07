@@ -19,8 +19,15 @@ export class PaymentGatewayFactory {
   // so o provider "asaas" (real) exige, pra ler perfil/CPF e persistir os
   // ids da assinatura no gateway. Sem ele, create("asaas") lanca erro claro
   // em vez de silenciosamente cair pro mock.
+  //
+  // blockNonZeroCharges=!DEV: mesma mitigacao ja aplicada ao mock client-side
+  // em __root.tsx (04/08/2026), mas essa fabrica tem seu PROPRIO mock interno
+  // — sem isso aqui, o mock usado pelo checkout.server.ts (fronteira nova,
+  // 06/08/2026) aprovava qualquer cobranca de graca em producao sempre que
+  // PAYMENT_GATEWAY_PROVIDER != "asaas", reabrindo o mesmo risco de "Pro de
+  // graca" ja corrigido duas vezes antes, agora por um caminho novo.
   constructor(supabase?: SupabaseClient) {
-    this.mock = new MockPaymentGateway();
+    this.mock = new MockPaymentGateway(!import.meta.env.DEV);
     this.stripe = new StripePaymentGateway();
     this.mercadopago = new MercadoPagoPaymentGateway();
     this.asaas = supabase ? new AsaasPaymentGateway(supabase) : null;
