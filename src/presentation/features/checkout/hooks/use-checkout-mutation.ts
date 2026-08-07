@@ -6,6 +6,7 @@ import { CHECKOUT_QUERY_KEYS } from "../queries";
 export type CheckoutMutationInput = {
   userId: string;
   planId: string;
+  cpfCnpj?: string;
 };
 
 // Chama a fronteira de servidor (src/lib/checkout.server.ts) em vez do
@@ -15,8 +16,8 @@ export type CheckoutMutationInput = {
 export function useCheckoutMutation() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({ planId }: CheckoutMutationInput): Promise<AssinaturaDto> => {
-      const result = await checkoutServerFn({ data: { planId } });
+    mutationFn: async ({ planId, cpfCnpj }: CheckoutMutationInput): Promise<AssinaturaDto> => {
+      const result = await checkoutServerFn({ data: { planId, cpfCnpj } });
       return result as AssinaturaDto;
     },
     onSuccess: (_data, variables) => {

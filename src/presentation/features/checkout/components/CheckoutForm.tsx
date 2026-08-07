@@ -1,6 +1,8 @@
 import { useCheckoutPlansQuery } from "../hooks/use-checkout-query";
 import { useCheckoutMutation } from "../hooks/use-checkout-mutation";
+import { useHasCpfCnpjQuery } from "../hooks/use-has-cpf-cnpj-query";
 import type { CheckoutPlanViewModel } from "../viewmodels/checkout.view-model";
+import { isValidCpfCnpj, formatCpfCnpj } from "@/lib/cpf-cnpj";
 import { useState } from "react";
 
 interface CheckoutFormProps {
@@ -10,13 +12,41 @@ interface CheckoutFormProps {
 
 export function CheckoutForm({ userId, onSuccess }: CheckoutFormProps) {
   const { data: plans, isLoading, isError, error } = useCheckoutPlansQuery();
+  const { data: hasCpfCnpj, isLoading: cpfLoading } = useHasCpfCnpjQuery(userId);
   const checkout = useCheckoutMutation();
   const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
+  const [pendingPlan, setPendingPlan] = useState<CheckoutPlanViewModel | null>(null);
+  const [cpfCnpjInput, setCpfCnpjInput] = useState("");
+  const [cpfCnpjError, setCpfCnpjError] = useState<string | null>(null);
 
-  const handleSubscribe = async (planId: string) => {
+  const finishSubscribe = async (planId: string, cpfCnpj?: string) => {
     setSelectedPlanId(planId);
-    await checkout.mutateAsync({ userId, planId });
+    await checkout.mutateAsync({ userId, planId, cpfCnpj });
+    setPendingPlan(null);
+    setCpfCnpjInput("");
+    setCpfCnpjError(null);
     onSuccess?.();
+  };
+
+  // Plano pago exige CPF/CNPJ pro Asaas (ver asaas-payment-gateway.ts) — se
+  // o perfil ainda nao tem, abre o formulario inline em vez de assinar na
+  // hora. Plano gratis e plano pago com CPF ja cadastrado seguem direto.
+  const handleSelectPlan = (plan: CheckoutPlanViewModel) => {
+    if (plan.isFree || hasCpfCnpj) {
+      void finishSubscribe(plan.id);
+      return;
+    }
+    setPendingPlan(plan);
+    setCpfCnpjError(null);
+  };
+
+  const handleConfirmCpfCnpj = () => {
+    if (!isValidCpfCnpj(cpfCnpjInput)) {
+      setCpfCnpjError("CPF ou CNPJ inválido. Confira os números digitados.");
+      return;
+    }
+    if (!pendingPlan) return;
+    void finishSubscribe(pendingPlan.id, cpfCnpjInput);
   };
 
   if (isLoading) {
@@ -73,14 +103,64 @@ export function CheckoutForm({ userId, onSuccess }: CheckoutFormProps) {
         </div>
       )}
 
+      {pendingPlan && (
+        <div
+          data-testid="checkout-cpf-form"
+          className="rounded-lg border border-amber-200 bg-amber-50 p-4 space-y-3 dark:border-amber-900 dark:bg-amber-950"
+        >
+          <p className="text-sm text-foreground">
+            Pra assinar o <span className="font-medium">{pendingPlan.name}</span>, precisamos do seu
+            CPF ou CNPJ — é exigido pelo Asaas pra processar a cobrança via Pix.
+          </p>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <input
+              data-testid="checkout-cpf-input"
+              type="text"
+              inputMode="numeric"
+              placeholder="000.000.000-00"
+              value={formatCpfCnpj(cpfCnpjInput)}
+              onChange={(e) => {
+                setCpfCnpjInput(e.target.value);
+                setCpfCnpjError(null);
+              }}
+              className="flex-1 rounded-md border px-3 py-2 text-sm"
+            />
+            <button
+              data-testid="checkout-cpf-confirm"
+              onClick={handleConfirmCpfCnpj}
+              disabled={checkout.isPending}
+              className="rounded-md bg-foreground px-4 py-2 text-sm text-background disabled:opacity-50"
+            >
+              {checkout.isPending ? "Processando..." : "Confirmar assinatura"}
+            </button>
+            <button
+              onClick={() => {
+                setPendingPlan(null);
+                setCpfCnpjInput("");
+                setCpfCnpjError(null);
+              }}
+              disabled={checkout.isPending}
+              className="rounded-md border px-4 py-2 text-sm"
+            >
+              Cancelar
+            </button>
+          </div>
+          {cpfCnpjError && (
+            <p data-testid="checkout-cpf-error" className="text-xs text-red-600">
+              {cpfCnpjError}
+            </p>
+          )}
+        </div>
+      )}
+
       <div className="grid gap-6 md:grid-cols-3">
         {plans.map((plan) => (
           <PlanCard
             key={plan.id}
             plan={plan}
-            onSelect={() => handleSubscribe(plan.id)}
+            onSelect={() => handleSelectPlan(plan)}
             isLoading={checkout.isPending && selectedPlanId === plan.id}
-            disabled={checkout.isPending}
+            disabled={checkout.isPending || cpfLoading || Boolean(pendingPlan)}
           />
         ))}
       </div>
@@ -113,14 +193,14 @@ function PlanCard({ plan, onSelect, isLoading, disabled }: PlanCardProps) {
 
       <button
         onClick={onSelect}
-        disabled={disabled || !plan.isFree}
+        disabled={disabled}
         className="mt-auto rounded-md bg-foreground px-4 py-2 text-sm text-background disabled:opacity-50"
       >
-        {plan.isFree ? (isLoading ? "Processando..." : "Gratuito") : "Em breve"}
+        {isLoading ? "Processando..." : plan.isFree ? "Gratuito" : "Assinar"}
       </button>
       {!plan.isFree && (
         <p className="mt-2 text-center text-xs text-muted-foreground">
-          Pagamento ainda não disponível
+          Pagamento via Pix, confirmação em até alguns minutos
         </p>
       )}
     </div>

@@ -16,6 +16,7 @@ export default defineConfig({
       "src/application/tests/**/*.test.ts",
       "src/infrastructure/tests/**/*.test.ts",
       "src/presentation/**/*.test.{ts,tsx}",
+      "src/lib/tests/**/*.test.ts",
     ],
   },
 });

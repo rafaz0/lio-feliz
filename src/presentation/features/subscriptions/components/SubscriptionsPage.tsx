@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { usePlansQuery, useSubscriptionQuery } from "../hooks/use-subscriptions-query";
 import { useSubscribeMutation } from "../hooks/use-subscriptions-mutation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -41,6 +42,7 @@ export function SubscriptionsPage({ userId }: SubscriptionsPageProps) {
   const subscribe = useSubscribeMutation(userId);
   const dispatcher = useDispatcher();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const cancelMutation = useMutation({
     mutationFn: async () => {
@@ -207,7 +209,11 @@ export function SubscriptionsPage({ userId }: SubscriptionsPageProps) {
                         )}
                         {!isCurrentPlan && !hasActive && !isTrial && (
                           <button
-                            onClick={() => subscribe.mutate(plan.id)}
+                            onClick={() =>
+                              plan.isFree
+                                ? subscribe.mutate(plan.id)
+                                : navigate({ to: "/checkout" })
+                            }
                             disabled={subscribe.isPending}
                             className="w-full rounded-md bg-foreground px-3 py-2 text-sm text-background disabled:opacity-50"
                           >
