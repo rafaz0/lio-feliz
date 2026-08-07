@@ -2,13 +2,13 @@
 
 **Documento:** AI_CONTEXT.md
 
-**Versão:** 2.10
+**Versão:** 2.11
 
 **Status:** APROVADO
 
 **Categoria:** Project Context
 
-**Última atualização:** 06/08/2026 (v2.10)
+**Última atualização:** 07/08/2026 (v2.11)
 
 > **Continuidade entre chats:** A continuidade entre sessões depende do `PROJECT_BOOTSTRAP.md`, que contém o Resumo Operacional Canônico. Ver "Objetivo Atual" abaixo para o estado real mais recente — o rastro formal PI → ER → EWO tem lacunas conhecidas entre PI-014 e PI-018 (ver nota abaixo).
 
@@ -49,8 +49,18 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 
 **Achados de 04/08/2026 (correção de risco de negócio, ver histórico v2.08 abaixo para detalhe completo):** a mitigação do pagamento mock foi endurecida (`MockPaymentGateway.blockNonZeroCharges`, recusa cobrança > 0 fora de `DEV`) e descoberto que só 3 das 9 áreas com selo "PRO" tinham `<RequireCapability>` de verdade — corrigido nas 6 restantes (Metas, Provisionador, Rebalanceamento, Rankings, Setores, Calculadoras). **Confirmado visualmente pelo Rafael em produção em 06/08/2026: o bloqueio está funcionando.** Efeito colateral aceito: como o pagamento real (Asaas) ainda não existe e o mock está bloqueado em produção, hoje **nenhum usuário consegue virar Pro de verdade** — o produto não está vendável ainda, só protegido contra acesso gratuito indevido.
 
-**Próximo passo em aberto (revisado 06/08/2026, ver lacuna de governança nova acima):** três frentes candidatas, decisão do Rafael:
-(a) Resolver o pagamento real via Asaas — é o que desbloqueia o produto ser vendável de verdade (hoje ninguém consegue assinar um plano pago em produção).
+**07/08/2026 — vulnerabilidade real corrigida antes de continuar o Asaas.** Ao investigar a continuação da Fase 0, achado que `PaymentGatewayFactory` criava seu próprio `MockPaymentGateway` **sem** a mitigação `blockNonZeroCharges` (essa só tinha sido aplicada ao mock do dispatcher client-side antigo, em `__root.tsx`, 04/08/2026). Resultado: a fronteira de servidor nova (`checkout.server.ts`, criada na Fase 0) aprovava qualquer assinatura paga de graça em produção sempre que `PAYMENT_GATEWAY_PROVIDER` não estivesse setado como `"asaas"` — reabria o mesmo risco de "Pro de graça" já corrigido duas vezes, por um caminho que não existia quando as correções anteriores foram feitas. Corrigido (commit `648c9ce`): mesma mitigação replicada na fábrica. 1203 testes passando, typecheck com os mesmos 331 erros pré-existentes, lint limpo.
+
+**07/08/2026 — coleta de CPF/CNPJ implementada, consolidado o caminho de assinatura paga (commit `f560f5a`).** Destrava o próximo bloqueio real: `AsaasPaymentGateway.charge()` já recusava cobrança sem CPF/CNPJ, mas não existia nenhuma tela pra coletar. Implementado:
+- `src/lib/cpf-cnpj.ts` — validação real (dígito verificador) de CPF/CNPJ + formatação, com testes.
+- `checkout.server.ts` aceita `cpfCnpj` opcional, valida e persiste em `profiles` antes de assinar; nova query `hasProfileCpfCnpjServerFn` (só expõe um boolean).
+- `CheckoutForm.tsx`: botão de plano pago não fica mais travado em "Em breve" — se o perfil não tem CPF/CNPJ, abre formulário inline antes de assinar.
+- `SubscriptionsPage.tsx`: botão "Assinar" de plano pago agora navega pro `/checkout` (fronteira segura) em vez de disparar o dispatcher client-side antigo direto.
+- **Não migrado ainda** (fica pendente, decisão consciente de escopo): upgrade/downgrade/trial/renovação (`SubscriptionActions.tsx` e o botão de upgrade em `SubscriptionsPage.tsx`) continuam no caminho antigo — já seguros (`blockNonZeroCharges`), só não passam pelo Asaas real.
+- 1217 testes passando (1203 → 1217, 0 regressão), typecheck/lint/build inalterados.
+
+**Próximo passo em aberto (revisado 07/08/2026):** três frentes candidatas, decisão do Rafael:
+(a) Continuar o pagamento real via Asaas — falta: mostrar a tela de pagamento Pix de verdade (QR code/copia-e-cola — hoje `AsaasPaymentGateway.charge()` cria a assinatura mas o front não busca nem exibe o pagamento gerado, precisa de `asaasClient.getPixQrCode`/endpoint novo), registrar chave Pix na conta sandbox, testar o webhook (precisa URL pública), migrar upgrade/downgrade/trial/renovação pro caminho novo, depois disso decidir a chave de produção.
 (b) Decidir o destino da Gestão Financeira órfã (PI-017) — ativar (linkar no menu + Supabase) ou descartar código morto.
 (c) PI-018/PI-019 não são mais candidatas a "próxima frente" — já têm implementação substancial (ver lacuna de governança acima); qualquer trabalho ali é continuação/correção, não início.
 
@@ -68,6 +78,15 @@ Manter durante toda a sessão: Projeto ativo, Objetivo atual, Modo, PS vigente, 
 ---
 
 # Histórico
+
+### Versão 2.11
+
+**Continuação do Asaas (07/08/2026) — vulnerabilidade corrigida + CPF/CNPJ implementado.**
+Ver seção "Objetivo Atual" acima para o detalhe completo das duas
+entregas: (1) `PaymentGatewayFactory` corrigida pra não reabrir o risco
+de "Pro de graça" pela fronteira de servidor nova, e (2) coleta de
+CPF/CNPJ no checkout + consolidação parcial do caminho de assinatura
+paga. Commits `648c9ce` e `f560f5a`. 1217 testes passando.
 
 ### Versão 2.10
 
